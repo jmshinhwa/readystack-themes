@@ -1,0 +1,37 @@
+{
+  "name": "readystack-warm-dark",
+  "displayName": "ReadyStack Warm Dark",
+  "description": "A warm, low-glare dark theme for long coding sessions. Amber accents on a paper-dark background, contrast tuned so comments recede and keywords lead.",
+  "version": "1.0.0",
+  "publisher": "ReadyStack",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "dark theme",
+    "warm",
+    "amber",
+    "low contrast",
+    "eye strain"
+  ],
+  "galleryBanner": {
+    "color": "#17110E",
+    "theme": "dark"
+  },
+  "icon": "icon.png",
+  "homepage": "https://getreadystack.com",
+  "contributes": {
+    "themes": [
+      {
+        "label": "ReadyStack Warm Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/readystack-warm-dark-color-theme.json"
+      }
+    ]
+  }
+}
