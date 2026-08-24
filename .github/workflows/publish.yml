@@ -1,0 +1,39 @@
+name: Publish theme
+on:
+  workflow_dispatch:
+    inputs:
+      dir:
+        description: theme folder
+        required: true
+        default: readystack-warm-dark
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: marketplace-publish
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Package
+        working-directory: ${{ inputs.dir }}
+        run: npx --yes @vscode/vsce package --no-dependencies --allow-missing-repository
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+      - name: Publish to VS Code Marketplace
+        working-directory: ${{ inputs.dir }}
+        run: npx --yes @vscode/vsce publish --packagePath *.vsix --skip-duplicate --azure-credential
+      - name: Publish to Open VSX
+        if: ${{ env.OVSX_TOKEN != '' }}
+        working-directory: ${{ inputs.dir }}
+        env:
+          OVSX_TOKEN: ${{ secrets.OVSX_TOKEN }}
+        run: npx --yes ovsx publish *.vsix -p "$OVSX_TOKEN" || echo "open vsx skipped"
