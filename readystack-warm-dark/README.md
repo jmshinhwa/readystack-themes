@@ -22,6 +22,29 @@ keywords lead, and numbers stay findable.**
 
 Works with any language. Semantic highlighting on.
 
+## The other eleven
+
+This theme is one of twelve built from the same contrast ladder — eight dark, four light.
+Every accent passes WCAG AA, every body text passes AAA. Measured, not eyeballed.
+
+| | |
+|---|---|
+| **Midnight Ink** | deep navy, cool blue accents |
+| **Forest Deep** | dark forest green, low blue light |
+| **Mono Slate** | near-monochrome, one teal accent |
+| **Rose Noir** | black with rose and gold |
+| **Deep Ocean** | submarine blues with aqua |
+| **Plum Dusk** | plum and lavender on deep violet |
+| **Ember High Contrast** | near-black, bright accents |
+| **Paper Light** | cream paper with ink |
+| **Sepia Read** | tuned like a book page |
+| **Nordic Light** | cool grey-blue, no cream |
+| **Contrast Light** | maximum contrast, AAA |
+
+**Get all twelve → https://launchcrateperfect.gumroad.com/l/bwzzz**
+
+MIT licensed. Works the same in Cursor, Windsurf and VSCodium.
+
 ## More free tools
 
 Free calculators, templates and spreadsheets: **https://getreadystack.com**

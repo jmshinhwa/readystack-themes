@@ -2,7 +2,7 @@
   "name": "readystack-warm-dark",
   "displayName": "ReadyStack Warm Dark",
   "description": "A warm, low-glare dark theme for long coding sessions. Amber accents on a paper-dark background, contrast tuned so comments recede and keywords lead.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
