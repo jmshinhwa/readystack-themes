@@ -1,0 +1,19 @@
+<idea-plugin>
+  <id>com.readystack.theme.readystack-warm-dark</id>
+  <name>ReadyStack Warm Dark</name>
+  <version>1.0.0</version>
+  <vendor url="https://getreadystack.com">ReadyStack</vendor>
+  <idea-version since-build="231" />
+  <depends>com.intellij.modules.platform</depends>
+  <description><![CDATA[
+<p>Warm, low-glare dark. Amber on paper-dark; comments recede, keywords lead.</p>
+<p>Built from a measured contrast ladder: body text passes WCAG AAA and every accent colour passes AA. The comment colour is deliberately the one thing that recedes; keywords lead in bold.</p>
+<p>Works in IntelliJ IDEA, PyCharm, WebStorm, PhpStorm, GoLand, Rider, CLion and the other IntelliJ-based IDEs.</p>
+<p>This is one of twelve themes built to the same standard &mdash; eight dark, four light. <a href="https://launchcrateperfect.gumroad.com/l/bwzzz">Get all twelve</a>.</p>
+<p>MIT licensed.</p>
+  ]]></description>
+  <change-notes><![CDATA[<p>1.0.0 &mdash; first release.</p>]]></change-notes>
+  <extensions defaultExtensionNs="com.intellij">
+    <themeProvider id="readystack-warm-dark" path="/themes/readystack-warm-dark.theme.json" />
+  </extensions>
+</idea-plugin>

@@ -1,0 +1,93 @@
+{
+  "name": "ReadyStack Warm Dark",
+  "dark": true,
+  "author": "ReadyStack",
+  "editorScheme": "/themes/readystack-warm-dark.xml",
+  "ui": {
+    "*": {
+      "background": "#231B15",
+      "foreground": "#F0E7DB",
+      "selectionBackground": "#3D2E24",
+      "selectionForeground": "#F0E7DB",
+      "borderColor": "#3D2E24",
+      "separatorColor": "#3D2E24",
+      "disabledForeground": "#6E5B4E",
+      "infoForeground": "#BD9665"
+    },
+    "Editor": {
+      "background": "#1D1611",
+      "foreground": "#F0E7DB",
+      "shortcutForeground": "#E4BE79"
+    },
+    "Panel": {
+      "background": "#231B15",
+      "foreground": "#F0E7DB"
+    },
+    "ToolWindow": {
+      "Button": {
+        "selectedBackground": "#33271F"
+      },
+      "Header": {
+        "background": "#231B15",
+        "inactiveBackground": "#231B15"
+      }
+    },
+    "Tree": {
+      "background": "#231B15",
+      "foreground": "#DFCCB4",
+      "selectionBackground": "#3D2E24",
+      "rowHeight": 22
+    },
+    "Table": {
+      "background": "#231B15",
+      "foreground": "#F0E7DB",
+      "stripeColor": "#291F19"
+    },
+    "TextField": {
+      "background": "#1D1611",
+      "foreground": "#F0E7DB"
+    },
+    "TextArea": {
+      "background": "#1D1611",
+      "foreground": "#F0E7DB"
+    },
+    "Button": {
+      "startBackground": "#33271F",
+      "endBackground": "#33271F",
+      "foreground": "#F0E7DB",
+      "default": {
+        "startBackground": "#E4BE79",
+        "endBackground": "#E4BE79",
+        "foreground": "#16110D",
+        "focusColor": "#E4BE79"
+      }
+    },
+    "Link": {
+      "activeForeground": "#8FB8D8",
+      "hoverForeground": "#8FB8D8",
+      "pressedForeground": "#8FB8D8",
+      "visitedForeground": "#D8A0B4"
+    },
+    "ScrollBar": {
+      "thumbColor": "#4E4037",
+      "hoverThumbColor": "#5C4C42"
+    },
+    "StatusBar": {
+      "borderColor": "#3D2E24"
+    },
+    "TabbedPane": {
+      "underlineColor": "#E4BE79",
+      "contentAreaColor": "#3D2E24",
+      "focusColor": "#33271F"
+    },
+    "CompletionPopup": {
+      "selectionBackground": "#3D2E24",
+      "matchForeground": "#E4BE79"
+    },
+    "NotificationsToolwindow": {
+      "newNotification": {
+        "background": "#291F19"
+      }
+    }
+  }
+}
