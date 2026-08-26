@@ -1,0 +1,34 @@
+{
+  "name": "readystack-forest-deep",
+  "displayName": "ReadyStack Forest Deep",
+  "description": "Dark forest green with lime accents. Low blue light, easy on long reviews.",
+  "version": "1.1.1",
+  "publisher": "ReadyStack",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "dark theme",
+    "forest"
+  ],
+  "galleryBanner": {
+    "color": "#0E1512",
+    "theme": "dark"
+  },
+  "icon": "icon.png",
+  "homepage": "https://getreadystack.com",
+  "contributes": {
+    "themes": [
+      {
+        "label": "ReadyStack Forest Deep",
+        "uiTheme": "vs-dark",
+        "path": "./themes/readystack-forest-deep-color-theme.json"
+      }
+    ]
+  }
+}
