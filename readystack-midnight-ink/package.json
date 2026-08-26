@@ -1,7 +1,7 @@
 {
-  "name": "readystack-warm-dark",
-  "displayName": "ReadyStack Warm Dark",
-  "description": "Warm, low-glare dark. Amber on paper-dark; comments recede, keywords lead.",
+  "name": "readystack-midnight-ink",
+  "displayName": "ReadyStack Midnight Ink",
+  "description": "Deep navy with cool blue accents. For night sessions that need to stay calm.",
   "version": "1.1.1",
   "publisher": "ReadyStack",
   "license": "MIT",
@@ -14,10 +14,10 @@
   "keywords": [
     "theme",
     "dark theme",
-    "warm"
+    "midnight"
   ],
   "galleryBanner": {
-    "color": "#16110D",
+    "color": "#0D1017",
     "theme": "dark"
   },
   "icon": "icon.png",
@@ -25,9 +25,9 @@
   "contributes": {
     "themes": [
       {
-        "label": "ReadyStack Warm Dark",
+        "label": "ReadyStack Midnight Ink",
         "uiTheme": "vs-dark",
-        "path": "./themes/readystack-warm-dark-color-theme.json"
+        "path": "./themes/readystack-midnight-ink-color-theme.json"
       }
     ]
   }

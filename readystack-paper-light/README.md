@@ -1,21 +1,21 @@
-# ReadyStack Warm Dark
+# ReadyStack Paper Light
 
-Warm, low-glare dark. Amber on paper-dark; comments recede, keywords lead.
+Cream paper with ink. A light theme that does not blast you at 9am.
 
 ## Install
 
 1. Open the Extensions view
-2. Search **ReadyStack Warm Dark**
+2. Search **ReadyStack Paper Light**
 3. Install, then `Ctrl+K Ctrl+T` and pick it
 
 ## Measured contrast
 
 | element | ratio | standard |
 |---|---|---|
-| body text | 14.6:1 | WCAG AAA (7:1) |
-| keywords | 10.2:1 | WCAG AA (4.5:1) |
-| strings | 8.7:1 | WCAG AA (4.5:1) |
-| comments | 4.0:1 | deliberately receding |
+| body text | 13.6:1 | WCAG AAA (7:1) |
+| keywords | 5.7:1 | WCAG AA (4.5:1) |
+| strings | 4.9:1 | WCAG AA (4.5:1) |
+| comments | 3.2:1 | deliberately receding |
 
 Every ratio above was measured, not estimated.
 
