@@ -27,10 +27,17 @@ Every ratio above was measured, not estimated.
 - **Terminal** ANSI colors match the editor, so output does not clash
 - **Git decorations** follow the same palette
 
-## The full set
+## Your terminal is still the wrong color
 
-This is one of 12 themes built from the same contrast rules - 8 dark, 4 light.
-Get all 12 in one download: **https://launchcrateperfect.gumroad.com/l/bwzzz**
+This theme colors the editor. The moment you open a terminal outside VS Code -
+iTerm2, Windows Terminal, Alacritty, kitty - it is still on its old palette,
+and so is every other window you work in.
+
+**ReadyStack Nordic Light - Full Environment** ships the same measured palette as ready-to-import
+profiles for all four terminals, plus the source palette as JSON so you can
+carry it into anything else. One palette, every window.
+
+**https://launchcrateperfect.gumroad.com/l/bwzzz**
 
 ## Free tools
 

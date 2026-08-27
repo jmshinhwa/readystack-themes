@@ -2,7 +2,7 @@
   "name": "readystack-deep-ocean",
   "displayName": "ReadyStack Deep Ocean",
   "description": "Submarine blues with aqua accents. Reads cool and quiet at any hour.",
-  "version": "1.1.1",
+  "version": "1.3.0",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
@@ -28,6 +28,39 @@
         "label": "ReadyStack Deep Ocean",
         "uiTheme": "vs-dark",
         "path": "./themes/readystack-deep-ocean-color-theme.json"
+      }
+    ],
+    "walkthroughs": [
+      {
+        "id": "readystack-everywhere",
+        "title": "Take this palette everywhere",
+        "description": "Your editor matches. Your terminal does not — yet.",
+        "steps": [
+          {
+            "id": "pick",
+            "title": "Turn the theme on",
+            "description": "Press Ctrl+K Ctrl+T (Cmd+K Cmd+T on macOS) and choose **ReadyStack Deep Ocean**.",
+            "media": {
+              "markdown": "walkthrough/step1.md"
+            }
+          },
+          {
+            "id": "terminal",
+            "title": "Now look at your terminal",
+            "description": "It is still the old colours. The editor is half the screen you stare at all day.",
+            "media": {
+              "markdown": "walkthrough/step2.md"
+            }
+          },
+          {
+            "id": "rest",
+            "title": "Same palette, everywhere else",
+            "description": "The identical colour values for iTerm2, Windows Terminal, Alacritty, kitty and Obsidian.",
+            "media": {
+              "markdown": "walkthrough/step3.md"
+            }
+          }
+        ]
       }
     ]
   }
