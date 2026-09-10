@@ -1,0 +1,106 @@
+{
+  "name": "wcag-clause-audit",
+  "displayName": "WCAG 2.1 AA Audit: ADA Title II, EAA, 508",
+  "description": "Flags accessibility failures in the open file, cites the exact WCAG success criterion and EN 301 549 clause, and tells you which standard version and deadline actually bind you.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Testing"
+  ],
+  "keywords": [
+    "wcag",
+    "accessibility",
+    "ada",
+    "en-301-549",
+    "section-508"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "wcag-clause-audit.audit_file",
+        "title": "Audit This File (WCAG clauses + deadline)",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      },
+      {
+        "command": "wcag-clause-audit.audit_selection",
+        "title": "Audit Selected Lines",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      },
+      {
+        "command": "wcag-clause-audit.list_rules",
+        "title": "List All 23 Rules and Their Regimes",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      },
+      {
+        "command": "wcag-clause-audit.show_report",
+        "title": "Reopen Last Audit Report",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      },
+      {
+        "command": "wcag-clause-audit.workspace_scan",
+        "title": "Scan Entire Workspace",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      },
+      {
+        "command": "wcag-clause-audit.export_report",
+        "title": "Export Conformance Report (CSV/JSON/HTML)",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      },
+      {
+        "command": "wcag-clause-audit.ci_json",
+        "title": "Emit CI JSON",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      },
+      {
+        "command": "wcag-clause-audit.watch_on_save",
+        "title": "Re-audit automatically every time you save",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      }
+    ],
+    "configuration": {
+      "title": "WCAG 2.1 AA Audit: ADA Title II, EAA, 508",
+      "properties": {
+        "wcag-clause-audit.report_format": {
+          "type": "string",
+          "default": "",
+          "description": ""
+        },
+        "wcag-clause-audit.min_severity": {
+          "type": "string",
+          "default": "",
+          "description": ""
+        },
+        "wcag-clause-audit.max_files": {
+          "type": "string",
+          "default": "",
+          "description": ""
+        },
+        "wcag-clause-audit.exclude_glob": {
+          "type": "string",
+          "default": "",
+          "description": ""
+        },
+        "wcag-clause-audit.show_on_start": {
+          "type": "string",
+          "default": "",
+          "description": ""
+        },
+        "wcag-clause-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 23 cited rules that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
