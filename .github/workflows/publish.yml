@@ -1,4 +1,5 @@
 name: Publish theme
+run-name: Publish ${{ inputs.dir }}
 on:
   workflow_dispatch:
     inputs:
@@ -28,12 +29,22 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           allow-no-subscriptions: true
+      # s142 2026-09-10 — the Marketplace caps NEW extensions per publisher per 12 hours ("exceeded the maximum number of
+      # extensions that can be created in 12 hour(s)"). A hit here must not fail the job (no failure e-mails) and must not
+      # stop the Open VSX step below. The VPS re-dispatches later after checking the public gallery (market_publish --verify).
       - name: Publish to VS Code Marketplace
+        id: mp
+        continue-on-error: true
         working-directory: ${{ inputs.dir }}
         run: npx --yes @vscode/vsce publish --packagePath *.vsix --skip-duplicate --azure-credential
       - name: Publish to Open VSX
-        if: ${{ env.OVSX_TOKEN != '' }}
+        if: ${{ always() }}
         working-directory: ${{ inputs.dir }}
         env:
           OVSX_TOKEN: ${{ secrets.OVSX_TOKEN }}
-        run: npx --yes ovsx publish *.vsix -p "$OVSX_TOKEN" || echo "open vsx skipped"
+        run: |
+          if [ -z "$OVSX_TOKEN" ]; then echo "no OVSX_TOKEN"; exit 0; fi
+          npx --yes ovsx publish *.vsix -p "$OVSX_TOKEN" || echo "open vsx skipped (already published or error)"
+      - name: Marketplace result
+        if: ${{ always() }}
+        run: echo "vscode-marketplace=${{ steps.mp.outcome }}"
