@@ -1,0 +1,94 @@
+{
+  "name": "cert-lifetime-lint-47day",
+  "displayName": "Cert Lifetime Lint - 200/100/47-Day TLS Audit",
+  "description": "Finds the 365-day and 90-day certificate assumptions left in your cert-manager, Terraform, ACME and monitoring config. The public TLS maximum is 200 days now, 100 on 2027-03-15, 47 on 2029-03-15.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "tls",
+    "certificate",
+    "cert-manager",
+    "acme",
+    "pki"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cert-lifetime-lint-47day.audit_file",
+        "title": "Check this file for certificate lifetime assumptions",
+        "category": "Cert Lifetime Lint"
+      },
+      {
+        "command": "cert-lifetime-lint-47day.show_report",
+        "title": "Show the last certificate lifetime report",
+        "category": "Cert Lifetime Lint"
+      },
+      {
+        "command": "cert-lifetime-lint-47day.list_rules",
+        "title": "List the certificate lifetime rules",
+        "category": "Cert Lifetime Lint"
+      },
+      {
+        "command": "cert-lifetime-lint-47day.workspace_scan",
+        "title": "Scan every file in the workspace",
+        "category": "Cert Lifetime Lint"
+      },
+      {
+        "command": "cert-lifetime-lint-47day.ci_json",
+        "title": "Print the findings as CI JSON",
+        "category": "Cert Lifetime Lint"
+      },
+      {
+        "command": "cert-lifetime-lint-47day.export_report",
+        "title": "Export the certificate audit file",
+        "category": "Cert Lifetime Lint"
+      },
+      {
+        "command": "cert-lifetime-lint-47day.quick_fix",
+        "title": "Rewrite the durations in this file",
+        "category": "Cert Lifetime Lint"
+      }
+    ],
+    "configuration": {
+      "title": "Cert Lifetime Lint",
+      "properties": {
+        "cert-lifetime-lint-47day.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info, warn, error)"
+        },
+        "cert-lifetime-lint-47day.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum number of files to walk during a workspace scan"
+        },
+        "cert-lifetime-lint-47day.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "cert-lifetime-lint-47day.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default format for the exported audit file (csv, json, html)"
+        },
+        "cert-lifetime-lint-47day.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 24 that ship inside."
+        }
+      }
+    }
+  }
+}
