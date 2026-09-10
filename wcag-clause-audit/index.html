@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>WCAG 2.1 AA Audit: ADA Title II, EAA, 508</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Flags accessibility failures in the open file, cites the exact WCAG success criterion and EN 301 549 clause, and tells you which standard version and deadline actually bind you.">
+<script defer data-auto-init src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@latest/dist/embed.global.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#12151a;background:#f6f7f9}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+h1{font-size:26px;line-height:1.25;margin:0 0 6px}
+.sub{color:#4a5260;margin:0 0 18px;max-width:70ch}
+.card{background:#fff;border:1px solid #e0e4ea;border-radius:10px;padding:16px 18px;margin:0 0 16px}
+label{display:block;font-weight:600;font-size:13px;margin:0 0 6px}
+select,textarea{width:100%;font-size:14px;border:1px solid #ccd2db;border-radius:7px;padding:9px 10px;background:#fff;color:#12151a}
+textarea{min-height:132px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.5}
+button.go{margin-top:10px;background:#12151a;color:#fff;border:0;border-radius:7px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer}
+.bind{background:#0f172a;color:#e8edf5;border-radius:10px;padding:14px 16px;margin:0 0 16px}
+.bind .std{font-size:19px;font-weight:700;color:#fff}
+.bind .when{font-size:14px;margin-top:3px;color:#9fd0ff}
+.bind .note{font-size:12.5px;margin-top:8px;color:#b8c2d1;line-height:1.5}
+.cnt{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#4a5260;margin:18px 0 8px}
+ul.f{list-style:none;margin:0;padding:0}
+ul.f li{border-left:3px solid #d0d5dd;background:#fff;border-radius:0 7px 7px 0;padding:8px 12px;margin:0 0 6px;font-size:13.5px}
+li.error{border-left-color:#c0392b}li.warn{border-left-color:#d68910}li.info{border-left-color:#8a94a6}
+li .ln{font-family:ui-monospace,Menlo,Consolas,monospace;color:#6b7280;margin-right:8px}
+.out-of{opacity:.72}
+.out-of li{border-left-style:dashed}
+.why{font-size:13px;color:#4a5260;margin:6px 0 0}
+.buy{display:inline-block;background:#1a5fd4;color:#fff;text-decoration:none;border-radius:7px;padding:11px 20px;font-weight:600;margin-top:4px}
+.paid{background:#fff;border:1px solid #e0e4ea;border-radius:10px;padding:16px 18px;margin:16px 0 0}
+.paid ul{margin:8px 0 12px;padding-left:20px;font-size:14px}
+.terms{font-size:12.5px;color:#6b7280;margin:8px 0 0}
+footer{margin-top:34px;font-size:12.5px;color:#6b7280;line-height:1.6}
+</style>
+<div class="wrap">
+<h1>WCAG 2.1 AA Audit: ADA Title II, EAA, 508</h1>
+<p class="sub">Flags accessibility failures in the open file, cites the exact WCAG success criterion and EN 301 549 clause, and tells you which standard version and deadline actually bind you.</p>
+
+<div class="card">
+  <label for="regime">Who are you shipping to?</label>
+  <select id="regime"></select>
+  <label for="src" style="margin-top:14px">Paste your markup, JSX or CSS</label>
+  <textarea id="src" spellcheck="false"></textarea>
+  <button class="go" id="go">Audit this file</button>
+</div>
+
+<div id="bind" class="bind"></div>
+<div id="out"></div>
+
+<div class="paid">
+  <p style="margin:0 0 2px;font-weight:600">This page audits one file. The extension does the rest.</p>
+  <ul>
+    <li>Scan every file in the workspace, not just the one that is open</li>
+    <li>Write the conformance report to a file (CSV/JSON/HTML) you can hand to an auditor</li>
+    <li>Machine-readable JSON so CI can fail the build on new violations</li>
+    <li>Re-audit automatically every time you save</li>
+  </ul>
+  <a href="https://getreadystack.com" data-polar-checkout data-polar-checkout-theme="light" class="buy">Get the full version - $29</a>
+  <p class="terms">$29 once - one licence key per person or team seat - 7-day full refund.
+  A one-off professional WCAG audit runs about $1,250-$2,750; a procurement-grade VPAT starts near $350.</p>
+</div>
+
+<footer>
+  <strong>Sources.</strong> ADA Title II deadlines: US DOJ interim final rule of 2026-04-17, which moved the
+  2026-04-24 and 2027-04-26 dates back by one year; technical standard WCAG 2.1 Level AA, unchanged.
+  Section 508: Revised 508 Standards, in force 2018-01-18, referencing WCAG 2.0 Level AA.
+  EAA: applies since 2025-06-28; harmonised standard EN 301 549 v3.2.1 (WCAG 2.1 AA); v4.1.0 entered final
+  deliverable voting in June 2026; pre-existing service contracts may run to 2027-06-28, with 2030-06-28 as the
+  final catch-all.<br>
+  <strong>Limits.</strong> These 23 checks are line-scoped regular expressions. They cannot see tags split
+  across lines, computed markup, colour contrast or focus order, and they do not replace manual and
+  assistive-technology testing. They tell you which criteria bind you and catch the failures that are visible
+  on a single line.
+</footer>
+</div>
+
+<script>
+var RULES = [{"pattern": "<img(?![^>]*\\balt\\s*=)[^>]*>", "flags": "i", "message": "SC 1.1.1 (A) img has no alt attribute - EN 301 549 9.1.1.1 [508 . ADA . EAA]", "sev": "error", "wcag": "2.0"}, {"pattern": "<img[^>]*\\balt\\s*=\\s*[\"\\'](?:image|photo|picture|graphic|icon|logo|spacer)[\"\\']", "flags": "i", "message": "SC 1.1.1 (A) alt text is a placeholder word, not a description - EN 301 549 9.1.1.1 [508 . ADA . EAA]", "sev": "warn", "wcag": "2.0"}, {"pattern": "<html(?![^>]*\\blang\\s*=)[^>]*>", "flags": "i", "message": "SC 3.1.1 (A) html element has no lang attribute - EN 301 549 9.3.1.1 [508 . ADA . EAA]", "sev": "error", "wcag": "2.0"}, {"pattern": "<input(?![^>]*\\btype\\s*=\\s*[\"\\'](?:hidden|submit|button|reset|image)[\"\\'])(?![^>]*\\baria-label)(?![^>]*\\baria-labelledby)(?![^>]*\\bid\\s*=)[^>]*>", "flags": "i", "message": "SC 4.1.2 (A) input has no id, aria-label or aria-labelledby, so it can never be labelled - EN 301 549 9.4.1.2 [508 . ADA . EAA]", "sev": "error", "wcag": "2.0"}, {"pattern": "<(?:select|textarea)\\b(?![^>]*\\baria-label)(?![^>]*\\baria-labelledby)(?![^>]*\\bid\\s*=)[^>]*>", "flags": "i", "message": "SC 4.1.2 (A) select/textarea has no id or aria-label, so it has no accessible name - EN 301 549 9.4.1.2 [508 . ADA . EAA]", "sev": "error", "wcag": "2.0"}, {"pattern": "<iframe(?![^>]*\\btitle\\s*=)[^>]*>", "flags": "i", "message": "SC 4.1.2 (A) iframe has no title attribute - EN 301 549 9.4.1.2 [508 . ADA . EAA]", "sev": "error", "wcag": "2.0"}, {"pattern": "\\btabindex\\s*=\\s*[\"\\']?[1-9]", "flags": "i", "message": "SC 2.4.3 (A) positive tabindex overrides the natural focus order - EN 301 549 9.2.4.3 [508 . ADA . EAA]", "sev": "warn", "wcag": "2.0"}, {"pattern": "<a\\b(?![^>]*\\bhref\\s*=)[^>]*>", "flags": "i", "message": "SC 2.1.1 (A) anchor without href is not keyboard focusable - EN 301 549 9.2.1.1 [508 . ADA . EAA]", "sev": "error", "wcag": "2.0"}, {"pattern": "<(?:div|span|li|td|p|img)\\b[^>]*\\bonclick\\s*=", "flags": "i", "message": "SC 2.1.1 (A) click handler on a non-interactive element - no keyboard access - EN 301 549 9.2.1.1 [508 . ADA . EAA]", "sev": "error", "wcag": "2.0"}, {"pattern": "\\brole\\s*=\\s*[\"\\']button[\"\\'](?![^>]*\\btabindex\\s*=)", "flags": "i", "message": "SC 2.1.1 (A) role=\"button\" without tabindex is not reachable by keyboard - EN 301 549 9.2.1.1 [508 . ADA . EAA]", "sev": "error", "wcag": "2.0"}, {"pattern": "<(?:a|button|input|select|textarea)\\b[^>]*\\baria-hidden\\s*=\\s*[\"\\']true[\"\\']", "flags": "i", "message": "SC 4.1.2 (A) aria-hidden=\"true\" on a focusable control hides it from AT but keeps focus - EN 301 549 9.4.1.2 [508 . ADA . EAA]", "sev": "error", "wcag": "2.0"}, {"pattern": "<(?:video|audio)\\b[^>]*\\bautoplay\\b", "flags": "i", "message": "SC 1.4.2 (A) media autoplays with no mechanism to stop it - EN 301 549 9.1.4.2 [508 . ADA . EAA]", "sev": "error", "wcag": "2.0"}, {"pattern": "<video\\b(?![^>]*\\bcontrols\\b)[^>]*>", "flags": "i", "message": "SC 1.4.2 (A) video without controls gives no way to pause or mute - EN 301 549 9.1.4.2 [508 . ADA . EAA]", "sev": "warn", "wcag": "2.0"}, {"pattern": "<th\\b(?![^>]*\\bscope\\s*=)[^>]*>", "flags": "i", "message": "SC 1.3.1 (A) th has no scope, so the header-cell relationship is not programmatic - EN 301 549 9.1.3.1 [508 . ADA . EAA]", "sev": "warn", "wcag": "2.0"}, {"pattern": "<meta[^>]*viewport[^>]*(?:user-scalable\\s*=\\s*[\"\\']?no|maximum-scale\\s*=\\s*[\"\\']?1(?:\\.0)?\\b)", "flags": "i", "message": "SC 1.4.4 (AA) viewport blocks zoom - text cannot be resized to 200% - EN 301 549 9.1.4.4 [508 . ADA . EAA]", "sev": "error", "wcag": "2.0"}, {"pattern": "outline\\s*:\\s*(?:0|none)\\b", "flags": "i", "message": "SC 2.4.7 (AA) outline removed - confirm a visible focus style replaces it - EN 301 549 9.2.4.7 [508 . ADA . EAA]", "sev": "warn", "wcag": "2.0"}, {"pattern": "<svg\\b(?![^>]*\\baria-hidden)(?![^>]*\\baria-label)(?![^>]*\\brole\\s*=)[^>]*>", "flags": "i", "message": "SC 1.1.1 (A) svg is neither labelled nor marked decorative with aria-hidden - EN 301 549 9.1.1.1 [508 . ADA . EAA]", "sev": "info", "wcag": "2.0"}, {"pattern": "<button\\b(?![^>]*\\baria-label)(?![^>]*\\btitle\\s*=)[^>]*>\\s*<(?:i|svg)\\b", "flags": "i", "message": "SC 4.1.2 (A) icon-only button has no accessible name - EN 301 549 9.4.1.2 [508 . ADA . EAA]", "sev": "error", "wcag": "2.0"}, {"pattern": "\\baccesskey\\s*=", "flags": "i", "message": "SC 2.1.1 (A) accesskey often collides with AT and browser shortcuts - EN 301 549 9.2.1.1 [508 . ADA . EAA]", "sev": "warn", "wcag": "2.0"}, {"pattern": "<(?:blink|marquee)\\b", "flags": "i", "message": "SC 2.2.2 (A) blink/marquee moves or blinks with no way to pause it - EN 301 549 9.2.2.2 [508 . ADA . EAA]", "sev": "error", "wcag": "2.0"}, {"pattern": "<label\\b(?![^>]*\\bfor\\s*=)[^>]*>", "flags": "i", "message": "SC 1.3.1 (A) label has no for attribute - confirm it wraps its own control - EN 301 549 9.1.3.1 [508 . ADA . EAA]", "sev": "info", "wcag": "2.0"}, {"pattern": "<input[^>]*\\bname\\s*=\\s*[\"\\'](?:email|e-mail|fname|firstname|first_name|lname|lastname|last_name|tel|telephone|phone|address|street|city|zip|postcode|postal|country|cc-number|cc-name)[\"\\'](?![^>]*\\bautocomplete\\s*=)", "flags": "i", "message": "SC 1.3.5 (AA) personal-data input has no autocomplete token - EN 301 549 9.1.3.5 - WCAG 2.1 ONLY [ADA . EAA - NOT 508]", "sev": "warn", "wcag": "2.1"}, {"pattern": "screen\\.orientation\\.lock\\s*\\(", "flags": "i", "message": "SC 1.3.4 (AA) orientation is locked - EN 301 549 9.1.3.4 - WCAG 2.1 ONLY [ADA . EAA - NOT 508]", "sev": "error", "wcag": "2.1"}];
+var REGIMES = [
+  {
+    id: 'us_ada_t2_large',
+    label: 'US - ADA Title II, public entity serving 50,000+',
+    standard: 'WCAG 2.1 Level AA',
+    wcag: '2.1',
+    deadline: '2027-04-26',
+    note: 'DOJ issued an interim final rule on 2026-04-17 that moved this from 2026-04-24 by one year. '
+        + 'Checklists and chatbots written before that date still quote 2026-04-24, which is no longer the deadline. '
+        + 'The technical standard and the content scope did not change.'
+  },
+  {
+    id: 'us_ada_t2_small',
+    label: 'US - ADA Title II, public entity under 50,000 or special district',
+    standard: 'WCAG 2.1 Level AA',
+    wcag: '2.1',
+    deadline: '2028-04-26',
+    note: 'Also moved by one year by the DOJ interim final rule of 2026-04-17 (from 2027-04-26). '
+        + 'There is no small-entity exemption - the standard is identical, only the date differs.'
+  },
+  {
+    id: 'us_508',
+    label: 'US - Section 508 (federal ICT and its vendors)',
+    standard: 'WCAG 2.0 Level AA',
+    wcag: '2.0',
+    deadline: null,
+    inForce: '2018-01-18',
+    note: 'The Revised 508 Standards still reference WCAG 2.0 Level AA (38 criteria). '
+        + 'The 17 success criteria added by WCAG 2.1 are NOT required by Section 508. '
+        + 'A scanner set to WCAG 2.1 or 2.2 will flag work you are not legally obliged to do here.'
+  },
+  {
+    id: 'eu_eaa_new',
+    label: 'EU - European Accessibility Act, product or service placed on the market since 2025-06-28',
+    standard: 'EN 301 549 v3.2.1 -> WCAG 2.1 Level AA',
+    wcag: '2.1',
+    deadline: null,
+    inForce: '2025-06-28',
+    note: 'v3.2.1 is the harmonised version and it incorporates WCAG 2.1 AA. EN 301 549 v4.1.0 entered final '
+        + 'deliverable voting in June 2026 and v4.1.1 is expected to move to WCAG 2.2 - until it is cited, '
+        + 'WCAG 2.1 AA is what binds. Microenterprises (under 10 staff and turnover at most EUR 2M) are exempt '
+        + 'for SERVICES only, never for products they place on the market.'
+  },
+  {
+    id: 'eu_eaa_legacy',
+    label: 'EU - EAA, service under a contract concluded before 2025-06-28',
+    standard: 'EN 301 549 v3.2.1 -> WCAG 2.1 Level AA',
+    wcag: '2.1',
+    deadline: '2027-06-28',
+    note: 'Service contracts already in force on 2025-06-28 may continue unchanged until 2027-06-28. '
+        + 'From 2030-06-28 every in-scope product and service must comply regardless of when it was released.'
+  }
+];
+var ORDER = {'2.0':0,'2.1':1,'2.2':2};
+
+function inScope(w, rg){ return ORDER[String(w||'2.0')] <= ORDER[String(rg.wcag)]; }
+function daysUntil(iso){
+  if(!iso) return null;
+  return Math.round((new Date(iso+'T00:00:00Z') - new Date()) / 86400000);
+}
+function whenText(rg){
+  var d = daysUntil(rg.deadline);
+  if(rg.deadline === null) return 'in force since ' + rg.inForce;
+  if(d < 0) return 'deadline ' + rg.deadline + ' has PASSED (' + (-d) + ' days ago)';
+  return 'deadline ' + rg.deadline + ' \u2014 ' + d + ' days left';
+}
+function scan(text){
+  var lines = String(text).split(/\r?\n/), hits = [], i, k, r, re;
+  for(i=0;i<lines.length;i++){
+    for(k=0;k<RULES.length;k++){
+      r = RULES[k];
+      try { re = new RegExp(r.pattern, r.flags||''); } catch(e){ continue; }
+      if(re.test(lines[i])) hits.push({line:i+1, msg:r.message, sev:r.sev||'warn', wcag:r.wcag||'2.0'});
+    }
+  }
+  return hits;
+}
+function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function render(){
+  var rg = REGIMES.filter(function(x){ return x.id === document.getElementById('regime').value; })[0] || REGIMES[0];
+  document.getElementById('bind').innerHTML =
+    '<div class="std">' + esc(rg.standard) + '</div>' +
+    '<div class="when">' + esc(whenText(rg)) + '</div>' +
+    '<div class="note">' + esc(rg.note) + '</div>';
+
+  var hits = scan(document.getElementById('src').value);
+  var req = [], not = [], i;
+  for(i=0;i<hits.length;i++){ (inScope(hits[i].wcag, rg) ? req : not).push(hits[i]); }
+
+  function list(a, cls){
+    var s = '<ul class="f' + (cls||'') + '">', j;
+    for(j=0;j<a.length;j++){
+      s += '<li class="' + a[j].sev + '"><span class="ln">line ' + a[j].line + '</span>' + esc(a[j].msg) + '</li>';
+    }
+    return s + '</ul>';
+  }
+  var h = '';
+  if(!hits.length){
+    h = '<p class="cnt">0 findings</p><p class="why">No matches for the ' + RULES.length +
+        ' shipped rules. Line-scoped checks cannot see multi-line tags or computed markup \u2014 keep manual testing.</p>';
+  } else {
+    h += '<p class="cnt">' + req.length + ' finding' + (req.length===1?'':'s') + ' you must fix for this regime</p>';
+    h += req.length ? list(req) : '<p class="why">Nothing in this file is required by the regime you selected.</p>';
+    if(not.length){
+      h += '<p class="cnt">' + not.length + ' finding' + (not.length===1?'':'s') + ' NOT required here</p>';
+      h += '<p class="why">' + esc(rg.standard.indexOf('2.0') > -1
+            ? 'These are WCAG 2.1 criteria. Section 508 still cites WCAG 2.0 Level AA, so you are not legally obliged to fix them \u2014 a scanner set to WCAG 2.2 would bill you for this work anyway.'
+            : 'Outside the version this regime cites.') + '</p>';
+      h += list(not, ' out-of');
+    }
+  }
+  document.getElementById('out').innerHTML = h;
+}
+
+(function init(){
+  var sel = document.getElementById('regime'), i, o;
+  for(i=0;i<REGIMES.length;i++){
+    o = document.createElement('option');
+    o.value = REGIMES[i].id; o.textContent = REGIMES[i].label;
+    sel.appendChild(o);
+  }
+  sel.value = "us_508";
+  document.getElementById('src').value = "<html>\n  <img src=\"hero.png\">\n  <div onclick=\"submit()\">Send</div>\n  <input name=\"email\" placeholder=\"Email\">\n  <button><svg viewBox=\"0 0 16 16\"></svg></button>\n</html>";
+  document.getElementById('go').addEventListener('click', render);
+  sel.addEventListener('change', render);
+  render();   // a completed result is on screen at first paint
+})();
+</script>
+</html>
