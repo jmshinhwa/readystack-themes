@@ -1,0 +1,85 @@
+{
+  "name": "base-image-eol-lint",
+  "displayName": "Base Image EOL Lint - Dockerfile and CI end-of-life check",
+  "description": "Marks every base image in your Dockerfiles, compose files and CI workflows whose security patches have already stopped - or stop before 13 November 2026 - and prints the tag that replaces it.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "docker",
+    "dockerfile",
+    "end-of-life",
+    "base-image",
+    "compose"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "base-image-eol-lint.audit_file",
+        "title": "Check the base images in this file",
+        "category": "Base Image EOL Lint"
+      },
+      {
+        "command": "base-image-eol-lint.audit_selection",
+        "title": "Check the selected lines",
+        "category": "Base Image EOL Lint"
+      },
+      {
+        "command": "base-image-eol-lint.list_rules",
+        "title": "List the 21 end-of-life rules",
+        "category": "Base Image EOL Lint"
+      },
+      {
+        "command": "base-image-eol-lint.workspace_scan",
+        "title": "Scan every file in the repository",
+        "category": "Base Image EOL Lint"
+      },
+      {
+        "command": "base-image-eol-lint.export_report",
+        "title": "Export a dated report (CSV/JSON/HTML)",
+        "category": "Base Image EOL Lint"
+      },
+      {
+        "command": "base-image-eol-lint.ci_json",
+        "title": "Print JSON for CI",
+        "category": "Base Image EOL Lint"
+      }
+    ],
+    "configuration": {
+      "title": "Base Image EOL Lint",
+      "properties": {
+        "base-image-eol-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format used by the exported report (csv, json or html)"
+        },
+        "base-image-eol-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info shows everything, error shows only images already unpatched)"
+        },
+        "base-image-eol-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files to read during a repository scan"
+        },
+        "base-image-eol-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Image rules of your own, checked alongside the 21 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
