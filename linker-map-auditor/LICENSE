@@ -1,0 +1,30 @@
+Linker Map Auditor - End User Licence Agreement
+Copyright (c) 2026 ReadyStack. All rights reserved.
+
+1. FREE USE
+   The free features of this extension - analysing a single linker map file and
+   viewing the resulting report - may be used without charge, for personal or
+   commercial work, on any number of map files, with no time limit.
+
+2. LICENSED FEATURES
+   The features gated behind a licence key (baseline capture, baseline diff,
+   region budget checks, and report export) require a valid licence key.
+   One licence key covers one person, or one named team seat.
+
+3. GRANT
+   Subject to payment, you are granted a non-exclusive, non-transferable licence
+   to use the licensed features on any machine you personally use.
+
+4. RESTRICTIONS
+   You may not resell, sublicence, or redistribute this extension or a licence
+   key, nor circumvent the licence check.
+
+5. REFUND
+   Full refund within 7 days of purchase, for any reason.
+
+6. NO WARRANTY
+   This software is provided "as is", without warranty of any kind, express or
+   implied. The authors are not liable for any claim, damages or other liability
+   arising from the use of this software. Memory figures are derived from the
+   linker map file you supply; always confirm against your own build output
+   before committing to a production ROM.
