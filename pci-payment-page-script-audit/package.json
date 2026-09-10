@@ -1,0 +1,105 @@
+{
+  "name": "pci-payment-page-script-audit",
+  "displayName": "PCI Payment Page Script Audit",
+  "description": "PCI DSS 4.0.1 requirements 6.4.3 and 11.6.1 have been mandatory since 2025-03-31, and the PCI SSC revised FAQ 1331 on 2026-08-04 so a QSA agreement alone no longer marks them not applicable. This read",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "pci-dss",
+    "payment",
+    "csp",
+    "security",
+    "ecommerce"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pci-payment-page-script-audit.audit_file",
+        "title": "Audit this payment page",
+        "category": "PCI Payment Page Script "
+      },
+      {
+        "command": "pci-payment-page-script-audit.audit_selection",
+        "title": "Audit the selected markup",
+        "category": "PCI Payment Page Script "
+      },
+      {
+        "command": "pci-payment-page-script-audit.show_report",
+        "title": "Show the last findings",
+        "category": "PCI Payment Page Script "
+      },
+      {
+        "command": "pci-payment-page-script-audit.export_report",
+        "title": "Export the 6.4.3 script inventory",
+        "category": "PCI Payment Page Script "
+      },
+      {
+        "command": "pci-payment-page-script-audit.workspace_scan",
+        "title": "Audit every payment page in the repository",
+        "category": "PCI Payment Page Script "
+      },
+      {
+        "command": "pci-payment-page-script-audit.ci_json",
+        "title": "Emit CI JSON",
+        "category": "PCI Payment Page Script "
+      },
+      {
+        "command": "pci-payment-page-script-audit.watch_on_save",
+        "title": "Re-audit on every save",
+        "category": "PCI Payment Page Script "
+      },
+      {
+        "command": "pci-payment-page-script-audit.custom_rules",
+        "title": "Run my own rules too",
+        "category": "PCI Payment Page Script "
+      }
+    ],
+    "configuration": {
+      "title": "PCI Payment Page Script Audit",
+      "properties": {
+        "pci-payment-page-script-audit.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info, warn, error)"
+        },
+        "pci-payment-page-script-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format used when exporting the script inventory (csv, json, html)"
+        },
+        "pci-payment-page-script-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files to open during a repository audit"
+        },
+        "pci-payment-page-script-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a repository audit (glob)"
+        },
+        "pci-payment-page-script-audit.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Audit the open payment page once when the window opens"
+        },
+        "pci-payment-page-script-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own - your internal script allowlist, for example - checked alongside the 26 PCI script-security rules that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
