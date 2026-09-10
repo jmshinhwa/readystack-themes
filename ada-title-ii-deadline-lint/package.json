@@ -1,0 +1,95 @@
+{
+  "name": "ada-title-ii-deadline-lint",
+  "displayName": "ADA Title II Deadline Lint (WCAG 2.1 AA)",
+  "description": "Flags the ADA Title II and HHS Section 504 deadlines that both agencies reset in 2026, and the WCAG 2.1 Level AA failures your source code can actually show.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "accessibility",
+    "wcag",
+    "ada-title-ii",
+    "section-504",
+    "a11y"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ada-title-ii-deadline-lint.audit_file",
+        "title": "Check this file",
+        "category": "ADA Title II Deadline Li"
+      },
+      {
+        "command": "ada-title-ii-deadline-lint.audit_selection",
+        "title": "Check the selection",
+        "category": "ADA Title II Deadline Li"
+      },
+      {
+        "command": "ada-title-ii-deadline-lint.list_rules",
+        "title": "List the rules",
+        "category": "ADA Title II Deadline Li"
+      },
+      {
+        "command": "ada-title-ii-deadline-lint.workspace_scan",
+        "title": "Scan the whole workspace",
+        "category": "ADA Title II Deadline Li"
+      },
+      {
+        "command": "ada-title-ii-deadline-lint.export_report",
+        "title": "Export the evidence file",
+        "category": "ADA Title II Deadline Li"
+      },
+      {
+        "command": "ada-title-ii-deadline-lint.quick_fix",
+        "title": "Rewrite the superseded dates",
+        "category": "ADA Title II Deadline Li"
+      },
+      {
+        "command": "ada-title-ii-deadline-lint.ci_json",
+        "title": "Write the JSON for CI",
+        "category": "ADA Title II Deadline Li"
+      }
+    ],
+    "configuration": {
+      "title": "ADA Title II Deadline Lint",
+      "properties": {
+        "ada-title-ii-deadline-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info, warn or error)"
+        },
+        "ada-title-ii-deadline-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default format for the exported evidence file (csv, json or html)"
+        },
+        "ada-title-ii-deadline-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files to open during a workspace scan"
+        },
+        "ada-title-ii-deadline-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "ada-title-ii-deadline-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra regex rules of your own, checked alongside the 26 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
