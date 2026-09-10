@@ -1,0 +1,90 @@
+{
+  "name": "personal-data-map-dsar-audit",
+  "displayName": "Personal Data Map",
+  "description": "Reads a migration, Prisma schema, Django model or TypeORM entity and marks every column a subject access request has to reach - with the GDPR article each finding hangs on. 13 rules, line numbers, no ",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "gdpr",
+    "dsar",
+    "privacy",
+    "schema",
+    "compliance"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "personal-data-map-dsar-audit.audit_file",
+        "title": "Map personal data in this file",
+        "category": "Personal Data Map"
+      },
+      {
+        "command": "personal-data-map-dsar-audit.audit_selection",
+        "title": "Map the selected lines",
+        "category": "Personal Data Map"
+      },
+      {
+        "command": "personal-data-map-dsar-audit.list_rules",
+        "title": "List the 13 rules",
+        "category": "Personal Data Map"
+      },
+      {
+        "command": "personal-data-map-dsar-audit.workspace_scan",
+        "title": "Map the whole repository",
+        "category": "Personal Data Map"
+      },
+      {
+        "command": "personal-data-map-dsar-audit.export_report",
+        "title": "Export the map (CSV, JSON, HTML)",
+        "category": "Personal Data Map"
+      },
+      {
+        "command": "personal-data-map-dsar-audit.ci_json",
+        "title": "Write JSON for CI",
+        "category": "Personal Data Map"
+      }
+    ],
+    "configuration": {
+      "title": "Personal Data Map",
+      "properties": {
+        "personal-data-map-dsar-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format used when exporting the map (csv|json|html)"
+        },
+        "personal-data-map-dsar-audit.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info|warn|error)"
+        },
+        "personal-data-map-dsar-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files to read during a repository map"
+        },
+        "personal-data-map-dsar-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths skipped during a repository map"
+        },
+        "personal-data-map-dsar-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 13 GDPR schema rules that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
