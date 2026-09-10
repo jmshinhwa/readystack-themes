@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PCI Payment Page Script Audit: requirement 6.4.3 and 11.6.1 on your checkout markup</title>
+<meta name="description" content="PCI DSS 4.0.1 requirements 6.4.3 and 11.6.1 have been mandatory since 2025-03-31, and the PCI SSC revised FAQ 1331 on 2026-08-04 so a QSA agreement alone no longer marks them not applicable. This reads a checkout page and names every script that has no authorization method, no integrity method and no inventory row.">
+<script defer data-auto-init src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@latest/dist/embed.global.js"></script>
+<style>
+:root{color-scheme:light dark}
+body{margin:0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;
+ background:#fbfbfa;color:#16161d}
+@media(prefers-color-scheme:dark){body{background:#14141a;color:#e8e8ea}}
+.wrap{max-width:880px;margin:0 auto;padding:28px 20px 64px}
+h1{font-size:1.7rem;line-height:1.25;margin:.2em 0 .3em}
+p.sub{margin:0 0 1.4em;opacity:.8}
+textarea{width:100%;min-height:230px;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;
+ padding:12px;border:1px solid #c9c9d1;border-radius:10px;background:transparent;color:inherit;
+ box-sizing:border-box}
+button{font:600 15px/1 inherit;padding:12px 22px;border:0;border-radius:10px;
+ background:#1d4ed8;color:#fff;cursor:pointer;margin:12px 0}
+button:hover{background:#1a43bd}
+table{border-collapse:collapse;width:100%;margin-top:14px;font-size:14px}
+th,td{border-bottom:1px solid #d8d8e0;padding:8px 6px;text-align:left;vertical-align:top}
+th{font-weight:600;opacity:.75}
+td.n{width:64px;font:13px ui-monospace,monospace;opacity:.7}
+.ok{padding:14px;border-radius:10px;background:#e8f5ec;color:#14532d;margin-top:14px}
+@media(prefers-color-scheme:dark){.ok{background:#15321f;color:#bbf7d0}}
+.next{margin-top:30px;padding:18px;border:1px solid #d8d8e0;border-radius:12px}
+.next h2{font-size:1.05rem;margin:0 0 .5em}
+.next ul{margin:.3em 0 1em 1.1em;padding:0}
+</style>
+<div class="wrap">
+<h1>PCI Payment Page Script Audit: requirement 6.4.3 and 11.6.1 on your checkout markup</h1>
+<p class="sub">PCI DSS 4.0.1 requirements 6.4.3 and 11.6.1 have been mandatory since 2025-03-31, and the PCI SSC revised FAQ 1331 on 2026-08-04 so a QSA agreement alone no longer marks them not applicable. This reads a checkout page and names every script that has no authorization method, no integrity method and no inventory row.</p>
+<textarea id="src" placeholder="Paste the HTML of your checkout page here">&lt;!doctype html>
+&lt;html lang="en">
+&lt;head>
+&lt;meta charset="utf-8">
+&lt;meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https:">
+&lt;title>Checkout - Northwind Store&lt;/title>
+&lt;script src="https://www.googletagmanager.com/gtag/js?id=G-8QK2M1RS">&lt;/script>
+&lt;script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}&lt;/script>
+&lt;script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js">&lt;/script>
+&lt;script src="https://static.hotjar.com/c/hotjar-2914455.js?sv=6">&lt;/script>
+&lt;script src="https://js.stripe.com/v3/">&lt;/script>
+&lt;/head>
+&lt;body>
+&lt;form id="pay" action="/charge" method="post">
+  &lt;input name="cardholder" autocomplete="cc-name">
+  &lt;input name="cardnumber" autocomplete="cc-number" inputmode="numeric">
+  &lt;div id="card-element">&lt;/div>
+  &lt;button type="submit" onclick="track('checkout_submit')">Pay $129.00&lt;/button>
+&lt;/form>
+&lt;script src="//assets.northwind-cdn.net/checkout-bundle.js">&lt;/script>
+&lt;script>
+  var s = document.createElement("script");
+  s.src = "https://connect.facebook.net/en_US/fbevents.js";
+  document.head.appendChild(s);
+&lt;/script>
+&lt;script src="https://widget.intercom.io/widget/ab12cd34" async>&lt;/script>
+&lt;/body>
+&lt;/html></textarea>
+<button id="go">Audit this payment page</button>
+<div id="out"></div>
+<div class="next"><h2>In the full version</h2><ul><li>Export the dated 6.4.3 script inventory as CSV, JSON or HTML</li><li>Audit every payment page in the repository in one pass</li><li>Machine output your CI can fail a build on</li><li>Re-audit on every save</li><li><a href="https://readystack.example/buy" data-polar-checkout data-polar-checkout-theme="light">Get the full version</a></li></ul></div>
+</div>
+<script>
+var RULES=[{"pattern": "<script(?![^>]*\\bintegrity=)[^>]*\\bsrc=[\"\\']https?://(?!(?:js\\.stripe\\.com|checkout\\.stripe\\.com|www\\.paypal\\.com|js\\.braintreegateway\\.com|pay\\.google\\.com|x\\.klarnacdn\\.net|js\\.squareup\\.com|checkoutshopper-live\\.adyen\\.com))", "flags": "i", "sev": "error", "fix": "integrity=\"sha384-...\" crossorigin=\"anonymous\"", "message": "External script on a payment page with no integrity= attribute. PCI DSS 4.0.1 requirement 6.4.3, mandatory since 2025-03-31, needs a method that assures the integrity of every script the browser executes. Add integrity=\"sha384-...\" crossorigin=\"anonymous\", or record the alternative integrity method in the inventory row for this script."}, {"pattern": "<script(?![^>]*\\bcrossorigin\\b)[^>]*\\bintegrity=", "flags": "i", "sev": "error", "fix": "crossorigin=\"anonymous\"", "message": "integrity= without crossorigin=. The browser cannot run the CORS check, so it refuses the file or ignores the hash - the SRI you wrote proves nothing to an assessor while looking like a control. Add crossorigin=\"anonymous\"."}, {"pattern": "integrity=[\"\\']\\s*sha1-", "flags": "i", "sev": "error", "fix": "integrity=\"sha384-...\"", "message": "SRI accepts sha256, sha384 and sha512 only. A sha1- digest is ignored by every browser, so this script is unprotected while the markup claims otherwise - the worst state to be in when a QSA reads requirement 6.4.3."}, {"pattern": "<script[^>]*\\bsrc=[\"\\']//", "flags": "i", "sev": "warn", "fix": "src=\"https://...\"", "message": "Protocol-relative script URL. It inherits the page scheme, downgrades silently on an http page, and cannot name a fixed origin in your 6.4.3 inventory. Write the full https:// origin."}, {"pattern": "src=[\"\\'][^\"\\']*(?:@latest|/latest/|@\\^|@~)", "flags": "i", "sev": "error", "fix": "pin the exact version + its SRI hash", "message": "The script is pinned to a moving version (@latest, ^, ~). The bytes can change between the day the inventory was signed and the day a customer pays, which is the exact gap requirement 6.4.3 integrity assurance exists to close. Pin the exact version and add its hash."}, {"pattern": "googletagmanager\\.com|/gtag/js|dataLayer\\.push|gtm\\.js", "flags": "i", "sev": "error", "fix": "remove the container from payment pages", "message": "A tag manager on the payment page. Anyone with container access can add a script after your inventory was signed, so the inventory can never be complete. 6.4.3 requires each script to be authorized before it executes - take the container off payment pages, or document a change control that authorizes every tag it can load."}, {"pattern": "static\\.hotjar\\.com|hotjar-|clarity\\.ms|fullstory\\.com|logrocket|smartlook|mouseflow|sessioncam", "flags": "i", "sev": "error", "fix": "exclude the payment page from the recorder", "message": "A session recorder on a page that carries card fields. It reads keystrokes and DOM mutations, so it is in scope for 6.4.3, and if it ever captures the PAN field it pulls the recording vendor inside your cardholder data environment."}, {"pattern": "connect\\.facebook\\.net|fbevents\\.js|analytics\\.tiktok\\.com|snap\\.licdn\\.com|static\\.ads-twitter\\.com|googleads\\.g\\.doubleclick\\.net|/pixel\\.js", "flags": "i", "sev": "error", "fix": "move the pixel to the confirmation page", "message": "A marketing pixel on the payment page. It is third-party JavaScript in the customer browser, so 6.4.3 wants an inventory entry, a written business justification and an integrity method - three things a pixel snippet never ships with. Fire it on the order-confirmation page instead."}, {"pattern": "widget\\.intercom\\.io|js\\.driftt\\.com|embed\\.tawk\\.to|static\\.zdassets\\.com|js\\.hs-scripts\\.com|crisp\\.chat", "flags": "i", "sev": "error", "fix": "load the widget outside the payment page", "message": "A chat or support widget loads and updates its own remote code. Its bytes change without a release on your side, so no SRI hash stays valid and 6.4.3 integrity assurance breaks on the vendor next deploy, silently."}, {"pattern": "createElement\\(\\s*[\"\\']script", "flags": "i", "sev": "error", "fix": "el.integrity = \"sha384-...\"; el.crossOrigin = \"anonymous\"", "message": "This page builds a <script> element in JavaScript. SRI does not apply to a node created this way unless you set the integrity property yourself, and the URL never appears in a scan of the HTML - so it is missing from the inventory too."}, {"pattern": "document\\.write\\(", "flags": "i", "sev": "error", "fix": "append an element you can hash and authorize", "message": "document.write() injects markup after parsing and can pull in a script that no inventory records and no hash covers. Replace it with an element you create, hash and authorize."}, {"pattern": "\\beval\\(|new Function\\(", "flags": "i", "sev": "error", "fix": "remove eval; parse JSON with JSON.parse", "message": "eval() or new Function() executes code that has no URL and no hash, so it can be neither inventoried nor integrity-checked. It also forces unsafe-eval into the CSP, which removes the CSP as a valid 6.4.3 authorization method for the whole page."}, {"pattern": "import\\(\\s*[\"\\']https?://", "flags": "i", "sev": "error", "fix": "self-host the module and hash it", "message": "A dynamic import() of a remote module. A script-element SRI hash does not cover it and a static scan of the HTML cannot see it, so it is invisible to the inventory. Self-host it, or constrain it with script-src and give it an inventory row."}, {"pattern": "\\son(?:click|submit|change|load|error|focus|blur|input|mouseover)\\s*=\\s*[\"\\']", "flags": "i", "sev": "error", "fix": "addEventListener in an authorized script file", "message": "An inline event handler. It runs only if the CSP allows unsafe-inline, and that one keyword disables script authorization for every script on the page. Move the handler into a nonced or hashed file."}, {"pattern": "<meta[^>]+Content-Security-Policy", "flags": "i", "sev": "error", "fix": "send the CSP as an HTTP response header", "message": "The CSP is delivered in a <meta> tag. A meta policy cannot carry report-uri or report-to - the browser ignores both there. PCI DSS 11.6.1 requires an alert when the payment page scripts or headers change, and a meta CSP can block but can never tell you it blocked. Send the header from the server."}, {"pattern": "script-src[^;>]*\\'unsafe-inline\\'", "flags": "i", "sev": "error", "fix": "script-src 'nonce-{random}' 'strict-dynamic'", "message": "unsafe-inline in script-src. Any injected inline script executes, so the CSP stops being a method to confirm that each script is authorized and 6.4.3 has no control left behind it. Replace it with a per-response nonce or sha256 hashes."}, {"pattern": "script-src[^;>]*\\'unsafe-eval\\'", "flags": "i", "sev": "warn", "fix": "drop 'unsafe-eval' from script-src", "message": "unsafe-eval in script-src lets any authorized script run code built from a string, so an attacker who lands one injected line can execute anything without loading a file the inventory would show."}, {"pattern": "script-src[^;>]*(?:\\s\\*[\\s;\"\\']|\\shttps:[\\s;\"\\'])", "flags": "i", "sev": "error", "fix": "list the exact script origins", "message": "script-src allows a wildcard (* or https:). Every host on the internet is authorized, which is the opposite of the 6.4.3 authorization requirement, and it means a skimmer hosted anywhere loads without a CSP violation being raised."}, {"pattern": "Content-Security-Policy-Report-Only", "flags": "i", "sev": "warn", "fix": "run an enforcing policy alongside Report-Only", "message": "Report-Only covers the detection half of 11.6.1 but authorizes nothing: it never blocks. 6.4.3 needs a policy that actually stops an unauthorized script. Keep Report-Only for tuning and ship an enforcing policy next to it."}, {"pattern": "<base\\s[^>]*href", "flags": "i", "sev": "error", "fix": "remove <base> from payment pages", "message": "A <base> element rewrites every relative script URL on this page. One injected attribute moves your own bundle to another host while the HTML still reads exactly the same, and the inventory no longer describes what actually loads."}, {"pattern": "serviceWorker\\.register", "flags": "i", "sev": "warn", "fix": "scope the worker away from the payment path", "message": "A service worker can rewrite the response for the payment page itself, scripts included, out of a cache that no page-level SRI can check. Scope it away from the payment path or record it as an integrity-relevant component."}, {"pattern": "<script(?![^>]*\\b(?:src|nonce|type=[\"\\']application/(?:ld\\+json|json)))[^>]*>", "flags": "i", "sev": "warn", "fix": "nonce=\"{random}\" on the tag, or move it to a hashed file", "message": "Inline script with no nonce and no hash. The only policy that lets it run is unsafe-inline, which voids script authorization for the page. Add a nonce that changes on every response, or move the code into a file you can hash."}, {"pattern": "jquery[-/.]?(?:1\\.|2\\.|3\\.[0-4])[0-9.]*(?:\\.min)?\\.js", "flags": "i", "sev": "error", "fix": "jQuery 3.7.1", "message": "jQuery below 3.5.0 carries CVE-2020-11022 and CVE-2020-11023, HTML-manipulation XSS. On a payment page an XSS is a card-skimming primitive, and requirement 6.3.3 wants a critical patch applied within one month of release."}, {"pattern": "js\\.stripe\\.com|www\\.paypal\\.com/sdk|js\\.braintreegateway\\.com|checkoutshopper-live\\.adyen\\.com|x\\.klarnacdn\\.net|js\\.squareup\\.com", "flags": "i", "sev": "info", "fix": "add an inventory row, no SRI hash", "message": "A payment processor script. These are loaded directly from the vendor with no SRI hash on purpose - the vendor rotates the file - so a linter that demands integrity here is wrong. It still needs a 6.4.3 inventory row whose justification is that it renders the hosted card fields."}, {"pattern": "<iframe[^>]*src=[\"\\']https?://", "flags": "i", "sev": "info", "fix": "confirm the scoping with your acquirer", "message": "A third-party iframe on the payment page. Fully outsourced checkouts used to mark 6.4.3 and 11.6.1 not applicable on a QSA agreement alone; the PCI SSC revised FAQ 1331 on 2026-08-04 so that agreement is no longer sufficient and the acquirer must confirm. Scripts on the parent page stay in scope either way."}, {"pattern": "autocomplete=[\"\\']cc-(?:number|csc|exp)|name=[\"\\'](?:cardnumber|card_number|cvc|cvv)", "flags": "i", "sev": "info", "fix": "render card fields in the processor iframe", "message": "A card field rendered by your own markup rather than the processor iframe. That makes this an SAQ A-EP payment page, so every script on it - analytics and chat included - falls under 6.4.3 and 11.6.1 rather than being out of scope."}];
+function scan(t){var L=String(t).split(/\r?\n/),h=[],i,r,re;
+ for(i=0;i<L.length;i++){for(var k=0;k<RULES.length;k++){r=RULES[k];
+  try{re=new RegExp(r.pattern,r.flags||'')}catch(e){continue}
+  if(re.test(L[i]))h.push({line:i+1,msg:r.message})}}
+ return h}
+document.getElementById('go').onclick=function(){
+ var t=document.getElementById('src').value,o=document.getElementById('out');
+ if(!t.trim()){o.innerHTML='';return}
+ var h=scan(t);
+ if(!h.length){o.innerHTML='<div class="ok">Every script on this page carries an authorization method and an integrity method. Nothing here fails 6.4.3 or 11.6.1.</div>';return}
+ var s='<table><tr><th>Line</th><th>Finding</th></tr>';
+ for(var i=0;i<h.length;i++){s+='<tr><td class="n">'+h[i].line+'</td><td>'+
+   String(h[i].msg).replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</td></tr>'}
+ o.innerHTML=s+'</table>'};
+</script>
+<script>
+// ★result_first — 열자마자 ★계산된 결과가 화면에 있어야 한다 (설명·빈 상자 금지).
+(function(){var g=document.getElementById('go');if(g)g.click();})();
+</script>
+</html>
