@@ -1,0 +1,95 @@
+{
+  "name": "play-release-blocker-lint",
+  "displayName": "Play Release Blocker Lint",
+  "description": "Finds the lines that make Google Play reject your release - target API below 36, Billing Library below 8, 4 KB-only native libs - and prints the date each gate closed.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "android",
+    "google-play",
+    "target-sdk",
+    "api-36",
+    "billing-library"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "play-release-blocker-lint.audit_file",
+        "title": "Check this file for Play release blockers",
+        "category": "Play Release Blocker Lin"
+      },
+      {
+        "command": "play-release-blocker-lint.show_report",
+        "title": "Show the last Play blocker report",
+        "category": "Play Release Blocker Lin"
+      },
+      {
+        "command": "play-release-blocker-lint.list_rules",
+        "title": "List every Play gate rule",
+        "category": "Play Release Blocker Lin"
+      },
+      {
+        "command": "play-release-blocker-lint.workspace_scan",
+        "title": "Scan every module for Play release blockers",
+        "category": "Play Release Blocker Lin"
+      },
+      {
+        "command": "play-release-blocker-lint.ci_json",
+        "title": "Print CI JSON (fail the build before Play does)",
+        "category": "Play Release Blocker Lin"
+      },
+      {
+        "command": "play-release-blocker-lint.export_report",
+        "title": "Export the release-readiness report",
+        "category": "Play Release Blocker Lin"
+      },
+      {
+        "command": "play-release-blocker-lint.watch_on_save",
+        "title": "Re-check on every save",
+        "category": "Play Release Blocker Lin"
+      }
+    ],
+    "configuration": {
+      "title": "Play Release Blocker Lint",
+      "properties": {
+        "play-release-blocker-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info|warn|error)"
+        },
+        "play-release-blocker-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum files to read during a workspace scan"
+        },
+        "play-release-blocker-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,build,.gradle,Pods}/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "play-release-blocker-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default format for the exported report (csv|json|html)"
+        },
+        "play-release-blocker-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 31 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
