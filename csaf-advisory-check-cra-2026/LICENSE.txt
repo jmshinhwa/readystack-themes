@@ -1,0 +1,29 @@
+Copyright (c) 2026 ReadyStack
+
+This software is licensed, not sold.
+
+FREE TIER. You may install and use the free commands ("Check this advisory", "Show the findings
+panel", "List the checks that ship inside") without charge, for any purpose, including commercial
+use, with no limit on the number of documents checked and no time limit.
+
+LICENSED TIER. The commands "Check every advisory in the workspace", "Export the conformance
+evidence file", "Write the CI checker into this repository" and "Check on save" require a valid
+licence key. One key covers one person or one team seat. A key may be used on the machines that
+person works on.
+
+You may keep and redistribute inside your own organisation any evidence file or CI checker that this
+software writes into your repository; those outputs are yours.
+
+You may not resell, sublicense or redistribute this software itself, or remove or alter its licence
+checking.
+
+REFUND. Within 7 days of purchase you may request a full refund for any reason.
+
+NO WARRANTY. This software is provided "as is", without warranty of any kind, express or implied,
+including but not limited to the warranties of merchantability, fitness for a particular purpose and
+non-infringement. In no event shall the authors be liable for any claim, damages or other liability
+arising from, out of or in connection with the software or its use.
+
+NOT LEGAL ADVICE. This software checks a document against the OASIS CSAF 2.0 specification. It does
+not determine, and must not be relied on to determine, whether you have met any obligation under the
+EU Cyber Resilience Act or any other law.
