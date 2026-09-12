@@ -1,0 +1,26 @@
+CRA 24/72/14 Reporting Lint — Licence
+
+Free scope
+  Checking the file currently open in the editor is free for any use, personal or
+  commercial, for as long as you keep the extension installed. No registration, no
+  telemetry, no network call.
+
+Full scope
+  The workspace sweep and the generated readiness report require a valid licence key.
+  One key covers one person, or one seat on a team. A key may be moved between machines
+  belonging to the same person or seat.
+
+Refund
+  Seven days, in full, for any reason.
+
+Restrictions
+  You may not redistribute, resell, sublicense or publish the extension package or the
+  rule table as your own product, and you may not remove or bypass the licence check.
+
+No warranty
+  This software is provided "as is", without warranty of any kind, express or implied.
+  It is a document linter. It is not legal advice, not a conformity assessment, and not
+  a substitute for counsel. In no event shall the author be liable for any claim,
+  damages or other liability arising from the use of this software.
+
+Copyright (c) 2026 ReadyStack. All rights reserved.
