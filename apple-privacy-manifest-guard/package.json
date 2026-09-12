@@ -1,0 +1,90 @@
+{
+  "name": "apple-privacy-manifest-guard",
+  "displayName": "Privacy Manifest Guard",
+  "description": "Flags every line that needs a PrivacyInfo.xcprivacy entry and names the exact Apple reason code, before App Store Connect answers with ITMS-91053.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "xcprivacy",
+    "privacy-manifest",
+    "ios",
+    "react-native",
+    "app-store"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "apple-privacy-manifest-guard.audit_file",
+        "title": "Check this file",
+        "category": "Privacy Manifest Guard"
+      },
+      {
+        "command": "apple-privacy-manifest-guard.audit_selection",
+        "title": "Check the selected lines",
+        "category": "Privacy Manifest Guard"
+      },
+      {
+        "command": "apple-privacy-manifest-guard.list_rules",
+        "title": "Show the 5 categories and 14 reason codes",
+        "category": "Privacy Manifest Guard"
+      },
+      {
+        "command": "apple-privacy-manifest-guard.workspace_scan",
+        "title": "Scan the whole repository",
+        "category": "Privacy Manifest Guard"
+      },
+      {
+        "command": "apple-privacy-manifest-guard.export_report",
+        "title": "Export the declaration report",
+        "category": "Privacy Manifest Guard"
+      },
+      {
+        "command": "apple-privacy-manifest-guard.ci_json",
+        "title": "Emit CI JSON",
+        "category": "Privacy Manifest Guard"
+      }
+    ],
+    "configuration": {
+      "title": "Privacy Manifest Guard",
+      "properties": {
+        "apple-privacy-manifest-guard.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format"
+        },
+        "apple-privacy-manifest-guard.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files to read in one repository scan"
+        },
+        "apple-privacy-manifest-guard.exclude_glob": {
+          "type": "string",
+          "default": "**/build/**",
+          "description": "Paths to skip"
+        },
+        "apple-privacy-manifest-guard.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity"
+        },
+        "apple-privacy-manifest-guard.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 36 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
