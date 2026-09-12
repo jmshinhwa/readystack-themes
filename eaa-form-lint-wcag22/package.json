@@ -1,0 +1,53 @@
+{
+  "name": "eaa-form-lint-wcag22",
+  "displayName": "EAA Form Lint: WCAG 2.2 AA for HTML",
+  "description": "Flags the WCAG 2.2 AA form failures that generated HTML keeps making - paste-blocked password fields, unlabelled inputs, 24px targets - with the clause and the fix on the line.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "accessibility",
+    "wcag",
+    "a11y",
+    "eaa",
+    "html",
+    "forms",
+    "lint",
+    "en-301-549"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "eaaFormLint.checkFile",
+        "title": "EAA Form Lint: WCAG 2.2 AA for HTML: Check this file",
+        "category": "EAA Form Lint: WCAG 2.2 AA for HTML"
+      },
+      {
+        "command": "eaaFormLint.checkWorkspace",
+        "title": "EAA Form Lint: WCAG 2.2 AA for HTML: Sweep workspace and write report (licence)",
+        "category": "EAA Form Lint: WCAG 2.2 AA for HTML"
+      },
+      {
+        "command": "eaaFormLint.enterKey",
+        "title": "EAA Form Lint: WCAG 2.2 AA for HTML: Enter licence key",
+        "category": "EAA Form Lint: WCAG 2.2 AA for HTML"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/eaa-form-lint-wcag22",
+  "icon": "icon.png"
+}
