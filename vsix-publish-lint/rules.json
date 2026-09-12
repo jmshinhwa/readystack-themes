@@ -1,0 +1,65 @@
+[
+  {"id":"manifest_unparseable","sev":"error","title":"package.json is not valid JSON",
+   "msg":"package.json does not parse as JSON, so vsce reads nothing and every other check below is blind.",
+   "fix":"Fix the JSON syntax first (trailing comma, unquoted key, stray comment)."},
+
+  {"id":"engines_vscode_missing","sev":"error","title":"engines.vscode is missing",
+   "msg":"No engines.vscode field. vsce refuses to package a manifest without it, and the Marketplace has no idea which VS Code builds may install you.",
+   "fix":"Add \"engines\": { \"vscode\": \"^1.90.0\" } using the oldest VS Code you actually support."},
+
+  {"id":"engines_vscode_star","sev":"error","title":"engines.vscode is \"*\"",
+   "msg":"engines.vscode is a wildcard. vsce rejects \"*\" — it needs a concrete minimum such as ^1.90.0.",
+   "fix":"Replace \"*\" with the caret range of the oldest VS Code API you call."},
+
+  {"id":"types_vscode_ahead","sev":"error","title":"@types/vscode is newer than engines.vscode",
+   "msg":"devDependencies[\"@types/vscode\"] declares a newer VS Code than engines.vscode allows. You compile against API that your declared minimum build does not have, and vsce stops the package step.",
+   "fix":"Raise engines.vscode to match @types/vscode, or pin @types/vscode down to engines.vscode."},
+
+  {"id":"publisher_missing","sev":"error","title":"publisher is missing",
+   "msg":"No publisher field. The extension id is publisher.name — without it there is no id, so packaging and publishing both stop.",
+   "fix":"Add \"publisher\": \"<your marketplace publisher id>\" (the same id on Open VSX becomes your namespace)."},
+
+  {"id":"name_invalid","sev":"error","title":"name is not a valid extension id segment",
+   "msg":"name must be lowercase with no spaces — only letters, digits, hyphen and underscore. Anything else cannot become half of a publisher.name id.",
+   "fix":"Lowercase the name and replace spaces and dots with hyphens. displayName is where the pretty title goes."},
+
+  {"id":"version_invalid","sev":"error","title":"version is not plain x.y.z",
+   "msg":"The Marketplace accepts only three numeric parts. A four-part version or a -beta suffix is refused at upload, after your build has already run.",
+   "fix":"Use a plain 1.2.3. Ship pre-releases with the --pre-release flag instead of a version suffix."},
+
+  {"id":"invalid_category","sev":"error","title":"categories contains a name that is not on the list",
+   "msg":"categories is a closed vocabulary. A category that is not on the list fails validation, and a near-miss like \"Linter\" or \"Theme\" is the usual cause.",
+   "fix":"Use exact names from the allowed list, e.g. Linters, Themes, Programming Languages, Snippets, Formatters."},
+
+  {"id":"badge_host_unapproved","sev":"error","title":"badges points at a host that is not approved",
+   "msg":"Badge images are restricted to an approved host list. A badge from anywhere else is rejected rather than silently dropped.",
+   "fix":"Serve the badge through img.shields.io, or drop the badges field and put the image in README.md instead."},
+
+  {"id":"entrypoint_missing","sev":"error","title":"no main and no contributes",
+   "msg":"Nothing declares any code or any contribution, so the extension installs and then does nothing at all. This ships without an error.",
+   "fix":"Add \"main\": \"./extension.js\" for code, or a contributes block for a declarative extension."},
+
+  {"id":"repository_missing","sev":"warn","title":"repository is missing",
+   "msg":"Without repository, relative image and link paths in README.md have no base to be rewritten against, and your Open VSX namespace cannot be tied back to a source.",
+   "fix":"Add \"repository\": { \"type\": \"git\", \"url\": \"https://github.com/<owner>/<repo>.git\" } with an https URL, not an SSH one."},
+
+  {"id":"license_field_missing","sev":"warn","title":"license field is missing",
+   "msg":"No license field, so the listing page shows no licence to anyone deciding whether their company may install this.",
+   "fix":"Add \"license\": \"MIT\" (an SPDX id) and keep the matching LICENSE file in the package."},
+
+  {"id":"icon_missing","sev":"warn","title":"icon is missing",
+   "msg":"No icon field, so your tile renders as the grey default next to every competitor that shipped one.",
+   "fix":"Add \"icon\": \"images/icon.png\", 128x128 PNG, and make sure .vscodeignore does not exclude it."},
+
+  {"id":"wildcard_activation","sev":"warn","title":"activationEvents contains \"*\"",
+   "msg":"\"*\" activates your extension during every window startup, whether or not the user is doing anything you handle. It is the single biggest startup-cost flag reviewers look for.",
+   "fix":"Replace \"*\" with the events you really need: onLanguage:, onCommand:, workspaceContains:, onStartupFinished."},
+
+  {"id":"redundant_oncommand","sev":"warn","title":"onCommand entry duplicates a contributed command",
+   "msg":"This onCommand activation event repeats a command already declared in contributes.commands. Modern VS Code generates that activation for you, so the line is dead weight kept in sync by hand.",
+   "fix":"Delete the duplicated onCommand entry and let contributes.commands imply it."},
+
+  {"id":"description_too_long","sev":"warn","title":"description is longer than 200 characters",
+   "msg":"The short description is cut off in search results and on the tile, so the end of your sentence is never read by anyone browsing.",
+   "fix":"Cut the description to 200 characters or fewer and move the detail into README.md."}
+]
