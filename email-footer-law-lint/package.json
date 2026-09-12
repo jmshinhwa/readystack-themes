@@ -1,0 +1,54 @@
+{
+  "name": "email-footer-law-lint",
+  "displayName": "Email Footer Law Lint",
+  "description": "Lints HTML email templates for the footer duties senders get fined for: CAN-SPAM postal address and 10-business-day opt-out, CASL 60-day window, and German 5 DDG, which replaced 5 TMG on 2024-05-14.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "email",
+    "can-spam",
+    "casl",
+    "ddg",
+    "impressum",
+    "unsubscribe",
+    "html email",
+    "compliance",
+    "deliverability"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "emailFooterLaw.checkFile",
+        "title": "Email Footer Law Lint (CAN-SPAM · CASL · DDG): Check this file",
+        "category": "Email Footer Law Lint (CAN-SPAM · CASL · DDG)"
+      },
+      {
+        "command": "emailFooterLaw.checkWorkspace",
+        "title": "Email Footer Law Lint (CAN-SPAM · CASL · DDG): Sweep workspace and write report (licence)",
+        "category": "Email Footer Law Lint (CAN-SPAM · CASL · DDG)"
+      },
+      {
+        "command": "emailFooterLaw.enterKey",
+        "title": "Email Footer Law Lint (CAN-SPAM · CASL · DDG): Enter licence key",
+        "category": "Email Footer Law Lint (CAN-SPAM · CASL · DDG)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/email-footer-law-lint",
+  "icon": "icon.png"
+}
