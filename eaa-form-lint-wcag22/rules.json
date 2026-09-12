@@ -1,0 +1,20 @@
+[
+  {"id":"auth_paste_blocked","sc":"3.3.8","level":"AA","sev":"error","title":"Sign-in field blocks paste or drop","fix":"delete the onpaste/oncopy/ondrop handler so a password manager can fill the field"},
+  {"id":"auth_no_autocomplete","sc":"3.3.8","level":"AA","sev":"error","title":"Password field is hidden from password managers","fix":"set autocomplete=\"current-password\" (or \"new-password\" on sign-up)"},
+  {"id":"input_purpose","sc":"1.3.5","level":"AA","sev":"error","title":"Identity field has no autocomplete token","fix":"add the WCAG token, e.g. autocomplete=\"email\" / \"tel\" / \"postal-code\""},
+  {"id":"no_label","sc":"4.1.2","level":"A","sev":"error","title":"Form control has no accessible name","fix":"add <label for=\"id\"> or aria-label on the control"},
+  {"id":"placeholder_as_label","sc":"3.3.2","level":"A","sev":"error","title":"Placeholder is doing the job of a label","fix":"keep the placeholder as an example and add a visible <label for=\"id\">"},
+  {"id":"target_size","sc":"2.5.8","level":"AA","sev":"error","title":"Interactive target is smaller than 24 by 24 CSS pixels","fix":"raise the box to at least 24px, or leave 24px of clear space around it"},
+  {"id":"redundant_entry","sc":"3.3.7","level":"A","sev":"warn","title":"The same information is asked for twice","fix":"drop the confirm field, or let the browser auto-fill it from the first one"},
+  {"id":"focus_removed","sc":"2.4.7","level":"AA","sev":"error","title":"Focus outline removed with no visible replacement","fix":"keep the outline, or style :focus-visible with a 2px visible indicator"},
+  {"id":"zoom_blocked","sc":"1.4.4","level":"AA","sev":"error","title":"Viewport blocks zoom","fix":"remove user-scalable=no and maximum-scale from the viewport meta"},
+  {"id":"lang_missing","sc":"3.1.1","level":"A","sev":"error","title":"Page language is not declared","fix":"add lang=\"en\" (or the page language) to the <html> element"},
+  {"id":"img_alt","sc":"1.1.1","level":"A","sev":"error","title":"Image has no alt attribute","fix":"add alt=\"...\", or alt=\"\" when the image is decorative"},
+  {"id":"icon_no_name","sc":"4.1.2","level":"A","sev":"error","title":"Icon-only control has no accessible name","fix":"add aria-label=\"...\" describing the action"},
+  {"id":"positive_tabindex","sc":"2.4.3","level":"A","sev":"warn","title":"Positive tabindex overrides the reading order","fix":"use tabindex=\"0\" and let the DOM order carry the focus order"},
+  {"id":"click_no_key","sc":"2.1.1","level":"A","sev":"error","title":"Click handler that the keyboard cannot reach","fix":"use a <button>, or add role=\"button\" plus tabindex=\"0\" and a key handler"},
+  {"id":"aria_hidden_focusable","sc":"4.1.2","level":"A","sev":"error","title":"Focusable element is hidden from assistive technology","fix":"remove aria-hidden, or take the element out of the tab order"},
+  {"id":"meta_refresh","sc":"2.2.1","level":"A","sev":"error","title":"Page refreshes or redirects on a timer","fix":"remove the meta refresh, or let the user turn it off or extend it"},
+  {"id":"dragging_only","sc":"2.5.7","level":"AA","sev":"warn","title":"Dragging with no single-pointer alternative","fix":"add a move up/down button, and mark the element data-dnd-alternative"},
+  {"id":"error_no_desc","sc":"3.3.1","level":"A","sev":"warn","title":"Invalid field does not point at its error message","fix":"add aria-describedby=\"<id of the error text>\" next to aria-invalid"}
+]
