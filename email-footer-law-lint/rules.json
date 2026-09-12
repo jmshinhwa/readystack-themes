@@ -1,0 +1,16 @@
+[
+ {"id":"unsub_missing","sev":"error","msg":"No unsubscribe link anywhere in this template.","fix":"Add a working one-click opt-out link in the footer.","cite":"CAN-SPAM 15 U.S.C. 7704(a)(3); CASL s.11(1)"},
+ {"id":"unsub_dead_href","sev":"error","msg":"The opt-out link points nowhere.","fix":"Point it at a real opt-out endpoint or an ESP merge tag, not # or an empty href.","cite":"CAN-SPAM 15 U.S.C. 7704(a)(3)(A)"},
+ {"id":"unsub_behind_login","sev":"error","msg":"The opt-out link lands on a sign-in page.","fix":"Opt-out must work from one page with no account; drop the login redirect.","cite":"CAN-SPAM 16 CFR 316.5"},
+ {"id":"unsub_fee_or_data","sev":"error","msg":"Opting out is gated behind a fee or extra personal data.","fix":"Ask for nothing but the click; the address is already in the link.","cite":"CAN-SPAM 16 CFR 316.5"},
+ {"id":"unsub_deadline_too_long","sev":"error","msg":"The footer promises a removal window longer than the law allows.","fix":"Honour opt-outs within 10 business days and say so.","cite":"CAN-SPAM 15 U.S.C. 7704(a)(4)(A)(ii)"},
+ {"id":"unsub_window_under_60d","sev":"error","msg":"The opt-out link is declared valid for less than 60 days.","fix":"Keep the unsubscribe mechanism live for at least 60 days after sending.","cite":"CASL S.C. 2010 c.23 s.11(1)(b)"},
+ {"id":"unsub_too_small","sev":"warn","msg":"The opt-out is styled too small or hidden to be conspicuous.","fix":"Render the opt-out at 10px or larger and keep it visible.","cite":"CAN-SPAM 16 CFR 316.5; CASL s.11(1)"},
+ {"id":"postal_address_missing","sev":"error","msg":"No physical postal address in the template.","fix":"Add the sender's street address or registered PO Box to the footer.","cite":"CAN-SPAM 15 U.S.C. 7704(a)(5)(A)(iii)"},
+ {"id":"postal_address_placeholder","sev":"error","msg":"The postal address is still sample or placeholder text.","fix":"Replace it with the real registered address before this template ships.","cite":"CAN-SPAM 15 U.S.C. 7704(a)(5)(A)(iii)"},
+ {"id":"tmg_5_outdated","sev":"error","msg":"The provider line still cites the TMG, which was repealed on 2024-05-14.","fix":"Cite 5 DDG (Digitale-Dienste-Gesetz) instead of 5 TMG.","cite":"DDG 5; TMG repealed by DDG, in force 2024-05-14"},
+ {"id":"de_imprint_incomplete","sev":"error","msg":"German-facing footer with no Impressum link and no register or VAT identifier.","fix":"Link the Impressum, or name the register court, HRB number and USt-IdNr.","cite":"DDG 5 Abs. 1 Nr. 4 and Nr. 6"},
+ {"id":"sender_identity_missing","sev":"error","msg":"The footer never names the legal entity sending the mail.","fix":"Name the sending company as registered, not just the brand.","cite":"CAN-SPAM 15 U.S.C. 7704(a)(5); CASL s.6(2)(a); DDG 5 Abs. 1 Nr. 1"},
+ {"id":"tracking_pixel_unconsented","sev":"warn","msg":"A 1x1 open-tracking pixel ships with no line telling the reader why they got this mail.","fix":"State the consent basis in the footer, or drop the pixel for EU recipients.","cite":"ePrivacy Directive Art. 5(3); EDPB Guidelines 2/2023, adopted 2024-10-14"},
+ {"id":"copyright_year_stale","sev":"warn","msg":"The copyright year in the footer is older than today.","fix":"Roll the year, or render it from the send date.","cite":"House style; a stale year is the cheapest tell that a footer is unmaintained"}
+]
