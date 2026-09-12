@@ -1,0 +1,90 @@
+{
+  "name": "cron-schedule-lint",
+  "displayName": "Cron Schedule Lint",
+  "description": "Names every schedule line in the file you have open that fires at the wrong hour, twice, or never at all - and prints the next three times each one really fires, in the zone that actually applies.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "cron",
+    "kubernetes",
+    "github-actions",
+    "timezone",
+    "scheduling"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cron-schedule-lint.audit_file",
+        "title": "Check this file for schedules that misfire",
+        "category": "Cron Schedule Lint"
+      },
+      {
+        "command": "cron-schedule-lint.audit_selection",
+        "title": "Check the selected lines",
+        "category": "Cron Schedule Lint"
+      },
+      {
+        "command": "cron-schedule-lint.list_rules",
+        "title": "List the 29 rules that ship inside",
+        "category": "Cron Schedule Lint"
+      },
+      {
+        "command": "cron-schedule-lint.workspace_scan",
+        "title": "Build the schedule calendar for the whole repository",
+        "category": "Cron Schedule Lint"
+      },
+      {
+        "command": "cron-schedule-lint.export_report",
+        "title": "Export the calendar as CSV, JSON or HTML",
+        "category": "Cron Schedule Lint"
+      },
+      {
+        "command": "cron-schedule-lint.ci_json",
+        "title": "Write machine output for a CI gate",
+        "category": "Cron Schedule Lint"
+      }
+    ],
+    "configuration": {
+      "title": "Cron Schedule Lint",
+      "properties": {
+        "cron-schedule-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format used when the calendar is exported (csv, json or html)"
+        },
+        "cron-schedule-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info, warn or error)"
+        },
+        "cron-schedule-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files to open during a repository scan"
+        },
+        "cron-schedule-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths skipped during a repository scan"
+        },
+        "cron-schedule-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules from your settings"
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
