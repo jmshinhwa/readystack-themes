@@ -1,0 +1,16 @@
+EAA Form Lint: WCAG 2.2 AA for HTML — Licence
+
+Free scope
+  Lints the HTML file you have open and names every WCAG 2.2 AA form failure on its line, with the success-criterion number and the one-line fix. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Scans every template in the workspace at once and writes a dated conformance evidence file you keep - one row per finding, per file, mapped to its WCAG 2.2 criterion. is the paid part. It asks for a licence key issued at purchase (one seat, one key;
+  7-day full refund, no questions). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
