@@ -4,6 +4,10 @@ const path = require('path');
 const lic = require('./license.js');
 const S = {"run": "Reading the file for standing charges", "done": "Checked. Every finding below carries its published unit price.", "nothing_found": "No standing charge found in this file.", "paste": "Paste your .tf, .yaml, .yml or template.json here", "check": "Find the standing charges", "extra_rules": "Extra rules of your own, checked alongside the ones that ship inside.", "need_key": "Full version: every file in the repository instead of the one you have open, plus a CSV, JSON or HTML report and machine output that fails a build. $29 once, one licence key per person or team seat, 7-day full refund. Amazon's own published price for the same untouched cluster after the date passes is $0.60 per cluster-hour instead of $0.10, which is $365 more every month.", "buy": "Get the full version - $29", "key_ok": "Licence accepted. The workspace scan, the report and the CI output are open.", "key_bad": "That key did not validate.", "enter_key": "Enter licence key"};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
+// ★역방향 체험 — ⛔S.need_key 를 덮어쓰기 전의 ★원문. 겹쳐 붙는 것을 막는다.
+const NEED_KEY = S.need_key;
+const TRIAL_MS = 7 * 24 * 3600 * 1000;
+const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
 
 function out() {
   if (!out._c) out._c = vscode.window.createOutputChannel('Cloud Cost Landmine Lint');
@@ -88,10 +92,26 @@ async function listRules() {
 }
 
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
+//   ★역방향 체험: 첫 스윕부터 7일 동안은 키 없이 ★전체 스윕과 보고서를 ⛔줄이지 않고 그대로 준다.
+//   손님이 돈 낼지 정하는 순간은 ★자기 폴더에서 결과를 본 뒤다.
+async function paidGate(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found '
+      + last.findings + ' findings. ') : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return { ok: false, inTrial: false };
+  }
+  return { ok: true, inTrial: inTrial };
+}
 
 async function scanWorkspace(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const gate = await paidGate(ctx);
+  if (!gate.ok) return;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('cloud-cost-landmine-lint');
   const _max = Number(_c.get('max_files')) || 2000;
@@ -104,14 +124,19 @@ async function scanWorkspace(ctx) {
       rows.push({ file: f.fsPath, hits: scan(doc.getText(), f.fsPath) });
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
-  report(rows);
+  const found = report(rows);
+  // ★본 것을 적어둔다 — 체험이 끝난 뒤 키를 물을 때 ★자기 폴더의 숫자로 묻는다.
+  await ctx.globalState.update('lastSweep', { files: rows.length, findings: found,
+                                              at: new Date().toISOString().slice(0, 10) });
+  vscode.window.showInformationMessage(S.done + (gate.inTrial ? TRIAL_NOTE : ''));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
 //   🔴s125: ⛔전에는 CSV 하나만 썼는데 ★프롬프트는 "CSV / JSON / HTML" 이라고 약속했다
 //     ⇒ ★검수가 옳게 잡았다("⑤거짓 주장"). ★법(S24): 한계를 만나면 ⛔좁히지 말고 ★손을 넓힌다.
 async function exportReport(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const gate = await paidGate(ctx);
+  if (!gate.ok) return;
   const ed = vscode.window.activeTextEditor;
   const rows = ed ? [{ file: ed.document.fileName, hits: scan(ed.document.getText(), ed.document.fileName) }] : [];
   const ws = vscode.workspace.workspaceFolders;
@@ -138,18 +163,19 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'cloud-cost-landmine-lint-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath + (gate.inTrial ? TRIAL_NOTE : ''));
 }
 
 async function ciJson(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const gate = await paidGate(ctx);
+  if (!gate.ok) return;
   const ed = vscode.window.activeTextEditor;
   const hits = ed ? scan(ed.document.getText(), ed.document.fileName) : [];
   const ws = vscode.workspace.workspaceFolders;
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'cloud-cost-landmine-lint-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath + (gate.inTrial ? TRIAL_NOTE : ''));
 }
 
 function activate(ctx) {
