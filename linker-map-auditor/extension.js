@@ -22,6 +22,13 @@ const S = {
   key_bad: 'That licence key was not accepted. Check it and try again.'
 };
 
+// The paywall sentence as written above; the trial prefixes it with what the
+// customer just saw, so this stays the sentence and never accumulates.
+const NEED_KEY_BASE = S.need_key;
+
+const TRIAL_MS = 7 * 24 * 3600 * 1000;
+const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
+
 let LAST = null;          // last parsed map
 let CHANNEL = null;
 let STATUS = null;
@@ -114,7 +121,25 @@ function baselineKey() {
   return 'baseline:' + (ws && ws.length ? ws[0].uri.toString() : 'global');
 }
 
+// Reverse trial: the licensed answer runs on the customer's own build for 7
+// days from the first licensed command, then the key is asked for.
+async function inTrial(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) {
+    until = Date.now() + TRIAL_MS;
+    await st.update('sweepTrialUntil', until);
+  }
+  return !hasKey && Date.now() < until;
+}
+
 async function need(ctx) {
+  if (await inTrial(ctx)) return true;
+  const last = ctx.globalState.get('lastSweep');
+  S.need_key = (last && last.files
+    ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ')
+    : '') + NEED_KEY_BASE;
   return lic.ensure(vscode, ctx, S);
 }
 
@@ -223,7 +248,13 @@ async function exportReport(ctx) {
   const mUri = vscode.Uri.joinPath(dir, 'linker-map-report.md');
   await vscode.workspace.fs.writeFile(jUri, enc.encode(JSON.stringify(json, null, 2)));
   await vscode.workspace.fs.writeFile(mUri, enc.encode(md));
-  vscode.window.showInformationMessage('Wrote linker-map-report.json and linker-map-report.md');
+  // What this sweep covered, so the paywall can quote the customer's own build.
+  await ctx.globalState.update('lastSweep', {
+    files: parsed.objects.length, findings: budget.failed, at: new Date().toISOString()
+  });
+  const trialing = await inTrial(ctx);
+  vscode.window.showInformationMessage(
+    'Wrote linker-map-report.json and linker-map-report.md.' + (trialing ? TRIAL_NOTE : ''));
   return { json: jUri.fsPath, md: mUri.fsPath };
 }
 
