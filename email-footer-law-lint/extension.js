@@ -13,6 +13,7 @@ const S = {
   key_ok: 'Licence accepted. Thank you.', key_bad: 'That key did not validate. Check for typos, or get a licence.',
   clean: 'Clean against all ' + (ENGINE.RULE_COUNT || (ENGINE.RULES || []).length) + ' checks.'
 };
+const NEED_KEY = S.need_key;          // ★체험 만료 안내를 앞에 붙여도 원래 문장이 겹치지 않게 한 벌 보관
 const PREFIX = 'emailFooterLaw';
 const GLOB = '**/*.html';
 let channel = null, diags = null;
@@ -42,7 +43,16 @@ async function checkFile() {
   vscode.window.showInformationMessage(n ? (n + ' finding' + (n === 1 ? '' : 's') + ' in ' + path.basename(ed.document.fileName) + ' — see the ' + S.title + ' output.') : S.clean);
 }
 async function checkWorkspace(ctx) {
-  if (!(await lic.ensure(vscode, ctx, S))) return;              // ★유료 문턱: 범위(파일 하나 → 작업공간 전체) + 소유(보고서 파일)
+  const st = ctx.globalState;                                   // ★역방향 체험: 첫 스윕부터 7일간 유료 결과를 줄이지 않고 먼저 준다
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return;            // ★유료 문턱: 범위(파일 하나 → 작업공간 전체) + 소유(보고서 파일)
+  }
   const folders = vscode.workspace.workspaceFolders;
   if (!folders || !folders.length) { vscode.window.showInformationMessage('Open a folder first.'); return; }
   const uris = await vscode.workspace.findFiles(GLOB, '**/node_modules/**', 2000);
@@ -56,7 +66,8 @@ async function checkWorkspace(ctx) {
   const lines = ['# ' + S.title + ' — workspace report', '', 'Generated ' + day + ' · ' + uris.length + ' files · ' + (ENGINE.RULE_COUNT || (ENGINE.RULES || []).length) + ' checks each · ' + total + ' findings', ''].concat(blocks);
   const target = vscode.Uri.joinPath(folders[0].uri, PREFIX + '-report.md');
   await vscode.workspace.fs.writeFile(target, Buffer.from(lines.join('\n'), 'utf8'));
-  vscode.window.showInformationMessage('Swept ' + uris.length + ' files (' + total + ' findings). Report written to ' + vscode.workspace.asRelativePath(target) + '.');
+  await st.update('lastSweep', { files: uris.length, findings: total, at: day });
+  vscode.window.showInformationMessage('Swept ' + uris.length + ' files (' + total + ' findings). Report written to ' + vscode.workspace.asRelativePath(target) + '.' + (inTrial ? ' The full sweep is free for 7 days from your first sweep.' : ''));
 }
 async function enterKey(ctx) {
   await ctx.globalState.update('licenseKey', undefined);
