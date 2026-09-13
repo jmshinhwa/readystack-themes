@@ -2,7 +2,7 @@
   "name": "personal-data-map-dsar-audit",
   "displayName": "Personal Data Map",
   "description": "Reads a migration, Prisma schema, Django model or TypeORM entity and marks every column a subject access request has to reach - with the GDPR article each finding hangs on. 13 rules, line numbers, no ",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
