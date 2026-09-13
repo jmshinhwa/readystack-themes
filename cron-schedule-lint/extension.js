@@ -4,6 +4,8 @@ const path = require('path');
 const lic = require('./license.js');
 const S = {"run": "Reading the file for schedules that misfire", "done": "Checked. Every schedule below is followed by the times it really fires.", "nothing_found": "No schedule in this file fires at the wrong time.", "paste": "Paste your crontab, workflow, CronJob, wrangler.toml or beat file here", "check": "Find the schedules that misfire", "extra_rules": "Extra rules from your settings", "enter_key": "Enter licence key", "need_key": "Full version: every schedule in the repository merged into one calendar, exported as CSV, JSON or HTML, and machine output a CI step can fail on. $29 once - one licence key per person or team seat - 7-day full refund. Healthchecks.io Business, the ordinary cron monitor, is $20 every month and only tells you after a run was already missed.", "buy": "Get the full version - $29", "key_ok": "Licence accepted. The repository calendar, the export and the CI output are open.", "key_bad": "That key was not accepted. Check it against the receipt, or ask for the 7-day full refund."};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
+const NEED_KEY = S.need_key;   // ★체험이 끝난 뒤 앞에 한 줄을 붙여 쓴다 (원문은 여기 남는다)
+const TRIAL_MS = 7 * 24 * 3600 * 1000;
 
 function out() {
   if (!out._c) out._c = vscode.window.createOutputChannel('Cron Schedule Lint');
@@ -461,11 +463,29 @@ async function listRules() {
   c.show(true);
 }
 
-// ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
+// ★유료 — ★역방향 체험: ★첫 스윕부터 7일은 키 없이 ★전부 준다 (⛔줄이지 않는다). 그 뒤에 묻는다.
+//   손님이 돈 낼지 정하는 순간은 ★자기 폴더에서 자기 발견 수를 본 뒤다.
+async function trialState(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  return { st: st, hasKey: hasKey, until: until, inTrial: !hasKey && Date.now() < until };
+}
+
+// ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다. ⛔체험 중에는 묻지 않는다.
+async function paidGate(ctx) {
+  const t = await trialState(ctx);
+  if (t.inTrial) return true;
+  const last = t.st.get('lastSweep');
+  S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found '
+    + last.findings + ' findings. ') : '') + NEED_KEY;
+  return await lic.ensure(vscode, ctx, S);
+}
 
 async function scanWorkspace(ctx) {
   if (!(await paidGate(ctx))) return;
+  const _t = await trialState(ctx);
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('cron-schedule-lint');
   const _max = Number(_c.get('max_files')) || 2000;
@@ -479,6 +499,12 @@ async function scanWorkspace(ctx) {
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
   report(rows);
+  let _n = 0;
+  for (const r of rows) _n += r.hits.length;
+  await _t.st.update('lastSweep', { files: rows.length, findings: _n,
+    at: new Date().toISOString().slice(0, 10) });
+  vscode.window.showInformationMessage(S.done
+    + (_t.inTrial ? ' The full sweep is free for 7 days from your first sweep.' : ''));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
