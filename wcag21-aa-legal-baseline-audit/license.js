@@ -2,12 +2,13 @@
 const https = require('https');
 const ORG_ID = 'a5cdf664-d8e7-4f87-8895-056717aaba17';
 const BUY_URL = 'https://buy.polar.sh/polar_cl_RArnwX2pmZk48V2VCw2Ep19h2Nnf5FgaiN4oI3Y2nZu';
+const BENEFIT_ID = '923ba5ca-bf0c-4b8d-8e14-f3df28d5a098';   // s140 — 이 상품의 benefit. validate 가 이걸로 묻는다
 const GRACE_MS = 30 * 24 * 3600 * 1000;   // 검증 성공 뒤 30일은 오프라인에서도 연다
 const RECHECK_MS = 7 * 24 * 3600 * 1000;  // 7일마다 다시 묻는다 (환불·해지가 반영되도록)
 
 function validate(key) {
   return new Promise(function (resolve) {
-    const body = JSON.stringify({ key: key, organization_id: ORG_ID });
+    const body = JSON.stringify(/^[0-9a-f-]{36}$/.test(BENEFIT_ID) ? { key: key, organization_id: ORG_ID, benefit_id: BENEFIT_ID } : { key: key, organization_id: ORG_ID });
     const req = https.request({
       hostname: 'api.polar.sh', path: '/v1/customer-portal/license-keys/validate',
       method: 'POST', timeout: 8000,
