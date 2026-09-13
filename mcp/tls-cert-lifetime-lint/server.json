@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.jmshinhwa/tls-cert-lifetime-lint",
+  "description": "Finds the 12 settings that break when public TLS certificates fall to 100 days on 2027-03-15: openss",
+  "repository": {
+    "url": "https://github.com/jmshinhwa/readystack-themes",
+    "source": "github"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@readystack/tls-cert-lifetime-lint",
+      "version": "0.1.1",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "--mcp",
+          "description": "run as an MCP server (stdio)"
+        }
+      ]
+    }
+  ]
+}
