@@ -1,0 +1,53 @@
+[
+  {"id":"early_warning_24h","kind":"deadline","sev":"error","near":"early warning","unit":"hours","expect":24,
+   "msg":"No early-warning step. NIS2 Article 23(4)(a): an early warning goes to the CSIRT (or the competent authority) without undue delay and in any event within 24 hours of becoming aware of a significant incident.",
+   "msg_wrong":"The early warning is on the wrong clock. NIS2 Article 23(4)(a) allows 24 hours from awareness, not the window written on this line."},
+
+  {"id":"early_warning_clock_start","kind":"require_on_line","sev":"warn","near":"early warning","also":"aware",
+   "msg_wrong":"The 24-hour clock is not anchored to awareness. Article 23(4)(a) starts it when the entity becomes aware of the significant incident, not when the incident started or was contained."},
+
+  {"id":"early_warning_flags","kind":"require_all","sev":"error","all":["unlawful or malicious|malicious act","cross-?border"],
+   "msg":"The early warning does not state whether the incident is suspected of being caused by unlawful or malicious acts and whether it could have a cross-border impact. Article 23(4)(a) requires both statements in the 24-hour message."},
+
+  {"id":"notification_72h","kind":"deadline","sev":"error","near":"incident notification","unit":"hours","expect":72,
+   "msg":"No 72-hour incident notification step. Article 23(4)(b): within 72 hours of becoming aware, update the early warning and add an initial assessment, severity, impact and indicators of compromise.",
+   "msg_wrong":"The incident notification is on the wrong clock. Article 23(4)(b) allows 72 hours from awareness, not the window written on this line."},
+
+  {"id":"notification_contents","kind":"require_all","sev":"warn","all":["initial assessment","severity","impact"],
+   "msg":"The 72-hour notification does not list what it must carry. Article 23(4)(b) names an initial assessment of the incident, its severity and impact."},
+
+  {"id":"notification_iocs","kind":"require_any","sev":"warn","any":["indicators? of compromise","\\bIoCs?\\b"],
+   "msg":"No indicators of compromise in the 72-hour notification. Article 23(4)(b) asks for them where available, and the CSIRT uses them to warn other entities."},
+
+  {"id":"intermediate_report","kind":"require_any","sev":"warn","any":["intermediate report"],
+   "msg":"No intermediate report step. Article 23(4)(c): the CSIRT or competent authority can ask for a status update at any point, and the runbook should say who writes it."},
+
+  {"id":"final_report_one_month","kind":"deadline","sev":"error","near":"final report","unit":"months","expect":1,
+   "msg":"No final report step. Article 23(4)(d): a final report is due not later than one month after the 72-hour incident notification.",
+   "msg_wrong":"The final report is on the wrong clock. Article 23(4)(d) sets one month after the incident notification - a 14-day or 30-day figure is another instrument's deadline."},
+
+  {"id":"final_report_contents","kind":"require_all","sev":"warn","all":["root cause","mitigation"],
+   "msg":"The final report has no required contents. Article 23(4)(d) asks for a detailed description, the type of threat or root cause, and the mitigation measures applied and ongoing."},
+
+  {"id":"progress_report_ongoing","kind":"require_any","sev":"warn","any":["progress report"],
+   "msg":"Nothing covers an incident still running at the one-month mark. Article 23(4)(e): then a progress report is due at one month and the final report within one month of handling the incident."},
+
+  {"id":"csirt_addressee","kind":"require_any","sev":"error","any":["CSIRT","competent authority","single entry point"],
+   "msg":"No addressee. Article 23(1) points reports at the CSIRT or, where applicable, the competent authority - name the one your Member State designated, with its channel."},
+
+  {"id":"significant_criteria","kind":"require_all","sev":"error","all":["severe operational disruption|considerable financial loss","material or non-material damage"],
+   "msg":"The runbook never defines a significant incident, so nobody on call can start the 24-hour clock. Article 23(3): severe operational disruption or considerable financial loss for the entity, or considerable material or non-material damage to others."},
+
+  {"id":"recipients_informed","kind":"require_any","sev":"warn","any":["recipients of (its |the |their |our )?services"],
+   "msg":"No step for telling the recipients of your services. Article 23(1) and 23(2) require informing affected recipients, and any measures they can take, where the incident is likely to affect their services."},
+
+  {"id":"entity_class","kind":"require_any","sev":"warn","any":["essential entity","important entity"],
+   "msg":"The runbook does not say whether the entity is essential or important under Annex I or II. That class decides the supervisory regime an auditor applies to this document."},
+
+  {"id":"placeholder_left","kind":"forbid","sev":"error","pattern":"\\b(TBD|TODO|FIXME|XXX)\\b|\\[insert|<insert|\\[name\\]|\\[phone\\]|\\[email\\]",
+   "msg":"An unfilled placeholder is on this line. At 03:00 a placeholder is a missed 24-hour deadline, not a formatting problem."},
+
+  {"id":"review_date_fresh","kind":"fresh_date","sev":"error","label":"last reviewed|reviewed on|review date","max_months":12,
+   "msg":"No review date. An auditor reads an undated runbook as an untested one; write a Last reviewed: YYYY-MM-DD line.",
+   "msg_wrong":"This runbook was last reviewed more than 12 months ago. Article 21(2) treats incident handling as a measure to keep current, and reporting channels change."}
+]
