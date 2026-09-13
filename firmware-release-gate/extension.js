@@ -77,10 +77,26 @@ async function listRules() {
 async function showReport() { out().show(true); }
 
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
+//   ★역방향 체험 — 첫 스윕부터 7일은 ★줄이지 않은 전체 스윕과 보고서를 ⛔키 없이 그대로 준다.
+//   ⛔키는 체험이 끝난 뒤에만 묻는다 — 손님은 자기 폴더에서 본 숫자를 보고 정한다.
+const NEED_KEY = S.need_key;
+async function paidGate(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return null;
+  }
+  return { inTrial: inTrial, st: st };
+}
 
 async function scanWorkspace(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const gate = await paidGate(ctx);
+  if (!gate) return;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('firmware-release-gate');
   const _max = Number(_c.get('max_files')) || 2000;
@@ -93,7 +109,13 @@ async function scanWorkspace(ctx) {
       rows.push({ file: f.fsPath, hits: scan(doc.getText(), f.fsPath) });
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
-  report(rows);
+  const n = report(rows);
+  // ★손님이 본 숫자를 적어 둔다 — 체험이 끝난 뒤 키를 물을 때 이 줄을 먼저 보여준다.
+  await gate.st.update('lastSweep', {
+    files: rows.length, findings: n, at: new Date().toISOString().slice(0, 10)
+  });
+  vscode.window.showInformationMessage((n ? S.done : S.nothing_found)
+    + (gate.inTrial ? ' The full sweep is free for 7 days from your first sweep.' : ''));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
