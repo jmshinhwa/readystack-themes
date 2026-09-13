@@ -44,6 +44,7 @@ Every finding carries the line number, the spec that moved, and the replacement 
 * **pyproject Gate: Sweep workspace and write report (licence)** — walks every
   `**/pyproject.toml` in the folder and writes a dated `pyprojectGate-report.md` you keep in the
   repo. This is the paid part.
+  Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
 * **pyproject Gate: Enter licence key**
 
 ## Free and paid
