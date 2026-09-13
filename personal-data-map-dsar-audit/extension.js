@@ -88,30 +88,63 @@ async function listRules() {
 }
 
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
+//   ★역방향 체험 — ★첫 스윕부터 7일은 키 없이 ★전체 스윕과 보고서를 ⛔줄이지 않고 그대로 준다.
+//   그 뒤에 묻는다 — 손님은 ★자기 폴더에서 본 숫자를 알고 정한다.
+const LIC_KEY = 'licenseKey';              // ⛔license.js 가 저장하는 이름과 같아야 한다
+const TRIAL_MS = 7 * 24 * 3600 * 1000;
+const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
+const NEED_KEY = S.need_key;               // ★이 확장이 이미 쓰던 문장 — 앞에 체험 결과 한 줄만 덧댄다
+
+// 통과하면 { inTrial } 을, 막히면 null 을 낸다.
+async function paidGate(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get(LIC_KEY);
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files
+      ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ')
+      : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return null;
+  }
+  return { inTrial: inTrial };
+}
 
 async function scanWorkspace(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const gate = await paidGate(ctx);
+  if (!gate) return;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('personal-data-map-dsar-audit');
   const _max = Number(_c.get('max_files')) || 2000;
   const _skip = String(_c.get('exclude_glob') || '**/node_modules/**');
   const files = await vscode.workspace.findFiles('**/*', _skip, _max);
   const rows = [];
+  // ★체험 안내에 쓸 숫자 — ★본 파일 수와 ★찾은 건수
+  let _files = 0, _findings = 0;
   for (const f of files) {
     try {
       const doc = await vscode.workspace.openTextDocument(f);
-      rows.push({ file: f.fsPath, hits: scan(doc.getText(), f.fsPath) });
+      const hits = scan(doc.getText(), f.fsPath);
+      _files++; _findings += hits.length;
+      rows.push({ file: f.fsPath, hits: hits });
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
   report(rows);
+  await ctx.globalState.update('lastSweep', {
+    files: _files, findings: _findings, at: new Date().toISOString().slice(0, 10)
+  });
+  vscode.window.showInformationMessage((_findings ? S.done : S.nothing_found)
+    + (gate.inTrial ? TRIAL_NOTE : ''));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
 //   🔴s125: ⛔전에는 CSV 하나만 썼는데 ★프롬프트는 "CSV / JSON / HTML" 이라고 약속했다
 //     ⇒ ★검수가 옳게 잡았다("⑤거짓 주장"). ★법(S24): 한계를 만나면 ⛔좁히지 말고 ★손을 넓힌다.
 async function exportReport(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const gate = await paidGate(ctx);
+  if (!gate) return;
   const ed = vscode.window.activeTextEditor;
   const rows = ed ? [{ file: ed.document.fileName, hits: scan(ed.document.getText(), ed.document.fileName) }] : [];
   const ws = vscode.workspace.workspaceFolders;
@@ -138,18 +171,21 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'personal-data-map-dsar-audit-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath
+    + (gate.inTrial ? TRIAL_NOTE : ''));
 }
 
 async function ciJson(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const gate = await paidGate(ctx);
+  if (!gate) return;
   const ed = vscode.window.activeTextEditor;
   const hits = ed ? scan(ed.document.getText(), ed.document.fileName) : [];
   const ws = vscode.workspace.workspaceFolders;
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'personal-data-map-dsar-audit-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath
+    + (gate.inTrial ? TRIAL_NOTE : ''));
 }
 
 function activate(ctx) {
