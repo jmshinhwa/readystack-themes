@@ -4,6 +4,9 @@ const path = require('path');
 const lic = require('./license.js');
 const S = {"run": "Checking", "done": "Findings are in the Privacy Manifest Lint panel", "nothing_found": "No required-reason API and no manifest defect in this file", "need_key": "Full version: scan every file in the repo, export the findings as CSV/JSON/HTML, emit CI JSON, and auto-fix the misspelled manifest keys. $29 once - one licence key per person or team seat - 7-day full refund. An experienced freelance iOS developer bills $85-145/hour in 2026.", "key_ok": "Licence accepted - the full version is unlocked", "key_bad": "That key did not validate. Check it, or use the refund window", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "paste": "Paste your PrivacyInfo.xcprivacy, or a source file in C#, Dart, JS/TS, Swift, Obj-C or Kotlin", "check": "Check this file", "extra_rules": "Your own regex rules, checked alongside the 48 that ship inside."};
 const PAID = ["workspace_scan", "export_report", "ci_json", "quick_fix"];
+const NEED_KEY = S.need_key;   // ★체험이 끝난 뒤 문턱 문구의 ★바탕 (⛔S.need_key 에 앞말을 겹쳐 쌓지 않으려고 원문을 붙들어 둔다)
+
+function today() { return new Date().toISOString().slice(0, 10); }
 
 function out() {
   if (!out._c) out._c = vscode.window.createOutputChannel('Privacy Manifest Lint');
@@ -87,8 +90,30 @@ async function listRules() {
   c.show(true);
 }
 
-// ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
+// ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령(열린 파일·고른 줄·규칙 목록)은 이 문을 지나지 않는다.
+// ★s144 — ★역방향 체험(유료 맛보기): ★첫 스윕부터 7일간 ★작업공간 전체 스윕과 보고서를 ★줄이지 않고 키 없이 다 준다. 그 뒤에 키를 묻는다.
+//   [검색 2026-09-12] freemium 2~4% ↔ 역방향 체험 8~12% (개발자 도구 체험 중앙값 24%) · 손님이 ★자기 폴더의 결과를 본 순간에 묻는 문턱이 설치 시점보다 3~5배.
+//   ⛔무료 경로는 어떤 제한도 두지 않는다 (8% 법). 문턱 문구는 ★손님 자신의 숫자를 부른다 (endowment).
+async function paidGate(ctx) {
+  const st = ctx.globalState; const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return false;
+  }
+  return true;
+}
+
+// ★체험 중인가 — 끝 안내 문장에 붙일 한 마디를 고르려고 ★묻기만 한다 (⛔여기서 상태를 쓰지 않는다).
+function trialNote(ctx) {
+  const st = ctx.globalState;
+  const until = Number(st.get('sweepTrialUntil') || 0);
+  const inTrial = !st.get('licenseKey') && !!until && Date.now() < until;
+  return inTrial ? ' The full sweep is free for 7 days from your first sweep.' : '';
+}
 
 async function scanWorkspace(ctx) {
   if (!(await paidGate(ctx))) return;
@@ -104,7 +129,10 @@ async function scanWorkspace(ctx) {
       rows.push({ file: f.fsPath, hits: scan(doc.getText(), f.fsPath) });
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
-  report(rows);
+  const found = report(rows);
+  // ★스윕이 끝나면 ★손님 자신의 숫자를 적어 둔다 — 체험이 끝난 뒤 문턱이 이 숫자를 부른다.
+  await ctx.globalState.update('lastSweep', { files: rows.length, findings: found, at: today() });
+  vscode.window.showInformationMessage('Swept ' + rows.length + ' files (' + found + ' findings). ' + S.done + '.' + trialNote(ctx));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
