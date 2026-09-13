@@ -1,0 +1,94 @@
+{
+  "version": "2026.09.11",
+  "syntaxes": {
+    "Invoice": "UBL 2.1 Invoice",
+    "CreditNote": "UBL 2.1 CreditNote",
+    "CrossIndustryInvoice": "UN/CEFACT CII D16B"
+  },
+  "profiles": {
+    "urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0": {
+      "label": "Peppol BIS Billing 3.0", "status": "current", "country": "*"
+    },
+    "urn:cen.eu:en16931:2017": {
+      "label": "EN 16931 core, no CIUS", "status": "current", "country": "*"
+    },
+    "urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_3.0": {
+      "label": "XRechnung 3.0 (KoSIT)", "status": "current", "country": "DE"
+    },
+    "urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.3": {
+      "label": "XRechnung 2.3", "status": "retired", "retired_on": "2025-02-06",
+      "replaced_by": "urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_3.0", "country": "DE"
+    },
+    "urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.2": {
+      "label": "XRechnung 2.2", "status": "retired", "retired_on": "2024-02-01",
+      "replaced_by": "urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_3.0", "country": "DE"
+    },
+    "urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:basic": {
+      "label": "Factur-X 1.0 BASIC", "status": "current", "country": "FR"
+    },
+    "urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:en16931": {
+      "label": "Factur-X 1.0 EN 16931 (COMFORT)", "status": "current", "country": "FR"
+    },
+    "urn:factur-x.eu:1p0:minimum": {
+      "label": "Factur-X MINIMUM", "status": "insufficient", "country": "FR",
+      "note": "MINIMUM is not an EN 16931 compliant profile and is not a valid structured invoice for the French B2B mandate."
+    }
+  },
+  "mandates": [
+    {"country": "FR", "name": "France - Plateforme Agreee / Factur-X",
+     "receive_from": "2026-09-01", "issue_from": "2026-09-01",
+     "note": "Every VAT-registered business in France must be able to receive structured e-invoices from 2026-09-01; large and mid-sized companies must also issue from that date, SMEs and micro-enterprises from 2027-09-01. Accepted core formats: Factur-X, UBL 2.1, CII."},
+    {"country": "DE", "name": "Germany - E-Rechnung / XRechnung",
+     "receive_from": "2025-01-01", "issue_from": "2027-01-01",
+     "note": "Receipt of structured e-invoices is mandatory since 2025-01-01. Issuing becomes mandatory 2027-01-01 for sellers above EUR 800,000 prior-year turnover and 2028-01-01 for everyone else."},
+    {"country": "BE", "name": "Belgium - Peppol B2B",
+     "receive_from": "2026-01-01", "issue_from": "2026-01-01",
+     "note": "Domestic B2B structured e-invoicing is mandatory since 2026-01-01; the tolerance period ended 2026-03-31 and penalties are enforced. Peppol BIS Billing 3.0 is the reference format."},
+    {"country": "PL", "name": "Poland - KSeF FA(3)",
+     "receive_from": "2026-02-01", "issue_from": "2026-02-01",
+     "note": "FA(2) was replaced by the FA(3) XML structure on 2026-02-01. KSeF issuing is mandatory from 2026-02-01 above PLN 200m prior-year turnover, from 2026-04-01 for all other VAT payers, and from 2027-01-01 for micro-enterprises."},
+    {"country": "ES", "name": "Spain - Verifactu / SIF",
+     "receive_from": "2027-01-01", "issue_from": "2027-01-01",
+     "note": "Verifactu was postponed by one year: Corporate Income Tax payers from 2027-01-01 and other taxpayers, including autonomos, from 2027-07-01. A 2026 go-live date is out of date."},
+    {"country": "IT", "name": "Italy - FatturaPA / SdI",
+     "receive_from": "2019-01-01", "issue_from": "2019-01-01",
+     "note": "Domestic invoices clear through the Sistema di Interscambio in the FatturaPA XML format. UBL and CII are not accepted for domestic Italian invoices."}
+  ],
+  "rules": [
+    {"id": "EINV-SYNTAX", "kind": "syntax", "sev": "error", "bt": "-", "msg": "Root element is not an EN 16931 syntax", "fix": "Use a UBL 2.1 Invoice/CreditNote or a UN/CEFACT CrossIndustryInvoice document."},
+    {"id": "EINV-BT-24", "kind": "profile", "sev": "error", "bt": "BT-24", "msg": "Specification identifier (CustomizationID) is missing", "fix": "Add cbc:CustomizationID naming the EN 16931 CIUS this invoice follows."},
+    {"id": "EINV-PROFILE-UNKNOWN", "kind": "profile_unknown", "sev": "warn", "bt": "BT-24", "msg": "Specification identifier is not a profile this linter knows", "fix": "Check the identifier against the CIUS your receiving platform publishes."},
+    {"id": "EINV-PROFILE-RETIRED", "kind": "profile_retired", "sev": "error", "bt": "BT-24", "msg": "Specification identifier names a retired profile version", "fix": "Move to the replacement profile."},
+    {"id": "EINV-BT-1", "kind": "present", "sev": "error", "bt": "BT-1", "path": ["cbc:ID"], "msg": "Invoice number (BT-1) is missing", "fix": "Add cbc:ID at document level."},
+    {"id": "EINV-BT-2", "kind": "present", "sev": "error", "bt": "BT-2", "path": ["cbc:IssueDate"], "msg": "Invoice issue date (BT-2) is missing", "fix": "Add cbc:IssueDate in YYYY-MM-DD form."},
+    {"id": "EINV-BT-3", "kind": "present", "sev": "error", "bt": "BT-3", "path": ["cbc:InvoiceTypeCode"], "msg": "Invoice type code (BT-3) is missing", "fix": "Add cbc:InvoiceTypeCode, normally 380 for a commercial invoice."},
+    {"id": "EINV-BT-5", "kind": "present", "sev": "error", "bt": "BT-5", "path": ["cbc:DocumentCurrencyCode"], "msg": "Invoice currency code (BT-5) is missing", "fix": "Add cbc:DocumentCurrencyCode, for example EUR."},
+    {"id": "EINV-BT-27", "kind": "present", "sev": "error", "bt": "BT-27", "path": ["cac:AccountingSupplierParty", "cac:PartyLegalEntity", "cbc:RegistrationName"], "msg": "Seller legal name (BT-27) is missing", "fix": "Add cac:PartyLegalEntity/cbc:RegistrationName under the supplier party."},
+    {"id": "EINV-BT-31", "kind": "present", "sev": "error", "bt": "BT-31", "path": ["cac:AccountingSupplierParty", "cac:PartyTaxScheme", "cbc:CompanyID"], "msg": "Seller VAT identifier (BT-31) is missing", "fix": "Add cac:PartyTaxScheme/cbc:CompanyID with the VAT scheme for the seller."},
+    {"id": "EINV-BT-40", "kind": "present", "sev": "error", "bt": "BT-40", "path": ["cac:AccountingSupplierParty", "cac:PostalAddress", "cbc:IdentificationCode"], "msg": "Seller country code (BT-40) is missing", "fix": "Add cac:Country/cbc:IdentificationCode in the seller postal address."},
+    {"id": "EINV-BT-44", "kind": "present", "sev": "error", "bt": "BT-44", "path": ["cac:AccountingCustomerParty", "cac:PartyLegalEntity", "cbc:RegistrationName"], "msg": "Buyer legal name (BT-44) is missing", "fix": "Add cac:PartyLegalEntity/cbc:RegistrationName under the customer party."},
+    {"id": "EINV-BT-55", "kind": "present", "sev": "error", "bt": "BT-55", "path": ["cac:AccountingCustomerParty", "cac:PostalAddress", "cbc:IdentificationCode"], "msg": "Buyer country code (BT-55) is missing", "fix": "Add cac:Country/cbc:IdentificationCode in the buyer postal address."},
+    {"id": "EINV-BT-110", "kind": "present", "sev": "error", "bt": "BT-110", "path": ["cac:TaxTotal", "cbc:TaxAmount"], "msg": "Invoice total VAT amount (BT-110) is missing", "fix": "Add cac:TaxTotal/cbc:TaxAmount at document level."},
+    {"id": "EINV-BT-109", "kind": "present", "sev": "error", "bt": "BT-109", "path": ["cac:LegalMonetaryTotal", "cbc:TaxExclusiveAmount"], "msg": "Invoice total without VAT (BT-109) is missing", "fix": "Add cbc:TaxExclusiveAmount to cac:LegalMonetaryTotal."},
+    {"id": "EINV-BT-112", "kind": "present", "sev": "error", "bt": "BT-112", "path": ["cac:LegalMonetaryTotal", "cbc:TaxInclusiveAmount"], "msg": "Invoice total with VAT (BT-112) is missing", "fix": "Add cbc:TaxInclusiveAmount to cac:LegalMonetaryTotal."},
+    {"id": "EINV-BT-115", "kind": "present", "sev": "error", "bt": "BT-115", "path": ["cac:LegalMonetaryTotal", "cbc:PayableAmount"], "msg": "Amount due for payment (BT-115) is missing", "fix": "Add cbc:PayableAmount to cac:LegalMonetaryTotal."},
+    {"id": "EINV-LINE", "kind": "line_count", "sev": "error", "bt": "BG-25", "msg": "Invoice has no invoice line", "fix": "An EN 16931 invoice needs at least one cac:InvoiceLine."},
+    {"id": "EINV-BR-CO-10", "kind": "math_linesum", "sev": "error", "bt": "BT-106", "msg": "Sum of invoice line net amounts (BT-106) does not equal the lines", "fix": "Set cac:LegalMonetaryTotal/cbc:LineExtensionAmount to the sum of the line amounts."},
+    {"id": "EINV-BR-CO-15", "kind": "math_inclusive", "sev": "error", "bt": "BT-112", "msg": "Total with VAT (BT-112) does not equal total without VAT plus VAT", "fix": "BT-112 must equal BT-109 + BT-110."},
+    {"id": "EINV-BR-CO-16", "kind": "math_payable", "sev": "error", "bt": "BT-115", "msg": "Amount due (BT-115) does not equal total with VAT minus prepaid plus rounding", "fix": "BT-115 must equal BT-112 - BT-113 + BT-114."},
+    {"id": "EINV-BR-CO-25", "kind": "due_date", "sev": "warn", "bt": "BT-9", "msg": "Amount due is positive but neither a due date (BT-9) nor payment terms (BT-20) are given", "fix": "Add cbc:DueDate or cac:PaymentTerms/cbc:Note."},
+    {"id": "EINV-FR-SIREN", "kind": "country", "country": "FR", "sev": "error", "bt": "BT-30", "msg": "France: seller legal registration identifier (SIREN or SIRET) is missing or is not 9 or 14 digits", "fix": "Add cac:AccountingSupplierParty/cac:PartyLegalEntity/cbc:CompanyID with schemeID 0009 (SIRET) or 0002 (SIREN)."},
+    {"id": "EINV-FR-BUYER-SIREN", "kind": "country", "country": "FR", "sev": "error", "bt": "BT-47", "msg": "France: buyer legal registration identifier (SIREN or SIRET) is missing on a domestic B2B invoice", "fix": "Add cac:AccountingCustomerParty/cac:PartyLegalEntity/cbc:CompanyID with the buyer SIREN or SIRET."},
+    {"id": "EINV-FR-MINIMUM", "kind": "country", "country": "FR", "sev": "error", "bt": "BT-24", "msg": "France: the Factur-X MINIMUM profile is not an EN 16931 compliant invoice", "fix": "Use Factur-X BASIC or EN 16931 (COMFORT), or UBL 2.1 / CII."},
+    {"id": "EINV-DE-LEITWEG", "kind": "country", "country": "DE", "sev": "error", "bt": "BT-10", "msg": "XRechnung: buyer reference (BT-10, the Leitweg-ID) is missing", "fix": "Add cbc:BuyerReference with the Leitweg-ID the buyer gave you."},
+    {"id": "EINV-DE-CONTACT", "kind": "country", "country": "DE", "sev": "error", "bt": "BT-41", "msg": "XRechnung: seller contact name, telephone and email are required and one of them is missing", "fix": "Add cac:Contact with cbc:Name, cbc:Telephone and cbc:ElectronicMail under the supplier party."},
+    {"id": "EINV-DE-PAYMENT", "kind": "country", "country": "DE", "sev": "error", "bt": "BG-16", "msg": "XRechnung: payment instructions (BG-16) are missing", "fix": "Add cac:PaymentMeans with cbc:PaymentMeansCode."},
+    {"id": "EINV-BE-PEPPOL", "kind": "country", "country": "BE", "sev": "error", "bt": "BT-34", "msg": "Belgium: seller or buyer Peppol electronic address (cbc:EndpointID with a schemeID) is missing", "fix": "Add cbc:EndpointID schemeID=\"0208\" (Belgian enterprise number) to both parties."},
+    {"id": "EINV-BE-PROFILE", "kind": "country", "country": "BE", "sev": "warn", "bt": "BT-24", "msg": "Belgium: the reference format for the domestic B2B mandate is Peppol BIS Billing 3.0 and this invoice declares another profile", "fix": "Set CustomizationID to the Peppol BIS Billing 3.0 identifier."},
+    {"id": "EINV-PL-KSEF", "kind": "country", "country": "PL", "sev": "error", "bt": "-", "msg": "Poland: domestic invoices must be filed to KSeF in the FA(3) structure, not UBL or CII", "fix": "Generate the FA(3) XML for KSeF; keep UBL only for cross-border Peppol exchange."},
+    {"id": "EINV-PL-FA2", "kind": "pl_fa2", "sev": "error", "bt": "-", "msg": "Poland: this document uses the FA(2) KSeF structure, which was replaced by FA(3)", "fix": "Regenerate against the FA(3) schema."},
+    {"id": "EINV-IT-SDI", "kind": "country", "country": "IT", "sev": "error", "bt": "-", "msg": "Italy: domestic invoices clear through SdI in FatturaPA format, not UBL or CII", "fix": "Generate FatturaPA XML for domestic Italian invoices."},
+    {"id": "EINV-ES-VERIFACTU", "kind": "country", "country": "ES", "sev": "info", "bt": "-", "msg": "Spain: Verifactu was postponed by one year - Corporate Income Tax payers from 2027-01-01 and other taxpayers from 2027-07-01", "fix": "Check any 2026 Verifactu go-live date hard-coded in your billing configuration."},
+    {"id": "EINV-MANDATE-LIVE", "kind": "mandate_note", "sev": "info", "bt": "-", "msg": "Mandate status for the seller country", "fix": "No change needed; this line states the dates the other findings are measured against."}
+  ]
+}
