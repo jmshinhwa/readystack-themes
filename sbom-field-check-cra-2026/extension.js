@@ -192,7 +192,28 @@ async function listRules() {
 async function showReport() { out().show(true); }
 
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
+// ★s144 — ★역방향 체험(reverse trial): 유료 결과를 ★먼저 겪게 한다.
+//   [검색 2026-09-12] 무료→유료 2~4% ↔ 역방향 체험 8~12% (개발자 도구 체험 중앙값 24%).
+//   손님이 돈 낼지 정하는 순간은 ★자기 폴더의 파일 수와 건수를 본 뒤다
+//   ⇒ ★첫 스윕부터 7일은 키를 묻지 않고 ★작업공간 전체 스윕·증거 파일·CI 출력을 ★줄이지 않고 그대로 준다.
+//   ⛔무료 경로(audit_file · list_rules · show_report)는 이 문을 지나지 않는다 (8% 법).
+const NEED_KEY = S.need_key;                 // ⛔손님 숫자를 앞에 붙이기 전의 원문
+const TRIAL_MS = 7 * 24 * 3600 * 1000;
+
+async function paidGate(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  paidGate._inTrial = inTrial;               // ★끝 안내 문장이 읽는다 (watchOnSave._d 와 같은 방식)
+  if (inTrial) return true;                  // ⛔체험 중에는 ★묻지 않는다
+  // ★체험이 끝난 뒤 — ★손님 자신의 숫자를 ★먼저 말하고 키를 묻는다
+  const last = st.get('lastSweep');
+  S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found '
+    + last.findings + ' findings. ') : '') + NEED_KEY;
+  return await lic.ensure(vscode, ctx, S);
+}
 
 async function scanWorkspace(ctx) {
   if (!(await paidGate(ctx))) return;
@@ -209,6 +230,14 @@ async function scanWorkspace(ctx) {
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
   report(rows);
+  // ★s144 — ★스윕한 숫자를 적어 둔다. ⛔체험이 끝나면 이 숫자가 키를 묻는 문장 앞에 선다.
+  let _tot = 0;
+  for (const r of rows) _tot += r.hits.length;
+  await ctx.globalState.update('lastSweep', { files: rows.length, findings: _tot,
+                                              at: new Date().toISOString().slice(0, 10) });
+  vscode.window.showInformationMessage('Swept ' + rows.length + ' files - ' + _tot
+    + ' field gaps. See the SBOM Field Check panel.'
+    + (paidGate._inTrial ? ' The full sweep is free for 7 days from your first sweep.' : ''));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
