@@ -18,6 +18,8 @@ Names every missing field in your CycloneDX or SPDX SBOM against BSI TR-03183-2 
 - **Machine-readable output for CI** — Writes a JSON report so a pipeline can fail the build before the release leaves.
 - **Re-checks every time the SBOM is regenerated** — Your generator rewrites the SBOM on each build; this re-checks it the moment it lands.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 ## Install
 
 ```
