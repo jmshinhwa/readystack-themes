@@ -79,8 +79,30 @@ async function showReport() { out().show(true); }
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
 async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
 
+// ★s144 — ★역방향 체험(유료 맛보기): ★첫 스윕부터 7일간 ★작업공간 전체 스윕과 보고서를 ★키 없이 ★줄이지 않고 그대로 준다.
+//   [검색 2026-09-12] 무료→유료 2~4% ↔ 역방향 체험 8~12% (개발자 도구 체험 중앙값 24%).
+//   ⛔손님이 돈 낼지 정하는 순간은 ★자기 폴더의 숫자를 본 뒤다 — 그래서 그때 묻는다 (지난 스윕의 숫자를 문구에 싣는다).
+//   ⛔무료 경로(열린 파일 검사)는 어떤 제한도 두지 않는다.
+const NEED_KEY = S.need_key;
+function today() { return new Date().toISOString().slice(0, 10); }
+async function sweepGate(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
+    if (!(await paidGate(ctx))) return null;
+  }
+  return { inTrial: inTrial, until: until };
+}
+const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
+
 async function scanWorkspace(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const trial = await sweepGate(ctx);
+  if (!trial) return;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('ai-model-retirement-lint');
   const _max = Number(_c.get('max_files')) || 2000;
@@ -93,18 +115,22 @@ async function scanWorkspace(ctx) {
       rows.push({ file: f.fsPath, hits: scan(doc.getText(), f.fsPath) });
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
-  report(rows);
+  const n = report(rows);
+  await ctx.globalState.update('lastSweep', { files: files.length, findings: n, at: today() });
+  vscode.window.showInformationMessage(S.done + ' (' + files.length + ' files, ' + n + ' findings)'
+    + (trial.inTrial ? TRIAL_NOTE : ''));
 }
 
 async function ciJson(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const trial = await sweepGate(ctx);
+  if (!trial) return;
   const ed = vscode.window.activeTextEditor;
   const hits = ed ? scan(ed.document.getText(), ed.document.fileName) : [];
   const ws = vscode.workspace.workspaceFolders;
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'ai-model-retirement-lint-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath + (trial.inTrial ? TRIAL_NOTE : ''));
 }
 
 async function quickFix(ctx) {
