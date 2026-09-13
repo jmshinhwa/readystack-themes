@@ -37,6 +37,8 @@ Linting the open file is free and finishes the job on its own - all 14 rules, ev
 
 A licence key adds a different job: **Sweep workspace and write report** reads every stylesheet in the workspace in one pass and writes a dated criterion-by-criterion table (Markdown + CSV) - the paper record that sits behind an accessibility statement, with file and line for each criterion. Enter it with **Enter licence key**.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 $29 once - one licence key per person or team seat - 7-day full refund. An accessibility consultant reading one stylesheet by hand bills a $150-$250 hour.
 
 ## Yardstick
