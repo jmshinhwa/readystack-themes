@@ -35,6 +35,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0
 
 [**Get the full version - $29**](https://buy.polar.sh/polar_cl_brZKgBkvnYrEIMElB5Ynt5gGEnqmTjvx9r9ZX3ljztR) - $29 once, one licence key per person or team seat, 7-day full refund.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 
 ## Install
 
