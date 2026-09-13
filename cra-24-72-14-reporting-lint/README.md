@@ -30,6 +30,8 @@ That is the free scope, and it is the whole rule set — no watermark, no trial 
 
 The full version widens the **scope**: it sweeps every Markdown file in the workspace in one pass, works out which checks are answered *nowhere* in the repository rather than merely missing from one file, and writes a single dated `CRA-24-72-14-READINESS.md` you can hand to an auditor. Run **CRA 24/72/14: Sweep the whole workspace** to unlock it with a licence key.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 ## Settings
 
 - `craReporting.min_severity` — hide findings below `info`, `warn` or `error`.
