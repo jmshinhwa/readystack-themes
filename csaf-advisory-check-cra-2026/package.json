@@ -2,7 +2,7 @@
   "name": "csaf-advisory-check-cra-2026",
   "displayName": "CSAF Advisory Check for CRA 2026",
   "description": "Runs the 43 mandatory and profile conformance tests of CSAF 2.0 section 6.1 on the advisory you are writing: product ID graph, revision history, CVSS recomputation, CWE names. Offline.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
