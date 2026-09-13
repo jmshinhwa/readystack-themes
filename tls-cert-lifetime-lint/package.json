@@ -2,7 +2,7 @@
   "name": "tls-cert-lifetime-lint",
   "displayName": "TLS Cert Lifetime Lint - SC-081v3 renewal check",
   "description": "Finds the 12 settings that break when public TLS certificates fall to 100 days on 2027-03-15: openssl -days, Terraform, cert-manager, late expiry alerts, HPKP, TLS 1.0/1.1, SHA-1, RSA-1024.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
