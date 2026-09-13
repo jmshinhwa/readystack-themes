@@ -1,0 +1,16 @@
+E-Invoice Mandate Lint - EU 2026 — Licence
+
+Free scope
+  Lint the invoice XML you have open - every EN 16931 core field plus the country mandate rules its CustomizationID selects, reported with line numbers. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Scan every invoice XML in the workspace in one pass and export the findings as JSON, CSV or SARIF you keep and run in CI. is the paid part. It asks for a licence key issued at purchase (one seat, one key;
+  7-day full refund, no questions). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
