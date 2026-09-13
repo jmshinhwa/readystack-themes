@@ -2,7 +2,7 @@
   "name": "cra-24-72-14-reporting-lint",
   "displayName": "CRA 24/72/14 Reporting Lint (Article 14)",
   "description": "Checks your SECURITY.md, disclosure policy or incident runbook against the EU Cyber Resilience Act reporting clock that started on 11 September 2026: 24-hour early warning, 72-hour notification, 14-day final report, to ENISA and your coordinating CSIRT. 18 checks. Runs offline.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "./extension.js",
