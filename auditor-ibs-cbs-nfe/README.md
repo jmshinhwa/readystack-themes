@@ -56,6 +56,8 @@ O documento fiscal **não sai da sua máquina**. Nada é enviado para nenhum ser
 $29, uma única vez · uma chave por pessoa ou assento de equipe · reembolso total em 7 dias.
 Assinaturas de apoio à Reforma Tributária para times fiscais partem de R$ 147/mês.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 [**Obter a versão completa — $29**](https://getreadystack.com)
 
 ## Instalar
