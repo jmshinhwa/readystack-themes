@@ -34,6 +34,8 @@ Osano, the nearest hosted consent platform, starts at $199/month.
 
 [**Get the full version — $29**](https://buy.polar.sh/polar_cl_gj151VTqWFpXoYSJLn1MtTGUJrDV3N8bEeFLH4cORhY) - $29 once, one licence key per person or team seat, 7-day full refund.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 
 ## Install
 
