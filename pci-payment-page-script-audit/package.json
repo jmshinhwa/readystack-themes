@@ -2,7 +2,7 @@
   "name": "pci-payment-page-script-audit",
   "displayName": "PCI Payment Page Script Audit",
   "description": "PCI DSS 4.0.1 requirements 6.4.3 and 11.6.1 have been mandatory since 2025-03-31, and the PCI SSC revised FAQ 1331 on 2026-08-04 so a QSA agreement alone no longer marks them not applicable. This read",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
