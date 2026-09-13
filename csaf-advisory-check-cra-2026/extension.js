@@ -23,6 +23,11 @@ const S = {
   paste: 'Open a CSAF advisory (.json) and run the check.'
 };
 
+// The sentence the extension already uses, kept apart so the trial can put a line in front of it.
+const NEED_KEY = S.need_key;
+const TRIAL_MS = 7 * 24 * 3600 * 1000;
+const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
+
 let DIAG = null;
 function diag() {
   if (!DIAG) DIAG = vscode.languages.createDiagnosticCollection(SLUG);
@@ -102,9 +107,28 @@ async function listTests() {
   c.show(true);
 }
 
+// ── reverse trial: the workspace pass and the evidence file, free for 7 days ───
+// The first sweep starts the 7 days. After that the key is asked for, with the numbers
+// that sweep found put in front of the sentence.
+async function sweepGate(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found '
+      + last.findings + ' findings. ') : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return null;
+  }
+  return { st: st, inTrial: inTrial };
+}
+
 // ── paid 1: every advisory in the workspace, one pass ─────────────────────────
 async function workspaceScan(ctx) {
-  if (!await lic.ensure(vscode, ctx, S)) return null;
+  const gate = await sweepGate(ctx);
+  if (!gate) return null;
   const glob = String(cfg().get('filePatterns') || '**/*.json');
   const uris = await vscode.workspace.findFiles(glob, '**/node_modules/**', 2000);
   const rows = [];
@@ -116,15 +140,18 @@ async function workspaceScan(ctx) {
     rows.push({ file: u.fsPath, findings: res.findings, parseError: res.parseError });
   }
   if (!rows.length) { vscode.window.showInformationMessage(S.not_csaf); return null; }
-  report(rows);
+  const found = report(rows);
   workspaceScan._last = rows;
-  vscode.window.showInformationMessage(rows.length + ' CSAF document(s) checked.');
+  await gate.st.update('lastSweep', { files: rows.length, findings: found, at: new Date().toISOString().slice(0, 10) });
+  vscode.window.showInformationMessage(rows.length + ' CSAF document(s) checked.'
+    + (gate.inTrial ? TRIAL_NOTE : ''));
   return rows;
 }
 
 // ── paid 2: the evidence file you keep ────────────────────────────────────────
 async function exportEvidence(ctx) {
-  if (!await lic.ensure(vscode, ctx, S)) return null;
+  const gate = await sweepGate(ctx);
+  if (!gate) return null;
   let rows = workspaceScan._last;
   if (!rows) {
     const ed = vscode.window.activeTextEditor;
@@ -141,6 +168,8 @@ async function exportEvidence(ctx) {
   fs.writeFileSync(target, body, 'utf8');
   const doc = await vscode.workspace.openTextDocument(target);
   vscode.window.showTextDocument(doc, { preview: false });
+  vscode.window.showInformationMessage('Evidence written: ' + path.basename(target)
+    + (gate.inTrial ? TRIAL_NOTE : ''));
   return target;
 }
 function esc(s) { return '"' + String(s === undefined ? '' : s).replace(/"/g, '""') + '"'; }
@@ -253,4 +282,4 @@ function activate(ctx) {
 function deactivate() { if (DIAG) DIAG.dispose(); }
 
 module.exports = { activate, deactivate,
-  _test: { runEngine, evidenceCsv, evidenceJson, evidenceHtml, CI_RUNNER, RULES, S } };
+  _test: { runEngine, evidenceCsv, evidenceJson, evidenceHtml, CI_RUNNER, RULES, S, sweepGate } };
