@@ -74,6 +74,8 @@ What moved:
 **$29 once - one licence key per person or team seat - 7-day full refund.**
 A freelance embedded engineer averages $103/hr (contractrates.fyi, 2026); this is about 17 minutes of one.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 [Get the full version - $29](https://buy.polar.sh/polar_cl_2x41azB4vGEeUd5HdFkPGOiAorn6HYGk0WDro17qEb0)
 
 ## Settings
