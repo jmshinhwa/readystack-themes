@@ -30,6 +30,8 @@ robots.txt
 - **Add your own agency policy tokens** — Extra rules from settings, checked alongside the built-in ones.
 - **Re-check automatically on every save** — Findings refresh as you edit, without running a command.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 ## Install
 
 ```
