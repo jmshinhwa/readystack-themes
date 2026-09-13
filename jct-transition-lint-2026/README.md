@@ -36,6 +36,8 @@ await fs.unlink(receiptPath);
 
 [**製品版を入手 — $29**](https://buy.polar.sh/polar_cl_akmxSIxDli9uaowwy6ffgNIUozrZ7Qxg6oYFn3rQphD) - $29 once, one licence key per person or team seat, 7-day full refund.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 
 ## Install
 
