@@ -33,6 +33,8 @@ db/migrations/014_patients.sql
 - **Export the map as CSV, JSON or HTML** — the column-by-column table you attach to an Art. 30 record or hand to counsel
 - **JSON your pipeline can fail on** — block a migration that adds special-category or credential columns before it reaches production
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 ## Install
 
 ```
