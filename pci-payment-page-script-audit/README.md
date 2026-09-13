@@ -31,6 +31,8 @@ checkout.html
 - **Re-audit on every save** — Runs the same 26 rules when the template is saved, so a pasted snippet is caught while it is being written.
 - **Add your own rules and script allowlist** — Your approved vendor domains and your internal patterns run alongside the 26 that ship inside.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 ## Install
 
 ```
