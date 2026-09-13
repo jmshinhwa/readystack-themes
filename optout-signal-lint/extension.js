@@ -4,6 +4,10 @@ const path = require('path');
 const lic = require('./license.js');
 const S = {"run": "Auditing for opt-out leaks", "done": "Audit finished.", "nothing_found": "No opt-out leak found in this file.", "paste": "Paste a tag, analytics or consent file here", "check": "Audit this file", "need_key": "Full version: Sweeps the whole workspace, writes the finding list to CSV, JSON or HTML, and returns a CI exit code so the same leak cannot merge twice. $29 once · one licence key per person or team seat · 7-day full refund. Osano, the nearest hosted consent platform, starts at $199/month.", "buy": "Get the full version — $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted. The workspace scan, export and CI output are open.", "key_bad": "That key did not validate. Check it in your Polar customer portal."};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
+// ★역방향 체험 — ★첫 스윕부터 7일. ⛔기본 유료 문장은 한 번만 붙잡아 둔다 (안내가 겹쳐 쌓이지 않게)
+const NEED_KEY = S.need_key;
+const TRIAL_MS = 7 * 24 * 3600 * 1000;
+const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
 
 function out() {
   if (!out._c) out._c = vscode.window.createOutputChannel('Opt-Out Signal Lint');
@@ -88,10 +92,28 @@ async function listRules() {
 }
 
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
+//   ★체험 중(inTrial)이면 ⛔키를 묻지 않고 ★전체 스윕과 보고서를 ★줄이지 않고 그대로 준다.
+//   ★7일이 지난 뒤 물을 때는 ★지난 스윕이 본 숫자를 먼저 보여준다.
+async function paidGate(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files
+      ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ')
+      : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return null;
+  }
+  return { inTrial: inTrial };
+}
 
 async function scanWorkspace(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const g = await paidGate(ctx);
+  if (!g) return;
+  const st = ctx.globalState;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('optout-signal-lint');
   const _max = Number(_c.get('max_files')) || 2000;
@@ -104,14 +126,19 @@ async function scanWorkspace(ctx) {
       rows.push({ file: f.fsPath, hits: scan(doc.getText(), f.fsPath) });
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
-  report(rows);
+  const n = report(rows);
+  await st.update('lastSweep', { files: files.length, findings: n, at: new Date().toISOString().slice(0, 10) });
+  vscode.window.showInformationMessage(
+    (n ? S.done : S.nothing_found) + ' ' + files.length + ' files, ' + n + ' findings.'
+    + (g.inTrial ? TRIAL_NOTE : ''));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
 //   🔴s125: ⛔전에는 CSV 하나만 썼는데 ★프롬프트는 "CSV / JSON / HTML" 이라고 약속했다
 //     ⇒ ★검수가 옳게 잡았다("⑤거짓 주장"). ★법(S24): 한계를 만나면 ⛔좁히지 말고 ★손을 넓힌다.
 async function exportReport(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const g = await paidGate(ctx);
+  if (!g) return;
   const ed = vscode.window.activeTextEditor;
   const rows = ed ? [{ file: ed.document.fileName, hits: scan(ed.document.getText(), ed.document.fileName) }] : [];
   const ws = vscode.workspace.workspaceFolders;
@@ -138,18 +165,19 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'optout-signal-lint-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath + (g.inTrial ? TRIAL_NOTE : ''));
 }
 
 async function ciJson(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const g = await paidGate(ctx);
+  if (!g) return;
   const ed = vscode.window.activeTextEditor;
   const hits = ed ? scan(ed.document.getText(), ed.document.fileName) : [];
   const ws = vscode.workspace.workspaceFolders;
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'optout-signal-lint-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath + (g.inTrial ? TRIAL_NOTE : ''));
 }
 
 function activate(ctx) {
