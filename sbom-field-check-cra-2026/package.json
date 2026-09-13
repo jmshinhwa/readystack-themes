@@ -2,7 +2,7 @@
   "name": "sbom-field-check-cra-2026",
   "displayName": "SBOM Field Check for CRA 2026",
   "description": "Names every missing field in your CycloneDX or SPDX SBOM against BSI TR-03183-2 and the CISA 2026 minimum elements. 34 rules. Runs offline.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
