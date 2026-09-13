@@ -17,6 +17,8 @@ Audits HTML, JSX, Vue, Twig, Blade, ERB and Razor markup against the 24 WCAG 2.1
 - **Applies the mechanical fixes in place** — Zoom locks and positive tabindex are repaired exactly; everything needing human judgement is listed instead, never guessed.
 - **Re-audits automatically on every save** — Findings appear while you edit the template, not in a report three weeks later.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 ## Install
 
 ```
