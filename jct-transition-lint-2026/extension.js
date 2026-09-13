@@ -4,6 +4,8 @@ const path = require('path');
 const lic = require('./license.js');
 const S = {"run": "検査する対象を選んでください", "done": "指摘が見つかりました。結果パネルを確認してください", "nothing_found": "この範囲に指摘はありません", "paste": "請求・仕入の計算コードをここに貼り付け", "check": "24規則で検査する", "need_key": "製品版では、リポジトリ全体の走査・証跡ファイルの書き出し・保存時の自動再チェック・CI 用の機械可読出力ができます", "buy": "製品版を入手 — $29", "key_ok": "ライセンスキーを確認しました", "key_bad": "このキーは確認できませんでした", "extra_rules": "社内ルールの追加（既定の24規則と一緒に検査します）", "enter_key": "Enter licence key"};
 const PAID = ["workspace_scan", "export_report", "watch_on_save", "ci_json"];
+const NEED_KEY = S.need_key;   // ⛔원문 — 체험이 끝난 뒤 앞에 손님의 숫자를 붙여 쓴다
+const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
 
 function out() {
   if (!out._c) out._c = vscode.window.createOutputChannel('JCT 経過措置リンター 2026');
@@ -84,8 +86,27 @@ async function showReport() { out().show(true); }
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
 async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
 
+// ★유료 — ★역방향 체험(paid taste): ★첫 스윕부터 7일간 ★전체 스윕과 보고서를 ★키 없이 그대로 준다. 그 뒤에 키를 묻는다.
+//   [내 판단 + 검색 2026-09-12] 무료→유료 평균 2~4% ↔ 역방향 체험 8~12%(개발자 도구 체험 중앙값 24%).
+//   손님이 돈 낼지 정하는 순간은 ★자기 폴더에서 결과를 본 뒤다 ⇒ 그 순간에 자기 숫자로 묻는다.
+//   ⛔무료 경로(열린 파일·선택 범위 검사)에는 어떤 제한도 두지 않는다 (8% 법).
+async function sweepTrial(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return null;
+  }
+  return { st: st, inTrial: inTrial, until: until };
+}
+
 async function scanWorkspace(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const tr = await sweepTrial(ctx);
+  if (!tr) return;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('jct-transition-lint-2026');
   const _max = Number(_c.get('max_files')) || 2000;
@@ -98,14 +119,21 @@ async function scanWorkspace(ctx) {
       rows.push({ file: f.fsPath, hits: scan(doc.getText(), f.fsPath) });
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
-  report(rows);
+  const n = report(rows);
+  // ★손님의 숫자를 남긴다 — 체험이 끝난 뒤 키를 물을 때 이 숫자로 묻는다 (endowment)
+  await tr.st.update('lastSweep', { files: files.length, findings: n,
+                                    at: new Date().toISOString().slice(0, 10) });
+  vscode.window.showInformationMessage((n ? S.done : S.nothing_found)
+    + '（' + files.length + ' \u30d5\u30a1\u30a4\u30eb / ' + n + ' \u4ef6）'
+    + (tr.inTrial ? TRIAL_NOTE : ''));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
 //   🔴s125: ⛔전에는 CSV 하나만 썼는데 ★프롬프트는 "CSV / JSON / HTML" 이라고 약속했다
 //     ⇒ ★검수가 옳게 잡았다("⑤거짓 주장"). ★법(S24): 한계를 만나면 ⛔좁히지 말고 ★손을 넓힌다.
 async function exportReport(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const tr = await sweepTrial(ctx);
+  if (!tr) return;
   const ed = vscode.window.activeTextEditor;
   const rows = ed ? [{ file: ed.document.fileName, hits: scan(ed.document.getText(), ed.document.fileName) }] : [];
   const ws = vscode.workspace.workspaceFolders;
@@ -132,7 +160,8 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'jct-transition-lint-2026-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath
+    + (tr.inTrial ? TRIAL_NOTE : ''));
 }
 
 async function watchOnSave(ctx) {
@@ -147,14 +176,16 @@ async function watchOnSave(ctx) {
 }
 
 async function ciJson(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const tr = await sweepTrial(ctx);
+  if (!tr) return;
   const ed = vscode.window.activeTextEditor;
   const hits = ed ? scan(ed.document.getText(), ed.document.fileName) : [];
   const ws = vscode.workspace.workspaceFolders;
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'jct-transition-lint-2026-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath
+    + (tr.inTrial ? TRIAL_NOTE : ''));
 }
 
 function activate(ctx) {
