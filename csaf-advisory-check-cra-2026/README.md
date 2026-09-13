@@ -57,6 +57,8 @@ In the licensed version:
 * **Write the CI checker into this repository** — drops `.csaf-check/` with the same engine and a runner that exits non-zero, so a pipeline stops before a non-conformant advisory is published.
 * **Check on save: turn on or off** — re-check while you write.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 ## Settings
 
 | Setting | Default | What it does |
