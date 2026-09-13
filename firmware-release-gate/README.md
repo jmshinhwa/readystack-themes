@@ -33,6 +33,8 @@ An outside firmware-only security review starts around $6,000 and a full IoT dev
 
 [**Get the full version - $29**](https://buy.polar.sh/polar_cl_cmmWDH5sYqYlHlEAy4aCkF8gPdT40c3FhYupJ1VFP22) - $29 once, one licence key per person or team seat, 7-day full refund.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 
 ## Install
 
