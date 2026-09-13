@@ -91,10 +91,30 @@ async function listRules() {
 }
 
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
+//   ★역방향 체험 — 첫 스윙부터 7일은 ★키 없이 ★전부 준다 (⛔줄이지 않는다). 그 뒤에 키를 묻는다.
+const TRIAL_MS = 7 * 24 * 3600 * 1000;
+const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
+const NEED_KEY = S.need_key;   // ⛔원문 — 체험 요약을 앞에 붙일 때 ★여기서 다시 짓는다 (누적 금지)
+
+// 통과하면 { inTrial } 을, 막히면 false 를 낸다.
+async function paidGate(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found '
+      + last.findings + ' findings. ') : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return false;
+  }
+  return { inTrial: inTrial };
+}
 
 async function scanWorkspace(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const gate = await paidGate(ctx);
+  if (!gate) return;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('auditor-ibs-cbs-nfe');
   const _max = Number(_c.get('max_files')) || 2000;
@@ -107,14 +127,20 @@ async function scanWorkspace(ctx) {
       rows.push({ file: f.fsPath, hits: scan(doc.getText(), f.fsPath) });
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
-  report(rows);
+  const n = report(rows);
+  // ★손님이 본 숫자를 기억한다 — 체험이 끝나 키를 물 때 ★이 숫자로 묻는다.
+  await ctx.globalState.update('lastSweep', {
+    files: rows.length, findings: n, at: new Date().toISOString().slice(0, 10)
+  });
+  vscode.window.showInformationMessage((n ? S.done : S.nothing_found) + (gate.inTrial ? TRIAL_NOTE : ''));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
 //   🔴s125: ⛔전에는 CSV 하나만 썼는데 ★프롬프트는 "CSV / JSON / HTML" 이라고 약속했다
 //     ⇒ ★검수가 옳게 잡았다("⑤거짓 주장"). ★법(S24): 한계를 만나면 ⛔좁히지 말고 ★손을 넓힌다.
 async function exportReport(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const gate = await paidGate(ctx);
+  if (!gate) return;
   const ed = vscode.window.activeTextEditor;
   const rows = ed ? [{ file: ed.document.fileName, hits: scan(ed.document.getText(), ed.document.fileName) }] : [];
   const ws = vscode.workspace.workspaceFolders;
@@ -141,18 +167,19 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'auditor-ibs-cbs-nfe-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath + (gate.inTrial ? TRIAL_NOTE : ''));
 }
 
 async function ciJson(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const gate = await paidGate(ctx);
+  if (!gate) return;
   const ed = vscode.window.activeTextEditor;
   const hits = ed ? scan(ed.document.getText(), ed.document.fileName) : [];
   const ws = vscode.workspace.workspaceFolders;
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'auditor-ibs-cbs-nfe-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath + (gate.inTrial ? TRIAL_NOTE : ''));
 }
 
 function activate(ctx) {
