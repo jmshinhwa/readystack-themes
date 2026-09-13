@@ -2,7 +2,7 @@
   "name": "optout-signal-lint",
   "displayName": "Opt-Out Signal Lint for US State Privacy Laws",
   "description": "Finds the ad and analytics code that keeps firing after a visitor’s browser has already sent Global Privacy Control.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
