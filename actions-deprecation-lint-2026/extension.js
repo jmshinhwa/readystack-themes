@@ -84,8 +84,30 @@ async function showReport() { out().show(true); }
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
 async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
 
+// ★역방향 체험 — ★첫 스윕부터 7일간 ★전체 스윕과 보고서를 키 없이 ★줄이지 않고 준다. 그 뒤에 키를 묻는다.
+//   ⛔무료 경로(열린 파일·고른 줄)는 이 문도 지나지 않는다.
+const TRIAL_MS = 7 * 24 * 3600 * 1000;
+const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
+const NEED_KEY = S.need_key;   // ⛔원문을 잡아둔다 — 아래에서 앞에 붙이므로 쌓이면 안 된다
+async function sweepTrial(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    // ★자기 폴더에서 본 숫자를 먼저 보여주고 키를 묻는다 (역방향 체험의 심장)
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found '
+      + last.findings + ' findings. ') : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return null;
+  }
+  return { inTrial: inTrial, st: st };
+}
+
 async function scanWorkspace(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const t = await sweepTrial(ctx);
+  if (!t) return;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('actions-deprecation-lint-2026');
   const _max = Number(_c.get('max_files')) || 2000;
@@ -98,14 +120,18 @@ async function scanWorkspace(ctx) {
       rows.push({ file: f.fsPath, hits: scan(doc.getText(), f.fsPath) });
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
-  report(rows);
+  const found = report(rows);
+  await t.st.update('lastSweep', { files: rows.length, findings: found,
+                                   at: new Date().toISOString().slice(0, 10) });
+  vscode.window.showInformationMessage((found ? S.done : S.nothing_found) + (t.inTrial ? TRIAL_NOTE : ''));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
 //   🔴s125: ⛔전에는 CSV 하나만 썼는데 ★프롬프트는 "CSV / JSON / HTML" 이라고 약속했다
 //     ⇒ ★검수가 옳게 잡았다("⑤거짓 주장"). ★법(S24): 한계를 만나면 ⛔좁히지 말고 ★손을 넓힌다.
 async function exportReport(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const t = await sweepTrial(ctx);
+  if (!t) return;
   const ed = vscode.window.activeTextEditor;
   const rows = ed ? [{ file: ed.document.fileName, hits: scan(ed.document.getText(), ed.document.fileName) }] : [];
   const ws = vscode.workspace.workspaceFolders;
@@ -132,18 +158,19 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'actions-deprecation-lint-2026-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath + (t.inTrial ? TRIAL_NOTE : ''));
 }
 
 async function ciJson(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const t = await sweepTrial(ctx);
+  if (!t) return;
   const ed = vscode.window.activeTextEditor;
   const hits = ed ? scan(ed.document.getText(), ed.document.fileName) : [];
   const ws = vscode.workspace.workspaceFolders;
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'actions-deprecation-lint-2026-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath + (t.inTrial ? TRIAL_NOTE : ''));
 }
 
 async function watchOnSave(ctx) {
