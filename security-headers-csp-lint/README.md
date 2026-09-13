@@ -13,6 +13,8 @@ Reads security headers and CSP line by line in your config file and names the li
 
 ## With a licence
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 - **Scan every config file in the workspace** — One command across a monorepo or an agency's whole client folder, instead of opening files one at a time.
 - **Export the report as CSV, JSON or HTML** — A file you can attach to a PCI evidence pack, a ticket, or a client report.
 - **CI output that fails the build on errors** — Machine-readable JSON, so a header that silently does nothing never reaches production twice.
