@@ -88,10 +88,31 @@ async function listRules() {
 }
 
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
+//   ★s144 — reverse trial (paid taste): the FULL workspace sweep + the written report run free for
+//   7 days from the first sweep, then the key. [검색 2026-09-12] freemium 2–4% ↔ reverse trial 8–12%
+//   (dev-tool trials median 24%) · the customer decides after seeing THEIR OWN folder's findings.
+//   ⛔체험 중에는 줄이지 않는다 — 스윕도 보고서도 그대로 다 준다. ⛔무료 경로는 어떤 제한도 없다 (8% 법).
+const NEED_KEY = S.need_key;   // ★원문장 — 매번 그 앞에 손님의 숫자만 붙인다 (⛔겹쳐 쌓지 않게)
+const TRIAL_MS = 7 * 24 * 3600 * 1000;
+const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
+async function paidGate(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return null;   // ★유료 문턱: 범위(파일 하나 → 작업공간 전체) + 소유(보고서 파일)
+  }
+  return { inTrial: inTrial, until: until };
+}
 
 async function scanWorkspace(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const gate = await paidGate(ctx);
+  if (!gate) return;
+  const st = ctx.globalState;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('mcp-2026-migration-lint');
   const _max = Number(_c.get('max_files')) || 2000;
@@ -104,14 +125,20 @@ async function scanWorkspace(ctx) {
       rows.push({ file: f.fsPath, hits: scan(doc.getText(), f.fsPath) });
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
-  report(rows);
+  const total = report(rows);
+  // ★스윕이 끝나면 손님의 숫자를 기억한다 — 체험이 끝나 키를 물을 때 그 숫자로 묻는다.
+  await st.update('lastSweep', { files: files.length, findings: total,
+                                 at: new Date().toISOString().slice(0, 10) });
+  vscode.window.showInformationMessage('Swept ' + files.length + ' files - ' + total + ' findings. '
+    + S.done + (gate.inTrial ? TRIAL_NOTE : ''));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
 //   🔴s125: ⛔전에는 CSV 하나만 썼는데 ★프롬프트는 "CSV / JSON / HTML" 이라고 약속했다
 //     ⇒ ★검수가 옳게 잡았다("⑤거짓 주장"). ★법(S24): 한계를 만나면 ⛔좁히지 말고 ★손을 넓힌다.
 async function exportReport(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const gate = await paidGate(ctx);
+  if (!gate) return;
   const ed = vscode.window.activeTextEditor;
   const rows = ed ? [{ file: ed.document.fileName, hits: scan(ed.document.getText(), ed.document.fileName) }] : [];
   const ws = vscode.workspace.workspaceFolders;
@@ -138,18 +165,19 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'mcp-2026-migration-lint-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath + (gate.inTrial ? TRIAL_NOTE : ''));
 }
 
 async function ciJson(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const gate = await paidGate(ctx);
+  if (!gate) return;
   const ed = vscode.window.activeTextEditor;
   const hits = ed ? scan(ed.document.getText(), ed.document.fileName) : [];
   const ws = vscode.workspace.workspaceFolders;
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'mcp-2026-migration-lint-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath + (gate.inTrial ? TRIAL_NOTE : ''));
 }
 
 function activate(ctx) {
