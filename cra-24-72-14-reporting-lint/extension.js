@@ -19,6 +19,9 @@ const S = {
   key_bad: 'That key did not validate. Check it against your receipt, or contact support.'
 };
 
+// The trial prompt prepends the customer's own numbers to this; keep the original sentence intact.
+const NEED_KEY_BASE = S.need_key;
+
 let channel = null;
 function out() {
   if (!channel) channel = vscode.window.createOutputChannel(S.title);
@@ -66,8 +69,18 @@ async function checkFile() {
 }
 
 // PAID — the same checks, a wider scope: every Markdown file at once, plus one report file.
+// Reverse trial: the full sweep and the report run free for 7 days from the first sweep, then the key.
+// The customer decides after seeing their own repository's numbers, so the paywall quotes them back.
 async function checkWorkspace(ctx) {
-  if (!(await lic.ensure(vscode, ctx, S))) return null;
+  const st = ctx.globalState; const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY_BASE;
+    if (!(await lic.ensure(vscode, ctx, S))) return null;
+  }
   const folders = vscode.workspace.workspaceFolders;
   if (!folders || !folders.length) { vscode.window.showInformationMessage(S.nothing_open); return null; }
   const glob = String(cfg().get('include_glob') || '**/*.md');
@@ -98,8 +111,9 @@ async function checkWorkspace(ctx) {
   }
   const target = vscode.Uri.joinPath(folders[0].uri, 'CRA-24-72-14-READINESS.md');
   await vscode.workspace.fs.writeFile(target, Buffer.from(lines.join('\n'), 'utf8'));
-  show(blocks);
-  vscode.window.showInformationMessage('Swept ' + blocks.length + ' files. Report written to ' + vscode.workspace.asRelativePath(target) + '.');
+  const total = show(blocks);
+  await st.update('lastSweep', { files: blocks.length, findings: total, at: day });
+  vscode.window.showInformationMessage('Swept ' + blocks.length + ' files. Report written to ' + vscode.workspace.asRelativePath(target) + '.' + (inTrial ? ' The full sweep is free for 7 days from your first sweep.' : ''));
   return blocks;
 }
 
