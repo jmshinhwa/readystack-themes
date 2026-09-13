@@ -1,0 +1,52 @@
+{
+  "name": "nis2-incident-runbook-lint",
+  "displayName": "NIS2 Incident Runbook Lint (Article 23)",
+  "description": "Lints incident-response runbooks against NIS2 Article 23: the 24-hour early warning, the 72-hour notification, the one-month final report, the CSIRT addressee and the significant-incident criteria.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "nis2",
+    "incident response",
+    "runbook",
+    "csirt",
+    "article 23",
+    "compliance",
+    "markdown"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "nis2Runbook.checkFile",
+        "title": "NIS2 Incident Runbook Lint (Article 23): Check this file",
+        "category": "NIS2 Incident Runbook Lint (Article 23)"
+      },
+      {
+        "command": "nis2Runbook.checkWorkspace",
+        "title": "NIS2 Incident Runbook Lint (Article 23): Sweep workspace and write report (licence)",
+        "category": "NIS2 Incident Runbook Lint (Article 23)"
+      },
+      {
+        "command": "nis2Runbook.enterKey",
+        "title": "NIS2 Incident Runbook Lint (Article 23): Enter licence key",
+        "category": "NIS2 Incident Runbook Lint (Article 23)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/nis2-incident-runbook-lint",
+  "icon": "icon.png"
+}
