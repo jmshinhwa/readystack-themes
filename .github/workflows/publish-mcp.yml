@@ -19,6 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # s145 — GitHub replication lag served a stale checkout right after the 2026-09-13 outage ("mcp/<slug>: No such file or directory", 7 s fail).
+      #   The server.json commit is seconds old when this runs; pull until the folder exists (3 x 20 s), then continue.
+      - name: Wait for the server.json commit to be visible
+        run: |
+          for i in 1 2 3 4; do [ -d "${{ inputs.dir }}" ] && break; echo "not yet ($i)"; sleep 20; git pull --ff-only || true; done
+          test -d "${{ inputs.dir }}"
       - name: Install mcp-publisher
         run: |
           curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
