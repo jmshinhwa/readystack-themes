@@ -1,0 +1,17 @@
+[
+  {"id": "removed_workloads_beta", "title": "Workload on extensions/v1beta1, apps/v1beta1 or apps/v1beta2", "sev": "error", "basis": "Removed in Kubernetes 1.16 - Deployment, DaemonSet, ReplicaSet and StatefulSet are served only by apps/v1"},
+  {"id": "removed_ingress_beta", "title": "Ingress on extensions/v1beta1 or networking.k8s.io/v1beta1", "sev": "error", "basis": "Removed in Kubernetes 1.22 - networking.k8s.io/v1, and the backend block changed shape"},
+  {"id": "removed_crd_beta", "title": "CustomResourceDefinition on apiextensions.k8s.io/v1beta1", "sev": "error", "basis": "Removed in Kubernetes 1.22 - apiextensions.k8s.io/v1 requires a structural schema per version"},
+  {"id": "removed_cluster_beta", "title": "Webhook, RBAC, CSR, Lease or PriorityClass on a v1beta1 group", "sev": "error", "basis": "Removed in Kubernetes 1.22 - admissionregistration, rbac.authorization, certificates, coordination and scheduling are v1"},
+  {"id": "removed_storage_beta", "title": "storage.k8s.io/v1beta1 object", "sev": "error", "basis": "Removed in Kubernetes 1.22, and CSIStorageCapacity in 1.27 - storage.k8s.io/v1"},
+  {"id": "removed_cronjob_beta", "title": "CronJob on batch/v1beta1", "sev": "error", "basis": "Removed in Kubernetes 1.25 - batch/v1"},
+  {"id": "removed_pdb_beta", "title": "PodDisruptionBudget on policy/v1beta1", "sev": "error", "basis": "Removed in Kubernetes 1.25 - policy/v1, where an empty selector now selects no pods"},
+  {"id": "removed_psp", "title": "PodSecurityPolicy", "sev": "error", "basis": "Removed outright in Kubernetes 1.25 - replaced by Pod Security Admission namespace labels"},
+  {"id": "removed_hpa_beta", "title": "HorizontalPodAutoscaler on autoscaling/v2beta1 or v2beta2", "sev": "error", "basis": "Removed in Kubernetes 1.25 and 1.26 - autoscaling/v2"},
+  {"id": "removed_events_beta", "title": "Event, EndpointSlice or RuntimeClass on a v1beta1 group", "sev": "error", "basis": "Removed in Kubernetes 1.25 - events.k8s.io/v1, discovery.k8s.io/v1, node.k8s.io/v1"},
+  {"id": "removed_flowcontrol_beta", "title": "FlowSchema or PriorityLevelConfiguration on a beta group", "sev": "error", "basis": "Removed in Kubernetes 1.26, 1.29 and 1.32 - flowcontrol.apiserver.k8s.io/v1"},
+  {"id": "selector_required", "title": "apps/v1 workload with no spec.selector", "sev": "error", "basis": "apps/v1 makes spec.selector required and immutable; extensions/v1beta1 defaulted it from the pod labels"},
+  {"id": "ingress_class_annotation", "title": "kubernetes.io/ingress.class annotation", "sev": "warn", "basis": "Deprecated with the v1beta1 Ingress - networking.k8s.io/v1 uses spec.ingressClassName"},
+  {"id": "beta_node_labels", "title": "beta.kubernetes.io or failure-domain.beta.kubernetes.io node label", "sev": "warn", "basis": "Deprecated node labels - kubernetes.io/os, kubernetes.io/arch, topology.kubernetes.io/zone, node.kubernetes.io/instance-type"},
+  {"id": "alpha_pod_annotations", "title": "seccomp or critical-pod alpha annotation", "sev": "error", "basis": "The seccomp alpha annotations stopped being honoured in Kubernetes 1.25 and critical-pod went in 1.16 - securityContext.seccompProfile and priorityClassName"}
+]
