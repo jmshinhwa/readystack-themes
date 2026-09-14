@@ -1,0 +1,161 @@
+[
+  {
+    "id": "telnet_enabled",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "RED Art. 3(3)(d) / EN 18031-1 (network protection)",
+    "pattern": "(?:telnet\\w*\\s*[:=]\\s*(?:on|true|enabled|yes|1)\\b)|(?:\\b(?:port|listen|service)\\s*[:=]\\s*\"?(?:23|telnet)\"?\\s*(?:#.*)?$)",
+    "msg": "Telnet is on in the shipped default. An unencrypted remote shell in the default configuration is the textbook Art. 3(3)(d) finding; use SSH over TLS or drop the service from the image."
+  },
+  {
+    "id": "default_password",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "UK PSTI Regs 2023 Sch. 1 para. 1 / RED Art. 3(3)(d)",
+    "pattern": "\\b(?:pass(?:word|wd)?|pwd|passphrase|admin_pass\\w*|default_pass\\w*)\\s*[:=]\\s*\"?(?:admin|administrator|password|passwd|pass|1234|12345|123456|root|user|guest|changeme|default|secret|test)\"?\\s*(?:#.*)?$",
+    "unless": "\\$\\{|env:|<|redacted",
+    "msg": "Universal default password in a shipped default. PSTI Schedule 1 paragraph 1 bans passwords that are neither unique per device nor forced to change on first use; generate per unit or require a change at first boot."
+  },
+  {
+    "id": "hardcoded_credential",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "RED Art. 3(3)(d) / EN 18031-1 (secure authentication)",
+    "pattern": "(?:#\\s*define\\s+\\w*(?:PASS|PSK|KEY|SECRET|TOKEN)\\w*\\s+\"[^\"]{4,}\")|(?:\\b(?:wifi_password|wifi_psk|psk|api_key|device_secret|sas_token|primary_key|shared_access_key)\\s*[:=]\\s*\"?[A-Za-z0-9+/=_.-]{8,}\"?)",
+    "unless": "\\$\\{|env:|REDACTED|XXXX|<|placeholder|keyvault|\\bvault\\b",
+    "msg": "Credential baked into source or config: everyone holding one firmware image holds it, so a single extraction breaks the whole fleet. Read it from a secure element or a provisioning-time variable."
+  },
+  {
+    "id": "anonymous_mqtt",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "RED Art. 3(3)(d) / EN 18031-1 (access control)",
+    "pattern": "allow_anonymous\\s*[:=]\\s*(?:true|yes|on|1)\\b|\\banonymous\\s*[:=]\\s*(?:true|yes|on|1)\\b|mqtt://|\\b(?:port|listener)\\s*[:=]\\s*\"?1883\"?\\s*(?:#.*)?$",
+    "msg": "MQTT without authentication or without TLS (port 1883, mqtt://, allow_anonymous). Anyone on the path can publish commands to the device; move to 8883 with TLS and per-device credentials."
+  },
+  {
+    "id": "tls_verification_disabled",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "RED Art. 3(3)(e) / EN 18031-2 (confidentiality of personal data)",
+    "pattern": "(?:tls_verify|ssl_verify|verify_ssl|verify_peer|verify_certs?|verify_hostname|check_hostname|rejectUnauthorized|insecure_skip_verify)\\s*[:=]\\s*(?:false|no|off|0|none)\\b|\\binsecure\\s*[:=]\\s*(?:true|yes|on|1)\\b|CONFIG_MBEDTLS_SSL_VERIFY_NONE\\s*=\\s*y",
+    "msg": "Certificate verification is off, so TLS here stops nothing: any proxy on the route can read and rewrite the payload. Bundle or pin a CA and leave verification on."
+  },
+  {
+    "id": "update_signature_off",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "RED Art. 3(3)(d) / EN 18031-1 (secure update mechanism)",
+    "pattern": "(?:secure_?boot|signed_?(?:ota|update|image|firmware)|verify_signature|ota_signature|image_verification)\\s*[:=]\\s*(?:false|no|off|n|0|disabled)\\b|CONFIG_SECURE_BOOT\\s*=\\s*n",
+    "msg": "Update signature checking or secure boot is disabled, which makes the update channel itself the shortest attack path into the fleet. Sign images and verify before flashing."
+  },
+  {
+    "id": "update_over_http",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "RED Art. 3(3)(d) / EN 18031-1 (secure update mechanism)",
+    "pattern": "(?:ota|firmware|update|manifest)[^\\n]{0,24}[:=]\\s*\"?http://[^\\s\"']+",
+    "msg": "Firmware is fetched over plain HTTP. DNS or route interference lets someone hand the device their image; use HTTPS and verify the signature after download."
+  },
+  {
+    "id": "open_wireless",
+    "kind": "forbid",
+    "sev": "warn",
+    "article": "RED Art. 3(3)(d) / EN 18031-1 (network protection)",
+    "pattern": "(?:auth_?mode|encryption|security|wifi_auth)\\s*[:=]\\s*\"?(?:open|none|wep|tkip|off)\"?\\s*(?:#.*)?$|\\bwpa\\w*\\s*[:=]\\s*(?:false|no|off|0)\\b",
+    "msg": "The radio link ships open or on a broken cipher (open, none, WEP, TKIP). WPA2-PSK is the floor and WPA3 is the ask where the chipset allows it."
+  },
+  {
+    "id": "debug_interface_on",
+    "kind": "forbid",
+    "sev": "warn",
+    "article": "RED Art. 3(3)(d) / EN 18031-1 (network protection)",
+    "pattern": "(?:jtag|swd|debug_?(?:port|shell|console|uart|mode)|root_shell|serial_console)\\s*[:=]\\s*(?:on|true|enabled|yes|1|y)\\b|CONFIG_(?:DEBUG|SHELL|THREAD_MONITOR)\\s*=\\s*y",
+    "msg": "A debug interface is enabled in the shipped default. JTAG, SWD or an open console hands over memory and keys on the bench; gate it off for production builds."
+  },
+  {
+    "id": "telemetry_without_consent",
+    "kind": "require_if",
+    "sev": "error",
+    "article": "RED Art. 3(3)(e) / EN 18031-2 (privacy)",
+    "pattern": "(?:telemetry|analytics|tracking|diagnostics|usage_?stats)\\s*[:=]\\s*(?:on|true|enabled|yes|1)\\b",
+    "require": "(?:consent|opt_?in|user_?permission)\\s*[:=]\\s*(?:required|true|on|yes|explicit)",
+    "msg": "Telemetry is on by default and nothing in this file records a consent or opt-in gate. EN 18031-2 expects personal-data flows to stay under user control: default it off and ask."
+  },
+  {
+    "id": "plaintext_upload",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "RED Art. 3(3)(e) / EN 18031-2 (confidentiality of personal data)",
+    "pattern": "\\b(?:endpoint|url|uri|host|ingest|upload|report_to|collector|broker)\\w*\\s*[:=]\\s*\"?http://(?!(?:localhost|127\\.0\\.0\\.1|\\[::1\\]|0\\.0\\.0\\.0))",
+    "msg": "Device data leaves over plain HTTP to a non-local host. Whatever is personal in that payload is readable on the wire; switch the endpoint to HTTPS."
+  },
+  {
+    "id": "pii_in_logs",
+    "kind": "forbid",
+    "sev": "warn",
+    "article": "RED Art. 3(3)(e) / EN 18031-2 (privacy)",
+    "pattern": "log\\w*[^\\n]{0,40}\\b(?:imei|imsi|iccid|mac_?addr\\w*|gps|latitude|longitude|geolocation|email|phone|msisdn)\\b|\\b(?:imei|imsi|gps|geolocation)\\b[^\\n]{0,24}\\blog",
+    "msg": "An identifier or location field is written to logs. Logs get shipped, pooled and kept, so this is a personal-data flow riding along with diagnostics; hash it or drop the field."
+  },
+  {
+    "id": "control_api_unauthenticated",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "RED Art. 3(3)(f) / EN 18031-3 (protection from fraud)",
+    "pattern": "(?:auth|authn|authz|authentication|authorization|require_?auth|api_auth|access_?control)\\s*[:=]\\s*\"?(?:none|false|no|off|disabled|0|open)\"?\\s*(?:#.*)?$",
+    "msg": "A control interface is exposed with authentication switched off. Art. 3(3)(f) is the money limb: if a command can spend, credit or unlock, the caller has to be authenticated."
+  },
+  {
+    "id": "missing_security_contact",
+    "kind": "require_if",
+    "sev": "error",
+    "article": "UK PSTI Regs 2023 Sch. 1 para. 2",
+    "pattern": "^\\s*\"?(?:device|product|model|board|hardware)\"?\\s*[:=]\\s*\\S",
+    "require": "(?:security_contact|vulnerability_disclosure|security_txt|contact_security|vdp_url)\\s*[:=]\\s*\\S",
+    "msg": "This manifest declares a product but no vulnerability-reporting contact. PSTI Schedule 1 paragraph 2 requires a published point of contact plus acknowledgement and status updates; add security_contact and the policy URL."
+  },
+  {
+    "id": "missing_support_period",
+    "kind": "require_if",
+    "sev": "error",
+    "article": "UK PSTI Regs 2023 Sch. 1 para. 3",
+    "pattern": "^\\s*\"?(?:device|product|model|board|hardware)\"?\\s*[:=]\\s*\\S",
+    "require": "(?:support_until|security_update_until|support_period_end|defined_support_period)\\s*[:=]\\s*\\S",
+    "msg": "No defined support period in the manifest. PSTI Schedule 1 paragraph 3 requires the minimum length of time security updates will be supplied, published with the product as a date or a period."
+  },
+  {
+    "id": "support_period_lapsed",
+    "kind": "date_field",
+    "sev": "warn",
+    "article": "UK PSTI Regs 2023 Sch. 1 para. 3",
+    "pattern": "(?:support_until|security_update_until|support_period_end)\\s*[:=]\\s*\"?(\\d{4}-\\d{2}-\\d{2})",
+    "warn_days": 180,
+    "msg_past": "The published support period ended {date}, {days} days before today ({today}). The security-update statement shipped with these units is no longer true.",
+    "msg_soon": "The published support period ends {date}, {days} days from today ({today}). Extend it or prepare the end-of-support notice before the date passes."
+  },
+  {
+    "id": "wrong_harmonised_standard",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "Harmonised standards cited for RED Art. 3(3)(d)(e)(f)",
+    "pattern": "\\bEN\\s?303\\s?645\\b",
+    "msg": "EN 303 645 is the ETSI consumer-IoT baseline, not a harmonised standard under the RED delegated regulation. The cited standards for Art. 3(3)(d)(e)(f) are EN 18031-1, EN 18031-2 and EN 18031-3; 303 645 alone carries no presumption of conformity."
+  },
+  {
+    "id": "en18031_part_missing",
+    "kind": "forbid",
+    "sev": "warn",
+    "article": "RED Art. 3(3)(d)(e)(f)",
+    "pattern": "\\bEN\\s?18031\\b(?!\\s*-\\s*[123])",
+    "msg": "EN 18031 cited with no part. The parts are not interchangeable: -1 is network protection (d), -2 is personal data and privacy (e), -3 is protection from fraud (f). Name the part you tested against."
+  },
+  {
+    "id": "stale_red_date",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "Delegated Regulation (EU) 2022/30, as amended by (EU) 2023/2444",
+    "pattern": "(?:2022/30[^\\n]{0,60}2024)|(?:1\\s*August\\s*2024)|(?:2024-08-01)",
+    "msg": "The RED cybersecurity requirements were deferred by amendment: they apply from 1 August 2025, not August 2024. A declaration or plan still carrying the old date reads as never revisited."
+  }
+]
