@@ -1,0 +1,56 @@
+{
+  "name": "cran-policy-submission-lint",
+  "displayName": "CRAN Policy Submission Lint",
+  "description": "Check an R package against the CRAN Repository Policy before you submit: DESCRIPTION fields, licence strings, library() in R/, setwd(), unrestored options()/par(), T/F, ::: and more.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "cran",
+    "r",
+    "rstats",
+    "package",
+    "submission",
+    "policy",
+    "lint",
+    "devtools",
+    "roxygen",
+    "description"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "cranPolicyLint.checkFile",
+        "title": "CRAN Policy Lint: Check this file",
+        "category": "CRAN Policy Lint"
+      },
+      {
+        "command": "cranPolicyLint.checkWorkspace",
+        "title": "CRAN Policy Lint: Sweep workspace and write report (licence)",
+        "category": "CRAN Policy Lint"
+      },
+      {
+        "command": "cranPolicyLint.enterKey",
+        "title": "CRAN Policy Lint: Enter licence key",
+        "category": "CRAN Policy Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "cran-policy-submission-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/cran-policy-submission-lint",
+  "icon": "icon.png"
+}
