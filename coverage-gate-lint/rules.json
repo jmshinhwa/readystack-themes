@@ -1,0 +1,116 @@
+[
+  {
+    "check": "codecov_informational",
+    "kind": "line",
+    "sev": "error",
+    "re": "informational:\\s*true",
+    "msg": "informational: true — this Codecov status reports a number and can never fail the build.",
+    "fix": "informational: false"
+  },
+  {
+    "check": "codecov_if_ci_failed_success",
+    "kind": "line",
+    "sev": "error",
+    "re": "if_ci_failed:\\s*success",
+    "msg": "if_ci_failed: success — the coverage check passes even when the test job itself failed.",
+    "fix": "if_ci_failed: error"
+  },
+  {
+    "check": "codecov_patch_off",
+    "kind": "line",
+    "sev": "error",
+    "re": "^\\s*patch:\\s*(off|false|null)\\s*$",
+    "msg": "patch: off — coverage of newly changed lines is never gated, so new untested code merges freely.",
+    "fix": "patch:\\n    default:\\n      target: 80%"
+  },
+  {
+    "check": "codecov_if_not_found_success",
+    "kind": "line",
+    "sev": "warn",
+    "re": "if_not_found:\\s*success",
+    "msg": "if_not_found: success — a missing coverage report is reported as a pass.",
+    "fix": "if_not_found: failure"
+  },
+  {
+    "check": "codecov_threshold_wide",
+    "kind": "line",
+    "sev": "warn",
+    "re": "threshold:\\s*(([5-9])|([1-9][0-9]+))(\\.[0-9]+)?%",
+    "msg": "threshold is 5% or wider — coverage can fall this far every merge and the gate still passes.",
+    "fix": "threshold: 1%"
+  },
+  {
+    "check": "codecov_fail_ci_false",
+    "kind": "line",
+    "sev": "warn",
+    "re": "fail_ci_if_error:\\s*false",
+    "msg": "fail_ci_if_error: false — an upload that never arrives is silently treated as a green build.",
+    "fix": "fail_ci_if_error: true"
+  },
+  {
+    "check": "coveragerc_fail_under_zero",
+    "kind": "line",
+    "sev": "error",
+    "re": "(\"?fail_under\"?\\s*[=:]\\s*0(\\.0+)?\\b)",
+    "msg": "fail_under = 0 — coverage.py exits 0 at any coverage, including none at all.",
+    "fix": "fail_under = 80"
+  },
+  {
+    "check": "coverage_omit_broad",
+    "kind": "line",
+    "sev": "warn",
+    "re": "^\\s*(-\\s*|(omit|ignore)\\s*[=:]\\s*)[\\\"']?(\\*{1,2}(/\\*)?)[\\\"']?\\s*$",
+    "msg": "a whole-tree omit/ignore pattern removes the files from the denominator, so the percentage measures nothing.",
+    "fix": "list the specific paths to omit"
+  },
+  {
+    "check": "jest_threshold_empty",
+    "kind": "line",
+    "sev": "error",
+    "re": "coverageThreshold\\s*:\\s*\\{\\s*\\}",
+    "msg": "coverageThreshold is an empty object — Jest/Vitest accepts it and enforces nothing.",
+    "fix": "coverageThreshold: { global: { lines: 80 } }"
+  },
+  {
+    "check": "jest_threshold_zero",
+    "kind": "line",
+    "sev": "error",
+    "re": "^\\s*\"?(statements|branches|lines|functions)\"?\\s*:\\s*0(\\.0+)?\\s*,?\\s*$",
+    "msg": "a coverage threshold of 0 looks configured but passes at zero percent.",
+    "fix": "set the threshold to the number you actually hold"
+  },
+  {
+    "check": "ci_continue_on_error",
+    "kind": "line",
+    "sev": "error",
+    "re": "continue-on-error:\\s*true",
+    "msg": "continue-on-error: true — this step is allowed to fail, so the coverage gate under it cannot stop a merge.",
+    "fix": "remove continue-on-error from the coverage step"
+  },
+  {
+    "check": "ci_swallow_exit",
+    "kind": "line",
+    "sev": "error",
+    "re": "(coverage|pytest|jest|vitest|nyc|go test|npm (run )?test)[^\\n]*(\\|\\|\\s*(true|exit\\s*0)|;\\s*exit\\s*0)",
+    "msg": "the exit code of the coverage command is discarded with || true, so a failing gate reports success.",
+    "fix": "let the command's exit code reach the runner"
+  },
+  {
+    "check": "coveragerc_no_fail_under",
+    "kind": "absent",
+    "sev": "error",
+    "when": "\\[(tool\\.coverage\\.report|report)\\]",
+    "missing": "fail_under",
+    "msg": "a coverage report section with no fail_under: the run prints a percentage and always exits 0.",
+    "fix": "add fail_under under the report section"
+  },
+  {
+    "check": "codecov_no_status",
+    "kind": "absent",
+    "sev": "error",
+    "when": "^\\s*coverage:\\s*$",
+    "missing": "^\\s*status:",
+    "msg": "a coverage: block with no status: block — Codecov posts a comment but never sets a check a branch rule can require.",
+    "fix": "add a status: block with project and patch targets"
+  }
+]
