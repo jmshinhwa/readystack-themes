@@ -1,0 +1,273 @@
+[
+ {
+  "check": "arl_renewal_term_missing",
+  "sev": "error",
+  "mode": "doc",
+  "trigger": [
+   "auto[- ]?renew",
+   "renews automatically",
+   "billed (monthly|annually|yearly|every)",
+   "recurring (charge|payment|billing)",
+   "\\$\\s?\\d[\\d.,]*\\s*(/|per\\s+)?\\s*(mo\\b|month|yr\\b|year)",
+   "free trial",
+   "start (my |your )?(free )?trial",
+   "subscribe",
+   "subscription"
+  ],
+  "required": [
+   "until (you )?cancel",
+   "continues? until cancell?ed",
+   "renews? (each|every) (month|year)",
+   "until cancell?ed"
+  ],
+  "msg": "Auto-renewal is offered but the page never says the plan keeps renewing until the customer cancels. That term is part of the automatic renewal offer under Cal. Bus. & Prof. Code 17601(b) and must be shown before consent."
+ },
+ {
+  "check": "arl_recurring_price_missing",
+  "sev": "error",
+  "mode": "doc",
+  "trigger": [
+   "auto[- ]?renew",
+   "renews automatically",
+   "billed (monthly|annually|yearly|every)",
+   "recurring (charge|payment|billing)",
+   "\\$\\s?\\d[\\d.,]*\\s*(/|per\\s+)?\\s*(mo\\b|month|yr\\b|year)",
+   "free trial",
+   "start (my |your )?(free )?trial",
+   "subscribe",
+   "subscription"
+  ],
+  "required": [
+   "\\$\\s?\\d[\\d.,]*\\s*(/|per\\s+)?\\s*(mo\\b|month|yr\\b|year)",
+   "\\$\\s?\\d[\\d.,]*\\s+(a|per|every)\\s+(month|year)",
+   "\\d+\\s*(USD|dollars)\\s*(a|per)\\s*(month|year)"
+  ],
+  "msg": "No recurring amount with its frequency anywhere on the page. The charge and how often it repeats must be clear and conspicuous in the offer, not only on the receipt."
+ },
+ {
+  "check": "arl_prechecked_consent",
+  "sev": "error",
+  "mode": "line",
+  "any": [
+   "<input[^>]*checkbox[^>]*\\bchecked(?![\\w=-])",
+   "<input[^>]*\\bchecked(?![\\w=-])[^>]*checkbox",
+   "checkbox[^>]*\\bdefaultChecked(?!\\s*=\\s*\\{?false)",
+   "\\bdefaultChecked[^>]*checkbox",
+   "\\bchecked\\s*[:=]\\s*\\{?true"
+  ],
+  "msg": "This consent box arrives pre-ticked. A pre-checked box is not the affirmative consent AB 2863 requires; the customer has to act to accept the renewal terms."
+ },
+ {
+  "check": "arl_consent_bundled",
+  "sev": "error",
+  "mode": "line",
+  "all": [
+   "type=[\\\"']?checkbox|<label|role=[\\\"']checkbox|defaultChecked",
+   "terms of (service|use)|terms and conditions|privacy policy",
+   "auto[- ]?renew|recurring|renews|subscription"
+  ],
+  "msg": "One control accepts the terms of service and the auto-renewal offer together. AB 2863 requires consent to the automatic renewal terms to be collected separately from every other term."
+ },
+ {
+  "check": "arl_no_consent_control",
+  "sev": "warn",
+  "mode": "doc",
+  "trigger": [
+   "auto[- ]?renew",
+   "renews automatically",
+   "billed (monthly|annually|yearly|every)",
+   "recurring (charge|payment|billing)",
+   "\\$\\s?\\d[\\d.,]*\\s*(/|per\\s+)?\\s*(mo\\b|month|yr\\b|year)",
+   "free trial",
+   "start (my |your )?(free )?trial",
+   "subscribe",
+   "subscription"
+  ],
+  "required": [
+   "type=[\\\"']?checkbox",
+   "role=[\\\"']checkbox",
+   "<input[^>]*checkbox"
+  ],
+  "msg": "No separate consent control appears on the page. The renewal terms have to be accepted, not merely displayed next to a Pay button."
+ },
+ {
+  "check": "arl_cancel_path_missing",
+  "sev": "error",
+  "mode": "doc",
+  "trigger": [
+   "auto[- ]?renew",
+   "renews automatically",
+   "billed (monthly|annually|yearly|every)",
+   "recurring (charge|payment|billing)",
+   "\\$\\s?\\d[\\d.,]*\\s*(/|per\\s+)?\\s*(mo\\b|month|yr\\b|year)",
+   "free trial",
+   "start (my |your )?(free )?trial",
+   "subscribe",
+   "subscription"
+  ],
+  "required": [
+   "cancel (any ?time|online|whenever|at will)",
+   "cancel (your |the )?(subscription|plan|membership)",
+   "href=[\\\"'][^\\\"']*cancel",
+   "/cancel",
+   "cancellation policy"
+  ],
+  "msg": "Nothing tells the customer how to cancel. An offer accepted online must be cancellable online, and the cancellation policy is one of the terms that has to be disclosed up front."
+ },
+ {
+  "check": "arl_cancel_requires_human",
+  "sev": "error",
+  "mode": "line",
+  "any": [
+   "(call|phone|speak (to|with)|contact (us|support|customer service)|live (agent|chat)|email us|chat with)[^.<\\n]{0,60}cancel",
+   "cancel[^.<\\n]{0,60}(call us|call our|by phone|contact (us|support)|speak (to|with)|live agent|send us an email)"
+  ],
+  "msg": "Cancellation is routed through a person. Someone who subscribed online must be able to cancel online, at will, without being made to talk to anyone first."
+ },
+ {
+  "check": "arl_trial_price_after_missing",
+  "sev": "error",
+  "mode": "doc",
+  "trigger": [
+   "free trial",
+   "trial period",
+   "\\d+[- ]day trial",
+   "try (it )?free"
+  ],
+  "required": [
+   "(then|after (the|your) trial|when (the|your) trial ends|at the end of (the|your) trial|once the trial ends)[^.<\\n]{0,80}\\$\\s?\\d",
+   "\\$\\s?\\d[^.<\\n]{0,80}(after (the|your) trial|when (the|your) trial ends|once the trial ends)"
+  ],
+  "msg": "A free trial converts here with no price named for what comes after it. The post-trial charge and the day it starts belong to the offer terms the customer consents to."
+ },
+ {
+  "check": "arl_trial_reminder_missing",
+  "sev": "warn",
+  "mode": "doc",
+  "trigger": [
+   "free trial",
+   "trial period",
+   "\\d+[- ]day trial",
+   "try (it )?free"
+  ],
+  "required": [
+   "remind(er|s)?\\b",
+   "we(’|')?ll (email|notify|let you know)",
+   "we will (email|notify)",
+   "notice before",
+   "3[-–]21 days"
+  ],
+  "msg": "For a free or discounted trial longer than 31 days, AB 2863 wants a notice 3 to 21 days before it converts to a paid term. Nothing on this page promises one."
+ },
+ {
+  "check": "arl_intro_price_no_regular",
+  "sev": "warn",
+  "mode": "doc",
+  "trigger": [
+   "first (month|year|\\d+ months?)",
+   "intro(ductory)? (price|offer|rate)",
+   "for the first \\d+",
+   "\\d+% off"
+  ],
+  "required": [
+   "(then|after that|thereafter|regular price|renews at|standard price|full price)[^.<\\n]{0,60}\\$\\s?\\d",
+   "\\$\\s?\\d[^.<\\n]{0,40}(thereafter|after the (first|intro)|regular price)"
+  ],
+  "msg": "An introductory price is advertised without the regular price that follows it or the date it starts. A promotional rate does not change what has to be disclosed about the renewal."
+ },
+ {
+  "check": "arl_annual_reminder_missing",
+  "sev": "warn",
+  "mode": "doc",
+  "trigger": [
+   "billed (annually|yearly)",
+   "per year",
+   "/\\s?(yr|year)\\b",
+   "annual (plan|subscription|billing)",
+   "12[- ]month"
+  ],
+  "required": [
+   "(annual|yearly|once a year) reminder",
+   "remind you (each|every) year",
+   "15[-–]45 days",
+   "reminder[^.<\\n]{0,40}before (each|every|your)",
+   "before (each|your) (annual )?renewal"
+  ],
+  "msg": "A term of a year or longer with no annual reminder anywhere. AB 2863 requires notice at least once a year, 15 to 45 days before the renewal date."
+ },
+ {
+  "check": "arl_consent_record_missing",
+  "sev": "info",
+  "mode": "doc",
+  "trigger": [
+   "type=[\\\"']?checkbox",
+   "role=[\\\"']checkbox"
+  ],
+  "required": [
+   "consent(ed)?[_-]?(at|date|timestamp)",
+   "data-arl",
+   "agreed_?At",
+   "accepted_?At",
+   "consentTimestamp",
+   "name=[\\\"']consent"
+  ],
+  "msg": "Nothing on the page captures what was shown and when it was accepted. The business has to keep proof of the customer's consent for three years, and a screenshot of the design is not it."
+ },
+ {
+  "check": "arl_vacated_ftc_rule",
+  "sev": "error",
+  "mode": "line",
+  "any": [
+   "click[- ]to[- ]cancel rule",
+   "FTC[^.<\\n]{0,40}negative[- ]option rule",
+   "negative[- ]option rule[^.<\\n]{0,40}(takes effect|effective|requires|compliant)"
+  ],
+  "msg": "This page leans on the FTC click-to-cancel (Negative Option) Rule. The Eighth Circuit vacated that rule on 2025-07-08, so it binds nobody; California's ARL is what still governs this checkout."
+ },
+ {
+  "check": "arl_disclosure_not_adjacent",
+  "sev": "warn",
+  "mode": "near",
+  "window": 12,
+  "trigger": [
+   "<button[^>]*type=[\\\"']?submit",
+   "type=[\\\"']?submit",
+   "<button[^>]*>\\s*(subscribe|start|continue|pay|place order|sign up|upgrade)"
+  ],
+  "near": [
+   "until (you )?cancel",
+   "renews? (each|every|automatically)",
+   "\\$\\s?\\d[\\d.,]*\\s*(/|per\\s+)?\\s*(mo\\b|month|yr\\b|year)",
+   "cancel any ?time"
+  ],
+  "msg": "The submit control sits more than 12 lines away from any statement of the renewal terms. The law asks for those terms in visual proximity to the request for consent, not further down the page."
+ },
+ {
+  "check": "arl_retention_maze",
+  "sev": "warn",
+  "mode": "line",
+  "all": [
+   "cancel",
+   "are you sure|before you go|wait[!,]|keep (my|your) (plan|subscription|benefits)|don'?t (go|leave)|stay with us"
+  ],
+  "msg": "A save offer stands between the customer and cancelling. A retention step is allowed only if a plain cancel control stays visible on the same screen and works immediately."
+ },
+ {
+  "check": "arl_in_force",
+  "sev": "info",
+  "mode": "deadline",
+  "date": "2026-01-01",
+  "trigger": [
+   "auto[- ]?renew",
+   "renews automatically",
+   "billed (monthly|annually|yearly|every)",
+   "recurring (charge|payment|billing)",
+   "\\$\\s?\\d[\\d.,]*\\s*(/|per\\s+)?\\s*(mo\\b|month|yr\\b|year)",
+   "free trial",
+   "start (my |your )?(free )?trial",
+   "subscribe",
+   "subscription"
+  ],
+  "msg": "Auto-renewal offer detected. California's Automatic Renewal Law as amended by AB 2863 {when}. Goods or services billed in violation are an unconditional gift to the customer under Cal. Bus. & Prof. Code 17603."
+ }
+]
