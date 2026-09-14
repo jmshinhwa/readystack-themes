@@ -1,0 +1,54 @@
+{
+  "name": "en18031-psti-lint",
+  "displayName": "EN 18031 / PSTI Device Config Lint",
+  "description": "Lint IoT and radio device config, firmware defaults and device manifests against RED Art. 3(3)(d)(e)(f) (EN 18031-1/-2/-3) and the UK PSTI security requirements.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "en 18031",
+    "psti",
+    "red article 3(3)",
+    "iot security",
+    "radio equipment directive",
+    "firmware",
+    "linter",
+    "compliance"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "en18031Psti.checkFile",
+        "title": "EN 18031 / PSTI Device Config Lint: Check this file",
+        "category": "EN 18031 / PSTI Device Config Lint"
+      },
+      {
+        "command": "en18031Psti.checkWorkspace",
+        "title": "EN 18031 / PSTI Device Config Lint: Sweep workspace and write report (licence)",
+        "category": "EN 18031 / PSTI Device Config Lint"
+      },
+      {
+        "command": "en18031Psti.enterKey",
+        "title": "EN 18031 / PSTI Device Config Lint: Enter licence key",
+        "category": "EN 18031 / PSTI Device Config Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "en18031-psti-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/en18031-psti-lint",
+  "icon": "icon.png"
+}
