@@ -2,7 +2,7 @@
   "name": "dora-register-lint",
   "displayName": "DORA Register of Information Lint",
   "description": "Lints the DORA Register of Information CSV before it reaches the supervisor: LEI check digits, ISO 8601 dates, country and currency codes, duplicate or unresolved references, expired rows.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -46,7 +46,8 @@
   "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jmshinhwa-ai/readystack"
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "dora-register-lint"
   },
   "homepage": "https://getreadystack.com/tools/dora-register-lint",
   "icon": "icon.png"
