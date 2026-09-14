@@ -1,0 +1,156 @@
+[
+ {
+  "id": "console_request_body",
+  "sev": "error",
+  "re": "console\\.(log|info|debug|warn|error|dir|table|trace)\\s*\\([^;]*\\breq(uest)?\\.(body|params|query)\\b",
+  "flags": "",
+  "msg": "console writes the request body to stdout. A signup or checkout body is names, emails and card data — GDPR Art. 5(1)(c) data minimisation. Log req.body.orderId, not req.body."
+ },
+ {
+  "id": "console_request_headers",
+  "sev": "error",
+  "re": "console\\.\\w+\\s*\\([^;]*\\breq(uest)?\\.(headers|rawHeaders)\\b",
+  "flags": "",
+  "msg": "Request headers carry Cookie, Authorization and X-Forwarded-For. Logging them copies a live session into the log store. Pick the two headers you need by name."
+ },
+ {
+  "id": "console_whole_user_record",
+  "sev": "error",
+  "re": "console\\.\\w+\\s*\\(\\s*(['\"`][^'\"`]*['\"`]\\s*,\\s*)?(user|customer|patient|member|profile|account|employee)\\s*[,)]",
+  "flags": "",
+  "msg": "A whole person record goes to the log. Every field you never chose travels with it. Log the id and the one field the line is about."
+ },
+ {
+  "id": "console_pii_field",
+  "sev": "error",
+  "re": "console\\.\\w+\\s*\\([^;]*\\b(email|phone|mobile|ssn|nationalId|dateOfBirth|dob|postcode|passport|iban|cardNumber|creditCard|taxId)\\b",
+  "flags": "",
+  "msg": "A directly identifying field is written to the log. Logs are replicated to the log vendor, to backups and to anyone with read access on the pod. Hash it or drop it."
+ },
+ {
+  "id": "console_credential_field",
+  "sev": "error",
+  "re": "console\\.\\w+\\s*\\([^;]*\\b(password|passwd|token|accessToken|refreshToken|apiKey|api_key|secret|otp|sessionId|authorization)\\b",
+  "flags": "",
+  "msg": "A credential is written in clear text. A log line is not a debugger: this one survives rotation, shipping and the vendor's own retention. Remove the argument."
+ },
+ {
+  "id": "console_cookie_or_session",
+  "sev": "error",
+  "re": "console\\.\\w+\\s*\\([^;]*\\b(cookies?|session|setCookie)\\b",
+  "flags": "",
+  "msg": "Session material in a log line means anyone who can read the log can become that user. Log the session id's hash if you need to correlate."
+ },
+ {
+  "id": "console_request_url",
+  "sev": "warn",
+  "re": "console\\.\\w+\\s*\\([^;]*\\breq(uest)?\\.(originalUrl|url|path)\\b",
+  "flags": "",
+  "msg": "The full URL carries the query string, and query strings carry ?email= and ?reset_token=. Log req.route.path instead of the raw URL."
+ },
+ {
+  "id": "json_stringify_request",
+  "sev": "error",
+  "re": "JSON\\.stringify\\s*\\(\\s*(req|request|user|customer|body|payload)\\b",
+  "flags": "",
+  "msg": "Serialising the whole object defeats every redaction rule you configured downstream — the redactor sees one long string. Serialise the fields you picked."
+ },
+ {
+  "id": "util_inspect_personal_data",
+  "sev": "error",
+  "re": "(util\\.)?inspect\\s*\\(\\s*(req|request|user|customer|body)\\b",
+  "flags": "",
+  "msg": "util.inspect walks nested objects and prints getters too, so it reveals more than the shape you think you are logging. Name the fields."
+ },
+ {
+  "id": "template_literal_pii",
+  "sev": "error",
+  "re": "(console\\.\\w+|\\blog(ger)?\\.\\w+)\\s*\\(\\s*`[^`]*\\$\\{[^}]*\\.(email|phone|name|ssn|password|token|address|dob)\\b",
+  "flags": "",
+  "msg": "Interpolated personal data cannot be redacted by a structured logger — it is already flattened into the message string. Pass it as a separate, redactable field."
+ },
+ {
+  "id": "logger_request_object",
+  "sev": "error",
+  "re": "\\b(logger|log|winston|pino|bunyan|fastify\\.log|req\\.log)\\.(info|debug|warn|error|trace|fatal|child)\\s*\\([^;]*\\breq(uest)?\\.(body|headers|params|query|cookies)\\b",
+  "flags": "",
+  "msg": "The structured logger is handed the raw request. Redaction paths only cover what you listed; everything else ships. Pass an explicit object."
+ },
+ {
+  "id": "logger_ip_field",
+  "sev": "warn",
+  "re": "(console\\.\\w+|\\b(logger|log)\\.\\w+)\\s*\\([^;]*\\b(ip|ipAddress|remoteAddress|clientIp|forwardedFor)\\b",
+  "flags": "",
+  "msg": "An IP address is personal data in the EU (CJEU C-582/14, Breyer). If you log it, it needs a retention limit and a line in the privacy notice."
+ },
+ {
+  "id": "pino_without_redact",
+  "sev": "warn",
+  "re": "\\bpino\\s*\\(\\s*\\{(?![^)]*redact)[^)]*\\}",
+  "flags": "",
+  "msg": "pino is initialised without a redact option, so nothing is masked at the logger. Add redact: ['req.headers.authorization', 'req.headers.cookie', '*.email']."
+ },
+ {
+  "id": "winston_file_without_rotation",
+  "sev": "warn",
+  "re": "transports\\.File\\s*\\(\\s*\\{(?![^)]*(maxFiles|maxsize|maxSize))[^)]*\\}",
+  "flags": "",
+  "msg": "A file transport with no maxFiles or maxsize keeps personal data until the disk fills — GDPR Art. 5(1)(e) storage limitation has no 'forever' option. Set a limit."
+ },
+ {
+  "id": "sentry_send_default_pii",
+  "sev": "error",
+  "re": "sendDefaultPii\\s*:\\s*true",
+  "flags": "",
+  "msg": "sendDefaultPii: true tells the Sentry SDK to attach the client IP, cookies, headers and request body to every event. Turn it off, or set a beforeSend that strips them."
+ },
+ {
+  "id": "morgan_ip_log",
+  "sev": "warn",
+  "re": "morgan\\s*\\(\\s*['\"`](combined|common|dev)['\"`]",
+  "flags": "",
+  "msg": "The combined and common formats write the client IP and the full request line on every request. Use a custom format that omits :remote-addr, or shorten retention."
+ },
+ {
+  "id": "log_level_debug_committed",
+  "sev": "warn",
+  "re": "\\b(LOG_LEVEL|LOGLEVEL|logLevel|level)\\s*[:=]\\s*['\"](debug|trace|verbose|silly)['\"]",
+  "flags": "",
+  "msg": "A debug level committed to the repo is a debug level in production. Debug frames print the arguments the info level was written to hide. Read the level from the environment."
+ },
+ {
+  "id": "debug_env_wildcard",
+  "sev": "warn",
+  "re": "\\bDEBUG\\s*[:=]\\s*['\"]?\\*",
+  "flags": "",
+  "msg": "DEBUG=* turns on every library's debug namespace, including the HTTP clients that print request bodies and auth headers. Name the namespaces you want."
+ },
+ {
+  "id": "stack_trace_to_client",
+  "sev": "error",
+  "re": "\\.(send|json|end)\\s*\\([^;]*\\b\\w*[eE]rr\\w*\\.(stack|message)\\b",
+  "flags": "",
+  "msg": "A stack trace or driver message returned to the caller leaks file paths, query fragments and sometimes the row that failed. Return a code; log the detail server-side."
+ },
+ {
+  "id": "analytics_identify_pii",
+  "sev": "error",
+  "re": "\\b(analytics|mixpanel|amplitude|posthog|gtag|datadogLogs|segment)\\b[^;]*\\.(track|identify|capture|event|log)\\s*\\([^;]*\\b(email|phone|name|ssn|address|userEmail)\\b",
+  "flags": "",
+  "msg": "Personal data sent to an analytics processor is a disclosure to a third party — it needs a legal basis and a processor agreement, and it has to be deletable on request. Send a pseudonymous id."
+ },
+ {
+  "id": "orm_query_logging",
+  "sev": "warn",
+  "re": "\\blog\\s*:\\s*\\[[^\\]]*['\"](query|info)['\"]",
+  "flags": "",
+  "msg": "ORM query logging echoes every statement it runs, and WHERE clauses are built from customer identifiers. Keep it to local development."
+ },
+ {
+  "id": "real_email_literal",
+  "sev": "warn",
+  "re": "['\"][A-Za-z0-9._%+-]+@(?!example\\.|test\\.|localhost)(?:[A-Za-z0-9-]+\\.)+[A-Za-z]{2,}['\"]",
+  "flags": "",
+  "msg": "A real-looking mailbox is hardcoded in the source. Fixtures and fallbacks belong on example.com, which RFC 2606 reserves so it can never reach a person."
+ }
+]
