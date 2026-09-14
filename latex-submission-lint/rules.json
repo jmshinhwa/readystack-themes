@@ -1,0 +1,121 @@
+[
+ {
+  "check": "data_availability_missing",
+  "kind": "require_any",
+  "sev": "error",
+  "pattern": "data availability|availability of data|data accessibility|data and code are available",
+  "msg": "No data availability statement. Springer Nature, Elsevier and PLOS all ask for one at submission, and the editorial office checks it before the paper reaches an editor."
+ },
+ {
+  "check": "funding_statement_missing",
+  "kind": "require_any",
+  "sev": "error",
+  "pattern": "funding|financial support|grant (no|number|agreement)|funded by|supported by",
+  "msg": "No funding statement. Funders and publishers require the grant source (or an explicit 'no funding') in the manuscript itself, not only in the submission form."
+ },
+ {
+  "check": "competing_interest_missing",
+  "kind": "require_any",
+  "sev": "error",
+  "pattern": "competing interest|conflict of interest|declaration of interest|conflicts of interest",
+  "msg": "No declaration of competing interest. ICMJE-following journals require the declaration inside the manuscript; a blank one is still a statement and must be written out."
+ },
+ {
+  "check": "author_contributions_missing",
+  "kind": "require_any",
+  "sev": "warn",
+  "pattern": "author contributions|credit|contributorship|contributed equally",
+  "msg": "No author contribution (CRediT) statement. Elsevier, Springer Nature and PLOS map each author to CRediT roles; missing roles bounce back as an author query."
+ },
+ {
+  "check": "ai_use_disclosure_missing",
+  "kind": "require_any",
+  "sev": "warn",
+  "pattern": "generative ai|large language model|chatgpt|ai-assisted|ai tool|artificial intelligence was|no ai was",
+  "msg": "No statement about generative-AI use. Publishers following the ICMJE recommendations ask authors to say whether an AI tool was used in writing, and to say so even when it was not."
+ },
+ {
+  "check": "orcid_missing",
+  "kind": "require_any",
+  "sev": "info",
+  "pattern": "orcid",
+  "msg": "No ORCID iD in the manuscript. Several journals make ORCID mandatory for the corresponding author and will hold the submission until it is supplied."
+ },
+ {
+  "check": "abstract_missing",
+  "kind": "require_any",
+  "sev": "error",
+  "pattern": "\\\\begin\\{abstract\\}|\\\\abstract\\{|\\\\begin\\{summary\\}",
+  "msg": "No abstract environment found. Submission systems parse the abstract out of the source; without it the record is created empty and the paper is returned."
+ },
+ {
+  "check": "keywords_missing",
+  "kind": "require_any",
+  "sev": "warn",
+  "pattern": "\\\\keywords|\\\\begin\\{keyword|\\\\IEEEkeywords|\\\\begin\\{keywords\\}",
+  "msg": "No keywords. Keywords drive reviewer matching in the editorial system; a paper with none is slower to assign and easier to desk-reject."
+ },
+ {
+  "check": "line_numbers_missing",
+  "kind": "require_any",
+  "sev": "info",
+  "pattern": "\\\\linenumbers|\\{lineno\\}|\\\\usepackage\\[.*\\]\\{lineno\\}",
+  "msg": "Line numbers are not switched on. Journals that send the PDF straight to reviewers require continuous line numbering (lineno + \\linenumbers) at first submission."
+ },
+ {
+  "check": "obsolete_package",
+  "kind": "forbid",
+  "sev": "error",
+  "pattern": "\\\\usepackage(\\[[^\\]]*\\])?\\{[^}]*\\b(subfigure|epsfig|psfig|caption2|epsf|t1enc|here)\\b[^}]*\\}",
+  "msg": "Obsolete package. Publisher build farms run current TeX Live and reject sources that load subfigure, epsfig, psfig, caption2, epsf, t1enc or here; use subcaption and graphicx instead."
+ },
+ {
+  "check": "draft_class_option",
+  "kind": "forbid",
+  "sev": "warn",
+  "pattern": "\\\\documentclass\\[[^\\]]*\\bdraft\\b[^\\]]*\\]",
+  "msg": "The document class is still in draft mode, so figures compile as empty boxes and overfull rules are printed into the PDF the editor sees."
+ },
+ {
+  "check": "absolute_figure_path",
+  "kind": "forbid",
+  "sev": "error",
+  "pattern": "\\\\(includegraphics|graphicspath)[^\\n]*(/(Users|home|mnt|tmp)/|[A-Za-z]:[\\\\/])",
+  "msg": "Absolute path to a figure. The publisher compiles the upload on their own machine, where this path does not exist, and the build fails without ever reaching an editor."
+ },
+ {
+  "check": "legacy_figure_format",
+  "kind": "forbid",
+  "sev": "warn",
+  "pattern": "\\\\includegraphics[^\\n]*\\.(eps|ps|bmp)\\b",
+  "msg": "Figure is EPS/PS/BMP. pdflatex on the publisher side takes PDF, PNG or JPG; legacy formats either fail the build or are downsampled into the proof."
+ },
+ {
+  "check": "editing_leftover",
+  "kind": "forbid",
+  "sev": "warn",
+  "pattern": "\\\\todo\\{|\\\\note\\{|%\\s*(TODO|FIXME|XXX)\\b|\\bTODO\\b",
+  "msg": "An editing note is still in the source. Draft notes printed in the margin or left in a comment are read by the editor and are the cheapest reason to be sent back."
+ },
+ {
+  "check": "split_source",
+  "kind": "forbid",
+  "sev": "info",
+  "pattern": "\\\\(input|include)\\{",
+  "msg": "The manuscript is split across files. Most submission systems want one flattened .tex plus the .bbl; every included file has to be checked too before you upload."
+ },
+ {
+  "check": "deanonymising_section",
+  "kind": "forbid",
+  "sev": "warn",
+  "pattern": "\\\\(sub)?section\\*?\\{\\s*acknowledge?ment|\\\\begin\\{acknowledge?ment",
+  "msg": "An acknowledgements section names your lab and funders. For a double-anonymous journal that identifies you, and the paper is returned unreviewed."
+ },
+ {
+  "check": "stale_manuscript_date",
+  "kind": "stale_date",
+  "sev": "warn",
+  "pattern": "\\\\date\\{[^}]*?((?:19|20)\\d{2})[^}]*\\}",
+  "msg": "The manuscript is dated {year} but you are submitting on {today}. A prior-year date on the title page reads as a paper that was already rejected somewhere else."
+ }
+]
