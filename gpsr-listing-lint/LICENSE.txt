@@ -1,0 +1,16 @@
+GPSR Listing Lint — EU Product Feed Audit — Licence
+
+Free scope
+  Scan the open product feed and see every listing row that is missing a GPSR Article 19 field, with the line number and the exact article it fails. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Export a dated evidence pack for the whole workspace catalogue — every feed file, every failing row, per-rule counts — as CSV and Markdown you can hand to a marketplace, importer or auditor. is the paid part. It asks for a licence key issued at purchase (one seat, one key;
+  7-day full refund, no questions). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
