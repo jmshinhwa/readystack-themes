@@ -1,0 +1,134 @@
+[
+  {
+    "id": "sad-cvv-stored",
+    "sev": "error",
+    "req": "PCI DSS 3.3.1.2",
+    "kind": "line",
+    "all": [
+      "\\b(cvv2?|cvc2?|cav2?|csc|card_?verification(_?(code|value|data))?|security_?code)\\b"
+    ],
+    "none": [],
+    "msg": "Card verification code column. Sensitive authentication data must not be stored after authorisation, even encrypted.",
+    "fix": "Drop the column and read the code from the gateway request in memory only."
+  },
+  {
+    "id": "sad-track-stored",
+    "sev": "error",
+    "req": "PCI DSS 3.3.1.1",
+    "kind": "line",
+    "all": [
+      "\\b(track_?[12]\\w*|track_?data|magstripe|magnetic_?stripe|full_?track|discretionary_?data|equivalent_?data)\\b"
+    ],
+    "none": [],
+    "msg": "Full track / magnetic-stripe equivalent data. This is sensitive authentication data and may never be retained after authorisation.",
+    "fix": "Remove the column; keep only the token the processor returns."
+  },
+  {
+    "id": "sad-pin-stored",
+    "sev": "error",
+    "req": "PCI DSS 3.3.1.3",
+    "kind": "line",
+    "all": [
+      "\\b(pin|pin_?block|pinblock|pin_?verification|pvv|encrypted_?pin)\\b"
+    ],
+    "none": [
+      "\\bpin(g|ned|point)\\b"
+    ],
+    "msg": "PIN or PIN block column. Sensitive authentication data must not be stored after authorisation.",
+    "fix": "Remove the column. PIN translation belongs in the HSM, never in a table."
+  },
+  {
+    "id": "pan-plaintext-column",
+    "sev": "error",
+    "req": "PCI DSS 3.5.1",
+    "kind": "line",
+    "all": [
+      "\\b(pan|card_?number|cardnum|cc_?number|credit_?card(_?(no|number))?|primary_?account_?number|acct_?number)\\b",
+      "\\b(char|varchar|varchar2|nvarchar|nchar|text|string|clob|bigint|numeric|decimal|number)\\b"
+    ],
+    "none": [
+      "(hash|token|encrypt|_enc\\b|enc_|masked|mask\\b|last_?4|last4|first_?6|fingerprint|vault|sha\\d|hmac|surrogate)"
+    ],
+    "msg": "Primary account number stored in a readable column type. Stored PAN must be rendered unreadable wherever it is kept.",
+    "fix": "Store a network token or a keyed hash, plus first6/last4 in their own columns."
+  },
+  {
+    "id": "pan-searchable-key",
+    "sev": "error",
+    "req": "PCI DSS 3.5.1",
+    "kind": "line",
+    "all": [
+      "\\b(create\\s+(unique\\s+)?index|add\\s+(unique\\s+)?(index|key)|unique\\s*\\(|primary\\s+key\\s*\\()",
+      "\\b(pan|card_?number|cc_?number|credit_?card(_?(no|number))?)\\b"
+    ],
+    "none": [
+      "(hash|token|last_?4|last4|fingerprint|masked)"
+    ],
+    "msg": "Index or key built on the account number itself, which keeps the PAN readable and searchable in the index pages.",
+    "fix": "Index the token or the keyed hash column instead."
+  },
+  {
+    "id": "pan-in-log-table",
+    "sev": "error",
+    "req": "PCI DSS 3.3.1",
+    "kind": "table_col",
+    "all": [
+      "(log|logs|audit|history|events?|archive|trace|webhook|debug)",
+      "\\b(pan|card_?number|cc_?number|credit_?card(_?(no|number))?|cvv2?|cvc2?|track_?2|expiry|exp_?month|exp_?year)\\b"
+    ],
+    "none": [
+      "(hash|token|last_?4|last4|masked)"
+    ],
+    "msg": "Card data written into a log, audit or history table. Log stores are rarely in scope for key management and are copied everywhere.",
+    "fix": "Log the token and the last four digits only."
+  },
+  {
+    "id": "auth-response-blob",
+    "sev": "warn",
+    "req": "PCI DSS 3.3.2",
+    "kind": "line",
+    "all": [
+      "\\b(gateway_?response|auth(orisation|orization)?_?response|raw_?response|processor_?response|psp_?payload|payment_?payload|webhook_?body|request_?payload|card_?payload)\\b",
+      "\\b(json|jsonb|text|blob|clob|bytea|varbinary|xml|nvarchar\\s*\\(\\s*max)\\b"
+    ],
+    "none": [
+      "(redact|encrypt|scrub|filtered)"
+    ],
+    "msg": "Whole authorisation payload kept as a blob. These bodies routinely carry the PAN and the verification code, so the column inherits every rule above.",
+    "fix": "Persist named fields you have reviewed, or redact the payload before insert."
+  },
+  {
+    "id": "pan-view-unmasked",
+    "sev": "warn",
+    "req": "PCI DSS 3.4.1",
+    "kind": "view",
+    "all": [
+      "\\b(pan|card_?number|cc_?number|credit_?card(_?(no|number))?)\\b"
+    ],
+    "none": [
+      "(mask|substr|substring|right\\s*\\(|left\\s*\\(|last_?4|last4|token|hash|\\*{4})"
+    ],
+    "msg": "View exposes the full account number. When PAN is displayed it must be masked to at most the first six and last four digits.",
+    "fix": "Wrap the column: 'XXXXXX' || RIGHT(card_ref, 4) AS card_display."
+  },
+  {
+    "id": "live-pan-literal",
+    "sev": "error",
+    "req": "PCI DSS 6.5.5",
+    "kind": "luhn",
+    "all": [],
+    "none": [],
+    "msg": "Luhn-valid account number written straight into the migration. A card number in version control is card data in every clone, backup and CI log.",
+    "fix": "Seed with a processor test token, or a number that is not Luhn-valid."
+  },
+  {
+    "id": "no-retention-column",
+    "sev": "warn",
+    "req": "PCI DSS 3.2.1",
+    "kind": "table",
+    "all": [],
+    "none": [],
+    "msg": "Table holds card data but defines no retention or purge column, so nothing tells you when the row may be deleted.",
+    "fix": "Add purge_after DATE (or retain_until) and a scheduled delete that reads it."
+  }
+]
