@@ -1,0 +1,57 @@
+[
+  {"id": "privacy-exporter-missing", "mode": "absent", "sev": "error",
+   "trigger": "\\$wpdb->insert|dbDelta\\s*\\(|update_user_meta\\s*\\(|add_option\\s*\\(|update_option\\s*\\(",
+   "require": "wp_privacy_personal_data_exporters",
+   "msg": "Plugin stores user data but never registers a wp_privacy_personal_data_exporters filter. A GDPR Art. 15 export request cannot be answered from the WP admin. Add add_filter('wp_privacy_personal_data_exporters', ...) (WordPress 4.9.6 privacy tools API)."},
+
+  {"id": "privacy-eraser-missing", "mode": "absent", "sev": "error",
+   "trigger": "\\$wpdb->insert|dbDelta\\s*\\(|update_user_meta\\s*\\(|add_option\\s*\\(|update_option\\s*\\(",
+   "require": "wp_privacy_personal_data_erasers",
+   "msg": "Plugin stores user data but never registers a wp_privacy_personal_data_erasers filter. Tools > Erase Personal Data will silently leave your rows behind on a GDPR Art. 17 request. Add add_filter('wp_privacy_personal_data_erasers', ...)."},
+
+  {"id": "policy-content-missing", "mode": "absent", "sev": "warn",
+   "trigger": "\\$wpdb->insert|dbDelta\\s*\\(|update_user_meta\\s*\\(|setcookie\\s*\\(",
+   "require": "wp_add_privacy_policy_content",
+   "msg": "Plugin collects data but adds no suggested privacy policy text. Call wp_add_privacy_policy_content('Plugin Name', $text) on admin_init so the site owner's policy can name what you store."},
+
+  {"id": "raw-ip-stored", "mode": "line", "sev": "error",
+   "pattern": "REMOTE_ADDR|HTTP_X_FORWARDED_FOR",
+   "unless": "wp_privacy_anonymize_ip",
+   "msg": "Raw visitor IP is read without anonymisation. An IP address is personal data (CJEU Breyer, C-582/14). Wrap it: wp_privacy_anonymize_ip( $ip )."},
+
+  {"id": "user-agent-stored", "mode": "line", "sev": "warn",
+   "pattern": "HTTP_USER_AGENT",
+   "unless": "wp_privacy_anonymize",
+   "msg": "Raw User-Agent string is read. Combined with an IP it is a device fingerprint under GDPR Art. 4(1); store a hash or drop it."},
+
+  {"id": "google-fonts-server-side", "mode": "line", "sev": "error",
+   "pattern": "fonts\\.googleapis\\.com|fonts\\.gstatic\\.com",
+   "msg": "Google Fonts is loaded from Google's servers, which hands every visitor IP to a US provider. LG Munchen I, 3 O 17493/20 (20 Jan 2022) awarded EUR 100 damages for exactly this. Bundle the .woff2 files with the plugin instead."},
+
+  {"id": "third-party-cdn-enqueue", "mode": "line", "sev": "error",
+   "pattern": "ajax\\.googleapis\\.com|cdn\\.jsdelivr\\.net|unpkg\\.com|cdnjs\\.cloudflare\\.com|code\\.jquery\\.com|stackpath\\.bootstrapcdn\\.com",
+   "msg": "Asset is enqueued from a third-party CDN, so the visitor's IP leaves the site before any consent. This is also a WordPress.org plugin review blocker (all scripts must be bundled). Enqueue a local copy."},
+
+  {"id": "analytics-injected", "mode": "line", "sev": "error",
+   "pattern": "googletagmanager\\.com|google-analytics\\.com|gtag\\s*\\(|fbq\\s*\\(|connect\\.facebook\\.net",
+   "msg": "Analytics or pixel code is injected from PHP with no consent gate. Under ePrivacy Art. 5(3) and TDDDG Sec. 25 this needs opt-in before the request fires. Gate it behind the site's consent signal."},
+
+  {"id": "phone-home-no-consent", "mode": "line", "sev": "error",
+   "pattern": "wp_remote_(post|get|request)\\s*\\(\\s*['\"]https?://",
+   "unless": "api\\.wordpress\\.org|downloads\\.wordpress\\.org",
+   "msg": "Plugin calls an external endpoint with a hardcoded URL. Sending site or user data off-site without explicit opt-in is WordPress.org Detailed Plugin Guideline 7 (no phoning home) and a GDPR Art. 44 transfer. Ask first, and disclose the service in readme.txt."},
+
+  {"id": "cookie-before-consent", "mode": "line", "sev": "error",
+   "pattern": "setcookie\\s*\\(",
+   "unless": "consent|has_consent|cookielaw",
+   "msg": "A cookie is set with no consent check on the same line. Non-essential cookies need prior opt-in (ePrivacy Art. 5(3), TDDDG Sec. 25 in Germany). Wrap the call in your consent check."},
+
+  {"id": "external-embed-no-consent", "mode": "line", "sev": "warn",
+   "pattern": "youtube\\.com/embed|player\\.vimeo\\.com|google\\.com/maps|maps\\.googleapis\\.com",
+   "msg": "A third-party embed is printed directly, which contacts the provider on page load. German courts treat this like Google Fonts; use a click-to-load placeholder."},
+
+  {"id": "uninstall-cleanup-missing", "mode": "absent", "sev": "warn",
+   "trigger": "dbDelta\\s*\\(|\\$wpdb->insert|add_option\\s*\\(",
+   "require": "register_uninstall_hook|uninstall\\.php|WP_UNINSTALL_PLUGIN",
+   "msg": "Plugin creates storage but registers no uninstall cleanup, so personal data outlives the plugin. That breaks GDPR Art. 5(1)(e) storage limitation. Add register_uninstall_hook() or an uninstall.php."}
+]
