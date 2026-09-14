@@ -1,0 +1,14 @@
+[
+  {"id": "bt1_invoice_id", "title": "Invoice number and issue date (BT-1, BT-2)", "sev": "error", "basis": "CGI art. 242 nonies A — sequential number and issue date"},
+  {"id": "bt24_profile", "title": "EN 16931 / Factur-X profile URN (BT-24)", "sev": "error", "basis": "Factur-X 1.0 profiles; the PDP routes on this URN"},
+  {"id": "currency_eur", "title": "Currency EUR, or VAT total restated in EUR (BT-111)", "sev": "error", "basis": "CGI art. 289 — VAT amount stated in euro"},
+  {"id": "seller_siren", "title": "Seller SIREN/SIRET present and Luhn-valid", "sev": "error", "basis": "CGI art. 242 nonies A; SIREN carries a Luhn check digit"},
+  {"id": "buyer_siren", "title": "Buyer SIREN present and Luhn-valid", "sev": "error", "basis": "Mandatory mention added for the French e-invoicing reform"},
+  {"id": "fr_vat_key", "title": "FR intra-EU VAT key matches the SIREN", "sev": "error", "basis": "Key = (12 + 3 x (SIREN mod 97)) mod 97"},
+  {"id": "delivery_address", "title": "Delivery address (BG-15)", "sev": "error", "basis": "Mandatory mention added for the French e-invoicing reform"},
+  {"id": "delivery_date", "title": "Delivery or supply date (BT-72)", "sev": "error", "basis": "CGI art. 242 nonies A — date of the supply"},
+  {"id": "operation_category", "title": "Category of operation: goods, services or mixed", "sev": "error", "basis": "Mandatory mention added for the French e-invoicing reform"},
+  {"id": "debits_option", "title": "Option for VAT on debits, on service invoices", "sev": "warn", "basis": "Mandatory mention added for the French e-invoicing reform"},
+  {"id": "totals_balance", "title": "BT-109 + BT-110 = BT-112", "sev": "error", "basis": "EN 16931 BR-CO-15"},
+  {"id": "late_payment_terms", "title": "Late-payment rate and the 40 EUR recovery indemnity", "sev": "error", "basis": "Code de commerce art. L441-10"}
+]
