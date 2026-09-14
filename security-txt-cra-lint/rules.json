@@ -1,0 +1,15 @@
+[
+  {"id": "contact_missing", "sev": "error", "ref": "RFC 9116 s2.5.3", "msg": "No Contact field. RFC 9116 makes Contact mandatory, and the CRA single reporting contact point has nowhere to land."},
+  {"id": "contact_not_uri", "sev": "error", "ref": "RFC 9116 s2.5.3", "msg": "Contact must be a URI (mailto:, tel: or https://), not a bare address."},
+  {"id": "expires_missing", "sev": "error", "ref": "RFC 9116 s2.5.5", "msg": "No Expires field. Expires is mandatory and a file without it is not a valid security.txt."},
+  {"id": "expires_invalid", "sev": "error", "ref": "RFC 9116 s2.5.5", "msg": "Expires must be a full RFC 3339 timestamp, e.g. 2027-03-01T00:00:00Z."},
+  {"id": "expires_past", "sev": "error", "ref": "RFC 9116 s2.5.5", "msg": "Expires is in the past, so RFC 9116 says the file MUST be ignored: the reporter has no contact point."},
+  {"id": "expires_over_year", "sev": "warn", "ref": "RFC 9116 s2.5.5", "msg": "Expires is more than 365 days out; RFC 9116 says the value should be less than a year."},
+  {"id": "field_duplicate", "sev": "error", "ref": "RFC 9116 s2.5.5, s2.5.8", "msg": "This field may appear only once in the file."},
+  {"id": "insecure_url", "sev": "error", "ref": "RFC 9116 s2.3", "msg": "Web URIs in security.txt must use https://, never http://."},
+  {"id": "canonical_wellknown", "sev": "warn", "ref": "RFC 9116 s3", "msg": "Canonical should point at https://<domain>/.well-known/security.txt, the only location scanners read."},
+  {"id": "policy_missing", "sev": "warn", "ref": "CRA Annex I Part II(5)", "msg": "No Policy field. The CRA expects a published coordinated vulnerability disclosure policy for the reporter to follow."},
+  {"id": "csaf_not_provider", "sev": "warn", "ref": "RFC 9116 s2.5.4", "msg": "CSAF must point at a provider-metadata.json URI, not at an index or a single advisory."},
+  {"id": "unknown_field", "sev": "warn", "ref": "RFC 9116 s2.4", "msg": "Field name is not in the RFC 9116 registry, so parsers drop the line."},
+  {"id": "malformed_line", "sev": "error", "ref": "RFC 9116 s2.2", "msg": "Line is not in \"Field: value\" form, so it is not parsed at all."}
+]
