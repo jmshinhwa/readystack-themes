@@ -1,0 +1,121 @@
+[
+ {
+  "check": "ai_disclosure_missing",
+  "sev": "error",
+  "msg": "No AI-use disclosure. Journals following the ICMJE Recommendations ask authors to state whether generative AI was used in writing, and to name the tool and the task.",
+  "need": "(declaration of generative ai|generative ai (and ai-assisted|in the writing|was used|were used|was not used)|ai[- ]?(use|assisted)[^\\n]{0,30}(disclosure|statement|technolog)|no generative ai|did not use (any )?generative ai)",
+  "fix": "add a short 'Declaration of generative AI in the writing process' section, even to say none was used"
+ },
+ {
+  "check": "ai_listed_as_author",
+  "sev": "error",
+  "msg": "A generative-AI tool appears on the author line. Under the ICMJE Recommendations an AI tool cannot be an author, because it cannot take responsibility or declare interests.",
+  "ban": "(\\\\author\\{|^\\s*\\*{0,2}authors?\\*{0,2}\\s*:|^\\s*#+\\s*authors?\\b)[^\\n]*\\b(chatgpt|gpt-[0-9o]|claude|gemini|copilot|llama|bard)\\b",
+  "fix": "move the tool out of the author list and into the AI disclosure section"
+ },
+ {
+  "check": "nih_embargo_stale",
+  "sev": "error",
+  "msg": "This manuscript still promises a 12-month embargo. The 2024 NIH Public Access Policy ({since:2026-07-01}) applies to papers accepted for publication on or after that date: the Author Accepted Manuscript goes to PubMed Central and is public on the official date of publication, with no embargo option.",
+  "ban": "((12|twelve)[\\s-]*months?[^\\n]{0,25}(embargo|after publication|of publication|following publication)|embargo[^\\n]{0,25}(12|twelve)[\\s-]*months?|within (12|twelve) months of[^\\n]{0,20}publication)",
+  "fix": "say the accepted manuscript is deposited in PMC and released on the publication date"
+ },
+ {
+  "check": "data_availability_missing",
+  "sev": "error",
+  "msg": "No data availability statement. Most publishers and every major funder now require one, even when the answer is that no new data were created.",
+  "need": "(data availability|availability of data|data sharing statement|data and code availability|code availability)",
+  "fix": "add a 'Data availability' section naming the repository and the accession or DOI"
+ },
+ {
+  "check": "data_on_request_only",
+  "sev": "warn",
+  "msg": "The data availability statement says the data are available from the authors on request. Funder open-access policies and a growing number of journals no longer accept that as the only route.",
+  "scope": "(data availability|availability of data|data sharing statement|data and code availability)",
+  "ban": "available[\\s\\S]{0,60}?(from\\s+the\\s+(corresponding\\s+)?authors?|(on|upon)\\s+(reasonable\\s+)?request)",
+  "fix": "deposit in a repository and cite the accession or DOI, or state the legal reason access is restricted"
+ },
+ {
+  "check": "data_locator_missing",
+  "sev": "error",
+  "msg": "The data availability statement carries no locator. A reviewer cannot follow a promise; the statement needs a repository name plus an accession number or a DOI.",
+  "scope": "(data availability|availability of data|data sharing statement|data and code availability)",
+  "need": "(10\\.\\d{4,9}/|https?://|accession|\\b(zenodo|dryad|figshare|osf|genbank|geo|sra|pride|dataverse|github)\\b)",
+  "fix": "add the repository and the accession/DOI, e.g. Zenodo, doi:10.5281/zenodo.0000000"
+ },
+ {
+  "check": "funding_statement_missing",
+  "sev": "error",
+  "msg": "No labelled funding statement. Publishers index funding separately from the acknowledgements, and a funder that cannot find its award in the record counts the paper as unreported.",
+  "need": "(funding statement|\\bfunding\\b|financial (support|disclosure)|funder)",
+  "fix": "add a 'Funding' section, or state that the work received no specific funding"
+ },
+ {
+  "check": "grant_number_missing",
+  "sev": "error",
+  "msg": "A funder is named but no award or grant number is given. Funder reporting systems match on the award ID, not the funder name.",
+  "when": "\\b(nih|national institutes of health|nsf|national science foundation|erc|european research council|wellcome|ukri|horizon europe|dfg|nsfc|cihr|arc\\b)",
+  "need": "(grant|award|agreement|contract)[^\\n]{0,20}(no\\.?|number|#|id|:)?\\s*[A-Z0-9][A-Z0-9/._-]{4,}",
+  "fix": "add the award ID exactly as the funder issued it"
+ },
+ {
+  "check": "competing_interests_missing",
+  "sev": "error",
+  "msg": "No competing interests statement. The ICMJE disclosure is required from every author, and 'none' has to be written down rather than left out.",
+  "need": "(competing interest|conflict of interest|conflicts of interest|declaration of interest|disclosure statement)",
+  "fix": "add 'Competing interests: the authors declare none.' if that is the case"
+ },
+ {
+  "check": "author_contributions_missing",
+  "sev": "warn",
+  "msg": "No author contributions statement. CRediT (ANSI/NISO Z39.104-2022) is now collected at submission by most large publishers.",
+  "need": "(author contribution|credit|contributor roles)",
+  "fix": "add an 'Author contributions' section using the 14 CRediT roles"
+ },
+ {
+  "check": "credit_roles_nonstandard",
+  "sev": "warn",
+  "msg": "The author contributions are written in free prose rather than CRediT roles, so the publisher cannot map them to the taxonomy (ANSI/NISO Z39.104-2022).",
+  "scope": "author contributions?",
+  "need": "(conceptualization|conceptualisation|data curation|formal analysis|funding acquisition|investigation|methodology|project administration|supervision|validation|visualization|visualisation|writing\\s*[-–—]\\s*(original draft|review))",
+  "fix": "rewrite as 'A.B.: Conceptualization, Methodology; C.D.: Formal analysis, Writing - original draft'"
+ },
+ {
+  "check": "orcid_missing",
+  "sev": "warn",
+  "msg": "No ORCID iD appears anywhere. Several publishers and funders require a verified ORCID for at least the corresponding author at submission.",
+  "need": "(orcid|0000-000[0-3]-\\d{4}-\\d{3}[\\dxX])",
+  "fix": "add the corresponding author's ORCID iD next to their name"
+ },
+ {
+  "check": "ethics_approval_missing",
+  "sev": "error",
+  "msg": "The manuscript reports work on people or animals but names no ethics approval. Editors desk-reject on this before the paper reaches a reviewer.",
+  "when": "\\b(participants?|patients?|human subjects?|volunteers?|mice|rats|rodents?|animals?)\\b",
+  "need": "(ethic|institutional review board|\\birb\\b|research ethics committee|\\biacuc\\b|helsinki)",
+  "fix": "name the approving committee and the protocol number"
+ },
+ {
+  "check": "consent_statement_missing",
+  "sev": "warn",
+  "msg": "People took part but no informed-consent statement is present. Consent to participate and, where images or case details appear, consent to publish are separate statements.",
+  "when": "\\b(participants?|patients?|volunteers?|human subjects?)\\b",
+  "need": "(informed consent|consent to participate|consent to publish|written consent)",
+  "fix": "state how consent was obtained, and add consent to publish if any individual is identifiable"
+ },
+ {
+  "check": "trial_registration_missing",
+  "sev": "error",
+  "msg": "A trial is described but no registration identifier is given. ICMJE member journals will not consider an unregistered trial, and registration must predate enrolment.",
+  "when": "(randomi[sz]ed|randomi[sz]ation|clinical trial|\\brct\\b)",
+  "need": "(nct\\d{8}|isrctn\\d{8}|chictr|actrn\\d{5}|drks\\d{5}|trial registration|registered (at|with|on|in)[^\\n]{0,60}\\d)",
+  "fix": "add the registry and the identifier, e.g. ClinicalTrials.gov NCT00000000"
+ },
+ {
+  "check": "oa_licence_missing",
+  "sev": "warn",
+  "msg": "No open-access licence is stated. Plan S, UKRI, Horizon Europe and the 2026 NIH policy all expect the accepted manuscript to carry a CC BY or equivalent licence, applied by the author at submission.",
+  "need": "(cc[\\s-]?by|creative commons|\\bcc0\\b|open[- ]access licen[cs]e|public copyright licen[cs]e)",
+  "fix": "add the funder-required licence line, e.g. 'For the purpose of open access, a CC BY public copyright licence is applied to this submission.'"
+ }
+]
