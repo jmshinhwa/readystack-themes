@@ -1,0 +1,54 @@
+{
+  "name": "ai-model-license-lint",
+  "displayName": "AI Model License Lint",
+  "description": "Flags open-weight AI model IDs in your code against their real licence clauses: EU-domicile exclusion, 700M MAU cap, non-commercial weights, missing Built with Llama attribution.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "llama license",
+    "model license",
+    "open weights",
+    "compliance",
+    "gemma terms",
+    "flux dev non-commercial",
+    "ai act",
+    "attribution"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiModelLicenseLint.checkFile",
+        "title": "AI Model License Lint: Check this file",
+        "category": "AI Model License Lint"
+      },
+      {
+        "command": "aiModelLicenseLint.checkWorkspace",
+        "title": "AI Model License Lint: Sweep workspace and write report (licence)",
+        "category": "AI Model License Lint"
+      },
+      {
+        "command": "aiModelLicenseLint.enterKey",
+        "title": "AI Model License Lint: Enter licence key",
+        "category": "AI Model License Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "ai-model-license-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/ai-model-license-lint",
+  "icon": "icon.png"
+}
