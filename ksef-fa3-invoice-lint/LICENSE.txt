@@ -1,0 +1,16 @@
+KSeF FA(3) Invoice Lint — Licence
+
+Free scope
+  Lints the invoice XML file you have open and names every field KSeF will reject, with the exact value it wants. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Scans every invoice XML in the workspace in one run and writes a dated REPORT.md you keep as your own audit evidence. is the paid part. It asks for a licence key issued at purchase (one seat, one key;
+  7-day full refund, no questions). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
