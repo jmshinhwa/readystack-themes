@@ -1,0 +1,274 @@
+[
+  {
+    "id": "create_index_blocking",
+    "sev": "error",
+    "on": "stmt",
+    "pattern": "\\bCREATE\\s+(UNIQUE\\s+)?INDEX\\b",
+    "absent": "\\bCONCURRENTLY\\b",
+    "msg": "CREATE INDEX holds a SHARE lock: every INSERT, UPDATE and DELETE on the table waits until the index finishes. Safe: CREATE INDEX CONCURRENTLY, outside any transaction block."
+  },
+  {
+    "id": "drop_index_blocking",
+    "sev": "error",
+    "on": "stmt",
+    "pattern": "\\bDROP\\s+INDEX\\b",
+    "absent": "\\bCONCURRENTLY\\b",
+    "msg": "DROP INDEX takes ACCESS EXCLUSIVE on the table, so reads block too. Safe: DROP INDEX CONCURRENTLY."
+  },
+  {
+    "id": "concurrently_inside_transaction",
+    "sev": "error",
+    "on": "file",
+    "pattern": "\\bCONCURRENTLY\\b",
+    "require": "^\\s*BEGIN\\s*;|\\bSTART\\s+TRANSACTION\\b",
+    "msg": "CREATE/DROP INDEX CONCURRENTLY cannot run inside a transaction block and will abort with error 25001. Safe: move it out of the BEGIN/COMMIT, one statement per migration."
+  },
+  {
+    "id": "add_column_volatile_default",
+    "sev": "error",
+    "on": "stmt",
+    "pattern": "\\bADD\\s+(COLUMN\\s+)?",
+    "present": "\\bDEFAULT\\s+(now\\s*\\(|current_timestamp|clock_timestamp|random\\s*\\(|gen_random_uuid|uuid_generate|nextval)",
+    "msg": "A volatile DEFAULT rewrites every row under ACCESS EXCLUSIVE - the fast path added in PG 11 only covers constant defaults. Safe: add the column with no default, backfill in batches, then SET DEFAULT."
+  },
+  {
+    "id": "add_column_not_null_no_default",
+    "sev": "error",
+    "on": "stmt",
+    "pattern": "\\bADD\\s+(COLUMN\\s+)?(?!CONSTRAINT\\b)[\"\\w]+[^,;()]*\\bNOT\\s+NULL\\b",
+    "absent": "\\bDEFAULT\\b",
+    "msg": "ADD COLUMN ... NOT NULL with no DEFAULT fails outright on a table that already has rows (23502). Safe: give it a constant DEFAULT, or add it nullable and SET NOT NULL after a validated CHECK."
+  },
+  {
+    "id": "add_column_unique",
+    "sev": "error",
+    "on": "stmt",
+    "pattern": "\\bADD\\s+(COLUMN\\s+)?(?!CONSTRAINT\\b)[\"\\w]+[^,;()]*\\bUNIQUE\\b",
+    "msg": "UNIQUE on ADD COLUMN builds a unique index while ACCESS EXCLUSIVE is still held, so writes and reads both stop. Safe: CREATE UNIQUE INDEX CONCURRENTLY, then ADD CONSTRAINT ... USING INDEX."
+  },
+  {
+    "id": "alter_column_type",
+    "sev": "error",
+    "on": "stmt",
+    "pattern": "\\bALTER\\s+(COLUMN\\s+)?[\"\\w]+\\s+(SET\\s+DATA\\s+)?TYPE\\b",
+    "msg": "Changing a column type rewrites the whole table and every index on it under ACCESS EXCLUSIVE. Safe: add a new column, backfill in batches, swap the reads, then drop the old column in a later deploy."
+  },
+  {
+    "id": "set_not_null_scan",
+    "sev": "warn",
+    "on": "stmt",
+    "pattern": "\\bSET\\s+NOT\\s+NULL\\b",
+    "msg": "SET NOT NULL scans the whole table under ACCESS EXCLUSIVE. PG 12 and later skip that scan only when a validated CHECK (col IS NOT NULL) already exists. Safe: ADD CONSTRAINT ... CHECK (col IS NOT NULL) NOT VALID, VALIDATE CONSTRAINT, then SET NOT NULL."
+  },
+  {
+    "id": "add_foreign_key_validating",
+    "sev": "error",
+    "on": "stmt",
+    "pattern": "\\bADD\\s+(CONSTRAINT\\s+[\"\\w]+\\s+)?FOREIGN\\s+KEY\\b",
+    "absent": "\\bNOT\\s+VALID\\b",
+    "msg": "A validating FOREIGN KEY locks both tables (ACCESS EXCLUSIVE on the child, SHARE ROW EXCLUSIVE on the parent) while it scans. Safe: ADD CONSTRAINT ... NOT VALID, then VALIDATE CONSTRAINT in a second statement."
+  },
+  {
+    "id": "add_check_validating",
+    "sev": "error",
+    "on": "stmt",
+    "pattern": "\\bADD\\s+(CONSTRAINT\\s+[\"\\w]+\\s+)?CHECK\\s*\\(",
+    "absent": "\\bNOT\\s+VALID\\b",
+    "msg": "A validating CHECK constraint scans the table under ACCESS EXCLUSIVE. Safe: ADD CONSTRAINT ... CHECK (...) NOT VALID, then VALIDATE CONSTRAINT, which only needs SHARE UPDATE EXCLUSIVE."
+  },
+  {
+    "id": "add_pk_or_unique_constraint",
+    "sev": "error",
+    "on": "stmt",
+    "pattern": "\\bADD\\s+(CONSTRAINT\\s+[\"\\w]+\\s+)?(PRIMARY\\s+KEY|UNIQUE)\\s*\\(",
+    "absent": "\\bUSING\\s+INDEX\\b",
+    "msg": "This builds the backing index inside the ACCESS EXCLUSIVE lock. Safe: CREATE UNIQUE INDEX CONCURRENTLY first, then ADD CONSTRAINT ... USING INDEX, which only attaches the finished index."
+  },
+  {
+    "id": "rename_breaks_running_code",
+    "sev": "warn",
+    "on": "stmt",
+    "pattern": "\\bRENAME\\s+(COLUMN\\s+|TO\\b)",
+    "msg": "The rename itself is instant, but the old pods are still sending the old name and start erroring at 42703 the moment it commits. Safe: add the new name, write to both, migrate readers, drop the old name a deploy later."
+  },
+  {
+    "id": "drop_column_breaks_running_code",
+    "sev": "warn",
+    "on": "stmt",
+    "pattern": "\\bDROP\\s+COLUMN\\b",
+    "msg": "DROP COLUMN is metadata-only, but any SELECT * cached by the still-running old release breaks on commit. Safe: stop referencing the column in a shipped release first (Rails: ignored_columns), then drop it."
+  },
+  {
+    "id": "vacuum_full_blocking",
+    "sev": "error",
+    "on": "stmt",
+    "pattern": "\\bVACUUM\\s+FULL\\b",
+    "msg": "VACUUM FULL holds ACCESS EXCLUSIVE for the whole rewrite and needs room for a second copy of the table. Safe: leave it out of the migration; use pg_repack or plain VACUUM."
+  },
+  {
+    "id": "reindex_blocking",
+    "sev": "error",
+    "on": "stmt",
+    "pattern": "\\bREINDEX\\b",
+    "absent": "\\bCONCURRENTLY\\b",
+    "msg": "REINDEX blocks writes on the table (and reads on the index) until it finishes. Safe: REINDEX CONCURRENTLY, available since PG 12."
+  },
+  {
+    "id": "cluster_blocking",
+    "sev": "error",
+    "on": "stmt",
+    "pattern": "\\bCLUSTER\\b\\s+[\"\\w]",
+    "msg": "CLUSTER holds ACCESS EXCLUSIVE while it rewrites the table in index order - nothing reads it meanwhile. Safe: do not put CLUSTER in a migration."
+  },
+  {
+    "id": "truncate_in_migration",
+    "sev": "error",
+    "on": "stmt",
+    "pattern": "\\bTRUNCATE\\b",
+    "msg": "TRUNCATE takes ACCESS EXCLUSIVE and deletes rows no backfill can bring back. Safe: DELETE in batches with a WHERE, or move the cleanup out of the migration."
+  },
+  {
+    "id": "explicit_lock_table",
+    "sev": "warn",
+    "on": "stmt",
+    "pattern": "\\bLOCK\\s+(TABLE\\s+)?[\"\\w]",
+    "msg": "LOCK TABLE defaults to ACCESS EXCLUSIVE, the strongest mode there is. Safe: name the weakest mode you actually need (IN SHARE UPDATE EXCLUSIVE MODE) and set a lock_timeout."
+  },
+  {
+    "id": "unbounded_backfill",
+    "sev": "error",
+    "on": "stmt",
+    "pattern": "\\bUPDATE\\s+[\"\\w.]+\\s+SET\\b",
+    "absent": "\\bWHERE\\b",
+    "msg": "An UPDATE with no WHERE takes a row lock on every row in one transaction and blocks writers behind it for the whole run. Safe: loop over primary-key ranges, committing each batch."
+  },
+  {
+    "id": "delete_unbounded",
+    "sev": "warn",
+    "on": "stmt",
+    "pattern": "\\bDELETE\\s+FROM\\s+[\"\\w.]+",
+    "absent": "\\bWHERE\\b",
+    "msg": "DELETE with no WHERE writes a dead tuple for every row and holds them all in one transaction. Safe: delete in batches with a WHERE, or use a partition drop."
+  },
+  {
+    "id": "no_lock_timeout",
+    "sev": "error",
+    "on": "file",
+    "pattern": "\\b(ALTER\\s+TABLE|CREATE\\s+(UNIQUE\\s+)?INDEX)\\b",
+    "require": ";",
+    "absent": "lock_timeout",
+    "msg": "No lock_timeout in this migration. If the DDL queues behind one long SELECT, every query that arrives after it queues behind the DDL - that is the outage, not the DDL itself. Safe: SET lock_timeout = '3s'; and retry."
+  },
+  {
+    "id": "ddl_and_backfill_same_transaction",
+    "sev": "warn",
+    "on": "file",
+    "pattern": "\\b(UPDATE|INSERT\\s+INTO)\\b",
+    "require": "^\\s*BEGIN\\s*;[\\s\\S]*\\bALTER\\s+TABLE\\b",
+    "msg": "A backfill in the same transaction as the DDL keeps the ACCESS EXCLUSIVE lock for as long as the backfill runs. Safe: one transaction for the DDL, a separate batched job for the data."
+  },
+  {
+    "id": "rails_add_index_blocking",
+    "sev": "error",
+    "on": "line",
+    "pattern": "\\badd_index\\b",
+    "absent": "algorithm:\\s*:concurrently",
+    "msg": "add_index builds the index with a SHARE lock and blocks writes. Safe: add_index ..., algorithm: :concurrently, plus disable_ddl_transaction! on the migration class."
+  },
+  {
+    "id": "rails_add_reference_index",
+    "sev": "error",
+    "on": "line",
+    "pattern": "\\badd_(reference|belongs_to)\\b",
+    "absent": "index:\\s*false|algorithm:\\s*:concurrently",
+    "msg": "add_reference creates its index the blocking way by default. Safe: add_reference ..., index: false, then add_index with algorithm: :concurrently."
+  },
+  {
+    "id": "rails_change_column",
+    "sev": "error",
+    "on": "line",
+    "pattern": "\\bchange_column\\s*[( ]",
+    "msg": "change_column emits ALTER COLUMN TYPE, which rewrites the table under ACCESS EXCLUSIVE. Safe: new column, batched backfill, swap readers, drop the old one later."
+  },
+  {
+    "id": "rails_change_column_null",
+    "sev": "warn",
+    "on": "line",
+    "pattern": "\\bchange_column_null\\b",
+    "msg": "change_column_null(false) emits SET NOT NULL and scans the table. Safe: add a CHECK ... NOT VALID, validate it, then set the column NOT NULL."
+  },
+  {
+    "id": "rails_remove_column",
+    "sev": "warn",
+    "on": "line",
+    "pattern": "\\bremove_columns?\\b",
+    "msg": "Removing a column breaks the release that is still running and still selecting it. Safe: ship self.ignored_columns += [...] first, then remove the column in the next deploy."
+  },
+  {
+    "id": "rails_rename",
+    "sev": "warn",
+    "on": "line",
+    "pattern": "\\brename_(column|table)\\b",
+    "msg": "A rename breaks every pod of the old release the instant it commits. Safe: add the new name, write to both, move readers, drop the old name in a later migration."
+  },
+  {
+    "id": "rails_add_foreign_key",
+    "sev": "error",
+    "on": "line",
+    "pattern": "\\badd_foreign_key\\b",
+    "absent": "validate:\\s*false",
+    "msg": "add_foreign_key validates existing rows while holding locks on both tables. Safe: add_foreign_key ..., validate: false, then validate_foreign_key in a second migration."
+  },
+  {
+    "id": "rails_concurrently_needs_disable_ddl",
+    "sev": "error",
+    "on": "file",
+    "pattern": "algorithm:\\s*:concurrently",
+    "absent": "disable_ddl_transaction!",
+    "msg": "algorithm: :concurrently inside Rails' automatic transaction aborts with 25001. Safe: add disable_ddl_transaction! at the top of the migration class."
+  },
+  {
+    "id": "django_add_index_blocking",
+    "sev": "error",
+    "on": "line",
+    "pattern": "migrations\\.AddIndex\\(",
+    "msg": "AddIndex emits a plain CREATE INDEX and blocks writes. Safe: AddIndexConcurrently from django.contrib.postgres.operations, with atomic = False on the Migration class."
+  },
+  {
+    "id": "django_alter_field",
+    "sev": "error",
+    "on": "line",
+    "pattern": "migrations\\.AlterField\\(",
+    "msg": "AlterField can emit ALTER COLUMN TYPE or SET NOT NULL - both scan or rewrite the table under ACCESS EXCLUSIVE. Safe: run sqlmigrate on it first and split the change across two deploys."
+  },
+  {
+    "id": "django_rename",
+    "sev": "warn",
+    "on": "line",
+    "pattern": "migrations\\.Rename(Field|Model)\\(",
+    "msg": "A rename breaks the web workers still running the old code. Safe: add the new field, write to both, move readers, then remove the old field."
+  },
+  {
+    "id": "django_remove",
+    "sev": "warn",
+    "on": "line",
+    "pattern": "migrations\\.Remove(Field|Model)\\(",
+    "msg": "Removing a field breaks the old release that is still selecting it. Safe: stop referencing it in a shipped release, then remove it in the next migration."
+  },
+  {
+    "id": "django_runpython_atomic",
+    "sev": "warn",
+    "on": "file",
+    "pattern": "migrations\\.RunPython\\(",
+    "absent": "atomic\\s*=\\s*False",
+    "msg": "RunPython inside an atomic migration holds every lock the schema operations took for the whole data pass. Safe: atomic = False on the Migration class and commit the backfill in batches."
+  },
+  {
+    "id": "django_concurrently_needs_non_atomic",
+    "sev": "error",
+    "on": "file",
+    "pattern": "(AddIndexConcurrently|RemoveIndexConcurrently)\\(",
+    "absent": "atomic\\s*=\\s*False",
+    "msg": "AddIndexConcurrently in an atomic migration aborts with 25001. Safe: set atomic = False on the Migration class."
+  }
+]
