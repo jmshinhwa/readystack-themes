@@ -1,0 +1,15 @@
+[
+  {"id": "rules_version_missing", "sev": "warn", "title": "No rules_version = '2'", "msg": "This file has no rules_version = '2' line, so Firebase evaluates it with version 1 semantics and the recursive wildcard behaves differently than the code you read."},
+  {"id": "public_access", "sev": "error", "title": "allow ... : if true", "msg": "This path is open to anyone on the internet with your project ID — no sign-in, no rate limit, no audit trail."},
+  {"id": "testmode_open", "sev": "error", "title": "Test-mode date still in the future", "msg": "Test mode: every document under this path is world readable and writable until the date in the rule."},
+  {"id": "testmode_expired", "sev": "error", "title": "Test-mode date already passed", "msg": "Test mode expired: every client read and write under this path is being denied, so the app is failing for real users."},
+  {"id": "recursive_wildcard_write", "sev": "error", "title": "Write on /{document=**}", "msg": "A write grant on the recursive wildcard applies to every collection in the database, including ones added after this file was written."},
+  {"id": "auth_any_user_wildcard", "sev": "error", "title": "request.auth != null on a wildcard", "msg": "Any signed-in account reaches this whole subtree — anonymous auth and self-serve sign-up both count as signed in."},
+  {"id": "owner_check_missing", "sev": "error", "title": "Owner segment never compared to request.auth.uid", "msg": "The path captures a user id but the condition never compares it to request.auth.uid, so one customer can write another customer's document."},
+  {"id": "hardcoded_uid", "sev": "warn", "title": "Hard-coded uid in a rule", "msg": "A literal uid in the rules file is a permanent backdoor that survives role changes and is readable by anyone who downloads your rules."},
+  {"id": "delete_unrestricted", "sev": "warn", "title": "Delete granted to any signed-in user", "msg": "Delete is granted on sign-in alone, so a single script can empty this collection and Firestore keeps no client-side undo."},
+  {"id": "list_exposure", "sev": "info", "title": "read grants list as well as get", "msg": "read covers both get and list — a client can page the entire collection. Split into get and list if only single-document reads are intended."},
+  {"id": "write_no_validation", "sev": "info", "title": "Write with no field validation", "msg": "The condition checks who is writing but never what is written, so any client can add fields or change a price, role or balance."},
+  {"id": "storage_size_unbounded", "sev": "warn", "title": "Storage write with no size cap", "msg": "No request.resource.size check on a Storage write: one upload loop bills your project for as much egress and storage as it likes."},
+  {"id": "storage_content_type", "sev": "warn", "title": "Storage write with no content-type check", "msg": "No request.resource.contentType check: a path meant for images will accept executables and HTML served from your own bucket domain."}
+]
