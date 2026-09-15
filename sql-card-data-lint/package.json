@@ -2,7 +2,7 @@
   "name": "sql-card-data-lint",
   "displayName": "SQL Card Data Lint (PCI DSS Req 3)",
   "description": "Finds cardholder and sensitive authentication data in your .sql migrations: CVV, track, PIN block, plaintext PAN columns and test card numbers, each mapped to a PCI DSS Requirement 3 rule.",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -46,8 +46,7 @@
   "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jmshinhwa/readystack-themes.git",
-    "directory": "sql-card-data-lint"
+    "url": "https://github.com/jmshinhwa-ai/readystack"
   },
   "homepage": "https://getreadystack.com/tools/sql-card-data-lint",
   "icon": "icon.png"
