@@ -1,0 +1,182 @@
+[
+  {
+    "id": "llama32-multimodal-eu-domicile",
+    "sev": "error",
+    "scope": "line",
+    "once": true,
+    "re": "llama[-_ ]?3[._]2[-_ ]?(?:11b|90b)|llama[-_ ]?3[._]2[^\\n]{0,30}vision",
+    "msg": "Llama 3.2 multimodal (11B/90B Vision): the Llama 3.2 Community License withholds the grant from individuals domiciled in, and companies with a principal place of business in, the European Union. An EU-domiciled team has no licence at all here - not a narrower one. Use a text-only Llama build, or a hosted provider that holds its own licence."
+  },
+  {
+    "id": "llama4-multimodal-eu-domicile",
+    "sev": "error",
+    "scope": "line",
+    "once": true,
+    "re": "llama[-_ ]?4[-_ ]?(?:scout|maverick)",
+    "msg": "Llama 4 Scout and Maverick are multimodal models, and the Llama 4 Community License carries the same EU principal-place-of-business exclusion for multimodal use. Confirm where your company is established before these weights reach a build."
+  },
+  {
+    "id": "llama-700m-mau-cap",
+    "sev": "warn",
+    "scope": "line",
+    "once": true,
+    "re": "meta-llama/|llama[-_ ]?[234][-_ .]",
+    "msg": "Llama Community License: if the product had more than 700 million monthly active users in the calendar month before the release, the grant does not extend to you and you must request a separate licence from Meta. Write down the MAU figure you relied on at release date - that is the number an auditor asks for."
+  },
+  {
+    "id": "llama-built-with-attribution",
+    "sev": "warn",
+    "scope": "file",
+    "re": "meta-llama/|llama[-_ ]?[234][-_ .]",
+    "not_file": "built with llama",
+    "msg": "Llama 3.1 and later require the notice \"Built with Llama\" to be displayed prominently on any website, user interface, blog post, about page or product documentation for anything built with these weights or their outputs. That string appears nowhere in this file."
+  },
+  {
+    "id": "llama-notice-text-missing",
+    "sev": "warn",
+    "scope": "file",
+    "re": "meta-llama/|llama[-_ ]?[234][-_ .]",
+    "not_file": "Community License, Copyright",
+    "msg": "The Llama Community License requires a Notice file distributed with the model reading: \"Llama 3.1 is licensed under the Llama 3.1 Community License, Copyright (c) Meta Platforms, Inc. All Rights Reserved.\" with the version you actually ship. No notice text of that form is present."
+  },
+  {
+    "id": "llama-derivative-naming",
+    "sev": "warn",
+    "scope": "line",
+    "once": true,
+    "re": "\\bpeft\\b|\\blora\\b|fine[-_ ]?tun|adapter_model|merge_and_unload",
+    "needs_file": "meta-llama/|llama[-_ ]?[234][-_ .]",
+    "msg": "You are deriving a model from Llama weights. The Community License requires the name of any distributed derivative to begin with \"Llama\", and the model card to say it is built with Llama. A fine-tune published under a different brand name breaks the naming term even when everything else is right."
+  },
+  {
+    "id": "llama-aup-passthrough",
+    "sev": "warn",
+    "scope": "file",
+    "re": "meta-llama/|llama[-_ ]?[234][-_ .]",
+    "not_file": "acceptable use|use_policy|AUP",
+    "msg": "The Llama Acceptable Use Policy is incorporated into the licence by reference and must travel to anyone you hand the weights, a derivative or a hosted endpoint. Shipping the licence text alone leaves the restriction unenforced downstream, which is your breach, not theirs."
+  },
+  {
+    "id": "gemma-terms-passthrough",
+    "sev": "warn",
+    "scope": "line",
+    "once": true,
+    "re": "google/gemma|\\bgemma[-_ ]?[0-9]|codegemma|paligemma|shieldgemma",
+    "msg": "Gemma is distributed under the Gemma Terms of Use with prohibited-use restrictions attached. You must pass the same restrictions to every downstream recipient and supply the Terms with any distribution, derivative or hosted endpoint you put in front of the weights."
+  },
+  {
+    "id": "gemma-labelled-open-source",
+    "sev": "warn",
+    "scope": "line",
+    "once": true,
+    "re": "open[- ]?source|apache[-_ ]?2|MIT licen[cs]e",
+    "needs_file": "google/gemma|\\bgemma[-_ ]?[0-9]",
+    "msg": "This file describes a Gemma build with an OSI licence label. Gemma is not under an OSI-approved licence: it carries use restrictions the Gemma Terms of Use impose. Calling it open source in a README, a model card or an SBOM is the misstatement a procurement review picks up first."
+  },
+  {
+    "id": "flux-dev-non-commercial",
+    "sev": "error",
+    "scope": "line",
+    "once": true,
+    "re": "flux[.\\-_ ]?1[-_ ]?\\[?dev",
+    "msg": "FLUX.1 [dev] weights are released under the FLUX.1 [dev] Non-Commercial License. Serving them inside anything you charge for - or anything that generates revenue for the company - needs a commercial licence from Black Forest Labs. FLUX.1 [schnell] is Apache 2.0 and is the drop-in that does not."
+  },
+  {
+    "id": "flux-pro-weights-not-released",
+    "sev": "error",
+    "scope": "line",
+    "once": true,
+    "re": "flux[.\\-_ ]?1[-_ ]?\\[?pro",
+    "msg": "FLUX.1 [pro] weights are not publicly released; the model is offered through the API and through licensed partners. A local weights path or a repository download for FLUX.1 [pro] is either the wrong identifier or a copy nobody granted you."
+  },
+  {
+    "id": "sd3-revenue-threshold",
+    "sev": "warn",
+    "scope": "line",
+    "once": true,
+    "re": "stable[-_ ]?diffusion[-_ ]?3|sd3[._ ]?5|stabilityai/stable-diffusion-3",
+    "msg": "Stable Diffusion 3.x is under the Stability AI Community License: research use is free, and commercial use is free only while the organisation stays under USD 1 million in annual revenue. Crossing that line requires an Enterprise licence. It is a revenue trigger, so the day it fires has nothing to do with how much you use the model."
+  },
+  {
+    "id": "sd15-openrail-restrictions",
+    "sev": "warn",
+    "scope": "line",
+    "once": true,
+    "re": "stable[-_ ]?diffusion[-_ ]?v?1[-_ .]5|runwayml/stable-diffusion",
+    "msg": "Stable Diffusion 1.5 is CreativeML OpenRAIL-M. The use restrictions in its attachment must be reproduced in every redistribution and derivative, and you must impose the same restrictions on your own users. A generic terms-of-service link does not satisfy the pass-through."
+  },
+  {
+    "id": "sdxl-openrail-restrictions",
+    "sev": "warn",
+    "scope": "line",
+    "once": true,
+    "re": "sdxl|stable[-_ ]?diffusion[-_ ]?xl",
+    "msg": "SDXL is CreativeML OpenRAIL++-M. Same obligation as OpenRAIL-M: the behavioural use restrictions ride along with the weights, the fine-tunes and anything you serve from them, and they must be shown to your users - not just accepted by you."
+  },
+  {
+    "id": "codestral-non-production",
+    "sev": "error",
+    "scope": "line",
+    "once": true,
+    "re": "codestral",
+    "msg": "Codestral weights are published under the Mistral AI Non-Production License: development, testing and research only. Serving Codestral to customers, or running it in an internal tool that supports the business, needs a commercial licence from Mistral. The free weights do not reach production, however small the deployment."
+  },
+  {
+    "id": "mistral-research-weights",
+    "sev": "error",
+    "scope": "line",
+    "once": true,
+    "re": "mistral[-_ ]?large|pixtral[-_ ]?large",
+    "msg": "Mistral Large and Pixtral Large weights are released under a research or non-production licence, not Apache 2.0. Mistral 7B, Mixtral and Mistral NeMo are Apache 2.0 - if you need a local model from this family that survives a customer deployment, those are the identifiers to pin."
+  },
+  {
+    "id": "qwen-100m-mau-cap",
+    "sev": "warn",
+    "scope": "line",
+    "once": true,
+    "re": "qwen[-_ ]?2\\.?5?[-_ ]?72b|qwen[-_ ]?max",
+    "msg": "The largest Qwen builds ship under the Qwen LICENSE rather than the Apache 2.0 terms the smaller sizes use: above 100 million monthly active users you must request a licence from the provider, and the attribution notice must survive redistribution. Check which parameter size you actually pinned before assuming Apache."
+  },
+  {
+    "id": "non-commercial-artifact",
+    "sev": "error",
+    "scope": "line",
+    "once": true,
+    "re": "cc[-_ ]?by[-_ ]?nc|non[-_ ]?commercial|noncommercial",
+    "msg": "A non-commercial licence tag is referenced here. Non-commercial excludes any use primarily directed toward commercial advantage - which covers an internal tool at a for-profit company, not only a product you invoice for. Name the artefact in your notice file and obtain a commercial grant before launch."
+  },
+  {
+    "id": "research-only-weights",
+    "sev": "error",
+    "scope": "line",
+    "once": true,
+    "re": "research[-_ ]only|non[-_ ]?production|research[-_ ]licen[cs]e|\\bMNPL\\b|\\bMRL\\b",
+    "msg": "Research-only or non-production weights are referenced. Those licences cover evaluation and internal research and stop there: the deployment becomes unlicensed on the day it answers its first real request, not on the day someone notices."
+  },
+  {
+    "id": "gated-repo-acceptance",
+    "sev": "warn",
+    "scope": "line",
+    "once": true,
+    "re": "meta-llama/|google/gemma|stabilityai/stable-diffusion-3|mistralai/Mistral-Large",
+    "msg": "This is a gated model repository: the licence is accepted per account and the acceptance is logged against whoever clicked it. A personal account or a developer's token pulling these weights for the company does not put the acceptance on the company. Use an organisation account and keep the record with the release."
+  },
+  {
+    "id": "unpinned-model-revision",
+    "sev": "warn",
+    "scope": "line",
+    "once": true,
+    "re": "from_pretrained\\s*\\(|snapshot_download\\s*\\(|huggingface\\.co/",
+    "not_line": "revision\\s*=|@[0-9a-f]{7,40}",
+    "needs_file": "meta-llama/|llama[-_ ]?[234][-_ .]|gemma|flux[.\\-_ ]?1|stable[-_ ]?diffusion|sdxl|codestral|mistral[-_ ]?large|pixtral",
+    "msg": "This model load has no revision pin. Licences change in place: weight repositories have shipped licence updates without a new model name, so the terms you reviewed are not necessarily the terms you ship. Pin a commit revision and the licence becomes reproducible evidence."
+  },
+  {
+    "id": "no-attribution-notice",
+    "sev": "warn",
+    "scope": "file",
+    "re": "meta-llama/|llama[-_ ]?[234][-_ .]|gemma|flux[.\\-_ ]?1|stable[-_ ]?diffusion|sdxl|codestral|mistral[-_ ]?large|pixtral",
+    "not_file": "NOTICE|THIRD[-_ ]?PARTY|ATTRIBUTION|model[-_ ]?card",
+    "msg": "Restricted-licence weights are referenced, but nothing here points at a NOTICE, THIRD_PARTY or model-card file carrying the licence text and attribution forward. Every licence flagged by this linter requires the text to travel with the code that uses it."
+  }
+]
