@@ -1,0 +1,355 @@
+[
+{
+"id": "iso27001_2013",
+"kind": "cite",
+"sev": "error",
+"re": "ISO(?:/IEC)?[ \\t]*27001[ \\t]*[:\\-][ \\t]*2013",
+"dead": "2025-10-31",
+"msg": "ISO/IEC 27001:2013 is a withdrawn edition. ISO/IEC 27001:2022 replaced it; certificates issued against the 2013 edition stopped being valid at the IAF transition deadline"
+},
+{
+"id": "iso27002_2013",
+"kind": "cite",
+"sev": "error",
+"re": "ISO(?:/IEC)?[ \\t]*27002[ \\t]*[:\\-][ \\t]*2013",
+"dead": "",
+"msg": "ISO/IEC 27002:2013 was replaced by ISO/IEC 27002:2022, which regrouped the controls into 4 themes and renumbered Annex A. Control numbers quoted from the 2013 edition no longer resolve"
+},
+{
+"id": "iso27005_old",
+"kind": "cite",
+"sev": "warn",
+"re": "ISO(?:/IEC)?[ \\t]*27005[ \\t]*[:\\-][ \\t]*(?:2011|2018)",
+"dead": "",
+"msg": "ISO/IEC 27005 was revised in 2022. Cite ISO/IEC 27005:2022 for risk management guidance"
+},
+{
+"id": "iso9001_2008",
+"kind": "cite",
+"sev": "error",
+"re": "ISO[ \\t]*9001[ \\t]*[:\\-][ \\t]*(?:2008|2000)",
+"dead": "2018-09-15",
+"msg": "ISO 9001:2008 certificates expired at the end of the three-year transition. ISO 9001:2015 is the current edition"
+},
+{
+"id": "iso14001_2004",
+"kind": "cite",
+"sev": "error",
+"re": "ISO[ \\t]*14001[ \\t]*[:\\-][ \\t]*2004",
+"dead": "2018-09-15",
+"msg": "ISO 14001:2004 certificates expired at the end of the transition period. ISO 14001:2015 is the current edition"
+},
+{
+"id": "iso22301_2012",
+"kind": "cite",
+"sev": "error",
+"re": "ISO[ \\t]*22301[ \\t]*[:\\-][ \\t]*2012",
+"dead": "",
+"msg": "ISO 22301:2012 was superseded by ISO 22301:2019; the clause structure and the business impact analysis requirements changed"
+},
+{
+"id": "iso20000_2011",
+"kind": "cite",
+"sev": "error",
+"re": "ISO(?:/IEC)?[ \\t]*20000-1[ \\t]*[:\\-][ \\t]*(?:2011|2005)",
+"dead": "",
+"msg": "ISO/IEC 20000-1:2011 was superseded by ISO/IEC 20000-1:2018"
+},
+{
+"id": "iso31000_2009",
+"kind": "cite",
+"sev": "error",
+"re": "ISO[ \\t]*31000[ \\t]*[:\\-][ \\t]*2009",
+"dead": "",
+"msg": "ISO 31000:2009 was superseded by ISO 31000:2018"
+},
+{
+"id": "iso17025_2005",
+"kind": "cite",
+"sev": "error",
+"re": "ISO(?:/IEC)?[ \\t]*17025[ \\t]*[:\\-][ \\t]*2005",
+"dead": "2021-06-01",
+"msg": "ISO/IEC 17025:2005 accreditations ended at the transition deadline. ISO/IEC 17025:2017 is the current edition"
+},
+{
+"id": "pci_dss_3",
+"kind": "cite",
+"sev": "error",
+"re": "PCI[ \\t\\-]?DSS[ \\t]*(?:v\\.?[ \\t]*)?3\\.[012](?:\\.1)?",
+"dead": "2024-03-31",
+"msg": "PCI DSS v3.2.1 was retired. Assessments must be done against PCI DSS v4.0.1"
+},
+{
+"id": "pci_dss_40",
+"kind": "cite",
+"sev": "error",
+"re": "PCI[ \\t\\-]?DSS[ \\t]*(?:v\\.?[ \\t]*)?4\\.0(?!\\.1)",
+"dead": "2025-12-31",
+"msg": "PCI DSS v4.0 was retired when v4.0.1 became the only active version. Cite v4.0.1"
+},
+{
+"id": "fips_140_2",
+"kind": "cite",
+"sev": "error",
+"re": "FIPS[ \\t]*(?:PUB[ \\t]*)?140[ \\t\\-]*2",
+"dead": "2026-09-21",
+"msg": "FIPS 140-2 is closed: CMVP stopped accepting new 140-2 submissions in September 2021 and every remaining FIPS 140-2 certificate moves to the CMVP Historical List. Validate and cite FIPS 140-3"
+},
+{
+"id": "tls_10_11",
+"kind": "cite",
+"sev": "error",
+"re": "TLS[ \\t]*1\\.[01](?![0-9])",
+"dead": "2021-03-01",
+"msg": "TLS 1.0 and TLS 1.1 were deprecated by RFC 8996. Do not list them as supported"
+},
+{
+"id": "ssl_3",
+"kind": "cite",
+"sev": "error",
+"re": "SSL[ \\t]*(?:v)?3(?:\\.0)?(?![0-9])",
+"dead": "",
+"msg": "SSL 3.0 is prohibited by RFC 7568"
+},
+{
+"id": "sha1",
+"kind": "cite",
+"sev": "error",
+"re": "\\bSHA[ \\t\\-]?1\\b",
+"dead": "",
+"msg": "SHA-1 has been disallowed for digital signature generation since 2013 under NIST SP 800-131A, and NIST is removing it from all approved uses by 31 December 2030"
+},
+{
+"id": "md5",
+"kind": "cite",
+"sev": "error",
+"re": "\\bMD5\\b",
+"dead": "",
+"msg": "MD5 is not collision resistant and is not an approved hash for any security function"
+},
+{
+"id": "triple_des",
+"kind": "cite",
+"sev": "error",
+"re": "\\b(?:3DES|Triple[ \\t\\-]?DES|TDEA)\\b",
+"dead": "2023-12-31",
+"msg": "Three-key TDEA was disallowed by NIST SP 800-131A Rev. 2. Cite AES"
+},
+{
+"id": "rsa_short",
+"kind": "cite",
+"sev": "error",
+"re": "RSA[ \\t\\-]*(?:512|1024)(?![0-9])",
+"dead": "",
+"msg": "RSA below 2048 bits has been disallowed since 2013 under NIST SP 800-131A"
+},
+{
+"id": "rc4",
+"kind": "cite",
+"sev": "error",
+"re": "\\bRC4\\b",
+"dead": "",
+"msg": "RC4 is prohibited in TLS by RFC 7465"
+},
+{
+"id": "sp800_53_r4",
+"kind": "cite",
+"sev": "error",
+"re": "800[ \\t\\-]*53[^\\n]{0,12}Rev(?:ision)?\\.?[ \\t]*4",
+"dead": "2021-09-23",
+"msg": "NIST SP 800-53 Rev. 4 was withdrawn. Control identifiers should be cited from Rev. 5"
+},
+{
+"id": "sp800_63_3",
+"kind": "cite",
+"sev": "warn",
+"re": "800[ \\t\\-]*63[ \\t\\-]*(?:3|Rev(?:ision)?\\.?[ \\t]*3)(?![0-9])",
+"dead": "",
+"msg": "NIST SP 800-63-3 is the 2017 edition of the Digital Identity Guidelines; Revision 4 supersedes it and renumbered several AAL and IAL requirements"
+},
+{
+"id": "csf_1x",
+"kind": "cite",
+"sev": "error",
+"re": "(?:NIST[ \\t]*)?(?:CSF|Cybersecurity[ \\t]*Framework)[ \\t]*(?:v\\.?[ \\t]*)?1\\.[01](?![0-9])",
+"dead": "2024-02-26",
+"msg": "NIST Cybersecurity Framework 1.1 was superseded by CSF 2.0, which added the GOVERN function. Subcategory identifiers from 1.1 do not map one-to-one"
+},
+{
+"id": "sp800_171_r2",
+"kind": "cite",
+"sev": "warn",
+"re": "800[ \\t\\-]*171[^\\n]{0,12}Rev(?:ision)?\\.?[ \\t]*2",
+"dead": "",
+"msg": "NIST SP 800-171 Rev. 3 was published in May 2024 and restructured the control families. Say which revision your assessment was against and why"
+},
+{
+"id": "dir_95_46",
+"kind": "cite",
+"sev": "error",
+"re": "95/46/EC",
+"dead": "2018-05-25",
+"msg": "Directive 95/46/EC was repealed by the GDPR. Cite Regulation (EU) 2016/679"
+},
+{
+"id": "wp29",
+"kind": "cite",
+"sev": "error",
+"re": "(?:\\bWP\\.?[ \\t]*29\\b|Article[ \\t]*29[ \\t]*(?:Working[ \\t]*Party|WP))",
+"dead": "2018-05-25",
+"msg": "The Article 29 Working Party was replaced by the European Data Protection Board. EDPB endorsed the WP29 guidelines but issues them under its own numbering"
+},
+{
+"id": "privacy_shield",
+"kind": "cite",
+"sev": "error",
+"re": "Privacy[ \\t]*Shield",
+"dead": "2020-07-16",
+"msg": "The EU-US Privacy Shield was invalidated by the Court of Justice in Schrems II. Transfers now rely on the EU-U.S. Data Privacy Framework adequacy decision of 10 July 2023, or on SCCs"
+},
+{
+"id": "safe_harbor",
+"kind": "cite",
+"sev": "error",
+"re": "Safe[ \\t]*Harbou?r[ \\t]*(?:Framework|Principles|programme|program|decision)?",
+"dead": "2015-10-06",
+"msg": "The US Safe Harbor decision was invalidated in Schrems I"
+},
+{
+"id": "old_sccs",
+"kind": "cite",
+"sev": "error",
+"re": "(?:2010/87/EU|2001/497/EC)",
+"dead": "2022-12-27",
+"msg": "The pre-2021 Standard Contractual Clauses could not be relied on after the repapering deadline. Cite the SCCs in Implementing Decision (EU) 2021/914"
+},
+{
+"id": "nis1",
+"kind": "cite",
+"sev": "error",
+"re": "(?:2016/1148|NIS[ \\t]*Directive(?![ \\t]*2))",
+"dead": "2024-10-18",
+"msg": "Directive (EU) 2016/1148 was repealed by NIS2, Directive (EU) 2022/2555"
+},
+{
+"id": "eidas1",
+"kind": "cite",
+"sev": "warn",
+"re": "910/2014",
+"dead": "",
+"msg": "Regulation (EU) 910/2014 was amended by Regulation (EU) 2024/1183, which introduced the European Digital Identity Wallet. Cite the regulation as amended"
+},
+{
+"id": "eprivacy_reg",
+"kind": "cite",
+"sev": "warn",
+"re": "ePrivacy[ \\t]*Regulation",
+"dead": "",
+"msg": "The proposed ePrivacy Regulation was withdrawn by the European Commission in its February 2025 work programme. Directive 2002/58/EC as amended still governs cookies and terminal equipment"
+},
+{
+"id": "dpa_1998",
+"kind": "cite",
+"sev": "error",
+"re": "Data[ \\t]*Protection[ \\t]*Act[ \\t]*1998",
+"dead": "2018-05-25",
+"msg": "The Data Protection Act 1998 was repealed by the Data Protection Act 2018"
+},
+{
+"id": "dp_directive",
+"kind": "cite",
+"sev": "error",
+"re": "(?:EU[ \\t]*)?Data[ \\t]*Protection[ \\t]*Directive",
+"dead": "2018-05-25",
+"msg": "There is no Data Protection Directive in force for general processing. Name the GDPR, or the Law Enforcement Directive (EU) 2016/680 if that is what you mean"
+},
+{
+"id": "owasp_2017",
+"kind": "cite",
+"sev": "error",
+"re": "OWASP[ \\t]*Top[ \\t]*(?:10|Ten)[^\\n]{0,14}(?:2017|2013|2010)",
+"dead": "",
+"msg": "OWASP Top 10:2021 is the current release; the 2017 category identifiers (A1-A10) were merged and renumbered"
+},
+{
+"id": "asvs_old",
+"kind": "cite",
+"sev": "warn",
+"re": "ASVS[ \\t]*(?:v\\.?[ \\t]*)?[34](?:\\.[0-9])*",
+"dead": "",
+"msg": "OWASP ASVS 5.0 was released in 2025 and renumbered the verification requirements. A control mapped to an ASVS 4.x number will not line up"
+},
+{
+"id": "tsc_2016",
+"kind": "cite",
+"sev": "warn",
+"re": "(?:2016[ \\t]*Trust[ \\t]*Services|TSC[ \\t]*2016)",
+"dead": "",
+"msg": "SOC 2 reports are issued against the 2017 Trust Services Criteria, with the 2022 revised points of focus"
+},
+{
+"id": "en301549_old",
+"kind": "cite",
+"sev": "warn",
+"re": "EN[ \\t]*301[ \\t]*549[ \\t]*(?:V[ \\t]*)?(?:1\\.[0-9]|2\\.[0-9]|3\\.1)(?:\\.[0-9])?",
+"dead": "",
+"msg": "EN 301 549 V3.2.1 is the version listed in the harmonised standard reference for the Web Accessibility Directive. Earlier versions point at WCAG 2.0 clause numbers"
+},
+{
+"id": "cyber_essentials_old",
+"kind": "cite",
+"sev": "warn",
+"re": "Cyber[ \\t]*Essentials[^\\n]{0,24}(?:Montpellier|Evendine|Beacon)",
+"dead": "",
+"msg": "The named Cyber Essentials question set has been superseded by the Willow question set introduced in April 2025"
+},
+{
+"id": "win_ie",
+"kind": "cite",
+"sev": "warn",
+"re": "Internet[ \\t]*Explorer[ \\t]*1?[0-9]?",
+"dead": "2022-06-15",
+"msg": "Internet Explorer 11 reached end of support and the desktop application is disabled. A browser support matrix that lists it is not a current statement"
+},
+{
+"id": "undated_iso",
+"kind": "undated",
+"sev": "warn",
+"re": "ISO(?:/IEC)?[ \\t]*(?:27001|27002|27005|9001|14001|22301|31000|20000-1|17025)\\b(?![ \\t]*[:\\-][ \\t]*(?:19|20)[0-9]{2})",
+"dead": "",
+"msg": "This standard is cited without an edition year. An auditor reads an undated citation as the edition in force on the day they read it, which is not necessarily the one you were assessed against"
+},
+{
+"id": "undated_nist",
+"kind": "undated",
+"sev": "warn",
+"re": "SP[ \\t]*800[ \\t\\-]*(?:53|171|131A)\\b(?![^\\n]{0,14}(?:Rev(?:ision)?|r\\.[ \\t]*[0-9]))|SP[ \\t]*800[ \\t\\-]*63(?![ \\t\\-]*[0-9])(?![^\\n]{0,14}Rev)",
+"dead": "",
+"msg": "This NIST special publication is cited without a revision. Control identifiers moved between revisions, so the citation does not resolve on its own"
+},
+{
+"id": "vague_now",
+"kind": "cite",
+"sev": "info",
+"re": "\\b(?:as of today|at the time of writing|currently certified|the latest version of the standard|recently updated)\\b",
+"dead": "",
+"msg": "An undated claim about the present ages silently. Replace it with the date the statement was true"
+},
+{
+"id": "doc_date_stale",
+"kind": "docdate",
+"sev": "warn",
+"re": "(?:^[ \\t]*:(?:Date|Last[ \\t]*Updated|Revision[ \\t]*Date):[ \\t]*|\\*{0,2}(?:Last[ \\t]*(?:updated|reviewed)|Document[ \\t]*date)\\*{0,2}[ \\t]*:?[ \\t]*)((?:19|20)[0-9]{2}-[0-9]{2}-[0-9]{2})",
+"max_age_days": 540,
+"dead": "",
+"msg": "The document's own date field is older than 18 months. A compliance page that has not been reviewed in that long is treated as unmaintained"
+},
+{
+"id": "doc_date_missing",
+"kind": "nodate",
+"sev": "info",
+"re": "",
+"dead": "",
+"msg": "No date field found in this document. Add a :Date: field (reStructuredText) or a Last updated line so a reader can tell how old the statements are"
+}
+]
