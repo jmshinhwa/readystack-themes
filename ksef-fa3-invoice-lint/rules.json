@@ -1,0 +1,20 @@
+[
+  {"id": "fa3_namespace", "sev": "err", "msg": "Root <Faktura> must carry the FA(3) namespace xmlns=\"http://crd.gov.pl/wzor/2025/06/25/13775/\". Any other CRD template is an FA(2)-era namespace and KSeF rejects the document."},
+  {"id": "kod_systemowy", "sev": "err", "msg": "KodFormularza must have kodSystemowy=\"FA (3)\" - with one space before the bracket."},
+  {"id": "wersja_schemy", "sev": "err", "msg": "KodFormularza must have wersjaSchemy=\"1-0E\" for the FA(3) structure."},
+  {"id": "wariant_formularza", "sev": "err", "msg": "<WariantFormularza> must be 3 for FA(3)."},
+  {"id": "data_wytworzenia", "sev": "err", "msg": "<DataWytworzeniaFa> is xs:dateTime, not a date: use 2026-09-14T09:12:31Z form."},
+  {"id": "nip_format", "sev": "err", "msg": "<NIP> must be exactly 10 digits - no PL prefix, no dashes, no spaces."},
+  {"id": "kod_waluty", "sev": "err", "msg": "<KodWaluty> must be a 3-letter ISO 4217 code such as PLN or EUR."},
+  {"id": "p_1_data", "sev": "err", "msg": "<P_1> (issue date) must be ISO yyyy-mm-dd, not the Polish dd.mm.yyyy form."},
+  {"id": "p_2_numer", "sev": "err", "msg": "<P_2> (invoice number) must be present and non-empty."},
+  {"id": "rodzaj_faktury", "sev": "err", "msg": "<RodzajFaktury> must be one of VAT, KOR, ZAL, ROZ, UPR, KOR_ZAL, KOR_ROZ."},
+  {"id": "decimal_comma", "sev": "err", "msg": "Amounts use a dot decimal separator. A Polish locale comma makes the amount unparseable for KSeF."},
+  {"id": "amount_space", "sev": "err", "msg": "Amounts carry no thousands separator and no spaces - digits and one dot only."},
+  {"id": "encoding_utf8", "sev": "err", "msg": "The XML declaration must say encoding=\"UTF-8\"; Polish diacritics break under any other encoding."},
+  {"id": "adnotacje_flags", "sev": "err", "msg": "<Adnotacje> must carry the P_16, P_17, P_18 and P_18A flags, each 1 or 2."},
+  {"id": "korekta_ref", "sev": "err", "msg": "A correction invoice must identify the invoice it corrects in <DaneFaKorygowanej>."},
+  {"id": "placeholder_data", "sev": "err", "msg": "Placeholder value left in the document - a generated sample identifier, not real party data."},
+  {"id": "podmiot_nazwa", "sev": "err", "msg": "Podmiot1 (seller) and Podmiot2 (buyer) each need identification with a non-empty <Nazwa> or a surname."},
+  {"id": "penalty_clock", "sev": "info", "msg": "Penalty clock:"}
+]
