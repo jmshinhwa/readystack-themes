@@ -1,0 +1,19 @@
+ReadyStack Source-Available License
+Copyright (c) 2026 ReadyStack (github.com/jmshinhwa). All rights reserved.
+
+This repository is published so that anyone can read, audit and build the tools before installing them.
+
+1. Use. You may install and use the Software, including for commercial purposes. Free features may be used
+   without a licence key. Paid features (for example workspace scans, exportable reports and CI exit codes)
+   require a valid licence key issued by ReadyStack (https://getreadystack.com).
+2. Licence key. You may not remove, disable, alter or circumvent the licence key functionality, and you may
+   not distribute a copy or derivative of the Software in which it has been removed, disabled, altered or
+   circumvented.
+3. Redistribution. You may share unmodified copies of the Software with this notice intact. Modified copies
+   may be shared only for the purpose of contributing changes back to this repository.
+4. No warranty. The Software is provided "as is", without warranty of any kind, express or implied. In no
+   event shall ReadyStack be liable for any claim, damages or other liability arising from the Software.
+5. Everything not expressly permitted above is reserved.
+
+Each package also carries a short LICENSE.txt with the same two rules: free features may be used without a
+licence key; paid features require a valid licence key.
