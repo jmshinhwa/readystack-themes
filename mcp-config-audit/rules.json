@@ -1,0 +1,146 @@
+[
+  {
+    "id": "json_invalid",
+    "sev": "error",
+    "title": "The config is not valid JSON",
+    "msg": "An agent client that cannot parse the file starts none of the servers in it, usually with no visible error beyond an empty tool list. A trailing comma or a comment is the usual cause; mcp.json is strict JSON.",
+    "fix": "Remove trailing commas and comments, then reload the window.",
+    "std": "MCP configuration (JSON)"
+  },
+  {
+    "id": "secret_inline",
+    "sev": "error",
+    "title": "A literal credential is written into the config",
+    "msg": "The value is a credential typed straight into the file rather than a placeholder. Agent configs live beside the code and get committed, shared in screenshots and pasted into issues, and the token stays valid until somebody rotates it.",
+    "fix": "Replace the value with ${input:<id>} and declare the id under \"inputs\" with \"password\": true, or read it from the environment.",
+    "std": "VS Code mcp.json inputs"
+  },
+  {
+    "id": "input_not_password",
+    "sev": "error",
+    "title": "A promptString input for a secret is missing \"password\": true",
+    "msg": "A promptString input without \"password\": true is typed in the clear and kept in plain storage rather than the secret store, so a value the file was careful not to hardcode is recorded anyway.",
+    "fix": "Add \"password\": true to the input entry.",
+    "std": "VS Code mcp.json inputs"
+  },
+  {
+    "id": "npx_unpinned",
+    "sev": "error",
+    "title": "npx launches a package with no version",
+    "msg": "npx with no version resolves the newest published version at every launch, so the code the agent runs is decided by whoever published last, not by this file. There is no lockfile behind an mcp.json.",
+    "fix": "Pin the package: \"@scope/server-name@1.2.3\".",
+    "std": "npm / npx resolution"
+  },
+  {
+    "id": "uvx_unpinned",
+    "sev": "warn",
+    "title": "uvx launches a package with no version",
+    "msg": "uvx resolves the newest release of the named package on each run, so the server binary can change between two launches of the same editor window.",
+    "fix": "Pin it: \"package==1.2.3\", or use --from package==1.2.3.",
+    "std": "uv / uvx resolution"
+  },
+  {
+    "id": "docker_mutable_tag",
+    "sev": "warn",
+    "title": "Docker image has no tag or uses :latest",
+    "msg": "An untagged image and an image tagged :latest are both mutable references. The pull that runs next week can be a different image than the one reviewed today, with the same line in the config.",
+    "fix": "Use an explicit version tag, or a digest: image@sha256:...",
+    "std": "OCI image references"
+  },
+  {
+    "id": "remote_plaintext_http",
+    "sev": "error",
+    "title": "Remote server URL is plain http://",
+    "msg": "A remote MCP server reached over http:// carries its Authorization header, its tool arguments and everything the tools return in clear text over the network. Loopback addresses are exempt; a hostname is not.",
+    "fix": "Use https:// for any non-loopback MCP endpoint.",
+    "std": "MCP transports (HTTP)"
+  },
+  {
+    "id": "sse_deprecated",
+    "sev": "warn",
+    "title": "Deprecated HTTP+SSE transport",
+    "msg": "The 2025-03-26 revision of the MCP specification replaced the HTTP+SSE transport with Streamable HTTP and marks the SSE form as legacy. Clients still accept it, and each client will drop it on its own schedule.",
+    "fix": "Move the server to Streamable HTTP and set \"type\": \"http\".",
+    "std": "MCP spec revision 2025-03-26"
+  },
+  {
+    "id": "transport_ambiguous",
+    "sev": "error",
+    "title": "Server entry has both command and url, or neither",
+    "msg": "A server entry describes exactly one transport: a command to spawn, or a url to connect to. Carrying both leaves the choice to the client, and carrying neither makes the entry unstartable while the file still parses.",
+    "fix": "Keep either \"command\" (with \"type\": \"stdio\") or \"url\" (with \"type\": \"http\").",
+    "std": "MCP configuration"
+  },
+  {
+    "id": "type_missing",
+    "sev": "warn",
+    "title": "Server entry under \"servers\" has no \"type\"",
+    "msg": "In the VS Code mcp.json schema each server declares its transport with \"type\": \"stdio\", \"http\" or \"sse\". Leaving it out makes the entry depend on a client inferring the transport from the other keys.",
+    "fix": "Add \"type\": \"stdio\" for a spawned command, \"http\" for a remote endpoint.",
+    "std": "VS Code mcp.json schema"
+  },
+  {
+    "id": "auto_approve",
+    "sev": "error",
+    "title": "Tools are placed on an auto-approval list",
+    "msg": "An alwaysAllow or autoApprove list removes the confirmation step for the tools named in it, so a tool call the model was talked into by text inside a file or a web page executes with no human in the loop.",
+    "fix": "Empty the list, or keep only tools that cannot write, delete, spend or send.",
+    "std": "MCP client auto-approval"
+  },
+  {
+    "id": "shell_wrapper",
+    "sev": "error",
+    "title": "Server is launched through a shell with -c",
+    "msg": "bash -c, sh -c, cmd /c and powershell -Command turn the entry into an arbitrary command string: quoting, chained commands and shell expansion all apply, and nothing in the line is a reviewable executable and argument list.",
+    "fix": "Invoke the interpreter or binary directly and pass arguments as separate array items.",
+    "std": "Process launch hygiene"
+  },
+  {
+    "id": "fs_root_broad",
+    "sev": "error",
+    "title": "Filesystem server is rooted at the whole machine or home directory",
+    "msg": "A root of /, ~, $HOME, %USERPROFILE% or a drive letter puts every SSH key, browser profile, .env file and unrelated repository on the machine inside the agent's reach for the whole session.",
+    "fix": "Root the server at the workspace or a single directory: ${workspaceFolder}/docs.",
+    "std": "Least privilege"
+  },
+  {
+    "id": "db_url_credentials",
+    "sev": "error",
+    "title": "Database connection string carries a username and password",
+    "msg": "A DSN written as scheme://user:password@host in args or env is a production credential stored in a config file and echoed into process listings and agent logs whenever the server starts.",
+    "fix": "Move the DSN behind ${input:<id>} with \"password\": true, or into the environment.",
+    "std": "Credential handling"
+  },
+  {
+    "id": "no_readonly_db",
+    "sev": "warn",
+    "title": "Database server is started without a read-only flag",
+    "msg": "A database MCP server started without a read-only option exposes write tools to the model. A generated UPDATE with a wrong or missing WHERE clause is applied by the same connection that answers questions.",
+    "fix": "Add the server's read-only flag, or connect with a role that has no write grant.",
+    "std": "Least privilege"
+  },
+  {
+    "id": "legacy_root_key",
+    "sev": "warn",
+    "title": "Root key is \"mcpServers\", not \"servers\"",
+    "msg": "Claude Desktop and several other clients read \"mcpServers\", while the VS Code mcp.json schema reads \"servers\". A file with the wrong root key parses cleanly and contributes no servers at all.",
+    "fix": "Use \"servers\" in .vscode/mcp.json; keep \"mcpServers\" for claude_desktop_config.json.",
+    "std": "VS Code mcp.json schema"
+  },
+  {
+    "id": "absolute_local_path",
+    "sev": "warn",
+    "title": "Absolute path from one developer's machine",
+    "msg": "A path under /Users/<name>, /home/<name> or C:\\Users\\<name> resolves on the machine it was written on and nowhere else, so a committed config starts a server for its author and fails silently for everybody who pulls it.",
+    "fix": "Use ${workspaceFolder} or a package name the launcher can resolve.",
+    "std": "VS Code variable substitution"
+  },
+  {
+    "id": "duplicate_server_key",
+    "sev": "warn",
+    "title": "Two servers share the same name",
+    "msg": "JSON objects keep the last of two identical keys, so the earlier server entry is dropped without a warning and the config the client runs is not the config that was reviewed.",
+    "fix": "Give each server a distinct name.",
+    "std": "JSON object semantics"
+  }
+]
