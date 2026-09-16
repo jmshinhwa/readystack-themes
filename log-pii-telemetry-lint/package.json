@@ -2,7 +2,7 @@
   "name": "log-pii-telemetry-lint",
   "displayName": "PII-in-Logs Lint (console.log(req.body))",
   "description": "Names every line where your Node/TypeScript service writes personal data into logs, crash reports and analytics: console.log(req.body), pino without redact, sendDefaultPii: true. 22 rules.",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -47,8 +47,7 @@
   "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jmshinhwa/readystack-themes.git",
-    "directory": "log-pii-telemetry-lint"
+    "url": "https://github.com/jmshinhwa-ai/readystack"
   },
   "homepage": "https://getreadystack.com/tools/log-pii-telemetry-lint",
   "icon": "icon.png"
