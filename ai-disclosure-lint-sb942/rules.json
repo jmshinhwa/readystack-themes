@@ -1,0 +1,169 @@
+[
+  {
+    "id": "sb942_operative_date",
+    "sev": "high",
+    "append_days": true,
+    "line_any": [
+      "(january|jan\\.)\\s*1(st)?,?\\s*2026"
+    ],
+    "file_has": [
+      "sb\\s*942",
+      "ai transparency act",
+      "content credential",
+      "c2pa"
+    ],
+    "msg": "Stale operative date: SB 942 no longer starts January 1, 2026 - AB 853 moved it to August 2, 2026. A gate on the old date ships the wrong behaviour on both sides of that day."
+  },
+  {
+    "id": "latent_disclosure_stripped",
+    "sev": "high",
+    "line_any": [
+      "withoutMetadata\\s*\\(",
+      "strip_?metadata",
+      "removeMetadata",
+      "clearExif",
+      "exiftool[^\\n]*-all=",
+      "keepMetadata\\s*[:=]\\s*false"
+    ],
+    "msg": "Export strips embedded metadata, which erases the latent disclosure SB 942 requires inside every piece of content your system generates."
+  },
+  {
+    "id": "ffmpeg_metadata_dropped",
+    "sev": "high",
+    "line_any": [
+      "-map_metadata['\"]?\\s*[,=]?\\s*['\"]?-1",
+      "-map_metadata\\s+-1"
+    ],
+    "msg": "ffmpeg is told to drop all metadata (-map_metadata -1), so generated audio and video leave your pipeline with no provenance data for your own detection tool to read."
+  },
+  {
+    "id": "sharp_export_without_metadata",
+    "sev": "high",
+    "file_has": [
+      "sharp\\s*\\("
+    ],
+    "file_lacks": [
+      "withMetadata\\s*\\("
+    ],
+    "msg": "sharp discards input metadata unless withMetadata() is called, so this image pipeline writes files with no latent disclosure attached."
+  },
+  {
+    "id": "no_provenance_signer",
+    "sev": "high",
+    "file_has": [
+      "images\\.generate",
+      "replicate\\.run",
+      "predictions\\.create",
+      "textToImage",
+      "generateImage",
+      "fal\\.(run|subscribe)",
+      "stability"
+    ],
+    "file_lacks": [
+      "c2pa",
+      "contentauth",
+      "content_credential",
+      "signManifest"
+    ],
+    "msg": "Generated content is produced here with no provenance signer (c2pa / Content Credentials) anywhere in the file - nothing marks the output as machine made."
+  },
+  {
+    "id": "disclosure_flag_default_off",
+    "sev": "high",
+    "line_any": [
+      "(c2pa|watermark|disclosure|provenance|contentCredentials|signManifest)\\s*[:=]\\s*false"
+    ],
+    "msg": "Disclosure is switched off by default. Under SB 942 the latent disclosure is not optional per request - it belongs in every output of a covered system."
+  },
+  {
+    "id": "disclosure_removal_feature",
+    "sev": "high",
+    "line_any": [
+      "remove[_-]?watermark",
+      "strip[_-]?credentials",
+      "disable[_-]?disclosure",
+      "removeProvenance",
+      "unsign"
+    ],
+    "msg": "This ships a way to remove the disclosure. SB 942 requires the latent disclosure to be permanent or extraordinarily difficult to remove, to the extent technically feasible."
+  },
+  {
+    "id": "manifest_disclosure_missing",
+    "sev": "med",
+    "file_has": [
+      "images\\.generate",
+      "replicate\\.run",
+      "predictions\\.create",
+      "textToImage",
+      "generateImage",
+      "fal\\.(run|subscribe)"
+    ],
+    "file_lacks": [
+      "ai[- ]generated",
+      "generated (by|with) ai",
+      "made with ai"
+    ],
+    "msg": "No user-visible AI label in this file. SB 942 requires a covered provider to offer a manifest disclosure - clear, conspicuous and appropriate for the medium - when the user asks for one."
+  },
+  {
+    "id": "detection_tool_missing",
+    "sev": "high",
+    "file_has": [
+      "(app|router)\\.(get|post)\\s*\\(\\s*['\"`][^'\"`]*(generate|image|render|video|speech)"
+    ],
+    "file_lacks": [
+      "(app|router)\\.(get|post)\\s*\\(\\s*['\"`][^'\"`]*(detect|provenance|verify|content-credential)"
+    ],
+    "msg": "Generation routes exist but no detection route does. A covered provider must publish a free, publicly accessible AI detection tool for its own system's output."
+  },
+  {
+    "id": "licensee_revocation_missing",
+    "sev": "med",
+    "file_has": [
+      "issueLicense",
+      "grantLicense",
+      "createApiKey",
+      "licensee"
+    ],
+    "file_lacks": [
+      "revoke"
+    ],
+    "msg": "Licences are handed out with no revocation path. If a licensee strips the latent disclosure, SB 942 gives the provider 96 hours from discovery to revoke that licence."
+  },
+  {
+    "id": "detection_tool_gated",
+    "sev": "high",
+    "file_has": [
+      "(app|router)\\.(get|post)\\s*\\(\\s*['\"`][^'\"`]*(detect|provenance|verify|content-credential)"
+    ],
+    "line_any": [
+      "requireAuth",
+      "requireLogin",
+      "checkSubscription",
+      "requireSubscription",
+      "requirePlan",
+      "paywall",
+      "requireApiKey"
+    ],
+    "msg": "The detection tool sits behind a gate. SB 942 requires it to be free and publicly accessible, not limited to signed-in or paying users.",
+    "line_not": [
+      "^\\s*(import|export)\\b",
+      "^\\s*(//|\\*)"
+    ]
+  },
+  {
+    "id": "detection_tool_retains_pii",
+    "sev": "med",
+    "file_has": [
+      "(app|router)\\.(get|post)\\s*\\(\\s*['\"`][^'\"`]*(detect|provenance|verify|content-credential)"
+    ],
+    "line_any": [
+      "(db|prisma|supabase|knex)\\.[a-zA-Z_.]*(insert|create|save)",
+      "analytics\\.(track|identify)",
+      "saveUpload",
+      "storeUpload",
+      "logUser"
+    ],
+    "msg": "The detection path writes what users submit into storage or analytics. SB 942 bars a covered provider from collecting or retaining personal information from users of that detection tool."
+  }
+]
