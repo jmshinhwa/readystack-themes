@@ -1,0 +1,304 @@
+[
+ {
+  "id": "exp-jaeger-removed",
+  "sev": "error",
+  "re": "(^\\s+jaeger(_thrift)?:|(?<![\\w/])jaeger(_thrift)?\\b(?=[^\\[\\]]*\\]))",
+  "msg": "The jaeger and jaeger_thrift exporters were removed from the Collector (contrib v0.107.0); export with otlp to Jaeger's OTLP port 4317 instead.",
+  "kind": "line",
+  "section": [
+   "exporters",
+   "service"
+  ]
+ },
+ {
+  "id": "exp-logging-deprecated",
+  "sev": "error",
+  "re": "(^\\s+logging:|(?<![\\w/])logging\\b(?=[^\\[\\]]*\\]))",
+  "msg": "The logging exporter was deprecated and then removed; rename it to debug: and move its loglevel to verbosity.",
+  "kind": "line",
+  "section": [
+   "exporters",
+   "service"
+  ]
+ },
+ {
+  "id": "exp-logging-loglevel",
+  "sev": "warn",
+  "re": "^\\s+loglevel:",
+  "msg": "loglevel was dropped from the console exporter; the debug exporter takes verbosity: basic|normal|detailed.",
+  "kind": "line",
+  "section": [
+   "exporters"
+  ]
+ },
+ {
+  "id": "exp-opencensus-deprecated",
+  "sev": "warn",
+  "re": "(^\\s+opencensus:|(?<![\\w/])opencensus\\b(?=[^\\[\\]]*\\]))",
+  "msg": "The opencensus exporter is deprecated and unmaintained; send OTLP and let the receiving backend translate.",
+  "kind": "line",
+  "section": [
+   "exporters",
+   "service"
+  ]
+ },
+ {
+  "id": "recv-opencensus-deprecated",
+  "sev": "warn",
+  "re": "(^\\s+opencensus:|(?<![\\w/])opencensus\\b(?=[^\\[\\]]*\\]))",
+  "msg": "The opencensus receiver is deprecated; point OpenCensus senders at an otlp receiver or a bridge.",
+  "kind": "line",
+  "section": [
+   "receivers"
+  ]
+ },
+ {
+  "id": "recv-jaeger-remote-sampling",
+  "sev": "error",
+  "re": "^\\s+remote_sampling:",
+  "msg": "remote_sampling was removed from the jaeger receiver; move it to the jaegerremotesampling extension.",
+  "kind": "line",
+  "section": [
+   "receivers"
+  ]
+ },
+ {
+  "id": "ext-memory-ballast-removed",
+  "sev": "error",
+  "re": "(^\\s+memory_ballast:|(?<![\\w/])memory_ballast\\b(?=[^\\[\\]]*\\]))",
+  "msg": "The memory_ballast extension was removed from the Collector; set the GOMEMLIMIT environment variable instead.",
+  "kind": "line",
+  "section": [
+   "extensions",
+   "service"
+  ]
+ },
+ {
+  "id": "svc-telemetry-metrics-address",
+  "sev": "warn",
+  "re": "^\\s+address:\\s*\\S",
+  "msg": "service.telemetry.metrics.address is deprecated in favour of service.telemetry.metrics.readers with a Prometheus reader block.",
+  "kind": "line",
+  "section": [
+   "service"
+  ]
+ },
+ {
+  "id": "env-semconv-opt-in",
+  "sev": "warn",
+  "re": "OTEL_SEMCONV_STABILITY_OPT_IN",
+  "msg": "OTEL_SEMCONV_STABILITY_OPT_IN only controlled the migration window; instrumentations that finished the migration ignore it and emit the stable names unconditionally.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-http-method",
+  "sev": "error",
+  "re": "(?<![\\w.])http\\.method(?![\\w.])",
+  "msg": "http.method was renamed to http.request.method when the HTTP semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-http-status_code",
+  "sev": "error",
+  "re": "(?<![\\w.])http\\.status_code(?![\\w.])",
+  "msg": "http.status_code was renamed to http.response.status_code when the HTTP semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-http-url",
+  "sev": "error",
+  "re": "(?<![\\w.])http\\.url(?![\\w.])",
+  "msg": "http.url was renamed to url.full when the HTTP semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-http-target",
+  "sev": "error",
+  "re": "(?<![\\w.])http\\.target(?![\\w.])",
+  "msg": "http.target was renamed to url.path and url.query when the HTTP semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-http-scheme",
+  "sev": "error",
+  "re": "(?<![\\w.])http\\.scheme(?![\\w.])",
+  "msg": "http.scheme was renamed to url.scheme when the HTTP semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-http-host",
+  "sev": "error",
+  "re": "(?<![\\w.])http\\.host(?![\\w.])",
+  "msg": "http.host was renamed to server.address when the HTTP semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-http-flavor",
+  "sev": "error",
+  "re": "(?<![\\w.])http\\.flavor(?![\\w.])",
+  "msg": "http.flavor was renamed to network.protocol.version when the HTTP semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-http-user_agent",
+  "sev": "error",
+  "re": "(?<![\\w.])http\\.user_agent(?![\\w.])",
+  "msg": "http.user_agent was renamed to user_agent.original when the HTTP semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-http-request_content_length",
+  "sev": "error",
+  "re": "(?<![\\w.])http\\.request_content_length(?![\\w.])",
+  "msg": "http.request_content_length was renamed to http.request.body.size when the HTTP semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-http-response_content_length",
+  "sev": "error",
+  "re": "(?<![\\w.])http\\.response_content_length(?![\\w.])",
+  "msg": "http.response_content_length was renamed to http.response.body.size when the HTTP semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-http-server_name",
+  "sev": "error",
+  "re": "(?<![\\w.])http\\.server_name(?![\\w.])",
+  "msg": "http.server_name was renamed to server.address when the HTTP semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-http-client_ip",
+  "sev": "error",
+  "re": "(?<![\\w.])http\\.client_ip(?![\\w.])",
+  "msg": "http.client_ip was renamed to client.address when the HTTP semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-net-peer-name",
+  "sev": "error",
+  "re": "(?<![\\w.])net\\.peer\\.name(?![\\w.])",
+  "msg": "net.peer.name was renamed to server.address when the network semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-net-peer-port",
+  "sev": "error",
+  "re": "(?<![\\w.])net\\.peer\\.port(?![\\w.])",
+  "msg": "net.peer.port was renamed to server.port when the network semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-net-host-name",
+  "sev": "error",
+  "re": "(?<![\\w.])net\\.host\\.name(?![\\w.])",
+  "msg": "net.host.name was renamed to server.address when the network semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-net-host-port",
+  "sev": "error",
+  "re": "(?<![\\w.])net\\.host\\.port(?![\\w.])",
+  "msg": "net.host.port was renamed to server.port when the network semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-net-sock-peer-addr",
+  "sev": "error",
+  "re": "(?<![\\w.])net\\.sock\\.peer\\.addr(?![\\w.])",
+  "msg": "net.sock.peer.addr was renamed to network.peer.address when the network semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-net-sock-peer-port",
+  "sev": "error",
+  "re": "(?<![\\w.])net\\.sock\\.peer\\.port(?![\\w.])",
+  "msg": "net.sock.peer.port was renamed to network.peer.port when the network semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-net-transport",
+  "sev": "error",
+  "re": "(?<![\\w.])net\\.transport(?![\\w.])",
+  "msg": "net.transport was renamed to network.transport when the network semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-net-protocol-name",
+  "sev": "error",
+  "re": "(?<![\\w.])net\\.protocol\\.name(?![\\w.])",
+  "msg": "net.protocol.name was renamed to network.protocol.name when the network semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-db-statement",
+  "sev": "error",
+  "re": "(?<![\\w.])db\\.statement(?![\\w.])",
+  "msg": "db.statement was renamed to db.query.text when the database semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-db-operation",
+  "sev": "error",
+  "re": "(?<![\\w.])db\\.operation(?![\\w.])",
+  "msg": "db.operation was renamed to db.operation.name when the database semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-db-name",
+  "sev": "error",
+  "re": "(?<![\\w.])db\\.name(?![\\w.])",
+  "msg": "db.name was renamed to db.namespace when the database semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-db-system",
+  "sev": "error",
+  "re": "(?<![\\w.])db\\.system(?![\\w.])",
+  "msg": "db.system was renamed to db.system.name when the database semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-messaging-destination",
+  "sev": "error",
+  "re": "(?<![\\w.])messaging\\.destination(?![\\w.])",
+  "msg": "messaging.destination was renamed to messaging.destination.name when the messaging semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-messaging-kafka-client_id",
+  "sev": "error",
+  "re": "(?<![\\w.])messaging\\.kafka\\.client_id(?![\\w.])",
+  "msg": "messaging.kafka.client_id was renamed to messaging.client.id when the messaging semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-faas-execution",
+  "sev": "error",
+  "re": "(?<![\\w.])faas\\.execution(?![\\w.])",
+  "msg": "faas.execution was renamed to faas.invocation_id when the FaaS semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-deployment-environment",
+  "sev": "error",
+  "re": "(?<![\\w.])deployment\\.environment(?![\\w.])",
+  "msg": "deployment.environment was renamed to deployment.environment.name when the resource semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "attr-telemetry-auto-version",
+  "sev": "error",
+  "re": "(?<![\\w.])telemetry\\.auto\\.version(?![\\w.])",
+  "msg": "telemetry.auto.version was renamed to telemetry.distro.version when the resource semantic conventions went stable; a rule keyed on the old name silently matches nothing once the SDK is upgraded.",
+  "kind": "line"
+ },
+ {
+  "id": "svc-name-absent",
+  "sev": "warn",
+  "re": "(?<![\\w.])service\\.name(?![\\w.])",
+  "msg": "No service.name resource attribute anywhere in this config: telemetry that arrives without one is bucketed under unknown_service and is unfindable in the backend.",
+  "kind": "absent",
+  "requires": "^(service|receivers|exporters|processors):"
+ }
+]
