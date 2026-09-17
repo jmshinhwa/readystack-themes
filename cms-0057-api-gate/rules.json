@@ -1,0 +1,143 @@
+[
+ {
+  "id": "fhir_r4",
+  "sev": "error",
+  "kind": "version",
+  "anchor": "\"fhirVersion\"",
+  "msg": "No fhirVersion is declared. The CMS-0057-F APIs must be conformant to HL7 FHIR Release 4.0.1 (R4).",
+  "msg_bad": "fhirVersion is {v}. The CMS-0057-F APIs must be conformant to HL7 FHIR Release 4.0.1 (R4); an STU3 or R5 server does not satisfy the rule."
+ },
+ {
+  "id": "us_core_profiles",
+  "sev": "error",
+  "kind": "require_any",
+  "anchor": "\"rest\"",
+  "patterns": [
+   "hl7\\.org/fhir/us/core"
+  ],
+  "msg": "No US Core profile is referenced anywhere in the statement. The CMS-0057-F APIs must return the USCDI clinical data set through US Core R4 profiles."
+ },
+ {
+  "id": "smart_oauth",
+  "sev": "error",
+  "kind": "require_any",
+  "anchor": "\"rest\"",
+  "patterns": [
+   "SMART-on-FHIR",
+   "smart-app-launch",
+   "oauth-uris"
+  ],
+  "msg": "No SMART App Launch / OAuth 2.0 security service is declared. The Patient Access API must let a member authorise a third-party app without contacting the payer."
+ },
+ {
+  "id": "tls_endpoints",
+  "sev": "error",
+  "kind": "forbid",
+  "patterns": [
+   "\"(address|authorize|token|manage|revoke|endpoint)\"\\s*:\\s*\"http://",
+   "\"valueUri\"\\s*:\\s*\"http://"
+  ],
+  "msg": "A plaintext http:// endpoint is declared. Every CMS-0057-F API endpoint, including the OAuth 2.0 authorize and token URLs, must be TLS-protected."
+ },
+ {
+  "id": "patient_access_eob",
+  "sev": "error",
+  "kind": "require_any",
+  "anchor": "\"rest\"",
+  "patterns": [
+   "\"type\"\\s*:\\s*\"ExplanationOfBenefit\""
+  ],
+  "msg": "Patient Access API: no ExplanationOfBenefit resource is declared, so adjudicated claims and encounter data cannot be returned to the member."
+ },
+ {
+  "id": "patient_access_prior_auth",
+  "sev": "error",
+  "kind": "require_any",
+  "anchor": "\"rest\"",
+  "patterns": [
+   "\"type\"\\s*:\\s*\"ClaimResponse\""
+  ],
+  "msg": "Patient Access API: no ClaimResponse resource is declared. CMS-0057-F adds prior authorization requests and decisions (drugs excluded) to the Patient Access API from 1 January 2027."
+ },
+ {
+  "id": "prior_auth_submit",
+  "sev": "error",
+  "kind": "require_any",
+  "anchor": "\"rest\"",
+  "patterns": [
+   "\\$submit",
+   "\"name\"\\s*:\\s*\"submit\"",
+   "OperationDefinition/Claim-submit"
+  ],
+  "msg": "Prior Authorization API: no Claim $submit operation is declared, so a provider cannot send a prior authorization request to this server."
+ },
+ {
+  "id": "prior_auth_inquire",
+  "sev": "warn",
+  "kind": "require_any",
+  "anchor": "\"rest\"",
+  "patterns": [
+   "\\$inquire",
+   "\"name\"\\s*:\\s*\"inquire\""
+  ],
+  "msg": "Prior Authorization API: no $inquire operation is declared. Without it a provider cannot check the status of a pending prior authorization."
+ },
+ {
+  "id": "dtr_questionnaire",
+  "sev": "warn",
+  "kind": "require_any",
+  "anchor": "\"rest\"",
+  "patterns": [
+   "\\$questionnaire-package",
+   "\"name\"\\s*:\\s*\"questionnaire-package\""
+  ],
+  "msg": "Documentation requirements: no $questionnaire-package operation is declared, so the payer's documentation rules are not machine-readable to the provider's EHR."
+ },
+ {
+  "id": "provider_access_export",
+  "sev": "error",
+  "kind": "require_any",
+  "anchor": "\"rest\"",
+  "patterns": [
+   "\\$export",
+   "\"name\"\\s*:\\s*\"export\""
+  ],
+  "msg": "Provider Access API: no bulk $export operation is declared. CMS-0057-F requires payers to share member data with in-network providers from 1 January 2027."
+ },
+ {
+  "id": "payer_to_payer_match",
+  "sev": "error",
+  "kind": "require_any",
+  "anchor": "\"rest\"",
+  "patterns": [
+   "\\$member-match",
+   "\"name\"\\s*:\\s*\"member-match\""
+  ],
+  "msg": "Payer-to-Payer API: no $member-match operation is declared, so a previous payer cannot identify this member and hand over their data at enrolment."
+ },
+ {
+  "id": "server_mode",
+  "sev": "error",
+  "kind": "require_any",
+  "anchor": "\"rest\"",
+  "patterns": [
+   "\"mode\"\\s*:\\s*\"server\""
+  ],
+  "msg": "No REST server mode is declared. A CapabilityStatement offered as evidence for a CMS-0057-F API must describe a server, not a client."
+ },
+ {
+  "id": "statement_stale",
+  "sev": "warn",
+  "kind": "stale_date",
+  "anchor": "\"date\"",
+  "msg": "The statement is dated {d} and is {n} days old. Auditors read the date first: refresh it as the APIs are built out."
+ },
+ {
+  "id": "deadline_clock",
+  "sev": "info",
+  "kind": "clock",
+  "anchor": "\"resourceType\"",
+  "msg": "{n} days left until the CMS-0057-F compliance date of 1 January 2027, with {e} blocking gaps still open in this statement.",
+  "msg_past": "The CMS-0057-F compliance date of 1 January 2027 passed {n} days ago and {e} blocking gaps are still open in this statement."
+ }
+]
