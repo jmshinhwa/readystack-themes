@@ -1,0 +1,19 @@
+[
+  {"id": "field_number_reuse", "sev": "error", "title": "Two fields share one field number", "fix": "Give the new field the next unused number and never move an existing one."},
+  {"id": "reserved_number_reused", "sev": "error", "title": "A reserved field number was taken back", "fix": "Leave reserved numbers reserved forever and allocate a fresh number."},
+  {"id": "reserved_name_reused", "sev": "error", "title": "A reserved field name was taken back", "fix": "Pick a new name; reserved names are still in old JSON payloads and generated accessors."},
+  {"id": "internal_range_19000", "sev": "error", "title": "Field number inside the protobuf-internal range", "fix": "Use a number outside 19000-19999; protoc refuses that range."},
+  {"id": "field_number_over_max", "sev": "error", "title": "Field number outside the legal range", "fix": "Field numbers run from 1 to 536870911."},
+  {"id": "unreserved_field_gap", "sev": "warn", "title": "A hole in the field numbers is not reserved", "fix": "Add a reserved statement for the deleted numbers so nobody recycles the tag."},
+  {"id": "dup_field_name", "sev": "error", "title": "Two fields share one name", "fix": "Rename one of them; protoc rejects duplicate field names in a message."},
+  {"id": "json_name_collision", "sev": "error", "title": "Two fields map to the same JSON name", "fix": "Rename one field or pin an explicit json_name so JSON and proto agree."},
+  {"id": "enum_first_not_zero", "sev": "error", "title": "The first proto3 enum value is not zero", "fix": "Add a ..._UNSPECIFIED = 0 value as the first entry."},
+  {"id": "enum_dup_number_no_alias", "sev": "error", "title": "Two enum values share one number without allow_alias", "fix": "Give the new value its own number, or set option allow_alias = true on purpose."},
+  {"id": "enum_unreserved_gap", "sev": "warn", "title": "A hole in the enum numbers is not reserved", "fix": "Reserve the removed enum numbers so they are never reissued with a new meaning."},
+  {"id": "missing_syntax", "sev": "error", "title": "No syntax declaration", "fix": "Put syntax = \"proto3\"; on the first line; without it protoc silently compiles the file as proto2."},
+  {"id": "missing_package", "sev": "warn", "title": "No package declaration", "fix": "Declare a versioned package so two linked files cannot collide in the global namespace."},
+  {"id": "proto2_required", "sev": "error", "title": "A required field", "fix": "Use a plain or optional field; a required field can never be removed without breaking every old reader."},
+  {"id": "proto3_default_value", "sev": "error", "title": "A proto2 default on a proto3 field", "fix": "Delete the default option; proto3 has no custom defaults, so apply it in code."},
+  {"id": "presence_sensitive_no_optional", "sev": "warn", "title": "Unset and zero cannot be told apart", "fix": "Mark the field optional so the reader can see the difference between absent and zero."},
+  {"id": "packed_explicit_override", "sev": "warn", "title": "Packing turned off on a repeated scalar", "fix": "Drop packed = false; it changes the bytes on the wire against the proto3 default."}
+]
