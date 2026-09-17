@@ -1,0 +1,196 @@
+{
+  "law": "Directive (EU) 2024/825 (EmpCo) amending UCPD 2005/29/EC and CRD 2011/83/EU",
+  "transposed_by": "2026-03-27",
+  "applies_from": "2026-09-27",
+  "penalty": "UCPD Art. 13(3): for widespread infringements, fines of at least 4% of annual turnover in the Member States concerned, or at least EUR 2,000,000 where turnover information is unavailable.",
+  "rules": [
+    {
+      "id": "generic-env-claim",
+      "sev": "error",
+      "clause": "UCPD Annex I, point 4(a) (inserted by Dir. (EU) 2024/825 Art. 2(2))",
+      "msg": "Generic environmental claim with no demonstrated excellent environmental performance.",
+      "fix": "Replace with the specific measured aspect, e.g. \"outer shell is 62% recycled polyester, GRS certificate SGS-GRS-2025-114\".",
+      "any": [
+        "\\beco-?friendly\\b",
+        "\\benvironmentally[ -]friendly\\b",
+        "\\benvironment[ -]friendly\\b",
+        "\\bplanet[ -]friendly\\b",
+        "\\bearth[ -]friendly\\b",
+        "\\bgreen (product|products|packaging|choice|shipping|delivery|energy)\\b",
+        "\\b(gentle|kind) (on|to) the (planet|environment)\\b",
+        "\\bnature'?s friend\\b",
+        "\\bsustainable\\b",
+        "\\bbiodegradable\\b",
+        "\\beco\\b",
+        "\\bconscious (choice|design|product|collection)\\b"
+      ],
+      "not_line": ["EU Ecolabel", "Nordic Swan", "Blue Angel", "EMAS", "ISO 1402[0-9]", "EN 13432", "OK compost"]
+    },
+    {
+      "id": "offset-neutrality",
+      "sev": "error",
+      "clause": "UCPD Annex I, point 4(c) (inserted by Dir. (EU) 2024/825 Art. 2(2))",
+      "msg": "Neutral / reduced / positive environmental impact claimed on the basis of emissions offsetting. Banned outright from 27 Sep 2026 - no evidence can cure it.",
+      "fix": "Delete the neutrality wording. State only emissions you actually cut, with the scope and the measurement method.",
+      "any": [
+        "\\b(carbon|co2|co\u2082|climate)[ -]?(neutral|positive|negative)\\b",
+        "\\bnet[ -]zero (product|shipping|delivery|order|checkout|item)\\b",
+        "\\bclimate[ -]compensated\\b",
+        "\\boffsett?(s|ing)? (your |the |all )?(co2|carbon|emissions)\\b",
+        "\\bcarbon[ -]offsets?\\b"
+      ],
+      "not_line": []
+    },
+    {
+      "id": "uncertified-label",
+      "sev": "error",
+      "clause": "UCPD Annex I, point 2(a) (inserted by Dir. (EU) 2024/825 Art. 2(2))",
+      "msg": "Sustainability label / score that is not based on a certification scheme and was not established by a public authority.",
+      "fix": "Name the certification scheme and the certificate ID, or remove the badge.",
+      "any": [
+        "\\b(eco|green|sustainability|climate|planet)[ -]?(score|label|badge|rating|seal|stamp|mark)\\b",
+        "\\bour own (eco|green|sustainability)\\b",
+        "\\bcertified (sustainable|green|eco)\\b"
+      ],
+      "not_line": ["EU Ecolabel", "Nordic Swan", "Blue Angel", "EMAS", "ISO 1402[0-9]", "\\bFSC\\b", "\\bGRS\\b", "\\bGOTS\\b", "Cradle to Cradle", "Energy Star", "EU Energy Label"]
+    },
+    {
+      "id": "future-pledge",
+      "sev": "error",
+      "clause": "UCPD Art. 6(2)(d) (inserted by Dir. (EU) 2024/825 Art. 2(1))",
+      "msg": "Claim about future environmental performance without clear, objective, publicly available and verifiable commitments, a detailed implementation plan and independent third-party monitoring.",
+      "fix": "Link the published plan with interim targets and name the independent expert that verifies it, or drop the pledge from product copy.",
+      "any": [
+        "\\b(net[ -]zero|carbon[ -]neutral|climate[ -]neutral|plastic[ -]free|100% (renewable|circular|recycled|sustainable))\\b[^.]{0,50}\\bby 20\\d\\d\\b",
+        "\\bby 20\\d\\d\\b[^.]{0,50}\\b(net[ -]zero|carbon[ -]neutral|climate[ -]neutral)\\b",
+        "\\bwe (will|aim to|pledge to|commit to|are on track to) be(come)?\\b[^.]{0,40}\\b(neutral|zero|sustainable|circular)\\b"
+      ],
+      "not_line": []
+    },
+    {
+      "id": "whole-vs-part",
+      "sev": "error",
+      "clause": "UCPD Annex I, point 4(b) (inserted by Dir. (EU) 2024/825 Art. 2(2))",
+      "msg": "Environmental claim about the whole product, range or business when it concerns only one aspect of it.",
+      "fix": "Scope the claim to the exact component or stage it was measured on.",
+      "any": [
+        "\\b(all (of )?our products|our (entire|whole) (range|catalogue|catalog|collection|line)|everything we (make|sell)|our whole (company|business)|the entire company)\\b[^.]{0,70}\\b(sustainable|green|eco|carbon|climate|recycled|circular|responsible)\\b",
+        "\\b(sustainable|green|eco[ -]?friendly|circular|climate[ -]conscious)\\b[^.]{0,40}\\b(company|brand|business)\\b"
+      ],
+      "not_line": []
+    },
+    {
+      "id": "legal-as-feature",
+      "sev": "warn",
+      "clause": "UCPD Annex I, point 10 (scope extended by Dir. (EU) 2024/825)",
+      "msg": "A right or requirement that the law already imposes is presented as a distinctive feature of your offer.",
+      "fix": "State the statutory right plainly, without framing it as a bonus or a reason to choose you.",
+      "any": [
+        "\\bfree (2|two)[ -]year (warranty|guarantee)\\b",
+        "\\b(2|two)[ -]year (warranty|guarantee)\\b[^.]{0,40}\\b(free|included at no|bonus|extra|unlike|only from us)\\b",
+        "\\b(14|fourteen)[ -]day (right of withdrawal|returns?|money[ -]back)\\b[^.]{0,40}\\b(free|bonus|extra|our promise|unlike|generous)\\b",
+        "\\b(rohs|reach|ce[ -]marked|gdpr)\\b[^.]{0,45}\\b(unlike|unique|exclusive|why choose|our advantage|sets us apart)\\b"
+      ],
+      "not_line": []
+    },
+    {
+      "id": "durability-unproven",
+      "sev": "error",
+      "clause": "UCPD Annex I, point 23(d) (inserted by Dir. (EU) 2024/825 Art. 2(2))",
+      "msg": "Durability claimed in usage time or intensity with no test or evidence on the page.",
+      "fix": "Cite the durability test standard and the result, or delete the claim.",
+      "any": [
+        "\\blasts? (a )?lifetime\\b",
+        "\\blifetime (durability|guarantee)\\b",
+        "\\blasts? forever\\b",
+        "\\bbuilt to last forever\\b",
+        "\\bunbreakable\\b",
+        "\\blasts? (up to )?\\d+ years\\b",
+        "\\b\\d+[ -]year (lifespan|life span|service life)\\b"
+      ],
+      "not_line": ["test(ed|ing|s)? (to|under|report|result)", "EN ISO", "IEC \\d", "cycle test", "substantiat", "test report"]
+    },
+    {
+      "id": "repairability-claim",
+      "sev": "warn",
+      "clause": "UCPD Annex I, point 23(e) (inserted by Dir. (EU) 2024/825 Art. 2(2))",
+      "msg": "Repairability claimed but the page carries no spare-parts, repair-manual or repairability-index information.",
+      "fix": "Add the spare-parts availability period and a link to the repair manual on the same page.",
+      "any": [
+        "\\b(fully |easily |easy to )?repairable\\b",
+        "\\bdesigned (for|to be) repair",
+        "\\beasy to (repair|fix)\\b"
+      ],
+      "not_line": [],
+      "doc_not_any": ["spare part", "repair manual", "repairability (index|score)", "repair score", "repair guide"]
+    },
+    {
+      "id": "premature-replacement",
+      "sev": "warn",
+      "clause": "UCPD Annex I, point 23(f) (inserted by Dir. (EU) 2024/825 Art. 2(2))",
+      "msg": "Copy prompts the consumer to replace or replenish a consumable earlier than technically necessary.",
+      "fix": "Give the condition that actually calls for replacement, not a fixed calendar interval.",
+      "any": [
+        "\\breplace (it |them |your [a-z]+ )?(every|after) \\d+ (days|weeks|months)\\b",
+        "\\bfor best results,? replace\\b",
+        "\\breplace (monthly|weekly|each month|every month)\\b"
+      ],
+      "not_line": []
+    },
+    {
+      "id": "update-necessity",
+      "sev": "warn",
+      "clause": "UCPD Annex I, points 23(g) and 23(h) (inserted by Dir. (EU) 2024/825 Art. 2(2))",
+      "msg": "A software update is presented as necessary. If it only enhances functionality this is banned, and any update that degrades the goods must be disclosed.",
+      "fix": "Say what the update changes and whether it affects existing functions.",
+      "any": [
+        "\\b(required|mandatory|essential|critical|must[ -]install) (firmware |software |app )?update\\b",
+        "\\byou must update\\b",
+        "\\bupdate (is )?required to keep (using|your)\\b"
+      ],
+      "not_line": ["security (fix|patch|update)", "vulnerabilit"]
+    },
+    {
+      "id": "irrelevant-benefit",
+      "sev": "warn",
+      "clause": "UCPD Art. 6(2)(c) and Annex I, point 4 (Dir. (EU) 2024/825)",
+      "msg": "A benefit is advertised that is irrelevant or that the law already requires of every product in this category.",
+      "fix": "Remove it, or state it as background information rather than an advantage.",
+      "any": [
+        "\\bcfc[ -]free\\b",
+        "\\blead[ -]free (paint|solder|crystal)\\b",
+        "\\b(gluten|fat|sugar)[ -]free (water|salt)\\b",
+        "\\bnon[ -]gmo (salt|water)\\b",
+        "\\bphosphate[ -]free\\b",
+        "\\bmicroplastic[ -]free (glass|metal|steel)\\b"
+      ],
+      "not_line": []
+    },
+    {
+      "id": "unquantified-recycled",
+      "sev": "warn",
+      "clause": "UCPD Art. 6(1)(b) as amended by Dir. (EU) 2024/825",
+      "msg": "Recycled content asserted without the share and the part it applies to.",
+      "fix": "Write the percentage and the component, e.g. \"lining: 40% post-consumer recycled polyamide\".",
+      "any": [
+        "\\bmade (from|with|of) recycled (materials?|content|plastic|fabric)\\b",
+        "\\bcontains recycled (materials?|content)\\b",
+        "\\bpartly recycled\\b",
+        "\\brecycled materials\\b"
+      ],
+      "not_line": ["\\d{1,3} ?% (recycled|post[ -]consumer)"]
+    },
+    {
+      "id": "vague-maximum",
+      "sev": "warn",
+      "clause": "UCPD Art. 6(1)(b) as amended by Dir. (EU) 2024/825",
+      "msg": "An \"up to\" figure states the best case only and hides the actual share the buyer gets.",
+      "fix": "State the typical or minimum value, or give the range.",
+      "any": [
+        "\\bup to \\d+ ?%",
+        "\\bup to \\d+ (times|x) (less|lower|fewer|more)\\b"
+      ],
+      "not_line": []
+    }
+  ]
+}
