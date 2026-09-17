@@ -1,0 +1,37 @@
+{
+  "id": "soup-list-lint",
+  "standard": "IEC 62304:2006+AMD1:2015",
+  "stale_days": 365,
+  "today_default": "2026-09-16",
+  "columns": {
+    "title": ["soup", "soup item", "item", "name", "title", "component", "library", "package", "module"],
+    "manufacturer": ["manufacturer", "supplier", "vendor", "publisher", "maintainer", "author", "origin"],
+    "version": ["version", "version used", "unique soup designator", "soup designator", "designator", "release", "pinned version"],
+    "functional": ["functional and performance requirements", "functional & performance requirements", "functional/performance requirements", "functional requirements", "performance requirements", "purpose and requirements", "requirements"],
+    "system": ["system requirements", "hardware and software requirements", "hardware/software requirements", "hw/sw requirements", "required hardware and software", "runtime requirements", "platform requirements"],
+    "safety": ["safety class", "software safety class", "class", "62304 class"],
+    "anomaly": ["anomaly list", "published anomaly list", "anomaly list review", "anomaly list reviewed", "anomaly review", "known anomalies", "known bugs", "published anomaly list evaluated"]
+  },
+  "empty_values": ["", "-", "--", "—", "n/a", "na", "n.a.", "none", "nil", "see above", "same as above", "ditto"],
+  "placeholder_values": ["tbd", "tba", "tbc", "todo", "to do", "xxx", "?", "??", "???", "pending", "fixme", "later", "ask qa", "unknown"],
+  "unpinned_markers": ["latest", "*", "any", "current", "stable", "head", "main", "master", "rolling", "see package.json", "see requirements.txt", "see lockfile", "whatever ships"],
+  "not_reviewed_values": ["no", "not reviewed", "not yet", "none reviewed", "not done", "never", "not applicable yet"],
+  "rules": [
+    {"id": "soup_title_missing", "clause": "IEC 62304 8.1.2", "sev": "error", "title": "SOUP item has no title", "msg": "SOUP item has no title. 8.1.2 asks for the title of each SOUP configuration item."},
+    {"id": "soup_manufacturer_missing", "clause": "IEC 62304 8.1.2", "sev": "error", "title": "Manufacturer of the SOUP item is not recorded", "msg": "\"{item}\": manufacturer is not recorded. 8.1.2 asks for title, manufacturer and unique SOUP designator."},
+    {"id": "soup_version_missing", "clause": "IEC 62304 8.1.2", "sev": "error", "title": "Unique SOUP designator (version) is not recorded", "msg": "\"{item}\": no version recorded. 8.1.2 asks for the unique SOUP designator — the exact version you shipped."},
+    {"id": "soup_version_not_pinned", "clause": "IEC 62304 8.1.2", "sev": "error", "title": "Version is a range, not a unique designator", "msg": "\"{item}\": version \"{value}\" is a range or a pointer, not a unique designator. Record the exact version that went into the build."},
+    {"id": "soup_functional_req_missing", "clause": "IEC 62304 5.3.3", "sev": "error", "title": "Functional and performance requirements for the SOUP item are missing", "msg": "\"{item}\": no functional and performance requirements. 5.3.3 asks what this SOUP item must do for your device."},
+    {"id": "soup_system_req_missing", "clause": "IEC 62304 5.3.4", "sev": "error", "title": "Hardware and software required by the SOUP item are missing", "msg": "\"{item}\": no hardware/software requirements. 5.3.4 asks what this SOUP item needs to run (OS, runtime, driver, memory)."},
+    {"id": "soup_safety_class_missing", "clause": "IEC 62304 4.3", "sev": "error", "title": "No software safety class on the SOUP item", "msg": "\"{item}\": no software safety class. 4.3 classifies each software item A, B or C, and SOUP inherits the class of the item that uses it."},
+    {"id": "soup_safety_class_invalid", "clause": "IEC 62304 4.3", "sev": "error", "title": "Software safety class is not A, B or C", "msg": "\"{item}\": safety class \"{value}\" is not A, B or C. 4.3 allows those three classes only."},
+    {"id": "soup_anomaly_review_missing", "clause": "IEC 62304 7.1.3", "sev": "error", "title": "Published anomaly list was never evaluated", "msg": "\"{item}\": the published anomaly list was not evaluated. 7.1.3 asks you to read the supplier's known-bug list and judge whether any anomaly can contribute to a hazardous situation."},
+    {"id": "soup_anomaly_date_missing", "clause": "IEC 62304 7.1.3", "sev": "error", "title": "Anomaly-list evaluation carries no date", "msg": "\"{item}\": the anomaly-list evaluation carries no date. An undated evaluation cannot be tied to the version you shipped."},
+    {"id": "soup_anomaly_date_stale", "clause": "IEC 62304 7.1.3", "sev": "warn", "title": "Anomaly-list evaluation is older than 365 days", "msg": "\"{item}\": anomaly list last evaluated {value} — {days} days ago. New anomalies published since then have not been judged."},
+    {"id": "soup_anomaly_date_future", "clause": "IEC 62304 7.1.3", "sev": "error", "title": "Anomaly-list evaluation is dated in the future", "msg": "\"{item}\": anomaly-list evaluation is dated {value}, which is after today ({today}). An auditor reads a future date as a record written from memory."},
+    {"id": "soup_placeholder_value", "clause": "IEC 62304 8.1.2", "sev": "error", "title": "A required field still holds a placeholder", "msg": "\"{item}\": {field} still says \"{value}\". A placeholder in the technical file is a missing record."},
+    {"id": "soup_duplicate_item", "clause": "IEC 62304 8.1.2", "sev": "warn", "title": "The same SOUP item is listed twice", "msg": "\"{item}\" is listed more than once (versions: {value}). Two rows for one item means the auditor cannot tell which one shipped."},
+    {"id": "soup_column_missing", "clause": "IEC 62304 8.1.2", "sev": "error", "title": "The SOUP table has no column for a required record", "msg": "The SOUP table has no {field} column, so no item can carry that record ({clause})."},
+    {"id": "soup_no_items", "clause": "IEC 62304 8.1.2", "sev": "error", "title": "No SOUP items found in the file", "msg": "No SOUP items found. 8.1.2 asks for a list of SOUP configuration items; an empty list is only true if your device has no third-party code."}
+  ]
+}
