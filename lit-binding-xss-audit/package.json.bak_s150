@@ -1,0 +1,53 @@
+{
+  "name": "lit-binding-xss-audit",
+  "displayName": "Lit Template Binding Audit",
+  "description": "Finds the Lit / lit-html template bindings that auto-escaping does not cover - unsafeHTML, javascript: href, .innerHTML, srcdoc, unsafeStatic - and names the safe form.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "lit",
+    "lit-html",
+    "lit-element",
+    "xss",
+    "web components",
+    "cra",
+    "security"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "litBindingAudit.checkFile",
+        "title": "Lit Template Binding Audit: Check this file",
+        "category": "Lit Template Binding Audit"
+      },
+      {
+        "command": "litBindingAudit.checkWorkspace",
+        "title": "Lit Template Binding Audit: Sweep workspace and write report (licence)",
+        "category": "Lit Template Binding Audit"
+      },
+      {
+        "command": "litBindingAudit.enterKey",
+        "title": "Lit Template Binding Audit: Enter licence key",
+        "category": "Lit Template Binding Audit"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "lit-binding-xss-audit"
+  },
+  "homepage": "https://getreadystack.com/tools/lit-binding-xss-audit",
+  "icon": "icon.png"
+}
