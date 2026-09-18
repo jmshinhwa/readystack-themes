@@ -1,0 +1,53 @@
+{
+  "name": "ksef-fa3-invoice-lint",
+  "displayName": "KSeF FA(3) Invoice Lint",
+  "description": "Lint Polish KSeF structured invoice XML against the FA(3) schema before you send it: namespace, kodSystemowy, NIP, decimal separators and correction references.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "ksef",
+    "fa3",
+    "e-invoice",
+    "poland",
+    "xml",
+    "vat",
+    "faktura"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "ksefFa3.checkFile",
+        "title": "KSeF FA(3) Invoice Lint: Check this file",
+        "category": "KSeF FA(3) Invoice Lint"
+      },
+      {
+        "command": "ksefFa3.checkWorkspace",
+        "title": "KSeF FA(3) Invoice Lint: Sweep workspace and write report (licence)",
+        "category": "KSeF FA(3) Invoice Lint"
+      },
+      {
+        "command": "ksefFa3.enterKey",
+        "title": "KSeF FA(3) Invoice Lint: Enter licence key",
+        "category": "KSeF FA(3) Invoice Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "ksef-fa3-invoice-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/ksef-fa3-invoice-lint",
+  "icon": "icon.png"
+}
