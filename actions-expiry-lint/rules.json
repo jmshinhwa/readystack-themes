@@ -1,0 +1,64 @@
+{
+  "revision": "2026.09",
+  "revised": "2026-09-11",
+  "soon_days": 270,
+  "checks": [
+    {"id": "runner-retired",      "sev": "error", "what": "runs-on names a runner image GitHub has already removed"},
+    {"id": "runner-retiring",     "sev": "warn",  "what": "runs-on names a runner image with a retirement date still ahead"},
+    {"id": "runner-floating",     "sev": "info",  "what": "runs-on uses a -latest label, so the image moves under you"},
+    {"id": "action-shutdown",     "sev": "error", "what": "action major version whose backing service was switched off"},
+    {"id": "action-runtime-old",  "sev": "warn",  "what": "action major version built on a Node runtime the runner no longer provides"},
+    {"id": "action-archived",     "sev": "error", "what": "action repository is archived and takes no more fixes"},
+    {"id": "action-unpinned",     "sev": "warn",  "what": "uses: points at a moving branch instead of a tag or commit"},
+    {"id": "node-eol",            "sev": "error", "what": "node-version is past its end-of-life date"},
+    {"id": "node-eol-soon",       "sev": "warn",  "what": "node-version reaches end-of-life within the notice window"},
+    {"id": "node-odd-release",    "sev": "warn",  "what": "node-version is an odd-numbered line that never becomes LTS"},
+    {"id": "cmd-set-output",      "sev": "error", "what": "::set-output:: workflow command, disabled by the runner"},
+    {"id": "cmd-save-state",      "sev": "error", "what": "::save-state:: workflow command, disabled by the runner"},
+    {"id": "cmd-set-env",         "sev": "error", "what": "::set-env:: or ::add-path:: workflow command, disabled by the runner"}
+  ],
+  "runners": [
+    {"label": "ubuntu-18.04", "retired": "2022-12-01", "use": "ubuntu-24.04"},
+    {"label": "ubuntu-20.04", "retired": "2025-04-15", "use": "ubuntu-24.04"},
+    {"label": "macos-12",     "retired": "2024-12-03", "use": "macos-15"},
+    {"label": "macos-13",     "retired": "2025-12-04", "use": "macos-15"},
+    {"label": "windows-2019", "retired": "2025-06-30", "use": "windows-2025"}
+  ],
+  "floating": ["ubuntu-latest", "macos-latest", "windows-latest"],
+  "actions": [
+    {"name": "actions/upload-artifact",   "shutdown_below": 4, "shutdown_on": "2025-01-30", "use": "v4"},
+    {"name": "actions/download-artifact", "shutdown_below": 4, "shutdown_on": "2025-01-30", "use": "v4"},
+    {"name": "actions/checkout",       "old_below": 4, "use": "v4"},
+    {"name": "actions/setup-node",     "old_below": 4, "use": "v4"},
+    {"name": "actions/cache",          "old_below": 4, "use": "v4"},
+    {"name": "actions/setup-python",   "old_below": 5, "use": "v5"},
+    {"name": "actions/setup-java",     "old_below": 4, "use": "v4"},
+    {"name": "actions/setup-go",       "old_below": 5, "use": "v5"},
+    {"name": "actions/setup-dotnet",   "old_below": 4, "use": "v4"},
+    {"name": "actions/github-script",  "old_below": 7, "use": "v7"},
+    {"name": "actions/deploy-pages",   "old_below": 4, "use": "v4"},
+    {"name": "actions/upload-pages-artifact", "old_below": 3, "use": "v3"},
+    {"name": "docker/build-push-action",   "old_below": 5, "use": "v5"},
+    {"name": "docker/login-action",        "old_below": 3, "use": "v3"},
+    {"name": "docker/setup-buildx-action", "old_below": 3, "use": "v3"},
+    {"name": "codecov/codecov-action",     "old_below": 4, "use": "v4"}
+  ],
+  "archived": [
+    {"name": "actions/create-release",       "use": "softprops/action-gh-release, or gh release create"},
+    {"name": "actions/upload-release-asset", "use": "softprops/action-gh-release, or gh release upload"},
+    {"name": "actions/setup-ruby",           "use": "ruby/setup-ruby"}
+  ],
+  "node": [
+    {"major": "12", "eol": "2022-04-30"},
+    {"major": "14", "eol": "2023-04-30"},
+    {"major": "16", "eol": "2023-09-11"},
+    {"major": "17", "eol": "2022-06-01", "odd": true},
+    {"major": "18", "eol": "2025-04-30"},
+    {"major": "19", "eol": "2023-06-01", "odd": true},
+    {"major": "20", "eol": "2026-04-30"},
+    {"major": "21", "eol": "2024-06-01", "odd": true},
+    {"major": "22", "eol": "2027-04-30"},
+    {"major": "23", "eol": "2025-06-01", "odd": true},
+    {"major": "24", "eol": "2028-04-30"}
+  ]
+}
