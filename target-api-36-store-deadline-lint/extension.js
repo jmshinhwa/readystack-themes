@@ -79,8 +79,33 @@ async function showReport() { out().show(true); }
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
 async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
 
+// ★s144 — reverse trial (paid taste): the FULL repository sweep and the written report run free for
+//   7 days from the first sweep, then the key. ⛔새 기능이 아니다 — ★같은 유료 경로를 ★먼저 겪게 한다.
+//   [검색 2026-09-12] freemium 2–4% ↔ reverse trial 8–12% (dev-tool trials median 24%)
+//   · 손님이 돈 낼지 정하는 순간은 ★자기 저장소에서 결과를 본 뒤다 (paywall at the moment of value).
+//   ⛔무료 경로(열린 파일 검사)는 어떤 제한도 두지 않는다 (8% 법).
+const NEED_KEY = S.need_key;
+async function sweepGate(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    // ★손님 자신의 숫자로 묻는다 (endowment) — 체험 스윕이 무엇을 덮었는지 먼저 말한다.
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found '
+      + last.findings + ' findings. ') : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return { ok: false, inTrial: false };
+  }
+  return { ok: true, inTrial: inTrial };
+}
+const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
+function today() { return new Date().toISOString().slice(0, 10); }
+
 async function scanWorkspace(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const g = await sweepGate(ctx);
+  if (!g.ok) return;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('target-api-36-store-deadline-lint');
   const _max = Number(_c.get('max_files')) || 2000;
@@ -93,25 +118,31 @@ async function scanWorkspace(ctx) {
       rows.push({ file: f.fsPath, hits: scan(doc.getText(), f.fsPath) });
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
-  report(rows);
+  // ⛔체험 중이라고 ★줄이지 않는다 — 같은 스윕, 같은 보고서.
+  const n = report(rows);
+  await ctx.globalState.update('lastSweep', { files: rows.length, findings: n, at: today() });
+  vscode.window.showInformationMessage(S.done + ' ' + rows.length + ' files, ' + n + ' findings.'
+    + (g.inTrial ? TRIAL_NOTE : ''));
 }
 
 async function ciJson(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const g = await sweepGate(ctx);
+  if (!g.ok) return;
   const ed = vscode.window.activeTextEditor;
   const hits = ed ? scan(ed.document.getText(), ed.document.fileName) : [];
   const ws = vscode.workspace.workspaceFolders;
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'target-api-36-store-deadline-lint-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath + (g.inTrial ? TRIAL_NOTE : ''));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
 //   🔴s125: ⛔전에는 CSV 하나만 썼는데 ★프롬프트는 "CSV / JSON / HTML" 이라고 약속했다
 //     ⇒ ★검수가 옳게 잡았다("⑤거짓 주장"). ★법(S24): 한계를 만나면 ⛔좁히지 말고 ★손을 넓힌다.
 async function exportReport(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const g = await sweepGate(ctx);
+  if (!g.ok) return;
   const ed = vscode.window.activeTextEditor;
   const rows = ed ? [{ file: ed.document.fileName, hits: scan(ed.document.getText(), ed.document.fileName) }] : [];
   const ws = vscode.workspace.workspaceFolders;
@@ -138,7 +169,7 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'target-api-36-store-deadline-lint-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath + (g.inTrial ? TRIAL_NOTE : ''));
 }
 
 async function watchOnSave(ctx) {
