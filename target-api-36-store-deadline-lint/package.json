@@ -2,7 +2,7 @@
   "name": "target-api-36-store-deadline-lint",
   "displayName": "Target API 36 & Xcode 26 Store Deadline Lint",
   "description": "Finds the targetSdk, NDK, Gradle plugin and Xcode versions in your repo that Google Play and App Store Connect already refuse, with the date each one stopped being accepted.",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
