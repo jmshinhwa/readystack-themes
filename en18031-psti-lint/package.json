@@ -2,7 +2,7 @@
   "name": "en18031-psti-lint",
   "displayName": "EN 18031 / PSTI Device Config Lint",
   "description": "Lint IoT and radio device config, firmware defaults and device manifests against RED Art. 3(3)(d)(e)(f) (EN 18031-1/-2/-3) and the UK PSTI security requirements.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
