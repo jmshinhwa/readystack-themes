@@ -1,0 +1,154 @@
+{
+  "name": "cloud-manifest-audit-kit",
+  "displayName": "Manifest Snippets + Removed-API Audit (8 Sets)",
+  "description": "Your editor does not reject a removed apiVersion. The cluster does, at deploy time. 40 snippets written against the current API versions across 8 file families, and 28 rules that name every removed ve",
+  "version": "0.1.0",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Snippets"
+  ],
+  "keywords": [
+    "kubernetes",
+    "aks",
+    "helm",
+    "iot-edge",
+    "microprofile"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cloud-manifest-audit-kit.insert_snippet",
+        "title": "Insert a manifest block",
+        "category": "Manifest Snippets + Remo"
+      },
+      {
+        "command": "cloud-manifest-audit-kit.audit_file",
+        "title": "Check this manifest",
+        "category": "Manifest Snippets + Remo"
+      },
+      {
+        "command": "cloud-manifest-audit-kit.list_rules",
+        "title": "Show what is inside this pack",
+        "category": "Manifest Snippets + Remo"
+      },
+      {
+        "command": "cloud-manifest-audit-kit.workspace_scan",
+        "title": "Check every manifest in the repo",
+        "category": "Manifest Snippets + Remo"
+      },
+      {
+        "command": "cloud-manifest-audit-kit.quick_fix",
+        "title": "Rewrite the flagged API versions",
+        "category": "Manifest Snippets + Remo"
+      },
+      {
+        "command": "cloud-manifest-audit-kit.custom_rules",
+        "title": "Add your team's own manifest rules",
+        "category": "Manifest Snippets + Remo"
+      },
+      {
+        "command": "cloud-manifest-audit-kit.export_report",
+        "title": "Write the findings to a report file",
+        "category": "Manifest Snippets + Remo"
+      }
+    ],
+    "configuration": {
+      "title": "Manifest Snippets + Removed-API Audit (8 Sets)",
+      "properties": {
+        "cloud-manifest-audit-kit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format of the exported report"
+        },
+        "cloud-manifest-audit-kit.max_files": {
+          "type": "number",
+          "default": 800,
+          "description": "How many workspace files the scan opens at most"
+        },
+        "cloud-manifest-audit-kit.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,bin,obj,vendor,.terraform,charts}/**",
+          "description": "Paths the scan skips"
+        },
+        "cloud-manifest-audit-kit.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check the open file once when the editor opens"
+        },
+        "cloud-manifest-audit-kit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 28 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "json",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/plaintext-ini-properties.code-snippets"
+      },
+      {
+        "language": "ini",
+        "path": "./snippets/plaintext-ini-properties.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/plaintext-ini-properties.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/properties-xml-java.code-snippets"
+      },
+      {
+        "language": "xml",
+        "path": "./snippets/properties-xml-java.code-snippets"
+      },
+      {
+        "language": "java",
+        "path": "./snippets/properties-xml-java.code-snippets"
+      },
+      {
+        "language": "r",
+        "path": "./snippets/r.code-snippets"
+      },
+      {
+        "language": "sql",
+        "path": "./snippets/sql.code-snippets"
+      },
+      {
+        "language": "xml",
+        "path": "./snippets/xml-csharp-json.code-snippets"
+      },
+      {
+        "language": "csharp",
+        "path": "./snippets/xml-csharp-json.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/xml-csharp-json.code-snippets"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/yaml.code-snippets"
+      }
+    ]
+  },
+  "icon": "icon.png"
+}
