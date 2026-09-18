@@ -1,0 +1,52 @@
+{
+  "name": "cra-reporting-clock-lint",
+  "displayName": "CRA Reporting Clock Lint (EU 2024/2847)",
+  "description": "Checks SECURITY.md against the EU Cyber Resilience Act clocks that went live 11 Sep 2026: 24h early warning, 72h notification, 14-day final report, 5-year support period, CVD policy, SBOM.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "cra",
+    "cyber-resilience-act",
+    "security-md",
+    "compliance",
+    "vulnerability-disclosure",
+    "sbom",
+    "eu"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "craClock.checkFile",
+        "title": "CRA Reporting Clock Lint (EU 2024/2847): Check this file",
+        "category": "CRA Reporting Clock Lint (EU 2024/2847)"
+      },
+      {
+        "command": "craClock.checkWorkspace",
+        "title": "CRA Reporting Clock Lint (EU 2024/2847): Sweep workspace and write report (licence)",
+        "category": "CRA Reporting Clock Lint (EU 2024/2847)"
+      },
+      {
+        "command": "craClock.enterKey",
+        "title": "CRA Reporting Clock Lint (EU 2024/2847): Enter licence key",
+        "category": "CRA Reporting Clock Lint (EU 2024/2847)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/cra-reporting-clock-lint",
+  "icon": "icon.png"
+}
