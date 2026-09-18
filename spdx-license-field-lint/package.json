@@ -1,0 +1,91 @@
+{
+  "name": "spdx-license-field-lint",
+  "displayName": "SPDX License Lint: PEP 639 & Copyleft",
+  "description": "Reads the licence field in the open manifest and names every deprecated SPDX id, invalid string, PEP 639 leftover and copyleft obligation - with the exact replacement text.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "spdx",
+    "license",
+    "pep-639",
+    "sbom",
+    "compliance"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "spdx-license-field-lint.audit_file",
+        "title": "Lint licence fields in this file",
+        "category": "SPDX License Lint: PEP 6"
+      },
+      {
+        "command": "spdx-license-field-lint.audit_selection",
+        "title": "Lint the selected lines",
+        "category": "SPDX License Lint: PEP 6"
+      },
+      {
+        "command": "spdx-license-field-lint.show_report",
+        "title": "Show the last report",
+        "category": "SPDX License Lint: PEP 6"
+      },
+      {
+        "command": "spdx-license-field-lint.list_rules",
+        "title": "List the rules that ship inside",
+        "category": "SPDX License Lint: PEP 6"
+      },
+      {
+        "command": "spdx-license-field-lint.workspace_scan",
+        "title": "Scan every manifest in the repository",
+        "category": "SPDX License Lint: PEP 6"
+      },
+      {
+        "command": "spdx-license-field-lint.export_report",
+        "title": "Export the licence inventory",
+        "category": "SPDX License Lint: PEP 6"
+      },
+      {
+        "command": "spdx-license-field-lint.quick_fix",
+        "title": "Replace the identifier",
+        "category": "SPDX License Lint: PEP 6"
+      }
+    ],
+    "configuration": {
+      "title": "SPDX License Lint: PEP 639 & Copyleft",
+      "properties": {
+        "spdx-license-field-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Export format for the licence inventory"
+        },
+        "spdx-license-field-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity"
+        },
+        "spdx-license-field-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip when scanning the repository"
+        },
+        "spdx-license-field-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Rules of your own, checked alongside the 73 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
