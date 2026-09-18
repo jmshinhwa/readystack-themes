@@ -1,0 +1,53 @@
+{
+  "name": "pytest-deprecation-lint",
+  "displayName": "Pytest Deprecation Lint (pytest 8 removals)",
+  "description": "Flags pytest APIs removed in pytest 8 and pytest config keys that are silently ignored, with the replacement line and the version that removed each one.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "pytest",
+    "deprecation",
+    "pytest 8",
+    "python testing",
+    "conftest",
+    "migration",
+    "lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pytestDeprecationLint.checkFile",
+        "title": "Pytest Deprecation Lint (pytest 8 removals): Check this file",
+        "category": "Pytest Deprecation Lint (pytest 8 removals)"
+      },
+      {
+        "command": "pytestDeprecationLint.checkWorkspace",
+        "title": "Pytest Deprecation Lint (pytest 8 removals): Sweep workspace and write report (licence)",
+        "category": "Pytest Deprecation Lint (pytest 8 removals)"
+      },
+      {
+        "command": "pytestDeprecationLint.enterKey",
+        "title": "Pytest Deprecation Lint (pytest 8 removals): Enter licence key",
+        "category": "Pytest Deprecation Lint (pytest 8 removals)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "pytest-deprecation-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/pytest-deprecation-lint",
+  "icon": "icon.png"
+}
