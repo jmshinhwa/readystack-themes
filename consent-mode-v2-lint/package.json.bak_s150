@@ -1,0 +1,95 @@
+{
+  "name": "consent-mode-v2-lint",
+  "displayName": "Consent Mode v2 Lint for GA4 & Google Ads",
+  "description": "Finds the consent-signal bugs that silently switch off Google Ads conversions and remarketing for EEA and UK traffic - in your source, before you ship.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "consent-mode",
+    "gtag",
+    "ga4",
+    "google-ads",
+    "gdpr"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "consent-mode-v2-lint.audit_file",
+        "title": "Check this file for consent-mode bugs",
+        "category": "Consent Mode v2 Lint"
+      },
+      {
+        "command": "consent-mode-v2-lint.audit_selection",
+        "title": "Check the selected lines",
+        "category": "Consent Mode v2 Lint"
+      },
+      {
+        "command": "consent-mode-v2-lint.show_report",
+        "title": "Show the last consent-mode report",
+        "category": "Consent Mode v2 Lint"
+      },
+      {
+        "command": "consent-mode-v2-lint.list_rules",
+        "title": "List all consent-mode rules",
+        "category": "Consent Mode v2 Lint"
+      },
+      {
+        "command": "consent-mode-v2-lint.workspace_scan",
+        "title": "Scan the whole workspace",
+        "category": "Consent Mode v2 Lint"
+      },
+      {
+        "command": "consent-mode-v2-lint.export_report",
+        "title": "Export the report to a file",
+        "category": "Consent Mode v2 Lint"
+      },
+      {
+        "command": "consent-mode-v2-lint.ci_json",
+        "title": "CI output (machine-readable JSON)",
+        "category": "Consent Mode v2 Lint"
+      }
+    ],
+    "configuration": {
+      "title": "Consent Mode v2 Lint",
+      "properties": {
+        "consent-mode-v2-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity"
+        },
+        "consent-mode-v2-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format"
+        },
+        "consent-mode-v2-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum files per workspace scan"
+        },
+        "consent-mode-v2-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip"
+        },
+        "consent-mode-v2-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 20 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
