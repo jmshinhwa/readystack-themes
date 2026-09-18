@@ -1,0 +1,85 @@
+{
+  "name": "cloud-cost-landmine-lint",
+  "displayName": "Cloud Cost Landmine Lint",
+  "description": "Names every line in the file you have open that starts a recurring cloud charge, with the published us-east-1 price and the date it changes by itself.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "terraform",
+    "aws",
+    "finops",
+    "cost",
+    "kubernetes"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cloud-cost-landmine-lint.audit_file",
+        "title": "Check this file for standing charges",
+        "category": "Cloud Cost Landmine Lint"
+      },
+      {
+        "command": "cloud-cost-landmine-lint.audit_selection",
+        "title": "Check the selected lines",
+        "category": "Cloud Cost Landmine Lint"
+      },
+      {
+        "command": "cloud-cost-landmine-lint.list_rules",
+        "title": "List the priced rules",
+        "category": "Cloud Cost Landmine Lint"
+      },
+      {
+        "command": "cloud-cost-landmine-lint.workspace_scan",
+        "title": "Scan every file in the workspace",
+        "category": "Cloud Cost Landmine Lint"
+      },
+      {
+        "command": "cloud-cost-landmine-lint.export_report",
+        "title": "Export the findings as CSV, JSON or HTML",
+        "category": "Cloud Cost Landmine Lint"
+      },
+      {
+        "command": "cloud-cost-landmine-lint.ci_json",
+        "title": "Print machine output for CI",
+        "category": "Cloud Cost Landmine Lint"
+      }
+    ],
+    "configuration": {
+      "title": "Cloud Cost Landmine Lint",
+      "properties": {
+        "cloud-cost-landmine-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format used when the findings are exported (csv, json or html)"
+        },
+        "cloud-cost-landmine-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files to open during a workspace scan"
+        },
+        "cloud-cost-landmine-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info, warn or error)"
+        },
+        "cloud-cost-landmine-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the ones that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
