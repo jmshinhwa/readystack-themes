@@ -1,0 +1,94 @@
+{
+  "name": "cra-readiness-audit",
+  "displayName": "CRA Readiness Audit",
+  "description": "Flags the lines in your repo that break the EU Cyber Resilience Act - default passwords, disabled TLS checks, floating base images, an expired security.txt - naming the Annex each one fails.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "cra",
+    "cyber-resilience-act",
+    "compliance",
+    "sbom",
+    "security"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cra-readiness-audit.audit_file",
+        "title": "Check this file against the CRA",
+        "category": "CRA Readiness Audit"
+      },
+      {
+        "command": "cra-readiness-audit.audit_selection",
+        "title": "Check only the selected lines",
+        "category": "CRA Readiness Audit"
+      },
+      {
+        "command": "cra-readiness-audit.show_report",
+        "title": "Reopen the last findings",
+        "category": "CRA Readiness Audit"
+      },
+      {
+        "command": "cra-readiness-audit.list_rules",
+        "title": "List every rule that ships inside",
+        "category": "CRA Readiness Audit"
+      },
+      {
+        "command": "cra-readiness-audit.workspace_scan",
+        "title": "Check every file in the workspace",
+        "category": "CRA Readiness Audit"
+      },
+      {
+        "command": "cra-readiness-audit.export_report",
+        "title": "Export the findings report",
+        "category": "CRA Readiness Audit"
+      },
+      {
+        "command": "cra-readiness-audit.ci_json",
+        "title": "Machine output for CI",
+        "category": "CRA Readiness Audit"
+      }
+    ],
+    "configuration": {
+      "title": "CRA Readiness Audit",
+      "properties": {
+        "cra-readiness-audit.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info|warn|error)"
+        },
+        "cra-readiness-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format the exported findings report is written in (csv|json|html)"
+        },
+        "cra-readiness-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files a workspace check will open"
+        },
+        "cra-readiness-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths a workspace check skips (glob)"
+        },
+        "cra-readiness-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 28 that ship inside."
+        }
+      }
+    }
+  }
+}
