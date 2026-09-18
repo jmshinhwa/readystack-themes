@@ -1,0 +1,54 @@
+{
+  "name": "svg-asset-compliance-lint",
+  "displayName": "SVG Asset Compliance Lint",
+  "description": "Lints SVG assets for the three things that survive a design export: no accessible name, a call out to a third-party server, and script that a sanitizer will run.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "svg",
+    "accessibility",
+    "wcag",
+    "gdpr",
+    "icons",
+    "assets",
+    "linter",
+    "eaa"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "svgAsset.checkFile",
+        "title": "SVG Asset Compliance Lint: Check this file",
+        "category": "SVG Asset Compliance Lint"
+      },
+      {
+        "command": "svgAsset.checkWorkspace",
+        "title": "SVG Asset Compliance Lint: Sweep workspace and write report (licence)",
+        "category": "SVG Asset Compliance Lint"
+      },
+      {
+        "command": "svgAsset.enterKey",
+        "title": "SVG Asset Compliance Lint: Enter licence key",
+        "category": "SVG Asset Compliance Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "svg-asset-compliance-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/svg-asset-compliance-lint",
+  "icon": "icon.png"
+}
