@@ -2,7 +2,7 @@
   "name": "nis2-incident-runbook-lint",
   "displayName": "NIS2 Incident Runbook Lint (Article 23)",
   "description": "Lints incident-response runbooks against NIS2 Article 23: the 24-hour early warning, the 72-hour notification, the one-month final report, the CSIRT addressee and the significant-incident criteria.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
