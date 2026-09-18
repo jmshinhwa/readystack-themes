@@ -1,0 +1,169 @@
+{
+  "name": "modern-stack-snippets-audit",
+  "displayName": "Snippets for 8 Stacks + Deprecated-Code Audit",
+  "description": "The snippet pack you installed was written for the old major version. It still expands, and what it expands is code the framework has already removed. 48 snippets written for the current majors, and 2",
+  "version": "0.1.0",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Snippets",
+    "Linters"
+  ],
+  "keywords": [
+    "nextjs-snippets",
+    "app-router",
+    "jest-snippets",
+    "tailwind-snippets",
+    "angular-snippets"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "modern-stack-snippets-audit.insert_snippet",
+        "title": "Insert a snippet",
+        "category": "Snippets for 8 Stacks + "
+      },
+      {
+        "command": "modern-stack-snippets-audit.audit_file",
+        "title": "Check this file for removed patterns",
+        "category": "Snippets for 8 Stacks + "
+      },
+      {
+        "command": "modern-stack-snippets-audit.list_rules",
+        "title": "Show what is inside this pack",
+        "category": "Snippets for 8 Stacks + "
+      },
+      {
+        "command": "modern-stack-snippets-audit.workspace_scan",
+        "title": "Check every file in the repo",
+        "category": "Snippets for 8 Stacks + "
+      },
+      {
+        "command": "modern-stack-snippets-audit.quick_fix",
+        "title": "Rewrite the flagged lines",
+        "category": "Snippets for 8 Stacks + "
+      },
+      {
+        "command": "modern-stack-snippets-audit.watch_on_save",
+        "title": "Re-check on every save while you migrate",
+        "category": "Snippets for 8 Stacks + "
+      },
+      {
+        "command": "modern-stack-snippets-audit.export_report",
+        "title": "Write the migration report to a file",
+        "category": "Snippets for 8 Stacks + "
+      }
+    ],
+    "configuration": {
+      "title": "Snippets for 8 Stacks + Deprecated-Code Audit",
+      "properties": {
+        "modern-stack-snippets-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format of the exported report"
+        },
+        "modern-stack-snippets-audit.max_files": {
+          "type": "number",
+          "default": 500,
+          "description": "How many workspace files the scan opens at most"
+        },
+        "modern-stack-snippets-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,dist,.next,vendor,tmp}/**",
+          "description": "Paths the scan skips"
+        },
+        "modern-stack-snippets-audit.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check the open file once when the editor opens"
+        },
+        "modern-stack-snippets-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 22 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "css",
+        "path": "./snippets/css-html-typescriptreact.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/css-html-typescriptreact.code-snippets"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/css-html-typescriptreact.code-snippets"
+      },
+      {
+        "language": "css",
+        "path": "./snippets/css-scss.code-snippets"
+      },
+      {
+        "language": "scss",
+        "path": "./snippets/css-scss.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-typescript-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript-typescript-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/javascript-typescript-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/javascript-typescript-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/markdown.code-snippets"
+      },
+      {
+        "language": "ruby",
+        "path": "./snippets/ruby-erb.code-snippets"
+      },
+      {
+        "language": "erb",
+        "path": "./snippets/ruby-erb.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/typescript-html.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/typescript-html.code-snippets"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/typescriptreact-javascriptreact-typescript.code-snippets"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/typescriptreact-javascriptreact-typescript.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/typescriptreact-javascriptreact-typescript.code-snippets"
+      }
+    ]
+  }
+}
