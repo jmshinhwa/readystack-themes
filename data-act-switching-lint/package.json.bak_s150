@@ -1,0 +1,52 @@
+{
+  "name": "data-act-switching-lint",
+  "displayName": "EU Data Act Switching Clause Lint",
+  "description": "Lint cloud/SaaS contract text for EU Data Act Chapter VI switching clauses: notice period, transition window, retrieval window, egress and switching charges, export format.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "data act",
+    "cloud switching",
+    "saas contract",
+    "eu regulation",
+    "compliance",
+    "linter",
+    "exit clause"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "dataActSwitching.checkFile",
+        "title": "EU Data Act Switching Clause Lint: Check this file",
+        "category": "EU Data Act Switching Clause Lint"
+      },
+      {
+        "command": "dataActSwitching.checkWorkspace",
+        "title": "EU Data Act Switching Clause Lint: Sweep workspace and write report (licence)",
+        "category": "EU Data Act Switching Clause Lint"
+      },
+      {
+        "command": "dataActSwitching.enterKey",
+        "title": "EU Data Act Switching Clause Lint: Enter licence key",
+        "category": "EU Data Act Switching Clause Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/data-act-switching-lint",
+  "icon": "icon.png"
+}
