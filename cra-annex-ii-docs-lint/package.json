@@ -1,0 +1,53 @@
+{
+  "name": "cra-annex-ii-docs-lint",
+  "displayName": "CRA Annex II User Docs Lint",
+  "description": "Lints the user documentation that ships with your product against the mandatory Annex II items of the EU Cyber Resilience Act: support-period end date, vulnerability contact, EU DoC address, secure de",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "cyber resilience act",
+    "cra",
+    "compliance",
+    "documentation",
+    "ce marking",
+    "annex ii",
+    "markdown"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "craAnnexIi.checkFile",
+        "title": "CRA Annex II User Docs Lint: Check this file",
+        "category": "CRA Annex II User Docs Lint"
+      },
+      {
+        "command": "craAnnexIi.checkWorkspace",
+        "title": "CRA Annex II User Docs Lint: Sweep workspace and write report (licence)",
+        "category": "CRA Annex II User Docs Lint"
+      },
+      {
+        "command": "craAnnexIi.enterKey",
+        "title": "CRA Annex II User Docs Lint: Enter licence key",
+        "category": "CRA Annex II User Docs Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "cra-annex-ii-docs-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/cra-annex-ii-docs-lint",
+  "icon": "icon.png"
+}
