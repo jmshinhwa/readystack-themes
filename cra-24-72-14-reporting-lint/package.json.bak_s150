@@ -1,0 +1,74 @@
+{
+  "name": "cra-24-72-14-reporting-lint",
+  "displayName": "CRA 24/72/14 Reporting Lint (Article 14)",
+  "description": "Checks your SECURITY.md, disclosure policy or incident runbook against the EU Cyber Resilience Act reporting clock that started on 11 September 2026: 24-hour early warning, 72-hour notification, 14-day final report, to ENISA and your coordinating CSIRT. 18 checks. Runs offline.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "main": "./extension.js",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "cyber resilience act",
+    "cra",
+    "article 14",
+    "vulnerability reporting",
+    "enisa",
+    "csirt",
+    "security.md",
+    "compliance"
+  ],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "craReporting.checkFile",
+        "title": "CRA 24/72/14: Check this file",
+        "category": "CRA"
+      },
+      {
+        "command": "craReporting.checkWorkspace",
+        "title": "CRA 24/72/14: Sweep the whole workspace",
+        "category": "CRA"
+      },
+      {
+        "command": "craReporting.enterKey",
+        "title": "CRA 24/72/14: Enter licence key",
+        "category": "CRA"
+      }
+    ],
+    "configuration": {
+      "title": "CRA 24/72/14 Reporting Lint",
+      "properties": {
+        "craReporting.min_severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "warn",
+            "error"
+          ],
+          "default": "info",
+          "description": "Hide findings below this severity."
+        },
+        "craReporting.today": {
+          "type": "string",
+          "default": "",
+          "description": "Pin the date used for support-period arithmetic (YYYY-MM-DD). Empty means the system date."
+        },
+        "craReporting.include_glob": {
+          "type": "string",
+          "default": "**/*.md",
+          "description": "Which files the workspace sweep reads."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
