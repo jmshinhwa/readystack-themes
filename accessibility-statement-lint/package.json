@@ -1,0 +1,53 @@
+{
+  "name": "accessibility-statement-lint",
+  "displayName": "Accessibility Statement Lint (EU model)",
+  "description": "Lints a published accessibility statement against the EU model statement: compliance-status wording, non-accessible content with reasons, preparation and last-review dates, feedback and enforcement se",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "accessibility statement",
+    "en 301 549",
+    "european accessibility act",
+    "web accessibility directive",
+    "wcag",
+    "eu compliance",
+    "a11y"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "a11yStatement.checkFile",
+        "title": "Accessibility Statement Lint (EU model): Check this file",
+        "category": "Accessibility Statement Lint (EU model)"
+      },
+      {
+        "command": "a11yStatement.checkWorkspace",
+        "title": "Accessibility Statement Lint (EU model): Sweep workspace and write report (licence)",
+        "category": "Accessibility Statement Lint (EU model)"
+      },
+      {
+        "command": "a11yStatement.enterKey",
+        "title": "Accessibility Statement Lint (EU model): Enter licence key",
+        "category": "Accessibility Statement Lint (EU model)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "accessibility-statement-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/accessibility-statement-lint",
+  "icon": "icon.png"
+}
