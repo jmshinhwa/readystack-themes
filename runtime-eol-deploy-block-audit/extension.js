@@ -93,8 +93,31 @@ async function listRules() {
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
 async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
 
+// ★s144 — reverse trial (paid taste): ★작업공간 전체 스윕 + 보고서를 ★첫 스윕부터 7일간 키 없이 ★줄이지 않고 준다.
+//   [검색 2026-09-12] freemium 2~4% ↔ reverse trial 8~12% (개발자 도구 체험 중앙값 24%)
+//   · 손님이 돈 낼지 정하는 순간은 ★자기 폴더에서 자기 숫자를 본 뒤다 ⇒ 문턱을 ★그 뒤로 옮긴다 (endowment).
+//   ⛔무료 경로(열린 파일 검사)에는 어떤 제한도 두지 않는다 (8% 법).
+const NEED_KEY = S.need_key;              // ⛔원문을 잡아 둔다 — 문턱 문장을 ★덧칠하지 않도록
+const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
+async function sweepTrial(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    // ★체험이 끝난 뒤에야 키를 묻는다 — ★손님 자기 숫자를 먼저 부른다
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found '
+      + last.findings + ' findings. ') : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return null;
+  }
+  return { inTrial: inTrial, until: until };
+}
+
 async function scanWorkspace(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const trial = await sweepTrial(ctx);
+  if (!trial) return;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('runtime-eol-deploy-block-audit');
   const _max = Number(_c.get('max_files')) || 2000;
@@ -107,14 +130,20 @@ async function scanWorkspace(ctx) {
       rows.push({ file: f.fsPath, hits: scan(doc.getText(), f.fsPath) });
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
-  report(rows);
+  const n = report(rows);
+  // ★스윕한 숫자를 남긴다 — 체험이 끝나면 ★이 숫자가 문턱 문장을 연다
+  await ctx.globalState.update('lastSweep',
+    { files: files.length, findings: n, at: new Date().toISOString().slice(0, 10) });
+  vscode.window.showInformationMessage(S.done + ' ' + files.length + ' files \u00b7 ' + n + ' findings.'
+    + (trial.inTrial ? TRIAL_NOTE : ''));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
 //   🔴s125: ⛔전에는 CSV 하나만 썼는데 ★프롬프트는 "CSV / JSON / HTML" 이라고 약속했다
 //     ⇒ ★검수가 옳게 잡았다("⑤거짓 주장"). ★법(S24): 한계를 만나면 ⛔좁히지 말고 ★손을 넓힌다.
 async function exportReport(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const trial = await sweepTrial(ctx);
+  if (!trial) return;
   const ed = vscode.window.activeTextEditor;
   const rows = ed ? [{ file: ed.document.fileName, hits: scan(ed.document.getText(), ed.document.fileName) }] : [];
   const ws = vscode.workspace.workspaceFolders;
@@ -141,7 +170,7 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'runtime-eol-deploy-block-audit-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath + (trial.inTrial ? TRIAL_NOTE : ''));
 }
 
 async function ciJson(ctx) {
