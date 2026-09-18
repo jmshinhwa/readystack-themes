@@ -1,0 +1,54 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Angular CLI + SAP Fiori + Azure IoT Workspace Auditor - 8 toolchains, 26 checks, 34 snippets</title>
+<meta name="description" content="One hard-coded azure-devices.net key, or a coverage gate left at 0, slips into the repo unnoticed - 26 checks across the 8 toolchains an enterprise Angular workspace runs on, applied to the file you have open, offline, without an account.">
+<style>
+:root{color-scheme:light dark}
+body{margin:0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;
+ background:#fbfbfa;color:#16161d}
+@media(prefers-color-scheme:dark){body{background:#14141a;color:#e8e8ea}}
+.wrap{max-width:880px;margin:0 auto;padding:28px 20px 64px}
+h1{font-size:1.7rem;line-height:1.25;margin:.2em 0 .3em}
+p.sub{margin:0 0 1.4em;opacity:.8}
+textarea{width:100%;min-height:230px;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;
+ padding:12px;border:1px solid #c9c9d1;border-radius:10px;background:transparent;color:inherit;
+ box-sizing:border-box}
+button{font:600 15px/1 inherit;padding:12px 22px;border:0;border-radius:10px;
+ background:#1d4ed8;color:#fff;cursor:pointer;margin:12px 0}
+button:hover{background:#1a43bd}
+table{border-collapse:collapse;width:100%;margin-top:14px;font-size:14px}
+th,td{border-bottom:1px solid #d8d8e0;padding:8px 6px;text-align:left;vertical-align:top}
+th{font-weight:600;opacity:.75}
+td.n{width:64px;font:13px ui-monospace,monospace;opacity:.7}
+.ok{padding:14px;border-radius:10px;background:#e8f5ec;color:#14532d;margin-top:14px}
+@media(prefers-color-scheme:dark){.ok{background:#15321f;color:#bbf7d0}}
+.next{margin-top:30px;padding:18px;border:1px solid #d8d8e0;border-radius:12px}
+.next h2{font-size:1.05rem;margin:0 0 .5em}
+.next ul{margin:.3em 0 1em 1.1em;padding:0}
+</style>
+<div class="wrap">
+<h1>Angular CLI + SAP Fiori + Azure IoT Workspace Auditor - 8 toolchains, 26 checks, 34 snippets</h1>
+<p class="sub">One hard-coded azure-devices.net key, or a coverage gate left at 0, slips into the repo unnoticed - 26 checks across the 8 toolchains an enterprise Angular workspace runs on, applied to the file you have open, offline, without an account.</p>
+<textarea id="src" placeholder="Paste the file here"></textarea>
+<button id="go">Check</button>
+<div id="out"></div>
+<div class="next"><h2>In the full version</h2><ul><li>Every file in the repository, not just the open one</li><li>A report file a reviewer can read without this extension</li><li>The corrected line written into the editor for you</li><li><a href="https://getreadystack.com">Get the full version</a></li></ul></div>
+</div>
+<script>
+var RULES=[{"pattern": "ng build\\s+[^\\n]*--prod\\b", "flags": "i", "message": "Angular CLI: --prod was removed after Angular 11. This build is not using the production configuration.", "fix": "ng build --configuration production"}, {"pattern": "\"aot\"\\s*:\\s*false", "flags": "i", "message": "Angular CLI: ahead-of-time compilation is switched off, so template errors surface in the browser instead of at build time.", "fix": "\"aot\": true"}, {"pattern": "\"buildOptimizer\"\\s*:\\s*false", "flags": "i", "message": "Angular CLI: the build optimizer is off, so the production bundle keeps code the optimizer would have removed.", "fix": "\"buildOptimizer\": true"}, {"pattern": "\"extractCss\"\\s*:", "flags": "i", "message": "Angular CLI: extractCss is no longer a build option; CSS is extracted by default in a production build. Remove this key."}, {"pattern": "ng serve[^\\n]*--disable-host-check", "flags": "i", "message": "Angular CLI: --disable-host-check turns off the host header check on the dev server. Use --host and an allowed host instead."}, {"pattern": "HostName=[^;\\s\"']+\\.azure-devices\\.net;[^\"'\\s]*SharedAccessKey=", "flags": "i", "message": "Azure IoT: a full IoT Hub connection string with its shared access key is written in this file. Commit it once and every device key it covers has to be rotated. Read it from an environment variable."}, {"pattern": "DefaultEndpointsProtocol=https?;AccountName=", "flags": "i", "message": "Azure IoT: an Azure Storage connection string is written in plain text here. Move it to an environment variable or the pipeline secret store."}, {"pattern": "iothubowner", "flags": "i", "message": "Azure IoT: iothubowner is the all-rights policy. Application and device code should use a device or service policy, not this one."}, {"pattern": "mcr\\.microsoft\\.com/azureiotedge-[a-z0-9-]+:latest", "flags": "i", "message": "Azure IoT Edge: this module image is pinned to :latest, so two deployments of the same manifest can install different code. Pin an explicit version tag."}, {"pattern": "\"(statements|branches|lines|functions)\"\\s*:\\s*0\\s*[,}]", "flags": "i", "message": "Coverage: a threshold is set to 0, so this gate passes whatever the tests actually cover. Set a real number or remove the key."}, {"pattern": "--no-coverage\\b", "flags": "i", "message": "Coverage: this run disables coverage collection, so any downstream coverage gate has nothing to measure."}, {"pattern": "/\\*\\s*istanbul ignore file\\s*\\*/", "flags": "i", "message": "Coverage: the whole file is excluded from coverage. Confirm this is a generated file and not production code being hidden from the gate."}, {"pattern": "<img(?![^>]*\\balt=)[^>]*>", "flags": "i", "message": "HTML5: this img has no alt attribute. Screen readers announce the file name, and accessibility reviews fail on it."}, {"pattern": "<button(?![^>]*\\btype=)[^>]*>", "flags": "i", "message": "HTML5: a button with no type defaults to submit, so it submits the surrounding form when it is clicked."}, {"pattern": "\\[innerHTML\\]\\s*=", "flags": "i", "message": "Angular template: [innerHTML] writes markup straight into the DOM. Bind interpolated text, or sanitise the value explicitly."}, {"pattern": "target=[\"']_blank[\"']", "flags": "i", "message": "HTML5: a link opening in a new tab without rel=\"noopener noreferrer\" gives the opened page a handle on this one.", "fix": "target=\"_blank\" rel=\"noopener noreferrer\""}, {"pattern": "^[ ]*\\t", "flags": "m", "message": "YAML: tab characters are not legal for indentation in YAML. The parser rejects the file. Use spaces."}, {"pattern": ":\\s*(yes|no|on|off)\\s*$", "flags": "im", "message": "YAML: bare yes/no/on/off is read as a boolean by YAML 1.1 parsers and as a string by YAML 1.2 parsers. Write true/false, or quote the value."}, {"pattern": "^\\s*version:\\s*\\d+\\.\\d+\\s*$", "flags": "m", "message": "YAML: an unquoted version like 1.10 is parsed as the number 1.1 and the trailing zero is lost. Quote it."}, {"pattern": "(password|secret|token|apiKey)\\s*:\\s*[\"']?[A-Za-z0-9+/=_-]{8,}", "flags": "i", "message": "YAML: a secret value is written literally in this file. Reference a pipeline variable or an environment variable instead."}, {"pattern": "\"\\*\\*/(node_modules|dist|\\.angular|out|coverage)\"\\s*:\\s*false", "flags": "i", "message": "Workspace settings: a build output folder is explicitly un-excluded, so it comes back into the Explorer tree, the search results and Go to File."}, {"pattern": "\"files\\.watcherExclude\"\\s*:\\s*\\{\\s*\\}", "flags": "i", "message": "Workspace settings: files.watcherExclude is empty, so the editor watches node_modules and dist. On a large Angular or Fiori repository that is the file-watcher limit being spent on generated files."}, {"pattern": "jQuery\\.sap\\.", "flags": "", "message": "SAP UI5: jQuery.sap.* is a legacy namespace kept only for compatibility. Replace it with the sap/base or sap/ui/dom module you need."}, {"pattern": "specVersion:\\s*[\"']?[01]\\.\\d", "flags": "i", "message": "SAP Fiori tooling: ui5.yaml declares an old specVersion. The current UI5 tooling middleware configuration expects a 2.x or newer specVersion."}, {"pattern": "sap:label=", "flags": "i", "message": "SAP Fiori: a sap:label attribute annotation sits in the metadata. In an OData V4 Fiori elements app the label belongs in the annotation file as Common.Label or a UI.DataField label."}, {"pattern": "<PropertyValue[^>]*Property=\"Label\"[^>]*String=\"\"", "flags": "i", "message": "SAP Fiori annotations: this Label is an empty string, so the column header or field renders blank in the running app."}];
+function scan(t){var L=String(t).split(/\r?\n/),h=[],i,r,re;
+ for(i=0;i<L.length;i++){for(var k=0;k<RULES.length;k++){r=RULES[k];
+  try{re=new RegExp(r.pattern,r.flags||'')}catch(e){continue}
+  if(re.test(L[i]))h.push({line:i+1,msg:r.message})}}
+ return h}
+document.getElementById('go').onclick=function(){
+ var t=document.getElementById('src').value,o=document.getElementById('out');
+ if(!t.trim()){o.innerHTML='';return}
+ var h=scan(t);
+ if(!h.length){o.innerHTML='<div class="ok">No findings. Nothing in this file matches any of the 26 rules.</div>';return}
+ var s='<table><tr><th>Line</th><th>Finding</th></tr>';
+ for(var i=0;i<h.length;i++){s+='<tr><td class="n">'+h[i].line+'</td><td>'+
+   String(h[i].msg).replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</td></tr>'}
+ o.innerHTML=s+'</table>'};
+</script>
+</html>
