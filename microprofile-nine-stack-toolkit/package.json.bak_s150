@@ -1,0 +1,163 @@
+{
+  "name": "microprofile-nine-stack-toolkit",
+  "displayName": "MicroProfile Tools & 9-Stack Snippets",
+  "description": "A wrong key in microprofile-config.properties does not break the build. It breaks the deploy. 46 snippets write the boilerplate and 24 rules check the file you have open, across 9 stacks, before you c",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Snippets",
+    "Linters",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "microprofile",
+    "jakarta-ee",
+    "devicetree",
+    "toml",
+    "autohotkey"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "microprofile-nine-stack-toolkit.audit_current_file",
+        "title": "Audit the open file (24 rules)",
+        "category": "MicroProfile Tools & 9-S"
+      },
+      {
+        "command": "microprofile-nine-stack-toolkit.audit_selection",
+        "title": "Audit only the selected lines",
+        "category": "MicroProfile Tools & 9-S"
+      },
+      {
+        "command": "microprofile-nine-stack-toolkit.list_rules",
+        "title": "Show every rule and what it catches",
+        "category": "MicroProfile Tools & 9-S"
+      },
+      {
+        "command": "microprofile-nine-stack-toolkit.workspace_scan",
+        "title": "Every file in the repository, not the one tab",
+        "category": "MicroProfile Tools & 9-S"
+      },
+      {
+        "command": "microprofile-nine-stack-toolkit.quick_fix",
+        "title": "Apply the fix instead of reading about it",
+        "category": "MicroProfile Tools & 9-S"
+      },
+      {
+        "command": "microprofile-nine-stack-toolkit.watch_on_save",
+        "title": "Re-audit automatically on every save",
+        "category": "MicroProfile Tools & 9-S"
+      },
+      {
+        "command": "microprofile-nine-stack-toolkit.custom_rules",
+        "title": "Your team's rules beside the built-in 24",
+        "category": "MicroProfile Tools & 9-S"
+      },
+      {
+        "command": "microprofile-nine-stack-toolkit.export_report",
+        "title": "Write the audit report into the repo",
+        "category": "MicroProfile Tools & 9-S"
+      },
+      {
+        "command": "microprofile-nine-stack-toolkit.ci_json",
+        "title": "JSON your pipeline can read",
+        "category": "MicroProfile Tools & 9-S"
+      }
+    ],
+    "configuration": {
+      "title": "MicroProfile Tools & 9-Stack Snippets",
+      "properties": {
+        "microprofile-nine-stack-toolkit.stacks_enabled": {
+          "type": "string",
+          "default": "all",
+          "description": "Stacks to check (comma separated, or all)"
+        },
+        "microprofile-nine-stack-toolkit.custom_rules_file": {
+          "type": "string",
+          "default": ".stackaudit-rules.json",
+          "description": "Path to your own rules file (paid)"
+        },
+        "microprofile-nine-stack-toolkit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Report format: csv, html or json (json is the CI format)"
+        },
+        "microprofile-nine-stack-toolkit.report_path": {
+          "type": "string",
+          "default": "stack-audit-report",
+          "description": "Where the report file is written, relative to the workspace"
+        },
+        "microprofile-nine-stack-toolkit.watch_on_save": {
+          "type": "boolean",
+          "default": false,
+          "description": "Re-audit a file every time it is saved (paid)"
+        },
+        "microprofile-nine-stack-toolkit.max_findings_per_file": {
+          "type": "number",
+          "default": 200,
+          "description": "Stop listing after this many findings in one file"
+        },
+        "microprofile-nine-stack-toolkit.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,target,build,dist,.venv,.git}/**",
+          "description": "Folders the workspace scan skips"
+        },
+        "microprofile-nine-stack-toolkit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Every file in the repository, not the one tab"
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "ahk",
+        "path": "./snippets/ahk-ahk2.code-snippets"
+      },
+      {
+        "language": "ahk2",
+        "path": "./snippets/ahk-ahk2.code-snippets"
+      },
+      {
+        "language": "dts",
+        "path": "./snippets/dts.code-snippets"
+      },
+      {
+        "language": "inkling",
+        "path": "./snippets/inkling.code-snippets"
+      },
+      {
+        "language": "java",
+        "path": "./snippets/java.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/properties.code-snippets"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python.code-snippets"
+      },
+      {
+        "language": "renpy",
+        "path": "./snippets/renpy.code-snippets"
+      },
+      {
+        "language": "swift",
+        "path": "./snippets/swift.code-snippets"
+      },
+      {
+        "language": "toml",
+        "path": "./snippets/toml.code-snippets"
+      }
+    ]
+  }
+}
