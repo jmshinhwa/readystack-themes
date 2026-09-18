@@ -1,0 +1,101 @@
+{
+  "name": "sbom-field-check-cra-2026",
+  "displayName": "SBOM Field Check for CRA 2026",
+  "description": "Names every missing field in your CycloneDX or SPDX SBOM against BSI TR-03183-2 and the CISA 2026 minimum elements. 34 rules. Runs offline.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "sbom",
+    "cyclonedx",
+    "spdx",
+    "cra",
+    "compliance"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sbom-field-check-cra-2026.audit_file",
+        "title": "Check this SBOM file",
+        "category": "SBOM Field Check for CRA"
+      },
+      {
+        "command": "sbom-field-check-cra-2026.list_rules",
+        "title": "List the field rules",
+        "category": "SBOM Field Check for CRA"
+      },
+      {
+        "command": "sbom-field-check-cra-2026.show_report",
+        "title": "Show the last report",
+        "category": "SBOM Field Check for CRA"
+      },
+      {
+        "command": "sbom-field-check-cra-2026.workspace_scan",
+        "title": "Check every SBOM in the workspace",
+        "category": "SBOM Field Check for CRA"
+      },
+      {
+        "command": "sbom-field-check-cra-2026.export_report",
+        "title": "Export the evidence report",
+        "category": "SBOM Field Check for CRA"
+      },
+      {
+        "command": "sbom-field-check-cra-2026.ci_json",
+        "title": "Write CI output",
+        "category": "SBOM Field Check for CRA"
+      },
+      {
+        "command": "sbom-field-check-cra-2026.watch_on_save",
+        "title": "Re-check on every save",
+        "category": "SBOM Field Check for CRA"
+      }
+    ],
+    "configuration": {
+      "title": "SBOM Field Check for CRA 2026",
+      "properties": {
+        "sbom-field-check-cra-2026.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format used by \"Export the evidence report\" (csv, json or html)"
+        },
+        "sbom-field-check-cra-2026.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info, warn, error)"
+        },
+        "sbom-field-check-cra-2026.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files a workspace check will open"
+        },
+        "sbom-field-check-cra-2026.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths a workspace check skips"
+        },
+        "sbom-field-check-cra-2026.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check the open file once when the window opens"
+        },
+        "sbom-field-check-cra-2026.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 34 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
