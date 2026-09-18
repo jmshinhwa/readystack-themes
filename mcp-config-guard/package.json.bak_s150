@@ -1,0 +1,54 @@
+{
+  "name": "mcp-config-guard",
+  "displayName": "MCP Config Guard - agent config lint",
+  "description": "Lints mcp.json / .mcp.json / claude_desktop_config.json for the lines that hand an AI agent more than you meant: unpinned servers, literal secrets, plaintext transport.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "mcp",
+    "model context protocol",
+    "ai agent",
+    "security",
+    "lint",
+    "json",
+    "supply chain",
+    "secrets"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "mcpConfigGuard.checkFile",
+        "title": "MCP Config Guard - agent config lint: Check this file",
+        "category": "MCP Config Guard - agent config lint"
+      },
+      {
+        "command": "mcpConfigGuard.checkWorkspace",
+        "title": "MCP Config Guard - agent config lint: Sweep workspace and write report (licence)",
+        "category": "MCP Config Guard - agent config lint"
+      },
+      {
+        "command": "mcpConfigGuard.enterKey",
+        "title": "MCP Config Guard - agent config lint: Enter licence key",
+        "category": "MCP Config Guard - agent config lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "mcp-config-guard"
+  },
+  "homepage": "https://getreadystack.com/tools/mcp-config-guard",
+  "icon": "icon.png"
+}
