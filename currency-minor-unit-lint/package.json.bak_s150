@@ -1,0 +1,105 @@
+{
+  "name": "currency-minor-unit-lint",
+  "displayName": "Currency Minor Unit Lint",
+  "description": "Finds the money lines that send the wrong amount to a payment API: the x100 that charges 100x in JPY, the toFixed(2) that truncates KWD, and the currency codes that stopped being legal tender.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "currency",
+    "money",
+    "payments",
+    "rounding",
+    "iso4217"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "currency-minor-unit-lint.audit_file",
+        "title": "Check the money lines in this file",
+        "category": "Currency Minor Unit Lint"
+      },
+      {
+        "command": "currency-minor-unit-lint.list_rules",
+        "title": "List the currency rules that ship inside",
+        "category": "Currency Minor Unit Lint"
+      },
+      {
+        "command": "currency-minor-unit-lint.show_report",
+        "title": "Show the last findings again",
+        "category": "Currency Minor Unit Lint"
+      },
+      {
+        "command": "currency-minor-unit-lint.workspace_scan",
+        "title": "Scan every file in the repository",
+        "category": "Currency Minor Unit Lint"
+      },
+      {
+        "command": "currency-minor-unit-lint.ci_json",
+        "title": "Write CI output that fails the build",
+        "category": "Currency Minor Unit Lint"
+      },
+      {
+        "command": "currency-minor-unit-lint.export_report",
+        "title": "Export the findings (CSV, JSON or HTML)",
+        "category": "Currency Minor Unit Lint"
+      },
+      {
+        "command": "currency-minor-unit-lint.quick_fix",
+        "title": "Rewrite the retired currency codes in place",
+        "category": "Currency Minor Unit Lint"
+      },
+      {
+        "command": "currency-minor-unit-lint.watch_on_save",
+        "title": "Re-check on every save",
+        "category": "Currency Minor Unit Lint"
+      }
+    ],
+    "configuration": {
+      "title": "Currency Minor Unit Lint",
+      "properties": {
+        "currency-minor-unit-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info | warn | error)"
+        },
+        "currency-minor-unit-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files to open during a repository scan"
+        },
+        "currency-minor-unit-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a repository scan"
+        },
+        "currency-minor-unit-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format to write the exported report in (csv | json | html)"
+        },
+        "currency-minor-unit-lint.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check the open file once when the window opens"
+        },
+        "currency-minor-unit-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 24 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
