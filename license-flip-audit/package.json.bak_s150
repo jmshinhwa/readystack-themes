@@ -1,0 +1,96 @@
+{
+  "name": "license-flip-audit",
+  "displayName": "License Flip Audit - BUSL/SSPL/AGPL in your deps",
+  "description": "Finds the dependencies whose licence changed under you - Terraform 1.6+ BUSL, Redis 7.4+ SSPL, Bitnami's August 2025 move, Elastic 7.11 - and names the exact version where each flip happened.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "license",
+    "compliance",
+    "dependencies",
+    "sbom",
+    "audit"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "license-flip-audit.audit_file",
+        "title": "License Flip Audit: check this manifest",
+        "category": "License Flip Audit"
+      },
+      {
+        "command": "license-flip-audit.list_rules",
+        "title": "License Flip Audit: list the tracked packages",
+        "category": "License Flip Audit"
+      },
+      {
+        "command": "license-flip-audit.show_report",
+        "title": "License Flip Audit: reopen the last report",
+        "category": "License Flip Audit"
+      },
+      {
+        "command": "license-flip-audit.workspace_scan",
+        "title": "License Flip Audit: scan every manifest in the workspace",
+        "category": "License Flip Audit"
+      },
+      {
+        "command": "license-flip-audit.export_report",
+        "title": "License Flip Audit: export the report for legal or procurement",
+        "category": "License Flip Audit"
+      },
+      {
+        "command": "license-flip-audit.watch_on_save",
+        "title": "License Flip Audit: re-check on every save",
+        "category": "License Flip Audit"
+      },
+      {
+        "command": "license-flip-audit.ci_json",
+        "title": "License Flip Audit: write the machine-readable CI file",
+        "category": "License Flip Audit"
+      }
+    ],
+    "configuration": {
+      "title": "License Flip Audit",
+      "properties": {
+        "license-flip-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format used by the export command (csv, json or html)"
+        },
+        "license-flip-audit.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info, warn or error)"
+        },
+        "license-flip-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files a workspace scan will open"
+        },
+        "license-flip-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths a workspace scan skips"
+        },
+        "license-flip-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Your own banned packages, checked alongside the 30 licence flips that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
