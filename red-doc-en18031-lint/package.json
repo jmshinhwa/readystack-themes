@@ -1,0 +1,53 @@
+{
+  "name": "red-doc-en18031-lint",
+  "displayName": "RED Cybersecurity DoC Lint (EN 18031)",
+  "description": "Audits an EU Declaration of Conformity for radio equipment against Delegated Regulation (EU) 2022/30 and the EN 18031:2024 citations, mandatory since 1 August 2025.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "red",
+    "en 18031",
+    "declaration of conformity",
+    "ce marking",
+    "radio equipment",
+    "cybersecurity",
+    "eu 2022/30"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "redDocLint.checkFile",
+        "title": "RED Cybersecurity DoC Lint (EN 18031): Check this file",
+        "category": "RED Cybersecurity DoC Lint (EN 18031)"
+      },
+      {
+        "command": "redDocLint.checkWorkspace",
+        "title": "RED Cybersecurity DoC Lint (EN 18031): Sweep workspace and write report (licence)",
+        "category": "RED Cybersecurity DoC Lint (EN 18031)"
+      },
+      {
+        "command": "redDocLint.enterKey",
+        "title": "RED Cybersecurity DoC Lint (EN 18031): Enter licence key",
+        "category": "RED Cybersecurity DoC Lint (EN 18031)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "red-doc-en18031-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/red-doc-en18031-lint",
+  "icon": "icon.png"
+}
