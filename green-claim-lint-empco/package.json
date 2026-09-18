@@ -2,7 +2,7 @@
   "name": "green-claim-lint-empco",
   "displayName": "Green Claim Lint - EU EmpCo 2026",
   "description": "Lints HTML/Markdown product copy for environmental claims the EU bans from 27 Sep 2026 under Directive (EU) 2024/825 (EmpCo).",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
