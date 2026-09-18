@@ -2,7 +2,7 @@
   "name": "stale-standard-citation-lint",
   "displayName": "Stale Standard Citation Lint",
   "description": "Finds superseded standard editions and repealed laws cited in your .rst/.md docs — ISO 27001:2013, PCI DSS 3.2.1, FIPS 140-2, Privacy Shield, the old SCCs — with the date each one died.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
