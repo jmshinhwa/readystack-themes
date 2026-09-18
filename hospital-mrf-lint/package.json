@@ -1,0 +1,53 @@
+{
+  "name": "hospital-mrf-lint",
+  "displayName": "Hospital Price Transparency MRF Lint",
+  "description": "Check a hospital standard-charges machine-readable file against the CMS JSON template and 45 CFR Part 180 before you publish it. Offline, line numbers, no upload.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "hospital price transparency",
+    "machine-readable file",
+    "standard charges",
+    "CMS",
+    "45 CFR 180",
+    "revenue cycle",
+    "json lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "hospitalMrfLint.checkFile",
+        "title": "Hospital Price Transparency MRF Lint: Check this file",
+        "category": "Hospital Price Transparency MRF Lint"
+      },
+      {
+        "command": "hospitalMrfLint.checkWorkspace",
+        "title": "Hospital Price Transparency MRF Lint: Sweep workspace and write report (licence)",
+        "category": "Hospital Price Transparency MRF Lint"
+      },
+      {
+        "command": "hospitalMrfLint.enterKey",
+        "title": "Hospital Price Transparency MRF Lint: Enter licence key",
+        "category": "Hospital Price Transparency MRF Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "hospital-mrf-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/hospital-mrf-lint",
+  "icon": "icon.png"
+}
