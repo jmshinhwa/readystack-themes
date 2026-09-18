@@ -1,0 +1,136 @@
+[
+  {
+    "id": "email_real",
+    "sev": "high",
+    "article": "GDPR Art. 5(1)(c)",
+    "title": "Real e-mail address in a snapshot",
+    "msg": "Real e-mail address {m} is stored in this snapshot. Reserved test domains (@example.com, @example.org, .test, .invalid) are the only safe values here.",
+    "kind": "regex",
+    "re": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,24}",
+    "allow": "@(?:example\\.(?:com|org|net)|[A-Za-z0-9.-]*(?:test|invalid|localhost|local|example))$"
+  },
+  {
+    "id": "national_id_us",
+    "sev": "high",
+    "article": "GDPR Art. 87 / Art. 5(1)(c)",
+    "title": "National identification number",
+    "msg": "A US Social Security number pattern {m} is committed in this snapshot. National identifiers may only be processed where a legal basis exists; a test fixture is not one.",
+    "kind": "regex",
+    "re": "\\b(?!000|666|9\\d\\d)\\d{3}-(?!00)\\d{2}-(?!0000)\\d{4}\\b"
+  },
+  {
+    "id": "national_id_uk",
+    "sev": "high",
+    "article": "UK GDPR Art. 5(1)(c)",
+    "title": "UK National Insurance number",
+    "msg": "A UK National Insurance number {m} is committed in this snapshot. Use QQ123456C, the number HMRC reserves for examples.",
+    "kind": "regex",
+    "re": "\\b(?!QQ)[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z] ?\\d{2} ?\\d{2} ?\\d{2} ?[A-D]\\b"
+  },
+  {
+    "id": "iban_valid",
+    "sev": "high",
+    "article": "GDPR Art. 32(1)",
+    "title": "Bank account number (IBAN)",
+    "msg": "{m} passes the ISO 13616 check digits, so it is a usable bank account number sitting in version control.",
+    "kind": "iban"
+  },
+  {
+    "id": "payment_card",
+    "sev": "high",
+    "article": "GDPR Art. 32(1)",
+    "title": "Payment card number",
+    "msg": "{m} passes the Luhn check, so a real card number is stored in this snapshot. Card data in a repository is outside any cardholder data environment.",
+    "kind": "luhn"
+  },
+  {
+    "id": "phone_number",
+    "sev": "med",
+    "article": "GDPR Art. 5(1)(c)",
+    "title": "Reachable phone number",
+    "msg": "Phone number {m} is stored in this snapshot. Ranges reserved for fiction (+1 555 01xx, +44 7700 900xxx) exist for exactly this case.",
+    "kind": "regex",
+    "re": "\\+\\d{1,3}[ .\\-]?(?:\\(?\\d{1,4}\\)?[ .\\-]?){2,5}\\d{2,4}",
+    "allow": "^\\+1[ .\\-]?\\(?555\\)?[ .\\-]?01|^\\+44[ .\\-]?7700[ .\\-]?900|^\\+49[ .\\-]?30[ .\\-]?23125"
+  },
+  {
+    "id": "jwt_token",
+    "sev": "high",
+    "article": "GDPR Art. 32(1)",
+    "title": "JSON Web Token",
+    "msg": "A JWT ({m}) is stored in this snapshot. Its payload is base64, not encryption, and it may still be accepted by your API.",
+    "kind": "regex",
+    "re": "eyJ[A-Za-z0-9_\\-]{8,}\\.[A-Za-z0-9_\\-]{8,}\\.[A-Za-z0-9_\\-]{4,}"
+  },
+  {
+    "id": "api_credential",
+    "sev": "high",
+    "article": "GDPR Art. 32(1)",
+    "title": "Live API credential",
+    "msg": "Credential {m} is stored in this snapshot. A recorded HTTP response keeps the Authorization header that produced it.",
+    "kind": "regex",
+    "re": "(?:Bearer [A-Za-z0-9._\\-]{20,}|sk-[A-Za-z0-9]{16,}|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{20,}|xox[baprs]-[A-Za-z0-9\\-]{10,})"
+  },
+  {
+    "id": "session_cookie",
+    "sev": "high",
+    "article": "GDPR Art. 32(1)",
+    "title": "Session cookie",
+    "msg": "A session cookie is recorded on this line ({m}). Whoever reads the repository can replay the session it belongs to.",
+    "kind": "regex",
+    "re": "(?:[Ss]et-[Cc]ookie|connect\\.sid|sessionid|session_id|JSESSIONID|PHPSESSID)\\s*[=:]\\s*\\S{6,}"
+  },
+  {
+    "id": "public_ip",
+    "sev": "med",
+    "article": "GDPR Art. 4(1)",
+    "title": "Public IP address",
+    "msg": "{m} is a routable public IP address. The Court of Justice treated a dynamic IP held by an operator as personal data in C-582/14 (Breyer).",
+    "kind": "ip"
+  },
+  {
+    "id": "date_of_birth",
+    "sev": "med",
+    "article": "GDPR Art. 5(1)(c)",
+    "title": "Date of birth",
+    "msg": "A date of birth is filled in on this line ({m}). With a name beside it, this snapshot identifies a person directly.",
+    "kind": "regex",
+    "re": "\"?(?:dateOfBirth|date_of_birth|birthDate|birth_date|dob|geburtsdatum)\"?\\s*[:=]\\s*\"?\\d[\\d\\-/.]{5,}"
+  },
+  {
+    "id": "person_name",
+    "sev": "med",
+    "article": "GDPR Art. 5(1)(c)",
+    "title": "Person's name",
+    "msg": "A name field carries a real-looking value on this line ({m}). Snapshot fixtures should use obviously invented names.",
+    "kind": "named_value",
+    "re": "\"?(firstName|first_name|lastName|last_name|fullName|full_name|surname|vorname|nachname)\"?\\s*[:=]\\s*\"([^\"]{2,60})\""
+  },
+  {
+    "id": "postal_address",
+    "sev": "med",
+    "article": "GDPR Art. 5(1)(c)",
+    "title": "Postal address",
+    "msg": "A postal address field carries a real-looking value on this line ({m}). A street plus a postcode locates a household.",
+    "kind": "named_value",
+    "re": "\"?(street|streetAddress|street_address|addressLine1|address_line1|postalCode|postal_code|zipCode|zip_code|postcode|strasse|plz)\"?\\s*[:=]\\s*\"([^\"]{2,80})\""
+  },
+  {
+    "id": "special_category",
+    "sev": "high",
+    "article": "GDPR Art. 9(1)",
+    "title": "Special category data",
+    "msg": "This line names a special category of data ({m}). Art. 9 forbids processing it unless one of the ten listed exceptions applies, and testing is not among them.",
+    "kind": "regex",
+    "re": "\"?(?:diagnosis|medicalRecord|medical_record|healthStatus|health_status|prescription|religion|ethnicity|ethnicOrigin|tradeUnion|trade_union|sexualOrientation|sexual_orientation|biometric|geneticData|genetic_data|criminalRecord|criminal_record)\"?\\s*[:=]\\s*\"?[^\\s\",}]+"
+  },
+  {
+    "id": "precise_geolocation",
+    "sev": "med",
+    "article": "GDPR Art. 5(1)(c)",
+    "title": "Precise geolocation",
+    "msg": "Coordinates with four or more decimals ({m}) resolve to about eleven metres — a doorway, not a city.",
+    "kind": "regex",
+    "re": "\"?(?:latitude|longitude|lat|lng|lon)\"?\\s*[:=]\\s*-?\\d{1,3}\\.\\d{4,}"
+  }
+]
