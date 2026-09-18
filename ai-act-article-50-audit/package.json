@@ -1,0 +1,96 @@
+{
+  "name": "ai-act-article-50-audit",
+  "displayName": "EU AI Act Article 50 Transparency Audit for Your Codebase",
+  "description": "Finds the AI call sites, generation code and system prompts that trigger EU AI Act Article 50 disclosure duties - in force since 2 August 2026.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "ai-act",
+    "compliance",
+    "eu",
+    "llm",
+    "audit"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ai-act-article-50-audit.audit_file",
+        "title": "Audit this file for Article 50 trigger points",
+        "category": "AI Act Article 50 Audit"
+      },
+      {
+        "command": "ai-act-article-50-audit.audit_selection",
+        "title": "Audit the selected lines",
+        "category": "AI Act Article 50 Audit"
+      },
+      {
+        "command": "ai-act-article-50-audit.show_report",
+        "title": "Show the last audit report",
+        "category": "AI Act Article 50 Audit"
+      },
+      {
+        "command": "ai-act-article-50-audit.list_rules",
+        "title": "List the Article 50 rules",
+        "category": "AI Act Article 50 Audit"
+      },
+      {
+        "command": "ai-act-article-50-audit.workspace_scan",
+        "title": "Audit the whole repository",
+        "category": "AI Act Article 50 Audit"
+      },
+      {
+        "command": "ai-act-article-50-audit.export_report",
+        "title": "Export the Article 50 register",
+        "category": "AI Act Article 50 Audit"
+      },
+      {
+        "command": "ai-act-article-50-audit.ci_json",
+        "title": "Write the CI report",
+        "category": "AI Act Article 50 Audit"
+      }
+    ],
+    "configuration": {
+      "title": "AI Act Article 50 Audit",
+      "properties": {
+        "ai-act-article-50-audit.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info | warn | error)"
+        },
+        "ai-act-article-50-audit.report_format": {
+          "type": "string",
+          "default": "",
+          "description": "Format for the exported register (csv | json | html) - leave empty to be asked each time"
+        },
+        "ai-act-article-50-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum number of files to open during a repository audit"
+        },
+        "ai-act-article-50-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,dist,build,.venv,vendor}/**",
+          "description": "Paths to skip during a repository audit (glob)"
+        },
+        "ai-act-article-50-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Your own rules, checked alongside the 28 that ship inside. Each entry: pattern, flags, message, sev."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
