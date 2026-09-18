@@ -1,0 +1,146 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DeviceTree Config Audit - 23 dtc-style rules for .dts, .overlay, TOML, .properties</title>
+<meta name="description" content="Paste a .dts, .dtsi, .overlay, TOML or .properties file and get the line numbers back. 23 rules for the spellings the compiler accepts and the build ignores - status = &quot;ok&quot; is not in the Devicetree Specification v0.4 list, and Zephyr marks a node present only for the exact value &quot;okay&quot;.">
+<link rel="canonical" href="https://getreadystack.com/devicetree-config-language-pack">
+<script defer data-auto-init src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@latest/dist/embed.global.js"></script>
+<style>
+:root{color-scheme:light dark}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;
+ background:#fbfbfa;color:#16161d}
+@media(prefers-color-scheme:dark){body{background:#14141a;color:#e8e8ea}}
+.wrap{max-width:900px;margin:0 auto;padding:26px 20px 64px}
+h1{font-size:1.65rem;line-height:1.22;margin:.1em 0 .35em;letter-spacing:-.02em}
+p.sub{margin:0 0 1.2em;opacity:.82}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:13px;font-weight:600;opacity:.7;margin:0 0 6px;
+ text-transform:uppercase;letter-spacing:.06em}
+textarea{width:100%;min-height:290px;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;
+ padding:12px;border:1px solid #c9c9d1;border-radius:10px;background:transparent;color:inherit}
+button{font:600 15px/1 inherit;padding:12px 22px;border:0;border-radius:10px;
+ background:#1d4ed8;color:#fff;cursor:pointer;margin:12px 8px 12px 0}
+button:hover{background:#1a43bd}
+button.ghost{background:transparent;color:inherit;border:1px solid #c9c9d1}
+#out{min-height:290px;border:1px solid #d8d8e0;border-radius:10px;padding:4px 12px 12px;
+ overflow:auto;max-height:420px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border-bottom:1px solid #d8d8e0;padding:8px 6px;text-align:left;vertical-align:top}
+th{font-weight:600;opacity:.75;position:sticky;top:0;background:inherit}
+td.n{width:56px;font:13px ui-monospace,monospace;opacity:.7}
+.ok{padding:14px;border-radius:10px;background:#e8f5ec;color:#14532d;margin-top:10px}
+@media(prefers-color-scheme:dark){.ok{background:#15321f;color:#bbf7d0}}
+.count{font:600 13px/1 inherit;opacity:.7;margin:10px 0 2px}
+.next{margin-top:18px;padding:18px 20px;border:1px solid #d8d8e0;border-radius:12px}
+.next h2{font-size:1.05rem;margin:0 0 .2em}
+.next p.axis{margin:.2em 0 .8em;opacity:.8;font-size:14px}
+.next ul{margin:.3em 0 1em 1.1em;padding:0}
+.next li{margin:.25em 0}
+a.buy{display:inline-block;background:#111827;color:#fff;text-decoration:none;
+ padding:12px 20px;border-radius:10px;font-weight:600}
+@media(prefers-color-scheme:dark){a.buy{background:#e8e8ea;color:#14141a}}
+.fine{font-size:13px;opacity:.7;margin:.7em 0 0}
+.faq{margin-top:34px}
+.faq h3{font-size:1rem;margin:1.2em 0 .2em}
+.faq p{margin:.2em 0;opacity:.85}
+code{font:13px ui-monospace,Menlo,Consolas,monospace;
+ background:rgba(127,127,127,.14);padding:1px 5px;border-radius:4px}
+</style>
+<div class="wrap">
+<h1>The devicetree line that compiles clean and boots wrong</h1>
+<p class="sub"><code>status = "ok"</code> is not one of the five values in the Devicetree Specification v0.4
+(<code>okay</code>, <code>disabled</code>, <code>reserved</code>, <code>fail</code>, <code>fail-sss</code>).
+<code>dtc</code> has no opinion about it - it is just a string. Zephyr marks the node present only for the exact
+value <code>okay</code>, so the sensor quietly leaves the build and you debug the driver instead of the line.
+23 rules, 50 snippets. This page runs the same 23 rules the extension runs, in your browser, on nothing you upload.</p>
+
+<div class="grid">
+  <div>
+    <label for="src">Your file (a sample is loaded)</label>
+    <textarea id="src" spellcheck="false">/dts-v1/;
+/ {
+    compatible = "acme-controller";
+    address-cells = &lt;1>;
+
+    i2c1: i2c@40005400 {
+        status = "ok";
+        interrupt-parent = &lt;2>;
+        phandle = &lt;1>;
+
+        sensor@48 {
+            compatible = "bosch,bme280";
+            status = "enabled";
+            reg = &lt;0x48>;
+        };
+    };
+};</textarea>
+    <button id="go">Check again</button>
+    <button id="clr" class="ghost">Clear</button>
+  </div>
+  <div>
+    <label>Findings</label>
+    <div id="out"></div>
+  </div>
+</div>
+
+<div class="next">
+  <h2>The whole repo, not the open file</h2>
+  <p class="axis">Everything above is free and needs no key, no account and no network - every one of the
+  23 rules and all 50 snippets run on the file you have open, for as long as you like.
+  The licence buys <strong>scale, a file you can hand over, and repetition</strong>:</p>
+  <ul>
+    <li><strong>Every file in the board repo at once</strong> - one command walks the workspace and runs the same 23 rules on each file, with the paths and line numbers in one list.</li>
+    <li><strong>The findings as a file you can attach</strong> - written into the workspace as CSV, JSON or HTML for a review comment or a bring-up checklist.</li>
+    <li><strong>Re-checked on every save</strong> - a toggle; after that the findings refresh as you type and save, instead of when you remember to look.</li>
+    <li><strong>A fix list</strong> - the lines that have a documented correct value, counted and named so you can work down them. It reports; it does not rewrite your file.</li>
+  </ul>
+  <a class="buy" href="https://readystack.example/buy" data-polar-checkout data-polar-checkout-theme="light">Get the licence - $29</a>
+  <p class="fine">One-time, $29. A freelance embedded software engineer bills about $103 an hour
+  (contractrates.fyi, 2026); a staff embedded firmware engineer's hour averages $58.66 (ZipRecruiter, June 2026).
+  7-day refund, no questions. Works offline; the key is checked once, then every 7 days.</p>
+</div>
+
+<div class="faq">
+  <h2>Questions</h2>
+  <h3>What does it actually do?</h3>
+  <p>It reads a config file line by line and reports the spellings that parse but do not mean what you
+  wrote - <code>status = "ok"</code>, a <code>compatible</code> with no comma, <code>address-cells</code>
+  without the <code>#</code>, an unquoted TOML <code>edition</code>. 23 rules over seven languages, plus
+  50 snippets. No toolchain, no build context, no network.</p>
+  <h3>Do the free devicetree extensions not already do this?</h3>
+  <p>They highlight and complete, and inside a configured Zephyr or nRF context they resolve bindings -
+  that part they do better than this pack. They do not grade a bare <code>.overlay</code> pasted out of a
+  vendor forum, and they say nothing about the TOML, <code>.properties</code>, <code>.ahk</code>,
+  <code>.rpy</code> or <code>.ink</code> files sitting in the same repo.</p>
+  <h3>Why does an AI assistant get this wrong?</h3>
+  <p>Because <code>enabled</code> is the English word and every other config format in the repo uses it.
+  Devicetree does not: the value that turns a node on is <code>okay</code> and nothing else. It is the exact
+  shape of mistake that reads correct and builds clean.</p>
+</div>
+</div>
+<script>
+var RULES=[{"pattern": "status\\s*=\\s*\"ok\"", "flags": "i", "message": "status = \"ok\" is not in the Devicetree Specification v0.4 status list (\"okay\", \"disabled\", \"reserved\", \"fail\", \"fail-sss\"). Zephyr marks the node present only for the exact value \"okay\".", "fix": "status = \"okay\""}, {"pattern": "status\\s*=\\s*\"disable\"", "flags": "i", "message": "The disabled state is spelled \"disabled\". \"disable\" is not a defined status value.", "fix": "status = \"disabled\""}, {"pattern": "status\\s*=\\s*\"enabled?\"", "flags": "i", "message": "There is no \"enable\"/\"enabled\" status in devicetree. The value that turns a node on is \"okay\".", "fix": "status = \"okay\""}, {"pattern": "compatible\\s*=\\s*\"[^\",]*\"", "flags": "i", "message": "A compatible string is written \"vendor,device\". Without the comma it matches no binding and the driver never probes.", "fix": ""}, {"pattern": "^\\s*address-cells\\s*=", "flags": "im", "message": "The property is #address-cells, with the leading hash. Written without it, the parent supplies no address cell count and every child reg is read wrong.", "fix": "#address-cells ="}, {"pattern": "^\\s*[a-z][a-z0-9_-]*_[a-z0-9_-]*@[0-9a-f]+\\s*\\{", "flags": "im", "message": "Underscores in a node name are flagged by dtc -Wnode_name_chars_strict. Node names use lowercase letters, digits and hyphens; keep underscores for the label before the colon.", "fix": ""}, {"pattern": "@0x[0-9a-f]+\\s*\\{", "flags": "im", "message": "A unit address is written without the 0x prefix, for example serial@40011000. dtc compares it against the first reg cell as plain hex.", "fix": ""}, {"pattern": "interrupt-parent\\s*=\\s*<\\s*[0-9]", "flags": "i", "message": "interrupt-parent takes a phandle reference such as <&intc>. A literal number here only works if it happens to match a generated phandle value.", "fix": ""}, {"pattern": "^\\s*phandle\\s*=\\s*<", "flags": "im", "message": "dtc generates phandle values itself. Setting one by hand can collide with a generated value and silently rewire an interrupt or clock.", "fix": ""}, {"pattern": "gpios\\s*=\\s*<\\s*&[a-z0-9_]+\\s+[0-9]+\\s*>", "flags": "i", "message": "A GPIO specifier on these bindings has two cells: pin and flags, as in <&gpio0 13 GPIO_ACTIVE_LOW>. With the flags cell missing the polarity defaults and the LED or button reads inverted.", "fix": ""}, {"pattern": "^\\s*version\\s*=\\s*[0-9]+\\.[0-9]+", "flags": "im", "message": "TOML has no bare version literal. 1.0.0 is not a number, so the key must be quoted: version = \"1.0.0\".", "fix": ""}, {"pattern": "^\\s*edition\\s*=\\s*[0-9]{4}\\s*$", "flags": "im", "message": "The edition key is a string in TOML: edition = \"2021\". An unquoted year parses as an integer and the manifest is rejected.", "fix": ""}, {"pattern": "^\\s*requires-python\\s*=\\s*[^\"'\\s]", "flags": "im", "message": "PEP 621 requires-python is a quoted string: requires-python = \">=3.9\". An unquoted specifier is not valid TOML.", "fix": ""}, {"pattern": "^\\s*mp\\.jwt\\.verify\\.publickey\\.location\\s*=\\s*http:", "flags": "im", "message": "mp.jwt.verify.publickey.location is being fetched over plain http, so the verification key can be swapped in transit. Use https, classpath: or file:.", "fix": ""}, {"pattern": "^\\s*%[a-z0-9]+\\s*=", "flags": "im", "message": "A MicroProfile config profile prefix must be followed by the property name: %dev.my.property=value. On its own, %dev is not a property key.", "fix": ""}, {"pattern": "/mp-rest/(uri|baseurl|base-url)\\s*=", "flags": "i", "message": "The MicroProfile Rest Client key is /mp-rest/url. Any other spelling is ignored and the client falls back to the annotation value.", "fix": ""}, {"pattern": "^\\s*(MsgBox|SetTimer|StringReplace|WinActivate|Gui|FileAppend)\\s*,", "flags": "im", "message": "This is AutoHotkey v1 command syntax. v2 uses function calls with parentheses, for example MsgBox(\"text\") and SetTimer(callback, 1000).", "fix": ""}, {"pattern": "^\\s*#(NoEnv|Persistent|EscapeChar)\\b", "flags": "im", "message": "This directive was removed in AutoHotkey v2. #NoEnv and #EscapeChar are gone, and #Persistent became the Persistent function.", "fix": ""}, {"pattern": ":=\\s*[^%\\n]*%[a-z_][a-z0-9_]*%", "flags": "i", "message": "Percent dereferencing inside an expression was removed in AutoHotkey v2. Write the variable name on its own, or use %name% only in a double-deref such as %varName%.", "fix": ""}, {"pattern": "\\bim\\.(Scale|FactorScale|Composite|Crop|Grayscale)\\(", "flags": "i", "message": "The im.* image manipulators are deprecated in Ren'Py. Use a Transform with zoom, xysize or crop instead; im.* results are not cached the same way and cost memory on Android.", "fix": ""}, {"pattern": "^\\s*(label\\s+[a-z_][a-z0-9_]*|menu)\\s*$", "flags": "im", "message": "A Ren'Py block statement ends with a colon: label start: or menu:. Without it the parser stops on this line.", "fix": ""}, {"pattern": "\\b(try|as)!\\s", "flags": "i", "message": "try! and as! crash the process on failure. Use try?/do-catch or as? with a guard so a malformed board profile does not take the tool down.", "fix": ""}, {"pattern": "^\\s*inkling\\s+\"1\\.[0-9]+\"", "flags": "im", "message": "The Inkling 1.x version declaration is not accepted by the 2.0 toolchain. The first line must read inkling \"2.0\".", "fix": "inkling \"2.0\""}];
+function scan(t){var L=String(t).split(/\r?\n/),h=[],i,k,r,re;
+ for(i=0;i<L.length;i++){for(k=0;k<RULES.length;k++){r=RULES[k];
+  try{re=new RegExp(r.pattern,r.flags||'')}catch(e){continue}
+  if(re.test(L[i]))h.push({line:i+1,msg:r.message,fix:r.fix||''})}}
+ return h}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function run(){
+ var t=document.getElementById('src').value,o=document.getElementById('out');
+ if(!t.trim()){o.innerHTML='<p class="count">Nothing to check.</p>';return}
+ var h=scan(t);
+ if(!h.length){o.innerHTML='<div class="ok">No findings. This file passes all '+RULES.length+' rules.</div>';return}
+ var s='<p class="count">'+h.length+' finding'+(h.length===1?'':'s')+' in '+
+   String(t).split(/\r?\n/).length+' lines</p><table><tr><th>Line</th><th>Finding</th></tr>';
+ for(var i=0;i<h.length;i++){s+='<tr><td class="n">'+h[i].line+'</td><td>'+esc(h[i].msg)+
+   (h[i].fix?' <code>'+esc(h[i].fix)+'</code>':'')+'</td></tr>'}
+ o.innerHTML=s+'</table>'}
+document.getElementById('go').onclick=run;
+document.getElementById('clr').onclick=function(){
+ document.getElementById('src').value='';run()};
+document.getElementById('src').addEventListener('input',run);
+run();
+</script>
+</html>
