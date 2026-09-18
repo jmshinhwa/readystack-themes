@@ -1,0 +1,55 @@
+{
+  "name": "france-einvoice-reception-lint",
+  "displayName": "France E-Invoice Reception Lint",
+  "description": "Lint Factur-X, UBL and CII invoices for the French mandatory mentions a PDP rejects: SIREN Luhn, FR VAT key, delivery address, operation category, totals. 12 rules, offline.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "factur-x",
+    "e-invoicing",
+    "france",
+    "en16931",
+    "chorus-pro",
+    "siren",
+    "ubl",
+    "cii",
+    "facturation-electronique"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "franceEinvoice.checkFile",
+        "title": "France E-Invoice Reception Lint: Check this file",
+        "category": "France E-Invoice Reception Lint"
+      },
+      {
+        "command": "franceEinvoice.checkWorkspace",
+        "title": "France E-Invoice Reception Lint: Sweep workspace and write report (licence)",
+        "category": "France E-Invoice Reception Lint"
+      },
+      {
+        "command": "franceEinvoice.enterKey",
+        "title": "France E-Invoice Reception Lint: Enter licence key",
+        "category": "France E-Invoice Reception Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "france-einvoice-reception-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/france-einvoice-reception-lint",
+  "icon": "icon.png"
+}
