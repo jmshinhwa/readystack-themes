@@ -1,0 +1,100 @@
+[
+  {
+    "id": "no_required_version",
+    "sev": "high",
+    "title": "terraform block without required_version",
+    "msg": "terraform block has no required_version — whatever CLI the runner happens to have will run this root module, including a major that rewrites the state file.",
+    "fix": "Add required_version = \"~> 1.9\" (or your tested range) inside the terraform block."
+  },
+  {
+    "id": "no_required_providers",
+    "sev": "high",
+    "title": "provider configured with no required_providers block",
+    "msg": "provider \"{name}\" is configured but this file declares no required_providers block — Terraform falls back to the implied hashicorp/{name} address at the newest release.",
+    "fix": "Add a required_providers block with an explicit source and version for {name}."
+  },
+  {
+    "id": "provider_not_declared",
+    "sev": "high",
+    "title": "provider missing from required_providers",
+    "msg": "provider \"{name}\" is configured but is not listed in required_providers — Terraform assumes registry.terraform.io/hashicorp/{name}, unversioned.",
+    "fix": "Add {name} = { source = \"...\", version = \"~> X.Y\" } to required_providers."
+  },
+  {
+    "id": "missing_source",
+    "sev": "high",
+    "title": "required_providers entry without source",
+    "msg": "required_providers.{name} has no source — Terraform assumes the hashicorp/ namespace, which is the wrong publisher for most third-party providers.",
+    "fix": "Add source = \"<namespace>/{name}\"."
+  },
+  {
+    "id": "missing_version",
+    "sev": "high",
+    "title": "required_providers entry without version",
+    "msg": "required_providers.{name} has no version constraint — a clean terraform init takes the newest release unless .terraform.lock.hcl is committed alongside it.",
+    "fix": "Add version = \"~> X.Y\" and commit .terraform.lock.hcl."
+  },
+  {
+    "id": "unbounded_version",
+    "sev": "high",
+    "title": "provider constraint with no upper bound",
+    "msg": "required_providers.{name} = \"{value}\" has no upper bound — the next provider major is inside this constraint.",
+    "fix": "Use the pessimistic operator, e.g. \"~> 5.62\", or add an explicit < bound."
+  },
+  {
+    "id": "wildcard_version",
+    "sev": "high",
+    "title": "wildcard provider constraint",
+    "msg": "required_providers.{name} = \"{value}\" matches every release ever published, in both directions.",
+    "fix": "Replace the wildcard with a bounded constraint such as \"~> 3.6\"."
+  },
+  {
+    "id": "zerover_pin",
+    "sev": "med",
+    "title": "constraint tracking a 0.x provider",
+    "msg": "required_providers.{name} = \"{value}\" tracks a 0.x provider — below 1.0 the minor digit is allowed to break, and ~> only holds the last digit.",
+    "fix": "Pin the minor too, e.g. \"~> 0.9.0\", or pin exactly until the provider reaches 1.0."
+  },
+  {
+    "id": "unbounded_required_version",
+    "sev": "med",
+    "title": "required_version with no upper bound",
+    "msg": "required_version = \"{value}\" has no upper bound — a new CLI major can upgrade the state file, after which every older CLI refuses to read it.",
+    "fix": "Bound it: required_version = \"~> 1.9\"."
+  },
+  {
+    "id": "s3_dynamodb_lock",
+    "sev": "med",
+    "title": "s3 backend still locking through DynamoDB",
+    "msg": "The s3 backend uses dynamodb_table — Terraform 1.10 added native S3 state locking via use_lockfile and marks the DynamoDB locking path deprecated.",
+    "fix": "Set use_lockfile = true, migrate, then drop dynamodb_table."
+  },
+  {
+    "id": "module_registry_no_version",
+    "sev": "high",
+    "title": "registry module without version",
+    "msg": "module \"{name}\" pulls registry source \"{value}\" with no version argument — terraform init takes the newest published module, on every clean checkout.",
+    "fix": "Add version = \"~> X.Y\" to the module block."
+  },
+  {
+    "id": "module_git_no_ref",
+    "sev": "high",
+    "title": "git module source without ?ref=",
+    "msg": "module \"{name}\" points at a git source with no ?ref= — it tracks whatever the default branch HEAD is at init time.",
+    "fix": "Append ?ref=<tag or commit SHA> to the source."
+  },
+  {
+    "id": "module_ref_branch",
+    "sev": "med",
+    "title": "git module pinned to a branch name",
+    "msg": "module \"{name}\" pins ?ref={value} — a branch name moves, so this is not a pin.",
+    "fix": "Use a release tag or a full commit SHA instead of a branch."
+  },
+  {
+    "id": "insecure_module_source",
+    "sev": "med",
+    "title": "module fetched over plain http",
+    "msg": "module \"{name}\" is fetched over plain http:// — the module body is not authenticated in transit.",
+    "fix": "Use https:// or a git:: source over SSH."
+  }
+]
