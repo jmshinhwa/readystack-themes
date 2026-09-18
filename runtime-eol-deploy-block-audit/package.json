@@ -2,7 +2,7 @@
   "name": "runtime-eol-deploy-block-audit",
   "displayName": "Runtime EOL Guard",
   "description": "Finds the end-of-life runtimes an AI assistant still writes for you — node:20, python3.9, ubuntu-22.04, nodejs20.x — and prints the exact date each one stops deploying.",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
