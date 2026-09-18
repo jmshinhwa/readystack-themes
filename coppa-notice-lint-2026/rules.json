@@ -1,0 +1,221 @@
+[
+ {
+  "id": "CN01",
+  "sev": "error",
+  "clause": "16 CFR 312.4(d)(1)",
+  "mode": "require_any",
+  "msg": "No operator e-mail address. 312.4(d)(1) makes the online notice carry the name, postal address, telephone number and e-mail of the operator collecting from children.",
+  "pats": [
+   "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+  ]
+ },
+ {
+  "id": "CN02",
+  "sev": "error",
+  "clause": "16 CFR 312.4(d)(1)",
+  "mode": "require_any",
+  "msg": "No postal address. A support e-mail alone does not satisfy 312.4(d)(1); a parent must be able to write to you on paper.",
+  "pats": [
+   "\\b\\d{1,6}\\s+[A-Z][A-Za-z.'-]*(\\s+[A-Za-z][A-Za-z.'-]*){0,4}\\s+(Street|St\\.|Avenue|Ave\\.|Road|Rd\\.|Drive|Dr\\.|Boulevard|Blvd\\.|Lane|Ln\\.|Way|Suite|Ste\\.)",
+   "P\\.?\\s?O\\.?\\s?Box\\s+\\d+"
+  ]
+ },
+ {
+  "id": "CN03",
+  "sev": "error",
+  "clause": "16 CFR 312.4(d)(1)",
+  "mode": "require_any",
+  "msg": "No telephone number. 312.4(d)(1) lists the telephone number as its own required contact item.",
+  "pats": [
+   "(\\+1[\\s.-]?)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}"
+  ]
+ },
+ {
+  "id": "CN04",
+  "sev": "error",
+  "clause": "16 CFR 312.4(d)(1)",
+  "mode": "require_any",
+  "msg": "The notice never says whether other operators also collect from the child. The Rule lets one operator be named as the contact only if the notice still lists all operators collecting through the service.",
+  "pats": [
+   "all operators",
+   "list of (all )?operators",
+   "complete list of operators",
+   "other operators (that )?collect",
+   "no other operator"
+  ]
+ },
+ {
+  "id": "CN05",
+  "sev": "error",
+  "clause": "16 CFR 312.4(d)(2)",
+  "mode": "require_any",
+  "msg": "The notice does not say whether information is collected directly from the child or passively. 312.4(d)(2) requires both to be distinguished.",
+  "pats": [
+   "passively",
+   "collected automatically",
+   "automatically collect",
+   "directly from the child",
+   "actively (submitted|provided)"
+  ]
+ },
+ {
+  "id": "CN06",
+  "sev": "error",
+  "clause": "16 CFR 312.4(d)(3)",
+  "mode": "cond_require",
+  "msg": "Third parties are mentioned but neither their identities nor their categories and purposes are given. The amended Rule closed the 'we may share with third parties' shortcut.",
+  "when": "third[- ]part(y|ies)|service provider|we (may )?(share|disclose)",
+  "pats": [
+   "categories of (the )?third part",
+   "identit(y|ies) of (the )?third part",
+   "(share|disclose)[^.\\n]{0,60}(with|to) the following",
+   "third parties[^.\\n]{0,40}(are|include)[:,]"
+  ]
+ },
+ {
+  "id": "CN07",
+  "sev": "error",
+  "clause": "16 CFR 312.5(a)(2)",
+  "mode": "require_any",
+  "msg": "Missing the separate-consent statement: a parent must be able to consent to collection and use without also consenting to disclosure to third parties. This is the single most common gap in notices written before 2026.",
+  "pats": [
+   "without (also )?consenting to (the )?disclosure",
+   "without consenting to .{0,40}disclos",
+   "separately (consent|refuse|decline)[^.\\n]{0,40}disclosure",
+   "may consent[^.\\n]{0,60}without[^.\\n]{0,40}third part"
+  ]
+ },
+ {
+  "id": "CN08",
+  "sev": "error",
+  "clause": "16 CFR 312.10",
+  "mode": "require_any",
+  "msg": "No retention section. 312.10 requires a written retention policy for children's personal information, published in this notice.",
+  "pats": [
+   "retention polic",
+   "how long we (keep|retain|store)",
+   "data retention",
+   "we retain"
+  ]
+ },
+ {
+  "id": "CN09",
+  "sev": "error",
+  "clause": "16 CFR 312.10",
+  "mode": "cond_require",
+  "msg": "Retention is mentioned but no timeframe is given. 312.10 wants the purposes, the timeframe, and the deletion commitment - not just the word 'retention'.",
+  "when": "retention polic|how long we (keep|retain|store)|data retention|we retain",
+  "pats": [
+   "\\b\\d{1,4}\\s*(day|days|month|months|year|years)\\b",
+   "within \\d+",
+   "upon (account )?(deletion|closure|termination)",
+   "at the end of (the )?(school|academic) year"
+  ]
+ },
+ {
+  "id": "CN10",
+  "sev": "error",
+  "clause": "16 CFR 312.10",
+  "mode": "forbid",
+  "msg": "Indefinite retention of children's data is prohibited outright by 312.10. Remove this sentence and give a timeframe.",
+  "pats": [
+   "\\b(we|our company|the company|dinodash|the operator)\\b[^.]{0,30}\\b(retain|retains|keep|keeps|store|stores|retained|kept|stored)\\b[^.]{0,60}indefinitely",
+   "indefinite retention",
+   "for as long as (we|the company)[^.]{0,30}(deem|wish|choose|see fit)"
+  ]
+ },
+ {
+  "id": "CN11",
+  "sev": "warn",
+  "clause": "16 CFR 312.10",
+  "mode": "require_any",
+  "msg": "The notice never states the deletion commitment - that children's data is deleted once it is no longer needed for the purpose it was collected for, and is not retained indefinitely.",
+  "pats": [
+   "not (be )?(retained|kept|stored) indefinitely",
+   "never retained indefinitely",
+   "delete[^.\\n]{0,60}no longer (reasonably )?necessary",
+   "deleted (once|when)[^.\\n]{0,40}no longer"
+  ]
+ },
+ {
+  "id": "CN12",
+  "sev": "error",
+  "clause": "16 CFR 312.4(d)(4)",
+  "mode": "require_all",
+  "msg": "Parental rights are incomplete. The notice must state all three: review the child's information, delete it, and refuse any further collection - plus the procedure for each.",
+  "pats": [
+   "\\breview\\b",
+   "\\bdelet(e|ion)\\b",
+   "(refuse|stop|discontinue|withdraw)[^.\\n]{0,40}(further )?(collection|use)"
+  ]
+ },
+ {
+  "id": "CN13",
+  "sev": "error",
+  "clause": "16 CFR 312.5(c)(7)",
+  "mode": "cond_require",
+  "msg": "Persistent identifiers, cookies or analytics are described without the support-for-internal-operations basis. Without that phrase the collection needs verifiable parental consent instead.",
+  "when": "persistent identifier|\\bcookie|device (id|identifier)|advertising (id|identifier)|IDFA|analytics",
+  "pats": [
+   "support for the internal operations",
+   "internal operations of the (web ?site|website|online service|app)"
+  ]
+ },
+ {
+  "id": "CN14",
+  "sev": "warn",
+  "clause": "16 CFR 312.7",
+  "mode": "require_any",
+  "msg": "The notice never states that you do not condition a child's participation on disclosing more information than is reasonably necessary. 312.7 is a standing prohibition and parents look for it.",
+  "pats": [
+   "not condition[^.\\n]{0,60}participation",
+   "more (personal )?information than is reasonably necessary"
+  ]
+ },
+ {
+  "id": "CN15",
+  "sev": "error",
+  "clause": "16 CFR 312.2",
+  "mode": "require_any",
+  "msg": "COPPA's threshold is under 13. This notice never states it - a notice built around 16 or 18 is a GDPR or state-law notice, not a COPPA notice.",
+  "pats": [
+   "under (the age of )?13",
+   "younger than 13",
+   "children under 13",
+   "under-13"
+  ]
+ },
+ {
+  "id": "CN16",
+  "sev": "error",
+  "clause": "Amended Rule compliance date",
+  "mode": "forbid_unless",
+  "msg": "Wrong compliance date for the amended COPPA Rule. The Rule was published 22 January 2025 and effective 23 June 2025, but full compliance was required from 22 April 2026.",
+  "pats": [
+   "(full compliance|compliance date|compliance deadline|must comply)[^.\\n]{0,80}((January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{1,2},?\\s*20\\d\\d|20\\d\\d-\\d\\d-\\d\\d)"
+  ],
+  "unless": "April 22,? 2026|22 April 2026|2026-04-22"
+ },
+ {
+  "id": "CN17",
+  "sev": "warn",
+  "clause": "16 CFR 312.5(c)(10)",
+  "mode": "cond_require",
+  "msg": "A school or classroom context is described but the school-authorization limits are not. The amended Rule allows school authorisation only where the data is used for the educational purpose and for no commercial purpose.",
+  "when": "\\bschool|classroom|teacher|district|edtech|educational (service|purpose)",
+  "pats": [
+   "authoriz(e|ation)[^.\\n]{0,40}school",
+   "school[^.\\n]{0,40}authoriz",
+   "educational purpose[^.\\n]{0,60}(not|no)[^.\\n]{0,30}commercial"
+  ]
+ },
+ {
+  "id": "CN18",
+  "sev": "error",
+  "clause": "Revision date",
+  "mode": "revision_date",
+  "msg": "Revision date check.",
+  "cutoff": "2026-04-22",
+  "stale_days": 365
+ }
+]
