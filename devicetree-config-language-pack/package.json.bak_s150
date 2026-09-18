@@ -1,0 +1,215 @@
+{
+  "name": "devicetree-config-language-pack",
+  "displayName": "DeviceTree Config Audit: 23 dtc-Style Rules, 50 Snippets",
+  "description": "50 snippets and 23 audit rules for the 9 config formats your editor still shows as plain text. The Devicetree Specification v0.4 lists only \"okay\", \"disabled\", \"reserved\", \"fail\" and \"fail-sss\" - Zeph",
+  "version": "0.1.0",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Snippets",
+    "Linters",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "devicetree",
+    "dts",
+    "dtsi",
+    "zephyr",
+    "toml"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "devicetree-config-language-pack.audit_file",
+        "title": "Audit the open file (23 rules)",
+        "category": "DeviceTree & 8 More - Em"
+      },
+      {
+        "command": "devicetree-config-language-pack.insert_snippet",
+        "title": "Insert a snippet from the pack",
+        "category": "DeviceTree & 8 More - Em"
+      },
+      {
+        "command": "devicetree-config-language-pack.list_rules",
+        "title": "Show everything in this pack",
+        "category": "DeviceTree & 8 More - Em"
+      },
+      {
+        "command": "devicetree-config-language-pack.workspace_scan",
+        "title": "Audit every file in the workspace",
+        "category": "DeviceTree & 8 More - Em"
+      },
+      {
+        "command": "devicetree-config-language-pack.export_report",
+        "title": "Write the findings to a file",
+        "category": "DeviceTree & 8 More - Em"
+      },
+      {
+        "command": "devicetree-config-language-pack.watch_on_save",
+        "title": "Re-check on every save",
+        "category": "DeviceTree & 8 More - Em"
+      },
+      {
+        "command": "devicetree-config-language-pack.quick_fix",
+        "title": "Apply the suggested replacement",
+        "category": "DeviceTree & 8 More - Em"
+      }
+    ],
+    "configuration": {
+      "title": "DeviceTree & 8 More - Embedded Config Pack",
+      "properties": {
+        "devicetree-config-language-pack.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format (csv, json or html)"
+        },
+        "devicetree-config-language-pack.max_files": {
+          "type": "number",
+          "default": 800,
+          "description": "Maximum number of workspace files to scan"
+        },
+        "devicetree-config-language-pack.exclude_glob": {
+          "type": "string",
+          "default": "**/{build,.west,node_modules,zephyr/samples}/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "devicetree-config-language-pack.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Audit the open file once when the editor opens"
+        },
+        "devicetree-config-language-pack.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 23 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "ahk",
+        "path": "./snippets/ahk-autohotkey-plaintext.code-snippets"
+      },
+      {
+        "language": "autohotkey",
+        "path": "./snippets/ahk-autohotkey-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/ahk-autohotkey-plaintext.code-snippets"
+      },
+      {
+        "language": "devicetree",
+        "path": "./snippets/devicetree-dts-plaintext-c.code-snippets"
+      },
+      {
+        "language": "dts",
+        "path": "./snippets/devicetree-dts-plaintext-c.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/devicetree-dts-plaintext-c.code-snippets"
+      },
+      {
+        "language": "c",
+        "path": "./snippets/devicetree-dts-plaintext-c.code-snippets"
+      },
+      {
+        "language": "ini",
+        "path": "./snippets/ini-properties-plaintext.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/ini-properties-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/ini-properties-plaintext.code-snippets"
+      },
+      {
+        "language": "inkling",
+        "path": "./snippets/inkling-ink-plaintext.code-snippets"
+      },
+      {
+        "language": "ink",
+        "path": "./snippets/inkling-ink-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/inkling-ink-plaintext.code-snippets"
+      },
+      {
+        "language": "java",
+        "path": "./snippets/java.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/properties-ini-plaintext.code-snippets"
+      },
+      {
+        "language": "ini",
+        "path": "./snippets/properties-ini-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/properties-ini-plaintext.code-snippets"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python.code-snippets"
+      },
+      {
+        "language": "renpy",
+        "path": "./snippets/renpy-rpy-python-plaintext.code-snippets"
+      },
+      {
+        "language": "rpy",
+        "path": "./snippets/renpy-rpy-python-plaintext.code-snippets"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/renpy-rpy-python-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/renpy-rpy-python-plaintext.code-snippets"
+      },
+      {
+        "language": "shellscript",
+        "path": "./snippets/shellscript.code-snippets"
+      },
+      {
+        "language": "swift",
+        "path": "./snippets/swift.code-snippets"
+      },
+      {
+        "language": "toml",
+        "path": "./snippets/toml-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/toml-plaintext.code-snippets"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/yaml.code-snippets"
+      }
+    ]
+  },
+  "icon": "icon.png"
+}
