@@ -1,0 +1,105 @@
+{
+  "name": "bem-class-extractor-html",
+  "displayName": "BEM Class Auditor for HTML and SCSS",
+  "description": "16 BEM naming rules read the HTML file you have open, and 22 markup and SCSS skeletons write the stylesheet shell — the class names get fixed before the pull request comes back for them.",
+  "version": "0.1.0",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Snippets"
+  ],
+  "keywords": [
+    "bem",
+    "html",
+    "scss",
+    "css",
+    "class names"
+  ],
+  "activationEvents": [
+    "onLanguage:html"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "bem-class-extractor-html.audit_file",
+        "title": "BEM: Audit this file",
+        "category": "BEM Class Auditor for HT"
+      },
+      {
+        "command": "bem-class-extractor-html.audit_selection",
+        "title": "BEM: Audit the selected lines",
+        "category": "BEM Class Auditor for HT"
+      },
+      {
+        "command": "bem-class-extractor-html.insert_snippet",
+        "title": "BEM: Insert a block skeleton",
+        "category": "BEM Class Auditor for HT"
+      },
+      {
+        "command": "bem-class-extractor-html.list_rules",
+        "title": "BEM: List the rules and skeletons",
+        "category": "BEM Class Auditor for HT"
+      },
+      {
+        "command": "bem-class-extractor-html.workspace_scan",
+        "title": "BEM: Audit every file in the workspace",
+        "category": "BEM Class Auditor for HT"
+      },
+      {
+        "command": "bem-class-extractor-html.export_report",
+        "title": "BEM: Write the findings to a file",
+        "category": "BEM Class Auditor for HT"
+      },
+      {
+        "command": "bem-class-extractor-html.quick_fix",
+        "title": "BEM: Correct the flagged line",
+        "category": "BEM Class Auditor for HT"
+      }
+    ],
+    "configuration": {
+      "title": "BEM Class Auditor for HTML and SCSS",
+      "properties": {
+        "bem-class-extractor-html.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default format for the findings file"
+        },
+        "bem-class-extractor-html.max_files": {
+          "type": "number",
+          "default": 500,
+          "description": "Maximum number of files the workspace check opens"
+        },
+        "bem-class-extractor-html.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,dist,build,vendor,.git}/**",
+          "description": "Paths the workspace check skips"
+        },
+        "bem-class-extractor-html.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 16 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./snippets/html.code-snippets"
+      },
+      {
+        "language": "scss",
+        "path": "./snippets/scss-less.code-snippets"
+      },
+      {
+        "language": "less",
+        "path": "./snippets/scss-less.code-snippets"
+      }
+    ]
+  },
+  "icon": "icon.png"
+}
