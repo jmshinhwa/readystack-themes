@@ -1,0 +1,22 @@
+# GNU Global C/C++ .vscode Config Pack
+
+46 ready .vscode snippets and 21 audit rules across 8 setups: GNU Global gtags indexing, c_cpp_properties IntelliSense, gist workspaces, formatter save-actions, Dark+ colour overrides, Tailwind CSS, ASP.NET Core launch profiles, MicroProfile Java. VS Code never checks the values in these files — a defaultFormatter pointing at an extension id you never installed loads without a word and simply never formats.
+
+## What it does for free
+
+- All 21 rules run on the config file you have open, with no key and no limit
+- All 46 snippets, across all 8 setups, inserted at the cursor
+- The full contents printed by name, so you can check the pack before you rely on it
+
+## With a licence
+
+- **Audit the whole repository** — Opens every file in the workspace and runs the same check on each.
+- **Rewrite the flagged lines** — Replaces the offending lines in the editor with the suggested text.
+- **Write the findings to a file** — Asks CSV, JSON or HTML, then writes that file into the workspace folder.
+- **Your team's own rules** — Opens Settings so you add your own rules; the free version is the built-in set.
+
+## Install
+
+```
+ext install gnu-global-cpp-vscode-config-pack
+```
