@@ -1,0 +1,109 @@
+{
+  "name": "workflow-expiry-check",
+  "displayName": "Workflow Expiry - dated GitHub Actions breakage",
+  "description": "Finds the lines in .github/workflows that are valid today and fail on a date GitHub has already published.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "github-actions",
+    "workflow",
+    "deprecation",
+    "ci",
+    "yaml"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "workflow-expiry-check.audit_file",
+        "title": "Check this workflow for expiry dates",
+        "category": "Workflow Expiry"
+      },
+      {
+        "command": "workflow-expiry-check.audit_selection",
+        "title": "Check the selected lines",
+        "category": "Workflow Expiry"
+      },
+      {
+        "command": "workflow-expiry-check.list_rules",
+        "title": "List every rule and its date",
+        "category": "Workflow Expiry"
+      },
+      {
+        "command": "workflow-expiry-check.workspace_scan",
+        "title": "Scan every workflow in this repo",
+        "category": "Workflow Expiry"
+      },
+      {
+        "command": "workflow-expiry-check.export_report",
+        "title": "Export the dated audit",
+        "category": "Workflow Expiry"
+      },
+      {
+        "command": "workflow-expiry-check.ci_json",
+        "title": "Emit CI JSON",
+        "category": "Workflow Expiry"
+      },
+      {
+        "command": "workflow-expiry-check.quick_fix",
+        "title": "Apply the replacement",
+        "category": "Workflow Expiry"
+      },
+      {
+        "command": "workflow-expiry-check.watch_on_save",
+        "title": "Re-check on every save",
+        "category": "Workflow Expiry"
+      },
+      {
+        "command": "workflow-expiry-check.custom_rules",
+        "title": "Your organisation's own rules",
+        "category": "Workflow Expiry"
+      }
+    ],
+    "configuration": {
+      "title": "Workflow Expiry",
+      "properties": {
+        "workflow-expiry-check.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "File format for the exported audit (csv, json or html)"
+        },
+        "workflow-expiry-check.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info, warn or error)"
+        },
+        "workflow-expiry-check.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files to read when scanning the whole workspace"
+        },
+        "workflow-expiry-check.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip while scanning the workspace"
+        },
+        "workflow-expiry-check.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check the open file once when the window opens"
+        },
+        "workflow-expiry-check.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 29 that ship inside."
+        }
+      }
+    }
+  }
+}
