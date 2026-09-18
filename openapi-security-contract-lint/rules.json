@@ -1,0 +1,20 @@
+[
+  {"id":"security_empty_operation","sev":"error","msg":"security: [] on an operation means \"no authentication required\". A gateway that imports this spec publishes the endpoint open.","ref":"OWASP API Security Top 10 2023 - API1 / API5"},
+  {"id":"security_empty_global","sev":"error","msg":"Top-level security: [] declares the whole API public. Every operation that does not override it is unauthenticated.","ref":"OWASP API Security Top 10 2023 - API5"},
+  {"id":"no_global_security","sev":"warning","msg":"This document has paths but no top-level security block. Authentication is then opt-in per operation, so any operation you forget ships open.","ref":"OpenAPI 3.1 section 4.8.1 - Security Requirement Object"},
+  {"id":"apikey_in_query","sev":"error","msg":"An apiKey carried in the query string is written to proxy logs, browser history and Referer headers. Move it to a header.","ref":"OWASP API Security Top 10 2023 - API2"},
+  {"id":"oauth_implicit_flow","sev":"error","msg":"The OAuth 2.0 implicit grant returns the token in the URL fragment. RFC 9700 (BCP 240, January 2025) says clients MUST NOT use it.","ref":"RFC 9700 section 2.1.2"},
+  {"id":"oauth_password_flow","sev":"error","msg":"The resource owner password credentials grant hands the user's password to the client. RFC 9700 (BCP 240, January 2025) says it MUST NOT be used.","ref":"RFC 9700 section 2.4"},
+  {"id":"oauth_url_plaintext","sev":"error","msg":"An OAuth endpoint reached over http:// exposes the authorization code or token to anyone on the path.","ref":"RFC 9700 section 2.6"},
+  {"id":"server_plaintext_http","sev":"error","msg":"A server entry on http:// tells every generated client and gateway to send credentials in the clear.","ref":"OWASP API Security Top 10 2023 - API8"},
+  {"id":"no_https_server","sev":"warning","msg":"No server in this document uses https://. There is no transport-secured base URL for a generated client to pick.","ref":"OWASP API Security Top 10 2023 - API8"},
+  {"id":"basic_auth_scheme","sev":"warning","msg":"HTTP Basic replays a static credential on every call, so it cannot be revoked per session and shows up in memory dumps and logs.","ref":"OWASP API Security Top 10 2023 - API2"},
+  {"id":"oauth_scopes_empty","sev":"warning","msg":"An OAuth flow with no scopes issues one all-or-nothing token, so a read client holds write rights.","ref":"OWASP API Security Top 10 2023 - API5"},
+  {"id":"scope_wildcard","sev":"warning","msg":"A wildcard or catch-all scope defeats the point of scopes: every token that asks for it gets the whole API.","ref":"OWASP API Security Top 10 2023 - API5"},
+  {"id":"scheme_defined_unused","sev":"warning","msg":"This security scheme is defined but never referenced by any security block, so nothing in the document actually requires it.","ref":"OpenAPI 3.1 section 4.8.1"},
+  {"id":"missing_429","sev":"warning","msg":"This operation documents no 429 response, so generated clients and the gateway have no agreed throttling contract.","ref":"OWASP API Security Top 10 2023 - API4"},
+  {"id":"additional_properties_open","sev":"warning","msg":"additionalProperties: true on a request schema lets a caller post fields you never declared - the classic mass-assignment route.","ref":"OWASP API Security Top 10 2023 - API6"},
+  {"id":"deprecated_without_sunset","sev":"warning","msg":"An operation is marked deprecated but the document names no sunset date, so callers have no removal date to plan against.","ref":"RFC 8594 - The Sunset HTTP Header Field"},
+  {"id":"internal_path_published","sev":"warning","msg":"A debug, trace or actuator path is published in the same document you hand to external callers.","ref":"OWASP API Security Top 10 2023 - API9"},
+  {"id":"secret_in_example","sev":"error","msg":"This example or default value carries a live-looking credential. Examples are copied into docs, SDKs and test fixtures.","ref":"OWASP API Security Top 10 2023 - API8"}
+]
