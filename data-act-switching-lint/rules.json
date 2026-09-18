@@ -1,0 +1,168 @@
+[
+  {
+    "id": "notice_period_over_two_months",
+    "kind": "max_days",
+    "sev": "error",
+    "article": "Art. 25(2)",
+    "pattern": "notice[^.\\n]{0,40}?(\\d+)\\s*(days|day|weeks|week|months|month)",
+    "limit_days": 60,
+    "msg": "Notice period of {found} to start switching. Chapter VI caps the notice period for initiating switching at two months (Art. 25(2)). Write: 'no more than two months'."
+  },
+  {
+    "id": "transition_period_over_30_days",
+    "kind": "max_days",
+    "sev": "error",
+    "article": "Art. 25(2)",
+    "pattern": "transition(?:al)?\\s+period[^.\\n]{0,40}?(?:of\\s+)?(\\d+)\\s*(days|day|weeks|week|months|month)",
+    "limit_days": 30,
+    "msg": "Transitional period of {found}. The mandatory maximum transitional period is 30 calendar days (Art. 25(2)); a longer one is only lawful as a notified extension when the switch is technically unfeasible."
+  },
+  {
+    "id": "retrieval_window_under_30_days",
+    "kind": "min_days",
+    "sev": "error",
+    "article": "Art. 25(2)",
+    "pattern": "(?:retriev\\w+|download|export)[^.\\n]{0,60}?(?:within|for(?:\\s+up\\s+to)?)\\s+(\\d+)\\s*(days|day|weeks|week|months|month)",
+    "limit_days": 30,
+    "msg": "Retrieval window of {found}. The customer must keep at least a 30-day minimum retrieval period after the contract ends (Art. 25(2)) before exportable data may be erased."
+  },
+  {
+    "id": "egress_charge",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "Art. 29",
+    "pattern": "(?:egress|data\\s+transfer[- ]out|bandwidth)\\s+(?:fee|fees|charge|charges|cost|costs)",
+    "msg": "Egress charge named in an exit clause. Data-transfer-out charges for switching are being withdrawn under Art. 29 and are prohibited from 12 January 2027."
+  },
+  {
+    "id": "switching_charge_without_sunset",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "Art. 29",
+    "pattern": "(?:switching|exit|migration|offboarding|termination)\\s+(?:fee|fees|charge|charges)",
+    "unless": "12\\s+January\\s+2027|2027-01-12",
+    "msg": "Switching charge with no 12 January 2027 sunset on the same line. Until then only reduced charges not exceeding the costs incurred are allowed (Art. 29); from 12 January 2027 the charge must be zero."
+  },
+  {
+    "id": "per_gigabyte_export_charge",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "Art. 29",
+    "pattern": "(?:fee|fees|charge|charges|rate|price)[^\\n]{0,40}per\\s+(?:GB|TB|gigabyte|terabyte)",
+    "msg": "Per-gigabyte price attached to getting data out. A volume price is not a cost-based reduced switching charge and cannot survive 12 January 2027 (Art. 29)."
+  },
+  {
+    "id": "early_termination_penalty",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "Art. 23",
+    "pattern": "early[- ]termination\\s+(?:fee|fees|penalty|penalties|charge|charges)",
+    "msg": "Early-termination penalty in a switching clause is a contractual obstacle to switching (Art. 23). Price the remaining term, not the act of leaving."
+  },
+  {
+    "id": "no_exit_assistance_promised",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "Art. 25(2)",
+    "pattern": "not\\s+(?:be\\s+)?(?:obliged|obligated|required|liable)\\s+to\\s+(?:assist|help|support|migrate|export)",
+    "msg": "Clause disclaims any duty to help the customer leave. Art. 25(2) requires the provider to give reasonable assistance with the switching process."
+  },
+  {
+    "id": "auto_renewal_blocks_switching",
+    "kind": "forbid",
+    "sev": "warn",
+    "article": "Art. 23",
+    "pattern": "auto(?:matic\\w*|-)?\\s*renew\\w*[^.\\n]{0,80}(?:may not|cannot|shall not|no right)",
+    "msg": "Auto-renewal that removes the right to terminate blocks the two-month switching notice (Art. 23, Art. 25(2))."
+  },
+  {
+    "id": "immediate_deletion_on_exit",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "Art. 25(2)",
+    "pattern": "(?:deleted|erased|destroyed)\\s+(?:immediately|instantly|on\\s+the\\s+(?:same|effective|termination)\\s+(?:day|date))",
+    "msg": "Data erased at termination. Erasure may only follow the retrieval period of at least 30 days (Art. 25(2))."
+  },
+  {
+    "id": "proprietary_export_only",
+    "kind": "forbid",
+    "sev": "error",
+    "article": "Art. 30",
+    "pattern": "(?:proprietary|our\\s+own|closed|undocumented)\\s+(?:format|formats|schema|schemas)",
+    "msg": "Export offered only in a proprietary format. Exportable data must be provided in a structured, commonly used and machine-readable format (Art. 30)."
+  },
+  {
+    "id": "stale_applicability_date",
+    "kind": "forbid",
+    "sev": "warn",
+    "article": "Chapter VI",
+    "pattern": "Data\\s+Act[^.\\n]{0,60}(?:applies|applicable|in\\s+force|effective)[^.\\n]{0,20}(?:2023|2024)",
+    "msg": "Wrong applicability date for the Data Act. Regulation (EU) 2023/2854 entered into force in January 2024 but applies from 12 September 2025."
+  },
+  {
+    "id": "missing_right_to_switch",
+    "kind": "require",
+    "sev": "error",
+    "article": "Art. 25(2)",
+    "pattern": "switch\\w*\\s+to\\s+(?:another|a\\s+different|an\\s+alternative)\\s+(?:provider|service)|switch\\w*[^.\\n]{0,40}on[- ]premises",
+    "msg": "No clause granting the right to switch to another provider or to on-premises ICT infrastructure (Art. 25(2))."
+  },
+  {
+    "id": "missing_export_format_promise",
+    "kind": "require",
+    "sev": "error",
+    "article": "Art. 30",
+    "pattern": "(?:structured|machine[- ]readable|commonly\\s+used|open)\\s+(?:and\\s+\\w+\\s+)?format",
+    "msg": "No promise of a structured, commonly used, machine-readable export format for exportable data and digital assets (Art. 30)."
+  },
+  {
+    "id": "missing_exit_assistance_clause",
+    "kind": "require",
+    "sev": "error",
+    "article": "Art. 25(2)",
+    "pattern": "(?:reasonable\\s+)?assistance[^.\\n]{0,80}(?:switch\\w*|migrat\\w*|exit|transition)",
+    "msg": "No assistance clause. The contract must state the reasonable assistance given during the switching process (Art. 25(2))."
+  },
+  {
+    "id": "missing_jurisdiction_disclosure",
+    "kind": "require",
+    "sev": "warn",
+    "article": "Art. 26",
+    "pattern": "jurisdiction[^.\\n]{0,80}(?:infrastructure|data\\s+(?:is|are)\\s+(?:stored|processed))|(?:infrastructure|data)[^.\\n]{0,60}jurisdiction",
+    "msg": "The jurisdictions where the ICT infrastructure for processing and storage is located are not disclosed (Art. 26)."
+  },
+  {
+    "id": "missing_data_structures_register",
+    "kind": "require",
+    "sev": "warn",
+    "article": "Art. 26",
+    "pattern": "data\\s+(?:structures|formats)",
+    "msg": "No reference to an up-to-date register of the data structures and data formats the customer can export (Art. 26)."
+  },
+  {
+    "id": "missing_functional_equivalence",
+    "kind": "require",
+    "sev": "warn",
+    "article": "Art. 30",
+    "pattern": "functional\\s+equivalen\\w+",
+    "msg": "Infrastructure-service contracts must address functional equivalence in the destination environment (Art. 30)."
+  },
+  {
+    "id": "missing_switching_contact_point",
+    "kind": "require",
+    "sev": "warn",
+    "article": "Art. 26",
+    "pattern": "(?:point\\s+of\\s+contact|contact\\s+point)",
+    "msg": "No named point of contact for switching requests, so a switching request has no address to arrive at (Art. 26)."
+  },
+  {
+    "id": "charges_sunset_countdown",
+    "kind": "date_gate",
+    "sev": "warn",
+    "article": "Art. 29",
+    "pattern": "(?:switching|exit|migration|egress|offboarding)\\s+(?:fee|fees|charge|charges)",
+    "date": "2027-01-12",
+    "msg_before": "This contract still prices leaving. Switching charges must be zero from 12 January 2027 - {days} days from {today}.",
+    "msg_after": "Switching charges have been prohibited since 12 January 2027 (Art. 29) and this contract still prices leaving."
+  }
+]
