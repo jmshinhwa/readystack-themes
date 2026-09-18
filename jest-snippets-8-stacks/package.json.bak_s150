@@ -1,0 +1,160 @@
+{
+  "name": "jest-snippets-8-stacks",
+  "displayName": "Jest Snippets + 7 More Stacks (40 Snippets)",
+  "description": "One fit( merged into main turns a green suite into a single passing test. 20 checks find it in the file you have open, before the reviewer does.",
+  "version": "0.1.0",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Snippets",
+    "Linters"
+  ],
+  "keywords": [
+    "jest",
+    "snippets",
+    "testing",
+    "react",
+    "nextjs"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "jest-snippets-8-stacks.insert_snippet",
+        "title": "Insert a snippet from the pack",
+        "category": "Jest Snippets + 7 More S"
+      },
+      {
+        "command": "jest-snippets-8-stacks.audit_file",
+        "title": "Check this file",
+        "category": "Jest Snippets + 7 More S"
+      },
+      {
+        "command": "jest-snippets-8-stacks.audit_selection",
+        "title": "Check only the selected lines",
+        "category": "Jest Snippets + 7 More S"
+      },
+      {
+        "command": "jest-snippets-8-stacks.list_rules",
+        "title": "List every check and snippet in the pack",
+        "category": "Jest Snippets + 7 More S"
+      },
+      {
+        "command": "jest-snippets-8-stacks.workspace_scan",
+        "title": "Check the whole workspace",
+        "category": "Jest Snippets + 7 More S"
+      },
+      {
+        "command": "jest-snippets-8-stacks.export_report",
+        "title": "Write the findings out as a file",
+        "category": "Jest Snippets + 7 More S"
+      },
+      {
+        "command": "jest-snippets-8-stacks.quick_fix",
+        "title": "Fix the offending lines",
+        "category": "Jest Snippets + 7 More S"
+      }
+    ],
+    "configuration": {
+      "title": "Jest Snippets + 7 More Stacks (40 Snippets)",
+      "properties": {
+        "jest-snippets-8-stacks.report_format": {
+          "type": "string",
+          "default": "html",
+          "description": "Export format for the written report"
+        },
+        "jest-snippets-8-stacks.max_files": {
+          "type": "number",
+          "default": 500,
+          "description": "Maximum number of files the workspace check opens"
+        },
+        "jest-snippets-8-stacks.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**,**/dist/**,**/coverage/**,**/vendor/bundle/**",
+          "description": "Paths the workspace check skips"
+        },
+        "jest-snippets-8-stacks.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 20 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "css",
+        "path": "./snippets/css-scss.code-snippets"
+      },
+      {
+        "language": "scss",
+        "path": "./snippets/css-scss.code-snippets"
+      },
+      {
+        "language": "erb",
+        "path": "./snippets/erb.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html-typescriptreact-javascriptreact.code-snippets"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/html-typescriptreact-javascriptreact.code-snippets"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/html-typescriptreact-javascriptreact.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-typescript-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript-typescript-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/javascript-typescript-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/javascript-typescript-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/markdown.code-snippets"
+      },
+      {
+        "language": "ruby",
+        "path": "./snippets/ruby.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/typescript-html.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/typescript-html.code-snippets"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/typescriptreact-javascriptreact.code-snippets"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/typescriptreact-javascriptreact.code-snippets"
+      }
+    ]
+  }
+}
