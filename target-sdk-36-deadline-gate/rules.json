@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "target_api": 36,
+    "android_release": "Android 16",
+    "deadline": "2026-08-31",
+    "extension_deadline": "2026-11-01",
+    "min_compile_sdk": 36,
+    "min_agp_major": 8,
+    "min_billing_major": 7,
+    "min_ndk_major": 27
+  },
+  "fgs_permissions": {
+    "camera": "FOREGROUND_SERVICE_CAMERA",
+    "connectedDevice": "FOREGROUND_SERVICE_CONNECTED_DEVICE",
+    "dataSync": "FOREGROUND_SERVICE_DATA_SYNC",
+    "health": "FOREGROUND_SERVICE_HEALTH",
+    "location": "FOREGROUND_SERVICE_LOCATION",
+    "mediaPlayback": "FOREGROUND_SERVICE_MEDIA_PLAYBACK",
+    "mediaProcessing": "FOREGROUND_SERVICE_MEDIA_PROCESSING",
+    "mediaProjection": "FOREGROUND_SERVICE_MEDIA_PROJECTION",
+    "microphone": "FOREGROUND_SERVICE_MICROPHONE",
+    "phoneCall": "FOREGROUND_SERVICE_PHONE_CALL",
+    "remoteMessaging": "FOREGROUND_SERVICE_REMOTE_MESSAGING",
+    "specialUse": "FOREGROUND_SERVICE_SPECIAL_USE",
+    "systemExempted": "FOREGROUND_SERVICE_SYSTEM_EXEMPTED"
+  },
+  "locked_orientations": [
+    "portrait",
+    "landscape",
+    "reversePortrait",
+    "reverseLandscape",
+    "sensorPortrait",
+    "sensorLandscape",
+    "userPortrait",
+    "userLandscape"
+  ],
+  "rules": [
+    {
+      "id": "target-sdk-below-36",
+      "scope": "gradle",
+      "sev": "error",
+      "msg": "targetSdk is {found}. Google Play requires API level 36 for new apps and for updates to existing apps from 31 August 2026 ({days}). Below that, Play will not accept the upload.",
+      "fix": "Set targetSdk 36 in defaultConfig, then work through the Android 16 behaviour changes flagged below. An extension can be requested in Play Console until 1 November 2026."
+    },
+    {
+      "id": "target-sdk-missing",
+      "scope": "gradle",
+      "sev": "error",
+      "msg": "This module has a defaultConfig block but no targetSdk. Gradle falls back to compileSdk, so the value Play sees is not the one written here.",
+      "fix": "Declare targetSdk 36 explicitly in defaultConfig so the value is reviewable in the diff."
+    },
+    {
+      "id": "compile-sdk-below-36",
+      "scope": "gradle",
+      "sev": "error",
+      "msg": "compileSdk is {found}. You cannot set targetSdk 36 while compiling against {found} — the Android 16 APIs the new behaviour needs are not on the classpath.",
+      "fix": "Raise compileSdk to 36 first, fix the deprecation errors, then raise targetSdk."
+    },
+    {
+      "id": "agp-too-old",
+      "scope": "gradle",
+      "sev": "error",
+      "msg": "Android Gradle Plugin {found} is on the 7.x line or older. AGP 8 is the floor for building against recent platform SDKs; 7.x cannot compile a targetSdk 36 module.",
+      "fix": "Upgrade the AGP dependency to the 8.x line and raise the Gradle wrapper to match before touching targetSdk."
+    },
+    {
+      "id": "edge-to-edge-optout-ignored",
+      "scope": "manifest",
+      "sev": "error",
+      "msg": "The edge-to-edge opt-out is still in the manifest (windowOptOutEdgeToEdgeEnforcement / PROPERTY_COMPAT_ALLOW_OPT_OUT_EDGE_TO_EDGE). On Android 16 it is ignored for apps targeting API 36 — your content will draw under the status and navigation bars on the day you raise targetSdk.",
+      "fix": "Remove the opt-out and handle insets: apply WindowInsetsCompat padding to the root view, or set android:fitsSystemWindows on it."
+    },
+    {
+      "id": "orientation-locked-large-screen",
+      "scope": "manifest",
+      "sev": "error",
+      "msg": "android:screenOrientation=\"{found}\" is declared. For apps targeting API 36, orientation restrictions are ignored on displays wider than 600dp — tablets, foldables and desktop windowing will rotate and resize your locked screen anyway.",
+      "fix": "Stop relying on the lock: test the activity in landscape and in a resized window, and keep state across configuration changes."
+    },
+    {
+      "id": "resizeable-false",
+      "scope": "manifest",
+      "sev": "error",
+      "msg": "android:resizeableActivity=\"false\" is declared. For apps targeting API 36 this is ignored on large screens, so the activity will be resized regardless.",
+      "fix": "Remove the attribute and make the layout responsive, or accept that the system will resize it on tablets and foldables."
+    },
+    {
+      "id": "exported-missing",
+      "scope": "manifest",
+      "sev": "error",
+      "msg": "<{tag}> has an intent-filter but no android:exported. Since API 31 this is a hard build failure, not a warning.",
+      "fix": "Add android:exported=\"true\" if another app or the launcher must start it, android:exported=\"false\" otherwise."
+    },
+    {
+      "id": "fgs-type-missing",
+      "scope": "manifest",
+      "sev": "error",
+      "msg": "FOREGROUND_SERVICE is requested but no service declares android:foregroundServiceType. From API 34, starting a foreground service without a declared type throws MissingForegroundServiceTypeException at runtime.",
+      "fix": "Add android:foregroundServiceType to each <service> that calls startForeground, and request the matching FOREGROUND_SERVICE_* permission."
+    },
+    {
+      "id": "fgs-permission-missing",
+      "scope": "manifest",
+      "sev": "error",
+      "msg": "foregroundServiceType=\"{found}\" is declared but android.permission.{perm} is not requested. From API 34 the matching permission is required or the service will not start.",
+      "fix": "Add <uses-permission android:name=\"android.permission.{perm}\" /> next to FOREGROUND_SERVICE."
+    },
+    {
+      "id": "billing-library-too-old",
+      "scope": "gradle",
+      "sev": "warn",
+      "msg": "Play Billing Library {found} is below version 7. Google Play's billing library floor moved to 7 for app updates and it rises on its own annual schedule, separate from the targetSdk deadline.",
+      "fix": "Upgrade com.android.billingclient:billing and re-test the purchase flow — the 6 to 7 jump changed the product-details and subscription APIs."
+    },
+    {
+      "id": "ndk-16kb-page-size",
+      "scope": "gradle",
+      "sev": "warn",
+      "msg": "ndkVersion is r{found}. 16 KB page size support arrived in NDK r27, and Play requires 16 KB compatible native code for apps targeting Android 15 and above.",
+      "fix": "Move to NDK r27 or newer and rebuild every prebuilt .so you ship, including the ones inside third-party AARs."
+    },
+    {
+      "id": "legacy-jni-packaging",
+      "scope": "gradle",
+      "sev": "warn",
+      "msg": "useLegacyPackaging is true, so native libraries ship compressed and unaligned. That is the opposite of what 16 KB page size devices need.",
+      "fix": "Set useLegacyPackaging false and confirm your native libs load on a 16 KB emulator image."
+    },
+    {
+      "id": "exact-alarm-policy",
+      "scope": "manifest",
+      "sev": "warn",
+      "msg": "SCHEDULE_EXACT_ALARM is requested. From Android 14 it is denied by default for most apps, and Play's exact alarm policy requires a declared use case that Play accepts.",
+      "fix": "Use WorkManager or setAndAllowWhileIdle if the timing can slip; keep the exact alarm only if you file the Play declaration and can defend it."
+    },
+    {
+      "id": "all-files-access",
+      "scope": "manifest",
+      "sev": "warn",
+      "msg": "MANAGE_EXTERNAL_STORAGE is requested. Play's All files access policy needs a separate declaration and grants it to a narrow set of app types.",
+      "fix": "Move to scoped storage, MediaStore or the Storage Access Framework unless you are a file manager or backup app."
+    },
+    {
+      "id": "query-all-packages",
+      "scope": "manifest",
+      "sev": "warn",
+      "msg": "QUERY_ALL_PACKAGES is requested. Play treats it as sensitive and requires a declaration form; most submissions that use it to check for one or two apps are told to use a <queries> element instead.",
+      "fix": "Replace it with a <queries> block naming the packages or intents you actually resolve."
+    },
+    {
+      "id": "cleartext-traffic",
+      "scope": "manifest",
+      "sev": "warn",
+      "msg": "android:usesCleartextTraffic=\"true\" is set application-wide, so every HTTP call in the app is permitted in plaintext.",
+      "fix": "Drop the attribute and scope any remaining plaintext host to a network security config file."
+    }
+  ],
+  "play_declared_permissions": {
+    "SCHEDULE_EXACT_ALARM": "exact-alarm-policy",
+    "MANAGE_EXTERNAL_STORAGE": "all-files-access",
+    "QUERY_ALL_PACKAGES": "query-all-packages"
+  }
+}
