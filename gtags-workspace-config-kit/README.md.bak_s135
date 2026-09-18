@@ -1,0 +1,25 @@
+# GNU GLOBAL (gtags) Workspace Setup Kit
+
+46 config snippets, 26 audit rules, 8 setups in one extension — because one absolute path like /home/you/ in .vscode/settings.json breaks Go-to-Definition for every teammate who clones the repo.
+
+## What it does for free
+
+- Full audit of the file you have open — all 26 rules, file and line number, no key
+- All 46 setup blocks for the 8 stacks, insertable by prefix in any of your own files
+- The ordered checklist for each of the 8 setups, naming which file every block belongs in
+- The 26 built-in rules stay on forever — no watermark, no countdown, no lock after N runs
+
+## With a licence
+
+- **Audit every repository folder in the workspace at once** — Instead of the one file in front of you, every .vscode/*.json, .editorconfig, .clang-format, .globalrc and gtags.conf in the workspace is checked in a single run and reported grouped by file.
+- **Apply the fix in the file, not just report it** — Findings with a known safe replacement — ${workspaceRoot}, the 0.1.0 tasks schema, unknownAtRules set to error, the removed shellArgs keys — are rewritten in place; everything else stays reported for you to judge.
+- **Write the audit into the repository as HTML, CSV or JSON** — A committable report file at the path you choose, so a reviewer or a new teammate can read what is wrong without installing anything.
+- **Re-check on every save so the config cannot regress** — Once a config file is clean, the audit re-runs each time it is saved, so the machine-specific path someone pastes back in is caught the same minute.
+- **Machine-readable output a pull-request check can read** — Writes the findings as JSON at your chosen path with rule, file and line, so a CI job can fail the build on a broken .vscode config instead of trusting review.
+- **Your team's own rules on top of the built-in 26** — Point a settings key at your own rules file and your house conventions — required compilerPath prefixes, banned keys, mandatory defaultFormatter — are audited alongside the built-in set.
+
+## Install
+
+```
+ext install gtags-workspace-config-kit
+```
