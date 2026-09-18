@@ -1,0 +1,105 @@
+{
+  "name": "gnu-global-cpp-vscode-config-pack",
+  "displayName": "GNU Global C/C++ .vscode Config Pack",
+  "description": "46 ready .vscode snippets and 21 audit rules across 8 setups: GNU Global gtags indexing, c_cpp_properties IntelliSense, gist workspaces, formatter save-actions, Dark+ colour overrides, Tailwind CSS, A",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Snippets"
+  ],
+  "keywords": [
+    "gnu global",
+    "gtags",
+    "c cpp",
+    "vscode config",
+    "tasks json"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "gnu-global-cpp-vscode-config-pack.audit_file",
+        "title": "Audit this .vscode config file",
+        "category": "GNU Global C/C++ .vscode"
+      },
+      {
+        "command": "gnu-global-cpp-vscode-config-pack.insert_snippet",
+        "title": "Insert a .vscode config snippet",
+        "category": "GNU Global C/C++ .vscode"
+      },
+      {
+        "command": "gnu-global-cpp-vscode-config-pack.list_rules",
+        "title": "Show everything in this pack",
+        "category": "GNU Global C/C++ .vscode"
+      },
+      {
+        "command": "gnu-global-cpp-vscode-config-pack.workspace_scan",
+        "title": "Audit every config file in the repository",
+        "category": "GNU Global C/C++ .vscode"
+      },
+      {
+        "command": "gnu-global-cpp-vscode-config-pack.quick_fix",
+        "title": "Rewrite the flagged lines",
+        "category": "GNU Global C/C++ .vscode"
+      },
+      {
+        "command": "gnu-global-cpp-vscode-config-pack.export_report",
+        "title": "Export the findings as a file",
+        "category": "GNU Global C/C++ .vscode"
+      },
+      {
+        "command": "gnu-global-cpp-vscode-config-pack.custom_rules",
+        "title": "Add your team's own rules",
+        "category": "GNU Global C/C++ .vscode"
+      }
+    ],
+    "configuration": {
+      "title": "GNU Global C/C++ .vscode Config Pack",
+      "properties": {
+        "gnu-global-cpp-vscode-config-pack.report_format": {
+          "type": "string",
+          "default": "json",
+          "description": "Default export format for the report file"
+        },
+        "gnu-global-cpp-vscode-config-pack.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum number of workspace files to scan"
+        },
+        "gnu-global-cpp-vscode-config-pack.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,bin,obj,build,out,target,.git}/**",
+          "description": "Paths to skip when scanning the workspace"
+        },
+        "gnu-global-cpp-vscode-config-pack.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Audit the open config file once when the editor opens"
+        },
+        "gnu-global-cpp-vscode-config-pack.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 21 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "json",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/json-jsonc.code-snippets"
+      }
+    ]
+  }
+}
