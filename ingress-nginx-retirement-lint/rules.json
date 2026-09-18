@@ -1,0 +1,213 @@
+[
+  {
+    "id": "clock.ingress-nginx-retired",
+    "kind": "clock",
+    "sev": "error",
+    "msg": "Ingress object still routed by the retired ingress-nginx controller",
+    "fix": "the ingress-nginx project stopped shipping releases and CVE fixes in March 2026 — move this rule set to a Gateway API HTTPRoute on a maintained controller",
+    "retired_on": "2026-03-01"
+  },
+  {
+    "id": "class.missing-ingressclassname",
+    "kind": "structural",
+    "sev": "error",
+    "msg": "Ingress has no spec.ingressClassName",
+    "fix": "an unclassed Ingress is silently ignored by every controller that does not set itself as cluster default — set spec.ingressClassName, or move to HTTPRoute.parentRefs"
+  },
+  {
+    "id": "class.deprecated-annotation",
+    "sev": "error",
+    "re": "kubernetes\\.io/ingress\\.class\\s*:",
+    "msg": "kubernetes.io/ingress.class annotation is deprecated",
+    "fix": "replaced by spec.ingressClassName since Kubernetes 1.18; in Gateway API this is HTTPRoute.parentRefs[].name"
+  },
+  {
+    "id": "aks.addon-http-application-routing",
+    "sev": "error",
+    "re": "addon-http-application-routing",
+    "msg": "AKS HTTP application routing add-on class referenced",
+    "fix": "that AKS add-on was retired — use the managed application routing ingressClassName, or a Gateway API GatewayClass"
+  },
+  {
+    "id": "snippet.configuration-snippet",
+    "sev": "error",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/configuration-snippet\\s*:",
+    "msg": "configuration-snippet raw NGINX injection",
+    "fix": "snippet annotations are refused by default since ingress-nginx v1.9 (allow-snippet-annotations=false) — rewrite as explicit HTTPRoute filters"
+  },
+  {
+    "id": "snippet.server-snippet",
+    "sev": "error",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/server-snippet\\s*:",
+    "msg": "server-snippet raw NGINX injection",
+    "fix": "refused by default since v1.9 and a named vector in the IngressNightmare advisory chain — express the intent as HTTPRoute filters"
+  },
+  {
+    "id": "snippet.stream-snippet",
+    "sev": "error",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/stream-snippet\\s*:",
+    "msg": "stream-snippet raw NGINX injection",
+    "fix": "no Gateway API equivalent — model the TCP/UDP listener as a Gateway listener with a TCPRoute or UDPRoute"
+  },
+  {
+    "id": "snippet.auth-snippet",
+    "sev": "error",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/auth-snippet\\s*:",
+    "msg": "auth-snippet raw NGINX injection",
+    "fix": "refused with the other snippet annotations — carry the auth call in an ExternalAuth extension of your Gateway implementation"
+  },
+  {
+    "id": "sec.mirror-target",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/mirror-target\\s*:",
+    "msg": "traffic mirroring declared by annotation",
+    "fix": "Gateway API core: HTTPRoute filters[].type RequestMirror with requestMirror.backendRef"
+  },
+  {
+    "id": "route.rewrite-target",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/rewrite-target\\s*:",
+    "msg": "path rewrite declared by annotation",
+    "fix": "Gateway API core: HTTPRoute filters[].type URLRewrite with urlRewrite.path.replacePrefixMatch"
+  },
+  {
+    "id": "route.app-root",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/app-root\\s*:",
+    "msg": "app-root redirect declared by annotation",
+    "fix": "Gateway API core: a separate HTTPRoute rule matching / with filters[].type RequestRedirect and requestRedirect.path"
+  },
+  {
+    "id": "route.use-regex",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/use-regex\\s*:",
+    "msg": "regular-expression path matching enabled",
+    "fix": "HTTPRoute core matches are Exact and PathPrefix only — RegularExpression path match is an experimental-channel feature, confirm your controller ships it"
+  },
+  {
+    "id": "route.permanent-redirect",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/(permanent|temporal)-redirect",
+    "msg": "redirect declared by annotation",
+    "fix": "Gateway API core: HTTPRoute filters[].type RequestRedirect with requestRedirect.hostname and statusCode"
+  },
+  {
+    "id": "route.ssl-redirect",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/(force-)?ssl-redirect\\s*:",
+    "msg": "HTTP-to-HTTPS redirect declared by annotation",
+    "fix": "Gateway API core: an HTTPRoute on the port-80 listener with filters[].requestRedirect.scheme https and statusCode 301"
+  },
+  {
+    "id": "route.server-alias",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/server-alias\\s*:",
+    "msg": "extra hostname declared by annotation",
+    "fix": "Gateway API core: add the name to HTTPRoute.spec.hostnames[]"
+  },
+  {
+    "id": "route.upstream-vhost",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/upstream-vhost\\s*:",
+    "msg": "upstream Host header override declared by annotation",
+    "fix": "Gateway API core: filters[].type RequestHeaderModifier with requestHeaderModifier.set name Host"
+  },
+  {
+    "id": "traffic.canary",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/canary(-weight|-by-header|-by-cookie)?\\s*:",
+    "msg": "canary split declared by annotation",
+    "fix": "Gateway API core: one HTTPRoute with two backendRefs carrying weight values, or a headers match for canary-by-header"
+  },
+  {
+    "id": "traffic.proxy-timeout",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/proxy-(connect|read|send)-timeout",
+    "msg": "proxy timeout declared by annotation",
+    "fix": "Gateway API core: HTTPRoute rules[].timeouts.request and timeouts.backendRequest as Go durations"
+  },
+  {
+    "id": "traffic.limit-rps",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/limit-(rps|rpm|connections|whitelist)",
+    "msg": "rate limiting declared by annotation",
+    "fix": "no Gateway API core equivalent — rate limiting lives in an implementation policy object, name it before you cut over"
+  },
+  {
+    "id": "traffic.load-balance",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/(load-balance|upstream-hash-by)\\s*:",
+    "msg": "load-balancing algorithm declared by annotation",
+    "fix": "no Gateway API core equivalent — this becomes an implementation-specific BackendTrafficPolicy on the Service"
+  },
+  {
+    "id": "traffic.session-cookie",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/(affinity|session-cookie)",
+    "msg": "sticky sessions declared by annotation",
+    "fix": "Gateway API: HTTPRoute rules[].sessionPersistence — an experimental-channel field, confirm your controller ships it"
+  },
+  {
+    "id": "auth.auth-url",
+    "sev": "error",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/auth-(url|signin|snippet-disabled)",
+    "msg": "external auth subrequest declared by annotation",
+    "fix": "no Gateway API core equivalent — every request past this route loses its auth check on cutover unless you port it to an ExternalAuth filter or a sidecar"
+  },
+  {
+    "id": "auth.auth-tls",
+    "sev": "error",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/auth-tls-(secret|verify-client|verify-depth|pass-certificate-to-upstream)",
+    "msg": "client-certificate (mTLS) verification declared by annotation",
+    "fix": "front-end mTLS moves to Gateway listeners[].tls.options / frontendValidation — silently dropping it turns a closed door into an open one"
+  },
+  {
+    "id": "auth.whitelist-source-range",
+    "sev": "error",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/(whitelist|denylist)-source-range",
+    "msg": "IP allow/deny list declared by annotation",
+    "fix": "no Gateway API core equivalent — reproduce it as a NetworkPolicy or an implementation AuthorizationPolicy before cutover"
+  },
+  {
+    "id": "cors.enable-cors",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/(enable-cors|cors-allow-(origin|methods|headers|credentials))",
+    "msg": "CORS policy declared by annotation",
+    "fix": "Gateway API: the CORS filter is experimental-channel — until your controller ships it, use ResponseHeaderModifier"
+  },
+  {
+    "id": "tls.ssl-passthrough",
+    "sev": "error",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/ssl-passthrough\\s*:",
+    "msg": "TLS passthrough declared by annotation",
+    "fix": "Gateway API: a Gateway listener with tls.mode Passthrough plus a TLSRoute — TLSRoute is experimental-channel"
+  },
+  {
+    "id": "proto.backend-protocol",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/backend-protocol\\s*:",
+    "msg": "upstream protocol declared by annotation",
+    "fix": "Gateway API core: set Service.spec.ports[].appProtocol (kubernetes.io/h2c for GRPC/h2c), or use a GRPCRoute"
+  },
+  {
+    "id": "proto.proxy-body-size",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/proxy-body-size\\s*:",
+    "msg": "request body size limit declared by annotation",
+    "fix": "no Gateway API core equivalent — carry the limit into your controller's policy object or the application itself"
+  },
+  {
+    "id": "backend.default-backend",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/default-backend\\s*:",
+    "msg": "custom default backend declared by annotation",
+    "fix": "Gateway API core: an HTTPRoute rule with a PathPrefix / match placed last, pointing at the fallback Service"
+  },
+  {
+    "id": "backend.service-upstream",
+    "sev": "warn",
+    "re": "nginx\\.ingress\\.kubernetes\\.io/service-upstream\\s*:",
+    "msg": "service-level upstream declared by annotation",
+    "fix": "Gateway API routes address the Service by default — drop this annotation rather than porting it"
+  }
+]
