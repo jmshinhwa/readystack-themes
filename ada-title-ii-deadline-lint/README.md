@@ -63,6 +63,8 @@ $29 once - one licence key per person or team seat - 7-day full refund.
 A hybrid WCAG audit (automated plus manual sampling) is quoted at $1,500-$8,000,
 and a VPAT/ACR write-up at about $350.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 [Get the full version - $29](https://buy.polar.sh/polar_cl_wzKKiGELabjwZgIKC7wl7uINCXdVkTvVTPu2e20gq4d)
 
 ## What it does not do
