@@ -1,0 +1,95 @@
+{
+  "name": "model-sunset-lint",
+  "displayName": "Model Sunset Lint - retired AI model IDs, dated",
+  "description": "Finds every model ID and API parameter in your code that a vendor has already switched off or has published a date for - 109 rules across OpenAI, Anthropic, Google and Azure, each carrying the real sh",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "openai",
+    "anthropic",
+    "gemini",
+    "azure-openai",
+    "deprecation"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "model-sunset-lint.audit_file",
+        "title": "Find the sunset model IDs in this file",
+        "category": "Model Sunset Lint"
+      },
+      {
+        "command": "model-sunset-lint.audit_selection",
+        "title": "Check only the selected lines",
+        "category": "Model Sunset Lint"
+      },
+      {
+        "command": "model-sunset-lint.list_rules",
+        "title": "List every rule, date and replacement",
+        "category": "Model Sunset Lint"
+      },
+      {
+        "command": "model-sunset-lint.workspace_scan",
+        "title": "Scan the whole repository",
+        "category": "Model Sunset Lint"
+      },
+      {
+        "command": "model-sunset-lint.quick_fix",
+        "title": "Rewrite the retired IDs in place",
+        "category": "Model Sunset Lint"
+      },
+      {
+        "command": "model-sunset-lint.export_report",
+        "title": "Export the dated inventory",
+        "category": "Model Sunset Lint"
+      },
+      {
+        "command": "model-sunset-lint.ci_json",
+        "title": "Emit CI JSON for a pipeline gate",
+        "category": "Model Sunset Lint"
+      }
+    ],
+    "configuration": {
+      "title": "Model Sunset Lint",
+      "properties": {
+        "model-sunset-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info|warn|error)"
+        },
+        "model-sunset-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format (csv|json|html)"
+        },
+        "model-sunset-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum files to read in a repository scan"
+        },
+        "model-sunset-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a repository scan"
+        },
+        "model-sunset-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Model IDs of your own - internal aliases, proxy names - checked alongside the 109 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
