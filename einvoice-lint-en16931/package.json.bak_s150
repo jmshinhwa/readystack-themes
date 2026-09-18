@@ -1,0 +1,95 @@
+{
+  "name": "einvoice-lint-en16931",
+  "displayName": "E-Invoice Lint for XRechnung, Factur-X and UBL",
+  "description": "Catches retired profile identifiers, code-list values outside EN 16931 and malformed dates in your e-invoice XML, in the editor, before an access point rejects the file.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "xrechnung",
+    "factur-x",
+    "en16931",
+    "peppol",
+    "ubl"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "einvoice-lint-en16931.audit_file",
+        "title": "Check this e-invoice file",
+        "category": "E-Invoice Lint"
+      },
+      {
+        "command": "einvoice-lint-en16931.audit_selection",
+        "title": "Check only the selected lines",
+        "category": "E-Invoice Lint"
+      },
+      {
+        "command": "einvoice-lint-en16931.show_report",
+        "title": "Reopen the last findings",
+        "category": "E-Invoice Lint"
+      },
+      {
+        "command": "einvoice-lint-en16931.list_rules",
+        "title": "List every rule that ships inside",
+        "category": "E-Invoice Lint"
+      },
+      {
+        "command": "einvoice-lint-en16931.workspace_scan",
+        "title": "Check every XML file in the workspace",
+        "category": "E-Invoice Lint"
+      },
+      {
+        "command": "einvoice-lint-en16931.export_report",
+        "title": "Export the findings report",
+        "category": "E-Invoice Lint"
+      },
+      {
+        "command": "einvoice-lint-en16931.ci_json",
+        "title": "Machine output for CI",
+        "category": "E-Invoice Lint"
+      }
+    ],
+    "configuration": {
+      "title": "E-Invoice Lint",
+      "properties": {
+        "einvoice-lint-en16931.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info|warn|error)"
+        },
+        "einvoice-lint-en16931.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format the exported findings report is written in (csv|json|html)"
+        },
+        "einvoice-lint-en16931.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files a workspace check will open"
+        },
+        "einvoice-lint-en16931.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths a workspace check skips (glob)"
+        },
+        "einvoice-lint-en16931.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 26 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
