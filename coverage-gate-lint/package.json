@@ -2,7 +2,7 @@
   "name": "coverage-gate-lint",
   "displayName": "Coverage Gate Lint",
   "description": "Lints codecov.yml, .coveragerc, jest/vitest config and CI steps for coverage gates that report a number but can never fail the build.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
