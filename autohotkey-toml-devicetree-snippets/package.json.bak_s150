@@ -1,0 +1,199 @@
+{
+  "name": "autohotkey-toml-devicetree-snippets",
+  "displayName": "AutoHotkey v2, TOML and DeviceTree checks for VS Code",
+  "description": "22 checks and 46 snippets for the files VS Code never validates: DeviceTree overlays, TOML manifests and AutoHotkey v2 scripts. Runs offline, no account.",
+  "version": "0.1.0",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Snippets",
+    "Linters",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "autohotkey",
+    "ahk v2",
+    "toml",
+    "devicetree",
+    "dts overlay"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "autohotkey-toml-devicetree-snippets.audit_file",
+        "title": "Check this file (22 rules)",
+        "category": "AutoHotkey v2 · TOML · D"
+      },
+      {
+        "command": "autohotkey-toml-devicetree-snippets.audit_selection",
+        "title": "Check only the selected lines",
+        "category": "AutoHotkey v2 · TOML · D"
+      },
+      {
+        "command": "autohotkey-toml-devicetree-snippets.insert_snippet",
+        "title": "Insert a snippet from the 9 packs",
+        "category": "AutoHotkey v2 · TOML · D"
+      },
+      {
+        "command": "autohotkey-toml-devicetree-snippets.list_rules",
+        "title": "Show everything inside this pack",
+        "category": "AutoHotkey v2 · TOML · D"
+      },
+      {
+        "command": "autohotkey-toml-devicetree-snippets.workspace_scan",
+        "title": "Check every file in the workspace",
+        "category": "AutoHotkey v2 · TOML · D"
+      },
+      {
+        "command": "autohotkey-toml-devicetree-snippets.quick_fix",
+        "title": "Count the findings that need a manual edit",
+        "category": "AutoHotkey v2 · TOML · D"
+      },
+      {
+        "command": "autohotkey-toml-devicetree-snippets.export_report",
+        "title": "Write the findings out as a file",
+        "category": "AutoHotkey v2 · TOML · D"
+      }
+    ],
+    "configuration": {
+      "title": "AutoHotkey v2 · TOML · DeviceTree · 9 Packs",
+      "properties": {
+        "autohotkey-toml-devicetree-snippets.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Report format (csv, json or html)"
+        },
+        "autohotkey-toml-devicetree-snippets.max_files": {
+          "type": "number",
+          "default": 500,
+          "description": "Maximum number of workspace files to scan"
+        },
+        "autohotkey-toml-devicetree-snippets.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,dist,build,.venv,__pycache__}/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "autohotkey-toml-devicetree-snippets.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Run the check once when the editor opens"
+        },
+        "autohotkey-toml-devicetree-snippets.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 22 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "ahk",
+        "path": "./snippets/ahk-ahk2-autohotkey-plaintext.code-snippets"
+      },
+      {
+        "language": "ahk2",
+        "path": "./snippets/ahk-ahk2-autohotkey-plaintext.code-snippets"
+      },
+      {
+        "language": "autohotkey",
+        "path": "./snippets/ahk-ahk2-autohotkey-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/ahk-ahk2-autohotkey-plaintext.code-snippets"
+      },
+      {
+        "language": "dts",
+        "path": "./snippets/dts-devicetree-c-plaintext.code-snippets"
+      },
+      {
+        "language": "devicetree",
+        "path": "./snippets/dts-devicetree-c-plaintext.code-snippets"
+      },
+      {
+        "language": "c",
+        "path": "./snippets/dts-devicetree-c-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/dts-devicetree-c-plaintext.code-snippets"
+      },
+      {
+        "language": "ini",
+        "path": "./snippets/ini-properties-plaintext.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/ini-properties-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/ini-properties-plaintext.code-snippets"
+      },
+      {
+        "language": "inkling",
+        "path": "./snippets/inkling-ink-plaintext.code-snippets"
+      },
+      {
+        "language": "ink",
+        "path": "./snippets/inkling-ink-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/inkling-ink-plaintext.code-snippets"
+      },
+      {
+        "language": "java",
+        "path": "./snippets/java.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/properties-ini.code-snippets"
+      },
+      {
+        "language": "ini",
+        "path": "./snippets/properties-ini.code-snippets"
+      },
+      {
+        "language": "renpy",
+        "path": "./snippets/renpy-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/renpy-plaintext.code-snippets"
+      },
+      {
+        "language": "swift",
+        "path": "./snippets/swift.code-snippets"
+      },
+      {
+        "language": "toml",
+        "path": "./snippets/toml-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/toml-plaintext.code-snippets"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/yaml.code-snippets"
+      }
+    ]
+  },
+  "icon": "icon.png"
+}
