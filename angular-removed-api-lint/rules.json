@@ -1,0 +1,311 @@
+{
+ "id": "angular-removed-api-lint",
+ "name": "Angular Removed-API Lint rule set",
+ "version": "1.0.0",
+ "updated": "2026-09-11",
+ "levels": {
+  "error": "Removed from Angular — does not compile on a current major.",
+  "warning": "Deprecated — still works, scheduled to stop working.",
+  "info": "Supported, but the NgModule-era form the current schematics no longer emit."
+ },
+ "policy": "Angular supports each major release for 18 months: 6 months active support, then 12 months long-term support (LTS). Dates below are the release date and release + 18 months.",
+ "support": {
+  "majors": {
+   "12": {
+    "released": "2021-05-12",
+    "lts_end": "2022-11-12"
+   },
+   "13": {
+    "released": "2021-11-03",
+    "lts_end": "2023-05-04"
+   },
+   "14": {
+    "released": "2022-06-02",
+    "lts_end": "2023-11-18"
+   },
+   "15": {
+    "released": "2022-11-16",
+    "lts_end": "2024-05-18"
+   },
+   "16": {
+    "released": "2023-05-03",
+    "lts_end": "2024-11-08"
+   },
+   "17": {
+    "released": "2023-11-08",
+    "lts_end": "2025-05-15"
+   },
+   "18": {
+    "released": "2024-05-22",
+    "lts_end": "2025-11-19"
+   },
+   "19": {
+    "released": "2024-11-19",
+    "lts_end": "2026-05-19"
+   },
+   "20": {
+    "released": "2025-05-28",
+    "lts_end": "2026-11-21"
+   }
+  }
+ },
+ "rules": [
+  {
+   "id": "angular-major-out-of-support",
+   "kind": "support",
+   "since": 12,
+   "re": "[\"']@angular/core[\"']\\s*:\\s*[\"'][~^>= ]*([0-9]+)\\.",
+   "msg": "Angular version pin found.",
+   "fix": "Upgrade one major at a time with `ng update @angular/core@N @angular/cli@N`."
+  },
+  {
+   "id": "angular-http-package",
+   "kind": "removed",
+   "since": 8,
+   "re": "from\\s*['\"]@angular/http['\"]",
+   "flags": "",
+   "msg": "The `@angular/http` package was removed in Angular 8.",
+   "fix": "Import `HttpClient` from `@angular/common/http` and register it with `provideHttpClient()`."
+  },
+  {
+   "id": "renderer-v1",
+   "kind": "removed",
+   "since": 9,
+   "re": "import\\s*\\{[^}]*\\bRenderer\\b[^}]*\\}\\s*from\\s*['\"]@angular/core['\"]",
+   "msg": "`Renderer` (the v1 renderer) was removed in Angular 9.",
+   "fix": "Inject `Renderer2` instead; `setProperty`/`setAttribute`/`listen` replace the old methods."
+  },
+  {
+   "id": "private-ivy-import",
+   "kind": "advisory",
+   "since": 9,
+   "re": "import\\s*\\{[^}]*\\u0275[^}]*\\}",
+   "msg": "This imports a private Angular symbol (the `ɵ` prefix marks compiler internals).",
+   "fix": "Private symbols carry no compatibility guarantee and change without notice — use the public API or vendor the behaviour."
+  },
+  {
+   "id": "module-with-providers-no-generic",
+   "kind": "removed",
+   "since": 10,
+   "re": "ModuleWithProviders(?!\\s*<)",
+   "msg": "`ModuleWithProviders` without a type argument stopped compiling in Angular 10.",
+   "fix": "Write `ModuleWithProviders<YourModule>`."
+  },
+  {
+   "id": "waitforasync-rename",
+   "kind": "removed",
+   "since": 12,
+   "re": "import\\s*\\{[^}]*\\basync\\b[^}]*\\}\\s*from\\s*['\"]@angular/core/testing['\"]",
+   "msg": "The `async()` test helper was removed in Angular 12 (it collided with the `async` keyword).",
+   "fix": "Import and call `waitForAsync()` instead — same behaviour, new name."
+  },
+  {
+   "id": "entry-components",
+   "kind": "removed",
+   "since": 13,
+   "re": "\\bentryComponents\\s*:",
+   "msg": "`entryComponents` was removed in Angular 13.",
+   "fix": "Delete the property — Ivy resolves dynamically created components without it."
+  },
+  {
+   "id": "testbed-get",
+   "kind": "removed",
+   "since": 13,
+   "re": "TestBed\\s*\\.\\s*get\\s*\\(",
+   "msg": "`TestBed.get()` was removed in Angular 13 (deprecated in 9).",
+   "fix": "Use `TestBed.inject(Token)` — it is typed, so the cast you probably wrote can go too."
+  },
+  {
+   "id": "inject-flags",
+   "kind": "deprecated",
+   "since": 14,
+   "re": "\\bInjectFlags\\b",
+   "msg": "`InjectFlags` has been deprecated since Angular 14.",
+   "fix": "Pass an options object instead: `inject(TOKEN, { optional: true, skipSelf: true })`."
+  },
+  {
+   "id": "class-based-route-guard",
+   "kind": "deprecated",
+   "since": 15,
+   "re": "implements\\s+(CanActivate|CanActivateChild|CanDeactivate|CanLoad|Resolve)\\b",
+   "msg": "Class-based router guards and resolvers have been deprecated since Angular 15.2.",
+   "fix": "Export a function instead: `export const canActivateFoo: CanActivateFn = () => inject(Auth).ok();`."
+  },
+  {
+   "id": "can-load-guard",
+   "kind": "deprecated",
+   "since": 15,
+   "re": "\\bcanLoad\\s*:",
+   "msg": "The `canLoad` route property has been deprecated since Angular 15.1.",
+   "fix": "Use `canMatch` — it also runs for already-loaded routes, which is what most `canLoad` guards meant."
+  },
+  {
+   "id": "router-link-with-href",
+   "kind": "deprecated",
+   "since": 15,
+   "re": "\\bRouterLinkWithHref\\b",
+   "msg": "`RouterLinkWithHref` was folded into `RouterLink` in Angular 15.",
+   "fix": "Import `RouterLink`; it handles anchors and non-anchor elements alike."
+  },
+  {
+   "id": "flex-layout",
+   "kind": "deprecated",
+   "since": 16,
+   "re": "@angular/flex-layout",
+   "msg": "`@angular/flex-layout` was retired by the Angular team and receives no further releases.",
+   "fix": "Replace the directives with CSS grid or flexbox, or with the community fork you vendor yourself."
+  },
+  {
+   "id": "browser-module-server-transition",
+   "kind": "deprecated",
+   "since": 16,
+   "re": "withServerTransition\\s*\\(",
+   "msg": "`BrowserModule.withServerTransition()` has been deprecated since Angular 16.",
+   "fix": "Set `APP_ID` as a provider instead; the transition id is read from it."
+  },
+  {
+   "id": "enable-ivy-flag",
+   "kind": "removed",
+   "since": 16,
+   "re": "\"enableIvy\"",
+   "msg": "The `enableIvy` compiler flag was removed in Angular 16 — View Engine no longer exists.",
+   "fix": "Delete the flag from `angularCompilerOptions` in tsconfig.json."
+  },
+  {
+   "id": "ngcc-script",
+   "kind": "removed",
+   "since": 16,
+   "re": "\\bngcc\\b",
+   "msg": "`ngcc` (the View Engine compatibility compiler) was removed in Angular 16.",
+   "fix": "Delete the ngcc postinstall script; every published library is Ivy now."
+  },
+  {
+   "id": "relative-link-resolution",
+   "kind": "removed",
+   "since": 16,
+   "re": "relativeLinkResolution",
+   "msg": "The router option `relativeLinkResolution` was removed in Angular 16.",
+   "fix": "Delete it — the `corrected` behaviour it selected is now the only behaviour."
+  },
+  {
+   "id": "rxjs-topromise",
+   "kind": "deprecated",
+   "since": 16,
+   "re": "\\.toPromise\\s*\\(\\s*\\)",
+   "msg": "`toPromise()` is deprecated in RxJS 7, the version Angular has shipped since 16, and is gone in RxJS 8.",
+   "fix": "Use `firstValueFrom(obs$)` or `lastValueFrom(obs$)` — they throw on empty instead of resolving `undefined`."
+  },
+  {
+   "id": "ngmodule-router-for-root",
+   "kind": "advisory",
+   "since": 17,
+   "re": "RouterModule\\s*\\.\\s*forRoot\\s*\\(",
+   "msg": "`RouterModule.forRoot()` is the NgModule route setup; standalone bootstrap has been the documented default since Angular 17.",
+   "fix": "Move the routes to `provideRouter(routes)` inside `bootstrapApplication(App, { providers: [...] })`."
+  },
+  {
+   "id": "structural-directive-control-flow",
+   "kind": "advisory",
+   "since": 17,
+   "re": "\\*ng(If|For|Switch)\\b",
+   "msg": "Built-in control flow has been stable since Angular 17 and is what the current docs and schematics emit.",
+   "fix": "Run `ng generate @angular/core:control-flow` to rewrite `*ngIf`/`*ngFor`/`*ngSwitch` as `@if`/`@for`/`@switch`."
+  },
+  {
+   "id": "browser-animations-module",
+   "kind": "advisory",
+   "since": 17,
+   "re": "\\bBrowserAnimationsModule\\b",
+   "msg": "`BrowserAnimationsModule` is the NgModule form of the animations setup.",
+   "fix": "Use `provideAnimationsAsync()` (or `provideAnimations()`) in the bootstrap providers."
+  },
+  {
+   "id": "platform-browser-dynamic-bootstrap",
+   "kind": "advisory",
+   "since": 17,
+   "re": "platformBrowserDynamic\\s*\\(",
+   "msg": "`platformBrowserDynamic().bootstrapModule()` is the NgModule bootstrap path.",
+   "fix": "Use `bootstrapApplication(AppComponent, appConfig)` from `@angular/platform-browser`."
+  },
+  {
+   "id": "http-client-module",
+   "kind": "deprecated",
+   "since": 18,
+   "re": "\\bHttpClientModule\\b",
+   "msg": "`HttpClientModule` has been deprecated since Angular 18.",
+   "fix": "Call `provideHttpClient()` in your bootstrap providers; add `withInterceptors([...])` for interceptors."
+  },
+  {
+   "id": "http-client-testing-module",
+   "kind": "deprecated",
+   "since": 18,
+   "re": "\\bHttpClientTestingModule\\b",
+   "msg": "`HttpClientTestingModule` has been deprecated since Angular 18.",
+   "fix": "Use `provideHttpClient()` plus `provideHttpClientTesting()` in the testing providers."
+  },
+  {
+   "id": "app-initializer-token",
+   "kind": "deprecated",
+   "since": 19,
+   "re": "\\bAPP_INITIALIZER\\b",
+   "msg": "The `APP_INITIALIZER` token has been deprecated since Angular 19.",
+   "fix": "Use `provideAppInitializer(() => inject(Config).load())` — no multi-provider boilerplate."
+  },
+  {
+   "id": "environment-initializer-token",
+   "kind": "deprecated",
+   "since": 19,
+   "re": "\\bENVIRONMENT_INITIALIZER\\b",
+   "msg": "The `ENVIRONMENT_INITIALIZER` token has been deprecated since Angular 19.",
+   "fix": "Use `provideEnvironmentInitializer(() => { ... })`."
+  },
+  {
+   "id": "after-render-phase",
+   "kind": "deprecated",
+   "since": 19,
+   "re": "\\bAfterRenderPhase\\b",
+   "msg": "`AfterRenderPhase` has been deprecated since Angular 19.",
+   "fix": "Pass a phase-keyed object instead: `afterRender({ write: () => { ... } })`."
+  },
+  {
+   "id": "experimental-pending-tasks",
+   "kind": "deprecated",
+   "since": 19,
+   "re": "\\bExperimentalPendingTasks\\b",
+   "msg": "`ExperimentalPendingTasks` was renamed in Angular 19.",
+   "fix": "Import `PendingTasks` from `@angular/core`; the API is unchanged."
+  },
+  {
+   "id": "allow-signal-writes",
+   "kind": "deprecated",
+   "since": 19,
+   "re": "\\ballowSignalWrites\\b",
+   "msg": "The `allowSignalWrites` option on `effect()` was deprecated in Angular 19 and does nothing.",
+   "fix": "Delete the option — effects may write to signals without it."
+  },
+  {
+   "id": "redundant-standalone-true",
+   "kind": "advisory",
+   "since": 19,
+   "re": "standalone\\s*:\\s*true",
+   "msg": "`standalone: true` has been the default since Angular 19, so writing it is redundant.",
+   "fix": "Delete the property. Only `standalone: false` carries meaning now (a component still declared in an NgModule)."
+  },
+  {
+   "id": "experimental-zoneless",
+   "kind": "deprecated",
+   "since": 20,
+   "re": "provideExperimentalZonelessChangeDetection",
+   "msg": "`provideExperimentalZonelessChangeDetection()` was renamed when zoneless went stable in Angular 20.",
+   "fix": "Call `provideZonelessChangeDetection()`."
+  },
+  {
+   "id": "testbed-flush-effects",
+   "kind": "deprecated",
+   "since": 20,
+   "re": "\\.flushEffects\\s*\\(",
+   "msg": "`TestBed.flushEffects()` has been deprecated since Angular 20.",
+   "fix": "Call `TestBed.tick()` — it flushes effects and runs change detection."
+  }
+ ]
+}
