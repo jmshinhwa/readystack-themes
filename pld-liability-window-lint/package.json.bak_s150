@@ -1,0 +1,53 @@
+{
+  "name": "pld-liability-window-lint",
+  "displayName": "EU Liability Window Lint",
+  "description": "Checks CHANGELOG.md and release notes for the four facts the EU Product Liability Directive makes load-bearing on 9 December 2026: release dates, support window, CVE-named security fixes, void AS-IS d",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "changelog",
+    "product liability",
+    "eu compliance",
+    "release notes",
+    "cve",
+    "cra",
+    "linter"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pldLint.checkFile",
+        "title": "EU Liability Window Lint (PLD 2024/2853): Check this file",
+        "category": "EU Liability Window Lint (PLD 2024/2853)"
+      },
+      {
+        "command": "pldLint.checkWorkspace",
+        "title": "EU Liability Window Lint (PLD 2024/2853): Sweep workspace and write report (licence)",
+        "category": "EU Liability Window Lint (PLD 2024/2853)"
+      },
+      {
+        "command": "pldLint.enterKey",
+        "title": "EU Liability Window Lint (PLD 2024/2853): Enter licence key",
+        "category": "EU Liability Window Lint (PLD 2024/2853)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "pld-liability-window-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/pld-liability-window-lint",
+  "icon": "icon.png"
+}
