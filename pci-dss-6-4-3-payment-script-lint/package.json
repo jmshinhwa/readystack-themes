@@ -1,0 +1,55 @@
+{
+  "name": "pci-dss-6-4-3-payment-script-lint",
+  "displayName": "PCI DSS 6.4.3 Payment Page Script Lint",
+  "description": "Lints checkout and payment pages against PCI DSS v4.0.1 Requirements 6.4.3 and 11.6.1 — script authorization, SRI integrity, written justification and tamper detection. Mandatory since 2025-03-31.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "pci dss",
+    "6.4.3",
+    "11.6.1",
+    "payment page",
+    "checkout",
+    "subresource integrity",
+    "csp",
+    "sri",
+    "ecommerce",
+    "compliance"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pciScriptLint.checkFile",
+        "title": "PCI DSS 6.4.3 Payment Page Script Lint: Check this file",
+        "category": "PCI DSS 6.4.3 Payment Page Script Lint"
+      },
+      {
+        "command": "pciScriptLint.checkWorkspace",
+        "title": "PCI DSS 6.4.3 Payment Page Script Lint: Sweep workspace and write report (licence)",
+        "category": "PCI DSS 6.4.3 Payment Page Script Lint"
+      },
+      {
+        "command": "pciScriptLint.enterKey",
+        "title": "PCI DSS 6.4.3 Payment Page Script Lint: Enter licence key",
+        "category": "PCI DSS 6.4.3 Payment Page Script Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/pci-dss-6-4-3-payment-script-lint",
+  "icon": "icon.png"
+}
