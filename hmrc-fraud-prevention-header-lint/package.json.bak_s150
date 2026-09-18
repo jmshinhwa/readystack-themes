@@ -1,0 +1,95 @@
+{
+  "name": "hmrc-fraud-prevention-header-lint",
+  "displayName": "HMRC Fraud Prevention Header Lint",
+  "description": "Finds the Gov-Client and Gov-Vendor header mistakes HMRC rejects, in your editor, offline, before you send the request.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "hmrc",
+    "mtd",
+    "making-tax-digital",
+    "fraud-prevention",
+    "vat"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "hmrc-fraud-prevention-header-lint.audit_file",
+        "title": "HMRC: check this file for header problems",
+        "category": "HMRC Fraud Prevention He"
+      },
+      {
+        "command": "hmrc-fraud-prevention-header-lint.audit_selection",
+        "title": "HMRC: check the selected lines",
+        "category": "HMRC Fraud Prevention He"
+      },
+      {
+        "command": "hmrc-fraud-prevention-header-lint.show_report",
+        "title": "HMRC: show the last report",
+        "category": "HMRC Fraud Prevention He"
+      },
+      {
+        "command": "hmrc-fraud-prevention-header-lint.workspace_scan",
+        "title": "HMRC: scan the whole workspace",
+        "category": "HMRC Fraud Prevention He"
+      },
+      {
+        "command": "hmrc-fraud-prevention-header-lint.export_report",
+        "title": "HMRC: export the report",
+        "category": "HMRC Fraud Prevention He"
+      },
+      {
+        "command": "hmrc-fraud-prevention-header-lint.ci_json",
+        "title": "HMRC: print machine-readable output for CI",
+        "category": "HMRC Fraud Prevention He"
+      },
+      {
+        "command": "hmrc-fraud-prevention-header-lint.quick_fix",
+        "title": "HMRC: fix the misspelled header names",
+        "category": "HMRC Fraud Prevention He"
+      }
+    ],
+    "configuration": {
+      "title": "HMRC Fraud Prevention Header Lint",
+      "properties": {
+        "hmrc-fraud-prevention-header-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default format for the exported report"
+        },
+        "hmrc-fraud-prevention-header-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity"
+        },
+        "hmrc-fraud-prevention-header-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum files to read during a workspace scan"
+        },
+        "hmrc-fraud-prevention-header-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "hmrc-fraud-prevention-header-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 34 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
