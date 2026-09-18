@@ -1,0 +1,91 @@
+[
+  {
+    "check": "state_plaintext_attr",
+    "sev": "error",
+    "title": "Attribute value is copied into terraform.tfstate as cleartext",
+    "msg": "`{name}` on {block} is stored verbatim in terraform.tfstate. Terraform keeps no cleartext-attribute allowlist: every value it sends to the provider is written back to state. Move it to a secret manager and read it at apply time, or mark the whole path sensitive and encrypt state.",
+    "attrs": [
+      "password", "admin_password", "master_password", "root_password",
+      "secret_string", "secret_binary", "secret_key", "client_secret",
+      "private_key", "private_key_pem", "private_key_openssh",
+      "api_key", "auth_token", "token", "access_token", "passphrase",
+      "connection_string", "sas_token", "shared_access_key"
+    ]
+  },
+  {
+    "check": "random_password_state",
+    "sev": "error",
+    "title": "random_password writes the generated value into state",
+    "msg": "`random_password.{label}` generates a secret and stores `result` in terraform.tfstate in cleartext forever — that is the documented behaviour of the random provider, not a bug. Anyone who can read the state file can read the password.",
+    "types": ["random_password", "random_string", "random_uuid", "random_id"]
+  },
+  {
+    "check": "tls_private_key_state",
+    "sev": "error",
+    "title": "tls_private_key puts the PEM private key in state",
+    "msg": "`tls_private_key.{label}` writes `private_key_pem` and `private_key_openssh` to terraform.tfstate. The hashicorp/tls provider documents this as unsuitable for production keys — generate the key outside Terraform and import only the public half.",
+    "types": ["tls_private_key"]
+  },
+  {
+    "check": "secret_data_source_state",
+    "sev": "error",
+    "title": "Secret data source result is persisted in state",
+    "msg": "`data.{type}.{label}` reads a live secret, and every data source result is persisted in terraform.tfstate. Reading a secret this way copies it out of the secret manager and into the state file on every plan.",
+    "types": [
+      "aws_secretsmanager_secret_version", "aws_ssm_parameter",
+      "vault_generic_secret", "vault_kv_secret_v2",
+      "azurerm_key_vault_secret", "google_secret_manager_secret_version",
+      "kubernetes_secret"
+    ]
+  },
+  {
+    "check": "backend_s3_unencrypted",
+    "sev": "error",
+    "title": "Remote state bucket is written without server-side encryption",
+    "msg": "The `backend \"{type}\"` block has no `encrypt = true` / `kms_key_id`, so the state object — including every cleartext value above — lands in object storage unencrypted.",
+    "types": ["s3", "oss", "cos"],
+    "requires_any": ["encrypt", "kms_key_id", "sse_customer_key"]
+  },
+  {
+    "check": "state_encryption_block_missing",
+    "sev": "warn",
+    "title": "terraform block has no state encryption",
+    "msg": "Terraform 1.10 and later can encrypt state itself with a `terraform { encryption { ... } }` block, independent of where the backend stores it. This configuration has none, so plan files and state are written in cleartext by Terraform before the backend ever sees them.",
+    "requires_any": ["encryption"]
+  },
+  {
+    "check": "backend_local_state",
+    "sev": "warn",
+    "title": "Local backend keeps state as a plain file on disk",
+    "msg": "`backend \"local\"` writes terraform.tfstate next to the code as an unencrypted JSON file. Add it to .gitignore and move to an encrypted remote backend before the first apply that touches a secret.",
+    "types": ["local"]
+  },
+  {
+    "check": "output_missing_sensitive",
+    "sev": "error",
+    "title": "Output exposes a secret without sensitive = true",
+    "msg": "`output \"{label}\"` returns a secret-bearing value but is not marked `sensitive = true`, so Terraform prints it to the console and to CI logs. Marking it sensitive hides the log line — it does not remove the value from state.",
+    "hints": ["password", "secret", "private_key", "token", "api_key", "credential", "passphrase"]
+  },
+  {
+    "check": "variable_missing_sensitive",
+    "sev": "warn",
+    "title": "Secret-named variable is not marked sensitive",
+    "msg": "`variable \"{label}\"` is named like a credential but has no `sensitive = true`, so its value appears in plan output and in the run log of any CI job.",
+    "hints": ["password", "secret", "private_key", "token", "api_key", "credential", "passphrase"]
+  },
+  {
+    "check": "hardcoded_secret_literal",
+    "sev": "error",
+    "title": "Credential literal committed in the .tf file",
+    "msg": "This line contains a {kind} written directly into the Terraform source, which puts it in git history as well as in state. Rotate it, then read it from a secret manager.",
+    "patterns": [
+      {"kind": "AWS access key id", "re": "\\bAKIA[0-9A-Z]{16}\\b"},
+      {"kind": "PEM private key block", "re": "-----BEGIN [A-Z ]*PRIVATE KEY-----"},
+      {"kind": "GitHub token", "re": "\\bgh[pousr]_[A-Za-z0-9]{20,}"},
+      {"kind": "Slack token", "re": "\\bxox[abposr]-[A-Za-z0-9-]{10,}"},
+      {"kind": "OpenAI-style API key", "re": "\\bsk-[A-Za-z0-9_-]{20,}"},
+      {"kind": "Google API key", "re": "\\bAIza[0-9A-Za-z_-]{35}\\b"}
+    ]
+  }
+]
