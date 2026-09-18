@@ -1,0 +1,53 @@
+{
+  "name": "vsix-publish-lint",
+  "displayName": "VSIX Publish Lint",
+  "description": "Lints a VS Code extension package.json for the manifest mistakes that make vsce package/publish fail or ship a broken listing. 14 rules, offline.",
+  "version": "1.0.2",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "vsce",
+    "vsix",
+    "publish",
+    "manifest",
+    "open vsx",
+    "extension development",
+    "package.json"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vsixPublishLint.checkFile",
+        "title": "VSIX Publish Lint — package.json blockers before vsce: Check this file",
+        "category": "VSIX Publish Lint — package.json blockers before vsce"
+      },
+      {
+        "command": "vsixPublishLint.checkWorkspace",
+        "title": "VSIX Publish Lint — package.json blockers before vsce: Sweep workspace and write report (licence)",
+        "category": "VSIX Publish Lint — package.json blockers before vsce"
+      },
+      {
+        "command": "vsixPublishLint.enterKey",
+        "title": "VSIX Publish Lint — package.json blockers before vsce: Enter licence key",
+        "category": "VSIX Publish Lint — package.json blockers before vsce"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "vsix-publish-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/vsix-publish-lint",
+  "icon": "icon.png"
+}
