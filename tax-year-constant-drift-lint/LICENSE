@@ -1,0 +1,29 @@
+Tax Year Constant Drift Lint
+Copyright (c) 2026 ReadyStack. All rights reserved.
+
+FREE TIER
+You may install and use the free commands ("Check this file for year-bound
+constants", "Check only the selected lines", "List the rules that ship inside")
+without a licence key, for personal or commercial work, on any number of
+machines, for as long as you like. No sign-up, no telemetry, no time limit.
+
+LICENSED TIER
+The workspace scan, re-check on save, report export, CI report and custom-rule
+commands require a valid licence key. One licence covers one natural person on
+any number of their own machines. A licence key must not be shared, resold or
+published.
+
+VALIDATION
+The extension sends only the licence key you typed and a public organization id
+to api.polar.sh to check whether the key is still valid. It sends no source
+code, no file names and no telemetry. A key that has validated once keeps
+working offline for 30 days.
+
+REFUND
+Within 7 days of purchase, ask and the purchase is refunded in full.
+
+NO WARRANTY
+This software is provided "as is", without warranty of any kind. It reports
+where year-bound constants appear in your code. It does not tell you what the
+correct value is, and it is not tax, legal or accounting advice. You remain
+responsible for verifying every figure against its issuing authority.
