@@ -1,0 +1,53 @@
+{
+  "name": "ai-companion-safety-lint",
+  "displayName": "AI Companion Safety Lint",
+  "description": "Lints chatbot system-prompt and persona files for California SB 243 and New York GBL Art. 47 companion-chatbot duties: AI disclosure, break reminders, crisis referral, no fake human, no fake therapist",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "ai companion",
+    "chatbot compliance",
+    "sb 243",
+    "system prompt",
+    "ai disclosure",
+    "companion chatbot",
+    "llm safety"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiCompanionSafety.checkFile",
+        "title": "AI Companion Safety Lint (SB 243 / NY Art. 47): Check this file",
+        "category": "AI Companion Safety Lint (SB 243 / NY Art. 47)"
+      },
+      {
+        "command": "aiCompanionSafety.checkWorkspace",
+        "title": "AI Companion Safety Lint (SB 243 / NY Art. 47): Sweep workspace and write report (licence)",
+        "category": "AI Companion Safety Lint (SB 243 / NY Art. 47)"
+      },
+      {
+        "command": "aiCompanionSafety.enterKey",
+        "title": "AI Companion Safety Lint (SB 243 / NY Art. 47): Enter licence key",
+        "category": "AI Companion Safety Lint (SB 243 / NY Art. 47)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "ai-companion-safety-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/ai-companion-safety-lint",
+  "icon": "icon.png"
+}
