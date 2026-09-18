@@ -1,0 +1,141 @@
+{
+  "name": "linker-map-format-audit",
+  "displayName": "GNU Linker Map + 7 Formats — Audit & Snippets",
+  "description": "Your editor shows all eight of these as grey text, so nothing warns you. 30 checks and 25 snippets run on the file you have open, offline — the open `if true` rule, the corrupt HEX record, the float p",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Snippets"
+  ],
+  "keywords": [
+    "linker map",
+    "intel hex",
+    "erb",
+    "lit-html",
+    "restructuredtext"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "linker-map-format-audit.audit_file",
+        "title": "Audit This File (8 Formats)",
+        "category": "GNU Linker Map + 7 Forma"
+      },
+      {
+        "command": "linker-map-format-audit.audit_selection",
+        "title": "Audit Only the Selected Lines",
+        "category": "GNU Linker Map + 7 Forma"
+      },
+      {
+        "command": "linker-map-format-audit.insert_snippet",
+        "title": "Insert a Snippet from the Pack",
+        "category": "GNU Linker Map + 7 Forma"
+      },
+      {
+        "command": "linker-map-format-audit.list_rules",
+        "title": "List Every Rule and Snippet Inside",
+        "category": "GNU Linker Map + 7 Forma"
+      },
+      {
+        "command": "linker-map-format-audit.workspace_scan",
+        "title": "Audit the Whole Workspace",
+        "category": "GNU Linker Map + 7 Forma"
+      },
+      {
+        "command": "linker-map-format-audit.export_report",
+        "title": "Export the Findings (CSV / JSON / HTML)",
+        "category": "GNU Linker Map + 7 Forma"
+      },
+      {
+        "command": "linker-map-format-audit.quick_fix",
+        "title": "Apply the Suggested Fix",
+        "category": "GNU Linker Map + 7 Forma"
+      }
+    ],
+    "configuration": {
+      "title": "GNU Linker Map + 7 Formats — Audit & Snippets",
+      "properties": {
+        "linker-map-format-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format for the findings file"
+        },
+        "linker-map-format-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files the workspace audit will open"
+        },
+        "linker-map-format-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,dist,build,.git,vendor}/**",
+          "description": "Paths the workspace audit skips"
+        },
+        "linker-map-format-audit.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Audit the open file once when the editor starts"
+        },
+        "linker-map-format-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Audit the whole workspace"
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./snippets/html-ruby.code-snippets"
+      },
+      {
+        "language": "ruby",
+        "path": "./snippets/html-ruby.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html-typescript.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/html-typescript.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "makefile",
+        "path": "./snippets/makefile-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/makefile-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/plaintext.code-snippets"
+      }
+    ]
+  }
+}
