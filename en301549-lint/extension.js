@@ -87,11 +87,38 @@ async function listRules() {
   c.show(true);
 }
 
+// ★s144 — ★역방향 체험(reverse trial): 유료 부분(작업공간 전체 스윕 + 보고서 파일)을
+//   ★첫 스윕부터 7일간 키 없이 ★줄이지 않고 그대로 준다. 그 뒤에 키를 묻는다.
+//   [검색 2026-09-12] 무료→유료 2~4% ↔ 역방향 체험 8~12% (개발자 도구 체험 중앙값 24%)
+//   · 손님이 돈 낼지 정하는 순간은 ★자기 폴더에서 자기 건수를 본 뒤다 (값을 겪은 자리의 문턱 = 설치 자리의 3~5배).
+//   ⛔무료 경로(열린 파일·고른 줄 검사)는 이 문을 지나지 않는다 — 어떤 제한도 없다 (8% 법).
+const TRIAL_MS = 7 * 24 * 3600 * 1000;
+const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
+const NEED_KEY = S.need_key;   // ⛔원문을 잡아 둔다 — 아래에서 손님 숫자를 앞에 붙여 덮어쓴다
+
+function today() { return new Date().toISOString().slice(0, 10); }
+
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
+//   낸다: 체험 중이면 { inTrial: true } · 키가 통과하면 { inTrial: false } · 문이 닫히면 null
+async function paidGate(ctx) {
+  const st = ctx.globalState;
+  const hasKey = !!st.get('licenseKey');   // ⛔license.js 가 저장하는 바로 그 이름
+  let until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  const inTrial = !hasKey && Date.now() < until;
+  if (!inTrial) {
+    // ★손님 자신의 숫자를 먼저 읽어 준다 (endowment) — 812개 파일에서 37건을 본 그 사람에게.
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found '
+      + last.findings + ' findings. ') : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return null;
+  }
+  return { inTrial: inTrial, until: until };
+}
 
 async function scanWorkspace(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const g = await paidGate(ctx);
+  if (!g) return;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('en301549-lint');
   const _max = Number(_c.get('max_files')) || 2000;
@@ -104,14 +131,19 @@ async function scanWorkspace(ctx) {
       rows.push({ file: f.fsPath, hits: scan(doc.getText(), f.fsPath) });
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
-  report(rows);
+  const n = report(rows);
+  // ★s144 — 손님 자신의 숫자를 적어 둔다. 체험이 끝난 뒤 문턱 문장이 이것을 그대로 읽는다.
+  await ctx.globalState.update('lastSweep', { files: files.length, findings: n, at: today() });
+  vscode.window.showInformationMessage(S.done + ' ' + files.length + ' files \u00b7 ' + n
+    + ' findings.' + (g.inTrial ? TRIAL_NOTE : ''));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
 //   🔴s125: ⛔전에는 CSV 하나만 썼는데 ★프롬프트는 "CSV / JSON / HTML" 이라고 약속했다
 //     ⇒ ★검수가 옳게 잡았다("⑤거짓 주장"). ★법(S24): 한계를 만나면 ⛔좁히지 말고 ★손을 넓힌다.
 async function exportReport(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const g = await paidGate(ctx);
+  if (!g) return;
   const ed = vscode.window.activeTextEditor;
   const rows = ed ? [{ file: ed.document.fileName, hits: scan(ed.document.getText(), ed.document.fileName) }] : [];
   const ws = vscode.workspace.workspaceFolders;
@@ -138,18 +170,19 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'en301549-lint-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath + (g.inTrial ? TRIAL_NOTE : ''));
 }
 
 async function ciJson(ctx) {
-  if (!(await paidGate(ctx))) return;
+  const g = await paidGate(ctx);
+  if (!g) return;
   const ed = vscode.window.activeTextEditor;
   const hits = ed ? scan(ed.document.getText(), ed.document.fileName) : [];
   const ws = vscode.workspace.workspaceFolders;
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'en301549-lint-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath + (g.inTrial ? TRIAL_NOTE : ''));
 }
 
 function activate(ctx) {
