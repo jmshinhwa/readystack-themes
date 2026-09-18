@@ -1,0 +1,54 @@
+{
+  "name": "green-claim-lint-empco",
+  "displayName": "Green Claim Lint - EU EmpCo 2026",
+  "description": "Lints HTML/Markdown product copy for environmental claims the EU bans from 27 Sep 2026 under Directive (EU) 2024/825 (EmpCo).",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "greenwashing",
+    "empco",
+    "green claims",
+    "eu directive 2024/825",
+    "ecommerce",
+    "compliance",
+    "marketing copy",
+    "sustainability"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "greenClaimLint.checkFile",
+        "title": "Green Claim Lint — EU EmpCo 2026: Check this file",
+        "category": "Green Claim Lint — EU EmpCo 2026"
+      },
+      {
+        "command": "greenClaimLint.checkWorkspace",
+        "title": "Green Claim Lint — EU EmpCo 2026: Sweep workspace and write report (licence)",
+        "category": "Green Claim Lint — EU EmpCo 2026"
+      },
+      {
+        "command": "greenClaimLint.enterKey",
+        "title": "Green Claim Lint — EU EmpCo 2026: Enter licence key",
+        "category": "Green Claim Lint — EU EmpCo 2026"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "green-claim-lint-empco"
+  },
+  "homepage": "https://getreadystack.com/tools/green-claim-lint-empco",
+  "icon": "icon.png"
+}
