@@ -1,0 +1,114 @@
+[
+ {
+  "id": "purpose_empty",
+  "sev": "error",
+  "title": "Purpose string is empty",
+  "msg": "{key} has an empty <string>. App Review Guideline 5.1.1(i) rejects a build whose permission prompt shows no reason.",
+  "fix": "Write one sentence naming the feature that needs {key}."
+ },
+ {
+  "id": "purpose_placeholder",
+  "sev": "error",
+  "title": "Purpose string is placeholder text",
+  "msg": "{key} still holds scaffold text ({hit}). Reviewers treat template text as no purpose string at all — 5.1.1(i) rejection.",
+  "fix": "Replace {hit} with the real reason this app asks for the permission."
+ },
+ {
+  "id": "purpose_too_short",
+  "sev": "error",
+  "title": "Purpose string too short to state a reason",
+  "msg": "{key} is {n} characters. 5.1.1(i) requires the prompt to say what the app does with the data, not just name the data.",
+  "fix": "Extend to a full sentence: what the feature is, and what it does with the data."
+ },
+ {
+  "id": "purpose_no_reason",
+  "sev": "warn",
+  "title": "Purpose string names the data but not the use",
+  "msg": "{key} never says why — no 'to', 'so that' or 'for' clause. 5.1.1(i) asks for the use, not the request.",
+  "fix": "Add the clause: '... to scan the barcode on the delivery label.'"
+ },
+ {
+  "id": "bluetooth_deprecated",
+  "sev": "error",
+  "title": "Deprecated Bluetooth key without its replacement",
+  "msg": "NSBluetoothPeripheralUsageDescription is the iOS 12 key. On iOS 13+ the prompt reads NSBluetoothAlwaysUsageDescription, which is missing, so the app crashes on first Bluetooth call.",
+  "fix": "Add NSBluetoothAlwaysUsageDescription with the same sentence."
+ },
+ {
+  "id": "location_always_deprecated",
+  "sev": "error",
+  "title": "Deprecated always-location key without its replacement",
+  "msg": "NSLocationAlwaysUsageDescription alone has not driven the prompt since iOS 11. NSLocationAlwaysAndWhenInUseUsageDescription is missing, so background location is silently denied.",
+  "fix": "Add NSLocationAlwaysAndWhenInUseUsageDescription."
+ },
+ {
+  "id": "bg_location_no_string",
+  "sev": "error",
+  "title": "Background location mode with no always-usage string",
+  "msg": "UIBackgroundModes declares 'location' but NSLocationAlwaysAndWhenInUseUsageDescription is missing. App Review rejects background modes the app cannot legally use.",
+  "fix": "Add the always-and-when-in-use string, or drop 'location' from UIBackgroundModes."
+ },
+ {
+  "id": "bg_audio_no_mic",
+  "sev": "warn",
+  "title": "Background audio mode with no microphone string",
+  "msg": "UIBackgroundModes declares 'audio' but NSMicrophoneUsageDescription is missing. If any recording path runs, the app crashes instead of prompting.",
+  "fix": "Add NSMicrophoneUsageDescription, or drop 'audio' if the app only plays back."
+ },
+ {
+  "id": "skad_no_att",
+  "sev": "error",
+  "title": "Attribution network declared without the tracking prompt",
+  "msg": "SKAdNetworkItems is present but NSUserTrackingUsageDescription is missing. Apple requires the ATT prompt before any attribution identifier is read.",
+  "fix": "Add NSUserTrackingUsageDescription and call ATTrackingManager before attribution."
+ },
+ {
+  "id": "export_key_missing",
+  "sev": "error",
+  "title": "Export-compliance key missing from Info.plist",
+  "msg": "ITSAppUsesNonExemptEncryption is absent, so App Store Connect stops every upload with the export-compliance questionnaire before the build reaches TestFlight.",
+  "fix": "Add ITSAppUsesNonExemptEncryption as <true/> or <false/> after you decide which one is true."
+ },
+ {
+  "id": "export_bool_as_string",
+  "sev": "error",
+  "title": "Export-compliance key written as a string",
+  "msg": "ITSAppUsesNonExemptEncryption is a <string>, not <true/> or <false/>. App Store Connect ignores the string and asks the questionnaire on every upload anyway.",
+  "fix": "Replace the <string> value with a <true/> or <false/> element."
+ },
+ {
+  "id": "export_true_no_code",
+  "sev": "warn",
+  "title": "Non-exempt encryption declared with no compliance code",
+  "msg": "ITSAppUsesNonExemptEncryption is true and ITSEncryptionExportComplianceCode is absent. A build that ships non-exempt encryption owes the US BIS annual self-classification report, next due {next_deadline}.",
+  "fix": "Add ITSEncryptionExportComplianceCode, or re-check whether the exemption applies."
+ },
+ {
+  "id": "ats_arbitrary_loads",
+  "sev": "error",
+  "title": "App Transport Security disabled globally",
+  "msg": "NSAllowsArbitraryLoads is true. App Review asks for written justification for a global ATS exception and rejects builds that give none.",
+  "fix": "Remove NSAllowsArbitraryLoads and add per-domain NSExceptionDomains entries instead."
+ },
+ {
+  "id": "aps_env_development",
+  "sev": "error",
+  "title": "Push entitlement left on the development environment",
+  "msg": "aps-environment is 'development' in this entitlements file. A production build signed with it gets no push tokens from APNs.",
+  "fix": "Set aps-environment to 'production' for the Release entitlements file."
+ },
+ {
+  "id": "healthkit_partial_strings",
+  "sev": "error",
+  "title": "HealthKit read string without the write string",
+  "msg": "NSHealthShareUsageDescription is present but NSHealthUpdateUsageDescription is missing. The first HealthKit write call terminates the app instead of prompting, and App Review rejects the pair as incomplete.",
+  "fix": "Add NSHealthUpdateUsageDescription, or remove the HealthKit write path."
+ },
+ {
+  "id": "exits_on_suspend",
+  "sev": "warn",
+  "title": "Removed key UIApplicationExitsOnSuspend",
+  "msg": "UIApplicationExitsOnSuspend was removed in iOS 10 and App Store Connect flags it on upload.",
+  "fix": "Delete the key."
+ }
+]
