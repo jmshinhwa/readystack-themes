@@ -1,0 +1,52 @@
+{
+  "name": "firestore-rules-guard",
+  "displayName": "Firestore Rules Guard",
+  "description": "Audits firestore.rules and storage.rules for public access, expired test-mode dates and unbounded uploads before you deploy.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "firestore",
+    "firebase",
+    "security rules",
+    "storage rules",
+    "linter",
+    "cloud firestore"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "firestoreRulesGuard.checkFile",
+        "title": "Firestore Rules Guard: Check this file",
+        "category": "Firestore Rules Guard"
+      },
+      {
+        "command": "firestoreRulesGuard.checkWorkspace",
+        "title": "Firestore Rules Guard: Sweep workspace and write report (licence)",
+        "category": "Firestore Rules Guard"
+      },
+      {
+        "command": "firestoreRulesGuard.enterKey",
+        "title": "Firestore Rules Guard: Enter licence key",
+        "category": "Firestore Rules Guard"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "firestore-rules-guard"
+  },
+  "homepage": "https://getreadystack.com/tools/firestore-rules-guard",
+  "icon": "icon.png"
+}
