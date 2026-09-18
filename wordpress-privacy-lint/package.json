@@ -2,7 +2,7 @@
   "name": "wordpress-privacy-lint",
   "displayName": "WordPress Privacy Lint (GDPR / DSGVO)",
   "description": "Lints WordPress plugin PHP for the 12 privacy duties the plugin author owns: missing Art. 15/17 exporter and eraser hooks, raw IPs, Google Fonts, phone-home and pre-consent cookies.",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -46,7 +46,8 @@
   "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jmshinhwa-ai/readystack"
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "wordpress-privacy-lint"
   },
   "homepage": "https://getreadystack.com/tools/wordpress-privacy-lint",
   "icon": "icon.png"
