@@ -1,0 +1,85 @@
+[
+ {"id":"spf_missing","sev":"error","kind":"require_when","when":"v=DMARC1|v=DKIM1|_dmarc|_domainkey","need":"v=spf1","since":"2024-02-01",
+  "msg":"Mail DNS is configured here but there is no SPF record (v=spf1). Gmail and Yahoo require bulk senders - 5,000+ messages a day to their users, counted per From domain - to publish SPF and DKIM and to pass DMARC alignment.",
+  "cite":"Google Email sender guidelines (bulk senders); Yahoo Sender Requirements"},
+
+ {"id":"spf_all_neutral","sev":"error","kind":"forbid","bad":"v=spf1[^\"'\\n]*[?+]all","since":"2024-02-01",
+  "msg":"SPF ends in ?all or +all, so every server on the internet passes SPF for this domain. A pass that anyone can get is not a pass a receiver will align on. End the record with -all, or ~all while you are still finding senders.",
+  "cite":"RFC 7208 section 8; Google Email sender guidelines"},
+
+ {"id":"spf_lookup_limit","sev":"error","kind":"fn:spf_lookups","since":"2024-02-01",
+  "msg":"SPF needs more than 10 DNS lookups to evaluate. Over the limit the receiver returns PermError, which DMARC treats as an SPF failure - the record stops working without changing.",
+  "cite":"RFC 7208 section 4.6.4"},
+
+ {"id":"spf_multiple","sev":"error","kind":"fn:spf_multiple","since":"2024-02-01",
+  "msg":"More than one SPF record is published for the same name. Two v=spf1 records is a PermError, not a merge: neither record is used.",
+  "cite":"RFC 7208 section 3.2"},
+
+ {"id":"dmarc_missing","sev":"error","kind":"require_when","when":"v=spf1|v=DKIM1|_domainkey","need":"v=DMARC1","since":"2024-02-01",
+  "msg":"No DMARC record (v=DMARC1) for the sending domain. Gmail and Yahoo have required one from bulk senders since 2024-02-01, and Microsoft Outlook.com since 2025-05-05; p=none is the accepted minimum.",
+  "cite":"Google Email sender guidelines; Microsoft Outlook.com sender requirements (2025-05-05)"},
+
+ {"id":"dmarc_p_none","sev":"warning","kind":"forbid","bad":"v=DMARC1[^\"'\\n]*p=none","since":"2024-02-01",
+  "msg":"DMARC policy is p=none. That clears the Gmail, Yahoo and Outlook.com minimum but instructs receivers to do nothing about mail that fails, so anyone can still send as your domain. Move to quarantine once your reports are clean.",
+  "cite":"RFC 7489 section 6.3; Google Email sender guidelines"},
+
+ {"id":"dmarc_rua_missing","sev":"warning","kind":"require_when","when":"v=DMARC1","need":"rua=mailto:",
+  "msg":"DMARC record has no rua= aggregate report address, so nothing tells you which of your senders fail alignment. Without rua you cannot safely raise the policy later.",
+  "cite":"RFC 7489 section 7.1"},
+
+ {"id":"dmarc_pct_partial","sev":"warning","kind":"fn:dmarc_pct",
+  "msg":"DMARC pct= is below 100, so the policy is applied to only part of your mail and the rest is treated as p=none. Leave pct at 100 unless you are mid-rollout.",
+  "cite":"RFC 7489 section 6.3"},
+
+ {"id":"dmarc_sp_none","sev":"warning","kind":"forbid","bad":"v=DMARC1[^\"'\\n]*sp=none",
+  "msg":"sp=none exempts every subdomain from the policy. Look-alike subdomains are the usual path for spoofed invoices; set sp to match p.",
+  "cite":"RFC 7489 section 6.3"},
+
+ {"id":"dkim_missing","sev":"error","kind":"require_when","when":"v=spf1|v=DMARC1|_dmarc","need":"v=DKIM1","since":"2024-02-01",
+  "msg":"No DKIM record (v=DKIM1) for the sending domain. SPF alone breaks on every forward and mailing list; Gmail and Yahoo ask bulk senders for both SPF and DKIM.",
+  "cite":"RFC 6376; Google Email sender guidelines"},
+
+ {"id":"dkim_key_short","sev":"warning","kind":"fn:dkim_key",
+  "msg":"The DKIM public key is short enough to be a 1024-bit key. 1024 is the floor; Google's guidelines say use a 2048-bit key where your DNS host allows the longer record.",
+  "cite":"RFC 6376 section 3.3.3; Google Email sender guidelines"},
+
+ {"id":"dkim_testmode","sev":"error","kind":"forbid","bad":"v=DKIM1[^\"'\\n]*[;\\s]t=y",
+  "msg":"DKIM record carries t=y, testing mode. Receivers are told to treat a signature failure as if the message were unsigned, so the signature buys you nothing - and the domain still looks configured.",
+  "cite":"RFC 6376 section 3.6.1"},
+
+ {"id":"bimi_unenforced","sev":"error","kind":"fn:bimi",
+  "msg":"A BIMI record is published while DMARC is missing or at p=none. BIMI is only honoured at an enforcement policy (quarantine or reject), so the logo will never show.",
+  "cite":"BIMI draft specification, DMARC enforcement requirement"},
+
+ {"id":"unsub_missing","sev":"error","kind":"require_when","when":"createTransport|sendMail|sgMail|mailgun|SendEmail|sesv2|resend\\.emails|smtplib|send_message","need":"List-Unsubscribe","since":"2024-02-01",
+  "msg":"This code sends mail but sets no List-Unsubscribe header. Bulk senders must offer one-click unsubscribe in commercial and subscribed messages, and act on it within two days.",
+  "cite":"RFC 8058; Google Email sender guidelines"},
+
+ {"id":"unsub_post_missing","sev":"error","kind":"require_when","when":"List-Unsubscribe","need":"List-Unsubscribe-Post","since":"2024-02-01",
+  "msg":"List-Unsubscribe is set but List-Unsubscribe-Post is not, so this is the old two-step header, not one-click. Gmail and Yahoo require the RFC 8058 pair on bulk mail.",
+  "cite":"RFC 8058 section 3.1"},
+
+ {"id":"unsub_post_value","sev":"error","kind":"fn:unsub_post_value","since":"2024-02-01",
+  "msg":"List-Unsubscribe-Post must carry exactly the value List-Unsubscribe=One-Click. Any other value and the mail client will not show the one-click control.",
+  "cite":"RFC 8058 section 3.1"},
+
+ {"id":"unsub_mailto_only","sev":"error","kind":"fn:unsub_mailto",
+  "msg":"List-Unsubscribe offers only a mailto: address. One-click unsubscribe is an HTTPS POST, so a mailto-only header cannot satisfy it - add an https:// URI to the header.",
+  "cite":"RFC 8058 section 1; Google Email sender guidelines"},
+
+ {"id":"unsub_route_get_only","sev":"error","kind":"fn:unsub_route",
+  "msg":"The unsubscribe endpoint answers GET but not POST. The mail client sends a POST with the body List-Unsubscribe=One-Click; a GET-only route returns 404 or 405 and the unsubscribe silently fails.",
+  "cite":"RFC 8058 section 3.2"},
+
+ {"id":"unsub_auth_required","sev":"error","kind":"forbid","bad":"(?:get|post|route)\\s*\\(\\s*['\"][^'\"]*unsubscribe[^'\"]*['\"]\\s*,\\s*(?:requireAuth|isAuthenticated|ensureLoggedIn|authMiddleware|login_required)",
+  "msg":"The unsubscribe route is behind a login. One-click unsubscribe arrives as an unauthenticated POST from the mail client, and an unsubscribe that needs a sign-in counts as an unsubscribe that does not work.",
+  "cite":"RFC 8058 section 3.2; Google Email sender guidelines"},
+
+ {"id":"smtp_tls_off","sev":"error","kind":"forbid","bad":"secure\\s*:\\s*false|ignoreTLS\\s*:\\s*true|rejectUnauthorized\\s*:\\s*false|port\\s*[:=]\\s*25\\b","since":"2024-02-01",
+  "msg":"This transport disables TLS, disables certificate checking, or connects on port 25. Bulk senders are required to transmit over a TLS connection.",
+  "cite":"Google Email sender guidelines (TLS requirement)"},
+
+ {"id":"from_consumer_domain","sev":"error","kind":"forbid","bad":"(?:from|From|sender)[^\\n]{0,40}@(?:gmail|yahoo|hotmail|outlook|aol)\\.com","since":"2024-02-01",
+  "msg":"Bulk mail is being sent with a consumer mailbox domain in From. Those domains publish DMARC p=reject for their own users, so mail you send from your servers as that address fails DMARC and is rejected outright.",
+  "cite":"Google Email sender guidelines (do not send from gmail.com); RFC 7489 section 6.6.2"}
+]
