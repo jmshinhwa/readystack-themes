@@ -1,0 +1,73 @@
+[
+  {
+    "id": "client_callable_method",
+    "sev": "high",
+    "title": "Public method is callable from the browser",
+    "msg": "Any public method on a Livewire component can be called by the browser as $wire.NAME(). This file contains no authorize(), Gate::, can() or abort_unless() call, so NAME() runs for anyone who can open the page.",
+    "fix": "Open the method with $this->authorize('update', $model) (or Gate::authorize), or mark the method protected if the view does not call it."
+  },
+  {
+    "id": "unlocked_state_property",
+    "sev": "high",
+    "title": "Public property is writable from the browser",
+    "msg": "Livewire round-trips every public property through the page, so the browser can send back any value for $NAME before the next method runs.",
+    "fix": "Add the #[Livewire\\Attributes\\Locked] attribute above the property, or re-read the value from the database instead of trusting the round-trip."
+  },
+  {
+    "id": "secret_in_public_property",
+    "sev": "high",
+    "title": "Secret held in a public property",
+    "msg": "Public Livewire properties are serialized into the rendered HTML snapshot, so $NAME is readable in view-source by anyone who loads the page.",
+    "fix": "Move the value to a protected property, to session, or read it from config() inside the method that needs it."
+  },
+  {
+    "id": "unescaped_blade_echo",
+    "sev": "high",
+    "title": "Unescaped Blade echo",
+    "msg": "{!! !!} prints the value with no HTML escaping, so any markup or <script> stored in that value runs in the visitor's browser.",
+    "fix": "Use {{ }} instead, or sanitize the value before printing it."
+  },
+  {
+    "id": "dynamic_template_include",
+    "sev": "medium",
+    "title": "Template name comes from a variable",
+    "msg": "@include/@component with a variable template name lets whatever fills that variable choose which view is rendered.",
+    "fix": "Name the view literally, or map the variable through a fixed allow-list array before including it."
+  },
+  {
+    "id": "url_bound_property",
+    "sev": "medium",
+    "title": "Query-string property feeds identity or state",
+    "msg": "#[Url] binds this property to the query string, so the value of $NAME is set by whatever the visitor types into the address bar.",
+    "fix": "Keep #[Url] for view state only. For an identifier, resolve the record through a policy or scope owned by the signed-in user.",
+    "lookahead": 3
+  },
+  {
+    "id": "unvalidated_upload",
+    "sev": "high",
+    "title": "Upload stored without validation",
+    "msg": "This component uses WithFileUploads and stores the file, but the file has no validate() or #[Validate] rule anywhere in the class, so the type and size of what lands on disk are the visitor's choice.",
+    "fix": "Call $this->validate(['file' => 'required|file|mimes:pdf,png|max:2048']) before store()."
+  },
+  {
+    "id": "mount_without_authorization",
+    "sev": "high",
+    "title": "mount() loads a record with no ownership check",
+    "msg": "mount() receives its arguments from the page that renders the component and looks a record up, but the class has no authorize(), Gate::, can() or abort_unless() call, so any signed-in visitor can mount another tenant's record.",
+    "fix": "Add $this->authorize('view', $record) in mount(), or scope the lookup to auth()->user()."
+  },
+  {
+    "id": "mass_assign_from_state",
+    "sev": "high",
+    "title": "Browser-held state written straight to the model",
+    "msg": "This line writes component state the browser can rewrite into the database in one call, so every unlocked public property on this class becomes a writable database column.",
+    "fix": "Write an explicit array of validated fields, e.g. $model->update($this->validate()), and lock the properties that must not change."
+  },
+  {
+    "id": "debug_output_in_component",
+    "sev": "low",
+    "title": "Debug dump left in a rendered component",
+    "msg": "dd()/dump()/var_dump() prints the variable into the response, so whatever it holds is shown to whoever loads the page.",
+    "fix": "Remove the call, or replace it with Log::debug()."
+  }
+]
