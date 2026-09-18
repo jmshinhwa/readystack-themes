@@ -1,0 +1,54 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HTML Tag Inserter — Accessible ARIA & WCAG 2.2 Tags for Web Developers</title>
+<meta name="description" content="36 accessible HTML tag patterns and 20 WCAG 2.2 checks that run offline on the file you have open. An accessibility reviewer never reads your CSS — they tab through your landmarks, your labels and your alt text, and every tag they look for is in this pack.">
+<style>
+:root{color-scheme:light dark}
+body{margin:0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;
+ background:#fbfbfa;color:#16161d}
+@media(prefers-color-scheme:dark){body{background:#14141a;color:#e8e8ea}}
+.wrap{max-width:880px;margin:0 auto;padding:28px 20px 64px}
+h1{font-size:1.7rem;line-height:1.25;margin:.2em 0 .3em}
+p.sub{margin:0 0 1.4em;opacity:.8}
+textarea{width:100%;min-height:230px;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;
+ padding:12px;border:1px solid #c9c9d1;border-radius:10px;background:transparent;color:inherit;
+ box-sizing:border-box}
+button{font:600 15px/1 inherit;padding:12px 22px;border:0;border-radius:10px;
+ background:#1d4ed8;color:#fff;cursor:pointer;margin:12px 0}
+button:hover{background:#1a43bd}
+table{border-collapse:collapse;width:100%;margin-top:14px;font-size:14px}
+th,td{border-bottom:1px solid #d8d8e0;padding:8px 6px;text-align:left;vertical-align:top}
+th{font-weight:600;opacity:.75}
+td.n{width:64px;font:13px ui-monospace,monospace;opacity:.7}
+.ok{padding:14px;border-radius:10px;background:#e8f5ec;color:#14532d;margin-top:14px}
+@media(prefers-color-scheme:dark){.ok{background:#15321f;color:#bbf7d0}}
+.next{margin-top:30px;padding:18px;border:1px solid #d8d8e0;border-radius:12px}
+.next h2{font-size:1.05rem;margin:0 0 .5em}
+.next ul{margin:.3em 0 1em 1.1em;padding:0}
+</style>
+<div class="wrap">
+<h1>HTML Tag Inserter — Accessible ARIA & WCAG 2.2 Tags for Web Developers</h1>
+<p class="sub">36 accessible HTML tag patterns and 20 WCAG 2.2 checks that run offline on the file you have open. An accessibility reviewer never reads your CSS — they tab through your landmarks, your labels and your alt text, and every tag they look for is in this pack.</p>
+<textarea id="src" placeholder="Paste the file here"></textarea>
+<button id="go">Check</button>
+<div id="out"></div>
+<div class="next"><h2>In the full version</h2><ul><li>Every template in the repository, not only the file on screen</li><li>The report file your reviewer signs off on</li><li>Fix the flagged lines in the editor instead of retyping them</li><li>It stays clean, because every save is checked again</li><li><a href="https://getreadystack.com">Get the full version</a></li></ul></div>
+</div>
+<script>
+var RULES=[{"pattern": "<img(?![^>]*\\balt=)[^>]*>", "flags": "i", "message": "Image with no alt attribute: a screen reader reads the file name instead. Write alt=\"...\" for a meaningful image, or alt=\"\" for a decorative one (WCAG 2.2, 1.1.1 Non-text Content)."}, {"pattern": "<html(?![^>]*\\blang=)[^>]*>", "flags": "i", "message": "The html element has no lang attribute, so the screen reader guesses the pronunciation of the whole page (WCAG 2.2, 3.1.1 Language of Page).", "fix": "<html lang=\"en\">"}, {"pattern": ">\\s*(click here|read more|learn more|more|here|link)\\s*</a>", "flags": "i", "message": "Link text that means nothing out of context. Screen reader users list links on their own, where this reads as one word. Name the destination instead (WCAG 2.2, 2.4.4 Link Purpose)."}, {"pattern": "target=[\"']_blank[\"'](?![^>]*rel=)", "flags": "i", "message": "A link opening in a new tab with no rel: add rel=\"noopener noreferrer\", and say in the link text that it opens in a new tab (WCAG 2.2, 3.2.5 Change on Request).", "fix": "target=\"_blank\" rel=\"noopener noreferrer\""}, {"pattern": "<iframe(?![^>]*\\btitle=)[^>]*>", "flags": "i", "message": "Frame with no title attribute: it is announced only as 'frame', with nothing to say what is inside (WCAG 2.2, 4.1.2 Name, Role, Value)."}, {"pattern": "tabindex=[\"']\\s*[1-9][0-9]*\\s*[\"']", "flags": "i", "message": "A positive tabindex pulls this element out of the reading order and breaks the tab sequence for the whole page. Use tabindex=\"0\" and fix the source order (WCAG 2.2, 2.4.3 Focus Order).", "fix": "tabindex=\"0\""}, {"pattern": "<(div|span|li|td|p)\\b[^>]*\\bonclick=", "flags": "i", "message": "A click handler on an element that cannot be reached with the keyboard. Use a button, or add role, tabindex=\"0\" and a key handler (WCAG 2.2, 2.1.1 Keyboard)."}, {"pattern": "<input(?![^>]*\\btype=[\"'](hidden|submit|button|reset|image)[\"'])(?![^>]*\\b(id|aria-label|aria-labelledby)=)[^>]*>", "flags": "i", "message": "Input with no id, aria-label or aria-labelledby: nothing can name this field, so it is announced as 'edit blank' (WCAG 2.2, 3.3.2 Labels or Instructions)."}, {"pattern": "<button(?![^>]*\\b(aria-label|aria-labelledby|title)=)[^>]*>\\s*<(svg|i)\\b", "flags": "i", "message": "Icon-only button with no accessible name. Put aria-label on the button and aria-hidden=\"true\" on the icon (WCAG 2.2, 4.1.2 Name, Role, Value)."}, {"pattern": "<(a|button|input|select|textarea|summary)\\b[^>]*\\baria-hidden=[\"']true[\"']", "flags": "i", "message": "aria-hidden=\"true\" on something the keyboard can still focus: the user lands on an element the screen reader refuses to announce (WCAG 2.2, 4.1.2 Name, Role, Value)."}, {"pattern": "<meta[^>]*viewport[^>]*(user-scalable\\s*=\\s*no|maximum-scale\\s*=\\s*1)", "flags": "i", "message": "The viewport meta tag blocks pinch zoom, which people with low vision rely on (WCAG 2.2, 1.4.4 Resize Text).", "fix": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"}, {"pattern": "<th(?![^>]*\\b(scope|headers)=)[^>]*>", "flags": "i", "message": "Table header cell with no scope: nothing ties this header to its column or row, so cells are read without their heading (WCAG 2.2, 1.3.1 Info and Relationships)."}, {"pattern": "<video(?![^>]*\\bcontrols)[^>]*>", "flags": "i", "message": "Video with no controls attribute: it cannot be paused or stopped from the keyboard, and captions cannot be switched on (WCAG 2.2, 1.2.2 Captions and 2.2.2 Pause, Stop, Hide)."}, {"pattern": "<input(?![^>]*\\b(aria-label|aria-labelledby)=)[^>]*\\bplaceholder=", "flags": "i", "message": "Placeholder text used in place of a label: it disappears as soon as the user types, and many screen readers never announce it. Add a visible label bound with for and id (WCAG 2.2, 3.3.2 Labels or Instructions)."}, {"pattern": "<(center|font|marquee|blink|big)\\b", "flags": "i", "message": "Presentational tag with no meaning in the accessibility tree, and moving text that cannot be stopped. Use CSS and a semantic element (WCAG 2.2, 1.3.1 Info and Relationships)."}, {"pattern": "\\balt=[\"'](image|photo|picture|img|graphic|icon|logo)[\"']", "flags": "i", "message": "Alt text that repeats what the element already is. Say what the image shows, or name the company for a logo (WCAG 2.2, 1.1.1 Non-text Content)."}, {"pattern": "<(div|span)\\b[^>]*role=[\"']button[\"'](?![^>]*tabindex=)", "flags": "i", "message": "role=\"button\" on an element with no tabindex: it is announced as a button but the keyboard can never reach it. Use a real button element (WCAG 2.2, 2.1.1 Keyboard)."}, {"pattern": "<a\\b(?![^>]*\\bhref=)[^>]*>", "flags": "i", "message": "Anchor with no href is not a link and is not focusable. Use a button for an action, or give the link a real destination (WCAG 2.2, 4.1.2 Name, Role, Value)."}, {"pattern": "<(div|span)\\b(?![^>]*\\brole=)[^>]*\\baria-label=", "flags": "i", "message": "aria-label on a plain div or span: elements with no role take no accessible name, so this label is dropped. Move it to an interactive element or add a role (WCAG 2.2, 4.1.2 Name, Role, Value)."}, {"pattern": "<i\\b[^>]*\\bclass=[\"'][^\"']*\\b(fa|fas|far|fab|bi|icon)\\b[^\"']*[\"'](?![^>]*aria-hidden)", "flags": "i", "message": "Icon font with no aria-hidden=\"true\": some screen readers read the glyph as a stray character in the middle of your sentence (WCAG 2.2, 1.1.1 Non-text Content)."}];
+function scan(t){var L=String(t).split(/\r?\n/),h=[],i,r,re;
+ for(i=0;i<L.length;i++){for(var k=0;k<RULES.length;k++){r=RULES[k];
+  try{re=new RegExp(r.pattern,r.flags||'')}catch(e){continue}
+  if(re.test(L[i]))h.push({line:i+1,msg:r.message})}}
+ return h}
+document.getElementById('go').onclick=function(){
+ var t=document.getElementById('src').value,o=document.getElementById('out');
+ if(!t.trim()){o.innerHTML='';return}
+ var h=scan(t);
+ if(!h.length){o.innerHTML='<div class="ok">No built-in rule matched anything in this file.</div>';return}
+ var s='<table><tr><th>Line</th><th>Finding</th></tr>';
+ for(var i=0;i<h.length;i++){s+='<tr><td class="n">'+h[i].line+'</td><td>'+
+   String(h[i].msg).replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</td></tr>'}
+ o.innerHTML=s+'</table>'};
+</script>
+</html>
