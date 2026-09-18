@@ -2,7 +2,7 @@
   "name": "eaa-form-lint-wcag22",
   "displayName": "EAA Form Lint: WCAG 2.2 AA for HTML",
   "description": "Flags the WCAG 2.2 AA form failures that generated HTML keeps making - paste-blocked password fields, unlabelled inputs, 24px targets - with the clause and the fix on the line.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
