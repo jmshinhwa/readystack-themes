@@ -1,0 +1,101 @@
+{
+  "name": "pci-payment-page-script-lint",
+  "displayName": "PCI DSS 6.4.3 Payment Page Script Lint",
+  "description": "Finds the third-party scripts, missing SRI hashes and CSP holes on your checkout page that fail PCI DSS 4.0.1 Requirements 6.4.3 and 11.6.1 - with the requirement number on every line.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "pci",
+    "pci-dss",
+    "checkout",
+    "compliance",
+    "security"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pci-payment-page-script-lint.audit_file",
+        "title": "PCI: Check this payment page",
+        "category": "PCI 6.4.3 Payment Page S"
+      },
+      {
+        "command": "pci-payment-page-script-lint.audit_selection",
+        "title": "PCI: Check the selected lines",
+        "category": "PCI 6.4.3 Payment Page S"
+      },
+      {
+        "command": "pci-payment-page-script-lint.list_rules",
+        "title": "PCI: List the rules that ship inside",
+        "category": "PCI 6.4.3 Payment Page S"
+      },
+      {
+        "command": "pci-payment-page-script-lint.workspace_scan",
+        "title": "PCI: Scan the whole workspace",
+        "category": "PCI 6.4.3 Payment Page S"
+      },
+      {
+        "command": "pci-payment-page-script-lint.export_report",
+        "title": "PCI: Export evidence report (CSV / JSON / HTML)",
+        "category": "PCI 6.4.3 Payment Page S"
+      },
+      {
+        "command": "pci-payment-page-script-lint.watch_on_save",
+        "title": "PCI: Re-check on every save",
+        "category": "PCI 6.4.3 Payment Page S"
+      },
+      {
+        "command": "pci-payment-page-script-lint.ci_json",
+        "title": "PCI: Write the CI JSON report",
+        "category": "PCI 6.4.3 Payment Page S"
+      }
+    ],
+    "configuration": {
+      "title": "PCI 6.4.3 Payment Page Script Lint",
+      "properties": {
+        "pci-payment-page-script-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info, warn, error)."
+        },
+        "pci-payment-page-script-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default format for the exported evidence report (csv, json, html)."
+        },
+        "pci-payment-page-script-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum number of files to read during a workspace scan."
+        },
+        "pci-payment-page-script-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a workspace scan."
+        },
+        "pci-payment-page-script-lint.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check the open file once as soon as the editor starts."
+        },
+        "pci-payment-page-script-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra regular-expression rules of your own, checked alongside the ones that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
