@@ -1,0 +1,23 @@
+[
+ {"id":"file_kind","scope":"any","sev":"info","title":"File not recognised","fix":"Open a readme.txt (starts with === Plugin Name ===) or the main plugin PHP file (header comment with Plugin Name:)."},
+ {"id":"readme_title_line","scope":"readme","sev":"error","title":"readme.txt does not start with === Plugin Name ===","fix":"Make the first non-empty line === Your Plugin Name ==="},
+ {"id":"stable_tag_missing","scope":"readme","sev":"error","title":"No Stable tag line","fix":"Stable tag: 1.0.0"},
+ {"id":"stable_tag_trunk","scope":"readme","sev":"error","title":"Stable tag: trunk ships trunk to every install","fix":"Stable tag: <the version you tagged>"},
+ {"id":"requires_at_least_missing","scope":"readme","sev":"error","title":"No Requires at least line","fix":"Requires at least: 6.5"},
+ {"id":"requires_php_missing","scope":"readme","sev":"error","title":"No Requires PHP line","fix":"Requires PHP: 7.4"},
+ {"id":"tested_up_to_missing","scope":"readme","sev":"error","title":"No Tested up to line","fix":"Tested up to: 6.8"},
+ {"id":"tested_up_to_patch","scope":"readme","sev":"error","title":"Tested up to carries a patch number","fix":"Tested up to: <major.minor only>"},
+ {"id":"tested_below_requires","scope":"readme","sev":"error","title":"Tested up to is older than Requires at least","fix":"Raise Tested up to, or lower Requires at least"},
+ {"id":"short_description_long","scope":"readme","sev":"error","title":"Short description is over 150 characters","fix":"Cut the line under the header block to 150 characters"},
+ {"id":"tags_over_five","scope":"readme","sev":"warn","title":"More than five tags; only the first five are used","fix":"Keep five tags, the five you want to rank for"},
+ {"id":"license_line_missing","scope":"readme","sev":"error","title":"License or License URI missing","fix":"License: GPLv2 or later + License URI: https://www.gnu.org/licenses/gpl-2.0.html"},
+ {"id":"changelog_section_missing","scope":"readme","sev":"warn","title":"No == Changelog == section","fix":"Add == Changelog == with an entry for this version"},
+ {"id":"php_version_header_missing","scope":"php","sev":"error","title":"Plugin header has no Version","fix":"Version: 1.0.0 in the header comment"},
+ {"id":"php_requires_php_header_missing","scope":"php","sev":"error","title":"Plugin header has no Requires PHP","fix":"Requires PHP: 7.4 in the header comment"},
+ {"id":"php_license_header_missing","scope":"php","sev":"error","title":"Plugin header has no License line","fix":"License: GPLv2 or later in the header comment"},
+ {"id":"php_text_domain_missing","scope":"php","sev":"warn","title":"Plugin header has no Text Domain","fix":"Text Domain: <your plugin slug>"},
+ {"id":"php_direct_access_guard","scope":"php","sev":"error","title":"No direct-access guard","fix":"defined( 'ABSPATH' ) || exit; under the header"},
+ {"id":"php_remote_asset","scope":"php","sev":"error","title":"Script or style enqueued from a remote URL","fix":"Ship the file inside the plugin and enqueue it with plugins_url()"},
+ {"id":"php_obfuscated_code","scope":"php","sev":"error","title":"eval, base64_decode or gzinflate in plugin code","fix":"Ship readable PHP; the review team reads every line"},
+ {"id":"php_hardcoded_plugin_path","scope":"php","sev":"warn","title":"Hard-coded wp-content/plugins path","fix":"plugin_dir_path() instead of the literal path"}
+]
