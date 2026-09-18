@@ -1,0 +1,177 @@
+{
+  "name": "gtags-workspace-config-kit",
+  "displayName": "GNU GLOBAL (gtags) Workspace Setup Kit",
+  "description": "46 config snippets, 26 audit rules, 8 setups in one extension — because one absolute path like /home/you/ in .vscode/settings.json breaks Go-to-Definition for every teammate who clones the repo.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Snippets",
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "gnu global",
+    "gtags",
+    "c",
+    "cpp",
+    "c++"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "gtags-workspace-config-kit.audit_open_file",
+        "title": "Audit the configuration file I have open",
+        "category": "GNU GLOBAL (gtags) Works"
+      },
+      {
+        "command": "gtags-workspace-config-kit.insert_setup_block",
+        "title": "Insert a setup block at the cursor",
+        "category": "GNU GLOBAL (gtags) Works"
+      },
+      {
+        "command": "gtags-workspace-config-kit.show_setup_checklist",
+        "title": "Show the setup checklist for one stack",
+        "category": "GNU GLOBAL (gtags) Works"
+      },
+      {
+        "command": "gtags-workspace-config-kit.audit_workspace",
+        "title": "Audit every configuration file in the workspace",
+        "category": "GNU GLOBAL (gtags) Works"
+      },
+      {
+        "command": "gtags-workspace-config-kit.fix_open_file",
+        "title": "Apply the fixes, do not just report them",
+        "category": "GNU GLOBAL (gtags) Works"
+      },
+      {
+        "command": "gtags-workspace-config-kit.export_audit_report",
+        "title": "Export the audit report to the workspace",
+        "category": "GNU GLOBAL (gtags) Works"
+      },
+      {
+        "command": "gtags-workspace-config-kit.toggle_watch_on_save",
+        "title": "Re-check automatically on every save",
+        "category": "GNU GLOBAL (gtags) Works"
+      }
+    ],
+    "configuration": {
+      "title": "GNU GLOBAL (gtags) Workspace Setup Kit",
+      "properties": {
+        "gtags-workspace-config-kit.report_format": {
+          "type": "string",
+          "default": "html",
+          "description": "Format of the exported audit report"
+        },
+        "gtags-workspace-config-kit.report_path": {
+          "type": "string",
+          "default": "audit/config-audit.html",
+          "description": "Where the exported report is written, relative to the workspace"
+        },
+        "gtags-workspace-config-kit.ci_json_path": {
+          "type": "string",
+          "default": "audit/config-audit.json",
+          "description": "Path of the machine-readable file a CI job reads"
+        },
+        "gtags-workspace-config-kit.custom_rules_path": {
+          "type": "string",
+          "default": "",
+          "description": "Your own rules file, added to the 26 built-in rules"
+        },
+        "gtags-workspace-config-kit.watch_on_save": {
+          "type": "boolean",
+          "default": false,
+          "description": "Re-run the audit whenever a configuration file is saved"
+        },
+        "gtags-workspace-config-kit.scan_globs": {
+          "type": "string",
+          "default": "**/.vscode/*.json,**/.editorconfig,**/.clang-format,**/.globalrc,**/gtags.conf",
+          "description": "Which files the workspace scan looks at"
+        },
+        "gtags-workspace-config-kit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Audit every repository folder in the workspace at once"
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "css",
+        "path": "./snippets/css-postcss-scss.code-snippets"
+      },
+      {
+        "language": "postcss",
+        "path": "./snippets/css-postcss-scss.code-snippets"
+      },
+      {
+        "language": "scss",
+        "path": "./snippets/css-postcss-scss.code-snippets"
+      },
+      {
+        "language": "ignore",
+        "path": "./snippets/ignore.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/plaintext-properties-ini.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/plaintext-properties-ini.code-snippets"
+      },
+      {
+        "language": "ini",
+        "path": "./snippets/plaintext-properties-ini.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/properties-ini.code-snippets"
+      },
+      {
+        "language": "ini",
+        "path": "./snippets/properties-ini.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/properties-ini-plaintext.code-snippets"
+      },
+      {
+        "language": "ini",
+        "path": "./snippets/properties-ini-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/properties-ini-plaintext.code-snippets"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/yaml.code-snippets"
+      }
+    ]
+  },
+  "icon": "icon.png"
+}
