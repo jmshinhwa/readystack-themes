@@ -1,0 +1,105 @@
+{
+  "name": "robots-txt-ai-crawler-audit",
+  "displayName": "AI Crawler Rules - robots.txt Audit for AI Search",
+  "description": "Checks robots.txt line by line and says what each AI crawler token actually controls - training, AI-search citation, or user fetch - and which lines silently do nothing.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "robots.txt",
+    "AI crawler",
+    "GPTBot",
+    "Google-Extended",
+    "SEO"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "robots-txt-ai-crawler-audit.audit_file",
+        "title": "Check robots.txt for AI crawler mistakes",
+        "category": "AI Crawler Rules for rob"
+      },
+      {
+        "command": "robots-txt-ai-crawler-audit.audit_selection",
+        "title": "Check selected lines",
+        "category": "AI Crawler Rules for rob"
+      },
+      {
+        "command": "robots-txt-ai-crawler-audit.list_rules",
+        "title": "List AI crawler rules",
+        "category": "AI Crawler Rules for rob"
+      },
+      {
+        "command": "robots-txt-ai-crawler-audit.show_report",
+        "title": "Reopen last report",
+        "category": "AI Crawler Rules for rob"
+      },
+      {
+        "command": "robots-txt-ai-crawler-audit.workspace_scan",
+        "title": "Scan every robots.txt in the workspace",
+        "category": "AI Crawler Rules for rob"
+      },
+      {
+        "command": "robots-txt-ai-crawler-audit.export_report",
+        "title": "Export report (CSV / JSON / HTML)",
+        "category": "AI Crawler Rules for rob"
+      },
+      {
+        "command": "robots-txt-ai-crawler-audit.ci_json",
+        "title": "Machine-readable output for CI",
+        "category": "AI Crawler Rules for rob"
+      },
+      {
+        "command": "robots-txt-ai-crawler-audit.custom_rules",
+        "title": "Add your own agency policy tokens",
+        "category": "AI Crawler Rules for rob"
+      },
+      {
+        "command": "robots-txt-ai-crawler-audit.watch_on_save",
+        "title": "Re-check automatically on every save",
+        "category": "AI Crawler Rules for rob"
+      }
+    ],
+    "configuration": {
+      "title": "AI Crawler Rules for robots.txt",
+      "properties": {
+        "robots-txt-ai-crawler-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format (csv | json | html)"
+        },
+        "robots-txt-ai-crawler-audit.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info | warn | error)"
+        },
+        "robots-txt-ai-crawler-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum files to walk during a workspace scan"
+        },
+        "robots-txt-ai-crawler-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "robots-txt-ai-crawler-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 19 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
