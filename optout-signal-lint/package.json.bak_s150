@@ -1,0 +1,90 @@
+{
+  "name": "optout-signal-lint",
+  "displayName": "Opt-Out Signal Lint for US State Privacy Laws",
+  "description": "Finds the ad and analytics code that keeps firing after a visitor’s browser has already sent Global Privacy Control.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "privacy",
+    "gpc",
+    "ccpa",
+    "consent",
+    "analytics"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "optout-signal-lint.audit_file",
+        "title": "Audit this file for opt-out leaks",
+        "category": "Opt-Out Signal Lint"
+      },
+      {
+        "command": "optout-signal-lint.audit_selection",
+        "title": "Audit the selected lines",
+        "category": "Opt-Out Signal Lint"
+      },
+      {
+        "command": "optout-signal-lint.list_rules",
+        "title": "List the opt-out rules",
+        "category": "Opt-Out Signal Lint"
+      },
+      {
+        "command": "optout-signal-lint.workspace_scan",
+        "title": "Scan the whole workspace",
+        "category": "Opt-Out Signal Lint"
+      },
+      {
+        "command": "optout-signal-lint.export_report",
+        "title": "Export the findings",
+        "category": "Opt-Out Signal Lint"
+      },
+      {
+        "command": "optout-signal-lint.ci_json",
+        "title": "CI output",
+        "category": "Opt-Out Signal Lint"
+      }
+    ],
+    "configuration": {
+      "title": "Opt-Out Signal Lint",
+      "properties": {
+        "optout-signal-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info|warn|error)"
+        },
+        "optout-signal-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format (csv|json|html)"
+        },
+        "optout-signal-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum files per workspace scan"
+        },
+        "optout-signal-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "optout-signal-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 20 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
