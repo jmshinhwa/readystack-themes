@@ -1,0 +1,52 @@
+{
+  "name": "dora-ict-contract-clause-lint",
+  "displayName": "DORA Art. 30 ICT Contract Clause Lint",
+  "description": "Lints ICT vendor contracts kept in your repo against the mandatory clauses of DORA Article 30 (EU 2022/2554), and flags audit caps, billable incident support and open-ended data locations.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "dora",
+    "ict-contract",
+    "article-30",
+    "financial-entity",
+    "third-party-risk",
+    "eu-compliance"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "doraContract.checkFile",
+        "title": "DORA Art. 30 ICT Contract Clause Lint: Check this file",
+        "category": "DORA Art. 30 ICT Contract Clause Lint"
+      },
+      {
+        "command": "doraContract.checkWorkspace",
+        "title": "DORA Art. 30 ICT Contract Clause Lint: Sweep workspace and write report (licence)",
+        "category": "DORA Art. 30 ICT Contract Clause Lint"
+      },
+      {
+        "command": "doraContract.enterKey",
+        "title": "DORA Art. 30 ICT Contract Clause Lint: Enter licence key",
+        "category": "DORA Art. 30 ICT Contract Clause Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "dora-ict-contract-clause-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/dora-ict-contract-clause-lint",
+  "icon": "icon.png"
+}
