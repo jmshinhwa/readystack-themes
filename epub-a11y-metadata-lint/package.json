@@ -2,7 +2,7 @@
   "name": "epub-a11y-metadata-lint",
   "displayName": "EPUB Accessibility Metadata Lint (EAA)",
   "description": "Checks the accessibility metadata in an EPUB package .opf against EPUB Accessibility 1.1 and the EU Accessibility Act discovery rules, and gives you the exact line to paste.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
