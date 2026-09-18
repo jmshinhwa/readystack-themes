@@ -1,0 +1,230 @@
+{
+  "directive": "Directive (EU) 2023/2225 on credit agreements for consumers",
+  "law": "Directive (EU) 2023/2225 (CCD2)",
+  "repeals": "Directive 2008/48/EC",
+  "applies_from": "2026-11-20",
+  "file_globs": [
+    "**/*.html",
+    "**/*.htm",
+    "**/*.jsx",
+    "**/*.tsx",
+    "**/*.liquid"
+  ],
+  "rule_count": 22,
+  "bnpl_context": "buy\\s*now[,\\s-]*pay\\s*later|\\bbnpl\\b|pay\\s+in\\s+(3|4|three|four)\\b|pay\\s+later|deferred\\s+payment|instal?lments?|klarna|clearpay|afterpay|split\\s+your\\s+payment|pay\\s+monthly|pay\\s+over\\s+time",
+  "rules": [
+    {
+      "id": "ccd2_warning_missing",
+      "kind": "requires",
+      "sev": "high",
+      "art": "Article 8",
+      "any": [
+        "Caution!\\s*Borrowing money costs money"
+      ],
+      "msg": "Pay-later offer with no Article 8 warning. The advertisement must carry the words \"Caution! Borrowing money costs money.\""
+    },
+    {
+      "id": "ccd2_apr_missing",
+      "kind": "requires",
+      "sev": "high",
+      "art": "Article 8",
+      "any": [
+        "\\bAPR\\b",
+        "annual percentage rate",
+        "\\bTAEG\\b",
+        "\\bAPRC\\b"
+      ],
+      "msg": "No annual percentage rate (APR) on a credit offer. Article 8 standard information must state the APR."
+    },
+    {
+      "id": "ccd2_repex_missing",
+      "kind": "requires",
+      "sev": "high",
+      "art": "Article 8",
+      "any": [
+        "representative example"
+      ],
+      "msg": "No representative example. Article 8 requires the standard information to be given by means of a representative example."
+    },
+    {
+      "id": "ccd2_total_payable_missing",
+      "kind": "requires",
+      "sev": "high",
+      "art": "Article 8",
+      "any": [
+        "total amount payable",
+        "total cost of the credit",
+        "total amount of credit"
+      ],
+      "msg": "No total amount payable by the consumer next to the instalment figure."
+    },
+    {
+      "id": "ccd2_secci_missing",
+      "kind": "requires",
+      "sev": "high",
+      "art": "Article 10",
+      "any": [
+        "Standard European Consumer Credit Information",
+        "\\bSECCI\\b"
+      ],
+      "msg": "No route to the Standard European Consumer Credit Information form before the consumer is bound."
+    },
+    {
+      "id": "ccd2_borrowing_rate_missing",
+      "kind": "requires",
+      "sev": "med",
+      "art": "Article 8",
+      "any": [
+        "borrowing rate"
+      ],
+      "msg": "No borrowing rate, fixed or variable, in the credit block."
+    },
+    {
+      "id": "ccd2_duration_missing",
+      "kind": "requires",
+      "sev": "med",
+      "art": "Article 8",
+      "any": [
+        "duration of the credit",
+        "number of instal?ments",
+        "credit term",
+        "repayment period"
+      ],
+      "msg": "No duration of the credit agreement stated with the offer."
+    },
+    {
+      "id": "ccd2_creditor_missing",
+      "kind": "requires",
+      "sev": "med",
+      "art": "Article 8",
+      "any": [
+        "credit (is )?provided by",
+        "\\bcreditor\\b",
+        "\\blender\\b",
+        "credit intermediary"
+      ],
+      "msg": "The creditor or credit intermediary behind the pay-later button is not named."
+    },
+    {
+      "id": "ccd2_cash_price_missing",
+      "kind": "requires",
+      "sev": "med",
+      "art": "Article 8",
+      "any": [
+        "cash price"
+      ],
+      "msg": "Deferred payment shown without the cash price of the goods or service."
+    },
+    {
+      "id": "ccd2_withdrawal_missing",
+      "kind": "requires",
+      "sev": "med",
+      "art": "Article 26",
+      "any": [
+        "right of withdrawal",
+        "14 calendar days",
+        "withdraw within 14"
+      ],
+      "msg": "The 14-day right of withdrawal from the credit agreement is never mentioned."
+    },
+    {
+      "id": "ccd2_creditworthiness_missing",
+      "kind": "requires",
+      "sev": "low",
+      "art": "Article 18",
+      "any": [
+        "creditworthiness assessment",
+        "affordability (check|assessment)"
+      ],
+      "msg": "Nothing tells the consumer a creditworthiness assessment will be carried out."
+    },
+    {
+      "id": "ccd2_stale_directive",
+      "kind": "forbids",
+      "sev": "high",
+      "art": "CCD2 repeals 2008/48/EC",
+      "pattern": "2008/48/EC|Consumer Credit Directive 2008",
+      "msg": "Citation of the repealed Directive 2008/48/EC. From 20 November 2026 the governing text is Directive (EU) 2023/2225."
+    },
+    {
+      "id": "ccd2_small_amount_exemption",
+      "kind": "forbids",
+      "sev": "high",
+      "art": "Article 2",
+      "pattern": "(under|below|less than)\\s*(EUR\\s*|E?UR)?\\s*200\\b|200\\s*(EUR|euro)[^\\n]{0,24}(threshold|exemption|minimum|limit)",
+      "msg": "Relies on the old 200-euro lower limit. CCD2 drops it: small deferred payments are in scope."
+    },
+    {
+      "id": "ccd2_out_of_scope_claim",
+      "kind": "forbids",
+      "sev": "high",
+      "art": "Article 2",
+      "pattern": "(unregulated|not regulated|no regulation|exempt from|outside the scope of|falls outside)[^<\\n]{0,60}(credit|CCD|consumer credit|lending)|interest[- ]free[^<\\n]{0,40}(unregulated|not regulated|exempt)",
+      "msg": "Claims the offer sits outside consumer credit rules. Interest-free and charge-free deferred payment is inside CCD2 scope."
+    },
+    {
+      "id": "ccd2_no_credit_check_claim",
+      "kind": "forbids",
+      "sev": "high",
+      "art": "Article 18",
+      "pattern": "no credit check|guaranteed approval|everyone is approved|approval guaranteed|without any checks",
+      "msg": "Advertises credit with no assessment. The creditworthiness assessment is mandatory under CCD2."
+    },
+    {
+      "id": "ccd2_preselected_credit",
+      "kind": "forbids",
+      "sev": "high",
+      "art": "Article 5",
+      "pattern": "(bnpl|pay-?later|klarna|clearpay|afterpay|instal?lment)[^>\\n]{0,80}(\\bchecked\\b|defaultChecked)|(\\bchecked\\b|defaultChecked)[^>\\n]{0,80}(bnpl|pay-?later|klarna|clearpay|afterpay|instal?lment)",
+      "msg": "The credit option is pre-selected for the consumer. Credit must be a deliberate choice, not the default."
+    },
+    {
+      "id": "ccd2_warning_hidden",
+      "kind": "forbids",
+      "sev": "high",
+      "art": "Article 8",
+      "pattern": "(display\\s*:\\s*none|visibility\\s*:\\s*hidden|aria-hidden=[\"']true[\"']|\\bhidden\\b)[^\\n]{0,120}(Caution!|Borrowing money costs money|representative example|\\bAPR\\b)|(Caution!|Borrowing money costs money|representative example|\\bAPR\\b)[^\\n]{0,120}(display\\s*:\\s*none|visibility\\s*:\\s*hidden|aria-hidden=[\"']true[\"']|\\bhidden\\b)",
+      "msg": "Standard information is hidden from view. Article 8 requires it in a clear, concise and prominent way."
+    },
+    {
+      "id": "ccd2_warning_tiny",
+      "kind": "forbids",
+      "sev": "med",
+      "art": "Article 8",
+      "pattern": "<small[^>]*>[^<]{0,160}(Caution!|Borrowing money|representative example|\\bAPR\\b)|font-size\\s*:\\s*(?:[0-9]|10)px[^\\n]{0,120}(Caution!|Borrowing money|representative example|\\bAPR\\b)",
+      "msg": "Standard information set in small print. Prominence is part of the Article 8 duty, not a styling choice."
+    },
+    {
+      "id": "ccd2_terms_apply_only",
+      "kind": "forbids",
+      "sev": "low",
+      "art": "Article 8",
+      "pattern": "(terms (and conditions )?apply|t&amp;cs? apply|t&cs? apply|see terms for details)\\s*(<[^>]*>\\s*)*$",
+      "msg": "The credit terms hide behind a bare \"terms apply\" line. The standard information belongs beside the offer."
+    },
+    {
+      "id": "ccd2_unsolicited_credit",
+      "kind": "forbids",
+      "sev": "med",
+      "art": "ban on non-solicited credit sales",
+      "pattern": "pre-?approved[^<\\n]{0,50}(credit|limit|pay later|bnpl|finance)|(credit|spending) limit[^<\\n]{0,30}pre-?approved|we have approved you",
+      "msg": "Pushes pre-approved credit the consumer never asked for. CCD2 prohibits non-solicited credit sales."
+    },
+    {
+      "id": "ccd2_personalised_offer",
+      "kind": "forbids",
+      "sev": "med",
+      "art": "personalised offers by automated processing",
+      "pattern": "(personali[sz]ed|tailored|just for you|based on your (profile|data|history|behaviou?r))[^<\\n]{0,50}(offer|rate|limit|price|plan)",
+      "msg": "A personalised credit offer must tell the consumer it was built by automated processing of their data."
+    },
+    {
+      "id": "ccd2_tied_addon",
+      "kind": "forbids",
+      "sev": "med",
+      "art": "Article 14",
+      "pattern": "(required|mandatory|compulsory|must (also )?(buy|take|add))[^<\\n]{0,50}(insurance|payment protection|cover|add-?on)|(insurance|payment protection|cover)[^<\\n]{0,40}(is )?(required|mandatory|compulsory)",
+      "msg": "An add-on is tied to the credit. Article 14 prohibits tying practices; bundling must stay optional."
+    }
+  ]
+}
