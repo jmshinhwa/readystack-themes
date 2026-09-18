@@ -1,0 +1,54 @@
+{
+  "name": "npm-trusted-publish-lint",
+  "displayName": "npm Trusted Publish Lint",
+  "description": "npm classic tokens were revoked 2025-12-09 and granular write tokens now expire in 90 days. Finds the token, OIDC and provenance gaps that will 401 your next release, in GitHub Actions and GitLab CI.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "npm",
+    "trusted publishing",
+    "oidc",
+    "github actions",
+    "provenance",
+    "supply chain",
+    "release",
+    "gitlab ci"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "npmPublishTrust.checkFile",
+        "title": "npm Trusted Publish Lint - OIDC & tokens: Check this file",
+        "category": "npm Trusted Publish Lint - OIDC & tokens"
+      },
+      {
+        "command": "npmPublishTrust.checkWorkspace",
+        "title": "npm Trusted Publish Lint - OIDC & tokens: Sweep workspace and write report (licence)",
+        "category": "npm Trusted Publish Lint - OIDC & tokens"
+      },
+      {
+        "command": "npmPublishTrust.enterKey",
+        "title": "npm Trusted Publish Lint - OIDC & tokens: Enter licence key",
+        "category": "npm Trusted Publish Lint - OIDC & tokens"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "npm-trusted-publish-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/npm-trusted-publish-lint",
+  "icon": "icon.png"
+}
