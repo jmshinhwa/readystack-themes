@@ -1,0 +1,53 @@
+{
+  "name": "fedramp-oscal-ssp-lint",
+  "displayName": "FedRAMP OSCAL SSP Lint",
+  "description": "Validates a FedRAMP OSCAL system security plan JSON in your editor: required assemblies, RFC4122 UUID references, control-id format, timezone-stamped dates and the annual update clock.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "fedramp",
+    "oscal",
+    "ssp",
+    "nist 800-53",
+    "compliance",
+    "authorization package",
+    "3pao"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "fedrampOscalSsp.checkFile",
+        "title": "FedRAMP OSCAL SSP Lint: Check this file",
+        "category": "FedRAMP OSCAL SSP Lint"
+      },
+      {
+        "command": "fedrampOscalSsp.checkWorkspace",
+        "title": "FedRAMP OSCAL SSP Lint: Sweep workspace and write report (licence)",
+        "category": "FedRAMP OSCAL SSP Lint"
+      },
+      {
+        "command": "fedrampOscalSsp.enterKey",
+        "title": "FedRAMP OSCAL SSP Lint: Enter licence key",
+        "category": "FedRAMP OSCAL SSP Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "fedramp-oscal-ssp-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/fedramp-oscal-ssp-lint",
+  "icon": "icon.png"
+}
