@@ -1,0 +1,136 @@
+{
+  "name": "workspace-settings-pack-audit",
+  "displayName": "Formatter & Workspace Settings Pack — 8 Sets",
+  "description": "34 ready config files and 26 rules across 8 stacks. Prettier's published default tabWidth is 2 while VS Code's default editor.tabSize is 4 — until one committed file decides, every save re-indents wha",
+  "version": "0.1.0",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Snippets",
+    "Linters"
+  ],
+  "keywords": [
+    "prettier",
+    "editorconfig",
+    "vscode-settings",
+    "tailwind",
+    "aspnet-core"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "workspace-settings-pack-audit.audit_file",
+        "title": "Check this config file against all 26 rules",
+        "category": "Formatter & Workspace Se"
+      },
+      {
+        "command": "workspace-settings-pack-audit.audit_selection",
+        "title": "Check only the lines you selected",
+        "category": "Formatter & Workspace Se"
+      },
+      {
+        "command": "workspace-settings-pack-audit.insert_snippet",
+        "title": "Insert a config file from the 8 sets",
+        "category": "Formatter & Workspace Se"
+      },
+      {
+        "command": "workspace-settings-pack-audit.list_rules",
+        "title": "Show the 26 rules and 34 config blocks inside",
+        "category": "Formatter & Workspace Se"
+      },
+      {
+        "command": "workspace-settings-pack-audit.workspace_scan",
+        "title": "Check every config file in this repository",
+        "category": "Formatter & Workspace Se"
+      },
+      {
+        "command": "workspace-settings-pack-audit.export_report",
+        "title": "Write the conflicts out as a file",
+        "category": "Formatter & Workspace Se"
+      },
+      {
+        "command": "workspace-settings-pack-audit.quick_fix",
+        "title": "Replace the wrong setting line with the correct one",
+        "category": "Formatter & Workspace Se"
+      }
+    ],
+    "configuration": {
+      "title": "Formatter & Workspace Settings Pack — 8 Sets",
+      "properties": {
+        "workspace-settings-pack-audit.report_format": {
+          "type": "string",
+          "default": "html",
+          "description": "Format of the exported findings file"
+        },
+        "workspace-settings-pack-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files the repository check will open"
+        },
+        "workspace-settings-pack-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,bin,obj,dist,build,out,.git,target,vendor}/**",
+          "description": "Paths the repository check skips"
+        },
+        "workspace-settings-pack-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 26 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "css",
+        "path": "./snippets/css.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/jsonc.code-snippets"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/markdown.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/plaintext.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/properties.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/properties-ini-plaintext.code-snippets"
+      },
+      {
+        "language": "ini",
+        "path": "./snippets/properties-ini-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/properties-ini-plaintext.code-snippets"
+      }
+    ]
+  }
+}
