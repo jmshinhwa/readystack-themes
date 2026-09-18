@@ -1,0 +1,53 @@
+{
+  "name": "tdm-reservation-lint",
+  "displayName": "TDM Reservation Lint",
+  "description": "Lints robots.txt for the machine-readable TDM reservation EU law expects: dead crawler tokens, shadowed groups, missing AI trainers, and rules that never apply.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "robots.txt",
+    "GPTBot",
+    "ClaudeBot",
+    "TDM reservation",
+    "AI crawler",
+    "opt-out",
+    "copyright",
+    "AI Act"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "tdmLint.checkFile",
+        "title": "TDM Reservation Lint — AI crawler opt-out in robots.txt: Check this file",
+        "category": "TDM Reservation Lint — AI crawler opt-out in robots.txt"
+      },
+      {
+        "command": "tdmLint.checkWorkspace",
+        "title": "TDM Reservation Lint — AI crawler opt-out in robots.txt: Sweep workspace and write report (licence)",
+        "category": "TDM Reservation Lint — AI crawler opt-out in robots.txt"
+      },
+      {
+        "command": "tdmLint.enterKey",
+        "title": "TDM Reservation Lint — AI crawler opt-out in robots.txt: Enter licence key",
+        "category": "TDM Reservation Lint — AI crawler opt-out in robots.txt"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/tdm-reservation-lint",
+  "icon": "icon.png"
+}
