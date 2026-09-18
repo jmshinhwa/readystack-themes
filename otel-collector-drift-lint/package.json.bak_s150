@@ -1,0 +1,52 @@
+{
+  "name": "otel-collector-drift-lint",
+  "displayName": "OTel Collector Drift Lint",
+  "description": "Flags removed Collector components and legacy semantic-convention attribute names in OpenTelemetry Collector YAML before the upgrade drops your pipeline.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "opentelemetry",
+    "otel collector",
+    "semantic conventions",
+    "observability",
+    "yaml lint",
+    "sre"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "otelDrift.checkFile",
+        "title": "OTel Collector Drift Lint: Check this file",
+        "category": "OTel Collector Drift Lint"
+      },
+      {
+        "command": "otelDrift.checkWorkspace",
+        "title": "OTel Collector Drift Lint: Sweep workspace and write report (licence)",
+        "category": "OTel Collector Drift Lint"
+      },
+      {
+        "command": "otelDrift.enterKey",
+        "title": "OTel Collector Drift Lint: Enter licence key",
+        "category": "OTel Collector Drift Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "otel-collector-drift-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/otel-collector-drift-lint",
+  "icon": "icon.png"
+}
