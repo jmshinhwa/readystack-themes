@@ -1,0 +1,91 @@
+{
+  "name": "firmware-release-gate",
+  "displayName": "Firmware Release Gate for sdkconfig and prj.conf",
+  "description": "Finds the build-config lines that ship an ESP-IDF or Zephyr device with secure boot off, a debug port open, unsigned images or plaintext OTA.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "esp-idf",
+    "zephyr",
+    "sdkconfig",
+    "mcuboot",
+    "firmware"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "firmware-release-gate.audit_file",
+        "title": "Audit this config file",
+        "category": "Firmware Release Gate"
+      },
+      {
+        "command": "firmware-release-gate.list_rules",
+        "title": "List the rules that ship inside",
+        "category": "Firmware Release Gate"
+      },
+      {
+        "command": "firmware-release-gate.show_report",
+        "title": "Show the last audit report",
+        "category": "Firmware Release Gate"
+      },
+      {
+        "command": "firmware-release-gate.workspace_scan",
+        "title": "Audit every config in the workspace",
+        "category": "Firmware Release Gate"
+      },
+      {
+        "command": "firmware-release-gate.export_report",
+        "title": "Export the audit report",
+        "category": "Firmware Release Gate"
+      },
+      {
+        "command": "firmware-release-gate.ci_json",
+        "title": "Write machine-readable JSON for CI",
+        "category": "Firmware Release Gate"
+      }
+    ],
+    "configuration": {
+      "title": "Firmware Release Gate",
+      "properties": {
+        "firmware-release-gate.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info | warn | error)"
+        },
+        "firmware-release-gate.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default format for the exported report (csv | json | html)"
+        },
+        "firmware-release-gate.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum number of files to read in a workspace audit"
+        },
+        "firmware-release-gate.exclude_glob": {
+          "type": "string",
+          "default": "**/build/**",
+          "description": "Paths to skip in a workspace audit (glob)"
+        },
+        "firmware-release-gate.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the ones that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
