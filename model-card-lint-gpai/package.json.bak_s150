@@ -1,0 +1,54 @@
+{
+  "name": "model-card-lint-gpai",
+  "displayName": "Model Card Lint - EU GPAI (AI Act Art. 53)",
+  "description": "Lints a Hugging Face model card against the Hub metadata spec and the EU AI Act GPAI documentation duties. Line numbers, the article, the fix.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "model card",
+    "hugging face",
+    "eu ai act",
+    "gpai",
+    "machine learning",
+    "lint",
+    "model-index",
+    "compliance"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "modelCardLintGpai.checkFile",
+        "title": "Model Card Lint - EU GPAI (AI Act Art. 53): Check this file",
+        "category": "Model Card Lint - EU GPAI (AI Act Art. 53)"
+      },
+      {
+        "command": "modelCardLintGpai.checkWorkspace",
+        "title": "Model Card Lint - EU GPAI (AI Act Art. 53): Sweep workspace and write report (licence)",
+        "category": "Model Card Lint - EU GPAI (AI Act Art. 53)"
+      },
+      {
+        "command": "modelCardLintGpai.enterKey",
+        "title": "Model Card Lint - EU GPAI (AI Act Art. 53): Enter licence key",
+        "category": "Model Card Lint - EU GPAI (AI Act Art. 53)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "model-card-lint-gpai"
+  },
+  "homepage": "https://getreadystack.com/tools/model-card-lint-gpai",
+  "icon": "icon.png"
+}
