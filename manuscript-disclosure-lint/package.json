@@ -2,7 +2,7 @@
   "name": "manuscript-disclosure-lint",
   "displayName": "Manuscript Disclosure Lint",
   "description": "Checks a manuscript before submission for the statements journals and funders now require: AI-use disclosure, data availability, funding and grant IDs, CRediT, competing interests, ethics, ORCID.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
