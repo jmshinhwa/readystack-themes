@@ -1,0 +1,54 @@
+{
+  "name": "ingress-nginx-retirement-lint",
+  "displayName": "Ingress-NGINX Retirement Lint",
+  "description": "Finds retired ingress-nginx annotations and unsafe snippet directives in your Kubernetes Ingress YAML, and names the Gateway API field that replaces each one.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "ingress-nginx",
+    "gateway-api",
+    "kubernetes",
+    "aks",
+    "ingress",
+    "migration",
+    "yaml",
+    "retirement"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "ingressNginxRetirementLint.checkFile",
+        "title": "Ingress-NGINX Retirement Lint: Check this file",
+        "category": "Ingress-NGINX Retirement Lint"
+      },
+      {
+        "command": "ingressNginxRetirementLint.checkWorkspace",
+        "title": "Ingress-NGINX Retirement Lint: Sweep workspace and write report (licence)",
+        "category": "Ingress-NGINX Retirement Lint"
+      },
+      {
+        "command": "ingressNginxRetirementLint.enterKey",
+        "title": "Ingress-NGINX Retirement Lint: Enter licence key",
+        "category": "Ingress-NGINX Retirement Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "ingress-nginx-retirement-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/ingress-nginx-retirement-lint",
+  "icon": "icon.png"
+}
