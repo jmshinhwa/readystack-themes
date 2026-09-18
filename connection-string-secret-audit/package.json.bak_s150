@@ -1,0 +1,149 @@
+{
+  "name": "connection-string-secret-audit",
+  "displayName": "Connection String & Secret Audit — 8 Stacks",
+  "description": "26 rules and 32 safe-replacement snippets for hardcoded connection strings, keys and kubeconfigs across 8 VS Code stacks. Runs on your machine, sends nothing anywhere. One-time $29.",
+  "version": "0.1.0",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Snippets"
+  ],
+  "keywords": [
+    "azure-iot-hub",
+    "connection-string",
+    "secret-scanning",
+    "sql-server",
+    "kubernetes"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "connection-string-secret-audit.audit_file",
+        "title": "Audit this file for hardcoded credentials",
+        "category": "Connection String & Secr"
+      },
+      {
+        "command": "connection-string-secret-audit.audit_selection",
+        "title": "Audit only the selected lines",
+        "category": "Connection String & Secr"
+      },
+      {
+        "command": "connection-string-secret-audit.insert_snippet",
+        "title": "Insert a safe replacement snippet",
+        "category": "Connection String & Secr"
+      },
+      {
+        "command": "connection-string-secret-audit.list_rules",
+        "title": "Show the 26 rules and 32 snippets inside",
+        "category": "Connection String & Secr"
+      },
+      {
+        "command": "connection-string-secret-audit.workspace_scan",
+        "title": "Audit every file in this workspace",
+        "category": "Connection String & Secr"
+      },
+      {
+        "command": "connection-string-secret-audit.export_report",
+        "title": "Write the findings out as a file",
+        "category": "Connection String & Secr"
+      },
+      {
+        "command": "connection-string-secret-audit.quick_fix",
+        "title": "Replace the offending line with the safe form",
+        "category": "Connection String & Secr"
+      }
+    ],
+    "configuration": {
+      "title": "Connection String & Secret Audit — 8 Stacks",
+      "properties": {
+        "connection-string-secret-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Export format for the findings file"
+        },
+        "connection-string-secret-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files the workspace audit will open"
+        },
+        "connection-string-secret-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,bin,obj,.git,dist,renv,packrat,target}/**",
+          "description": "Paths the workspace audit skips"
+        },
+        "connection-string-secret-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 26 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "csharp",
+        "path": "./snippets/csharp.code-snippets"
+      },
+      {
+        "language": "java",
+        "path": "./snippets/java.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json.code-snippets"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/markdown.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/plaintext.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/properties.code-snippets"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python.code-snippets"
+      },
+      {
+        "language": "r",
+        "path": "./snippets/r.code-snippets"
+      },
+      {
+        "language": "r",
+        "path": "./snippets/r-markdown.code-snippets"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/r-markdown.code-snippets"
+      },
+      {
+        "language": "shellscript",
+        "path": "./snippets/shellscript.code-snippets"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/yaml.code-snippets"
+      }
+    ]
+  },
+  "icon": "icon.png"
+}
