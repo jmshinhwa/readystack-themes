@@ -74,6 +74,7 @@ async function enterKey(ctx) {
   await lic.ensure(vscode, ctx, S);
 }
 function activate(ctx) {
+  try { lic.pullFeed(ctx, "wcag22-css-lint").then(function (f) { if (f && Array.isArray(f.rules) && ENGINE && Array.isArray(ENGINE.RULES)) { globalThis.__yjFeed = f; for (var i = 0; i < f.rules.length; i++) ENGINE.RULES.push(f.rules[i]); } }).catch(function () {}); } catch (e) {}
   ctx.subscriptions.push(
     vscode.commands.registerCommand(PREFIX + '.checkFile', function () { return checkFile(); }),
     vscode.commands.registerCommand(PREFIX + '.checkWorkspace', function () { return checkWorkspace(ctx); }),
