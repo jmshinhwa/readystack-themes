@@ -1,0 +1,53 @@
+{
+  "name": "tfstate-secret-leak-lint",
+  "displayName": "Terraform State Secret Leak Lint",
+  "description": "Flags the Terraform resource attributes, outputs and backends whose values land in terraform.tfstate as cleartext, before an auditor or a repo reader finds them.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "terraform",
+    "tfstate",
+    "secrets",
+    "linter",
+    "soc2",
+    "iac",
+    "hcl"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "tfstateSecretLeakLint.checkFile",
+        "title": "Terraform State Secret Leak Lint: Check this file",
+        "category": "Terraform State Secret Leak Lint"
+      },
+      {
+        "command": "tfstateSecretLeakLint.checkWorkspace",
+        "title": "Terraform State Secret Leak Lint: Sweep workspace and write report (licence)",
+        "category": "Terraform State Secret Leak Lint"
+      },
+      {
+        "command": "tfstateSecretLeakLint.enterKey",
+        "title": "Terraform State Secret Leak Lint: Enter licence key",
+        "category": "Terraform State Secret Leak Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "tfstate-secret-leak-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/tfstate-secret-leak-lint",
+  "icon": "icon.png"
+}
