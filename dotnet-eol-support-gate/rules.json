@@ -1,0 +1,12 @@
+[
+  {"id": "tfm_out_of_support", "sev": "error", "title": "Target framework is past its end-of-support date", "why": "Microsoft ships no security fixes for it, so every later CVE in the runtime stays open in your build."},
+  {"id": "tfm_ends_soon", "sev": "error", "title": "Target framework loses support inside 180 days", "why": "A runtime bump is a release-planning item, not a patch; 180 days is the last comfortable window to schedule it."},
+  {"id": "support_window_gap", "sev": "error", "title": "Runtime dies before the support period you promise ends", "why": "CRA Article 13(8) makes the manufacturer support the product for the declared period, at least 5 years, so the runtime has to outlive the promise."},
+  {"id": "support_period_undeclared", "sev": "warn", "title": "No support period declared in the project file", "why": "CRA Article 13(8) requires a determined support period; if it is nowhere in the repo, the gate has to assume the 5-year floor."},
+  {"id": "framework_retired", "sev": "error", "title": ".NET Framework 4.6.1 or older", "why": ".NET Framework 4.5.2, 4.6 and 4.6.1 all left support on 2022-04-26 and never come back."},
+  {"id": "xamarin_retired", "sev": "error", "title": "Xamarin target or package reference", "why": "Xamarin support ended on 2024-05-01; the .NET MAUI move is the only supported path."},
+  {"id": "sdk_pin_out_of_support", "sev": "error", "title": "global.json pins an SDK band that is out of support", "why": "A pinned dead SDK silently overrides an up-to-date machine and rebuilds the dead runtime on every CI run."},
+  {"id": "preview_runtime", "sev": "error", "title": "Preview or release-candidate runtime in a shipping project", "why": "Preview builds carry no support period at all, so they cannot back any declared support promise."},
+  {"id": "runtime_bound_package", "sev": "error", "title": "Package pinned to a runtime version that is out of support", "why": "ASP.NET Core, EF Core and Microsoft.Extensions.* follow the .NET release lifecycle exactly, so a 6.x or 9.x pin is already unpatched."},
+  {"id": "nuget_audit_off", "sev": "error", "title": "NuGet vulnerability audit disabled or not covering transitive packages", "why": "CRA Annex I Part II asks manufacturers to handle vulnerabilities in the components they ship, including the ones they did not pick directly."}
+]
