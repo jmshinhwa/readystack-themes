@@ -1,0 +1,53 @@
+{
+  "name": "mv3-manifest-preflight",
+  "displayName": "MV3 Manifest Preflight - Chrome Web Store",
+  "description": "Checks manifest.json against Manifest V3 and Chrome Web Store upload rules: MV2 leftovers, host patterns in permissions, remote code, field limits.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "chrome extension",
+    "manifest v3",
+    "manifest.json",
+    "chrome web store",
+    "mv3",
+    "edge add-ons",
+    "browser extension lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "mv3Preflight.checkFile",
+        "title": "MV3 Manifest Preflight - Chrome Web Store: Check this file",
+        "category": "MV3 Manifest Preflight - Chrome Web Store"
+      },
+      {
+        "command": "mv3Preflight.checkWorkspace",
+        "title": "MV3 Manifest Preflight - Chrome Web Store: Sweep workspace and write report (licence)",
+        "category": "MV3 Manifest Preflight - Chrome Web Store"
+      },
+      {
+        "command": "mv3Preflight.enterKey",
+        "title": "MV3 Manifest Preflight - Chrome Web Store: Enter licence key",
+        "category": "MV3 Manifest Preflight - Chrome Web Store"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "mv3-manifest-preflight"
+  },
+  "homepage": "https://getreadystack.com/tools/mv3-manifest-preflight",
+  "icon": "icon.png"
+}
