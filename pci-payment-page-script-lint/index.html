@@ -1,0 +1,171 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PCI DSS 6.4.3 Payment Page Script Lint</title>
+<meta name="description" content="Finds the third-party scripts, missing SRI hashes and CSP holes on your checkout page that fail PCI DSS 4.0.1 Requirements 6.4.3 and 11.6.1 - with the requirement number on every line.">
+<style>
+:root{color-scheme:light dark}
+body{margin:0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;
+ background:#fbfbfa;color:#16161d}
+@media(prefers-color-scheme:dark){body{background:#14141a;color:#e8e8ea}}
+.wrap{max-width:880px;margin:0 auto;padding:28px 20px 64px}
+h1{font-size:1.7rem;line-height:1.25;margin:.2em 0 .3em}
+p.sub{margin:0 0 1.4em;opacity:.8}
+textarea{width:100%;min-height:230px;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;
+ padding:12px;border:1px solid #c9c9d1;border-radius:10px;background:transparent;color:inherit;
+ box-sizing:border-box}
+button{font:600 15px/1 inherit;padding:12px 22px;border:0;border-radius:10px;
+ background:#1d4ed8;color:#fff;cursor:pointer;margin:12px 0}
+button:hover{background:#1a43bd}
+table{border-collapse:collapse;width:100%;margin-top:14px;font-size:14px}
+th,td{border-bottom:1px solid #d8d8e0;padding:8px 6px;text-align:left;vertical-align:top}
+th{font-weight:600;opacity:.75}
+td.n{width:64px;font:13px ui-monospace,monospace;opacity:.7}
+.ok{padding:14px;border-radius:10px;background:#e8f5ec;color:#14532d;margin-top:14px}
+@media(prefers-color-scheme:dark){.ok{background:#15321f;color:#bbf7d0}}
+.next{margin-top:30px;padding:18px;border:1px solid #d8d8e0;border-radius:12px}
+.next h2{font-size:1.05rem;margin:0 0 .5em}
+.next ul{margin:.3em 0 1em 1.1em;padding:0}
+</style>
+<div class="wrap">
+<h1>PCI DSS 6.4.3 Payment Page Script Lint</h1>
+<p class="sub">Finds the third-party scripts, missing SRI hashes and CSP holes on your checkout page that fail PCI DSS 4.0.1 Requirements 6.4.3 and 11.6.1 - with the requirement number on every line.</p>
+<textarea id="src" placeholder="Paste your checkout page here - HTML, JSX, a PHP or Twig template, or your script-inventory JSON."></textarea>
+<button id="go">Check this page</button>
+<div id="out"></div>
+<div class="next"><h2>In the full version</h2><ul><li>Scan the whole repository, not only the open file</li><li>Export the findings as a CSV, JSON or HTML evidence file</li><li>Re-check automatically on every save</li><li>Write a machine-readable JSON report for CI</li><li><a href="https://readystack.example/buy" data-polar-checkout data-polar-checkout-theme="light">Get the full version - $29</a></li></ul></div>
+</div>
+<script defer data-auto-init src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@latest/dist/embed.global.js"></script>
+<script>
+var RULES=[{"pattern": "<script[^>]+src\\s*=\\s*[\"\\']http:", "flags": "i", "sev": "error", "message": "6.4.3 - script loaded over plain HTTP: its content can be altered in transit and no integrity assurance is possible. Serve it over https:// and add an SRI hash."}, {"pattern": "<script(?![^>]*\\bintegrity\\s*=)[^>]*\\bsrc\\s*=\\s*[\"\\']https?://", "flags": "i", "sev": "error", "message": "6.4.3 - external script with no integrity attribute: you cannot show it was not tampered with. Add an SRI sha384 hash, or record the alternative assurance method in your script inventory."}, {"pattern": "<script(?=[^>]*\\bintegrity\\s*=)(?![^>]*\\bcrossorigin)[^>]*>", "flags": "i", "sev": "error", "message": "6.4.3 - integrity is set but crossorigin is missing: the browser silently skips SRI checking for a cross-origin script. Add crossorigin=\"anonymous\"."}, {"pattern": "integrity\\s*=\\s*[\"\\'](?:sha1|md5)-", "flags": "i", "sev": "error", "message": "6.4.3 - SRI digest uses sha1 or md5. Only sha256, sha384 and sha512 are accepted as integrity assurance."}, {"pattern": "src\\s*=\\s*[\"\\'][^\"\\']*(?:cdn\\.jsdelivr\\.net|unpkg\\.com|cdnjs\\.cloudflare\\.com)[^\"\\']*@latest", "flags": "i", "sev": "error", "message": "6.4.3 and 11.6.1 - CDN script pinned to @latest: its content can change without notice, so neither the authorisation nor the change detection can hold. Pin an exact version."}, {"pattern": "googletagmanager\\.com/(?:gtm\\.js|gtag/js)|google-analytics\\.com/analytics\\.js", "flags": "i", "sev": "error", "message": "6.4.3 - a tag manager or analytics loader on a payment page can inject further scripts at run time, so the page script list cannot be inventoried from the source. Move it off the payment page, or inventory and authorise every container tag."}, {"pattern": "(?:intercom|widget\\.drift|zendesk|hotjar|fullstory|optimizely|vwo\\.com|clarity\\.ms|livechatinc|tawk\\.to)", "flags": "i", "sev": "error", "message": "6.4.3 - third-party widget (chat, A/B test or session recorder) on a payment page: each one needs a written business justification and a recorded authorisation, and session recorders can capture cardholder data from the form."}, {"pattern": "document\\.write\\s*\\(", "flags": "", "sev": "error", "message": "6.4.3 - document.write() injects markup at run time, so the injected resource never appears in the page source and cannot be inventoried or authorised."}, {"pattern": "\\beval\\s*\\(|new\\s+Function\\s*\\(", "flags": "", "sev": "error", "message": "6.4.3 - eval() or new Function() executes code that is not in your script inventory, and forces 'unsafe-eval' in the CSP."}, {"pattern": "\\.innerHTML\\s*=", "flags": "", "sev": "warn", "message": "6.4.3 - innerHTML assignment can insert script tags or event handlers that are in no inventory. Use textContent, or sanitise before assigning."}, {"pattern": "(?:script-src|default-src)[^;\\\"']*'unsafe-inline'", "flags": "i", "sev": "error", "message": "6.4.3 - the CSP allows 'unsafe-inline', so any injected inline script still executes and the CSP cannot serve as your authorisation method."}, {"pattern": "(?:script-src|default-src)\\s+[^;\"\\']*\\*(?:\\s|;|\"|\\')", "flags": "i", "sev": "error", "message": "6.4.3 - the CSP script source is a wildcard: every origin is authorised, which is the same as having no authorisation method at all."}, {"pattern": "Content-Security-Policy-Report-Only", "flags": "i", "sev": "warn", "message": "6.4.3 - the CSP is report-only: it records violations and blocks nothing, so on its own it is neither an authorisation nor an integrity control."}, {"pattern": "<script(?![^>]*\\b(?:src|nonce|integrity)\\s*=)[^>]*>", "flags": "i", "sev": "warn", "message": "6.4.3 - inline script block with no nonce: nothing authorises this block. Give it a nonce your CSP names, or move the code into a file that carries an SRI hash."}, {"pattern": "<[a-z][^>]*\\son(?:click|load|error|submit|change|mouseover)\\s*=", "flags": "i", "sev": "warn", "message": "6.4.3 - inline event handler requires 'unsafe-inline' in the CSP, which disables the CSP as an authorisation control. Bind the handler inside an authorised script file."}, {"pattern": "navigator\\.serviceWorker\\.register", "flags": "", "sev": "error", "message": "6.4.3 and 11.6.1 - a service worker can rewrite the payment page after it loads, and the rewritten content never reaches server-side change detection. Keep the worker scope off the payment path."}, {"pattern": "(?:localStorage|sessionStorage)\\.setItem\\s*\\(\\s*[\"\\'][^\"\\']*(?:card|pan|cvv|cvc|track)", "flags": "i", "sev": "error", "message": "3.2.1 and 6.4.3 - card data is being written into browser storage. Cardholder data must not be stored client side, and any script on the page can read it."}, {"pattern": "fetch\\s*\\(\\s*[\"\\']https?://|new\\s+WebSocket\\s*\\(\\s*[\"\\']wss?://", "flags": "i", "sev": "warn", "message": "11.6.1 - the page sends data to an external origin from script. Confirm the destination is authorised and covered by your weekly change detection, or it is an unmonitored exfiltration path."}, {"pattern": "<link(?![^>]*\\bintegrity\\s*=)[^>]*\\brel\\s*=\\s*[\"\\']stylesheet[\"\\'][^>]*\\bhref\\s*=\\s*[\"\\']https?://", "flags": "i", "sev": "warn", "message": "6.4.3 - third-party stylesheet with no integrity attribute. Injected CSS can capture keystrokes on a payment form, so stylesheets need the same integrity assurance as scripts."}, {"pattern": "name\\s*=\\s*[\"\\'](?:cardnumber|card_number|cc-number|card-number|cvc|cvv|securitycode)|autocomplete\\s*=\\s*[\"\\']cc-", "flags": "i", "sev": "info", "message": "In scope - a card data field is on this page, so Requirements 6.4.3 and 11.6.1 apply to every script here."}, {"pattern": "<iframe[^>]+src\\s*=\\s*[\"\\'][^\"\\']*(?:stripe|braintree|adyen|paypal|checkout|payments?)", "flags": "i", "sev": "info", "message": "In scope - even when the card fields sit inside a payment provider iframe, the page that embeds it must still meet 6.4.3 and 11.6.1. Since v4.0.1 this includes SAQ A merchants."}, {"sev": "error", "message": "6.4.3 - this inventory has no scripts list, so nothing is inventoried.", "json": {"kind": "doc", "paths": ["scripts", "inventory", "payment_page_scripts"]}}, {"sev": "error", "message": "6.4.3 - the inventory does not name which payment pages it covers.", "json": {"kind": "doc", "paths": ["payment_pages", "pages", "urls", "scope"]}}, {"sev": "error", "message": "11.6.1 - the inventory records no review date, so there is no evidence of the weekly check.", "json": {"kind": "doc", "paths": ["last_reviewed", "reviewed_at", "last_review", "reviewed"]}}, {"sev": "error", "message": "6.4.3 - inventory entries with no script URL or source recorded", "json": {"kind": "each", "list": "scripts", "paths": ["url", "src", "source"]}}, {"sev": "error", "message": "6.4.3 - inventory entries with no written business justification", "json": {"kind": "each", "list": "scripts", "paths": ["justification", "business_justification", "reason"]}}, {"sev": "error", "message": "6.4.3 - inventory entries with no recorded authorisation", "json": {"kind": "each", "list": "scripts", "paths": ["authorized_by", "authorised_by", "approved_by"]}}, {"sev": "error", "message": "6.4.3 - inventory entries with no integrity assurance method recorded", "json": {"kind": "each", "list": "scripts", "paths": ["integrity", "sri", "hash", "integrity_method"]}}, {"sev": "warn", "message": "6.4.3 - the justification is a placeholder, not a business reason", "json": {"kind": "each_bad", "list": "scripts", "path": "justification", "bad": ["n/a", "na", "tbd", "todo", "none", "-", "unknown", "required", "needed", "tbc", "?"]}}];
+
+// ★JSON 구조 검사 (s138) — ⛔줄 정규식이 ★못 보는 것을 본다: 문서 전체의 빠진 칸 · 목록 각 칸의 빠진 칸.
+//   ★어휘 넷뿐이다: doc(문서에 이 칸이 있나) · ver(판 번호가 기준 이상인가)
+//                  each(목록의 각 칸에 이 칸이 있나) · each_bad(값이 쓸모없는 값인가)
+var JRULES = [{"sev": "error", "message": "6.4.3 - this inventory has no scripts list, so nothing is inventoried.", "json": {"kind": "doc", "paths": ["scripts", "inventory", "payment_page_scripts"]}}, {"sev": "error", "message": "6.4.3 - the inventory does not name which payment pages it covers.", "json": {"kind": "doc", "paths": ["payment_pages", "pages", "urls", "scope"]}}, {"sev": "error", "message": "11.6.1 - the inventory records no review date, so there is no evidence of the weekly check.", "json": {"kind": "doc", "paths": ["last_reviewed", "reviewed_at", "last_review", "reviewed"]}}, {"sev": "error", "message": "6.4.3 - inventory entries with no script URL or source recorded", "json": {"kind": "each", "list": "scripts", "paths": ["url", "src", "source"]}}, {"sev": "error", "message": "6.4.3 - inventory entries with no written business justification", "json": {"kind": "each", "list": "scripts", "paths": ["justification", "business_justification", "reason"]}}, {"sev": "error", "message": "6.4.3 - inventory entries with no recorded authorisation", "json": {"kind": "each", "list": "scripts", "paths": ["authorized_by", "authorised_by", "approved_by"]}}, {"sev": "error", "message": "6.4.3 - inventory entries with no integrity assurance method recorded", "json": {"kind": "each", "list": "scripts", "paths": ["integrity", "sri", "hash", "integrity_method"]}}, {"sev": "warn", "message": "6.4.3 - the justification is a placeholder, not a business reason", "json": {"kind": "each_bad", "list": "scripts", "path": "justification", "bad": ["n/a", "na", "tbd", "todo", "none", "-", "unknown", "required", "needed", "tbc", "?"]}}];
+function jHas(v) {
+  if (v === null || v === undefined) return false;
+  if (typeof v === 'string') return v.trim() !== '';
+  if (Array.isArray(v)) return v.length > 0;
+  if (typeof v === 'object') return Object.keys(v).length > 0;
+  return true;
+}
+function jVal(o, p) {
+  var parts = String(p).split('.'), cur = o, i, k, got;
+  for (i = 0; i < parts.length; i++) {
+    if (cur === null || cur === undefined) return undefined;
+    if (Array.isArray(cur)) {                       // ★목록을 만나면 ★남은 길을 각 칸에 물어본다
+      for (k = 0; k < cur.length; k++) {
+        got = jVal(cur[k], parts.slice(i).join('.'));
+        if (jHas(got)) return got;
+      }
+      return undefined;
+    }
+    if (typeof cur !== 'object') return undefined;
+    cur = cur[parts[i]];
+  }
+  return cur;
+}
+function jAny(o, paths) {
+  for (var i = 0; i < (paths || []).length; i++) { if (jHas(jVal(o, paths[i]))) return true; }
+  return false;
+}
+function jNum(s) {
+  var m = String(s === undefined || s === null ? '' : s).match(/(\d+(?:\.\d+)*)/);
+  return m ? m[1].split('.').map(Number) : null;
+}
+function jCmp(a, b) {
+  for (var i = 0; i < Math.max(a.length, b.length); i++) {
+    var x = a[i] || 0, y = b[i] || 0;
+    if (x !== y) return x < y ? -1 : 1;
+  }
+  return 0;
+}
+function jWhen(doc, w) {
+  if (!w) return true;
+  var v = jVal(doc, w.path);
+  if (w.eq !== undefined) return String(jHas(v) ? v : '').toLowerCase() === String(w.eq).toLowerCase();
+  if (w.has !== undefined) {
+    var s = Array.isArray(v) ? v.join(' ') : String(jHas(v) ? v : '');
+    return s.toLowerCase().indexOf(String(w.has).toLowerCase()) >= 0;
+  }
+  return jHas(v);
+}
+function jList(doc, j) {
+  var arr = jVal(doc, j.list);
+  if (!Array.isArray(arr)) return [];
+  if (!j.filter) return arr;
+  return arr.filter(function (e) {
+    var v = jVal(e, j.filter.path);
+    var s = Array.isArray(v) ? v.join(' ') : String(jHas(v) ? v : '');
+    return s.toLowerCase().indexOf(String(j.filter.has).toLowerCase()) >= 0;
+  });
+}
+function jLine(raw, needle) {
+  if (!needle) return 1;
+  var s = String(raw), i = s.indexOf(JSON.stringify(String(needle)));
+  if (i < 0) i = s.indexOf(String(needle));
+  if (i < 0) return 1;
+  return s.slice(0, i).split(/\r?\n/).length;
+}
+function jName(e) {
+  if (!e || typeof e !== 'object') return '';
+  return String(e.name || e.packageName || e['bom-ref'] || e.bomRef || e.SPDXID || e.spdxId || '');
+}
+// ⇒ ★JSON 이 아니면 null 을 돌려준다 (그러면 ★줄 규칙만 돈다)
+function analyzeJson(raw) {
+  var doc;
+  try { doc = JSON.parse(raw); } catch (e) { return null; }
+  if (!doc || typeof doc !== 'object' || Array.isArray(doc)) return null;
+  var hits = [], i, r, j;
+  for (i = 0; i < JRULES.length; i++) {
+    r = JRULES[i]; j = r.json || {};
+    if (!jWhen(doc, j.when)) continue;
+    if (j.kind === 'doc') {
+      if (!jAny(doc, j.paths)) hits.push({ line: 1, msg: r.message, sev: r.sev || 'warn' });
+    } else if (j.kind === 'ver') {
+      var got = jNum(jVal(doc, j.path)), min = jNum(j.min);
+      if (!got) hits.push({ line: 1, msg: r.message + ' — found: none', sev: r.sev || 'error' });
+      else if (jCmp(got, min) < 0) hits.push({ line: jLine(raw, j.path),
+        msg: r.message + ' — found: ' + got.join('.'), sev: r.sev || 'error' });
+    } else if (j.kind === 'each' || j.kind === 'each_bad') {
+      var arr = jList(doc, j), miss = [], k, e, v, sv;
+      for (k = 0; k < arr.length; k++) {
+        e = arr[k];
+        if (j.kind === 'each') { if (!jAny(e, j.paths)) miss.push(e); }
+        else {
+          v = jVal(e, j.path);
+          sv = jHas(v) ? String(v).trim().toLowerCase() : '';
+          if ((j.bad || []).indexOf(sv) >= 0) miss.push(e);
+        }
+      }
+      if (miss.length) {
+        var ex = miss.slice(0, 4).map(jName).filter(Boolean);
+        hits.push({ line: jLine(raw, jName(miss[0])),
+          msg: r.message + ' — ' + miss.length + ' of ' + arr.length
+               + (ex.length ? ' (e.g. ' + ex.join(', ') + ')' : ''),
+          sev: r.sev || 'error' });
+      }
+    }
+  }
+  return hits;
+}
+
+function scan(t){var L=String(t).split(/\r?\n/),h=[],i,r,re;
+ // ★s138 — ★확장과 ★같은 분석기를 ★먼저 돌린다 (⛔답이 다르면 거짓말이다)
+ h=(JRULES.length?(analyzeJson(t)||[]):[]);
+ for(i=0;i<L.length;i++){for(var k=0;k<RULES.length;k++){r=RULES[k];
+  if(!r||!r.pattern)continue;
+  try{re=new RegExp(r.pattern,r.flags||'')}catch(e){continue}
+  if(re.test(L[i]))h.push({line:i+1,msg:r.message})}}
+ return h}
+document.getElementById('go').onclick=function(){
+ var t=document.getElementById('src').value,o=document.getElementById('out');
+ if(!t.trim()){o.innerHTML='';return}
+ var h=scan(t);
+ if(!h.length){o.innerHTML='<div class="ok">No 6.4.3 or 11.6.1 findings in this file.</div>';return}
+ var s='<table><tr><th>Line</th><th>Finding</th></tr>';
+ for(var i=0;i<h.length;i++){s+='<tr><td class="n">'+h[i].line+'</td><td>'+
+   String(h[i].msg).replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</td></tr>'}
+ o.innerHTML=s+'</table>'};
+</script>
+</html>
