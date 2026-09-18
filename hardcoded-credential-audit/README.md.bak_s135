@@ -1,0 +1,25 @@
+# Hardcoded Credential Audit — 8 Stacks
+
+30 checks and 30 safe-config snippets across 8 file families. A key pasted into appsettings.json is not a typo you fix — it is a key you rotate on every device, pipeline and cluster that used it.
+
+## What it does for free
+
+- The complete answer for the file you have open — all 30 checks, every line number
+- Audit only the lines you highlighted
+- All 30 safe-config snippets, insertable at the cursor
+- Read every check and every snippet before you trust it
+
+## With a licence
+
+- **Every file in the workspace, not just the open one** — The free audit answers for one file. A polyglot repo has the .properties, the manifests, the R scripts and the scratch notes in different folders — this runs all 30 checks across the lot in one pass.
+- **A CSV, JSON or HTML report you can hand to a reviewer** — Writes the findings into the workspace with the matched values redacted, so the file itself is safe to attach to a pull request or a security review.
+- **Re-check automatically on every save** — Catches the credential in the ten seconds between pasting it and committing it, instead of after the push.
+- **Your own patterns on top of the built-in 30** — Add your team's internal token prefixes, hostname suffixes or forbidden settings keys from settings; the built-in 30 keep running underneath.
+- **Machine-readable output for a CI job** — Emits a JSON file a pipeline step can read and fail on, so the same 30 checks that ran in your editor also gate the branch.
+- **Apply the fix, not just report it** — For the checks that have one exact safe replacement — Encrypt=False, TrustServerCertificate=True, a plaintext SQLTools password, insecure-skip-tls-verify: true, ssl_verifypeer = 0 — the correct value is written for you.
+
+## Install
+
+```
+ext install hardcoded-credential-audit
+```
