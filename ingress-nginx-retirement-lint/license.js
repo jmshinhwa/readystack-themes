@@ -6,7 +6,7 @@ const BENEFIT_ID = 'a381d2e8-1173-42b2-be02-54e7d1015daf';   // s140 — 이 상
 const GRACE_MS = 30 * 24 * 3600 * 1000;   // 검증 성공 뒤 30일은 오프라인에서도 연다
 const RECHECK_MS = 7 * 24 * 3600 * 1000;  // 7일마다 다시 묻는다 (환불·해지가 반영되도록)
 
-const ALL_BENEFIT_ID = '__ALL_BENEFIT_ID__';   // s149 2026-09-17 — 팀 키(전 린터 한 키 · Polar benefit) · 상품 benefit 다음에 한 번 더 묻는다
+const ALL_BENEFIT_ID = '22692551-5203-4467-b1a3-e33cdba6589d';   // s149 2026-09-17 — 팀 키(전 린터 한 키 · Polar benefit) · 상품 benefit 다음에 한 번 더 묻는다
 function validate(key) {
   return validate1(key, BENEFIT_ID).then(function (r) { return (r.ok || r.offline || !/^[0-9a-f-]{36}$/.test(ALL_BENEFIT_ID)) ? r : validate1(key, ALL_BENEFIT_ID); });
 }
