@@ -1,0 +1,51 @@
+{
+  "name": "dotnet-eol-support-gate",
+  "displayName": ".NET EOL & CRA Support Window Gate",
+  "description": "Reads a .csproj or global.json and dates every target framework against Microsoft's published end-of-support day, then against the support period you promise buyers.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "dotnet",
+    "net8.0 end of support",
+    "csproj",
+    "end of life",
+    "Cyber Resilience Act",
+    "maui",
+    "lifecycle"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "dotnetEolGate.checkFile",
+        "title": ".NET EOL & CRA Support Window Gate: Check this file",
+        "category": ".NET EOL & CRA Support Window Gate"
+      },
+      {
+        "command": "dotnetEolGate.checkWorkspace",
+        "title": ".NET EOL & CRA Support Window Gate: Sweep workspace and write report (licence)",
+        "category": ".NET EOL & CRA Support Window Gate"
+      },
+      {
+        "command": "dotnetEolGate.enterKey",
+        "title": ".NET EOL & CRA Support Window Gate: Enter licence key",
+        "category": ".NET EOL & CRA Support Window Gate"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/dotnet-eol-support-gate"
+}
