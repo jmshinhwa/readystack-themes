@@ -2,7 +2,7 @@
   "name": "otel-collector-drift-lint",
   "displayName": "OTel Collector Drift Lint",
   "description": "Flags removed Collector components and legacy semantic-convention attribute names in OpenTelemetry Collector YAML before the upgrade drops your pipeline.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
