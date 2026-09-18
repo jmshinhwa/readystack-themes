@@ -1,0 +1,53 @@
+{
+  "name": "firebase-deploy-leak-audit",
+  "displayName": "Firebase Deploy Leak Audit",
+  "description": "Audits firebase.json before you run firebase deploy: ignore lists that let .env, source maps and admin keys reach the public bundle, catch-all public roots, and missing response headers.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "firebase",
+    "firebase.json",
+    "firebase hosting",
+    "deploy",
+    "security headers",
+    "env leak",
+    "source maps"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "firebaseDeployAudit.checkFile",
+        "title": "Firebase Deploy Leak Audit: Check this file",
+        "category": "Firebase Deploy Leak Audit"
+      },
+      {
+        "command": "firebaseDeployAudit.checkWorkspace",
+        "title": "Firebase Deploy Leak Audit: Sweep workspace and write report (licence)",
+        "category": "Firebase Deploy Leak Audit"
+      },
+      {
+        "command": "firebaseDeployAudit.enterKey",
+        "title": "Firebase Deploy Leak Audit: Enter licence key",
+        "category": "Firebase Deploy Leak Audit"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "firebase-deploy-leak-audit"
+  },
+  "homepage": "https://getreadystack.com/tools/firebase-deploy-leak-audit",
+  "icon": "icon.png"
+}
