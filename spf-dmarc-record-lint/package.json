@@ -1,0 +1,54 @@
+{
+  "name": "spf-dmarc-record-lint",
+  "displayName": "SPF & DMARC Record Lint",
+  "description": "Counts the DNS lookups in an SPF record before you publish it, and checks DMARC/DKIM tags in zone files, Terraform and YAML. 19 offline checks, current with the May 2026 DMARC rewrite.",
+  "version": "1.1.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "spf",
+    "dmarc",
+    "dkim",
+    "dns",
+    "email-authentication",
+    "zone-file",
+    "terraform",
+    "deliverability"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "spfDmarcLint.checkFile",
+        "title": "SPF & DMARC Record Lint: Check this file",
+        "category": "SPF & DMARC Record Lint"
+      },
+      {
+        "command": "spfDmarcLint.checkWorkspace",
+        "title": "SPF & DMARC Record Lint: Sweep workspace and write report (licence)",
+        "category": "SPF & DMARC Record Lint"
+      },
+      {
+        "command": "spfDmarcLint.enterKey",
+        "title": "SPF & DMARC Record Lint: Enter licence key",
+        "category": "SPF & DMARC Record Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "spf-dmarc-record-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/spf-dmarc-record-lint",
+  "icon": "icon.png"
+}
