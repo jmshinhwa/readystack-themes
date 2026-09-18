@@ -1,0 +1,54 @@
+{
+  "name": "coppa-notice-lint-2026",
+  "displayName": "COPPA 2026 Notice Lint",
+  "description": "Checks a children's privacy notice against the amended COPPA Rule that became fully enforceable 22 April 2026: published retention policy, separate third-party consent, listed operators.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "coppa",
+    "children privacy",
+    "privacy policy",
+    "kids app",
+    "ftc",
+    "edtech",
+    "compliance",
+    "linter"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "coppaNotice.checkFile",
+        "title": "COPPA Notice Lint: Check this file",
+        "category": "COPPA Notice Lint"
+      },
+      {
+        "command": "coppaNotice.checkWorkspace",
+        "title": "COPPA Notice Lint: Sweep workspace and write report (licence)",
+        "category": "COPPA Notice Lint"
+      },
+      {
+        "command": "coppaNotice.enterKey",
+        "title": "COPPA Notice Lint: Enter licence key",
+        "category": "COPPA Notice Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "coppa-notice-lint-2026"
+  },
+  "homepage": "https://getreadystack.com/tools/coppa-notice-lint-2026",
+  "icon": "icon.png"
+}
