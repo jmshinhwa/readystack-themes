@@ -1,0 +1,52 @@
+{
+  "name": "pci-payment-page-audit",
+  "displayName": "PCI Payment Page Script Audit",
+  "description": "Lints checkout/payment HTML for PCI DSS v4.0.1 Req 6.4.3 and 11.6.1: unpinned third-party scripts, missing SRI, weak CSP, session-replay, card fields in page scope.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "pci-dss",
+    "checkout",
+    "payment",
+    "subresource-integrity",
+    "csp",
+    "ecommerce",
+    "security",
+    "compliance"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pciPaymentPageAudit.checkFile",
+        "title": "PCI Payment Page Script Audit: Check this file",
+        "category": "PCI Payment Page Script Audit"
+      },
+      {
+        "command": "pciPaymentPageAudit.checkWorkspace",
+        "title": "PCI Payment Page Script Audit: Sweep workspace and write report (licence)",
+        "category": "PCI Payment Page Script Audit"
+      },
+      {
+        "command": "pciPaymentPageAudit.enterKey",
+        "title": "PCI Payment Page Script Audit: Enter licence key",
+        "category": "PCI Payment Page Script Audit"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/pci-payment-page-audit"
+}
