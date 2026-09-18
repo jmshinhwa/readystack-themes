@@ -2,17 +2,21 @@
 const https = require('https');
 const ORG_ID = 'a5cdf664-d8e7-4f87-8895-056717aaba17';
 const BUY_URL = 'https://buy.polar.sh/polar_cl_07mSVlz7fr17gPaZoRoBDimnxBpH5NEL1ev3L2i4LBz';
-const BENEFIT_ID = 'aa6ac0f5-9ef4-47f8-8e4f-0ce04598b498';   // s140 — 이 상품의 benefit. validate 가 이걸로 묻는다
+const BENEFIT_ID = 'aa6ac0f5-9ef4-47f8-8e4f-0ce04598b498';   // s140 — 이 상품의 benefit. till.py 가 찍는다 · validate 가 이걸로 묻는다 (⛔조직만 물으면 키 하나로 전부 열린다)
 const GRACE_MS = 30 * 24 * 3600 * 1000;   // 검증 성공 뒤 30일은 오프라인에서도 연다
 const RECHECK_MS = 7 * 24 * 3600 * 1000;  // 7일마다 다시 묻는다 (환불·해지가 반영되도록)
 
+const ALL_BENEFIT_ID = '22692551-5203-4467-b1a3-e33cdba6589d';   // s149 2026-09-17 — 팀 키(전 린터 한 키 · Polar benefit) · 상품 benefit 다음에 한 번 더 묻는다
 function validate(key) {
+  return validate1(key, BENEFIT_ID).then(function (r) { return (r.ok || r.offline || !/^[0-9a-f-]{36}$/.test(ALL_BENEFIT_ID)) ? r : validate1(key, ALL_BENEFIT_ID); });
+}
+function validate1(key, ben) {
   return new Promise(function (resolve) {
-    const body = JSON.stringify(/^[0-9a-f-]{36}$/.test(BENEFIT_ID) ? { key: key, organization_id: ORG_ID, benefit_id: BENEFIT_ID } : { key: key, organization_id: ORG_ID });
+    const body = JSON.stringify(/^[0-9a-f-]{36}$/.test(ben) ? { key: key, organization_id: ORG_ID, benefit_id: ben } : { key: key, organization_id: ORG_ID });
     const req = https.request({
       hostname: 'api.polar.sh', path: '/v1/customer-portal/license-keys/validate',
       method: 'POST', timeout: 8000,
-      headers: { 'content-type': 'application/json', 'content-length': Buffer.byteLength(body) }
+      headers: { 'content-type': 'application/json', 'polar-version': '2026-04', 'content-length': Buffer.byteLength(body) }
     }, function (res) {
       let buf = '';
       res.on('data', function (d) { buf += d; });
