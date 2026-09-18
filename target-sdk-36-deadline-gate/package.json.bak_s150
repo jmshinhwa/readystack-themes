@@ -1,0 +1,54 @@
+{
+  "name": "target-sdk-36-deadline-gate",
+  "displayName": "targetSdk 36 Deadline Gate (Google Play)",
+  "description": "Reads your AndroidManifest.xml and app/build.gradle and tells you what breaks when you raise targetSdk to 36 before Google Play's 31 August 2026 deadline. Date-aware. Runs offline.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "targetsdk",
+    "android",
+    "google play",
+    "api level 36",
+    "android 16",
+    "react native",
+    "flutter",
+    "edge-to-edge",
+    "deadline"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "targetSdk36.checkFile",
+        "title": "targetSdk 36 Deadline Gate (Google Play): Check this file",
+        "category": "targetSdk 36 Deadline Gate (Google Play)"
+      },
+      {
+        "command": "targetSdk36.checkWorkspace",
+        "title": "targetSdk 36 Deadline Gate (Google Play): Sweep workspace and write report (licence)",
+        "category": "targetSdk 36 Deadline Gate (Google Play)"
+      },
+      {
+        "command": "targetSdk36.enterKey",
+        "title": "targetSdk 36 Deadline Gate (Google Play): Enter licence key",
+        "category": "targetSdk 36 Deadline Gate (Google Play)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/target-sdk-36-deadline-gate",
+  "icon": "icon.png"
+}
