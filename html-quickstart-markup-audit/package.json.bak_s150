@@ -1,0 +1,112 @@
+{
+  "name": "html-quickstart-markup-audit",
+  "displayName": "HTML Quickstart & Markup Audit — 8 Packs",
+  "description": "34 snippets and 30 rules across 8 HTML packs. The European Accessibility Act (EU Directive 2019/882) has applied to new products placed on the EU market since 28 June 2025, and a missing alt or a miss",
+  "version": "0.1.0",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Snippets",
+    "Linters"
+  ],
+  "keywords": [
+    "html",
+    "quickstart",
+    "accessibility",
+    "picture-element",
+    "lit-html"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "html-quickstart-markup-audit.audit_file",
+        "title": "Check this file against all 30 markup rules",
+        "category": "HTML Quickstart & Markup"
+      },
+      {
+        "command": "html-quickstart-markup-audit.audit_selection",
+        "title": "Check only the lines you selected",
+        "category": "HTML Quickstart & Markup"
+      },
+      {
+        "command": "html-quickstart-markup-audit.insert_snippet",
+        "title": "Insert a snippet from the 8 packs",
+        "category": "HTML Quickstart & Markup"
+      },
+      {
+        "command": "html-quickstart-markup-audit.list_rules",
+        "title": "Show the 30 rules and 34 snippets inside",
+        "category": "HTML Quickstart & Markup"
+      },
+      {
+        "command": "html-quickstart-markup-audit.workspace_scan",
+        "title": "Check every file in this workspace",
+        "category": "HTML Quickstart & Markup"
+      },
+      {
+        "command": "html-quickstart-markup-audit.export_report",
+        "title": "Write the findings out as a file",
+        "category": "HTML Quickstart & Markup"
+      },
+      {
+        "command": "html-quickstart-markup-audit.quick_fix",
+        "title": "Replace the offending line with the correct markup",
+        "category": "HTML Quickstart & Markup"
+      }
+    ],
+    "configuration": {
+      "title": "HTML Quickstart & Markup Audit — 8 Packs",
+      "properties": {
+        "html-quickstart-markup-audit.report_format": {
+          "type": "string",
+          "default": "html",
+          "description": "Format of the exported findings file"
+        },
+        "html-quickstart-markup-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files the workspace check will open"
+        },
+        "html-quickstart-markup-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,dist,build,out,.git,coverage,vendor}/**",
+          "description": "Paths the workspace check skips"
+        },
+        "html-quickstart-markup-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 30 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "css",
+        "path": "./snippets/css.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "xml",
+        "path": "./snippets/xml.code-snippets"
+      }
+    ]
+  }
+}
