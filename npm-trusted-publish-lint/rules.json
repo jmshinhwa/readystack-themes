@@ -1,0 +1,100 @@
+[
+  {
+    "id": "stored_npm_token",
+    "sev": "error",
+    "re": "(NODE_AUTH_TOKEN|secrets\\.[A-Z_]*NPM[A-Z_]*TOKEN)",
+    "msg": "Publish step authenticates with a stored npm token. Classic tokens were revoked on 2025-12-09 and granular write tokens are capped at a 90-day lifetime, so a token minted on {today} cannot outlive {expiry90}. Move this job to OIDC trusted publishing (id-token: write)."
+  },
+  {
+    "id": "npmrc_authtoken",
+    "sev": "error",
+    "re": "_authToken",
+    "msg": "Writes an _authToken line into .npmrc. That file sits on the runner for the rest of the job, so every dependency lifecycle script that runs afterwards can read your publish credential. Trusted publishing needs no .npmrc secret."
+  },
+  {
+    "id": "literal_npm_token",
+    "sev": "error",
+    "re": "npm_[A-Za-z0-9]{30,}",
+    "msg": "A literal npm access token is written in this file. Revoke it in your npmjs.com access tokens page now: once it is pushed, the history keeps it even after you delete the line."
+  },
+  {
+    "id": "insecure_registry",
+    "sev": "error",
+    "re": "registry[^\\n]*http://",
+    "msg": "Registry URL uses plain http, so the publish request and any credential in it cross the network unencrypted. Use https://registry.npmjs.org."
+  },
+  {
+    "id": "write_all_permissions",
+    "sev": "error",
+    "re": "permissions:\\s*write-all",
+    "msg": "permissions: write-all hands every step in this workflow full write access to the repository. Set contents: read at the top of the file and grant id-token: write only on the publish job."
+  },
+  {
+    "id": "publish_without_provenance",
+    "sev": "warn",
+    "re": "npm\\s+publish",
+    "unless": "--provenance|provenance\"?\\s*:\\s*true",
+    "msg": "npm publish runs without --provenance, so the tarball on the registry carries no signed attestation tying it to this repository and this workflow run. Add --provenance, or set publishConfig.provenance to true in package.json."
+  },
+  {
+    "id": "mutable_action_ref",
+    "sev": "warn",
+    "re": "uses:\\s*[\\w.\\-]+/[\\w.\\-]+@(main|master|latest|HEAD)\\b",
+    "msg": "This action is pinned to a moving ref. Whoever can push that branch decides what runs in the job that holds your release credentials. Pin the action to a full commit SHA."
+  },
+  {
+    "id": "pull_request_target_trigger",
+    "sev": "warn",
+    "re": "pull_request_target",
+    "msg": "pull_request_target runs with repository secrets reachable while handling code proposed from a fork. Keep a workflow that can publish on release or tag triggers only."
+  },
+  {
+    "id": "old_npm_cli_pin",
+    "sev": "warn",
+    "re": "npm@(10|[0-9])(\\.|\\b)",
+    "msg": "The CLI is pinned to npm 10 or older. OIDC trusted publishing landed in npm 11.5.1, so an older CLI silently falls back to token auth and fails once the token expires."
+  },
+  {
+    "id": "node_18_or_older",
+    "sev": "warn",
+    "re": "node-version:\\s*['\"]?(1[0-8]|[0-9])(\\.|['\"]|\\s|$)",
+    "msg": "The job runs on Node 18 or older, which left security support on 2025-04-30. The release job is the last place to keep an unsupported runtime, and it also predates the npm CLI that speaks OIDC."
+  },
+  {
+    "id": "install_runs_scripts",
+    "sev": "warn",
+    "re": "npm\\s+(ci|install|i)\\b",
+    "unless_line": "--ignore-scripts",
+    "msg": "Dependency install inside a publishing workflow executes install scripts from every package in the tree, in the same job that can push to the registry. Use npm ci --ignore-scripts and run builds explicitly."
+  },
+  {
+    "id": "curl_pipe_shell",
+    "sev": "warn",
+    "re": "curl[^\\n|]*\\|\\s*(sh|bash)",
+    "msg": "A script is downloaded and piped straight into a shell in the release job. Nothing pins or reviews those bytes, and they run beside your publish credential."
+  },
+  {
+    "id": "inline_otp",
+    "sev": "warn",
+    "re": "--otp=",
+    "msg": "The publish passes a one-time password on the command line, so the release needs a human awake and the value reaches the run log. Trusted publishing removes the OTP step entirely."
+  },
+  {
+    "id": "no_id_token_permission",
+    "kind": "file",
+    "sev": "error",
+    "need": "npm\\s+publish|npm-publish",
+    "unless": "id-token:\\s*write",
+    "anchor": "npm\\s+publish",
+    "msg": "This file publishes to npm but never requests id-token: write, so the runner cannot mint the OIDC token trusted publishing exchanges for a short-lived credential. Without it the job depends on a token that expires by {expiry90}."
+  },
+  {
+    "id": "no_environment_binding",
+    "kind": "file",
+    "sev": "warn",
+    "need": "npm\\s+publish",
+    "unless": "environment:",
+    "anchor": "npm\\s+publish",
+    "msg": "The publishing job is not bound to a deployment environment. A trusted publisher registered on npmjs.com with an environment name refuses a run from outside it, and the environment is where a release approval or a wait timer would live."
+  }
+]
