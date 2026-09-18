@@ -1,0 +1,141 @@
+{
+  "version": "1.0.0",
+  "scope": "EU/EEA (ePrivacy Directive 2002/58/EC Art. 5(3) as implemented nationally) and the UK (PECR reg. 6)",
+  "gate_markers": "type\\s*=\\s*[\"']text/plain[\"']|data-(cookieconsent|cookiecategory|cookieblock|category|consent|cmp[a-z-]*|klaro|borlabs|cmplz|usercentrics|iub)\\b|class\\s*=\\s*[\"'][^\"']*(cmplz-|klaro|optanon)",
+  "cmp_loaders": "cookiebot|klaro|usercentrics|onetrust|optanon|cookieyes|cookie-?law-?info|complianz|cmplz|borlabs|osano|termly|iubenda|axeptio|didomi|tarteaucitron|cookieconsent",
+  "rules": [
+    {
+      "id": "analytics-before-consent",
+      "sev": "error",
+      "kind": "tag",
+      "pattern": "googletagmanager\\.com/(gtag/js|gtm\\.js)|google-analytics\\.com/(analytics|ga)\\.js|gtag\\.js",
+      "title": "Google Analytics / Tag Manager loads before consent",
+      "why": "ePrivacy Art. 5(3) / UK PECR reg. 6 require consent BEFORE the _ga cookie is written; GA4 writes it on load.",
+      "fix": "type=\"text/plain\" data-category=\"analytics\" and let your CMP unblock it after opt-in"
+    },
+    {
+      "id": "ad-pixel-before-consent",
+      "sev": "error",
+      "kind": "tag",
+      "pattern": "connect\\.facebook\\.net/[^\"']*fbevents\\.js|analytics\\.tiktok\\.com|static\\.ads-twitter\\.com|snap\\.licdn\\.com|sc-static\\.net/scevent|s\\.pinimg\\.com/ct",
+      "title": "Advertising pixel fires before consent",
+      "why": "Marketing pixels are never 'strictly necessary', so no consent means no lawful basis under Art. 5(3).",
+      "fix": "type=\"text/plain\" data-category=\"marketing\" and load it from the CMP callback"
+    },
+    {
+      "id": "ad-pixel-inline-snippet",
+      "sev": "error",
+      "kind": "line",
+      "pattern": "^(?!.*<script)(?!.*\\ssrc\\s*=).*(connect\\.facebook\\.net/[^\\\"'\\s]*fbevents\\.js|analytics\\.tiktok\\.com|static\\.ads-twitter\\.com/uwt\\.js|sc-static\\.net/scevent\\.min\\.js|snap\\.licdn\\.com/li\\.lms-analytics)",
+      "title": "Inline pixel snippet injects an ad tracker at parse time",
+      "why": "The copy-paste Meta/TikTok snippet builds its own <script> element, so blocking by tag attribute never sees it.",
+      "fix": "Wrap the whole snippet in your CMP's accepted callback, or park it as type=\"text/plain\" data-category=\"marketing\""
+    },
+    {
+      "id": "google-fonts-hotlinked",
+      "sev": "error",
+      "kind": "tag",
+      "pattern": "fonts\\.googleapis\\.com|fonts\\.gstatic\\.com",
+      "title": "Google Fonts hotlinked — the visitor's IP goes to Google",
+      "why": "LG Munchen I, 3 O 17493/20 (20 Jan 2022) awarded a visitor EUR 100 for exactly this embed.",
+      "fix": "Self-host the .woff2 files and serve them from your own origin"
+    },
+    {
+      "id": "youtube-embed-not-nocookie",
+      "sev": "error",
+      "kind": "tag",
+      "pattern": "(youtube\\.com|youtu\\.be)/(embed|watch)",
+      "title": "YouTube embed uses the tracking domain",
+      "why": "youtube.com/embed drops VISITOR_INFO1_LIVE on render; the nocookie host defers it.",
+      "fix": "Swap the host for youtube-nocookie.com, or click-to-load behind consent"
+    },
+    {
+      "id": "recaptcha-before-consent",
+      "sev": "error",
+      "kind": "tag",
+      "pattern": "google\\.com/recaptcha/api\\.js|hcaptcha\\.com/1/api\\.js",
+      "title": "CAPTCHA script loads on page view, not on form use",
+      "why": "It is only necessary while the form is being submitted, not while the page is merely read.",
+      "fix": "Inject the script on first focus of the form, or gate it as data-category=\"functional\""
+    },
+    {
+      "id": "session-replay-before-consent",
+      "sev": "error",
+      "kind": "tag",
+      "pattern": "static\\.hotjar\\.com|clarity\\.ms|fullstory\\.com/s/fs\\.js|smartlook|mouseflow|luckyorange",
+      "title": "Session recorder starts before consent",
+      "why": "Replay tools capture keystrokes and can sweep in special-category data, so regulators treat them as high risk.",
+      "fix": "Start the recorder only from the CMP's accepted callback"
+    },
+    {
+      "id": "maps-iframe-before-consent",
+      "sev": "error",
+      "kind": "tag",
+      "pattern": "google\\.com/maps/embed|maps\\.googleapis\\.com",
+      "title": "Google Maps iframe loads before consent",
+      "why": "The iframe contacts Google and transfers the IP address on page load, same as the Fonts case.",
+      "fix": "Show a static image placeholder and load the iframe on click, after consent"
+    },
+    {
+      "id": "tracker-preconnect",
+      "sev": "warn",
+      "kind": "tag",
+      "pattern": "rel\\s*=\\s*[\"'](preconnect|dns-prefetch|preload)[\"'][^>]*(google-analytics|googletagmanager|facebook\\.net|doubleclick|hotjar|fonts\\.gstatic)",
+      "title": "preconnect opens a tracker connection before consent",
+      "why": "A preconnect completes a TLS handshake, so the visitor's IP reaches the tracker even if the script never runs.",
+      "fix": "Delete the hint, or add it from JS after consent is stored"
+    },
+    {
+      "id": "inline-cookie-write",
+      "sev": "error",
+      "kind": "line",
+      "pattern": "document\\.cookie\\s*=\\s*[\"'`][^\"'`]*(_ga|_gid|_fbp|_fbc|utm_|visitor|tracking)",
+      "title": "Inline script writes a tracking cookie",
+      "why": "Art. 5(3) covers any storage on the device, not just third-party scripts.",
+      "fix": "Move the write inside the consent callback"
+    },
+    {
+      "id": "inline-storage-write",
+      "sev": "warn",
+      "kind": "line",
+      "pattern": "(localStorage|sessionStorage)\\.setItem\\(\\s*[\"'`][^\"'`]*(utm|campaign|visitor|clientId|client_id|_ga|fbclid|gclid)",
+      "title": "Inline script stores a campaign identifier",
+      "why": "localStorage is 'information stored in the terminal equipment' under Art. 5(3), exactly like a cookie.",
+      "fix": "Write it only after the marketing category is accepted"
+    },
+    {
+      "id": "consent-attr-typo",
+      "sev": "warn",
+      "kind": "tag",
+      "pattern": "type\\s*=\\s*[\"']text/plain[\"'](?![^>]*data-)",
+      "title": "Script is parked as text/plain but carries no category attribute",
+      "why": "No CMP can ever unblock it, so the tag is dead rather than gated.",
+      "fix": "Add the data-category / data-cookieconsent attribute your CMP expects",
+      "on_gated": true
+    },
+    {
+      "id": "no-cmp-present",
+      "sev": "error",
+      "kind": "doc",
+      "title": "Trackers are present but no consent platform loads on this page",
+      "why": "Without a CMP nothing can ever be blocked or unblocked, so every tracker above runs unconditionally.",
+      "fix": "Add a CMP (Klaro, Cookiebot, Complianz, OneTrust...) and gate every tag listed here"
+    },
+    {
+      "id": "cmp-after-tracker",
+      "sev": "error",
+      "kind": "doc",
+      "title": "The consent banner loads after a tracker that is already running",
+      "why": "HTML executes top-down: a tag above the CMP has already fired by the time the banner is drawn.",
+      "fix": "Move the CMP loader above every third-party tag in <head>"
+    },
+    {
+      "id": "gtag-consent-default-missing",
+      "sev": "error",
+      "kind": "doc",
+      "title": "Google tag present without a Consent Mode v2 default state",
+      "why": "Since March 2024 Google requires ad_storage / analytics_storage / ad_user_data / ad_personalization defaults for EEA traffic.",
+      "fix": "Call gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'}) before the tag loads"
+    }
+  ]
+}
