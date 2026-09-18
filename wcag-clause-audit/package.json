@@ -2,7 +2,7 @@
   "name": "wcag-clause-audit",
   "displayName": "WCAG 2.1 AA Audit: ADA Title II, EAA, 508",
   "description": "Flags accessibility failures in the open file, cites the exact WCAG success criterion and EN 301 549 clause, and tells you which standard version and deadline actually bind you.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
