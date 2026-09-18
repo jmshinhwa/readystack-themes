@@ -2,7 +2,7 @@
   "name": "wp-plugin-review-gate",
   "displayName": "WP Plugin Review Gate",
   "description": "Checks readme.txt and the main plugin header for the WordPress.org Plugin Review rules that send a submission or an update back to you.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
