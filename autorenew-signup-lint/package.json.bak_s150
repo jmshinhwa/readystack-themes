@@ -1,0 +1,55 @@
+{
+  "name": "autorenew-signup-lint",
+  "displayName": "Auto-Renewal Signup Lint (California ARL)",
+  "description": "Lints subscription signup and pricing pages against California's Automatic Renewal Law as amended by AB 2863, in force 2026-01-01.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "auto-renewal",
+    "subscription",
+    "checkout",
+    "california-arl",
+    "ab-2863",
+    "click-to-cancel",
+    "negative-option",
+    "compliance",
+    "dark-patterns"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "autoRenewLint.checkFile",
+        "title": "Auto-Renewal Lint: Check this file",
+        "category": "Auto-Renewal Lint"
+      },
+      {
+        "command": "autoRenewLint.checkWorkspace",
+        "title": "Auto-Renewal Lint: Sweep workspace and write report (licence)",
+        "category": "Auto-Renewal Lint"
+      },
+      {
+        "command": "autoRenewLint.enterKey",
+        "title": "Auto-Renewal Lint: Enter licence key",
+        "category": "Auto-Renewal Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "autorenew-signup-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/autorenew-signup-lint",
+  "icon": "icon.png"
+}
