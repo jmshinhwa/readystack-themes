@@ -2,7 +2,7 @@
   "name": "gpsr-listing-lint",
   "displayName": "GPSR Listing Lint",
   "description": "Audits product feed files (CSV/TSV/XML) against GPSR Article 19: manufacturer address, EU Responsible Person, product picture and identifier, warnings. 12 rules, offline.",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -45,7 +45,8 @@
   "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jmshinhwa-ai/readystack"
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "gpsr-listing-lint"
   },
   "homepage": "https://getreadystack.com/tools/gpsr-listing-lint",
   "icon": "icon.png"
