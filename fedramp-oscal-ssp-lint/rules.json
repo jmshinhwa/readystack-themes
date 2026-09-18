@@ -1,0 +1,18 @@
+[
+  {"id":"json_parse","sev":"high","msg":"The file is not parseable JSON, so no validator can read it","fix":"Fix the JSON syntax first; OSCAL tooling stops at the parser."},
+  {"id":"root_key","sev":"high","msg":"Top-level key is not \"system-security-plan\"","fix":"An OSCAL SSP document has exactly one root object key: system-security-plan."},
+  {"id":"required_assembly","sev":"high","msg":"Required SSP assembly is missing","fix":"metadata, import-profile, system-characteristics, system-implementation and control-implementation are all required."},
+  {"id":"metadata_field","sev":"high","msg":"Required metadata field is missing","fix":"metadata needs title, last-modified, version and oscal-version."},
+  {"id":"dt_no_timezone","sev":"high","msg":"Timestamp has no timezone offset","fix":"OSCAL dateTime-with-timezone requires a trailing Z or +HH:MM, e.g. 2026-09-17T09:00:00-04:00."},
+  {"id":"uuid_shape","sev":"high","msg":"Value is not an RFC 4122 version 4 or 5 UUID","fix":"Generate a real v4 uuid; the OSCAL uuid datatype pins the version nibble to 4 or 5."},
+  {"id":"dangling_uuid","sev":"high","msg":"Reference points at a uuid that is not defined in this file","fix":"Define the component, party or user it names, or correct the reference."},
+  {"id":"control_id_case","sev":"high","msg":"control-id is not in OSCAL lower-dotted form","fix":"Write ac-2.1, not AC-2(1); OSCAL control ids are lowercase and use a dot for the enhancement."},
+  {"id":"sensitivity_level","sev":"high","msg":"security-sensitivity-level is outside the FIPS 199 vocabulary","fix":"Use fips-199-low, fips-199-moderate or fips-199-high."},
+  {"id":"impact_objective","sev":"high","msg":"security-impact-level is incomplete or outside the FIPS 199 vocabulary","fix":"All three objectives (confidentiality, integrity, availability) are required, each fips-199-low/moderate/high."},
+  {"id":"impl_status","sev":"med","msg":"implemented-requirement carries no implementation-status prop","fix":"Add a props entry named implementation-status with implemented, partial, planned, alternative or not-applicable."},
+  {"id":"planned_no_date","sev":"med","msg":"implementation-status planned has no planned-completion-date","fix":"A planned control needs a planned-completion-date prop and a matching POA&M item."},
+  {"id":"planned_overdue","sev":"med","msg":"planned-completion-date has already passed","fix":"Close the control or move the date and update the POA&M before the package is read."},
+  {"id":"placeholder_text","sev":"med","msg":"Placeholder text left in prose a reviewer reads","fix":"Replace TBD/TODO/Lorem ipsum/<insert with the real narrative."},
+  {"id":"conmon_stale","sev":"med","msg":"metadata.last-modified is more than 365 days old","fix":"Continuous monitoring expects the SSP to be reviewed and re-stamped each year."},
+  {"id":"oscal_version_old","sev":"low","msg":"oscal-version is on the 1.0 line","fix":"The OSCAL 1.1 line is current; re-state oscal-version once the document is migrated."}
+]
