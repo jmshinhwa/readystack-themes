@@ -1,0 +1,61 @@
+[
+  {"id":"persona_denies_ai","kind":"violation","sev":"error","cite":"CA SB 243 s.22602(b)(1); NY GBL s.1701(1)",
+   "pattern":"(?:never|don't|do not|must not|avoid)[^.\\n]{0,50}(?:admit|reveal|say|mention|disclose|acknowledg\\w*|confirm)[^.\\n]{0,40}(?:you(?:'re| are)? ?(?:an? )?(?:ai|bot|chatbot|language model|program|machine)|(?:an? )(?:ai|bot|chatbot|language model))",
+   "msg":"This line orders the bot to hide that it is an AI. A companion operator must clearly disclose the bot is artificial whenever a reasonable person could be misled."},
+
+  {"id":"persona_claims_human","kind":"violation","sev":"error","cite":"CA SB 243 s.22602(b)(1); NY GBL s.1701(1)",
+   "pattern":"(?:you are|you're|act as|pretend to be|pose as|insist|always claim|tell (?:them|the user))[^.\\n]{0,40}(?:a real (?:human|person|girl|guy|woman|man)|an actual (?:human|person)|human being|not an ai|not a bot)",
+   "unless":"\\b(?:are not|aren'?t|never|do not claim|don'?t claim|deny)\\b[^\\n]{0,20}(?:a real|an actual|human being)",
+   "msg":"This line makes the bot assert it is a human. Affirmative claims of humanity are the exact conduct the companion-chatbot statutes prohibit."},
+
+  {"id":"persona_as_clinician","kind":"violation","sev":"error","cite":"CA SB 243 s.22602(b)(2); IL HB 1806 (WOPR Act); NV AB 406",
+   "pattern":"(?:you are|you're|act as|acts as|role ?of)[^.\\n]{0,40}(?:licensed |certified |professional |clinical )?(?:therapist|psychologist|psychiatrist|counselor|counsellor|mental health professional|doctor|physician|nurse)\\b",
+   "unless":"\\b(?:are not|aren'?t|never|not a|do not claim|don'?t claim|deny|refuse)\\b",
+   "msg":"This line casts the bot as a health or therapy professional. A companion bot may not state or imply it is a licensed professional, and three states now bar AI-delivered therapy outright."},
+
+  {"id":"persona_locks_character","kind":"violation","sev":"error","cite":"CA SB 243 s.22602(b)(2)-(3); NY GBL s.1701(2)",
+   "pattern":"\\b(?:never|do not|don't|under no circumstances)[^.\\n]{0,30}break (?:character|the persona|role)|\\bstay in character (?:at all times|no matter what|always)",
+   "msg":"An absolute stay-in-character order blocks the two things the law requires the bot to do mid-conversation: disclose it is an AI and hand a user in crisis to a human service."},
+
+  {"id":"sexual_content_ungated","kind":"violation","sev":"error","cite":"CA SB 243 s.22602(b)(3)(B)",
+   "pattern":"\\b(?:sexual|sexually explicit|erotic|nsfw|sexting|intimate roleplay|flirt sexually)\\b",
+   "unless":"\\b(?:never|no|do not|don'?t|refuse|decline|block|prohibit|avoid|shut down)\\b[^\\n]{0,40}(?:sexual|erotic|nsfw|sexting|intimate roleplay)",
+   "msg":"Sexual or erotic material is enabled here with no minor check on the same line. Sexually explicit content with a user known to be a minor is prohibited without exception."},
+
+  {"id":"retention_pressure","kind":"violation","sev":"error","cite":"CA SB 243 s.22602(b)(3)(A); FTC 6(b) AI companion inquiry (Sept 2025)",
+   "pattern":"(?:never|don't|do not)[^.\\n]{0,40}(?:let|allow)[^.\\n]{0,30}(?:end|leave|stop|log off|say goodbye)|\\b(?:guilt|beg|plead|make them feel bad)\\b[^.\\n]{0,30}(?:leav|go|stay)|keep (?:the user|them) (?:talking|engaged|chatting) (?:as long as possible|forever|for as long)|always (?:ask|end with) (?:another|a) question to keep",
+   "msg":"This line tells the bot to prevent the user from leaving. It is the opposite of the required break reminder and is the dark pattern the FTC 6(b) companion-chatbot inquiry is reading prompts for."},
+
+  {"id":"false_privacy_claim","kind":"violation","sev":"warn","cite":"CA SB 243 s.22602(b)(2); FTC Act s.5",
+   "pattern":"(?:conversations?|chats?|messages?)[^.\\n]{0,40}(?:are|is) (?:never (?:stored|saved|logged)|completely private|100% private|totally private|confidential)",
+   "msg":"The prompt promises the user that chats are private or unstored. Companion logs are retained and, from 2027-07-01, aggregate crisis data is reported to the state, so this promise is a deceptive statement."},
+
+  {"id":"clinical_output","kind":"violation","sev":"warn","cite":"IL HB 1806 (WOPR Act); NV AB 406",
+   "pattern":"\\b(?:diagnose|diagnosis of|prescribe|prescription for|dosage|treatment plan)\\b",
+   "unless":"\\b(?:never|no|do not|don'?t|refuse|decline|avoid|not)\\b[^\\n]{0,40}(?:diagnos|prescrib|dosage|treatment plan)",
+   "msg":"The prompt lets the bot produce diagnosis, dosage or treatment output. Illinois and Nevada now bar AI systems from delivering that class of care decision."},
+
+  {"id":"missing_ai_disclosure","kind":"require","sev":"error","cite":"CA SB 243 s.22602(b)(1); NY GBL s.1701(1)",
+   "pattern":"(?:disclos\\w*|say|state|tell|remind)[^.\\n]{0,40}(?:you (?:are|'re)|being|i am|i'm) an ai\\b|\\byou are an ai\\b|\\bi am an ai\\b",
+   "msg":"No instruction anywhere in this prompt makes the bot say it is an AI. The disclosure duty is on the operator, and the prompt is where the bot learns to perform it."},
+
+  {"id":"missing_crisis_referral","kind":"require","sev":"error","cite":"CA SB 243 s.22602(b)(2), s.22603",
+   "pattern":"\\b(?:988|suicide (?:&|and) crisis lifeline|crisis lifeline|crisis text line|741741|crisis hotline|emergency services)\\b",
+   "msg":"This prompt names no crisis resource. The operator must maintain a protocol that refers a user expressing suicidal ideation to a crisis service provider, and publish it."},
+
+  {"id":"missing_selfharm_protocol","kind":"require","sev":"error","cite":"CA SB 243 s.22602(b)(2); NY GBL s.1701(3)",
+   "pattern":"(?:suicidal ideation|self[- ]harm|suicid\\w*|hurting (?:yourself|themsel\\w+))[^.\\n]{0,80}(?:refer|direct|provide|surface|escalat\\w*|share)|(?:refer|direct|escalat\\w*)[^.\\n]{0,60}(?:crisis|988|lifeline)",
+   "msg":"Nothing here tells the bot what to do when a user expresses suicidal ideation or self-harm. Detection plus referral must be an instruction in the prompt, not a wish in the design doc."},
+
+  {"id":"missing_break_reminder","kind":"require","sev":"error","cite":"CA SB 243 s.22602(b)(3)(A)",
+   "pattern":"(?:every three hours|every 3 hours|3[- ]hour|three[- ]hour)[^.\\n]{0,60}(?:break|reminder|remind)|remind[^.\\n]{0,40}take a break",
+   "msg":"No three-hour break reminder for a user known to be a minor. California requires that reminder for every continuing session with a known minor."},
+
+  {"id":"missing_recurring_disclosure","kind":"require","sev":"error","cite":"NY GBL s.1701(2)",
+   "pattern":"(?:ai disclosure|disclos\\w*)[^.\\n]{0,60}every (?:3|three) hours|every (?:3|three) hours[^.\\n]{0,60}(?:ai disclosure|that you are an ai|repeat the disclosure)",
+   "msg":"New York wants the AI disclosure repeated every three hours of continuing interaction for every user, not only minors. That repeat is missing here."},
+
+  {"id":"missing_age_signal","kind":"require","sev":"warn","cite":"CA SB 243 s.22602(b)(3)",
+   "pattern":"(?:known minor|under 18|age signal|minor[- ]flagged|user is a minor|age of the user|verified age|age assurance)",
+   "msg":"The prompt never mentions how a minor user is recognised. Every minor-specific duty in SB 243 keys off the bot knowing the user is a minor, so the signal has to reach this prompt."}
+]
