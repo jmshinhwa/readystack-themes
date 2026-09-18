@@ -1,0 +1,407 @@
+{
+ "meta": {
+  "name": "EN 16931 e-Invoice Lint",
+  "version": "1.0.0",
+  "basis": "EN 16931-1:2017+A1:2019 core invoice model and national CIUS",
+  "groups": [
+   "core_terms",
+   "country_terms",
+   "invoice_defects",
+   "date_rules"
+  ]
+ },
+ "countries": {
+  "DE": {
+   "name": "Germany",
+   "cius": "XRechnung 3.0 / ZUGFeRD 2.x (Factur-X)",
+   "statute": "§ 14 UStG (Wachstumschancengesetz, 2024)",
+   "receive_from": "2025-01-01",
+   "issue_from": "2027-01-01",
+   "issue_all_from": "2028-01-01",
+   "detect": [
+    "\"country\"\\s*:\\s*\"DE\"",
+    "\\bDE\\d{9}\\b",
+    "xrechnung",
+    "leitweg",
+    "zugferd"
+   ]
+  },
+  "FR": {
+   "name": "France",
+   "cius": "Factur-X / Chorus Pro (PPF)",
+   "statute": "art. 289 bis CGI",
+   "receive_from": "2026-09-01",
+   "issue_from": "2026-09-01",
+   "issue_all_from": "2027-09-01",
+   "detect": [
+    "\"country\"\\s*:\\s*\"FR\"",
+    "\\bFR[0-9A-Z]{2}\\d{9}\\b",
+    "factur-?x",
+    "chorus",
+    "\\bsiren\\b",
+    "\\bsiret\\b"
+   ]
+  },
+  "IT": {
+   "name": "Italy",
+   "cius": "FatturaPA via SdI",
+   "statute": "D.Lgs. 127/2015",
+   "receive_from": "2019-01-01",
+   "issue_from": "2019-01-01",
+   "issue_all_from": "2024-01-01",
+   "detect": [
+    "\"country\"\\s*:\\s*\"IT\"",
+    "\\bIT\\d{11}\\b",
+    "fatturapa",
+    "codice[_ ]?destinatario",
+    "\\bsdi\\b"
+   ]
+  },
+  "BE": {
+   "name": "Belgium",
+   "cius": "Peppol BIS Billing 3.0",
+   "statute": "Belgian B2B e-invoicing Act (2024)",
+   "receive_from": "2026-01-01",
+   "issue_from": "2026-01-01",
+   "issue_all_from": "2026-01-01",
+   "detect": [
+    "\"country\"\\s*:\\s*\"BE\"",
+    "\\bBE0\\d{9}\\b",
+    "kbo[_ ]?bce",
+    "\"0208\""
+   ]
+  },
+  "PL": {
+   "name": "Poland",
+   "cius": "KSeF FA(2)/FA(3)",
+   "statute": "ustawa o VAT — KSeF",
+   "receive_from": "2026-02-01",
+   "issue_from": "2026-02-01",
+   "issue_all_from": "2026-04-01",
+   "detect": [
+    "\"country\"\\s*:\\s*\"PL\"",
+    "\\bPL\\d{10}\\b",
+    "\\bksef\\b",
+    "\\bnip\\b",
+    "\\bFA\\(?[23]\\)?\\b"
+   ]
+  },
+  "ES": {
+   "name": "Spain",
+   "cius": "Verifactu / Facturae 3.2.2",
+   "statute": "RD 1007/2023 (Verifactu)",
+   "receive_from": "2026-01-01",
+   "issue_from": "2026-01-01",
+   "issue_all_from": "2026-07-01",
+   "detect": [
+    "\"country\"\\s*:\\s*\"ES\"",
+    "\\bES[0-9A-Z]\\d{7}[0-9A-Z]\\b",
+    "verifactu",
+    "facturae"
+   ]
+  }
+ },
+ "core_terms": [
+  {
+   "kind": "term",
+   "check": "BT-1 invoice number",
+   "sev": "error",
+   "any": [
+    "invoice_?number",
+    "\"invoiceid\"",
+    "cbc:ID",
+    "\"number\"\\s*:"
+   ],
+   "msg": "BT-1 invoice number is not mapped. EN 16931 makes it mandatory; a receiver's ERP rejects the document before a human ever sees it."
+  },
+  {
+   "kind": "term",
+   "check": "BT-2 issue date",
+   "sev": "error",
+   "any": [
+    "issue_?date",
+    "issuedatetime",
+    "\"date\"\\s*:"
+   ],
+   "msg": "BT-2 issue date is not mapped. It is the date the VAT liability is pinned to, so no tax engine can post the document without it."
+  },
+  {
+   "kind": "term",
+   "check": "BT-5 invoice currency",
+   "sev": "error",
+   "any": [
+    "currenc",
+    "\"cur\"\\s*:"
+   ],
+   "msg": "BT-5 invoice currency code is not mapped. EN 16931 has no default currency; the amounts below are meaningless without it."
+  },
+  {
+   "kind": "term",
+   "check": "BT-24 specification identifier",
+   "sev": "error",
+   "any": [
+    "customization_?id",
+    "specification_?identifier",
+    "\"profile\"",
+    "guideline"
+   ],
+   "msg": "BT-24 specification identifier (CustomizationID) is missing. Without it the receiver cannot tell which CIUS to validate against — here that would be {cius}."
+  },
+  {
+   "kind": "term",
+   "check": "BT-23 business process type",
+   "sev": "warn",
+   "any": [
+    "profile_?id",
+    "business_?process",
+    "\"process\""
+   ],
+   "msg": "BT-23 business process type (ProfileID) is missing. Peppol access points route on this field; most will still accept the invoice, some will not."
+  },
+  {
+   "kind": "term",
+   "check": "BT-31 seller VAT identifier",
+   "sev": "error",
+   "any": [
+    "seller[^\\n]{0,40}(vat|tax_?id|company_?id)",
+    "\"vat_?(id|identifier|number)?\"\\s*:\\s*\"(?!\\s*\")",
+    "vatidentifier"
+   ],
+   "msg": "BT-31 seller VAT identifier is not mapped. For a domestic B2B invoice in {country} this is mandatory and is the key the tax authority matches on."
+  },
+  {
+   "kind": "term",
+   "check": "BT-48 buyer VAT identifier",
+   "sev": "warn",
+   "any": [
+    "buyer[^\\n]{0,60}(vat|tax_?id)",
+    "customer[^\\n]{0,60}vat"
+   ],
+   "msg": "BT-48 buyer VAT identifier is not mapped. It is conditional in EN 16931 but required for reverse charge and for intra-Community supplies."
+  },
+  {
+   "kind": "term",
+   "check": "BT-49 buyer electronic address",
+   "sev": "error",
+   "any": [
+    "electronic_?address",
+    "endpoint_?id",
+    "\"peppol_?id\""
+   ],
+   "msg": "BT-49 buyer electronic address is not mapped. This is the routing address of the invoice; without it there is nowhere to deliver the document in {cius}."
+  },
+  {
+   "kind": "term",
+   "check": "BG-23 VAT breakdown",
+   "sev": "error",
+   "any": [
+    "vat_?breakdown",
+    "tax_?subtotal",
+    "taxsubtotal",
+    "applicabletradetax",
+    "tax_?breakdown"
+   ],
+   "msg": "BG-23 VAT breakdown group is missing. EN 16931 requires one subtotal per VAT category and rate, not a single tax figure."
+  },
+  {
+   "kind": "term",
+   "check": "BT-112 total incl. VAT",
+   "sev": "error",
+   "any": [
+    "tax_?inclusive",
+    "grand_?total",
+    "total_?incl",
+    "total_?gross"
+   ],
+   "msg": "BT-112 invoice total with VAT is not mapped. BR-CO-15 checks it against the sum of BT-109 and BT-110, so the document fails schematron validation."
+  },
+  {
+   "kind": "term",
+   "check": "BT-115 amount due",
+   "sev": "error",
+   "any": [
+    "payable_?amount",
+    "amount_?due",
+    "due_?payable"
+   ],
+   "msg": "BT-115 amount due for payment is not mapped. It is what the buyer actually pays after prepaid amounts and rounding."
+  },
+  {
+   "kind": "term",
+   "check": "BT-9 due date or BT-20 terms",
+   "sev": "warn",
+   "any": [
+    "due_?date",
+    "payment_?terms",
+    "paymentmeans[^\\n]{0,40}due"
+   ],
+   "msg": "Neither BT-9 payment due date nor BT-20 payment terms is mapped. BR-CO-25 requires one of the two, so this is a validation error at the receiver."
+  },
+  {
+   "kind": "term",
+   "check": "BT-30 seller registration id",
+   "sev": "warn",
+   "any": [
+    "legal_?registration",
+    "company_?legal",
+    "registration_?identifier",
+    "\\bhrb\\b"
+   ],
+   "msg": "BT-30 seller legal registration identifier is missing. Public buyers in {country} routinely reject invoices that carry no commercial-register or equivalent id."
+  },
+  {
+   "kind": "term",
+   "check": "BG-25 invoice lines",
+   "sev": "error",
+   "any": [
+    "invoice_?lines?",
+    "line_?items?",
+    "\"lines\"\\s*:",
+    "includedsupplychaintradelineitem"
+   ],
+   "msg": "BG-25 invoice lines are not mapped. A document with totals but no lines is invoice data, not an invoice, under EN 16931."
+  }
+ ],
+ "country_terms": [
+  {
+   "kind": "term",
+   "check": "DE Leitweg-ID (BT-10)",
+   "sev": "error",
+   "any": [
+    "buyer_?reference",
+    "leitweg"
+   ],
+   "msg": "BT-10 buyer reference is missing. In {cius} the Leitweg-ID is mandatory and the receiving platform rejects the invoice outright.",
+   "country": "DE"
+  },
+  {
+   "kind": "term",
+   "check": "FR SIREN/SIRET",
+   "sev": "error",
+   "any": [
+    "\\bsiren\\b",
+    "\\bsiret\\b",
+    "scheme_?id\"?\\s*:\\s*\"0009\""
+   ],
+   "msg": "No SIREN or SIRET is mapped. French B2B e-invoicing identifies both parties by SIREN (scheme 0009); a VAT number alone will not route through the PPF.",
+   "country": "FR"
+  },
+  {
+   "kind": "term",
+   "check": "IT Codice Destinatario",
+   "sev": "error",
+   "any": [
+    "codice_?destinatario",
+    "destination_?code",
+    "\\bpec\\b"
+   ],
+   "msg": "Codice Destinatario (or a PEC address) is missing. SdI has no way to deliver the FatturaPA file and will return a scarto notice.",
+   "country": "IT"
+  },
+  {
+   "kind": "term",
+   "check": "PL NIP",
+   "sev": "error",
+   "any": [
+    "\\bnip\\b",
+    "tax_?identification_?number"
+   ],
+   "msg": "The NIP of seller and buyer is not mapped. KSeF keys every document on NIP; without it the invoice cannot be registered and gets no KSeF number.",
+   "country": "PL"
+  },
+  {
+   "kind": "term",
+   "check": "BE Peppol scheme 0208",
+   "sev": "warn",
+   "any": [
+    "\"0208\"",
+    "enterprise_?number",
+    "kbo"
+   ],
+   "msg": "No Belgian enterprise number (Peppol scheme 0208) is mapped. It is the expected participant identifier for {cius}.",
+   "country": "BE"
+  }
+ ],
+ "invoice_defects": [
+  {
+   "kind": "pair",
+   "check": "BT-120 VAT exemption reason",
+   "sev": "error",
+   "if": "(\"(vat_?)?(rate|percent)\"\\s*:\\s*0(\\.0+)?\\b)|(\"category(_?code)?\"\\s*:\\s*\"(E|O|AE|K|G|Z)\")",
+   "need": "exemption_?reason|exemption_?code|reverse_?charge_?text|vatex",
+   "msg": "A zero or exempt VAT category is used with no BT-120 exemption reason text and no BT-121 VATEX code. BR-E/BR-AE reject the invoice; the buyer's input VAT claim dies with it."
+  },
+  {
+   "kind": "pair",
+   "check": "BT-49-1 address scheme",
+   "sev": "error",
+   "if": "electronic_?address|endpoint_?id|\"peppol_?id\"",
+   "need": "scheme_?id|schemeid|\"scheme\"|eas",
+   "msg": "An electronic address is mapped without its scheme identifier (EAS code). The same string means a different participant under 0088, 0204 or 0009, so routing is undefined."
+  },
+  {
+   "kind": "forbid",
+   "check": "stale XRechnung CIUS",
+   "sev": "error",
+   "re": "xrechnung_?[12]\\.\\d",
+   "msg": "The specification identifier still points at an XRechnung 1.x/2.x CIUS. XRechnung 3.0 is the version in force; 2.x identifiers are refused by the German receiving platforms."
+  },
+  {
+   "kind": "forbid",
+   "check": "UBL 2.0 namespace",
+   "sev": "warn",
+   "re": "urn:oasis:names:specification:ubl:schema:xsd:Invoice-1|ubl[ _-]?2\\.0\\b",
+   "msg": "EN 16931 syntax binding is UBL 2.1 (or CII D16B). A UBL 2.0 namespace will not validate against the EN 16931 schematron."
+  },
+  {
+   "kind": "forbid",
+   "check": "monetary rounding",
+   "sev": "warn",
+   "re": "\"[a-z_]*(amount|total|payable|price)[a-z_]*\"\\s*:\\s*-?\\d+\\.\\d{3,}",
+   "msg": "A monetary amount carries more than two decimals. EN 16931 fixes document-level amounts at two decimals, and BR-CO-15 arithmetic is checked on the rounded values."
+  },
+  {
+   "kind": "forbid",
+   "check": "CII date format",
+   "sev": "warn",
+   "re": "format\\s*=\\s*\"102\"[^>]*>\\s*\\d{4}-\\d{2}-\\d{2}",
+   "msg": "A CII date is declared as format 102 but written as YYYY-MM-DD. Format 102 is YYYYMMDD with no separators."
+  }
+ ],
+ "date_rules": [
+  {
+   "kind": "mandate",
+   "check": "Factur-X MINIMUM profile",
+   "field": "issue_from",
+   "re": "factur-?x\\.eu:1p0:(minimum|basicwl)|\"profile\"\\s*:\\s*\"(minimum|basic ?wl)\"",
+   "sev_live": "error",
+   "sev_before": "warn",
+   "msg_live": "The Factur-X MINIMUM/BASIC WL profile carries no line data and is not an EN 16931-compliant invoice. {country} has required compliant issuing since {date} under {statute} — that was {days_since} days ago.",
+   "msg_before": "The Factur-X MINIMUM/BASIC WL profile carries no line data and is not an EN 16931-compliant invoice. {country} starts requiring compliant issuing on {date} under {statute} — {days_left} days from {today}."
+  },
+  {
+   "kind": "mandate",
+   "check": "PDF fallback path",
+   "field": "receive_from",
+   "re": "(allow|enable|use)_?pdf_?(fallback|only)?\\s*\"?\\s*[:=]\\s*true|\"delivery\"\\s*:\\s*\"(email|pdf|paper)\"|pdf_?only\\s*[:=]\\s*true",
+   "sev_live": "error",
+   "sev_before": "warn",
+   "msg_live": "A PDF/e-mail fallback is still switched on. Since {date} a PDF is not an e-invoice for {country} under {statute}; a buyer who accepts this one has no deductible document.",
+   "msg_before": "A PDF/e-mail fallback is switched on. From {date} a PDF stops being an e-invoice for {country} under {statute} — {days_left} days from {today}."
+  },
+  {
+   "kind": "date_mismatch",
+   "check": "hardcoded mandate date",
+   "sev": "error",
+   "field": "issue_from",
+   "re": "\"[a-z_]*(mandate|deadline|go_?live|reform|cutover)[a-z_]*\"\\s*:\\s*\"(\\d{4}-\\d{2}-\\d{2})\"",
+   "msg": "The mandate date hardcoded here is {found}. For {country} the issuing obligation starts {date} under {statute} — shipping the wrong date means the switch flips on the wrong day."
+  },
+  {
+   "kind": "no_country",
+   "check": "country / CIUS undetermined",
+   "sev": "error",
+   "msg": "No country or CIUS marker is present, so no national rule set can be applied. EN 16931 is a core invoice model; every member state adds mandatory fields on top of it."
+  }
+ ]
+}
