@@ -1,0 +1,105 @@
+{
+  "name": "erb-rails-view-snippets-audit",
+  "displayName": "ERB Snippets + View Audit for Rails",
+  "description": "36 ERB snippets and 26 rules that catch the raw, html_safe and params output a Rails security review sends back — offline, in the editor, no account.",
+  "version": "0.1.0",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Snippets",
+    "Linters"
+  ],
+  "keywords": [
+    "erb",
+    "rails",
+    "ruby",
+    "html.erb",
+    "views"
+  ],
+  "activationEvents": [
+    "onLanguage:erb"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "erb-rails-view-snippets-audit.audit_file",
+        "title": "ERB: Audit this view",
+        "category": "ERB Snippets + View Audi"
+      },
+      {
+        "command": "erb-rails-view-snippets-audit.audit_selection",
+        "title": "ERB: Audit the selected lines",
+        "category": "ERB Snippets + View Audi"
+      },
+      {
+        "command": "erb-rails-view-snippets-audit.insert_snippet",
+        "title": "ERB: Insert a snippet",
+        "category": "ERB Snippets + View Audi"
+      },
+      {
+        "command": "erb-rails-view-snippets-audit.list_rules",
+        "title": "ERB: Show all rules and snippets",
+        "category": "ERB Snippets + View Audi"
+      },
+      {
+        "command": "erb-rails-view-snippets-audit.workspace_scan",
+        "title": "ERB: Audit every view in the workspace",
+        "category": "ERB Snippets + View Audi"
+      },
+      {
+        "command": "erb-rails-view-snippets-audit.quick_fix",
+        "title": "ERB: Fix this line",
+        "category": "ERB Snippets + View Audi"
+      },
+      {
+        "command": "erb-rails-view-snippets-audit.export_report",
+        "title": "ERB: Export the findings",
+        "category": "ERB Snippets + View Audi"
+      }
+    ],
+    "configuration": {
+      "title": "ERB Snippets + View Audit for Rails",
+      "properties": {
+        "erb-rails-view-snippets-audit.report_format": {
+          "type": "string",
+          "default": "html",
+          "description": "Default format for the exported report"
+        },
+        "erb-rails-view-snippets-audit.max_files": {
+          "type": "number",
+          "default": 400,
+          "description": "Most files a workspace audit will open"
+        },
+        "erb-rails-view-snippets-audit.exclude_glob": {
+          "type": "string",
+          "default": "{node_modules,tmp,vendor,public,coverage}/**",
+          "description": "Paths the workspace audit skips"
+        },
+        "erb-rails-view-snippets-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 26 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "erb",
+        "path": "./snippets/erb.code-snippets"
+      },
+      {
+        "language": "erb",
+        "path": "./snippets/erb-html-erb.code-snippets"
+      },
+      {
+        "language": "html.erb",
+        "path": "./snippets/erb-html-erb.code-snippets"
+      }
+    ]
+  },
+  "icon": "icon.png"
+}
