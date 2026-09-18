@@ -1,0 +1,161 @@
+{
+  "name": "config-dsl-lint-snippets",
+  "displayName": "Config & DSL Check — 9 languages",
+  "description": "VS Code colours these 9 languages but never checks them: 30 rules and 35 snippets that catch the tab in a .rpy script, the unterminated property in a .dts overlay and the password sitting in plain tex",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Snippets",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "toml",
+    "devicetree",
+    "inkling",
+    "renpy",
+    "autohotkey"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "config-dsl-lint-snippets.audit_file",
+        "title": "Check this file",
+        "category": "Config & DSL Check — 9 l"
+      },
+      {
+        "command": "config-dsl-lint-snippets.audit_selection",
+        "title": "Check only the selected lines",
+        "category": "Config & DSL Check — 9 l"
+      },
+      {
+        "command": "config-dsl-lint-snippets.insert_snippet",
+        "title": "Insert a snippet from the pack",
+        "category": "Config & DSL Check — 9 l"
+      },
+      {
+        "command": "config-dsl-lint-snippets.list_rules",
+        "title": "Show what is inside (30 rules, 35 snippets)",
+        "category": "Config & DSL Check — 9 l"
+      },
+      {
+        "command": "config-dsl-lint-snippets.workspace_scan",
+        "title": "Check the whole workspace",
+        "category": "Config & DSL Check — 9 l"
+      },
+      {
+        "command": "config-dsl-lint-snippets.quick_fix",
+        "title": "Apply the fix",
+        "category": "Config & DSL Check — 9 l"
+      },
+      {
+        "command": "config-dsl-lint-snippets.export_report",
+        "title": "Write the report into the workspace",
+        "category": "Config & DSL Check — 9 l"
+      },
+      {
+        "command": "config-dsl-lint-snippets.watch_on_save",
+        "title": "Re-check automatically on every save",
+        "category": "Config & DSL Check — 9 l"
+      },
+      {
+        "command": "config-dsl-lint-snippets.custom_rules",
+        "title": "Your own house rules, not only the built-in 30",
+        "category": "Config & DSL Check — 9 l"
+      },
+      {
+        "command": "config-dsl-lint-snippets.ci_json",
+        "title": "Machine-readable output your CI job can fail on",
+        "category": "Config & DSL Check — 9 l"
+      }
+    ],
+    "configuration": {
+      "title": "Config & DSL Check — 9 languages",
+      "properties": {
+        "config-dsl-lint-snippets.custom_rules_file": {
+          "type": "string",
+          "default": ".vscode/dsl-rules.json",
+          "description": "Path to your own rules file, relative to the workspace root"
+        },
+        "config-dsl-lint-snippets.report_format": {
+          "type": "string",
+          "default": "json",
+          "description": "Format for the exported report (csv, json or html)"
+        },
+        "config-dsl-lint-snippets.watch_on_save": {
+          "type": "boolean",
+          "default": false,
+          "description": "Re-run the check every time a file is saved"
+        },
+        "config-dsl-lint-snippets.ci_output_file": {
+          "type": "string",
+          "default": ".dsl-check.json",
+          "description": "File the machine-readable CI output is written to"
+        },
+        "config-dsl-lint-snippets.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "The whole workspace, not one file"
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "ahk",
+        "path": "./snippets/ahk-ahk2.code-snippets"
+      },
+      {
+        "language": "ahk2",
+        "path": "./snippets/ahk-ahk2.code-snippets"
+      },
+      {
+        "language": "dts",
+        "path": "./snippets/dts.code-snippets"
+      },
+      {
+        "language": "inkling",
+        "path": "./snippets/inkling.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/jsonc-json.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/jsonc-json.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/properties.code-snippets"
+      },
+      {
+        "language": "renpy",
+        "path": "./snippets/renpy.code-snippets"
+      },
+      {
+        "language": "swift",
+        "path": "./snippets/swift.code-snippets"
+      },
+      {
+        "language": "toml",
+        "path": "./snippets/toml.code-snippets"
+      }
+    ]
+  }
+}
