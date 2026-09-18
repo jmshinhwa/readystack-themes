@@ -1,0 +1,51 @@
+{
+  "name": "renpy-release-gate",
+  "displayName": "Ren'Py Release Gate",
+  "description": "Catch the Ren'Py script bugs that compile fine and only crash in a player's save: unescaped [ and {, define-instead-of-default, tab indents, developer mode shipped.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "renpy",
+    "visual novel",
+    "rpy",
+    "game",
+    "lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "renpyReleaseGate.checkFile",
+        "title": "Ren'Py Release Gate: Check this file",
+        "category": "Ren'Py Release Gate"
+      },
+      {
+        "command": "renpyReleaseGate.checkWorkspace",
+        "title": "Ren'Py Release Gate: Sweep workspace and write report (licence)",
+        "category": "Ren'Py Release Gate"
+      },
+      {
+        "command": "renpyReleaseGate.enterKey",
+        "title": "Ren'Py Release Gate: Enter licence key",
+        "category": "Ren'Py Release Gate"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "renpy-release-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/renpy-release-gate",
+  "icon": "icon.png"
+}
