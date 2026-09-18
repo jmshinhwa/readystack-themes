@@ -2,7 +2,7 @@
   "name": "k8s-removed-api-lint",
   "displayName": "Kubernetes Removed API Lint",
   "description": "Find the apiVersions kubectl no longer serves: extensions/v1beta1, batch/v1beta1 CronJob, policy/v1beta1 PDB, PodSecurityPolicy, autoscaling/v2beta2. 15 rules, offline, each with the replacement.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
