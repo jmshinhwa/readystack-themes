@@ -1,0 +1,15 @@
+[
+  {"id": "missing_description", "sev": "error", "field": "description", "msg": "[package] has no description - crates.io refuses the upload. Add description = \"one sentence\"."},
+  {"id": "missing_license", "sev": "error", "field": "license", "msg": "[package] has neither license nor license-file - crates.io refuses the upload. Add license = \"MIT OR Apache-2.0\"."},
+  {"id": "wildcard_dep", "sev": "error", "msg": "Wildcard version \"*\" - crates.io rejects wildcard dependency constraints. Pin a caret range such as \"1\"."},
+  {"id": "git_dep", "sev": "error", "msg": "git = dependency - crates.io rejects git dependencies. Publish that crate first and depend on its registry version."},
+  {"id": "path_dep_no_version", "sev": "error", "msg": "path = dependency with no version - cargo publish stops: all path dependencies must also carry a version."},
+  {"id": "too_many_keywords", "sev": "error", "max": 5, "msg": "More than 5 keywords - crates.io accepts at most 5."},
+  {"id": "keyword_too_long", "sev": "error", "max_len": 20, "msg": "Keyword longer than 20 characters - crates.io rejects it."},
+  {"id": "too_many_categories", "sev": "error", "max": 5, "msg": "More than 5 categories - crates.io accepts at most 5."},
+  {"id": "publish_false", "sev": "warn", "msg": "publish = false - cargo publish refuses to upload this crate. Remove the key when the crate is meant to go out."},
+  {"id": "missing_repository", "sev": "warn", "field": "repository", "msg": "[package] has no repository - the crates.io page ships with no source link and the version is frozen that way."},
+  {"id": "missing_readme", "sev": "warn", "field": "readme", "msg": "[package] has no readme - the crates.io page body stays empty for this version forever."},
+  {"id": "edition_missing_or_2015", "sev": "warn", "msg": "edition is absent or 2015 - cargo falls back to the 2015 edition for this published version."},
+  {"id": "version_zero", "sev": "warn", "msg": "version = 0.0.0 - a placeholder version number gets burned on crates.io and can never be re-uploaded."}
+]
