@@ -1,0 +1,95 @@
+{
+  "name": "outlook-email-html-lint",
+  "displayName": "Outlook Email HTML Lint - Classic vs New",
+  "description": "Classic Outlook renders with the Word engine, the new Outlook with WebView2. Lint one email file against both at once, line by line, before you send.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "email",
+    "outlook",
+    "html-email",
+    "email-template",
+    "lint"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "outlook-email-html-lint.audit_file",
+        "title": "Check this email against both Outlooks",
+        "category": "Outlook Split Lint"
+      },
+      {
+        "command": "outlook-email-html-lint.audit_selection",
+        "title": "Check the selected lines",
+        "category": "Outlook Split Lint"
+      },
+      {
+        "command": "outlook-email-html-lint.show_report",
+        "title": "Show the last findings",
+        "category": "Outlook Split Lint"
+      },
+      {
+        "command": "outlook-email-html-lint.list_rules",
+        "title": "List the rules that ship inside",
+        "category": "Outlook Split Lint"
+      },
+      {
+        "command": "outlook-email-html-lint.workspace_scan",
+        "title": "Scan every template in the workspace",
+        "category": "Outlook Split Lint"
+      },
+      {
+        "command": "outlook-email-html-lint.export_report",
+        "title": "Export the findings to a file",
+        "category": "Outlook Split Lint"
+      },
+      {
+        "command": "outlook-email-html-lint.ci_json",
+        "title": "Machine output for CI",
+        "category": "Outlook Split Lint"
+      }
+    ],
+    "configuration": {
+      "title": "Outlook Split Lint",
+      "properties": {
+        "outlook-email-html-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format"
+        },
+        "outlook-email-html-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity"
+        },
+        "outlook-email-html-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files to walk in a workspace scan"
+        },
+        "outlook-email-html-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip"
+        },
+        "outlook-email-html-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 33 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
