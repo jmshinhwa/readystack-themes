@@ -1,0 +1,53 @@
+{
+  "name": "cargo-publish-gate",
+  "displayName": "Cargo.toml Publish Gate - crates.io",
+  "description": "Reads Cargo.toml and lists every crates.io publish blocker before you run cargo publish - the version number you burn cannot be re-uploaded.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "cargo",
+    "crates.io",
+    "toml",
+    "rust",
+    "publish",
+    "manifest",
+    "lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "cargoPublishGate.checkFile",
+        "title": "Cargo.toml Publish Gate - crates.io: Check this file",
+        "category": "Cargo.toml Publish Gate - crates.io"
+      },
+      {
+        "command": "cargoPublishGate.checkWorkspace",
+        "title": "Cargo.toml Publish Gate - crates.io: Sweep workspace and write report (licence)",
+        "category": "Cargo.toml Publish Gate - crates.io"
+      },
+      {
+        "command": "cargoPublishGate.enterKey",
+        "title": "Cargo.toml Publish Gate - crates.io: Enter licence key",
+        "category": "Cargo.toml Publish Gate - crates.io"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "cargo-publish-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/cargo-publish-gate",
+  "icon": "icon.png"
+}
