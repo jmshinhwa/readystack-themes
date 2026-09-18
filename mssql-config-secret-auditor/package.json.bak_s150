@@ -1,0 +1,142 @@
+{
+  "name": "mssql-config-secret-auditor",
+  "displayName": "SQLTools MSSQL Config & Secret Auditor",
+  "description": "17 rules · 24 config blocks · 8 stacks — it names the SQL Server password sitting in the .vscode/settings.json you are about to commit, on the file you have open, offline.",
+  "version": "0.1.0",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "sqltools",
+    "mssql",
+    "sql server",
+    "secrets",
+    "kubeconfig"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "mssql-config-secret-auditor.audit_file",
+        "title": "Audit this file for committed credentials",
+        "category": "SQLTools MSSQL Config & "
+      },
+      {
+        "command": "mssql-config-secret-auditor.audit_selection",
+        "title": "Audit only the lines I selected",
+        "category": "SQLTools MSSQL Config & "
+      },
+      {
+        "command": "mssql-config-secret-auditor.insert_snippet",
+        "title": "Insert a configuration block",
+        "category": "SQLTools MSSQL Config & "
+      },
+      {
+        "command": "mssql-config-secret-auditor.list_rules",
+        "title": "List every rule and block in this pack",
+        "category": "SQLTools MSSQL Config & "
+      },
+      {
+        "command": "mssql-config-secret-auditor.workspace_scan",
+        "title": "Scan every file in this workspace",
+        "category": "SQLTools MSSQL Config & "
+      },
+      {
+        "command": "mssql-config-secret-auditor.export_report",
+        "title": "Write the findings out as a report file",
+        "category": "SQLTools MSSQL Config & "
+      },
+      {
+        "command": "mssql-config-secret-auditor.quick_fix",
+        "title": "Replace the flagged line with the safe one",
+        "category": "SQLTools MSSQL Config & "
+      },
+      {
+        "command": "mssql-config-secret-auditor.watch_on_save",
+        "title": "Keep it clean: re-check on every save",
+        "category": "SQLTools MSSQL Config & "
+      },
+      {
+        "command": "mssql-config-secret-auditor.custom_rules",
+        "title": "Add your own patterns — your internal host names, your key prefixes",
+        "category": "SQLTools MSSQL Config & "
+      }
+    ],
+    "configuration": {
+      "title": "SQLTools MSSQL Config & Secret Auditor",
+      "properties": {
+        "mssql-config-secret-auditor.report_format": {
+          "type": "string",
+          "default": "json",
+          "description": "Report format written by the export command"
+        },
+        "mssql-config-secret-auditor.max_files": {
+          "type": "number",
+          "default": 500,
+          "description": "Maximum number of workspace files to scan"
+        },
+        "mssql-config-secret-auditor.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**,**/bin/**,**/obj/**,**/.git/**,**/packages/**",
+          "description": "Paths to skip while scanning"
+        },
+        "mssql-config-secret-auditor.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Audit the first open file when the editor opens"
+        },
+        "mssql-config-secret-auditor.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 17 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "ignore",
+        "path": "./snippets/ignore-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/ignore-plaintext.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/properties.code-snippets"
+      },
+      {
+        "language": "r",
+        "path": "./snippets/r.code-snippets"
+      },
+      {
+        "language": "xml",
+        "path": "./snippets/xml.code-snippets"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/yaml.code-snippets"
+      }
+    ]
+  }
+}
