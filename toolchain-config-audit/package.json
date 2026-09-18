@@ -1,0 +1,148 @@
+{
+  "name": "toolchain-config-audit",
+  "displayName": "Config Audit - 8 Toolchains",
+  "description": "28 rules and 24 snippets across 8 toolchains, run on the file you have open, before the connection string, the plain-text password or the :latest tag is committed.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Snippets"
+  ],
+  "keywords": [
+    "microprofile",
+    "azure-iot",
+    "sqltools",
+    "mssql",
+    "dotnet-maui"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "toolchain-config-audit.audit_file",
+        "title": "Audit this file",
+        "category": "Config Audit - 8 Toolcha"
+      },
+      {
+        "command": "toolchain-config-audit.audit_selection",
+        "title": "Audit the selected lines",
+        "category": "Config Audit - 8 Toolcha"
+      },
+      {
+        "command": "toolchain-config-audit.insert_snippet",
+        "title": "Insert a safe-config snippet",
+        "category": "Config Audit - 8 Toolcha"
+      },
+      {
+        "command": "toolchain-config-audit.list_rules",
+        "title": "List every rule and snippet",
+        "category": "Config Audit - 8 Toolcha"
+      },
+      {
+        "command": "toolchain-config-audit.workspace_scan",
+        "title": "Audit the whole workspace",
+        "category": "Config Audit - 8 Toolcha"
+      },
+      {
+        "command": "toolchain-config-audit.quick_fix",
+        "title": "Apply the suggested fix",
+        "category": "Config Audit - 8 Toolcha"
+      },
+      {
+        "command": "toolchain-config-audit.export_report",
+        "title": "Export the findings as a file",
+        "category": "Config Audit - 8 Toolcha"
+      }
+    ],
+    "configuration": {
+      "title": "Config Audit - 8 Toolchains",
+      "properties": {
+        "toolchain-config-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format for the findings report"
+        },
+        "toolchain-config-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum number of workspace files to scan"
+        },
+        "toolchain-config-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,bin,obj,.git,renv,dist,packages}/**",
+          "description": "Paths to skip while scanning"
+        },
+        "toolchain-config-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 28 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "csharp",
+        "path": "./snippets/csharp.code-snippets"
+      },
+      {
+        "language": "java",
+        "path": "./snippets/java.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/markdown-rmd.code-snippets"
+      },
+      {
+        "language": "rmd",
+        "path": "./snippets/markdown-rmd.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/plaintext.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/properties.code-snippets"
+      },
+      {
+        "language": "r",
+        "path": "./snippets/r.code-snippets"
+      },
+      {
+        "language": "sql",
+        "path": "./snippets/sql.code-snippets"
+      },
+      {
+        "language": "xml",
+        "path": "./snippets/xml.code-snippets"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/yaml.code-snippets"
+      }
+    ]
+  }
+}
