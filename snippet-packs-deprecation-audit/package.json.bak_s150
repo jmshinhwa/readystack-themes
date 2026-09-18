@@ -1,0 +1,105 @@
+{
+  "name": "snippet-packs-deprecation-audit",
+  "displayName": "Snippet Packs + Deprecation Audit (8 Stacks)",
+  "description": "8 snippet libraries, 24 named snippet groups, and an audit that names the file and line where a snippet pack still emits an API your framework major removed — the line the reviewer would have sent bac",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Snippets",
+    "Linters"
+  ],
+  "keywords": [
+    "snippets",
+    "jest",
+    "nextjs",
+    "tailwindcss",
+    "angular"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "snippet-packs-deprecation-audit.audit_open_file",
+        "title": "Audit This File Against Your Framework Versions",
+        "category": "Snippet Packs + Deprecat"
+      },
+      {
+        "command": "snippet-packs-deprecation-audit.insert_snippet",
+        "title": "Insert Snippet from Library (8 Stacks)",
+        "category": "Snippet Packs + Deprecat"
+      },
+      {
+        "command": "snippet-packs-deprecation-audit.show_prefix_conflicts",
+        "title": "Show Snippet Prefix Conflicts for This Language",
+        "category": "Snippet Packs + Deprecat"
+      },
+      {
+        "command": "snippet-packs-deprecation-audit.scan_workspace",
+        "title": "Audit the Whole Workspace",
+        "category": "Snippet Packs + Deprecat"
+      },
+      {
+        "command": "snippet-packs-deprecation-audit.apply_replacements",
+        "title": "Apply the Replacements",
+        "category": "Snippet Packs + Deprecat"
+      },
+      {
+        "command": "snippet-packs-deprecation-audit.export_audit_report",
+        "title": "Export the Audit as CSV, JSON or HTML",
+        "category": "Snippet Packs + Deprecat"
+      },
+      {
+        "command": "snippet-packs-deprecation-audit.write_ci_report",
+        "title": "Write the CI Report (JSON)",
+        "category": "Snippet Packs + Deprecat"
+      }
+    ],
+    "configuration": {
+      "title": "Snippet Packs + Deprecation Audit (8 Stacks)",
+      "properties": {
+        "snippet-packs-deprecation-audit.target_versions": {
+          "type": "string",
+          "default": "auto",
+          "description": "Framework majors to audit against (auto = read package.json and Gemfile)"
+        },
+        "snippet-packs-deprecation-audit.namespace_snippet_prefixes": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prefix every bundled snippet with its stack (jest-, nx-, tw-) so it cannot collide with packs you already installed"
+        },
+        "snippet-packs-deprecation-audit.watch_on_save": {
+          "type": "boolean",
+          "default": false,
+          "description": "Re-run the audit every time a file is saved"
+        },
+        "snippet-packs-deprecation-audit.custom_rules_path": {
+          "type": "string",
+          "default": "",
+          "description": "Path to your team's own rules file, added on top of the 8 built-in rulesets"
+        },
+        "snippet-packs-deprecation-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Export format for the audit report: csv, json or html"
+        },
+        "snippet-packs-deprecation-audit.ignore_globs": {
+          "type": "string",
+          "default": "**/node_modules/**,**/dist/**,**/vendor/**",
+          "description": "Paths the workspace audit skips"
+        },
+        "snippet-packs-deprecation-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Every file, not just the one you have open"
+        }
+      }
+    }
+  }
+}
