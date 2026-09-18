@@ -1,0 +1,110 @@
+[
+  {
+    "id": "security_manager_set",
+    "re": "System\\s*\\.\\s*setSecurityManager\\s*\\(",
+    "sev": "error",
+    "msg": "System.setSecurityManager() throws UnsupportedOperationException on JDK 24 and later — JEP 486 permanently disabled the Security Manager. Delete the call and move the check into your own authorization layer."
+  },
+  {
+    "id": "access_controller",
+    "re": "AccessController\\s*\\.\\s*doPrivileged|import\\s+java\\.security\\.AccessController",
+    "sev": "error",
+    "msg": "AccessController.doPrivileged is terminally deprecated and grants nothing (JEP 486, JDK 24). The privileged block now runs with the caller's own access. Inline the body and drop the wrapper."
+  },
+  {
+    "id": "security_policy",
+    "re": "java\\.security\\.Policy|Policy\\s*\\.\\s*setPolicy\\s*\\(|SecurityManager\\s+[A-Za-z_]",
+    "sev": "error",
+    "msg": "java.security.Policy and SecurityManager are terminally deprecated with JEP 486 (JDK 24). Your .policy file grants nothing at run time — the permissions in it are no longer enforced."
+  },
+  {
+    "id": "unsafe_memory",
+    "re": "sun\\.misc\\.Unsafe|Unsafe\\s*\\.\\s*getUnsafe\\s*\\(",
+    "sev": "error",
+    "msg": "sun.misc.Unsafe memory-access methods are deprecated for removal (JEP 471, JDK 23) and warn at run time by default since JDK 24 (JEP 498). Replace with java.lang.invoke.VarHandle, or the FFM API in java.lang.foreign for off-heap memory."
+  },
+  {
+    "id": "javax_to_jakarta",
+    "re": "import\\s+javax\\.(persistence|servlet|ws\\.rs|enterprise|inject|validation|transaction|ejb|jms|mail|annotation\\.(Resource|PostConstruct|PreDestroy))",
+    "sev": "error",
+    "msg": "Jakarta EE 9 renamed this package to jakarta.*. A Jakarta EE 10/11 runtime (Spring Boot 3, Quarkus 3, Payara 6, WildFly 27+) never scans javax.* here, so the bean or endpoint silently disappears. Rename the import to jakarta.*"
+  },
+  {
+    "id": "jaxb_removed",
+    "re": "javax\\.xml\\.bind|com\\.sun\\.xml\\.bind",
+    "sev": "error",
+    "msg": "javax.xml.bind (JAXB) was removed from the JDK in Java 11 (JEP 320). On JDK 21/25 this compiles only if you add the jakarta.xml.bind-api and a runtime yourself — and the package is jakarta.xml.bind now."
+  },
+  {
+    "id": "applet_api",
+    "re": "java\\.applet|\\bextends\\s+(J?Applet)\\b",
+    "sev": "error",
+    "msg": "The Applet API was removed outright in JDK 25 (JEP 504). There is no replacement class — this file cannot compile on the new LTS."
+  },
+  {
+    "id": "thread_stop",
+    "re": "(?:[Tt]hread[A-Za-z0-9_]*|[a-z][A-Za-z0-9_]*Thread)\\s*\\.\\s*(?:stop|suspend|resume)\\s*\\(\\s*\\)",
+    "sev": "error",
+    "msg": "Thread.stop() throws UnsupportedOperationException since JDK 20, and suspend()/resume() are terminally deprecated and throw on current JDKs. Use interrupt() plus a volatile flag the worker loop reads."
+  },
+  {
+    "id": "finalize_override",
+    "re": "(?:protected|public)\\s+void\\s+finalize\\s*\\(\\s*\\)",
+    "sev": "error",
+    "msg": "Overriding finalize() is deprecated for removal (JEP 421) and finalization is already disabled by default in some runs via --finalization=disabled — your cleanup may never execute. Move it to try-with-resources or java.lang.ref.Cleaner."
+  },
+  {
+    "id": "jdk_internal_import",
+    "re": "import\\s+(?:sun\\.(?!misc\\.Unsafe)|com\\.sun\\.(?!xml\\.bind)|jdk\\.internal\\.)",
+    "sev": "error",
+    "msg": "JDK-internal packages are strongly encapsulated since JDK 17 (JEP 403). This import throws IllegalAccessError at run time unless every launch carries a matching --add-exports flag."
+  },
+  {
+    "id": "run_finalization",
+    "re": "(?:System|Runtime\\s*\\.\\s*getRuntime\\s*\\(\\s*\\))\\s*\\.\\s*runFinalization\\s*\\(",
+    "sev": "error",
+    "msg": "System.runFinalization() and Runtime.runFinalization() are deprecated for removal (JEP 421). They are no-ops once finalization is disabled — the resource you expect to be released is not released."
+  },
+  {
+    "id": "subject_do_as",
+    "re": "Subject\\s*\\.\\s*doAs(?:Privileged)?\\s*\\(",
+    "sev": "warn",
+    "msg": "Subject.doAs is deprecated for removal together with the Security Manager. Use Subject.callAs, added in JDK 18, which takes a Callable and keeps the Subject on the current thread."
+  },
+  {
+    "id": "native_access",
+    "re": "System\\s*\\.\\s*(?:loadLibrary|load)\\s*\\(|\\bnative\\s+(?:[A-Za-z_$][\\w$<>\\[\\]\\.]*)\\s+[A-Za-z_$]",
+    "sev": "warn",
+    "msg": "Loading native code prints a warning on JDK 24+ unless the module is named in --enable-native-access (JEP 472), and that warning is planned to become an error. Add the flag or an Enable-Native-Access manifest entry now."
+  },
+  {
+    "id": "set_accessible",
+    "re": "setAccessible\\s*\\(\\s*true\\s*\\)",
+    "sev": "warn",
+    "msg": "setAccessible(true) against a java.* class throws InaccessibleObjectException under the strong encapsulation of JDK 17+ (JEP 403). Check the target is your own class, or add an explicit --add-opens for the exact package."
+  },
+  {
+    "id": "url_constructor",
+    "re": "new\\s+URL\\s*\\(",
+    "sev": "warn",
+    "msg": "The java.net.URL constructors are deprecated since JDK 20 because they accept malformed input without validating it. Use URI.create(s).toURL(), which rejects the bad string instead of carrying it."
+  },
+  {
+    "id": "wrapper_constructor",
+    "re": "new\\s+(?:Integer|Long|Double|Float|Short|Byte|Character|Boolean)\\s*\\(",
+    "sev": "warn",
+    "msg": "Primitive wrapper constructors are deprecated for removal since JDK 9. Use Integer.valueOf(x) or Integer.parseInt(s) — valueOf caches small values, the constructor allocates every time."
+  },
+  {
+    "id": "class_new_instance",
+    "re": "(?:\\.class|getClass\\(\\s*\\)|Class\\.forName\\([^)]*\\))\\s*\\.\\s*newInstance\\s*\\(\\s*\\)",
+    "sev": "warn",
+    "msg": "Class.newInstance() is deprecated since JDK 9 because it rethrows checked exceptions the compiler cannot see. Use getDeclaredConstructor().newInstance()."
+  },
+  {
+    "id": "locale_constructor",
+    "re": "new\\s+Locale\\s*\\(",
+    "sev": "warn",
+    "msg": "The java.util.Locale constructors are deprecated since JDK 19. Use Locale.of(language, country), which validates and interns the tag."
+  }
+]
