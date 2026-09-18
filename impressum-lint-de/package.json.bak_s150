@@ -1,0 +1,52 @@
+{
+  "name": "impressum-lint-de",
+  "displayName": "Impressum & Shop-Pflichtangaben Lint (DE)",
+  "description": "Findet veraltete Paragrafen (TMG, TTDSG, RStV) und tote OS-Plattform-Links in Impressum, Footer und Shop-Templates im Repo. 14 Regeln, Stand 2026.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "impressum",
+    "dsgvo",
+    "ddg",
+    "abmahnung",
+    "ecommerce",
+    "germany",
+    "legal",
+    "linter"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "impressumLintDe.checkFile",
+        "title": "Impressum & Shop-Pflichtangaben Lint (DE): Check this file",
+        "category": "Impressum & Shop-Pflichtangaben Lint (DE)"
+      },
+      {
+        "command": "impressumLintDe.checkWorkspace",
+        "title": "Impressum & Shop-Pflichtangaben Lint (DE): Sweep workspace and write report (licence)",
+        "category": "Impressum & Shop-Pflichtangaben Lint (DE)"
+      },
+      {
+        "command": "impressumLintDe.enterKey",
+        "title": "Impressum & Shop-Pflichtangaben Lint (DE): Enter licence key",
+        "category": "Impressum & Shop-Pflichtangaben Lint (DE)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/impressum-lint-de"
+}
