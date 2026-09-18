@@ -18,6 +18,8 @@ Flags the EN 301 549 clause each line breaks, and separates what is in force tod
 
 [Get the full version — $29](https://getreadystack.com) - $29 once, one licence key per person or team seat, 7-day full refund.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 
 ## Install
 
