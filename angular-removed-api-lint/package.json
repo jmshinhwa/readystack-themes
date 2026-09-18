@@ -1,0 +1,52 @@
+{
+  "name": "angular-removed-api-lint",
+  "displayName": "Angular Removed-API Lint",
+  "description": "Flags Angular APIs that were removed or deprecated — HttpClientModule, entryComponents, TestBed.get, class guards — plus majors past their 18-month support window.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "angular",
+    "deprecated",
+    "migration",
+    "upgrade",
+    "lint",
+    "typescript",
+    "ai-generated"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "angularRemovedApi.checkFile",
+        "title": "Angular Removed-API Lint: Check this file",
+        "category": "Angular Removed-API Lint"
+      },
+      {
+        "command": "angularRemovedApi.checkWorkspace",
+        "title": "Angular Removed-API Lint: Sweep workspace and write report (licence)",
+        "category": "Angular Removed-API Lint"
+      },
+      {
+        "command": "angularRemovedApi.enterKey",
+        "title": "Angular Removed-API Lint: Enter licence key",
+        "category": "Angular Removed-API Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/angular-removed-api-lint",
+  "icon": "icon.png"
+}
