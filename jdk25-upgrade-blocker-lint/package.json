@@ -1,0 +1,53 @@
+{
+  "name": "jdk25-upgrade-blocker-lint",
+  "displayName": "JDK 25 Upgrade Blocker Lint",
+  "description": "Finds Java code that JDK 21/25 removed or refuses to run — Security Manager, sun.misc.Unsafe, javax.* imports, Applet, Thread.stop — before you leave Java 17.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "java",
+    "jdk",
+    "migration",
+    "jakarta",
+    "linter",
+    "upgrade",
+    "deprecation"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "jdk25Lint.checkFile",
+        "title": "JDK 25 Upgrade Blocker Lint: Check this file",
+        "category": "JDK 25 Upgrade Blocker Lint"
+      },
+      {
+        "command": "jdk25Lint.checkWorkspace",
+        "title": "JDK 25 Upgrade Blocker Lint: Sweep workspace and write report (licence)",
+        "category": "JDK 25 Upgrade Blocker Lint"
+      },
+      {
+        "command": "jdk25Lint.enterKey",
+        "title": "JDK 25 Upgrade Blocker Lint: Enter licence key",
+        "category": "JDK 25 Upgrade Blocker Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "jdk25-upgrade-blocker-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/jdk25-upgrade-blocker-lint",
+  "icon": "icon.png"
+}
