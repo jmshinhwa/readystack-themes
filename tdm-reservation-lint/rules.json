@@ -1,0 +1,45 @@
+{
+  "rules": [
+    {"id": "rule_before_group", "sev": "error", "title": "Allow/Disallow before any User-agent", "fix": "Move the line under a User-agent group. RFC 9309 parsers ignore rules that are not inside a group."},
+    {"id": "legacy_token", "sev": "error", "title": "Retired crawler token", "fix": "Replace with the token the vendor publishes today."},
+    {"id": "unknown_token", "sev": "error", "title": "Token no published crawler uses", "fix": "Use the exact published token; robots.txt matching is on the token, so a near-miss reserves nothing."},
+    {"id": "no_reservation", "sev": "error", "title": "No AI training crawler is reserved against", "fix": "Add a group per training crawler with Disallow: / so the reservation is machine-readable."},
+    {"id": "trainer_gap", "sev": "error", "title": "Training crawlers left unreserved", "fix": "Add a group with Disallow: / for each missing token."},
+    {"id": "trainer_allowed", "sev": "error", "title": "Training crawler explicitly allowed", "fix": "An empty Disallow: or Allow: / grants full access. Use Disallow: / to reserve."},
+    {"id": "star_group_shadowed", "sev": "warn", "title": "Its own group cancels the * group", "fix": "A crawler obeys only its most specific group; repeat the * group paths inside it."},
+    {"id": "noindex_line", "sev": "warn", "title": "Noindex in robots.txt", "fix": "Google stopped honouring Noindex in robots.txt on 2019-09-01. Use a meta robots tag or X-Robots-Tag header."},
+    {"id": "crawl_delay", "sev": "info", "title": "Crawl-delay is not in RFC 9309", "fix": "Googlebot and GPTBot ignore it. Rate-limit at the server or CDN instead."},
+    {"id": "path_no_slash", "sev": "error", "title": "Path does not start with /", "fix": "Paths are matched from the site root; write /path, not path."},
+    {"id": "sitemap_relative", "sev": "warn", "title": "Sitemap is not an absolute URL", "fix": "Sitemap: takes a full https:// URL, not a relative path."},
+    {"id": "duplicate_group", "sev": "warn", "title": "Same token in two groups", "fix": "Merge the groups; which one wins is parser-dependent."},
+    {"id": "unknown_directive", "sev": "warn", "title": "Line is not a robots.txt directive", "fix": "Parsers drop the line silently. Use User-agent, Allow, Disallow or Sitemap, or prefix it with #."},
+    {"id": "no_tdm_signal", "sev": "warn", "title": "No pointer to a TDMRep signal", "fix": "robots.txt is a crawler instruction. Add /.well-known/tdmrep.json and reference it in a comment so the reservation is machine-readable in the TDMRep sense."},
+    {"id": "agent_bot_blocked", "sev": "info", "title": "User-triggered fetcher blocked", "fix": "This token fetches a page because a person asked for it. Blocking it drops the citation and the referral without stopping training."}
+  ],
+  "trainers": {
+    "GPTBot": "OpenAI, model training",
+    "ClaudeBot": "Anthropic, model training",
+    "Google-Extended": "Google, Gemini training (robots.txt token only)",
+    "CCBot": "Common Crawl, the corpus most model builders start from",
+    "Bytespider": "ByteDance",
+    "meta-externalagent": "Meta",
+    "Applebot-Extended": "Apple, training opt-out token",
+    "PerplexityBot": "Perplexity index",
+    "Amazonbot": "Amazon"
+  },
+  "trainers_extra": ["Diffbot", "Omgilibot", "AI2Bot", "ImagesiftBot", "Timpibot", "YouBot", "cohere-training-data-crawler"],
+  "agents": {
+    "ChatGPT-User": "fetches a page when a person asks ChatGPT about it",
+    "OAI-SearchBot": "builds the ChatGPT search index that links back to you",
+    "Claude-User": "fetches a page when a person asks Claude about it",
+    "Claude-SearchBot": "builds the search index Claude cites from",
+    "Perplexity-User": "fetches a page a person asked Perplexity about"
+  },
+  "crawlers": ["Googlebot", "Googlebot-Image", "Googlebot-News", "Bingbot", "Applebot", "DuckDuckBot", "Baiduspider", "YandexBot", "Slurp", "facebookexternalhit", "Twitterbot", "LinkedInBot", "Slackbot", "Discordbot", "Pinterestbot", "AhrefsBot", "SemrushBot", "MJ12bot", "DotBot", "archive.org_bot", "ia_archiver"],
+  "legacy": {
+    "anthropic-ai": "ClaudeBot",
+    "Claude-Web": "ClaudeBot",
+    "FacebookBot": "meta-externalagent"
+  },
+  "directives": ["user-agent", "allow", "disallow", "sitemap", "crawl-delay", "host", "clean-param", "request-rate", "visit-time", "noindex"]
+}
