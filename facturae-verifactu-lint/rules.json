@@ -1,0 +1,20 @@
+[
+  {"id": "schema_version_missing", "sev": "error", "msg": "Falta FileHeader/SchemaVersion. FACe rechaza el fichero antes de leer la factura."},
+  {"id": "schema_version_old", "sev": "warn", "msg": "SchemaVersion anterior a 3.2.2."},
+  {"id": "modality_invalid", "sev": "error", "msg": "FileHeader/Modality debe ser I (factura individual) o L (lote)."},
+  {"id": "issuer_type_invalid", "sev": "error", "msg": "FileHeader/InvoiceIssuerType debe ser EM (emisor), RE (receptor) o TE (tercero)."},
+  {"id": "invoices_count_mismatch", "sev": "error", "msg": "Batch/InvoicesCount no coincide con el numero de elementos <Invoice>."},
+  {"id": "batch_total_mismatch", "sev": "error", "msg": "Batch/TotalInvoicesAmount no coincide con la suma de los InvoiceTotal del lote."},
+  {"id": "nif_checksum", "sev": "error", "msg": "TaxIdentificationNumber con digito/letra de control incorrecto o sin forma de NIF/NIE/CIF espanol."},
+  {"id": "person_type_invalid", "sev": "error", "msg": "PersonTypeCode debe ser F (persona fisica) o J (persona juridica)."},
+  {"id": "residence_type_invalid", "sev": "error", "msg": "ResidenceTypeCode debe ser E (extranjero), R (residente) o U (UE)."},
+  {"id": "document_type_invalid", "sev": "error", "msg": "InvoiceDocumentType debe ser FC (completa), FA (abreviada) o AF (autofactura)."},
+  {"id": "invoice_class_invalid", "sev": "error", "msg": "InvoiceClass debe ser OO, OR, OC, CO, CR o CI."},
+  {"id": "issue_date_invalid", "sev": "error", "msg": "IssueDate no tiene formato AAAA-MM-DD o esta fechada en el futuro."},
+  {"id": "currency_without_exchange", "sev": "error", "msg": "InvoiceCurrencyCode distinto de EUR sin bloque ExchangeRateDetails."},
+  {"id": "iva_rate_unknown", "sev": "warn", "msg": "Tipo de IVA fuera de los vigentes en Espana (21, 10, 4 o 0)."},
+  {"id": "tax_amount_mismatch", "sev": "error", "msg": "La cuota no cuadra con base imponible x tipo."},
+  {"id": "invoice_total_mismatch", "sev": "error", "msg": "InvoiceTotal no cuadra con bruto antes de impuestos + repercutidos - retenidos."},
+  {"id": "signature_missing", "sev": "error", "msg": "Falta la firma XAdES (ds:Signature). FACe solo admite Facturae firmada."},
+  {"id": "verifactu_chain_missing", "sev": "error", "msg": "Registro Veri*factu sin Huella, Encadenamiento o IDVersion."}
+]
