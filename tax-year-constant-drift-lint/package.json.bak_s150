@@ -1,0 +1,105 @@
+{
+  "name": "tax-year-constant-drift-lint",
+  "displayName": "Tax Year Constant Drift",
+  "description": "Finds tax years, statutory limits, filing thresholds, rates and deadlines hardcoded in payroll, invoicing and tax code - the constants an AI assistant completes from a year that has already passed.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "tax",
+    "payroll",
+    "lint",
+    "compliance",
+    "invoicing"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "tax-year-constant-drift-lint.audit_file",
+        "title": "Check this file for year-bound constants",
+        "category": "Tax Year Constant Drift"
+      },
+      {
+        "command": "tax-year-constant-drift-lint.audit_selection",
+        "title": "Check only the selected lines",
+        "category": "Tax Year Constant Drift"
+      },
+      {
+        "command": "tax-year-constant-drift-lint.list_rules",
+        "title": "List the rules that ship inside",
+        "category": "Tax Year Constant Drift"
+      },
+      {
+        "command": "tax-year-constant-drift-lint.workspace_scan",
+        "title": "Scan every file in the workspace",
+        "category": "Tax Year Constant Drift"
+      },
+      {
+        "command": "tax-year-constant-drift-lint.watch_on_save",
+        "title": "Re-check on every save",
+        "category": "Tax Year Constant Drift"
+      },
+      {
+        "command": "tax-year-constant-drift-lint.export_report",
+        "title": "Export the findings as CSV, JSON or HTML",
+        "category": "Tax Year Constant Drift"
+      },
+      {
+        "command": "tax-year-constant-drift-lint.ci_json",
+        "title": "Write the machine-readable CI report",
+        "category": "Tax Year Constant Drift"
+      },
+      {
+        "command": "tax-year-constant-drift-lint.custom_rules",
+        "title": "Your own extra rules",
+        "category": "Tax Year Constant Drift"
+      }
+    ],
+    "configuration": {
+      "title": "Tax Year Constant Drift",
+      "properties": {
+        "tax-year-constant-drift-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info, warn or error)"
+        },
+        "tax-year-constant-drift-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default format for an exported report (csv, json or html)"
+        },
+        "tax-year-constant-drift-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum number of files to read during a workspace scan"
+        },
+        "tax-year-constant-drift-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "tax-year-constant-drift-lint.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check the open file once as soon as the editor starts"
+        },
+        "tax-year-constant-drift-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Your own extra rules, checked alongside the 26 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
