@@ -1,0 +1,86 @@
+{
+  "name": "mcp-2026-migration-lint",
+  "displayName": "MCP 2026 Migration Lint",
+  "description": "The 2026-07-28 revision removed the initialize handshake, sessions, ping and four more RPCs. Your assistant was trained before that and still writes them.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "mcp",
+    "model context protocol",
+    "mcp.json",
+    "agent",
+    "copilot"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "mcp-2026-migration-lint.audit_file",
+        "title": "Check this file against MCP 2026-07-28",
+        "category": "MCP 2026 Migration Lint"
+      },
+      {
+        "command": "mcp-2026-migration-lint.audit_selection",
+        "title": "Check the selection",
+        "category": "MCP 2026 Migration Lint"
+      },
+      {
+        "command": "mcp-2026-migration-lint.list_rules",
+        "title": "List the rules",
+        "category": "MCP 2026 Migration Lint"
+      },
+      {
+        "command": "mcp-2026-migration-lint.workspace_scan",
+        "title": "Scan the whole workspace",
+        "category": "MCP 2026 Migration Lint"
+      },
+      {
+        "command": "mcp-2026-migration-lint.export_report",
+        "title": "Export the migration report",
+        "category": "MCP 2026 Migration Lint"
+      },
+      {
+        "command": "mcp-2026-migration-lint.ci_json",
+        "title": "CI output",
+        "category": "MCP 2026 Migration Lint"
+      }
+    ],
+    "configuration": {
+      "title": "MCP 2026 Migration Lint",
+      "properties": {
+        "mcp-2026-migration-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Lowest severity to report"
+        },
+        "mcp-2026-migration-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format"
+        },
+        "mcp-2026-migration-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip"
+        },
+        "mcp-2026-migration-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 27 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
