@@ -6,9 +6,13 @@ const BENEFIT_ID = 'f3dabe95-95a3-4985-8238-f2e6c47bb3e5';   // s140 — 이 상
 const GRACE_MS = 30 * 24 * 3600 * 1000;   // 검증 성공 뒤 30일은 오프라인에서도 연다
 const RECHECK_MS = 7 * 24 * 3600 * 1000;  // 7일마다 다시 묻는다 (환불·해지가 반영되도록)
 
+const ALL_BENEFIT_ID = '22692551-5203-4467-b1a3-e33cdba6589d';   // s149 2026-09-17 — 팀 키(전 린터 한 키 · Polar benefit) · 상품 benefit 다음에 한 번 더 묻는다
 function validate(key) {
+  return validate1(key, BENEFIT_ID).then(function (r) { return (r.ok || r.offline || !/^[0-9a-f-]{36}$/.test(ALL_BENEFIT_ID)) ? r : validate1(key, ALL_BENEFIT_ID); });
+}
+function validate1(key, ben) {
   return new Promise(function (resolve) {
-    const body = JSON.stringify(/^[0-9a-f-]{36}$/.test(BENEFIT_ID) ? { key: key, organization_id: ORG_ID, benefit_id: BENEFIT_ID } : { key: key, organization_id: ORG_ID });
+    const body = JSON.stringify(/^[0-9a-f-]{36}$/.test(ben) ? { key: key, organization_id: ORG_ID, benefit_id: ben } : { key: key, organization_id: ORG_ID });
     const req = https.request({
       hostname: 'api.polar.sh', path: '/v1/customer-portal/license-keys/validate',
       method: 'POST', timeout: 8000,
