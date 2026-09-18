@@ -1,0 +1,104 @@
+{
+  "name": "consent-audit-eu",
+  "displayName": "Pre-Consent Tracker Audit for EU Client Websites",
+  "description": "Finds the analytics, pixels, fonts and embeds that fire before your cookie banner is answered - in the source, before you deploy. 24 rules.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "gdpr",
+    "cookies",
+    "consent",
+    "privacy",
+    "eprivacy"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "consent-audit-eu.audit_file",
+        "title": "Audit this file for pre-consent tracking",
+        "category": "Consent Audit EU"
+      },
+      {
+        "command": "consent-audit-eu.audit_selection",
+        "title": "Audit the selected lines",
+        "category": "Consent Audit EU"
+      },
+      {
+        "command": "consent-audit-eu.show_report",
+        "title": "Show the last audit report",
+        "category": "Consent Audit EU"
+      },
+      {
+        "command": "consent-audit-eu.list_rules",
+        "title": "List the rules that ship inside",
+        "category": "Consent Audit EU"
+      },
+      {
+        "command": "consent-audit-eu.workspace_scan",
+        "title": "Audit the whole workspace",
+        "category": "Consent Audit EU"
+      },
+      {
+        "command": "consent-audit-eu.export_report",
+        "title": "Export the evidence report (CSV/JSON/HTML)",
+        "category": "Consent Audit EU"
+      },
+      {
+        "command": "consent-audit-eu.watch_on_save",
+        "title": "Re-audit on every save",
+        "category": "Consent Audit EU"
+      },
+      {
+        "command": "consent-audit-eu.ci_json",
+        "title": "Machine-readable output for CI",
+        "category": "Consent Audit EU"
+      },
+      {
+        "command": "consent-audit-eu.quick_fix",
+        "title": "Apply the mechanical fixes",
+        "category": "Consent Audit EU"
+      }
+    ],
+    "configuration": {
+      "title": "Consent Audit EU",
+      "properties": {
+        "consent-audit-eu.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info|warn|error)"
+        },
+        "consent-audit-eu.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format the exported evidence report is written in (csv|json|html)"
+        },
+        "consent-audit-eu.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files a workspace audit will open"
+        },
+        "consent-audit-eu.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths a workspace audit skips (glob)"
+        },
+        "consent-audit-eu.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra patterns of your own, audited alongside the 24 that ship inside."
+        }
+      }
+    }
+  }
+}
