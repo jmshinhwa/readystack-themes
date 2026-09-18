@@ -1,0 +1,85 @@
+{
+  "name": "cert-lifetime-lint",
+  "displayName": "Cert Lifetime Lint - TLS validity caps 200/100/47",
+  "description": "Finds the renewal settings in your repo that outlive the public TLS cap: 200 days since 15 March 2026, 100 days from 15 March 2027, 47 days from 15 March 2029.",
+  "version": "0.1.0",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "tls",
+    "certificate",
+    "cert-manager",
+    "acme",
+    "sre"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cert-lifetime-lint.audit_file",
+        "title": "Check this file for over-cap certificate settings",
+        "category": "Cert Lifetime Lint"
+      },
+      {
+        "command": "cert-lifetime-lint.audit_selection",
+        "title": "Check the selected lines",
+        "category": "Cert Lifetime Lint"
+      },
+      {
+        "command": "cert-lifetime-lint.show_report",
+        "title": "Show the last findings again",
+        "category": "Cert Lifetime Lint"
+      },
+      {
+        "command": "cert-lifetime-lint.workspace_scan",
+        "title": "Scan every file in the workspace",
+        "category": "Cert Lifetime Lint"
+      },
+      {
+        "command": "cert-lifetime-lint.export_report",
+        "title": "Export the findings as a dated report",
+        "category": "Cert Lifetime Lint"
+      },
+      {
+        "command": "cert-lifetime-lint.ci_json",
+        "title": "Print machine-readable output for CI",
+        "category": "Cert Lifetime Lint"
+      }
+    ],
+    "configuration": {
+      "title": "Cert Lifetime Lint",
+      "properties": {
+        "cert-lifetime-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info|warn|error)"
+        },
+        "cert-lifetime-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum files to walk during a workspace scan"
+        },
+        "cert-lifetime-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default format for the exported report (csv|json|html)"
+        },
+        "cert-lifetime-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra patterns of your own, checked alongside the 16 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
