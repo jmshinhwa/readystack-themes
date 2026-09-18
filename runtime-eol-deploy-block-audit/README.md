@@ -22,6 +22,8 @@ Finds the end-of-life runtimes an AI assistant still writes for you — node:20,
 
 [Get the full version — $29](https://getreadystack.com) - $29 once, one licence key per person or team seat, 7-day full refund.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 
 ## Install
 
