@@ -1,0 +1,86 @@
+[
+ {
+  "id": "unescaped_substitution",
+  "sev": "error",
+  "title": "Square bracket in dialogue is read as a variable",
+  "fix": "Escape it as \\[ , or close the interpolation with a real variable name."
+ },
+ {
+  "id": "unbalanced_text_tag",
+  "sev": "error",
+  "title": "Text tag opened and never closed",
+  "fix": "Close it, for example {i}...{/i}, or escape a literal brace as \\{."
+ },
+ {
+  "id": "define_not_default",
+  "sev": "error",
+  "title": "define used for a variable that changes during play",
+  "fix": "Use default instead of define so the value is saved and rolled back."
+ },
+ {
+  "id": "persistent_no_default",
+  "sev": "error",
+  "title": "persistent value read with no default",
+  "fix": "Add default persistent.NAME = ... so a first-time player does not read None."
+ },
+ {
+  "id": "tab_indent",
+  "sev": "error",
+  "title": "Tab used for indentation",
+  "fix": "Ren'Py indentation must be spaces. Replace the tab with spaces."
+ },
+ {
+  "id": "developer_mode_shipped",
+  "sev": "error",
+  "title": "config.developer is hard-set to True",
+  "fix": "Set config.developer = \"auto\" so the console and dev menu stay out of the build."
+ },
+ {
+  "id": "console_enabled",
+  "sev": "error",
+  "title": "config.console is left True",
+  "fix": "Remove the line or set it False before you build the distribution."
+ },
+ {
+  "id": "autoreload_enabled",
+  "sev": "warn",
+  "title": "config.autoreload is left True",
+  "fix": "Leave autoreload to developer mode; do not pin it True in a shipped build."
+ },
+ {
+  "id": "missing_save_directory",
+  "sev": "error",
+  "title": "config.save_directory is not set",
+  "fix": "Define config.save_directory once and never change it, so saves survive a rename."
+ },
+ {
+  "id": "placeholder_version",
+  "sev": "warn",
+  "title": "config.version is still the template placeholder",
+  "fix": "Set the real version; storefronts and crash reports read this string."
+ },
+ {
+  "id": "source_rpy_in_build",
+  "sev": "warn",
+  "title": "Build rules do not exclude .rpy source",
+  "fix": "Add build.classify('game/**.rpy', None) if you do not want readable script source in the distribution."
+ },
+ {
+  "id": "deprecated_im_api",
+  "sev": "warn",
+  "title": "Deprecated im.* image manipulator",
+  "fix": "Replace with a Transform or a Composite displayable."
+ },
+ {
+  "id": "removed_image_cache_size",
+  "sev": "error",
+  "title": "config.image_cache_size is the removed setting",
+  "fix": "Use config.image_cache_size_mb, which is measured in megabytes."
+ },
+ {
+  "id": "nonportable_asset_path",
+  "sev": "error",
+  "title": "Asset path will not resolve outside your machine",
+  "fix": "Use a relative, forward-slash path inside game/, e.g. \"images/bg/harbour.webp\"."
+ }
+]
