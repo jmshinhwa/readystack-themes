@@ -1,0 +1,183 @@
+[
+ {
+  "id": "tmg_paragraph",
+  "mode": "forbid",
+  "sev": "error",
+  "re": "§\\s*5\\s*(?:Abs\\.?\\s*\\d\\s*)?TMG",
+  "flags": "gi",
+  "msg": "§ 5 TMG zitiert. Das TMG ist am 14.05.2024 aufgehoben worden — die Anbieterkennzeichnung steht seither in § 5 DDG.",
+  "fix": "§ 5 DDG",
+  "since": "2024-05-14"
+ },
+ {
+  "id": "tmg_name",
+  "mode": "forbid",
+  "sev": "error",
+  "re": "Telemediengesetz",
+  "flags": "gi",
+  "msg": "\"Telemediengesetz\" genannt. Seit 14.05.2024 heißt das Gesetz Digitale-Dienste-Gesetz (DDG).",
+  "fix": "Digitale-Dienste-Gesetz (DDG)",
+  "since": "2024-05-14"
+ },
+ {
+  "id": "ttdsg_renamed",
+  "mode": "forbid",
+  "sev": "error",
+  "re": "TTDSG",
+  "flags": "g",
+  "msg": "TTDSG zitiert. Das Gesetz heißt seit 14.05.2024 TDDDG — die Einwilligung für Cookies ist § 25 TDDDG.",
+  "fix": "§ 25 TDDDG",
+  "since": "2024-05-14"
+ },
+ {
+  "id": "rstv_repealed",
+  "mode": "forbid",
+  "sev": "error",
+  "re": "§\\s*55\\s*(?:Abs\\.?\\s*\\d\\s*)?RStV|\\bRStV\\b|Rundfunkstaatsvertrag",
+  "flags": "gi",
+  "msg": "RStV zitiert. Der Rundfunkstaatsvertrag ist am 07.11.2020 außer Kraft getreten — der inhaltlich Verantwortliche steht in § 18 Abs. 2 MStV.",
+  "fix": "§ 18 Abs. 2 MStV",
+  "since": "2020-11-07"
+ },
+ {
+  "id": "odr_link_dead",
+  "mode": "forbid",
+  "sev": "error",
+  "re": "ec\\.europa\\.eu/consumers/odr|europa\\.eu/odr|OS-Plattform|Online-Streitbeilegung",
+  "flags": "gi",
+  "msg": "Verweis auf die EU-Plattform zur Online-Streitbeilegung. Die ODR-Plattform ist am 20.07.2025 abgeschaltet worden — der Link führt ins Leere und ist zu entfernen.",
+  "fix": "Absatz ersatzlos streichen",
+  "since": "2025-07-20"
+ },
+ {
+  "id": "bdsg_alt",
+  "mode": "forbid",
+  "sev": "warn",
+  "re": "BDSG[- ]?(?:alt|a\\.\\s?F\\.)|§\\s*28\\s*BDSG",
+  "flags": "gi",
+  "msg": "BDSG in der alten Fassung zitiert. Rechtsgrundlage der Verarbeitung ist seit 25.05.2018 Art. 6 Abs. 1 DSGVO.",
+  "fix": "Art. 6 Abs. 1 DSGVO",
+  "since": "2018-05-25"
+ },
+ {
+  "id": "moss_oss",
+  "mode": "forbid",
+  "sev": "warn",
+  "re": "\\bMOSS\\b|Mini-One-Stop-Shop",
+  "flags": "gi",
+  "msg": "MOSS genannt. Das Verfahren heißt seit 01.07.2021 One-Stop-Shop (OSS, § 18j UStG).",
+  "fix": "One-Stop-Shop (§ 18j UStG)",
+  "since": "2021-07-01"
+ },
+ {
+  "id": "battg_battdg",
+  "mode": "forbid",
+  "sev": "warn",
+  "re": "Batteriegesetz|\\bBattG\\b",
+  "flags": "gi",
+  "msg": "Batteriegesetz zitiert. Das Batterierecht richtet sich inzwischen nach der EU-Batterieverordnung (EU) 2023/1542 und dem deutschen Durchführungsgesetz — Fundstelle prüfen.",
+  "fix": "Verordnung (EU) 2023/1542 prüfen",
+  "since": "2025-08-18"
+ },
+ {
+  "id": "impressum_ddg",
+  "mode": "require",
+  "sev": "warn",
+  "trigger": "Impressum",
+  "tflags": "i",
+  "re": "\\bDDG\\b",
+  "flags": "i",
+  "msg": "Impressum ohne Nennung des DDG. Die Pflichtangaben beruhen auf § 5 DDG — die Fundstelle gehört sichtbar in die Seite.",
+  "fix": "Angaben gemäß § 5 DDG"
+ },
+ {
+  "id": "impressum_ustid",
+  "mode": "require",
+  "sev": "warn",
+  "trigger": "Impressum",
+  "tflags": "i",
+  "re": "USt-IdNr|Umsatzsteuer-Identifikationsnummer",
+  "flags": "i",
+  "msg": "Keine USt-IdNr. im Impressum. § 5 Abs. 1 Nr. 6 DDG verlangt die Angabe, sobald eine Umsatzsteuer-Identifikationsnummer vorhanden ist.",
+  "fix": "USt-IdNr.: DE………"
+ },
+ {
+  "id": "impressum_vsbg",
+  "mode": "require",
+  "sev": "warn",
+  "trigger": "Impressum",
+  "tflags": "i",
+  "re": "VSBG|Verbraucherschlichtungsstelle|Verbraucherstreitbeilegung",
+  "flags": "i",
+  "msg": "Erklärung zur Verbraucherschlichtung fehlt. § 36 VSBG gilt weiter, auch nachdem die ODR-Plattform 2025 abgeschaltet wurde.",
+  "fix": "Hinweis nach § 36 VSBG ergänzen"
+ },
+ {
+  "id": "verpackg_lucid",
+  "mode": "require",
+  "sev": "info",
+  "trigger": "Impressum",
+  "tflags": "i",
+  "re": "LUCID|Verpackungsregister",
+  "flags": "i",
+  "msg": "Keine LUCID-Registrierungsnummer. § 9 VerpackG verlangt die Registrierung im Verpackungsregister für jeden, der Ware an private Endverbraucher versendet.",
+  "fix": "LUCID-Nr.: DE………"
+ },
+ {
+  "id": "gpsr_hersteller",
+  "mode": "require",
+  "sev": "error",
+  "trigger": "Warenkorb|In den Korb|itemprop=\"price\"|data-product",
+  "tflags": "i",
+  "re": "Hersteller|Verantwortliche Person|Wirtschaftsakteur",
+  "flags": "i",
+  "msg": "Produktseite ohne Herstellerangabe. Die GPSR (EU) 2023/988 gilt seit 13.12.2024 und verlangt Name und Anschrift des Herstellers sowie der verantwortlichen Person in der EU.",
+  "fix": "Hersteller / verantwortliche Person ergänzen",
+  "since": "2024-12-13"
+ },
+ {
+  "id": "pangv_gesamtpreis",
+  "mode": "require",
+  "sev": "error",
+  "trigger": "\\d+[,.]\\d{2}\\s*(?:€|EUR)",
+  "tflags": "i",
+  "re": "inkl\\.\\s*(?:19\\s*%\\s*)?MwSt|inklusive Mehrwertsteuer|inkl\\.\\s*Umsatzsteuer",
+  "flags": "i",
+  "msg": "Preis ohne Gesamtpreisangabe. § 3 PAngV verlangt, dass der Preis erkennbar die Umsatzsteuer enthält.",
+  "fix": "inkl. MwSt."
+ },
+ {
+  "id": "pangv_versand",
+  "mode": "require",
+  "sev": "error",
+  "trigger": "\\d+[,.]\\d{2}\\s*(?:€|EUR)",
+  "tflags": "i",
+  "re": "Versandkosten|zzgl\\. Versand|versandkostenfrei",
+  "flags": "i",
+  "msg": "Preis ohne Versandkostenangabe. § 6 PAngV verlangt den Hinweis auf zusätzlich anfallende Liefer- und Versandkosten.",
+  "fix": "zzgl. Versandkosten"
+ },
+ {
+  "id": "widerruf_formular",
+  "mode": "require",
+  "sev": "error",
+  "trigger": "Widerrufsbelehrung|Widerrufsrecht",
+  "tflags": "i",
+  "re": "Muster-Widerrufsformular|Widerrufsformular",
+  "flags": "i",
+  "msg": "Widerrufsbelehrung ohne Muster-Widerrufsformular. Art. 246a § 1 Abs. 2 Nr. 1 EGBGB verlangt, dass das Formular mitgeteilt wird.",
+  "fix": "Muster-Widerrufsformular verlinken"
+ },
+ {
+  "id": "bfsg_hinweis",
+  "mode": "require",
+  "sev": "warn",
+  "trigger": "Warenkorb|Kasse|Checkout",
+  "tflags": "i",
+  "re": "Barrierefreiheit",
+  "flags": "i",
+  "msg": "Kein Hinweis zur Barrierefreiheit. Das BFSG gilt seit 28.06.2025 auch für Onlineshops; § 14 BFSG verlangt Informationen darüber, wie die Dienstleistung die Anforderungen erfüllt.",
+  "fix": "Erklärung zur Barrierefreiheit verlinken",
+  "since": "2025-06-28"
+ }
+]
