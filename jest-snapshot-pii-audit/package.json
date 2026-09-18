@@ -1,0 +1,53 @@
+{
+  "name": "jest-snapshot-pii-audit",
+  "displayName": "Jest Snapshot PII Audit",
+  "description": "Finds real personal data and live credentials committed inside Jest .snap snapshot files — emails, national IDs, IBANs, cards, tokens — with the GDPR article for each hit.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "jest",
+    "snapshot",
+    "gdpr",
+    "privacy",
+    "pii",
+    "testing",
+    "secrets"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "jestSnapPii.checkFile",
+        "title": "Jest Snapshot PII Audit: Check this file",
+        "category": "Jest Snapshot PII Audit"
+      },
+      {
+        "command": "jestSnapPii.checkWorkspace",
+        "title": "Jest Snapshot PII Audit: Sweep workspace and write report (licence)",
+        "category": "Jest Snapshot PII Audit"
+      },
+      {
+        "command": "jestSnapPii.enterKey",
+        "title": "Jest Snapshot PII Audit: Enter licence key",
+        "category": "Jest Snapshot PII Audit"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "jest-snapshot-pii-audit"
+  },
+  "homepage": "https://getreadystack.com/tools/jest-snapshot-pii-audit",
+  "icon": "icon.png"
+}
