@@ -1,0 +1,22 @@
+# BEM Class Auditor for HTML and SCSS
+
+16 BEM naming rules read the HTML file you have open, and 22 markup and SCSS skeletons write the stylesheet shell — the class names get fixed before the pull request comes back for them.
+
+## What it does for free
+
+- Audit the open HTML file against all 16 BEM rules, with line numbers
+- Audit only the lines you selected, block by block
+- Insert any of the 22 markup and SCSS skeletons at the cursor
+- Read the full list of 16 rules and 22 skeletons that ship inside
+
+## With a licence
+
+- **Every HTML file in the repository, not only the one on screen** — Opens every file in the workspace and runs the same check on each.
+- **A findings file you can attach to the pull request** — Writes the findings as a file (CSV, JSON or HTML) into the workspace folder; it uses the report_format setting when that is set, and only asks which format when it is not.
+- **Correct the flagged class name in the editor** — Replaces the offending lines in the editor with the suggested text.
+
+## Install
+
+```
+ext install bem-class-extractor-html
+```
