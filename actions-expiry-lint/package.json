@@ -1,0 +1,53 @@
+{
+  "name": "actions-expiry-lint",
+  "displayName": "Actions Expiry Lint",
+  "description": "Flags GitHub Actions lines that stop working on a date - retired runner images, shut-down action versions, Node runtimes past end-of-life. Checked against any 'as of' date.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "github actions",
+    "ci",
+    "workflow",
+    "deprecation",
+    "end of life",
+    "runner images",
+    "yaml",
+    "linter"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "actionsExpiry.checkFile",
+        "title": "Actions Expiry Lint: Check this file",
+        "category": "Actions Expiry Lint"
+      },
+      {
+        "command": "actionsExpiry.checkWorkspace",
+        "title": "Actions Expiry Lint: Sweep workspace and write report (licence)",
+        "category": "Actions Expiry Lint"
+      },
+      {
+        "command": "actionsExpiry.enterKey",
+        "title": "Actions Expiry Lint: Enter licence key",
+        "category": "Actions Expiry Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/actions-expiry-lint",
+  "icon": "icon.png"
+}
