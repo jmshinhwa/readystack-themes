@@ -1,0 +1,83 @@
+[
+  {
+    "id": "chat-no-ai-disclosure",
+    "sev": "error",
+    "art": "Article 50(1)",
+    "when": ["chat\\.completions\\.create", "\\bmessages\\.create\\b", "\\bgenerateContent\\b", "\\bstreamText\\(", "\\buseChat\\(", "\\bcreateChatCompletion\\b", "responses\\.create"],
+    "unless": ["AI_DISCLOSURE", "aiDisclosure", "data-ai-disclosure", "interacting with an AI", "chatting with an AI", "talking to an AI", "speaking to an AI", "this is an AI assistant"],
+    "msg": "Conversational model call in a file that renders no AI disclosure. Article 50(1) requires that a natural person be informed they are interacting with an AI system, at the time of first exposure, unless it is obvious to a reasonably observant person. Render the disclosure in the chat surface itself."
+  },
+  {
+    "id": "genimage-no-machine-marking",
+    "sev": "error",
+    "art": "Article 50(2)",
+    "when": ["images\\.generate", "\\bimages\\.edit\\b", "\\bgenerateImage\\b", "replicate\\.run", "stability\\.ai", "\\bimagen\\b", "stable[_-]?diffusion", "\\bdall[-_]?e\\b"],
+    "unless": ["c2pa", "ContentCredentials", "content_credentials", "data-ai-generated", "X-AI-Generated", "SynthID", "DigitalSourceType", "trainedAlgorithmicMedia"],
+    "msg": "Image generation with no machine-readable marking anywhere in this file. Article 50(2) requires providers of generative systems to mark synthetic output in a machine-readable format detectable as artificially generated or manipulated: C2PA Content Credentials, SynthID, or IPTC DigitalSourceType trainedAlgorithmicMedia."
+  },
+  {
+    "id": "genaudio-no-machine-marking",
+    "sev": "error",
+    "art": "Article 50(2)",
+    "when": ["audio\\.speech\\.create", "text[_-]?to[_-]?speech", "\\btextToSpeech\\b", "elevenlabs", "voice[_-]?clone", "\\btts\\.synth"],
+    "unless": ["c2pa", "ContentCredentials", "content_credentials", "data-ai-generated", "X-AI-Generated", "SynthID", "DigitalSourceType", "trainedAlgorithmicMedia"],
+    "msg": "Synthetic speech generated with no machine-readable marking. Article 50(2) covers audio alongside image, video and text, so a synthesised or cloned voice must carry a detectable marking that survives distribution."
+  },
+  {
+    "id": "deepfake-no-visible-label",
+    "sev": "error",
+    "art": "Article 50(4)",
+    "when": ["face[_-]?swap", "\\bfaceSwap\\b", "\\bdeepfake\\b", "lip[_-]?sync", "\\blipSync\\b", "\\breenact", "avatar[_-]?clone"],
+    "unless": ["artificially generated", "artificially manipulated", "AI-generated", "AI generated", "DEEPFAKE_LABEL", "synthetically generated"],
+    "msg": "Deep fake pipeline with no disclosure label in this file. Article 50(4) requires a deployer who generates or manipulates image, audio or video resembling real persons, objects, places or events to disclose that the content has been artificially generated or manipulated."
+  },
+  {
+    "id": "emotion-biometric-no-notice",
+    "sev": "error",
+    "art": "Article 50(3)",
+    "when": ["emotion[_-]?recognition", "\\bemotionRecognition\\b", "detect[_-]?emotion", "biometric[_-]?categor", "affect[_-]?detect"],
+    "unless": ["EMOTION_NOTICE", "emotionNotice", "informed of the operation", "BIOMETRIC_NOTICE", "biometric notice"],
+    "msg": "Emotion recognition or biometric categorisation with no notice to the exposed person. Article 50(3) requires deployers to inform the persons exposed to the system of its operation and to process the personal data in line with the GDPR."
+  },
+  {
+    "id": "disclosure-in-comment-only",
+    "sev": "warn",
+    "art": "Article 50(1)",
+    "when": ["^\\s*(//|#|\\*|<!--).*(interacting with an AI|chatting with an AI|AI-generated|artificially generated|disclose that)"],
+    "unless": [],
+    "msg": "The Article 50 wording on this line sits inside a source comment. A comment is never shown to anyone; paragraphs 1 and 4 both require the information to reach the person, clear, distinguishable and at the latest at the first interaction or exposure."
+  },
+  {
+    "id": "alt-text-marking-only",
+    "sev": "warn",
+    "art": "Article 50(2)",
+    "when": ["alt\\s*=\\s*[\"'][^\"']*(AI|generated)", "caption\\s*[:=]\\s*[\"'][^\"']*(AI|generated)"],
+    "unless": ["c2pa", "ContentCredentials", "content_credentials", "data-ai-generated", "X-AI-Generated", "SynthID", "DigitalSourceType", "trainedAlgorithmicMedia"],
+    "msg": "Human-readable alt text or a caption is the only mark on generated media here. Article 50(2) asks for the marking to be machine-readable and detectable by other systems; wording a person can read does not satisfy it on its own."
+  },
+  {
+    "id": "ai-sdk-import-unmapped",
+    "sev": "info",
+    "art": "Article 50",
+    "when": ["from\\s+[\"']openai[\"']", "@anthropic-ai/sdk", "@google/genai", "from\\s+openai\\s+import", "^\\s*import\\s+anthropic", "@mistralai/", "\\bollama\\b", "huggingface"],
+    "unless": ["AI_DISCLOSURE", "aiDisclosure", "data-ai-disclosure", "interacting with an AI", "chatting with an AI", "c2pa", "ContentCredentials", "data-ai-generated", "SynthID", "DigitalSourceType", "artificially generated", "AI-generated", "EMOTION_NOTICE", "informed of the operation", "art50-exempt"],
+    "msg": "This file pulls in a generative AI SDK and carries no Article 50 marker of any kind. Every generative surface needs a recorded decision: a disclosure, a machine-readable marking, a label, or a written reason the exemption in paragraph 1 or 4 applies."
+  },
+  {
+    "id": "marking-stripped-after-generation",
+    "sev": "error",
+    "art": "Article 50(2)",
+    "when": ["strip[_-]?metadata", "\\bstripMetadata\\b", "remove[_-]?exif", "\\bremoveExif\\b", "map_metadata\\s+-1", "withMetadata\\(\\s*false\\s*\\)"],
+    "needs": ["images\\.generate", "\\bgenerateImage\\b", "audio\\.speech\\.create", "replicate\\.run", "text[_-]?to[_-]?speech", "\\bimages\\.edit\\b"],
+    "unless": [],
+    "msg": "Metadata is stripped in a file that generates media. Removing EXIF or XMP removes the C2PA or IPTC marking that Article 50(2) requires, and a marking that is deleted before distribution is the same as no marking at all."
+  },
+  {
+    "id": "art50-deadline",
+    "sev": "info",
+    "art": "Article 50",
+    "when": [],
+    "unless": [],
+    "msg": "Article 50 of Regulation (EU) 2024/1689 applies from 2026-08-02. Non-compliance with Article 50 is fined under Article 99(4): up to EUR 15,000,000 or 3% of total worldwide annual turnover, whichever is higher."
+  }
+]
