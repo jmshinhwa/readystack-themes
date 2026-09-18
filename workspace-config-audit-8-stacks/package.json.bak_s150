@@ -1,0 +1,128 @@
+{
+  "name": "workspace-config-audit-8-stacks",
+  "displayName": "Angular & SAP Fiori Workspace Config Audit",
+  "description": "One hard-coded azure-devices.net key, or a coverage gate left at 0, slips into the repo unnoticed - 26 checks across the 8 toolchains an enterprise Angular workspace runs on, applied to the file you h",
+  "version": "0.1.0",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Snippets"
+  ],
+  "keywords": [
+    "angular",
+    "angular-cli",
+    "sap-fiori",
+    "ui5",
+    "azure-iot"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "workspace-config-audit-8-stacks.audit_file",
+        "title": "Audit This File",
+        "category": "Angular & SAP Fiori Work"
+      },
+      {
+        "command": "workspace-config-audit-8-stacks.audit_selection",
+        "title": "Audit Only the Selected Lines",
+        "category": "Angular & SAP Fiori Work"
+      },
+      {
+        "command": "workspace-config-audit-8-stacks.insert_snippet",
+        "title": "Insert a Config Snippet",
+        "category": "Angular & SAP Fiori Work"
+      },
+      {
+        "command": "workspace-config-audit-8-stacks.list_rules",
+        "title": "List All Rules and Snippets",
+        "category": "Angular & SAP Fiori Work"
+      },
+      {
+        "command": "workspace-config-audit-8-stacks.workspace_scan",
+        "title": "Audit the Whole Workspace",
+        "category": "Angular & SAP Fiori Work"
+      },
+      {
+        "command": "workspace-config-audit-8-stacks.export_report",
+        "title": "Write the Findings to a File",
+        "category": "Angular & SAP Fiori Work"
+      },
+      {
+        "command": "workspace-config-audit-8-stacks.quick_fix",
+        "title": "Replace the Offending Line",
+        "category": "Angular & SAP Fiori Work"
+      }
+    ],
+    "configuration": {
+      "title": "Angular & SAP Fiori Workspace Config Audit",
+      "properties": {
+        "workspace-config-audit-8-stacks.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format for the report file"
+        },
+        "workspace-config-audit-8-stacks.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum number of workspace files to scan"
+        },
+        "workspace-config-audit-8-stacks.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,dist,.angular,out,coverage}/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "workspace-config-audit-8-stacks.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 26 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./snippets/html.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/typescript.code-snippets"
+      },
+      {
+        "language": "xml",
+        "path": "./snippets/xml.code-snippets"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/yaml.code-snippets"
+      }
+    ]
+  }
+}
