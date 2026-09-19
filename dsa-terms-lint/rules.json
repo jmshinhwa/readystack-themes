@@ -1,0 +1,112 @@
+[
+  {
+    "check": "art11_authority_contact",
+    "sev": "err",
+    "msg": "Art. 11 DSA: no single point of contact for Member State authorities, the Commission and the Board. Publish one electronic contact (email or form) and say it is for authorities.",
+    "need": ["single point of contact[^.]{0,120}(authorit|commission|board|digital services coordinator)", "point of contact for (member state )?authorit", "authorities may contact us (at|by|via)"]
+  },
+  {
+    "check": "art11_contact_languages",
+    "sev": "warn",
+    "msg": "Art. 11(3) DSA: the languages used for communication with authorities are not stated. Name them, and one must be an official language of your Member State of main establishment.",
+    "need": ["languages? (used |available )?for communicat", "we communicate with authorities in", "official language"]
+  },
+  {
+    "check": "art12_recipient_contact",
+    "sev": "err",
+    "msg": "Art. 12 DSA: no single point of contact for users. Publish a direct contact for recipients of the service, separate from the authority contact.",
+    "need": ["point of contact for (users|recipients|customers)", "contact us[^.]{0,80}(support@|legal@|help@|privacy@|@)", "you can (reach|contact) us (at|by|via)[^.]{0,60}@"]
+  },
+  {
+    "check": "art12_human_channel",
+    "sev": "err",
+    "msg": "Art. 12(1) DSA: users must be able to reach you by a means that is not solely automated. Say in the terms that a human answers, not only a chatbot or ticket robot.",
+    "need": ["not (solely|only|exclusively) (automated|an automated)", "a (human|person|member of our team) (will |does )?(reply|respond|review|answer)", "human review of (your |every )?(message|request|enquiry)", "without (relying )?(solely|only) on automated"]
+  },
+  {
+    "check": "art13_legal_representative",
+    "sev": "err",
+    "msg": "Art. 13 DSA: providers without an establishment in the Union must name a legal representative in a Member State where they offer the service. State your EU establishment or name the representative.",
+    "need": ["legal representative", "established in (the )?(european union|eu)\\b", "our (place of )?establishment (is )?in (the )?(european union|eu|ireland|germany|france|netherlands|spain|italy|poland|sweden|belgium)"]
+  },
+  {
+    "check": "art14_moderation_policy",
+    "sev": "err",
+    "msg": "Art. 14(1) DSA: the terms must describe the policies, procedures, measures and tools used for content moderation. Describe what you remove and how you find it.",
+    "need": ["content moderation", "moderation (policy|policies|procedures?|measures|tools)", "how we (review|moderate) (content|posts|uploads)"]
+  },
+  {
+    "check": "art14_algorithmic_human_review",
+    "sev": "err",
+    "msg": "Art. 14(1) DSA: the terms must say whether moderation uses algorithmic decision-making and whether a human reviews it. Name both.",
+    "need": ["algorithmic decision[- ]?making", "automated (tools|systems|detection)[^.]{0,120}(human review|reviewed by (a )?(human|person|staff))", "human review[^.]{0,120}(automated|algorithm)"]
+  },
+  {
+    "check": "art14_plain_language",
+    "sev": "warn",
+    "msg": "Art. 14(1) DSA: the terms must be in clear, plain, intelligible, user-friendly and unambiguous language, and Art. 14(3) requires a version minors can understand where the service targets them. Say which you have done.",
+    "need": ["plain (and )?(intelligible )?language", "clear,? (plain|simple) (and )?(intelligible|understandable)", "written in plain (english|language)", "plain-language summary"]
+  },
+  {
+    "check": "art14_change_notice",
+    "sev": "warn",
+    "msg": "Art. 14(2) DSA: significant changes to the terms must be notified to users. State the channel and the notice period.",
+    "need": ["(notify|inform|tell) (you|users|recipients)[^.]{0,120}(chang|amend|updat)", "(significant|material) chang[^.]{0,120}(notice|notify|inform)", "we will give[^.]{0,60}days'? notice"]
+  },
+  {
+    "check": "art16_notice_action",
+    "sev": "err",
+    "msg": "Art. 16 DSA: hosting services must offer an electronic notice-and-action mechanism for reporting illegal content, easy to access and user-friendly. Link it from the terms.",
+    "need": ["notice[- ]and[- ]action", "report illegal content", "(report|flag) (allegedly )?illegal (content|material|items)", "illegal content (report|notice) (form|mechanism|channel)"]
+  },
+  {
+    "check": "art16_receipt_confirmation",
+    "sev": "warn",
+    "msg": "Art. 16(4) DSA: you must confirm receipt of a notice to the notifier without undue delay. Say that a confirmation is sent.",
+    "need": ["confirm(ation)? of receipt", "we (will )?(send|issue) (you )?(a )?confirmation", "acknowledge receipt", "confirm receipt of (your |the )?(notice|report)"]
+  },
+  {
+    "check": "art17_statement_of_reasons",
+    "sev": "err",
+    "msg": "Art. 17 DSA: every restriction (removal, demotion, suspension, demonetisation) needs a clear and specific statement of reasons to the affected user. Promise it in the terms.",
+    "need": ["statement of reasons", "we (will )?(tell|explain to) you why[^.]{0,80}(remov|restrict|suspend|disabl)", "reasons for (the )?(removal|restriction|suspension) (will be|are) (given|provided)"]
+  },
+  {
+    "check": "art20_internal_complaints",
+    "sev": "err",
+    "msg": "Art. 20 DSA: hosting services must run a free internal complaint-handling system open for at least six months after the decision. State that it is free and state the six-month window.",
+    "need": ["internal complaint[- ]handling", "appeal (a|the|our) (decision|removal)[^.]{0,120}(six months|6 months|180 days)", "complaint[- ]handling system[^.]{0,120}(free|no charge)"]
+  },
+  {
+    "check": "art21_out_of_court",
+    "sev": "err",
+    "msg": "Art. 21 DSA: users must be told they may take a dispute to a certified out-of-court dispute settlement body. Name the right and where to find the certified bodies.",
+    "need": ["out[- ]of[- ]court dispute settlement", "certified dispute settlement body", "alternative dispute resolution body certified"]
+  },
+  {
+    "check": "art23_misuse_suspension",
+    "sev": "warn",
+    "msg": "Art. 23 DSA: state the policy for suspending accounts that frequently post manifestly illegal content, and notifiers who frequently file unfounded notices, after a prior warning.",
+    "need": ["prior warning", "manifestly (illegal|unfounded)", "repeated(ly)? (unfounded|abusive) (notices|reports)", "frequently (post|submit)[^.]{0,80}(illegal|unfounded)"]
+  },
+  {
+    "check": "art26_ad_transparency",
+    "sev": "err",
+    "msg": "Art. 26 DSA: this service shows advertising, so each ad must be marked as an ad, name who paid for it, and explain the main parameters used to target it. Say so in the terms.",
+    "when": "advertis|sponsored (post|content|listing)|promoted (post|content)",
+    "need": ["(marked|labelled|labeled|identified) as (an )?(ad|advertis)", "on whose behalf (the )?(ad|advertis)", "main parameters used to determine"]
+  },
+  {
+    "check": "art28_minor_profiling_ads",
+    "sev": "err",
+    "msg": "Art. 28(2) DSA: where the service is accessible to minors you may not show advertising based on profiling of their personal data. State the ban in the terms.",
+    "when": "minor|under 18|under-18|child(ren)?|teen",
+    "need": ["no (advertis|ads)[^.]{0,120}profil", "profiling[^.]{0,120}(minors?|children)[^.]{0,60}(not|never|prohibited)", "we do not (show|serve) (profil|targeted) (ads|advertis)[^.]{0,80}(minor|child)"]
+  },
+  {
+    "check": "terms_dated_before_dsa",
+    "sev": "err",
+    "kind": "date",
+    "msg": "The DSA has applied to every intermediary service since 17 February 2024. Terms that carry no version date, or a date before it, were not written against these duties."
+  }
+]
