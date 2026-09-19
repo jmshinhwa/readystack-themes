@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.jmshinhwa/uscore-profile-gap-lint",
+  "description": "Finds the FHIR R4 resources still pinned to US Core 3.1.1 or 5.0.1, and the USCDI v3 Patient element",
+  "repository": {
+    "url": "https://github.com/jmshinhwa/readystack-themes",
+    "source": "github"
+  },
+  "version": "1.0.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@readystack/uscore-profile-gap-lint",
+      "version": "1.0.1",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "--mcp",
+          "description": "run as an MCP server (stdio)"
+        }
+      ]
+    }
+  ]
+}
