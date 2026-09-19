@@ -1,0 +1,140 @@
+{
+  "name": "inkling-devicetree-toml-snippet-lint",
+  "displayName": "Inkling · DeviceTree · TOML — Snippets & Lint",
+  "description": "The nine languages VS Code only colours — 37 snippets and 21 rules that catch what the syntax highlighter never says: a v1 `MsgBox,` in a v2 script, `status = \"ok\"` in an overlay, an unquoted version ",
+  "version": "0.1.1",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Snippets",
+    "Linters"
+  ],
+  "keywords": [
+    "inkling",
+    "devicetree",
+    "autohotkey",
+    "renpy",
+    "toml"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "inkling-devicetree-toml-snippet-lint.audit_file",
+        "title": "Check This File (9 Languages)",
+        "category": "Inkling · DeviceTree · T"
+      },
+      {
+        "command": "inkling-devicetree-toml-snippet-lint.insert_snippet",
+        "title": "Insert Snippet (37 in the Pack)",
+        "category": "Inkling · DeviceTree · T"
+      },
+      {
+        "command": "inkling-devicetree-toml-snippet-lint.list_rules",
+        "title": "List All Rules and Snippets",
+        "category": "Inkling · DeviceTree · T"
+      },
+      {
+        "command": "inkling-devicetree-toml-snippet-lint.workspace_scan",
+        "title": "Check Every File in the Workspace",
+        "category": "Inkling · DeviceTree · T"
+      },
+      {
+        "command": "inkling-devicetree-toml-snippet-lint.quick_fix",
+        "title": "Replace the Flagged Lines",
+        "category": "Inkling · DeviceTree · T"
+      },
+      {
+        "command": "inkling-devicetree-toml-snippet-lint.export_report",
+        "title": "Save the Findings as a File",
+        "category": "Inkling · DeviceTree · T"
+      },
+      {
+        "command": "inkling-devicetree-toml-snippet-lint.watch_on_save",
+        "title": "Re-check on Every Save",
+        "category": "Inkling · DeviceTree · T"
+      }
+    ],
+    "configuration": {
+      "title": "Inkling · DeviceTree · TOML — Snippets & Lint",
+      "properties": {
+        "inkling-devicetree-toml-snippet-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format used when the findings are saved to a file"
+        },
+        "inkling-devicetree-toml-snippet-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Largest number of workspace files to open in one scan"
+        },
+        "inkling-devicetree-toml-snippet-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,build,dist,.venv,game/cache,target}/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "inkling-devicetree-toml-snippet-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 21 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "ahk2",
+        "path": "./snippets/ahk2-ahk.code-snippets"
+      },
+      {
+        "language": "ahk",
+        "path": "./snippets/ahk2-ahk.code-snippets"
+      },
+      {
+        "language": "dts",
+        "path": "./snippets/dts.code-snippets"
+      },
+      {
+        "language": "inkling",
+        "path": "./snippets/inkling.code-snippets"
+      },
+      {
+        "language": "java",
+        "path": "./snippets/java.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/properties.code-snippets"
+      },
+      {
+        "language": "renpy",
+        "path": "./snippets/renpy.code-snippets"
+      },
+      {
+        "language": "swift",
+        "path": "./snippets/swift.code-snippets"
+      },
+      {
+        "language": "toml",
+        "path": "./snippets/toml.code-snippets"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/yaml.code-snippets"
+      }
+    ]
+  }
+}
