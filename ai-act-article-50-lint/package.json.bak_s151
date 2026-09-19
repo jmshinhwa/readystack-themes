@@ -1,0 +1,55 @@
+{
+  "name": "ai-act-article-50-lint",
+  "displayName": "EU AI Act Article 50 Disclosure Lint",
+  "description": "Lint source for EU AI Act Article 50 gaps: chatbots with no AI disclosure, generated image/audio/video with no machine-readable marking, deepfakes with no label. Article 50 applies 2 August 2026.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "eu-ai-act",
+    "article-50",
+    "ai-transparency",
+    "ai-disclosure",
+    "c2pa",
+    "deepfake",
+    "synthetic-content",
+    "compliance",
+    "genai",
+    "linter"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiAct50Lint.checkFile",
+        "title": "EU AI Act Article 50 Disclosure Lint: Check this file",
+        "category": "EU AI Act Article 50 Disclosure Lint"
+      },
+      {
+        "command": "aiAct50Lint.checkWorkspace",
+        "title": "EU AI Act Article 50 Disclosure Lint: Sweep workspace and write report (licence)",
+        "category": "EU AI Act Article 50 Disclosure Lint"
+      },
+      {
+        "command": "aiAct50Lint.enterKey",
+        "title": "EU AI Act Article 50 Disclosure Lint: Enter licence key",
+        "category": "EU AI Act Article 50 Disclosure Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/ai-act-article-50-lint",
+  "icon": "icon.png"
+}
