@@ -2,7 +2,7 @@
   "name": "target-sdk-36-deadline-gate",
   "displayName": "targetSdk 36 Deadline Gate (Google Play)",
   "description": "Reads your AndroidManifest.xml and app/build.gradle and tells you what breaks when you raise targetSdk to 36 before Google Play's 31 August 2026 deadline. Date-aware. Runs offline.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
