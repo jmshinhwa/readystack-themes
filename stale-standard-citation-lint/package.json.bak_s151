@@ -1,0 +1,56 @@
+{
+  "name": "stale-standard-citation-lint",
+  "displayName": "Stale Standard Citation Lint",
+  "description": "Finds superseded standard editions and repealed laws cited in your .rst/.md docs — ISO 27001:2013, PCI DSS 3.2.1, FIPS 140-2, Privacy Shield, the old SCCs — with the date each one died.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "restructuredtext",
+    "sphinx",
+    "compliance",
+    "iso-27001",
+    "pci-dss",
+    "fips-140",
+    "documentation",
+    "linter",
+    "gdpr",
+    "audit"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "staleCitation.checkFile",
+        "title": "Stale Standard Citation Lint: Check this file",
+        "category": "Stale Standard Citation Lint"
+      },
+      {
+        "command": "staleCitation.checkWorkspace",
+        "title": "Stale Standard Citation Lint: Sweep workspace and write report (licence)",
+        "category": "Stale Standard Citation Lint"
+      },
+      {
+        "command": "staleCitation.enterKey",
+        "title": "Stale Standard Citation Lint: Enter licence key",
+        "category": "Stale Standard Citation Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "stale-standard-citation-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/stale-standard-citation-lint",
+  "icon": "icon.png"
+}
