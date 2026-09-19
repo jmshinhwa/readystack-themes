@@ -2,7 +2,7 @@
   "name": "spdx-license-field-lint",
   "displayName": "SPDX License Lint: PEP 639 & Copyleft",
   "description": "Reads the licence field in the open manifest and names every deprecated SPDX id, invalid string, PEP 639 leftover and copyleft obligation - with the exact replacement text.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
