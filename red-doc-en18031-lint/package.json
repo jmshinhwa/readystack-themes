@@ -2,7 +2,7 @@
   "name": "red-doc-en18031-lint",
   "displayName": "RED Cybersecurity DoC Lint (EN 18031)",
   "description": "Audits an EU Declaration of Conformity for radio equipment against Delegated Regulation (EU) 2022/30 and the EN 18031:2024 citations, mandatory since 1 August 2025.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
