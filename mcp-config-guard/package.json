@@ -2,7 +2,7 @@
   "name": "mcp-config-guard",
   "displayName": "MCP Config Guard - agent config lint",
   "description": "Lints mcp.json / .mcp.json / claude_desktop_config.json for the lines that hand an AI agent more than you meant: unpinned servers, literal secrets, plaintext transport.",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -46,8 +46,7 @@
   "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jmshinhwa/readystack-themes.git",
-    "directory": "mcp-config-guard"
+    "url": "https://github.com/jmshinhwa-ai/readystack"
   },
   "homepage": "https://getreadystack.com/tools/mcp-config-guard",
   "icon": "icon.png"
