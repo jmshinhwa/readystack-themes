@@ -1,0 +1,54 @@
+{
+  "name": "sql-card-data-lint",
+  "displayName": "SQL Card Data Lint (PCI DSS Req 3)",
+  "description": "Finds cardholder and sensitive authentication data in your .sql migrations: CVV, track, PIN block, plaintext PAN columns and test card numbers, each mapped to a PCI DSS Requirement 3 rule.",
+  "version": "1.0.2",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "pci",
+    "pci-dss",
+    "sql",
+    "migration",
+    "cardholder-data",
+    "database",
+    "compliance",
+    "security"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "sqlCardData.checkFile",
+        "title": "SQL Card Data Lint (PCI DSS Req 3): Check this file",
+        "category": "SQL Card Data Lint (PCI DSS Req 3)"
+      },
+      {
+        "command": "sqlCardData.checkWorkspace",
+        "title": "SQL Card Data Lint (PCI DSS Req 3): Sweep workspace and write report (licence)",
+        "category": "SQL Card Data Lint (PCI DSS Req 3)"
+      },
+      {
+        "command": "sqlCardData.enterKey",
+        "title": "SQL Card Data Lint (PCI DSS Req 3): Enter licence key",
+        "category": "SQL Card Data Lint (PCI DSS Req 3)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "sql-card-data-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/sql-card-data-lint",
+  "icon": "icon.png"
+}
