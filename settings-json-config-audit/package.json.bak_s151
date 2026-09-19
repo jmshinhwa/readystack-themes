@@ -1,0 +1,105 @@
+{
+  "name": "settings-json-config-audit",
+  "displayName": "settings.json Config Kit + Deprecated-Key Audit",
+  "description": "32 paste-ready settings.json blocks and 24 rules that name the dead keys in your config. When a setting is renamed, the editor shows no error — it just silently stops doing the thing you configured.",
+  "version": "0.1.1",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Snippets"
+  ],
+  "keywords": [
+    "settings.json",
+    "vscode-settings",
+    "deprecated-settings",
+    "dark-plus-material",
+    "settings-cycler"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "settings-json-config-audit.audit_file",
+        "title": "Check this settings.json file",
+        "category": "settings.json Config Kit"
+      },
+      {
+        "command": "settings-json-config-audit.insert_snippet",
+        "title": "Insert a settings block",
+        "category": "settings.json Config Kit"
+      },
+      {
+        "command": "settings-json-config-audit.list_rules",
+        "title": "Show what is inside this pack",
+        "category": "settings.json Config Kit"
+      },
+      {
+        "command": "settings-json-config-audit.workspace_scan",
+        "title": "Check every settings file in the workspace",
+        "category": "settings.json Config Kit"
+      },
+      {
+        "command": "settings-json-config-audit.quick_fix",
+        "title": "Rename the dead keys in this file",
+        "category": "settings.json Config Kit"
+      },
+      {
+        "command": "settings-json-config-audit.export_report",
+        "title": "Write the findings to a report file",
+        "category": "settings.json Config Kit"
+      },
+      {
+        "command": "settings-json-config-audit.custom_rules",
+        "title": "Add your team's own rules",
+        "category": "settings.json Config Kit"
+      }
+    ],
+    "configuration": {
+      "title": "settings.json Config Kit + Deprecated-Key Audit",
+      "properties": {
+        "settings-json-config-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format of the exported report"
+        },
+        "settings-json-config-audit.max_files": {
+          "type": "number",
+          "default": 400,
+          "description": "How many workspace files the scan opens at most"
+        },
+        "settings-json-config-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths the scan skips"
+        },
+        "settings-json-config-audit.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check the open settings file once when the editor opens"
+        },
+        "settings-json-config-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 24 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "json",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/json-jsonc.code-snippets"
+      }
+    ]
+  }
+}
