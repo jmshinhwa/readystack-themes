@@ -1,0 +1,54 @@
+{
+  "name": "pg-migration-lock-lint",
+  "displayName": "Postgres Migration Lock Lint",
+  "description": "Find the statements in your Rails, Django or raw SQL migrations that take a table-blocking Postgres lock - and the safe rewrite - before you deploy.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "postgres",
+    "migration",
+    "sql",
+    "lock",
+    "rails",
+    "django",
+    "lint",
+    "downtime"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pgMigrationLockLint.checkFile",
+        "title": "Postgres Migration Lock Lint: Check this file",
+        "category": "Postgres Migration Lock Lint"
+      },
+      {
+        "command": "pgMigrationLockLint.checkWorkspace",
+        "title": "Postgres Migration Lock Lint: Sweep workspace and write report (licence)",
+        "category": "Postgres Migration Lock Lint"
+      },
+      {
+        "command": "pgMigrationLockLint.enterKey",
+        "title": "Postgres Migration Lock Lint: Enter licence key",
+        "category": "Postgres Migration Lock Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "pg-migration-lock-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/pg-migration-lock-lint",
+  "icon": "icon.png"
+}
