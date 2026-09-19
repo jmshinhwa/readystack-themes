@@ -1,0 +1,119 @@
+{
+  "name": "workspace-config-auditor",
+  "displayName": "Angular CLI Workspace Config Auditor",
+  "description": "32 snippets and 25 audit rules for the 8 config files an Angular workspace actually ships with. Your components pass review; a hard-coded IoT device key, an absolute backend URL in manifest.json, or a",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Snippets"
+  ],
+  "keywords": [
+    "angular-cli",
+    "angular",
+    "yaml",
+    "code-coverage",
+    "html5"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "workspace-config-auditor.audit_file",
+        "title": "Audit this config file",
+        "category": "Angular CLI Workspace Co"
+      },
+      {
+        "command": "workspace-config-auditor.audit_selection",
+        "title": "Audit only the selected lines",
+        "category": "Angular CLI Workspace Co"
+      },
+      {
+        "command": "workspace-config-auditor.insert_snippet",
+        "title": "Insert a config snippet",
+        "category": "Angular CLI Workspace Co"
+      },
+      {
+        "command": "workspace-config-auditor.list_rules",
+        "title": "List all rules and snippets",
+        "category": "Angular CLI Workspace Co"
+      },
+      {
+        "command": "workspace-config-auditor.workspace_scan",
+        "title": "Scan the whole workspace",
+        "category": "Angular CLI Workspace Co"
+      },
+      {
+        "command": "workspace-config-auditor.export_report",
+        "title": "Export the findings as a file",
+        "category": "Angular CLI Workspace Co"
+      },
+      {
+        "command": "workspace-config-auditor.quick_fix",
+        "title": "Apply the suggested replacement",
+        "category": "Angular CLI Workspace Co"
+      }
+    ],
+    "configuration": {
+      "title": "Angular CLI Workspace Config Auditor",
+      "properties": {
+        "workspace-config-auditor.report_format": {
+          "type": "string",
+          "default": "html",
+          "description": "Default format for the exported report"
+        },
+        "workspace-config-auditor.max_findings_per_file": {
+          "type": "number",
+          "default": 200,
+          "description": "Maximum findings listed per file"
+        },
+        "workspace-config-auditor.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Whole-workspace scan"
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./snippets/html.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "xml",
+        "path": "./snippets/xml.code-snippets"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/yaml.code-snippets"
+      }
+    ]
+  }
+}
