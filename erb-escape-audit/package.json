@@ -2,7 +2,7 @@
   "name": "erb-escape-audit",
   "displayName": "ERB Escape Audit - Rails XSS lint",
   "description": "Finds unescaped output in Rails ERB templates - raw, html_safe, <%==, script and href context - and names the escaping helper that fixes each line.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
