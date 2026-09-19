@@ -1,0 +1,110 @@
+{
+  "name": "security-headers-csp-lint",
+  "displayName": "Security Headers Lint - CSP and Dead Headers",
+  "description": "Reads security headers and CSP line by line in your config file and names the lines that silently do nothing: retired headers, keywords missing their quotes, directives the browser throws away.",
+  "version": "0.1.2",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "CSP",
+    "Content-Security-Policy",
+    "security headers",
+    "HSTS",
+    "Permissions-Policy"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "security-headers-csp-lint.audit_file",
+        "title": "Check this file's security headers",
+        "category": "Security Headers Lint"
+      },
+      {
+        "command": "security-headers-csp-lint.audit_selection",
+        "title": "Check selected lines",
+        "category": "Security Headers Lint"
+      },
+      {
+        "command": "security-headers-csp-lint.list_rules",
+        "title": "List security header rules",
+        "category": "Security Headers Lint"
+      },
+      {
+        "command": "security-headers-csp-lint.show_report",
+        "title": "Reopen last report",
+        "category": "Security Headers Lint"
+      },
+      {
+        "command": "security-headers-csp-lint.workspace_scan",
+        "title": "Scan every config in the workspace",
+        "category": "Security Headers Lint"
+      },
+      {
+        "command": "security-headers-csp-lint.export_report",
+        "title": "Export report (CSV / JSON / HTML)",
+        "category": "Security Headers Lint"
+      },
+      {
+        "command": "security-headers-csp-lint.ci_json",
+        "title": "Machine-readable output for CI",
+        "category": "Security Headers Lint"
+      },
+      {
+        "command": "security-headers-csp-lint.custom_rules",
+        "title": "Add your own house policy rules",
+        "category": "Security Headers Lint"
+      },
+      {
+        "command": "security-headers-csp-lint.watch_on_save",
+        "title": "Re-check automatically on every save",
+        "category": "Security Headers Lint"
+      },
+      {
+        "command": "security-headers-csp-lint.quick_fix",
+        "title": "Apply the safe fixes for you",
+        "category": "Security Headers Lint"
+      }
+    ],
+    "configuration": {
+      "title": "Security Headers Lint",
+      "properties": {
+        "security-headers-csp-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format (csv | json | html)"
+        },
+        "security-headers-csp-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info | warn | error)"
+        },
+        "security-headers-csp-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum files to walk during a workspace scan"
+        },
+        "security-headers-csp-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "security-headers-csp-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 28 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
