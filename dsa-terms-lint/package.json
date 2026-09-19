@@ -1,0 +1,53 @@
+{
+  "name": "dsa-terms-lint",
+  "displayName": "DSA Terms Lint - EU Digital Services Act",
+  "description": "Reads your terms-of-service markdown and names every Digital Services Act duty it is missing, by article number.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "dsa",
+    "digital-services-act",
+    "terms-of-service",
+    "compliance",
+    "legal",
+    "eu",
+    "markdown-lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "dsaTermsLint.checkFile",
+        "title": "DSA Terms Lint - EU Digital Services Act: Check this file",
+        "category": "DSA Terms Lint - EU Digital Services Act"
+      },
+      {
+        "command": "dsaTermsLint.checkWorkspace",
+        "title": "DSA Terms Lint - EU Digital Services Act: Sweep workspace and write report (licence)",
+        "category": "DSA Terms Lint - EU Digital Services Act"
+      },
+      {
+        "command": "dsaTermsLint.enterKey",
+        "title": "DSA Terms Lint - EU Digital Services Act: Enter licence key",
+        "category": "DSA Terms Lint - EU Digital Services Act"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "dsa-terms-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/dsa-terms-lint",
+  "icon": "icon.png"
+}
