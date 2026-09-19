@@ -1,0 +1,51 @@
+{
+  "name": "terraform-provider-pin-lint",
+  "displayName": "Terraform Provider Pin Lint",
+  "description": "Finds unpinned providers, missing source addresses and floating module refs in .tf files — the lines that let a clean terraform init pull a new major.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "terraform",
+    "opentofu",
+    "hcl",
+    "provider",
+    "lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "terraformProviderPin.checkFile",
+        "title": "Terraform Provider Pin Lint: Check this file",
+        "category": "Terraform Provider Pin Lint"
+      },
+      {
+        "command": "terraformProviderPin.checkWorkspace",
+        "title": "Terraform Provider Pin Lint: Sweep workspace and write report (licence)",
+        "category": "Terraform Provider Pin Lint"
+      },
+      {
+        "command": "terraformProviderPin.enterKey",
+        "title": "Terraform Provider Pin Lint: Enter licence key",
+        "category": "Terraform Provider Pin Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "terraform-provider-pin-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/terraform-provider-pin-lint",
+  "icon": "icon.png"
+}
