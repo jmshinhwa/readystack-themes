@@ -1,0 +1,95 @@
+{
+  "name": "sfdx-retirement-lint",
+  "displayName": "Salesforce API Version & CLI Retirement Lint",
+  "description": "Finds retired API versions and removed sfdx force:* commands in your DX repo before a deploy or a CI run fails with 410 GONE.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "salesforce",
+    "sfdx",
+    "apiversion",
+    "deploy",
+    "lint"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sfdx-retirement-lint.audit_file",
+        "title": "Check this file for retirements",
+        "category": "SFDX Retirement Lint"
+      },
+      {
+        "command": "sfdx-retirement-lint.audit_selection",
+        "title": "Check the selected lines",
+        "category": "SFDX Retirement Lint"
+      },
+      {
+        "command": "sfdx-retirement-lint.list_rules",
+        "title": "List every rule that ships inside",
+        "category": "SFDX Retirement Lint"
+      },
+      {
+        "command": "sfdx-retirement-lint.workspace_scan",
+        "title": "Scan the whole repository",
+        "category": "SFDX Retirement Lint"
+      },
+      {
+        "command": "sfdx-retirement-lint.quick_fix",
+        "title": "Rewrite the removed commands and flags",
+        "category": "SFDX Retirement Lint"
+      },
+      {
+        "command": "sfdx-retirement-lint.ci_json",
+        "title": "Machine output for CI",
+        "category": "SFDX Retirement Lint"
+      },
+      {
+        "command": "sfdx-retirement-lint.export_report",
+        "title": "Export the findings (CSV/JSON/HTML)",
+        "category": "SFDX Retirement Lint"
+      }
+    ],
+    "configuration": {
+      "title": "SFDX Retirement Lint",
+      "properties": {
+        "sfdx-retirement-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info | warn | error)."
+        },
+        "sfdx-retirement-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum number of files to read during a repository scan."
+        },
+        "sfdx-retirement-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,.sfdx,.sf,.git}/**",
+          "description": "Paths to skip during a repository scan (glob)."
+        },
+        "sfdx-retirement-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default file format when exporting the findings (csv | json | html)."
+        },
+        "sfdx-retirement-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 81 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
