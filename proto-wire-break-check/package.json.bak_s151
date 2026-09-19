@@ -1,0 +1,53 @@
+{
+  "name": "proto-wire-break-check",
+  "displayName": "Proto Wire Break Check",
+  "description": "Flags wire-incompatible edits in .proto files - reused or unreserved field numbers, enum zero drift, JSON name collisions - before a gRPC rollout silently corrupts a field.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "protobuf",
+    "proto",
+    "grpc",
+    "wire compatibility",
+    "breaking change",
+    "linter",
+    "buf"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "protoWireBreak.checkFile",
+        "title": "Proto Wire Break Check: Check this file",
+        "category": "Proto Wire Break Check"
+      },
+      {
+        "command": "protoWireBreak.checkWorkspace",
+        "title": "Proto Wire Break Check: Sweep workspace and write report (licence)",
+        "category": "Proto Wire Break Check"
+      },
+      {
+        "command": "protoWireBreak.enterKey",
+        "title": "Proto Wire Break Check: Enter licence key",
+        "category": "Proto Wire Break Check"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "proto-wire-break-check"
+  },
+  "homepage": "https://getreadystack.com/tools/proto-wire-break-check",
+  "icon": "icon.png"
+}
