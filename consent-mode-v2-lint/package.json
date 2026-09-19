@@ -2,7 +2,7 @@
   "name": "consent-mode-v2-lint",
   "displayName": "Consent Mode v2 Lint for GA4 & Google Ads",
   "description": "Finds the consent-signal bugs that silently switch off Google Ads conversions and remarketing for EEA and UK traffic - in your source, before you ship.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
