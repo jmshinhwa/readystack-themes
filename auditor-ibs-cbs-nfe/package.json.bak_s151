@@ -1,0 +1,95 @@
+{
+  "name": "auditor-ibs-cbs-nfe",
+  "displayName": "Auditor IBS/CBS para NF-e — NT 2025.002",
+  "description": "A rejeição por falta de IBS/CBS foi suspensa em 31/07/2026: sua NF-e é autorizada mesmo errada. Este auditor lê o XML no editor e aponta o que a SEFAZ deixou passar.",
+  "version": "0.1.2",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "nfe",
+    "nfce",
+    "reforma-tributaria",
+    "ibs",
+    "cbs"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "auditor-ibs-cbs-nfe.audit_file",
+        "title": "Auditar este XML de NF-e",
+        "category": "Auditor IBS/CBS NF-e"
+      },
+      {
+        "command": "auditor-ibs-cbs-nfe.audit_selection",
+        "title": "Auditar apenas a seleção",
+        "category": "Auditor IBS/CBS NF-e"
+      },
+      {
+        "command": "auditor-ibs-cbs-nfe.show_report",
+        "title": "Reabrir o último laudo",
+        "category": "Auditor IBS/CBS NF-e"
+      },
+      {
+        "command": "auditor-ibs-cbs-nfe.list_rules",
+        "title": "Listar as regras da NT 2025.002",
+        "category": "Auditor IBS/CBS NF-e"
+      },
+      {
+        "command": "auditor-ibs-cbs-nfe.workspace_scan",
+        "title": "Auditar todos os XMLs do workspace",
+        "category": "Auditor IBS/CBS NF-e"
+      },
+      {
+        "command": "auditor-ibs-cbs-nfe.export_report",
+        "title": "Exportar laudo (CSV/JSON/HTML)",
+        "category": "Auditor IBS/CBS NF-e"
+      },
+      {
+        "command": "auditor-ibs-cbs-nfe.ci_json",
+        "title": "Saída JSON para o CI",
+        "category": "Auditor IBS/CBS NF-e"
+      }
+    ],
+    "configuration": {
+      "title": "Auditor IBS/CBS NF-e",
+      "properties": {
+        "auditor-ibs-cbs-nfe.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Formato padrão do laudo exportado (csv|json|html)"
+        },
+        "auditor-ibs-cbs-nfe.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Não mostrar ocorrências abaixo desta severidade (info|warn|error)"
+        },
+        "auditor-ibs-cbs-nfe.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Máximo de arquivos ao varrer o workspace"
+        },
+        "auditor-ibs-cbs-nfe.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Caminhos a ignorar na varredura (glob)"
+        },
+        "auditor-ibs-cbs-nfe.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 11 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
