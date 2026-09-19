@@ -1,0 +1,53 @@
+{
+  "name": "saft-pt-atcud-lint",
+  "displayName": "SAF-T (PT) + ATCUD Lint",
+  "description": "Verifica o XML SAF-T (PT) antes de o entregar: versao 1.04_01, ATCUD, campos do QR code, hash, numeracao e totais linha a linha.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "saft",
+    "atcud",
+    "faturacao",
+    "portugal",
+    "xml",
+    "qrcode",
+    "at"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "saftPtLint.checkFile",
+        "title": "SAF-T (PT) + ATCUD Lint: Check this file",
+        "category": "SAF-T (PT) + ATCUD Lint"
+      },
+      {
+        "command": "saftPtLint.checkWorkspace",
+        "title": "SAF-T (PT) + ATCUD Lint: Sweep workspace and write report (licence)",
+        "category": "SAF-T (PT) + ATCUD Lint"
+      },
+      {
+        "command": "saftPtLint.enterKey",
+        "title": "SAF-T (PT) + ATCUD Lint: Enter licence key",
+        "category": "SAF-T (PT) + ATCUD Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "saft-pt-atcud-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/saft-pt-atcud-lint",
+  "icon": "icon.png"
+}
