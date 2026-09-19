@@ -1,0 +1,212 @@
+{
+  "name": "hardcoded-credential-audit",
+  "displayName": "Hardcoded Credential Audit — 8 Stacks",
+  "description": "30 checks and 30 safe-config snippets across 8 file families. A key pasted into appsettings.json is not a typo you fix — it is a key you rotate on every device, pipeline and cluster that used it.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Snippets"
+  ],
+  "keywords": [
+    "secrets",
+    "credentials",
+    "cwe-798",
+    "connection-string",
+    "appsettings"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "hardcoded-credential-audit.audit_file",
+        "title": "Audit this file for hardcoded credentials",
+        "category": "Hardcoded Credential Aud"
+      },
+      {
+        "command": "hardcoded-credential-audit.audit_selection",
+        "title": "Audit only the selected lines",
+        "category": "Hardcoded Credential Aud"
+      },
+      {
+        "command": "hardcoded-credential-audit.insert_snippet",
+        "title": "Insert a safe-config snippet",
+        "category": "Hardcoded Credential Aud"
+      },
+      {
+        "command": "hardcoded-credential-audit.list_rules",
+        "title": "Show all 30 checks and 30 snippets",
+        "category": "Hardcoded Credential Aud"
+      },
+      {
+        "command": "hardcoded-credential-audit.workspace_scan",
+        "title": "Audit the whole workspace",
+        "category": "Hardcoded Credential Aud"
+      },
+      {
+        "command": "hardcoded-credential-audit.export_report",
+        "title": "Export the findings as a report file",
+        "category": "Hardcoded Credential Aud"
+      },
+      {
+        "command": "hardcoded-credential-audit.watch_on_save",
+        "title": "Re-check automatically on every save",
+        "category": "Hardcoded Credential Aud"
+      },
+      {
+        "command": "hardcoded-credential-audit.custom_rules",
+        "title": "Your own patterns on top of the built-in 30",
+        "category": "Hardcoded Credential Aud"
+      },
+      {
+        "command": "hardcoded-credential-audit.ci_json",
+        "title": "Machine-readable output for a CI job",
+        "category": "Hardcoded Credential Aud"
+      },
+      {
+        "command": "hardcoded-credential-audit.quick_fix",
+        "title": "Apply the safe replacement",
+        "category": "Hardcoded Credential Aud"
+      }
+    ],
+    "configuration": {
+      "title": "Hardcoded Credential Audit — 8 Stacks",
+      "properties": {
+        "hardcoded-credential-audit.severity": {
+          "type": "string",
+          "default": "warning",
+          "description": "How findings are reported (error, warning, information)"
+        },
+        "hardcoded-credential-audit.ignore_globs": {
+          "type": "string",
+          "default": "**/node_modules/**,**/bin/**,**/obj/**,**/.git/**,**/renv/library/**",
+          "description": "Paths to skip during a scan"
+        },
+        "hardcoded-credential-audit.custom_rules": {
+          "type": "string",
+          "default": "",
+          "description": "Path to a JSON file with your own patterns (runs alongside the built-in 30)"
+        },
+        "hardcoded-credential-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Report format for the export (csv, json, html)"
+        },
+        "hardcoded-credential-audit.report_path": {
+          "type": "string",
+          "default": "credential-audit-report.csv",
+          "description": "Where the exported report is written"
+        },
+        "hardcoded-credential-audit.ci_json_path": {
+          "type": "string",
+          "default": "credential-audit.json",
+          "description": "Where the machine-readable output for CI is written"
+        },
+        "hardcoded-credential-audit.watch_on_save": {
+          "type": "boolean",
+          "default": false,
+          "description": "Re-run the checks every time a file is saved"
+        },
+        "hardcoded-credential-audit.redact_values": {
+          "type": "boolean",
+          "default": true,
+          "description": "Hide the matched value in reports and show only the line"
+        },
+        "hardcoded-credential-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Every file in the workspace, not just the open one"
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "csharp",
+        "path": "./snippets/csharp.code-snippets"
+      },
+      {
+        "language": "java",
+        "path": "./snippets/java.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "jsonc",
+        "path": "./snippets/json-jsonc.code-snippets"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/markdown.code-snippets"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/markdown-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/markdown-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/plaintext-markdown.code-snippets"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/plaintext-markdown.code-snippets"
+      },
+      {
+        "language": "properties",
+        "path": "./snippets/properties-ini.code-snippets"
+      },
+      {
+        "language": "ini",
+        "path": "./snippets/properties-ini.code-snippets"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python.code-snippets"
+      },
+      {
+        "language": "r",
+        "path": "./snippets/r.code-snippets"
+      },
+      {
+        "language": "r",
+        "path": "./snippets/r-plaintext.code-snippets"
+      },
+      {
+        "language": "plaintext",
+        "path": "./snippets/r-plaintext.code-snippets"
+      },
+      {
+        "language": "shellscript",
+        "path": "./snippets/shellscript.code-snippets"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/yaml.code-snippets"
+      }
+    ]
+  }
+}
