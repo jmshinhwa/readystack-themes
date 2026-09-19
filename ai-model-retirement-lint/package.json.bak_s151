@@ -1,0 +1,85 @@
+{
+  "name": "ai-model-retirement-lint",
+  "displayName": "AI Model Retirement Lint",
+  "description": "Finds the model IDs in your code that vendors have already switched off, or have dated to switch off, with the replacement and the date.",
+  "version": "0.1.2",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "llm",
+    "openai",
+    "anthropic",
+    "gemini",
+    "deprecation"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ai-model-retirement-lint.audit_file",
+        "title": "Check this file for retired model IDs",
+        "category": "AI Model Retirement Lint"
+      },
+      {
+        "command": "ai-model-retirement-lint.list_rules",
+        "title": "List every model ID and date I know",
+        "category": "AI Model Retirement Lint"
+      },
+      {
+        "command": "ai-model-retirement-lint.show_report",
+        "title": "Show the last report",
+        "category": "AI Model Retirement Lint"
+      },
+      {
+        "command": "ai-model-retirement-lint.workspace_scan",
+        "title": "Scan the whole repository",
+        "category": "AI Model Retirement Lint"
+      },
+      {
+        "command": "ai-model-retirement-lint.ci_json",
+        "title": "CI output that fails the build",
+        "category": "AI Model Retirement Lint"
+      },
+      {
+        "command": "ai-model-retirement-lint.quick_fix",
+        "title": "Replace with the recommended model",
+        "category": "AI Model Retirement Lint"
+      }
+    ],
+    "configuration": {
+      "title": "AI Model Retirement Lint",
+      "properties": {
+        "ai-model-retirement-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity"
+        },
+        "ai-model-retirement-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum files to walk in a repository scan"
+        },
+        "ai-model-retirement-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip"
+        },
+        "ai-model-retirement-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 33 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
