@@ -1,0 +1,54 @@
+{
+  "name": "bulk-sender-lint",
+  "displayName": "Bulk Sender Lint - Gmail, Yahoo, Outlook",
+  "description": "Checks mail-sending code and DNS records against the Gmail/Yahoo bulk sender rules and Microsoft Outlook.com's: SPF, DKIM, DMARC, RFC 8058 one-click unsubscribe, TLS - each with the date it took effec",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "dmarc",
+    "spf",
+    "dkim",
+    "email deliverability",
+    "list-unsubscribe",
+    "rfc8058",
+    "gmail bulk sender",
+    "yahoo",
+    "outlook",
+    "smtp"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "bulkSender.checkFile",
+        "title": "Bulk Sender Lint: Check this file",
+        "category": "Bulk Sender Lint"
+      },
+      {
+        "command": "bulkSender.checkWorkspace",
+        "title": "Bulk Sender Lint: Sweep workspace and write report (licence)",
+        "category": "Bulk Sender Lint"
+      },
+      {
+        "command": "bulkSender.enterKey",
+        "title": "Bulk Sender Lint: Enter licence key",
+        "category": "Bulk Sender Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/bulk-sender-lint"
+}
