@@ -1,0 +1,53 @@
+{
+  "name": "freelance-act-order-lint-jp",
+  "displayName": "フリーランス新法 発注書チェック",
+  "description": "業務委託の発注書・契約書Markdownを、フリーランス新法の明示事項・支払期日60日・30日前の中途解除予告で検査します。書かれた日付から支払日数を実際に計算し、足りない項目を行番号で示します。",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "フリーランス新法",
+    "発注書",
+    "業務委託",
+    "下請法",
+    "コンプライアンス",
+    "freelance",
+    "japan"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "freelanceOrderJp.checkFile",
+        "title": "フリーランス新法 発注書チェック(明示12項目・60日): Check this file",
+        "category": "フリーランス新法 発注書チェック(明示12項目・60日)"
+      },
+      {
+        "command": "freelanceOrderJp.checkWorkspace",
+        "title": "フリーランス新法 発注書チェック(明示12項目・60日): Sweep workspace and write report (licence)",
+        "category": "フリーランス新法 発注書チェック(明示12項目・60日)"
+      },
+      {
+        "command": "freelanceOrderJp.enterKey",
+        "title": "フリーランス新法 発注書チェック(明示12項目・60日): Enter licence key",
+        "category": "フリーランス新法 発注書チェック(明示12項目・60日)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "freelance-act-order-lint-jp"
+  },
+  "homepage": "https://getreadystack.com/tools/freelance-act-order-lint-jp",
+  "icon": "icon.png"
+}
