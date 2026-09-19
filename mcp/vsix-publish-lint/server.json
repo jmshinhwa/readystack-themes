@@ -6,12 +6,12 @@
     "url": "https://github.com/jmshinhwa/readystack-themes",
     "source": "github"
   },
-  "version": "1.0.2",
+  "version": "1.0.4",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "@readystack/vsix-publish-lint",
-      "version": "1.0.2",
+      "version": "1.0.4",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"
