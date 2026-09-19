@@ -1,0 +1,53 @@
+{
+  "name": "ai-disclosure-lint-sb942",
+  "displayName": "AI Output Disclosure Lint SB 942",
+  "description": "Flags generative-AI code that strips C2PA content credentials, hides the AI label, or paywalls the detection tool before California SB 942 (as amended by AB 853) applies on August 2, 2026.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "sb942",
+    "c2pa",
+    "content credentials",
+    "ai transparency",
+    "california",
+    "provenance",
+    "compliance"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiDisclosureLint.checkFile",
+        "title": "AI Output Disclosure Lint SB 942: Check this file",
+        "category": "AI Output Disclosure Lint SB 942"
+      },
+      {
+        "command": "aiDisclosureLint.checkWorkspace",
+        "title": "AI Output Disclosure Lint SB 942: Sweep workspace and write report (licence)",
+        "category": "AI Output Disclosure Lint SB 942"
+      },
+      {
+        "command": "aiDisclosureLint.enterKey",
+        "title": "AI Output Disclosure Lint SB 942: Enter licence key",
+        "category": "AI Output Disclosure Lint SB 942"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "ai-disclosure-lint-sb942"
+  },
+  "homepage": "https://getreadystack.com/tools/ai-disclosure-lint-sb942",
+  "icon": "icon.png"
+}
