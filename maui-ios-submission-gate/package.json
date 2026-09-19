@@ -2,7 +2,7 @@
   "name": "maui-ios-submission-gate",
   "displayName": "MAUI iOS Submission Gate",
   "description": "Audits a .NET MAUI app's iOS Info.plist and Entitlements.plist for App Store Review 5.1.1(i) purpose-string rejections and broken export-compliance keys.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
