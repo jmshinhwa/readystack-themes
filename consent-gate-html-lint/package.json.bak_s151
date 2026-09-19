@@ -1,0 +1,53 @@
+{
+  "name": "consent-gate-html-lint",
+  "displayName": "Consent Gate HTML Lint (EU/UK ePrivacy)",
+  "description": "Finds third-party script and iframe tags in your HTML that load trackers before the visitor consents — the prior-consent rule of EU/UK ePrivacy.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "gdpr",
+    "cookies",
+    "consent",
+    "eprivacy",
+    "html",
+    "privacy",
+    "lint",
+    "tracking"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "consentGate.checkFile",
+        "title": "Consent Gate HTML Lint (EU/UK ePrivacy): Check this file",
+        "category": "Consent Gate HTML Lint (EU/UK ePrivacy)"
+      },
+      {
+        "command": "consentGate.checkWorkspace",
+        "title": "Consent Gate HTML Lint (EU/UK ePrivacy): Sweep workspace and write report (licence)",
+        "category": "Consent Gate HTML Lint (EU/UK ePrivacy)"
+      },
+      {
+        "command": "consentGate.enterKey",
+        "title": "Consent Gate HTML Lint (EU/UK ePrivacy): Enter licence key",
+        "category": "Consent Gate HTML Lint (EU/UK ePrivacy)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/consent-gate-html-lint",
+  "icon": "icon.png"
+}
