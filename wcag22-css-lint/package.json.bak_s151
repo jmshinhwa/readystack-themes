@@ -1,0 +1,54 @@
+{
+  "name": "wcag22-css-lint",
+  "displayName": "WCAG 2.2 CSS Lint - Focus & Target Size",
+  "description": "Lint stylesheets against the success criteria WCAG 2.2 added in 2023 - target size 2.5.8, focus not obscured 2.4.11, focus appearance 2.4.13 - with the SC number on every finding.",
+  "version": "1.0.3",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "wcag",
+    "wcag 2.2",
+    "accessibility",
+    "css",
+    "a11y",
+    "en 301 549",
+    "target size",
+    "focus visible"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "wcag22CssLint.checkFile",
+        "title": "WCAG 2.2 CSS Lint - Focus & Target Size: Check this file",
+        "category": "WCAG 2.2 CSS Lint - Focus & Target Size"
+      },
+      {
+        "command": "wcag22CssLint.checkWorkspace",
+        "title": "WCAG 2.2 CSS Lint - Focus & Target Size: Sweep workspace and write report (licence)",
+        "category": "WCAG 2.2 CSS Lint - Focus & Target Size"
+      },
+      {
+        "command": "wcag22CssLint.enterKey",
+        "title": "WCAG 2.2 CSS Lint - Focus & Target Size: Enter licence key",
+        "category": "WCAG 2.2 CSS Lint - Focus & Target Size"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "wcag22-css-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/wcag22-css-lint",
+  "icon": "icon.png"
+}
