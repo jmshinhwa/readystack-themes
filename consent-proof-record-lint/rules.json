@@ -1,0 +1,16 @@
+[
+  {"id": "subject_ref", "sev": "err", "article": "GDPR Art.7(1)", "msg": "no subject or device reference on this record — you cannot show whose consent it was. Add subject_id."},
+  {"id": "collected_at", "sev": "err", "article": "GDPR Art.7(1)", "msg": "no collected_at on this record — a proof of consent with no moment attached proves nothing."},
+  {"id": "timestamp_utc", "sev": "err", "article": "GDPR Art.7(1)", "msg": "collected_at has no UTC offset. Write a full ISO-8601 instant such as 2026-06-01T08:00:00Z, not a bare local date."},
+  {"id": "purpose_granularity", "sev": "err", "article": "GDPR Art.4(11)", "msg": "consent is stored as one flag for everything. Consent must be specific: store purposes as a map with one entry per purpose."},
+  {"id": "notice_version", "sev": "err", "article": "EDPB 05/2020 on consent", "msg": "no notice_version on this record, so nobody can say which wording the person actually read."},
+  {"id": "notice_text_hash", "sev": "warn", "article": "EDPB 05/2020 on consent", "msg": "no notice_text_hash. A version string alone lets a rewritten page keep the old label; store a hash of the exact text shown."},
+  {"id": "prechecked_default", "sev": "err", "article": "GDPR Recital 32", "msg": "this record was written with a purpose already switched on before the person acted. Pre-ticked boxes and silence are not consent."},
+  {"id": "withdrawal_method", "sev": "err", "article": "GDPR Art.7(3)", "msg": "no withdrawal_method recorded. Withdrawal must be as easy as giving, and you have to be able to show the route you offered."},
+  {"id": "controller_identity", "sev": "err", "article": "GDPR Art.13(1)(a)", "msg": "no controller named on this record. A consent log shared between brands or tenants is unusable without it."},
+  {"id": "consent_expiry", "sev": "err", "article": "GDPR Art.5(1)(e)", "msg": "no expires_at on this record, so the consent is being kept as if it lasted forever."},
+  {"id": "expiry_too_long", "sev": "warn", "article": "CNIL / EDPB cookie guidance", "msg": "this consent is set to run more than 13 months from the day it was given. Supervisory authorities treat 6 to 13 months as the outer edge."},
+  {"id": "already_expired", "sev": "warn", "article": "GDPR Art.5(1)(e)", "msg": "this consent expired before today and is still being relied on. Re-ask or stop processing."},
+  {"id": "legal_basis", "sev": "err", "article": "GDPR Art.6(1)(a)", "msg": "legal_basis on this record is not consent. Legitimate interest cannot be filed inside a consent log and called proof of consent."},
+  {"id": "tcf_pair", "sev": "warn", "article": "IAB TCF v2.2", "msg": "a tc_string is stored without the cmp_id that produced it, so the string cannot be decoded back to a vendor list later."}
+]
