@@ -2,7 +2,7 @@
   "name": "pytest-deprecation-lint",
   "displayName": "Pytest Deprecation Lint (pytest 8 removals)",
   "description": "Flags pytest APIs removed in pytest 8 and pytest config keys that are silently ignored, with the replacement line and the version that removed each one.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
