@@ -1,0 +1,90 @@
+{
+  "name": "en301549-lint",
+  "displayName": "EN 301 549 Lint — EU Accessibility Act",
+  "description": "Flags the EN 301 549 clause each line breaks, and separates what is in force today from what arrives with V4.1.1.",
+  "version": "0.1.2",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "eaa",
+    "en301549"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "en301549-lint.audit_file",
+        "title": "EN 301 549: check this file",
+        "category": "EN 301 549 Lint — EU Acc"
+      },
+      {
+        "command": "en301549-lint.audit_selection",
+        "title": "EN 301 549: check the selected lines",
+        "category": "EN 301 549 Lint — EU Acc"
+      },
+      {
+        "command": "en301549-lint.list_rules",
+        "title": "EN 301 549: list the rules that ship inside",
+        "category": "EN 301 549 Lint — EU Acc"
+      },
+      {
+        "command": "en301549-lint.workspace_scan",
+        "title": "EN 301 549: scan the whole workspace",
+        "category": "EN 301 549 Lint — EU Acc"
+      },
+      {
+        "command": "en301549-lint.export_report",
+        "title": "EN 301 549: export the evidence file",
+        "category": "EN 301 549 Lint — EU Acc"
+      },
+      {
+        "command": "en301549-lint.ci_json",
+        "title": "EN 301 549: print machine-readable output for CI",
+        "category": "EN 301 549 Lint — EU Acc"
+      }
+    ],
+    "configuration": {
+      "title": "EN 301 549 Lint — EU Accessibility Act",
+      "properties": {
+        "en301549-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format for the exported evidence file (csv|json|html)"
+        },
+        "en301549-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info|warn|error). V4.1.1 rules that are not in force yet are tagged info."
+        },
+        "en301549-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "en301549-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files to read in one workspace scan"
+        },
+        "en301549-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Your own house rules, checked next to the 28 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
