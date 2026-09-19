@@ -1,0 +1,53 @@
+{
+  "name": "en16931-einvoice-lint",
+  "displayName": "EN 16931 e-Invoice Lint",
+  "description": "Lints invoice payloads and field mappings against EN 16931 and national CIUS rules (XRechnung, Factur-X, FatturaPA, Peppol BIS, KSeF): missing business terms, stale spec IDs, wrong mandate dates.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "en16931",
+    "e-invoicing",
+    "xrechnung",
+    "factur-x",
+    "peppol",
+    "ksef",
+    "fatturapa",
+    "vat"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "einvoiceLint.checkFile",
+        "title": "e-Invoice Lint: Check this file",
+        "category": "e-Invoice Lint"
+      },
+      {
+        "command": "einvoiceLint.checkWorkspace",
+        "title": "e-Invoice Lint: Sweep workspace and write report (licence)",
+        "category": "e-Invoice Lint"
+      },
+      {
+        "command": "einvoiceLint.enterKey",
+        "title": "e-Invoice Lint: Enter licence key",
+        "category": "e-Invoice Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/en16931-einvoice-lint",
+  "icon": "icon.png"
+}
