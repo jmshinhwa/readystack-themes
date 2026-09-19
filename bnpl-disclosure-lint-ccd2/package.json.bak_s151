@@ -1,0 +1,54 @@
+{
+  "name": "bnpl-disclosure-lint-ccd2",
+  "displayName": "BNPL Disclosure Lint - EU CCD2 2026",
+  "description": "Lints checkout and product-page templates for the buy-now-pay-later disclosures the EU Consumer Credit Directive 2 (2023/2225) requires from 20 November 2026.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "bnpl",
+    "ccd2",
+    "consumer-credit",
+    "checkout",
+    "compliance",
+    "eu",
+    "linter",
+    "pay-later"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "bnplCcd2.checkFile",
+        "title": "BNPL Disclosure Lint - EU CCD2 2026: Check this file",
+        "category": "BNPL Disclosure Lint - EU CCD2 2026"
+      },
+      {
+        "command": "bnplCcd2.checkWorkspace",
+        "title": "BNPL Disclosure Lint - EU CCD2 2026: Sweep workspace and write report (licence)",
+        "category": "BNPL Disclosure Lint - EU CCD2 2026"
+      },
+      {
+        "command": "bnplCcd2.enterKey",
+        "title": "BNPL Disclosure Lint - EU CCD2 2026: Enter licence key",
+        "category": "BNPL Disclosure Lint - EU CCD2 2026"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "bnpl-disclosure-lint-ccd2"
+  },
+  "homepage": "https://getreadystack.com/tools/bnpl-disclosure-lint-ccd2",
+  "icon": "icon.png"
+}
