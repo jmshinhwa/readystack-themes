@@ -1,0 +1,76 @@
+{
+  "name": "linker-map-auditor",
+  "displayName": "Linker Map Auditor - FLASH & RAM budget for GNU ld map files",
+  "description": "Read a GNU ld .map file and see exactly which object file is eating your FLASH and RAM, and by how many bytes.",
+  "version": "0.1.2",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "linker map",
+    "firmware",
+    "embedded",
+    "flash",
+    "arm-none-eabi"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "linkerMapAuditor.analyze",
+        "title": "Analyze this linker map",
+        "category": "Linker Map"
+      },
+      {
+        "command": "linkerMapAuditor.showReport",
+        "title": "Show last report",
+        "category": "Linker Map"
+      },
+      {
+        "command": "linkerMapAuditor.saveBaseline",
+        "title": "Save this build as baseline",
+        "category": "Linker Map"
+      },
+      {
+        "command": "linkerMapAuditor.diffBaseline",
+        "title": "Compare this build with baseline",
+        "category": "Linker Map"
+      },
+      {
+        "command": "linkerMapAuditor.checkBudget",
+        "title": "Check region budgets",
+        "category": "Linker Map"
+      },
+      {
+        "command": "linkerMapAuditor.exportReport",
+        "title": "Export report (JSON + Markdown)",
+        "category": "Linker Map"
+      }
+    ],
+    "configuration": {
+      "title": "Linker Map Auditor",
+      "properties": {
+        "linkerMapAuditor.budgets": {
+          "type": "object",
+          "default": {},
+          "description": "Per-region ceiling to hold this build under, keyed by MEMORY region name. Accepts bytes, 512K, 0x8000 or 90%. Example: { \"FLASH\": \"90%\", \"RAM\": \"7K\" }."
+        },
+        "linkerMapAuditor.top": {
+          "type": "number",
+          "default": 12,
+          "description": "How many top spenders to list per region in the report."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
