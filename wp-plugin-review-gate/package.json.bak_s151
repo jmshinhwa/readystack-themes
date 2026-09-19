@@ -1,0 +1,53 @@
+{
+  "name": "wp-plugin-review-gate",
+  "displayName": "WP Plugin Review Gate",
+  "description": "Checks readme.txt and the main plugin header for the WordPress.org Plugin Review rules that send a submission or an update back to you.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "readme.txt",
+    "stable tag",
+    "plugin review",
+    "wordpress.org",
+    "linter"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "wpReviewGate.checkFile",
+        "title": "WP Plugin Review Gate: Check this file",
+        "category": "WP Plugin Review Gate"
+      },
+      {
+        "command": "wpReviewGate.checkWorkspace",
+        "title": "WP Plugin Review Gate: Sweep workspace and write report (licence)",
+        "category": "WP Plugin Review Gate"
+      },
+      {
+        "command": "wpReviewGate.enterKey",
+        "title": "WP Plugin Review Gate: Enter licence key",
+        "category": "WP Plugin Review Gate"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "wp-plugin-review-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/wp-plugin-review-gate",
+  "icon": "icon.png"
+}
