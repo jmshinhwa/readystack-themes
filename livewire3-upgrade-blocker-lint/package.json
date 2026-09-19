@@ -1,0 +1,53 @@
+{
+  "name": "livewire3-upgrade-blocker-lint",
+  "displayName": "Livewire 3 Upgrade Blocker Lint",
+  "description": "Finds Livewire 2 APIs that silently die in Livewire 3 — emit(), wire:model.defer, dispatchBrowserEvent, livewire:load, missing :key — in your .php and .blade.php files.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "livewire",
+    "laravel",
+    "blade",
+    "upgrade",
+    "migration",
+    "lint",
+    "php"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "livewire3Lint.checkFile",
+        "title": "Livewire 3 Upgrade Blocker Lint: Check this file",
+        "category": "Livewire 3 Upgrade Blocker Lint"
+      },
+      {
+        "command": "livewire3Lint.checkWorkspace",
+        "title": "Livewire 3 Upgrade Blocker Lint: Sweep workspace and write report (licence)",
+        "category": "Livewire 3 Upgrade Blocker Lint"
+      },
+      {
+        "command": "livewire3Lint.enterKey",
+        "title": "Livewire 3 Upgrade Blocker Lint: Enter licence key",
+        "category": "Livewire 3 Upgrade Blocker Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "livewire3-upgrade-blocker-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/livewire3-upgrade-blocker-lint",
+  "icon": "icon.png"
+}
