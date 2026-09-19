@@ -1,0 +1,53 @@
+{
+  "name": "swift6-concurrency-lint",
+  "displayName": "Swift 6 Concurrency Migration Lint",
+  "description": "Finds the Swift 6 strict-concurrency blockers in your .swift files — global var, static var shared, @unchecked Sendable, DispatchQueue.main.async inside async — before you flip the language mode.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "swift",
+    "swift 6",
+    "concurrency",
+    "sendable",
+    "migration",
+    "ios",
+    "actor"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "swift6Lint.checkFile",
+        "title": "Swift 6 Concurrency Migration Lint: Check this file",
+        "category": "Swift 6 Concurrency Migration Lint"
+      },
+      {
+        "command": "swift6Lint.checkWorkspace",
+        "title": "Swift 6 Concurrency Migration Lint: Sweep workspace and write report (licence)",
+        "category": "Swift 6 Concurrency Migration Lint"
+      },
+      {
+        "command": "swift6Lint.enterKey",
+        "title": "Swift 6 Concurrency Migration Lint: Enter licence key",
+        "category": "Swift 6 Concurrency Migration Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "swift6-concurrency-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/swift6-concurrency-lint",
+  "icon": "icon.png"
+}
