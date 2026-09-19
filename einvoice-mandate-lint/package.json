@@ -2,7 +2,7 @@
   "name": "einvoice-mandate-lint",
   "displayName": "E-Invoice Mandate Lint - EU 2026",
   "description": "Lints UBL/CII invoice XML against EN 16931 plus the 2026 country mandates (FR, DE, BE, PL, ES, IT) and flags retired schema versions.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
