@@ -2,7 +2,7 @@
   "name": "freelance-act-order-lint-jp",
   "displayName": "フリーランス新法 発注書チェック",
   "description": "業務委託の発注書・契約書Markdownを、フリーランス新法の明示事項・支払期日60日・30日前の中途解除予告で検査します。書かれた日付から支払日数を実際に計算し、足りない項目を行番号で示します。",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
