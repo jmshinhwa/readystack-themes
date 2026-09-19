@@ -2,7 +2,7 @@
   "name": "ai-model-retirement-lint",
   "displayName": "AI Model Retirement Lint",
   "description": "Finds the model IDs in your code that vendors have already switched off, or have dated to switch off, with the replacement and the date.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
