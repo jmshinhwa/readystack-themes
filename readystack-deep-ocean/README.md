@@ -37,7 +37,7 @@ and so is every other window you work in.
 profiles for all four terminals, plus the source palette as JSON so you can
 carry it into anything else. One palette, every window.
 
-**https://launchcrateperfect.gumroad.com/l/bwzzz**
+**https://buy.polar.sh/polar_cl_XLCKUkI8aRMShyOFKFccELfmuQBHQ8Dwuy6rH2WiR0e**
 
 ## Free tools
 
