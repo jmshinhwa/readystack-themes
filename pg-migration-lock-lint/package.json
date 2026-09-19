@@ -2,7 +2,7 @@
   "name": "pg-migration-lock-lint",
   "displayName": "Postgres Migration Lock Lint",
   "description": "Find the statements in your Rails, Django or raw SQL migrations that take a table-blocking Postgres lock - and the safe rewrite - before you deploy.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
