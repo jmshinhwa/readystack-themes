@@ -2,7 +2,7 @@
   "name": "hmrc-fraud-prevention-header-lint",
   "displayName": "HMRC Fraud Prevention Header Lint",
   "description": "Finds the Gov-Client and Gov-Vendor header mistakes HMRC rejects, in your editor, offline, before you send the request.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
