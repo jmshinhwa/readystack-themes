@@ -1,0 +1,53 @@
+{
+  "name": "sepa-pain001-reject-lint",
+  "displayName": "SEPA pain.001 Reject Lint",
+  "description": "Lints SEPA Credit Transfer pain.001 XML against the 2019 ISO 20022 message version and EPC scheme rules: retired namespace, IBAN mod-97, CtrlSum/NbOfTxs, SEPA character set.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "sepa",
+    "pain.001",
+    "iso20022",
+    "payments",
+    "xml",
+    "iban",
+    "fintech"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "sepaPain001.checkFile",
+        "title": "SEPA pain.001 Reject Lint: Check this file",
+        "category": "SEPA pain.001 Reject Lint"
+      },
+      {
+        "command": "sepaPain001.checkWorkspace",
+        "title": "SEPA pain.001 Reject Lint: Sweep workspace and write report (licence)",
+        "category": "SEPA pain.001 Reject Lint"
+      },
+      {
+        "command": "sepaPain001.enterKey",
+        "title": "SEPA pain.001 Reject Lint: Enter licence key",
+        "category": "SEPA pain.001 Reject Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "sepa-pain001-reject-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/sepa-pain001-reject-lint",
+  "icon": "icon.png"
+}
