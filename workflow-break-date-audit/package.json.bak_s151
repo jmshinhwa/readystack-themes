@@ -1,0 +1,95 @@
+{
+  "name": "workflow-break-date-audit",
+  "displayName": "GitHub Actions Break-Date Audit",
+  "description": "Names the date each line in your workflow stops working - Node 20 leaves the runner on 23 September 2026 and ubuntu-22.04 begins its brownouts on 17 September 2026 - and the exact version to move to.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "github-actions",
+    "workflow",
+    "deprecation",
+    "node20",
+    "ci"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "workflow-break-date-audit.audit_file",
+        "title": "Find the break dates in this file",
+        "category": "Workflow Break-Date Audi"
+      },
+      {
+        "command": "workflow-break-date-audit.audit_selection",
+        "title": "Check only the selected lines",
+        "category": "Workflow Break-Date Audi"
+      },
+      {
+        "command": "workflow-break-date-audit.list_rules",
+        "title": "List every rule and its date",
+        "category": "Workflow Break-Date Audi"
+      },
+      {
+        "command": "workflow-break-date-audit.workspace_scan",
+        "title": "Scan every workflow in this repository",
+        "category": "Workflow Break-Date Audi"
+      },
+      {
+        "command": "workflow-break-date-audit.export_report",
+        "title": "Export the dated audit report",
+        "category": "Workflow Break-Date Audi"
+      },
+      {
+        "command": "workflow-break-date-audit.ci_json",
+        "title": "Emit CI JSON for a pipeline gate",
+        "category": "Workflow Break-Date Audi"
+      },
+      {
+        "command": "workflow-break-date-audit.watch_on_save",
+        "title": "Re-check every time I save",
+        "category": "Workflow Break-Date Audi"
+      }
+    ],
+    "configuration": {
+      "title": "Workflow Break-Date Audit",
+      "properties": {
+        "workflow-break-date-audit.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info|warn|error)"
+        },
+        "workflow-break-date-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format (csv|json|html)"
+        },
+        "workflow-break-date-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum files to read in a workspace scan"
+        },
+        "workflow-break-date-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "workflow-break-date-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 35 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
