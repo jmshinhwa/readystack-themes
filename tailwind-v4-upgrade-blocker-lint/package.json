@@ -1,0 +1,52 @@
+{
+  "name": "tailwind-v4-upgrade-blocker-lint",
+  "displayName": "Tailwind v4 Upgrade Blocker Lint",
+  "description": "Finds Tailwind CSS v3 syntax that v4 removed or silently redefined - @tailwind directives, bg-opacity-*, outline-none, bare border and ring - with the v4 replacement and a line number.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "tailwind",
+    "tailwindcss",
+    "tailwind v4",
+    "css",
+    "migration",
+    "linter",
+    "upgrade"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "tailwindV4Lint.checkFile",
+        "title": "Tailwind v4 Upgrade Blocker Lint: Check this file",
+        "category": "Tailwind v4 Upgrade Blocker Lint"
+      },
+      {
+        "command": "tailwindV4Lint.checkWorkspace",
+        "title": "Tailwind v4 Upgrade Blocker Lint: Sweep workspace and write report (licence)",
+        "category": "Tailwind v4 Upgrade Blocker Lint"
+      },
+      {
+        "command": "tailwindV4Lint.enterKey",
+        "title": "Tailwind v4 Upgrade Blocker Lint: Enter licence key",
+        "category": "Tailwind v4 Upgrade Blocker Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "tailwind-v4-upgrade-blocker-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/tailwind-v4-upgrade-blocker-lint"
+}
