@@ -2,7 +2,7 @@
   "name": "html-quickstart-markup-audit",
   "displayName": "HTML Quickstart & Markup Audit — 8 Packs",
   "description": "34 snippets and 30 rules across 8 HTML packs. The European Accessibility Act (EU Directive 2019/882) has applied to new products placed on the EU market since 28 June 2025, and a missing alt or a miss",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
