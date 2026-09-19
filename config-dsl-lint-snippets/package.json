@@ -2,7 +2,7 @@
   "name": "config-dsl-lint-snippets",
   "displayName": "Config & DSL Check — 9 languages",
   "description": "VS Code colours these 9 languages but never checks them: 30 rules and 35 snippets that catch the tab in a .rpy script, the unterminated property in a .dts overlay and the password sitting in plain tex",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
