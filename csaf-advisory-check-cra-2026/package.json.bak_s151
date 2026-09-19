@@ -1,0 +1,101 @@
+{
+  "name": "csaf-advisory-check-cra-2026",
+  "displayName": "CSAF Advisory Check for CRA 2026",
+  "description": "Runs the 43 mandatory and profile conformance tests of CSAF 2.0 section 6.1 on the advisory you are writing: product ID graph, revision history, CVSS recomputation, CWE names. Offline.",
+  "version": "0.1.2",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "csaf",
+    "vex",
+    "security advisory",
+    "cra",
+    "vulnerability"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "csaf-advisory-check-cra-2026.checkFile",
+        "title": "Check this advisory",
+        "category": "CSAF Check"
+      },
+      {
+        "command": "csaf-advisory-check-cra-2026.showReport",
+        "title": "Show the findings panel",
+        "category": "CSAF Check"
+      },
+      {
+        "command": "csaf-advisory-check-cra-2026.listTests",
+        "title": "List the checks that ship inside",
+        "category": "CSAF Check"
+      },
+      {
+        "command": "csaf-advisory-check-cra-2026.workspaceScan",
+        "title": "Check every advisory in the workspace",
+        "category": "CSAF Check"
+      },
+      {
+        "command": "csaf-advisory-check-cra-2026.exportEvidence",
+        "title": "Export the conformance evidence file",
+        "category": "CSAF Check"
+      },
+      {
+        "command": "csaf-advisory-check-cra-2026.exportCiChecker",
+        "title": "Write the CI checker into this repository",
+        "category": "CSAF Check"
+      },
+      {
+        "command": "csaf-advisory-check-cra-2026.watchOnSave",
+        "title": "Check on save: turn on or off",
+        "category": "CSAF Check"
+      }
+    ],
+    "configuration": {
+      "title": "CSAF Advisory Check for CRA 2026",
+      "properties": {
+        "csaf-advisory-check-cra-2026.includeBaseFields": {
+          "type": "boolean",
+          "default": true,
+          "description": "Also report the 12 fields the CSAF Base profile requires. Section 6.1.26 leaves these to JSON schema validation, which an editor does not do on its own."
+        },
+        "csaf-advisory-check-cra-2026.skipTests": {
+          "type": "array",
+          "default": [],
+          "description": "Test numbers to leave out of the report, for example [\"6.1.11\", \"6.1.31\"]."
+        },
+        "csaf-advisory-check-cra-2026.filePatterns": {
+          "type": "string",
+          "default": "**/*.json",
+          "description": "Glob used by \"Check every advisory in the workspace\". Files without a csaf_version field are skipped."
+        },
+        "csaf-advisory-check-cra-2026.reportFormat": {
+          "type": "string",
+          "enum": [
+            "csv",
+            "json",
+            "html"
+          ],
+          "default": "csv",
+          "description": "Format written by \"Export the conformance evidence file\"."
+        },
+        "csaf-advisory-check-cra-2026.runOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Turn on check-on-save when the editor starts. Part of the licensed version."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
