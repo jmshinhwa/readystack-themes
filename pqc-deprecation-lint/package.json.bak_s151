@@ -1,0 +1,56 @@
+{
+  "name": "pqc-deprecation-lint",
+  "displayName": "PQC Deprecation Lint — RSA/ECC after 2030",
+  "description": "Finds quantum-vulnerable crypto (RSA, ECDSA, ECDH, DH, SHA-1, 3DES) in your code and config and dates each one against the NIST IR 8547 clock: deprecated after 2030, disallowed after 2035.",
+  "version": "1.0.2",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "post-quantum",
+    "pqc",
+    "nist",
+    "ml-kem",
+    "fips-203",
+    "rsa",
+    "ecdsa",
+    "crypto-agility",
+    "migration",
+    "security"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pqcLint.checkFile",
+        "title": "PQC Lint: Check this file",
+        "category": "PQC Lint"
+      },
+      {
+        "command": "pqcLint.checkWorkspace",
+        "title": "PQC Lint: Sweep workspace and write report (licence)",
+        "category": "PQC Lint"
+      },
+      {
+        "command": "pqcLint.enterKey",
+        "title": "PQC Lint: Enter licence key",
+        "category": "PQC Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "pqc-deprecation-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/pqc-deprecation-lint",
+  "icon": "icon.png"
+}
