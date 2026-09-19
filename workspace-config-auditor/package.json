@@ -2,7 +2,7 @@
   "name": "workspace-config-auditor",
   "displayName": "Angular CLI Workspace Config Auditor",
   "description": "32 snippets and 25 audit rules for the 8 config files an Angular workspace actually ships with. Your components pass review; a hard-coded IoT device key, an absolute backend URL in manifest.json, or a",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
