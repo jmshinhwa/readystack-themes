@@ -1,0 +1,53 @@
+{
+  "name": "maven-central-publish-gate",
+  "displayName": "Maven Central Publish Gate",
+  "description": "Lint pom.xml against Maven Central Portal release rules: retired OSSRH endpoints, missing POM metadata, SNAPSHOT deps, signing and jar requirements.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "maven",
+    "pom.xml",
+    "maven central",
+    "sonatype",
+    "release",
+    "java",
+    "publishing"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "centralGate.checkFile",
+        "title": "Maven Central Publish Gate: Check this file",
+        "category": "Maven Central Publish Gate"
+      },
+      {
+        "command": "centralGate.checkWorkspace",
+        "title": "Maven Central Publish Gate: Sweep workspace and write report (licence)",
+        "category": "Maven Central Publish Gate"
+      },
+      {
+        "command": "centralGate.enterKey",
+        "title": "Maven Central Publish Gate: Enter licence key",
+        "category": "Maven Central Publish Gate"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "maven-central-publish-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/maven-central-publish-gate",
+  "icon": "icon.png"
+}
