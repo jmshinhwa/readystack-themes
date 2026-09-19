@@ -1,0 +1,54 @@
+{
+  "name": "dora-register-lint",
+  "displayName": "DORA Register of Information Lint",
+  "description": "Lints the DORA Register of Information CSV before it reaches the supervisor: LEI check digits, ISO 8601 dates, country and currency codes, duplicate or unresolved references, expired rows.",
+  "version": "1.0.2",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "dora",
+    "register of information",
+    "lei",
+    "csv",
+    "compliance",
+    "fintech",
+    "eu",
+    "audit"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "doraRegister.checkFile",
+        "title": "DORA Register Lint: Check this file",
+        "category": "DORA Register Lint"
+      },
+      {
+        "command": "doraRegister.checkWorkspace",
+        "title": "DORA Register Lint: Sweep workspace and write report (licence)",
+        "category": "DORA Register Lint"
+      },
+      {
+        "command": "doraRegister.enterKey",
+        "title": "DORA Register Lint: Enter licence key",
+        "category": "DORA Register Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "dora-register-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/dora-register-lint",
+  "icon": "icon.png"
+}
