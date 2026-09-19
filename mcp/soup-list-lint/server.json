@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.jmshinhwa/soup-list-lint",
+  "description": "Reads your SOUP register the way an auditor does: 16 rules over clauses 8.1.2, 5.3.3, 5.3.4, 4.3 and",
+  "repository": {
+    "url": "https://github.com/jmshinhwa/readystack-themes",
+    "source": "github"
+  },
+  "version": "1.0.2",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@readystack/soup-list-lint",
+      "version": "1.0.2",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "--mcp",
+          "description": "run as an MCP server (stdio)"
+        }
+      ]
+    }
+  ]
+}
