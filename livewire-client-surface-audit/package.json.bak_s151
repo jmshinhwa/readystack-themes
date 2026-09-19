@@ -1,0 +1,53 @@
+{
+  "name": "livewire-client-surface-audit",
+  "displayName": "Livewire Client Surface Audit",
+  "description": "Finds the lines in your Laravel Livewire and Blade files that the browser can reach, change or call, and names the fix on each one.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "laravel",
+    "livewire",
+    "blade",
+    "php",
+    "security",
+    "audit",
+    "linter"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "livewireSurface.checkFile",
+        "title": "Livewire Client Surface Audit: Check this file",
+        "category": "Livewire Client Surface Audit"
+      },
+      {
+        "command": "livewireSurface.checkWorkspace",
+        "title": "Livewire Client Surface Audit: Sweep workspace and write report (licence)",
+        "category": "Livewire Client Surface Audit"
+      },
+      {
+        "command": "livewireSurface.enterKey",
+        "title": "Livewire Client Surface Audit: Enter licence key",
+        "category": "Livewire Client Surface Audit"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "livewire-client-surface-audit"
+  },
+  "homepage": "https://getreadystack.com/tools/livewire-client-surface-audit",
+  "icon": "icon.png"
+}
