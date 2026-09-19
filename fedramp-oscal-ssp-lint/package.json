@@ -2,7 +2,7 @@
   "name": "fedramp-oscal-ssp-lint",
   "displayName": "FedRAMP OSCAL SSP Lint",
   "description": "Validates a FedRAMP OSCAL system security plan JSON in your editor: required assemblies, RFC4122 UUID references, control-id format, timezone-stamped dates and the annual update clock.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
