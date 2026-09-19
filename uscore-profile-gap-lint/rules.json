@@ -1,0 +1,12 @@
+[
+  {"id": "uscore_v1_pin", "sev": "error", "msg": "Profile pinned to US Core 3.1.1 - that is the USCDI v1 element set. Certified health IT has had to carry USCDI v3 since 2026-01-01."},
+  {"id": "uscore_v2_pin", "sev": "error", "msg": "Profile pinned to US Core 5.0.1 - that is the USCDI v2 element set. USCDI v3 needs US Core 6.1.0 or above."},
+  {"id": "unpinned_profile", "sev": "warn", "msg": "US Core profile claimed with no |version. Nothing in this file proves which USCDI version you meet at test time."},
+  {"id": "no_meta_profile", "sev": "error", "msg": "US Core resource type with no us-core profile in meta.profile. An unlabelled resource is not a conformance claim."},
+  {"id": "pre_r4_url", "sev": "error", "msg": "DSTU2 or STU3 artefact in an R4 resource set. US Core 6.1.0 is FHIR R4 (4.0.1) only."},
+  {"id": "legacy_terminology_url", "sev": "warn", "msg": "Legacy hl7.org/fhir/v2 or /v3 code system URL. R4 moved these to terminology.hl7.org/CodeSystem."},
+  {"id": "missing_race_ethnicity", "sev": "error", "msg": "Patient carries no us-core-race and us-core-ethnicity extension. Race and ethnicity are required USCDI Patient Demographics elements."},
+  {"id": "missing_sogi", "sev": "error", "msg": "Patient carries no us-core-genderIdentity extension. Gender identity is one of the elements USCDI v3 added over v2."},
+  {"id": "capability_fhir_version", "sev": "error", "msg": "CapabilityStatement.fhirVersion is not 4.0.1, so the server advertises a version US Core 6.1.0 does not profile."},
+  {"id": "no_last_updated", "sev": "warn", "msg": "meta block with no lastUpdated. Surveyors cannot date the resource against the 2026-01-01 USCDI v3 line."}
+]
