@@ -2,7 +2,7 @@
   "name": "workflow-break-date-audit",
   "displayName": "GitHub Actions Break-Date Audit",
   "description": "Names the date each line in your workflow stops working - Node 20 leaves the runner on 23 September 2026 and ubuntu-22.04 begins its brownouts on 17 September 2026 - and the exact version to move to.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
