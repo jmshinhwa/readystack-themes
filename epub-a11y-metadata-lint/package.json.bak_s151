@@ -1,0 +1,53 @@
+{
+  "name": "epub-a11y-metadata-lint",
+  "displayName": "EPUB Accessibility Metadata Lint (EAA)",
+  "description": "Checks the accessibility metadata in an EPUB package .opf against EPUB Accessibility 1.1 and the EU Accessibility Act discovery rules, and gives you the exact line to paste.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "epub",
+    "accessibility",
+    "publishing",
+    "eaa",
+    "metadata",
+    "ebook",
+    "onix"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "epubA11y.checkFile",
+        "title": "EPUB Accessibility Metadata Lint (EAA): Check this file",
+        "category": "EPUB Accessibility Metadata Lint (EAA)"
+      },
+      {
+        "command": "epubA11y.checkWorkspace",
+        "title": "EPUB Accessibility Metadata Lint (EAA): Sweep workspace and write report (licence)",
+        "category": "EPUB Accessibility Metadata Lint (EAA)"
+      },
+      {
+        "command": "epubA11y.enterKey",
+        "title": "EPUB Accessibility Metadata Lint (EAA): Enter licence key",
+        "category": "EPUB Accessibility Metadata Lint (EAA)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "epub-a11y-metadata-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/epub-a11y-metadata-lint",
+  "icon": "icon.png"
+}
