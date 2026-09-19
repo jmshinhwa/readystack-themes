@@ -1,0 +1,95 @@
+{
+  "name": "wcag21-aa-legal-baseline-audit",
+  "displayName": "WCAG 2.1 AA Legal Baseline Audit for templates",
+  "description": "Audits HTML, JSX, Vue, Twig, Blade, ERB and Razor markup against the 24 WCAG 2.1 Level AA checks that 28 CFR 35.200 and EN 301 549 actually name - not WCAG 2.2.",
+  "version": "0.1.2",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "wcag",
+    "accessibility",
+    "ada-title-ii",
+    "en-301-549",
+    "a11y"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "wcag21-aa-legal-baseline-audit.audit_file",
+        "title": "Audit this file (WCAG 2.1 AA)",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      },
+      {
+        "command": "wcag21-aa-legal-baseline-audit.audit_selection",
+        "title": "Audit the selected lines",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      },
+      {
+        "command": "wcag21-aa-legal-baseline-audit.list_rules",
+        "title": "Show the rule sheet",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      },
+      {
+        "command": "wcag21-aa-legal-baseline-audit.workspace_scan",
+        "title": "Audit the whole workspace",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      },
+      {
+        "command": "wcag21-aa-legal-baseline-audit.export_report",
+        "title": "Export the audit (CSV / JSON / HTML)",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      },
+      {
+        "command": "wcag21-aa-legal-baseline-audit.quick_fix",
+        "title": "Fix what can be fixed mechanically",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      },
+      {
+        "command": "wcag21-aa-legal-baseline-audit.watch_on_save",
+        "title": "Re-audit on every save",
+        "category": "WCAG 2.1 AA Audit: ADA T"
+      }
+    ],
+    "configuration": {
+      "title": "WCAG 2.1 AA Audit: ADA Title II & EN 301 549",
+      "properties": {
+        "wcag21-aa-legal-baseline-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default format for the exported audit (csv, json or html)"
+        },
+        "wcag21-aa-legal-baseline-audit.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info, warn or error)"
+        },
+        "wcag21-aa-legal-baseline-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum number of files a workspace audit will open"
+        },
+        "wcag21-aa-legal-baseline-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths a workspace audit skips (glob)"
+        },
+        "wcag21-aa-legal-baseline-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Your own rules, checked alongside the 24 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
