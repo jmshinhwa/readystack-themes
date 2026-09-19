@@ -6,12 +6,12 @@
     "url": "https://github.com/jmshinhwa/readystack-themes",
     "source": "github"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "@readystack/bnpl-disclosure-lint-ccd2",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"
