@@ -1,0 +1,53 @@
+{
+  "name": "coverage-gate-lint",
+  "displayName": "Coverage Gate Lint",
+  "description": "Lints codecov.yml, .coveragerc, jest/vitest config and CI steps for coverage gates that report a number but can never fail the build.",
+  "version": "1.0.2",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "coverage",
+    "codecov",
+    "ci",
+    "code coverage",
+    "pytest-cov",
+    "jest",
+    "quality gate"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "coverageGateLint.checkFile",
+        "title": "Coverage Gate Lint — find coverage gates that cannot fail: Check this file",
+        "category": "Coverage Gate Lint — find coverage gates that cannot fail"
+      },
+      {
+        "command": "coverageGateLint.checkWorkspace",
+        "title": "Coverage Gate Lint — find coverage gates that cannot fail: Sweep workspace and write report (licence)",
+        "category": "Coverage Gate Lint — find coverage gates that cannot fail"
+      },
+      {
+        "command": "coverageGateLint.enterKey",
+        "title": "Coverage Gate Lint — find coverage gates that cannot fail: Enter licence key",
+        "category": "Coverage Gate Lint — find coverage gates that cannot fail"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "coverage-gate-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/coverage-gate-lint",
+  "icon": "icon.png"
+}
