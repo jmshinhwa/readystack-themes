@@ -2,7 +2,7 @@
   "name": "npm-trusted-publish-lint",
   "displayName": "npm Trusted Publish Lint",
   "description": "npm classic tokens were revoked 2025-12-09 and granular write tokens now expire in 90 days. Finds the token, OIDC and provenance gaps that will 401 your next release, in GitHub Actions and GitLab CI.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
