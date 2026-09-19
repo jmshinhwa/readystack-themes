@@ -1,0 +1,22 @@
+# Web Stack Snippets + Audit — 8 Stacks
+
+40 snippets and 15 review rules across 8 stacks, in one install instead of eight — the audit catches the `.only()` you left in, the `<img>` with no `alt`, the `_blank` with no `rel=noopener`, the `NEXT_PUBLIC_` secret and the interpolated Rails `where()` before a reviewer does.
+
+## What it does for free
+
+- The whole open file checked against all 15 rules, no key, no limit
+- The same 15 rules over only the lines you highlighted
+- All 40 snippets across 8 stacks, inserted at the cursor
+
+## With a licence
+
+- **Audit the whole workspace** — Opens every file in the workspace and runs the same check on each.
+- **Apply the suggested fixes** — Replaces the offending lines in the editor with the suggested text.
+- **Export the findings as a file** — Asks CSV / JSON / HTML, then writes that file into the workspace folder.
+- **Re-check on every save** — A toggle: after it is on, every save re-runs the check.
+
+## Install
+
+```
+ext install web-stack-snippets-audit
+```
