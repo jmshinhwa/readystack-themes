@@ -2,7 +2,7 @@
   "name": "play-release-blocker-lint",
   "displayName": "Play Release Blocker Lint",
   "description": "Finds the lines that make Google Play reject your release - target API below 36, Billing Library below 8, 4 KB-only native libs - and prints the date each gate closed.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
