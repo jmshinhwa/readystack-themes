@@ -1,0 +1,56 @@
+{
+  "name": "manuscript-disclosure-lint",
+  "displayName": "Manuscript Disclosure Lint",
+  "description": "Checks a manuscript before submission for the statements journals and funders now require: AI-use disclosure, data availability, funding and grant IDs, CRediT, competing interests, ethics, ORCID.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "latex",
+    "manuscript",
+    "journal submission",
+    "data availability statement",
+    "ai disclosure",
+    "credit taxonomy",
+    "orcid",
+    "nih public access policy",
+    "icmje",
+    "open access"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "manuscriptDisclosure.checkFile",
+        "title": "Manuscript Disclosure Lint: Check this file",
+        "category": "Manuscript Disclosure Lint"
+      },
+      {
+        "command": "manuscriptDisclosure.checkWorkspace",
+        "title": "Manuscript Disclosure Lint: Sweep workspace and write report (licence)",
+        "category": "Manuscript Disclosure Lint"
+      },
+      {
+        "command": "manuscriptDisclosure.enterKey",
+        "title": "Manuscript Disclosure Lint: Enter licence key",
+        "category": "Manuscript Disclosure Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "manuscript-disclosure-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/manuscript-disclosure-lint",
+  "icon": "icon.png"
+}
