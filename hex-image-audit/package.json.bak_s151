@@ -1,0 +1,55 @@
+{
+  "name": "hex-image-audit",
+  "displayName": "Intel HEX & S-record Image Audit",
+  "description": "Recomputes every checksum in a .hex/.s19 firmware image and flags bad records, overlaps, gaps, missing EOF and unaligned pages before the image reaches the programmer.",
+  "version": "1.0.2",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "intel hex",
+    "ihex",
+    "srec",
+    "s-record",
+    "firmware",
+    "checksum",
+    "embedded",
+    "flash",
+    "bootloader"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "hexImageAudit.checkFile",
+        "title": "Intel HEX & S-record Image Audit: Check this file",
+        "category": "Intel HEX & S-record Image Audit"
+      },
+      {
+        "command": "hexImageAudit.checkWorkspace",
+        "title": "Intel HEX & S-record Image Audit: Sweep workspace and write report (licence)",
+        "category": "Intel HEX & S-record Image Audit"
+      },
+      {
+        "command": "hexImageAudit.enterKey",
+        "title": "Intel HEX & S-record Image Audit: Enter licence key",
+        "category": "Intel HEX & S-record Image Audit"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "hex-image-audit"
+  },
+  "homepage": "https://getreadystack.com/tools/hex-image-audit",
+  "icon": "icon.png"
+}
