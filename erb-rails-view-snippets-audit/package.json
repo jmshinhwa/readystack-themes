@@ -2,7 +2,7 @@
   "name": "erb-rails-view-snippets-audit",
   "displayName": "ERB Snippets + View Audit for Rails",
   "description": "36 ERB snippets and 26 rules that catch the raw, html_safe and params output a Rails security review sends back — offline, in the editor, no account.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
