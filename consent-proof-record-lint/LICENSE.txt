@@ -1,0 +1,16 @@
+Consent Proof Record Lint (GDPR Art.7) — Licence
+
+Free scope
+  Lints one consent-record JSON file open in the editor and names every missing or invalid proof field with its GDPR article is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Runs every consent-record file in the workspace in one pass and writes a dated evidence report you keep and hand to the auditor is the paid part. It asks for a licence key issued at purchase (one seat, one key;
+  7-day full refund, no questions). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
