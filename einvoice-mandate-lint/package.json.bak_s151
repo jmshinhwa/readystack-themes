@@ -1,0 +1,54 @@
+{
+  "name": "einvoice-mandate-lint",
+  "displayName": "E-Invoice Mandate Lint - EU 2026",
+  "description": "Lints UBL/CII invoice XML against EN 16931 plus the 2026 country mandates (FR, DE, BE, PL, ES, IT) and flags retired schema versions.",
+  "version": "1.0.3",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "e-invoicing",
+    "en16931",
+    "peppol",
+    "xrechnung",
+    "ubl",
+    "factur-x",
+    "ksef",
+    "vat"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "einvoiceMandateLint.checkFile",
+        "title": "E-Invoice Mandate Lint - EU 2026: Check this file",
+        "category": "E-Invoice Mandate Lint - EU 2026"
+      },
+      {
+        "command": "einvoiceMandateLint.checkWorkspace",
+        "title": "E-Invoice Mandate Lint - EU 2026: Sweep workspace and write report (licence)",
+        "category": "E-Invoice Mandate Lint - EU 2026"
+      },
+      {
+        "command": "einvoiceMandateLint.enterKey",
+        "title": "E-Invoice Mandate Lint - EU 2026: Enter licence key",
+        "category": "E-Invoice Mandate Lint - EU 2026"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "einvoice-mandate-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/einvoice-mandate-lint",
+  "icon": "icon.png"
+}
