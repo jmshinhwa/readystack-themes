@@ -1,0 +1,161 @@
+{
+  "name": "web-stack-snippets-audit",
+  "displayName": "Web Stack Snippets + Audit — 8 Stacks",
+  "description": "40 snippets and 15 review rules across 8 stacks, in one install instead of eight — the audit catches the .only() you left in, the <img> with no alt, the _blank with no rel=noopener, the NEXT_PUBLIC_ s",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Snippets",
+    "Linters"
+  ],
+  "keywords": [
+    "snippets",
+    "jest",
+    "nextjs",
+    "tailwind",
+    "angular"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "web-stack-snippets-audit.audit_file",
+        "title": "Audit This File",
+        "category": "Web Stack Snippets + Aud"
+      },
+      {
+        "command": "web-stack-snippets-audit.audit_selection",
+        "title": "Audit Selected Lines",
+        "category": "Web Stack Snippets + Aud"
+      },
+      {
+        "command": "web-stack-snippets-audit.insert_snippet",
+        "title": "Insert Snippet from Pack",
+        "category": "Web Stack Snippets + Aud"
+      },
+      {
+        "command": "web-stack-snippets-audit.workspace_scan",
+        "title": "Audit the Whole Workspace",
+        "category": "Web Stack Snippets + Aud"
+      },
+      {
+        "command": "web-stack-snippets-audit.quick_fix",
+        "title": "Apply Suggested Fixes",
+        "category": "Web Stack Snippets + Aud"
+      },
+      {
+        "command": "web-stack-snippets-audit.export_report",
+        "title": "Export the Findings",
+        "category": "Web Stack Snippets + Aud"
+      },
+      {
+        "command": "web-stack-snippets-audit.watch_on_save",
+        "title": "Re-check on Every Save",
+        "category": "Web Stack Snippets + Aud"
+      }
+    ],
+    "configuration": {
+      "title": "Web Stack Snippets + Audit — 8 Stacks",
+      "properties": {
+        "web-stack-snippets-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format"
+        },
+        "web-stack-snippets-audit.max_files": {
+          "type": "number",
+          "default": 500,
+          "description": "Maximum files per workspace scan"
+        },
+        "web-stack-snippets-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,dist,.next,build,vendor,coverage}/**",
+          "description": "Paths to skip"
+        },
+        "web-stack-snippets-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Audit the whole workspace"
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "css",
+        "path": "./snippets/css-scss.code-snippets"
+      },
+      {
+        "language": "scss",
+        "path": "./snippets/css-scss.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/html-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/html-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript-typescript.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-typescript-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript-typescript-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/javascript-typescript-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/javascript-typescript-javascriptreact-typescriptreact.code-snippets"
+      },
+      {
+        "language": "ruby",
+        "path": "./snippets/ruby.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/typescript.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/typescript-typescriptreact.code-snippets"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/typescript-typescriptreact.code-snippets"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "web-stack-snippets-audit"
+  }
+}
