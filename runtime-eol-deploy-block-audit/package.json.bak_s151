@@ -1,0 +1,105 @@
+{
+  "name": "runtime-eol-deploy-block-audit",
+  "displayName": "Runtime EOL Guard",
+  "description": "Finds the end-of-life runtimes an AI assistant still writes for you — node:20, python3.9, ubuntu-22.04, nodejs20.x — and prints the exact date each one stops deploying.",
+  "version": "0.1.2",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "eol",
+    "end-of-life",
+    "dockerfile",
+    "github-actions",
+    "aws-lambda"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "runtime-eol-deploy-block-audit.audit_file",
+        "title": "Check this file for EOL runtimes",
+        "category": "Runtime EOL Guard"
+      },
+      {
+        "command": "runtime-eol-deploy-block-audit.audit_selection",
+        "title": "Check the selected lines",
+        "category": "Runtime EOL Guard"
+      },
+      {
+        "command": "runtime-eol-deploy-block-audit.show_report",
+        "title": "Reopen the last report",
+        "category": "Runtime EOL Guard"
+      },
+      {
+        "command": "runtime-eol-deploy-block-audit.list_rules",
+        "title": "List all rules and their dates",
+        "category": "Runtime EOL Guard"
+      },
+      {
+        "command": "runtime-eol-deploy-block-audit.workspace_scan",
+        "title": "Scan the whole workspace",
+        "category": "Runtime EOL Guard"
+      },
+      {
+        "command": "runtime-eol-deploy-block-audit.export_report",
+        "title": "Export the audit report",
+        "category": "Runtime EOL Guard"
+      },
+      {
+        "command": "runtime-eol-deploy-block-audit.ci_json",
+        "title": "Print CI JSON",
+        "category": "Runtime EOL Guard"
+      },
+      {
+        "command": "runtime-eol-deploy-block-audit.watch_on_save",
+        "title": "Re-check on every save",
+        "category": "Runtime EOL Guard"
+      },
+      {
+        "command": "runtime-eol-deploy-block-audit.custom_rules",
+        "title": "Add your own internal deadline rules",
+        "category": "Runtime EOL Guard"
+      }
+    ],
+    "configuration": {
+      "title": "Runtime EOL Guard",
+      "properties": {
+        "runtime-eol-deploy-block-audit.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info|warn|error)"
+        },
+        "runtime-eol-deploy-block-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format (csv|json|html)"
+        },
+        "runtime-eol-deploy-block-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum files to read in a workspace scan"
+        },
+        "runtime-eol-deploy-block-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a workspace scan"
+        },
+        "runtime-eol-deploy-block-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 54 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
