@@ -2,7 +2,7 @@
   "name": "coppa-notice-lint-2026",
   "displayName": "COPPA 2026 Notice Lint",
   "description": "Checks a children's privacy notice against the amended COPPA Rule that became fully enforceable 22 April 2026: published retention policy, separate third-party consent, listed operators.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
