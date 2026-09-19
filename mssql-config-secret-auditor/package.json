@@ -2,7 +2,7 @@
   "name": "mssql-config-secret-auditor",
   "displayName": "SQLTools MSSQL Config & Secret Auditor",
   "description": "17 rules · 24 config blocks · 8 stacks — it names the SQL Server password sitting in the .vscode/settings.json you are about to commit, on the file you have open, offline.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
