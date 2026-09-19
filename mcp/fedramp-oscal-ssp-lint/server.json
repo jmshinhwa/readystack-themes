@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.jmshinhwa/fedramp-oscal-ssp-lint",
+  "description": "16 checks on a system-security-plan JSON, in your editor, before a validator returns the package",
+  "repository": {
+    "url": "https://github.com/jmshinhwa/readystack-themes",
+    "source": "github"
+  },
+  "version": "1.0.2",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@readystack/fedramp-oscal-ssp-lint",
+      "version": "1.0.2",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "--mcp",
+          "description": "run as an MCP server (stdio)"
+        }
+      ]
+    }
+  ]
+}
