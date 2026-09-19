@@ -2,7 +2,7 @@
   "name": "bnpl-disclosure-lint-ccd2",
   "displayName": "BNPL Disclosure Lint - EU CCD2 2026",
   "description": "Lints checkout and product-page templates for the buy-now-pay-later disclosures the EU Consumer Credit Directive 2 (2023/2225) requires from 20 November 2026.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
