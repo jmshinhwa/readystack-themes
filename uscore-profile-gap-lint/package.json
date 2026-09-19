@@ -1,0 +1,53 @@
+{
+  "name": "uscore-profile-gap-lint",
+  "displayName": "US Core Profile Gap Check (USCDI v3)",
+  "description": "Finds FHIR R4 resource files still pinned to US Core 3.1.1 or 5.0.1, and the USCDI v3 patient elements they miss. 10 rules, offline, no PHI leaves your machine.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "fhir",
+    "us core",
+    "uscdi",
+    "hl7",
+    "interoperability",
+    "onc certification",
+    "healthcare"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "uscoreGap.checkFile",
+        "title": "US Core Profile Gap Check (USCDI v3): Check this file",
+        "category": "US Core Profile Gap Check (USCDI v3)"
+      },
+      {
+        "command": "uscoreGap.checkWorkspace",
+        "title": "US Core Profile Gap Check (USCDI v3): Sweep workspace and write report (licence)",
+        "category": "US Core Profile Gap Check (USCDI v3)"
+      },
+      {
+        "command": "uscoreGap.enterKey",
+        "title": "US Core Profile Gap Check (USCDI v3): Enter licence key",
+        "category": "US Core Profile Gap Check (USCDI v3)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "uscore-profile-gap-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/uscore-profile-gap-lint",
+  "icon": "icon.png"
+}
