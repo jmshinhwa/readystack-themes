@@ -2,7 +2,7 @@
   "name": "mcp-config-audit",
   "displayName": "MCP Server Config Audit",
   "description": "Audits mcp.json for the mistakes AI-written agent configs carry: inline API keys, unpinned npx launches, plaintext remote servers, shell wrappers, auto-approved tools and filesystem roots.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
