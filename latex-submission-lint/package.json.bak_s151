@@ -1,0 +1,56 @@
+{
+  "name": "latex-submission-lint",
+  "displayName": "LaTeX Submission Lint: Desk-Reject Check",
+  "description": "Lints your .tex manuscript for what desk-rejects papers: missing data availability, funding, competing-interest and generative-AI statements, obsolete packages, absolute figure paths.",
+  "version": "1.0.2",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "latex",
+    "tex",
+    "journal submission",
+    "desk rejection",
+    "manuscript",
+    "elsevier",
+    "springer nature",
+    "ieee",
+    "plos",
+    "research paper"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "latexSubmissionLint.checkFile",
+        "title": "LaTeX Submission Lint: Desk-Reject Check: Check this file",
+        "category": "LaTeX Submission Lint: Desk-Reject Check"
+      },
+      {
+        "command": "latexSubmissionLint.checkWorkspace",
+        "title": "LaTeX Submission Lint: Desk-Reject Check: Sweep workspace and write report (licence)",
+        "category": "LaTeX Submission Lint: Desk-Reject Check"
+      },
+      {
+        "command": "latexSubmissionLint.enterKey",
+        "title": "LaTeX Submission Lint: Desk-Reject Check: Enter licence key",
+        "category": "LaTeX Submission Lint: Desk-Reject Check"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "latex-submission-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/latex-submission-lint",
+  "icon": "icon.png"
+}
