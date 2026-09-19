@@ -1,0 +1,90 @@
+{
+  "name": "payment-page-script-audit",
+  "displayName": "PCI DSS 6.4.3 Payment Page Script Inventory Auditor",
+  "description": "Lists every script on your checkout page that has no integrity hash, no authorisation and no written justification - the three things PCI DSS 6.4.3 has required since 31 March 2025.",
+  "version": "0.1.1",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "pci-dss",
+    "pci",
+    "sri",
+    "checkout",
+    "eskimming"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "payment-page-script-audit.audit_file",
+        "title": "Audit this payment page",
+        "category": "Payment Page Script Audi"
+      },
+      {
+        "command": "payment-page-script-audit.audit_selection",
+        "title": "Audit the selected lines",
+        "category": "Payment Page Script Audi"
+      },
+      {
+        "command": "payment-page-script-audit.list_rules",
+        "title": "List the rules that ship inside",
+        "category": "Payment Page Script Audi"
+      },
+      {
+        "command": "payment-page-script-audit.workspace_scan",
+        "title": "Audit every template in the repository",
+        "category": "Payment Page Script Audi"
+      },
+      {
+        "command": "payment-page-script-audit.export_report",
+        "title": "Export the script inventory",
+        "category": "Payment Page Script Audi"
+      },
+      {
+        "command": "payment-page-script-audit.ci_json",
+        "title": "Write CI output",
+        "category": "Payment Page Script Audi"
+      }
+    ],
+    "configuration": {
+      "title": "Payment Page Script Audit (PCI 6.4.3)",
+      "properties": {
+        "payment-page-script-audit.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info|warn|error)"
+        },
+        "payment-page-script-audit.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Format used when exporting the inventory (csv|json|html)"
+        },
+        "payment-page-script-audit.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Most files to open during a repository scan"
+        },
+        "payment-page-script-audit.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths skipped during a repository scan"
+        },
+        "payment-page-script-audit.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra patterns of your own, checked alongside the 22 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
