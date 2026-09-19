@@ -2,7 +2,7 @@
   "name": "linker-map-format-audit",
   "displayName": "GNU Linker Map + 7 Formats — Audit & Snippets",
   "description": "Your editor shows all eight of these as grey text, so nothing warns you. 30 checks and 25 snippets run on the file you have open, offline — the open `if true` rule, the corrupt HEX record, the float p",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
