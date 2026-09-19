@@ -1,0 +1,91 @@
+[
+ {"id":"leistender_anschrift","sev":"error","kind":"require","law":"§ 14 Abs. 4 Nr. 1 UStG",
+  "any":["Absender","Anschrift","shop_?address","store_?address","seller_?address","from_?address","Firmensitz","Rechnungssteller"],
+  "msg":"Name und Anschrift des leistenden Unternehmers werden im Template nirgends ausgegeben",
+  "fix":"Absenderblock mit $shop_name und $shop_address in den Rechnungskopf setzen"},
+
+ {"id":"empfaenger_anschrift","sev":"error","kind":"require","law":"§ 14 Abs. 4 Nr. 1 UStG",
+  "any":["billing_?address","Rechnungsadresse","Rechnungsanschrift","formatted_billing","customer_?address","buyer_?address","Empfänger"],
+  "msg":"Name und Anschrift des Leistungsempfängers werden nicht ausgegeben",
+  "fix":"get_formatted_billing_address() des Auftrags in den Adressblock ausgeben"},
+
+ {"id":"steuernummer","sev":"error","kind":"require","law":"§ 14 Abs. 4 Nr. 2 UStG",
+  "any":["USt-?IdNr","Umsatzsteuer-?Identifikationsnummer","Steuernummer","vat_?id","vat_?number","tax_?number"],
+  "msg":"Weder Steuernummer noch Umsatzsteuer-Identifikationsnummer des Ausstellers stehen im Beleg",
+  "fix":"Zeile Steuernummer oder USt-IdNr. aus den Shop-Einstellungen ausgeben"},
+
+ {"id":"ausstellungsdatum","sev":"error","kind":"require","law":"§ 14 Abs. 4 Nr. 3 UStG",
+  "any":["Rechnungsdatum","Ausstellungsdatum","invoice_?date","date_?created","date_?invoiced"],
+  "msg":"Das Ausstellungsdatum der Rechnung fehlt",
+  "fix":"Feld Rechnungsdatum mit dem Datum der Belegerstellung ausgeben"},
+
+ {"id":"rechnungsnummer","sev":"error","kind":"require","law":"§ 14 Abs. 4 Nr. 4 UStG",
+  "any":["Rechnungsnummer","Rechnungs-?Nr","invoice_?number","invoice_?no\\b","get_invoice_number"],
+  "msg":"Es wird keine Rechnungsnummer ausgegeben",
+  "fix":"Fortlaufende, einmalig vergebene Nummer aus einem Zähler ausgeben"},
+
+ {"id":"menge_und_art","sev":"error","kind":"require","law":"§ 14 Abs. 4 Nr. 5 UStG",
+  "any":["Menge","Bezeichnung","Beschreibung","Artikel","line_?items","order_?items","get_items","Positionen"],
+  "msg":"Menge und handelsübliche Bezeichnung der Positionen fehlen",
+  "fix":"Positionstabelle mit Spalten Menge und Bezeichnung über get_items() ausgeben"},
+
+ {"id":"leistungszeitpunkt","sev":"error","kind":"require","law":"§ 14 Abs. 4 Nr. 6 UStG",
+  "any":["Leistungsdatum","Lieferdatum","Leistungszeitpunkt","Lieferzeitpunkt","Leistungszeitraum","delivery_?date","service_?date","supply_?date"],
+  "msg":"Der Zeitpunkt der Lieferung oder sonstigen Leistung fehlt — das Rechnungsdatum ersetzt ihn nicht",
+  "fix":"Eigene Zeile Leistungsdatum ausgeben, auch wenn sie dem Rechnungsdatum entspricht"},
+
+ {"id":"entgelt_aufgeschluesselt","sev":"error","kind":"require","law":"§ 14 Abs. 4 Nr. 7 UStG",
+  "any":["Nettobetrag","Entgelt","Zwischensumme","Nettosumme","net_?total","subtotal","Gesamtnetto"],
+  "msg":"Das nach Steuersätzen aufgeschlüsselte Entgelt (Netto) wird nicht ausgewiesen, nur ein Bruttowert",
+  "fix":"Nettosumme je Steuersatz ausgeben, nicht nur den Gesamtbetrag"},
+
+ {"id":"steuersatz_steuerbetrag","sev":"error","kind":"require","law":"§ 14 Abs. 4 Nr. 8 UStG",
+  "any":["Steuersatz","Steuerbetrag","MwSt","Mehrwertsteuer","tax_?total","tax_?rate","get_total_tax"],
+  "msg":"Weder Steuersatz noch Steuerbetrag noch ein Hinweis auf eine Steuerbefreiung stehen im Beleg",
+  "fix":"Steuersatz und den daraus errechneten Steuerbetrag als eigene Zeile ausgeben"},
+
+ {"id":"aufbewahrungshinweis","sev":"warn","kind":"require_when","law":"§ 14 Abs. 4 Nr. 9 UStG",
+  "when":["Grundstück","Bauleistung","Handwerkerleistung"],
+  "any":["Aufbewahrungs","aufzubewahren","zwei Jahre"],
+  "msg":"Grundstücksbezogene Leistung ohne Hinweis auf die zweijährige Aufbewahrungspflicht des privaten Empfängers",
+  "fix":"Satz zur Aufbewahrungspflicht nach § 14b Abs. 1 Satz 5 UStG in den Fußtext aufnehmen"},
+
+ {"id":"gutschrift_wort","sev":"error","kind":"require_when","law":"§ 14 Abs. 4 Nr. 10 UStG",
+  "when":["credit_?note","Stornorechnung","Storno-?Beleg","refund_?invoice","Korrekturrechnung"],
+  "any":["Gutschrift"],
+  "msg":"Abrechnung durch den Leistungsempfänger, aber das Wort Gutschrift steht nicht im Beleg",
+  "fix":"Belegüberschrift auf das Wort Gutschrift setzen, nicht auf Storno oder Korrektur"},
+
+ {"id":"reverse_charge_wortlaut","sev":"error","kind":"require_when","law":"§ 14a Abs. 5 UStG",
+  "when":["reverse[ _-]?charge","§\\s*13b"],
+  "any":["Steuerschuldnerschaft des Leistungsempfängers"],
+  "msg":"Fall des Wechsels der Steuerschuldnerschaft ohne den wörtlich vorgeschriebenen Hinweis",
+  "fix":"Genau den Wortlaut Steuerschuldnerschaft des Leistungsempfängers ausgeben"},
+
+ {"id":"kleinunternehmer_steuerausweis","sev":"error","kind":"forbid_when","law":"§ 14c Abs. 2 UStG",
+  "when":["Kleinunternehmer","§\\s*19\\s*UStG"],
+  "bad":["Steuerbetrag","tax_?total","get_total_tax","MwSt"],
+  "msg":"Kleinunternehmer-Beleg weist Umsatzsteuer aus — die ausgewiesene Steuer wird geschuldet",
+  "fix":"Steuerzeile entfernen und den Hinweis auf § 19 UStG stehen lassen"},
+
+ {"id":"platzhalter_ustid","sev":"error","kind":"forbid","law":"§ 14 Abs. 4 Nr. 2 UStG",
+  "bad":["DE\\s?123456789","DE\\s?999999999","DE\\s?000000000","XX\\s?999999999","DE\\s?111111111"],
+  "msg":"Platzhalter-Steuernummer steht noch fest im Template",
+  "fix":"Wert aus den Shop-Einstellungen lesen statt ihn im Template zu hinterlegen"},
+
+ {"id":"rechnungsnummer_nicht_fortlaufend","sev":"error","kind":"forbid","law":"§ 14 Abs. 4 Nr. 4 UStG · GoBD",
+  "bad":["^(?=.*(uniqid|mt_rand|\\brand\\s*\\(|microtime))(?=.*(invoice|rechnung)).*$"],
+  "msg":"Rechnungsnummer wird aus Zufallswert oder Zeitstempel gebildet und ist damit nicht lückenlos nachprüfbar",
+  "fix":"Nummer aus einem persistenten Zähler vergeben und den Stand speichern"},
+
+ {"id":"kleinbetrag_grenze","sev":"warn","kind":"forbid_when","law":"§ 33 UStDV",
+  "when":["Kleinbetrag"],
+  "bad":["150\\s?(€|EUR|Euro)"],
+  "msg":"Grenze für Kleinbetragsrechnungen steht auf 150 Euro — sie liegt seit 2017 bei 250 Euro brutto",
+  "fix":"Schwellenwert auf 250 Euro brutto setzen"},
+
+ {"id":"steuersatz_hart_verdrahtet","sev":"warn","kind":"forbid","law":"§ 14 Abs. 4 Nr. 8 UStG",
+  "bad":["^(?=.*\\b19\\s*%)(?!.*\\$).*$"],
+  "msg":"Steuersatz 19 % ist fest im Template verdrahtet — ermäßigte und steuerfreie Positionen werden dann falsch ausgewiesen",
+  "fix":"Satz je Position aus dem Auftrag lesen statt ihn in den Text zu schreiben"}
+]
