@@ -1,0 +1,72 @@
+[
+  {
+    "id": "saft_version",
+    "sev": "error",
+    "msg": "AuditFileVersion tem de ser 1.04_01 (Portaria 302/2016) — encontrado: {found}"
+  },
+  {
+    "id": "nif_checksum",
+    "sev": "error",
+    "msg": "NIF {found} em {where} falha o digito de controlo (modulo 11) — a AT rejeita o ficheiro"
+  },
+  {
+    "id": "atcud_missing",
+    "sev": "error",
+    "msg": "{doc} nao tem elemento ATCUD — obrigatorio em todos os documentos desde a Portaria 195/2020"
+  },
+  {
+    "id": "atcud_format",
+    "sev": "error",
+    "msg": "ATCUD {found} em {doc} nao tem a forma CODIGO-NUMERO (codigo de validacao maiusculo + hifen + sequencia)"
+  },
+  {
+    "id": "atcud_seq_mismatch",
+    "sev": "error",
+    "msg": "ATCUD {found} em {doc} termina em {seq} mas o numero do documento termina em {want} — a sequencia tem de coincidir"
+  },
+  {
+    "id": "invoice_no_format",
+    "sev": "error",
+    "msg": "InvoiceNo {found} nao tem a forma TIPO SERIE/NUMERO (ex. FT 2026A/1)"
+  },
+  {
+    "id": "hash_length",
+    "sev": "error",
+    "msg": "Hash de {doc} tem {found} caracteres — a assinatura RSA-1024/SHA-1 em base64 tem sempre 172"
+  },
+  {
+    "id": "totals_mismatch",
+    "sev": "error",
+    "msg": "{doc}: GrossTotal {found} != NetTotal + TaxPayable ({want})"
+  },
+  {
+    "id": "lines_vs_nettotal",
+    "sev": "error",
+    "msg": "{doc}: soma das linhas {found} != NetTotal {want}"
+  },
+  {
+    "id": "tax_rate_region",
+    "sev": "error",
+    "msg": "{doc}: taxa {found}% nao existe em {where} — taxas validas: {want}"
+  },
+  {
+    "id": "exemption_reason_missing",
+    "sev": "error",
+    "msg": "{doc}: linha a 0% sem TaxExemptionCode/TaxExemptionReason (codigo M01..M99 obrigatorio)"
+  },
+  {
+    "id": "qr_fields_incomplete",
+    "sev": "warn",
+    "msg": "{doc}: faltam dados para os campos obrigatorios do QR code: {found}"
+  },
+  {
+    "id": "date_out_of_period",
+    "sev": "warn",
+    "msg": "{doc}: InvoiceDate {found} fora do periodo do cabecalho ({want})"
+  },
+  {
+    "id": "date_in_future",
+    "sev": "error",
+    "msg": "{doc}: InvoiceDate {found} e posterior a hoje ({want}) — documento datado no futuro nao passa na comunicacao a AT"
+  }
+]
