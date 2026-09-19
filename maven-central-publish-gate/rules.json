@@ -1,0 +1,57 @@
+[
+  {"id": "ossrh_endpoint", "kind": "forbid", "sev": "error",
+   "re": "(?:s01\\.)?oss\\.sonatype\\.org",
+   "ossrh_sunset": "2025-06-30",
+   "portal_host": "central.sonatype.com",
+   "msg": "OSSRH endpoint oss.sonatype.org — Sonatype closed it to releases on 2025-06-30. Deploy to the Central Portal (central.sonatype.com) instead."},
+
+  {"id": "nexus_staging_plugin", "kind": "forbid", "sev": "error",
+   "re": "nexus-staging-maven-plugin",
+   "msg": "nexus-staging-maven-plugin was retired with OSSRH. Replace it with central-publishing-maven-plugin."},
+
+  {"id": "snapshot_version", "kind": "forbid", "sev": "error",
+   "re": "-SNAPSHOT\\s*</version>",
+   "msg": "A -SNAPSHOT version cannot be released: Central rejects the bundle, and a SNAPSHOT dependency makes the release unbuildable for everyone else."},
+
+  {"id": "insecure_repository", "kind": "forbid", "sev": "error",
+   "re": "<url>\\s*http://",
+   "msg": "Plain http:// repository URL. Maven 3.8.1 and later block insecure mirrors, so the build fails before the deploy starts."},
+
+  {"id": "system_scope_dependency", "kind": "forbid", "sev": "error",
+   "re": "<scope>\\s*system\\s*</scope>",
+   "msg": "system-scoped dependency with a local systemPath. Central will not accept a POM that points at a jar outside the repository."},
+
+  {"id": "gpg_skipped", "kind": "forbid", "sev": "error",
+   "re": "<gpg\\.skip>\\s*true",
+   "msg": "gpg.skip is true, so the bundle ships unsigned. Central validation rejects any artifact without a .asc signature."},
+
+  {"id": "meta_name", "kind": "require_child", "sev": "error", "tag": "name",
+   "msg": "<name> is missing from the project metadata. Central Portal validation fails a POM without a human-readable project name."},
+
+  {"id": "meta_description", "kind": "require_child", "sev": "error", "tag": "description",
+   "msg": "<description> is missing. Central Portal requires a project description on every published POM."},
+
+  {"id": "meta_url", "kind": "require_child", "sev": "error", "tag": "url",
+   "msg": "<url> is missing from the project metadata. Central Portal requires a project URL."},
+
+  {"id": "meta_licenses", "kind": "require_child", "sev": "error", "tag": "licenses",
+   "msg": "<licenses> block is missing. Central Portal requires a declared licence on every published artifact."},
+
+  {"id": "meta_developers", "kind": "require_child", "sev": "error", "tag": "developers",
+   "msg": "<developers> block is missing. Central Portal requires at least one named developer with contact details."},
+
+  {"id": "meta_scm", "kind": "require_child", "sev": "error", "tag": "scm",
+   "msg": "<scm> block is missing. Central Portal requires connection and developerConnection pointing at the source repository."},
+
+  {"id": "sign_plugin", "kind": "require_text", "sev": "error", "needle": "maven-gpg-plugin",
+   "msg": "maven-gpg-plugin is not configured. Every jar, POM and attached artifact must carry a GPG signature or the upload is rejected."},
+
+  {"id": "sources_jar", "kind": "require_text", "sev": "error", "needle": "maven-source-plugin",
+   "msg": "maven-source-plugin is not configured, so no -sources.jar is produced. Central requires a sources jar alongside the main artifact."},
+
+  {"id": "javadoc_jar", "kind": "require_text", "sev": "error", "needle": "maven-javadoc-plugin",
+   "msg": "maven-javadoc-plugin is not configured, so no -javadoc.jar is produced. Central requires a javadoc jar alongside the main artifact."},
+
+  {"id": "portal_publisher", "kind": "require_text", "sev": "warn", "needle": "central-publishing-maven-plugin",
+   "msg": "No central-publishing-maven-plugin. Without the Portal publisher, mvn deploy has nowhere to send the bundle now that OSSRH is closed."}
+]
