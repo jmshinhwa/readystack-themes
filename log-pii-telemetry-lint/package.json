@@ -2,7 +2,7 @@
   "name": "log-pii-telemetry-lint",
   "displayName": "PII-in-Logs Lint (console.log(req.body))",
   "description": "Names every line where your Node/TypeScript service writes personal data into logs, crash reports and analytics: console.log(req.body), pino without redact, sendDefaultPii: true. 22 rules.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
