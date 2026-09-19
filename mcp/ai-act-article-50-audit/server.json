@@ -6,12 +6,12 @@
     "url": "https://github.com/jmshinhwa/readystack-themes",
     "source": "github"
   },
-  "version": "0.1.1",
+  "version": "0.1.2",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "@readystack/ai-act-article-50-audit",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"
