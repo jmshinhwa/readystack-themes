@@ -2,7 +2,7 @@
   "name": "html-tag-inserter-accessible-aria",
   "displayName": "HTML Tag Inserter: Accessible ARIA + WCAG 2.2",
   "description": "36 accessible HTML tag patterns and 20 WCAG 2.2 checks that run offline on the file you have open. An accessibility reviewer never reads your CSS — they tab through your landmarks, your labels and you",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
