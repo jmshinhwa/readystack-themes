@@ -2,7 +2,7 @@
   "name": "jest-snapshot-pii-audit",
   "displayName": "Jest Snapshot PII Audit",
   "description": "Finds real personal data and live credentials committed inside Jest .snap snapshot files — emails, national IDs, IBANs, cards, tokens — with the GDPR article for each hit.",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
