@@ -1,0 +1,51 @@
+{
+  "name": "gdpr-privacy-notice-lint",
+  "displayName": "GDPR Privacy Notice Lint",
+  "description": "Reads the privacy notice in your repo against 16 rules from GDPR Articles 13 and 14, flags template placeholders, and tells you when the notice itself has gone stale. Not legal advice.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "gdpr",
+    "privacy policy",
+    "privacy notice",
+    "article 13",
+    "compliance",
+    "lint",
+    "dpo"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "gdprNoticeLint.checkFile",
+        "title": "Privacy Notice Lint: Check this file",
+        "category": "Privacy Notice Lint"
+      },
+      {
+        "command": "gdprNoticeLint.checkWorkspace",
+        "title": "Privacy Notice Lint: Sweep workspace and write report (licence)",
+        "category": "Privacy Notice Lint"
+      },
+      {
+        "command": "gdprNoticeLint.enterKey",
+        "title": "Privacy Notice Lint: Enter licence key",
+        "category": "Privacy Notice Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/gdpr-privacy-notice-lint"
+}
