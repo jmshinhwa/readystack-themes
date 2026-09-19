@@ -1,0 +1,95 @@
+{
+  "name": "target-api-36-store-deadline-lint",
+  "displayName": "Target API 36 & Xcode 26 Store Deadline Lint",
+  "description": "Finds the targetSdk, NDK, Gradle plugin and Xcode versions in your repo that Google Play and App Store Connect already refuse, with the date each one stopped being accepted.",
+  "version": "0.1.2",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "android",
+    "targetsdk",
+    "xcode",
+    "react-native",
+    "expo"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "target-api-36-store-deadline-lint.audit_file",
+        "title": "Check this file for store-blocking versions",
+        "category": "Target API 36 & Xcode 26"
+      },
+      {
+        "command": "target-api-36-store-deadline-lint.list_rules",
+        "title": "List every store deadline and required version",
+        "category": "Target API 36 & Xcode 26"
+      },
+      {
+        "command": "target-api-36-store-deadline-lint.show_report",
+        "title": "Reopen the last store-readiness report",
+        "category": "Target API 36 & Xcode 26"
+      },
+      {
+        "command": "target-api-36-store-deadline-lint.workspace_scan",
+        "title": "Scan the whole repository for store-blocking versions",
+        "category": "Target API 36 & Xcode 26"
+      },
+      {
+        "command": "target-api-36-store-deadline-lint.ci_json",
+        "title": "Fail the build before a blocked version merges",
+        "category": "Target API 36 & Xcode 26"
+      },
+      {
+        "command": "target-api-36-store-deadline-lint.export_report",
+        "title": "Export a dated release-readiness report",
+        "category": "Target API 36 & Xcode 26"
+      },
+      {
+        "command": "target-api-36-store-deadline-lint.watch_on_save",
+        "title": "Re-check on every save",
+        "category": "Target API 36 & Xcode 26"
+      }
+    ],
+    "configuration": {
+      "title": "Target API 36 & Xcode 26 Store Deadline Lint",
+      "properties": {
+        "target-api-36-store-deadline-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity"
+        },
+        "target-api-36-store-deadline-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum files to walk in a repository scan"
+        },
+        "target-api-36-store-deadline-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a repository scan"
+        },
+        "target-api-36-store-deadline-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "File format for the exported release-readiness report"
+        },
+        "target-api-36-store-deadline-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra version rules of your own, checked alongside the ones that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
