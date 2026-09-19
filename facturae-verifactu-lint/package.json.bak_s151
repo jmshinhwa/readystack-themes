@@ -1,0 +1,53 @@
+{
+  "name": "facturae-verifactu-lint",
+  "displayName": "Facturae 3.2.2 / Veri*factu Lint (Espana)",
+  "description": "Revisa facturas XML Facturae 3.2.2 antes de enviarlas a FACe: NIF/CIF con digito de control, sumas del lote, cuotas de IVA e IRPF y firma XAdES.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "facturae",
+    "face",
+    "verifactu",
+    "factura electronica",
+    "espana",
+    "nif",
+    "xml",
+    "aeat"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "facturaeVerifactu.checkFile",
+        "title": "Facturae 3.2.2 / Veri*factu Lint (Espana): Check this file",
+        "category": "Facturae 3.2.2 / Veri*factu Lint (Espana)"
+      },
+      {
+        "command": "facturaeVerifactu.checkWorkspace",
+        "title": "Facturae 3.2.2 / Veri*factu Lint (Espana): Sweep workspace and write report (licence)",
+        "category": "Facturae 3.2.2 / Veri*factu Lint (Espana)"
+      },
+      {
+        "command": "facturaeVerifactu.enterKey",
+        "title": "Facturae 3.2.2 / Veri*factu Lint (Espana): Enter licence key",
+        "category": "Facturae 3.2.2 / Veri*factu Lint (Espana)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/facturae-verifactu-lint",
+  "icon": "icon.png"
+}
