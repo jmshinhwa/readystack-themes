@@ -1,0 +1,53 @@
+{
+  "name": "soup-list-lint",
+  "displayName": "SOUP List Lint (IEC 62304)",
+  "description": "Checks your SOUP list against IEC 62304 8.1.2, 5.3.3, 5.3.4 and 7.1.3: manufacturer, pinned version, requirements, safety class and a dated anomaly-list review.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "iec 62304",
+    "soup",
+    "medical device",
+    "mdr",
+    "software of unknown provenance",
+    "iec 82304",
+    "technical file"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "soupListLint.checkFile",
+        "title": "SOUP List Lint (IEC 62304): Check this file",
+        "category": "SOUP List Lint (IEC 62304)"
+      },
+      {
+        "command": "soupListLint.checkWorkspace",
+        "title": "SOUP List Lint (IEC 62304): Sweep workspace and write report (licence)",
+        "category": "SOUP List Lint (IEC 62304)"
+      },
+      {
+        "command": "soupListLint.enterKey",
+        "title": "SOUP List Lint (IEC 62304): Enter licence key",
+        "category": "SOUP List Lint (IEC 62304)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "soup-list-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/soup-list-lint",
+  "icon": "icon.png"
+}
