@@ -1,0 +1,54 @@
+{
+  "name": "maui-ios-submission-gate",
+  "displayName": "MAUI iOS Submission Gate",
+  "description": "Audits a .NET MAUI app's iOS Info.plist and Entitlements.plist for App Store Review 5.1.1(i) purpose-string rejections and broken export-compliance keys.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "maui",
+    "dotnet",
+    "ios",
+    "app store",
+    "info.plist",
+    "export compliance",
+    "app review",
+    "xamarin"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "mauiIosGate.checkFile",
+        "title": "MAUI iOS Submission Gate: Check this file",
+        "category": "MAUI iOS Submission Gate"
+      },
+      {
+        "command": "mauiIosGate.checkWorkspace",
+        "title": "MAUI iOS Submission Gate: Sweep workspace and write report (licence)",
+        "category": "MAUI iOS Submission Gate"
+      },
+      {
+        "command": "mauiIosGate.enterKey",
+        "title": "MAUI iOS Submission Gate: Enter licence key",
+        "category": "MAUI iOS Submission Gate"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "maui-ios-submission-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/maui-ios-submission-gate",
+  "icon": "icon.png"
+}
