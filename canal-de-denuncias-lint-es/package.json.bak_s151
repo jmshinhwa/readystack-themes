@@ -1,0 +1,53 @@
+{
+  "name": "canal-de-denuncias-lint-es",
+  "displayName": "Canal de Denuncias Lint — Ley 2/2023 (ES)",
+  "description": "Revisa la política de tu canal interno de denuncias (Markdown) frente a la Ley 2/2023 española: plazos, anonimato, responsable del sistema, libro-registro y represalias. Sin conexión, sin telemetría.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "ley 2/2023",
+    "canal de denuncias",
+    "whistleblowing",
+    "compliance",
+    "españa",
+    "politica interna",
+    "auditoria"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "canalDenunciasLint.checkFile",
+        "title": "Canal de Denuncias Lint — Ley 2/2023 (ES): Check this file",
+        "category": "Canal de Denuncias Lint — Ley 2/2023 (ES)"
+      },
+      {
+        "command": "canalDenunciasLint.checkWorkspace",
+        "title": "Canal de Denuncias Lint — Ley 2/2023 (ES): Sweep workspace and write report (licence)",
+        "category": "Canal de Denuncias Lint — Ley 2/2023 (ES)"
+      },
+      {
+        "command": "canalDenunciasLint.enterKey",
+        "title": "Canal de Denuncias Lint — Ley 2/2023 (ES): Enter licence key",
+        "category": "Canal de Denuncias Lint — Ley 2/2023 (ES)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "canal-de-denuncias-lint-es"
+  },
+  "homepage": "https://getreadystack.com/tools/canal-de-denuncias-lint-es",
+  "icon": "icon.png"
+}
