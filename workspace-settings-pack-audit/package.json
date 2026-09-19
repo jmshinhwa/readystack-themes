@@ -2,7 +2,7 @@
   "name": "workspace-settings-pack-audit",
   "displayName": "Formatter & Workspace Settings Pack — 8 Sets",
   "description": "34 ready config files and 26 rules across 8 stacks. Prettier's published default tabWidth is 2 while VS Code's default editor.tabSize is 4 — until one committed file decides, every save re-indents wha",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
