@@ -1,0 +1,54 @@
+{
+  "name": "rechnung-pflichtangaben-lint-de",
+  "displayName": "Rechnung Pflichtangaben Lint (§ 14 UStG)",
+  "description": "Prüft PHP-Rechnungstemplates in WooCommerce- und WordPress-Plugins auf die Pflichtangaben nach §14 UStG: fehlendes Leistungsdatum, fehlende Steuernummer, unzulässiger Steuerausweis.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "rechnung",
+    "ustg",
+    "pflichtangaben",
+    "woocommerce",
+    "umsatzsteuer",
+    "gobd",
+    "php",
+    "kleinunternehmer"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "rechnungLint.checkFile",
+        "title": "Rechnung-Lint: Check this file",
+        "category": "Rechnung-Lint"
+      },
+      {
+        "command": "rechnungLint.checkWorkspace",
+        "title": "Rechnung-Lint: Sweep workspace and write report (licence)",
+        "category": "Rechnung-Lint"
+      },
+      {
+        "command": "rechnungLint.enterKey",
+        "title": "Rechnung-Lint: Enter licence key",
+        "category": "Rechnung-Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "rechnung-pflichtangaben-lint-de"
+  },
+  "homepage": "https://getreadystack.com/tools/rechnung-pflichtangaben-lint-de",
+  "icon": "icon.png"
+}
