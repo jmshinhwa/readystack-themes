@@ -1,0 +1,95 @@
+{
+  "name": "privacy-manifest-lint",
+  "displayName": "Privacy Manifest Lint - xcprivacy & ITMS-91053",
+  "description": "Checks PrivacyInfo.xcprivacy and your C#, Dart, JS, Swift and Kotlin source for Apple required-reason APIs, and decodes all 17 reason codes back to the category they belong to.",
+  "version": "0.1.2",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "xcprivacy",
+    "privacy-manifest",
+    "itms-91053",
+    "ios",
+    "maui"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "privacy-manifest-lint.audit_file",
+        "title": "Check this file",
+        "category": "Privacy Manifest Lint"
+      },
+      {
+        "command": "privacy-manifest-lint.audit_selection",
+        "title": "Check the selection",
+        "category": "Privacy Manifest Lint"
+      },
+      {
+        "command": "privacy-manifest-lint.list_rules",
+        "title": "List the reason codes and rules",
+        "category": "Privacy Manifest Lint"
+      },
+      {
+        "command": "privacy-manifest-lint.workspace_scan",
+        "title": "Scan the whole repo",
+        "category": "Privacy Manifest Lint"
+      },
+      {
+        "command": "privacy-manifest-lint.export_report",
+        "title": "Export the report (CSV/JSON/HTML)",
+        "category": "Privacy Manifest Lint"
+      },
+      {
+        "command": "privacy-manifest-lint.ci_json",
+        "title": "Write CI JSON",
+        "category": "Privacy Manifest Lint"
+      },
+      {
+        "command": "privacy-manifest-lint.quick_fix",
+        "title": "Fix the misspelled keys",
+        "category": "Privacy Manifest Lint"
+      }
+    ],
+    "configuration": {
+      "title": "Privacy Manifest Lint",
+      "properties": {
+        "privacy-manifest-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default export format"
+        },
+        "privacy-manifest-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity"
+        },
+        "privacy-manifest-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Max files in a repo scan"
+        },
+        "privacy-manifest-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip in a repo scan"
+        },
+        "privacy-manifest-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Your own regex rules, checked alongside the 48 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
