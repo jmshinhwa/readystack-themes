@@ -1,0 +1,91 @@
+[
+ {
+  "id": "acuse_7_dias",
+  "sev": "err",
+  "article": "Ley 2/2023 art. 9.2.b",
+  "msg": "la política no fija el acuse de recibo en 7 días naturales desde la recepción de la comunicación.",
+  "ok": "acus\\w* (de )?recibo[^.\\n]{0,100}\\b(7|siete)\\s*d[ií]as",
+  "topic": "acus\\w* (de )?recibo"
+ },
+ {
+  "id": "plazo_3_meses",
+  "sev": "err",
+  "article": "Ley 2/2023 art. 9.2.i",
+  "msg": "no fija el plazo máximo de respuesta al informante: no más de 3 meses desde el acuse de recibo, ampliable otros tres en casos de especial complejidad.",
+  "ok": "(plazo|respuesta|responder|actuaciones|investigaci[óo]n)[^.\\n]{0,140}\\b(3|tres)\\s*meses",
+  "topic": "(plazo m[áa]ximo|respuesta|investigaci[óo]n)"
+ },
+ {
+  "id": "canal_anonimo",
+  "sev": "err",
+  "article": "Ley 2/2023 art. 7.3",
+  "msg": "la política no acepta comunicaciones anónimas, y el canal interno está obligado a admitirlas.",
+  "ok": "(se admiten|admite|permite|acepta|podr[áa]n presentarse)[^.\\n]{0,60}an[óo]nim|an[óo]nima\\w*[^.\\n]{0,60}(se admite|se acepta|se tramita)|garantiz\\w+[^.\\n]{0,40}anonimato",
+  "bad": "no se (admiten|aceptan|permiten|tramitan)[^.\\n]{0,60}an[óo]nim",
+  "topic": "(an[óo]nim|identific)"
+ },
+ {
+  "id": "via_verbal",
+  "sev": "err",
+  "article": "Ley 2/2023 art. 7.1 y 7.2",
+  "msg": "el canal sólo admite la vía escrita; también debe poder usarse la vía verbal, por teléfono o por sistema de mensajería de voz.",
+  "ok": "(verbal(mente)?|viva voz|mensajer[íi]a de voz|por tel[ée]fono)",
+  "topic": "(por escrito|formulario|buz[óo]n|canal|comunicaci[óo]n)"
+ },
+ {
+  "id": "reunion_presencial",
+  "sev": "err",
+  "article": "Ley 2/2023 art. 7.2",
+  "msg": "no recoge la reunión presencial que el informante puede solicitar, dentro del plazo máximo de 7 días.",
+  "ok": "reuni[óo]n presencial[^.\\n]{0,120}\\b(7|siete)\\s*d[ií]as|\\b(7|siete)\\s*d[ií]as[^.\\n]{0,120}reuni[óo]n presencial",
+  "topic": "reuni[óo]n"
+ },
+ {
+  "id": "responsable_sistema",
+  "sev": "err",
+  "article": "Ley 2/2023 art. 8.1",
+  "msg": "no designa a un Responsable del Sistema nombrado por el órgano de administración; dejar el canal en manos del departamento de RRHH no cumple el artículo.",
+  "ok": "responsable del sistema",
+  "topic": "(responsable|gestionar[áa]|rr\\.?\\s?hh|recursos humanos)"
+ },
+ {
+  "id": "libro_registro",
+  "sev": "err",
+  "article": "Ley 2/2023 art. 26",
+  "msg": "no menciona el libro-registro de las informaciones recibidas y de las investigaciones internas.",
+  "ok": "libro[-\\s]registro",
+  "topic": "(registro|expediente)"
+ },
+ {
+  "id": "supresion_3_meses",
+  "sev": "err",
+  "article": "Ley 2/2023 art. 32.2",
+  "msg": "no fija la supresión de los datos transcurridos 3 meses desde la recepción sin que se hayan iniciado actuaciones de investigación.",
+  "ok": "(suprim|elimin|borrad|cancel)\\w*[^.\\n]{0,140}\\b(3|tres)\\s*meses|\\b(3|tres)\\s*meses[^.\\n]{0,140}(suprim|elimin|borrad)",
+  "topic": "(conservaci[óo]n|conservar|suprim|datos personales)"
+ },
+ {
+  "id": "no_represalias",
+  "sev": "err",
+  "article": "Ley 2/2023 art. 36",
+  "msg": "no prohíbe expresamente las represalias contra quien informa, y adoptarlas es infracción muy grave.",
+  "ok": "(prohib\\w*|proh[íi]be|no se adoptar[áa]n?)[^.\\n]{0,80}represalia|represalia\\w*[^.\\n]{0,80}(prohibid|sancionad)",
+  "topic": "represalia"
+ },
+ {
+  "id": "canal_externo_aai",
+  "sev": "warn",
+  "article": "Ley 2/2023 art. 9.2.j",
+  "msg": "no informa de que el informante puede acudir al canal externo de la Autoridad Independiente de Protección del Informante (A.A.I.) o a la autoridad autonómica.",
+  "ok": "(autoridad independiente de protecci[óo]n del informante|a\\.a\\.i\\.|canal externo|autoridad auton[óo]mica)",
+  "topic": "(autoridad|canal externo)"
+ },
+ {
+  "id": "revision_3_anos",
+  "sev": "err",
+  "article": "Ley 2/2023 art. 5.2",
+  "msg": "la política no lleva fecha de revisión, y el sistema interno de información debe revisarse al menos cada 3 años.",
+  "msg_bad": "la última revisión de la política supera los 3 años que marca el artículo.",
+  "topic": "(revisi[óo]n|revisad|aprobad)"
+ }
+]
