@@ -2,7 +2,7 @@
   "name": "toolchain-config-audit",
   "displayName": "Config Audit - 8 Toolchains",
   "description": "28 rules and 24 snippets across 8 toolchains, run on the file you have open, before the connection string, the plain-text password or the :latest tag is committed.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
