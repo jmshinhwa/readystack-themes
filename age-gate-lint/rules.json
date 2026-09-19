@@ -1,0 +1,86 @@
+[
+  {
+    "id": "self_declared_click",
+    "sev": "high",
+    "mode": "line",
+    "re": "(i\\s*am\\s*(over\\s*)?(18|21)|i'?m\\s*(over\\s*)?(18|21)|are\\s*you\\s*(over\\s*)?(18|21)|confirm\\s*(that\\s*)?you\\s*are\\s*(over\\s*)?(18|21))",
+    "flags": "i",
+    "msg": "Self-declared age tick box. Ofcom lists self-declaration as not highly effective age assurance.",
+    "clause": "Ofcom HEAA guidance, para 3.9 (self-declaration)",
+    "fix": "Move the decision to an age-assurance provider or to the server; the visitor must not be able to answer for themselves.",
+    "heaa_in_force": "2025-07-25",
+    "max_fine_gbp": 18000000,
+    "fine_pct_qualifying_revenue": 10
+  },
+  {
+    "id": "dob_self_entry",
+    "sev": "high",
+    "mode": "line",
+    "re": "(name|id)\\s*=\\s*[\"'][^\"']*(dob|date-?of-?birth|birthday|birthdate)",
+    "flags": "i",
+    "msg": "Date of birth typed by the visitor is the gate. A typed birth date is self-declaration wearing a form.",
+    "clause": "Ofcom HEAA guidance, para 3.9",
+    "fix": "Drop the field, or pass it to a provider that estimates or verifies rather than believes it."
+  },
+  {
+    "id": "client_side_gate",
+    "sev": "high",
+    "mode": "line",
+    "re": "(localStorage|sessionStorage)\\s*\\.\\s*(set|get)Item\\s*\\(\\s*[\"'][^\"']*(age|adult|over-?18|verif)",
+    "flags": "i",
+    "msg": "The pass is kept in browser storage, so the gate opens for anyone who edits one key.",
+    "clause": "OSA 2023 s.12 — access must be effective, not advisory",
+    "fix": "Keep the decision on the server and give the browser a signed, short-lived token."
+  },
+  {
+    "id": "long_lived_pass",
+    "sev": "med",
+    "mode": "line",
+    "re": "max-age\\s*=\\s*\\d{7,}",
+    "flags": "i",
+    "msg": "The age pass lasts months or years, so the check never repeats for a shared or resold device.",
+    "clause": "Ofcom HEAA guidance — repeat checks",
+    "fix": "Shorten the pass to a session or a small number of days and re-run the check after that.",
+    "long_seconds": 10000000
+  },
+  {
+    "id": "gate_removed_in_browser",
+    "sev": "high",
+    "mode": "line",
+    "re": "classList\\s*\\.\\s*(remove|add|toggle)\\s*\\(\\s*[\"'][^\"']*(gate|overlay|agewall|age-?wall|modal-age)",
+    "flags": "i",
+    "msg": "The restricted page is already in the DOM and a class toggle uncovers it — view-source walks past the gate.",
+    "clause": "OSA 2023 s.12",
+    "fix": "Do not send the restricted markup until the server has seen a pass."
+  },
+  {
+    "id": "payment_card_as_proof",
+    "sev": "med",
+    "mode": "line",
+    "re": "\\b(debit|credit|payment)\\b[^\\n]{0,40}\\b(age|18\\+?|verif)",
+    "flags": "i",
+    "msg": "A card is used as proof of age. Ofcom excludes payment methods that are available to under-18s.",
+    "clause": "Ofcom HEAA guidance — payment methods",
+    "fix": "Only a card type restricted to over-18s counts; otherwise use a listed age-assurance method."
+  },
+  {
+    "id": "disclaimer_only",
+    "sev": "med",
+    "mode": "line",
+    "re": "(by\\s*(entering|continuing|using)[^\\n]{0,60}\\b(18|21|adult)|you\\s*must\\s*be\\s*(over\\s*)?(18|21))",
+    "flags": "i",
+    "msg": "A warning sentence stands in for a gate. A disclaimer is not age assurance.",
+    "clause": "Ofcom HEAA guidance — general disclaimers",
+    "fix": "Keep the sentence, but put a real check behind it."
+  },
+  {
+    "id": "no_assurance_provider",
+    "sev": "high",
+    "mode": "absent_when_gate",
+    "re": "(yoti|persona|veriff|onfido|jumio|luciditi|verifymy|k-?id|incode|age-?estimation|facial\\s*age|photo-?id\\s*match|open\\s*banking)",
+    "flags": "i",
+    "msg": "This page gates on its own. No listed age-assurance method (photo-ID match, facial age estimation, open banking, mobile-network check) appears anywhere in the file.",
+    "clause": "Ofcom HEAA guidance, section 3 — the listed methods",
+    "fix": "Hand the decision to one of the listed methods and keep the response server-side."
+  }
+]
