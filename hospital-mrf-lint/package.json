@@ -2,7 +2,7 @@
   "name": "hospital-mrf-lint",
   "displayName": "Hospital Price Transparency MRF Lint",
   "description": "Check a hospital standard-charges machine-readable file against the CMS JSON template and 45 CFR Part 180 before you publish it. Offline, line numbers, no upload.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
