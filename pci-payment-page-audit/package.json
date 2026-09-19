@@ -2,7 +2,7 @@
   "name": "pci-payment-page-audit",
   "displayName": "PCI Payment Page Script Audit",
   "description": "Lints checkout/payment HTML for PCI DSS v4.0.1 Req 6.4.3 and 11.6.1: unpinned third-party scripts, missing SRI, weak CSP, session-replay, card fields in page scope.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
