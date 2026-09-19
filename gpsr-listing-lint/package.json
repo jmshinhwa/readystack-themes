@@ -2,7 +2,7 @@
   "name": "gpsr-listing-lint",
   "displayName": "GPSR Listing Lint",
   "description": "Audits product feed files (CSV/TSV/XML) against GPSR Article 19: manufacturer address, EU Responsible Person, product picture and identifier, warnings. 12 rules, offline.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
