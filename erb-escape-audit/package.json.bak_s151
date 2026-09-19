@@ -1,0 +1,52 @@
+{
+  "name": "erb-escape-audit",
+  "displayName": "ERB Escape Audit - Rails XSS lint",
+  "description": "Finds unescaped output in Rails ERB templates - raw, html_safe, <%==, script and href context - and names the escaping helper that fixes each line.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "erb",
+    "rails",
+    "xss",
+    "html_safe",
+    "security",
+    "ruby",
+    "linter",
+    "template"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "erbEscapeAudit.checkFile",
+        "title": "ERB Escape Audit - Rails XSS lint: Check this file",
+        "category": "ERB Escape Audit - Rails XSS lint"
+      },
+      {
+        "command": "erbEscapeAudit.checkWorkspace",
+        "title": "ERB Escape Audit - Rails XSS lint: Sweep workspace and write report (licence)",
+        "category": "ERB Escape Audit - Rails XSS lint"
+      },
+      {
+        "command": "erbEscapeAudit.enterKey",
+        "title": "ERB Escape Audit - Rails XSS lint: Enter licence key",
+        "category": "ERB Escape Audit - Rails XSS lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa-ai/readystack"
+  },
+  "homepage": "https://getreadystack.com/tools/erb-escape-audit"
+}
