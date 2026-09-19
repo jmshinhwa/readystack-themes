@@ -1,0 +1,90 @@
+{
+  "name": "tls-cert-lifetime-lint",
+  "displayName": "TLS Cert Lifetime Lint - SC-081v3 renewal check",
+  "description": "Finds the 12 settings that break when public TLS certificates fall to 100 days on 2027-03-15: openssl -days, Terraform, cert-manager, late expiry alerts, HPKP, TLS 1.0/1.1, SHA-1, RSA-1024.",
+  "version": "0.1.2",
+  "publisher": "ReadyStack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "tls",
+    "sc-081",
+    "cert-manager",
+    "terraform",
+    "acme"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "tls-cert-lifetime-lint.audit_file",
+        "title": "Check this file",
+        "category": "TLS Cert Lifetime Lint"
+      },
+      {
+        "command": "tls-cert-lifetime-lint.audit_selection",
+        "title": "Check the selected lines",
+        "category": "TLS Cert Lifetime Lint"
+      },
+      {
+        "command": "tls-cert-lifetime-lint.list_rules",
+        "title": "List the 12 rules",
+        "category": "TLS Cert Lifetime Lint"
+      },
+      {
+        "command": "tls-cert-lifetime-lint.workspace_scan",
+        "title": "Check the whole repository",
+        "category": "TLS Cert Lifetime Lint"
+      },
+      {
+        "command": "tls-cert-lifetime-lint.export_report",
+        "title": "Export the report (CSV / JSON / HTML)",
+        "category": "TLS Cert Lifetime Lint"
+      },
+      {
+        "command": "tls-cert-lifetime-lint.ci_json",
+        "title": "Write CI JSON",
+        "category": "TLS Cert Lifetime Lint"
+      }
+    ],
+    "configuration": {
+      "title": "TLS Cert Lifetime Lint",
+      "properties": {
+        "tls-cert-lifetime-lint.min_severity": {
+          "type": "string",
+          "default": "info",
+          "description": "Hide findings below this severity (info | warn | error)"
+        },
+        "tls-cert-lifetime-lint.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default format for the exported report (csv | json | html)"
+        },
+        "tls-cert-lifetime-lint.max_files": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum number of files to open in a repository scan"
+        },
+        "tls-cert-lifetime-lint.exclude_glob": {
+          "type": "string",
+          "default": "**/node_modules/**",
+          "description": "Paths to skip during a repository scan"
+        },
+        "tls-cert-lifetime-lint.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra patterns of your own, checked alongside the 12 that ship inside."
+        }
+      }
+    }
+  },
+  "icon": "icon.png"
+}
