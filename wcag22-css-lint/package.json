@@ -2,7 +2,7 @@
   "name": "wcag22-css-lint",
   "displayName": "WCAG 2.2 CSS Lint - Focus & Target Size",
   "description": "Lint stylesheets against the success criteria WCAG 2.2 added in 2023 - target size 2.5.8, focus not obscured 2.4.11, focus appearance 2.4.13 - with the SC number on every finding.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
