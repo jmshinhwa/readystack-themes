@@ -2,7 +2,7 @@
   "name": "jdk25-upgrade-blocker-lint",
   "displayName": "JDK 25 Upgrade Blocker Lint",
   "description": "Finds Java code that JDK 21/25 removed or refuses to run — Security Manager, sun.misc.Unsafe, javax.* imports, Applet, Thread.stop — before you leave Java 17.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
