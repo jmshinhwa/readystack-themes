@@ -1,0 +1,53 @@
+{
+  "name": "consent-proof-record-lint",
+  "displayName": "Consent Proof Record Lint (GDPR Art.7)",
+  "description": "Lints stored consent-record JSON against the GDPR Article 7(1) proof-of-consent fields a supervisory authority asks for. Offline, no telemetry.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "gdpr",
+    "consent",
+    "article 7",
+    "privacy",
+    "audit",
+    "cmp",
+    "compliance"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "consentProofLint.checkFile",
+        "title": "Consent Proof Record Lint (GDPR Art.7): Check this file",
+        "category": "Consent Proof Record Lint (GDPR Art.7)"
+      },
+      {
+        "command": "consentProofLint.checkWorkspace",
+        "title": "Consent Proof Record Lint (GDPR Art.7): Sweep workspace and write report (licence)",
+        "category": "Consent Proof Record Lint (GDPR Art.7)"
+      },
+      {
+        "command": "consentProofLint.enterKey",
+        "title": "Consent Proof Record Lint (GDPR Art.7): Enter licence key",
+        "category": "Consent Proof Record Lint (GDPR Art.7)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "consent-proof-record-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/consent-proof-record-lint",
+  "icon": "icon.png"
+}
