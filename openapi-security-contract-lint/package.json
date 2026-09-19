@@ -2,7 +2,7 @@
   "name": "openapi-security-contract-lint",
   "displayName": "OpenAPI Security Contract Lint",
   "description": "Finds the lines in an OpenAPI file that publish an endpoint with no authentication, an API key in the query string, or an OAuth grant that RFC 9700 forbids.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
