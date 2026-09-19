@@ -2,7 +2,7 @@
   "name": "cloud-manifest-audit-kit",
   "displayName": "Manifest Snippets + Removed-API Audit (8 Sets)",
   "description": "Your editor does not reject a removed apiVersion. The cluster does, at deploy time. 40 snippets written against the current API versions across 8 file families, and 28 rules that name every removed ve",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
