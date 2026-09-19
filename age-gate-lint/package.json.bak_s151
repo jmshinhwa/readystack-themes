@@ -1,0 +1,52 @@
+{
+  "name": "age-gate-lint",
+  "displayName": "Age Gate Lint — UK Online Safety Act",
+  "description": "Finds age gates that Ofcom does not count as highly effective — self-declared 18+ checkboxes, date-of-birth forms, localStorage-only memory — in your HTML.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "age verification",
+    "age assurance",
+    "online safety act",
+    "ofcom",
+    "html lint",
+    "age gate"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "ageGateLint.checkFile",
+        "title": "Age Gate Lint — UK Online Safety Act: Check this file",
+        "category": "Age Gate Lint — UK Online Safety Act"
+      },
+      {
+        "command": "ageGateLint.checkWorkspace",
+        "title": "Age Gate Lint — UK Online Safety Act: Sweep workspace and write report (licence)",
+        "category": "Age Gate Lint — UK Online Safety Act"
+      },
+      {
+        "command": "ageGateLint.enterKey",
+        "title": "Age Gate Lint — UK Online Safety Act: Enter licence key",
+        "category": "Age Gate Lint — UK Online Safety Act"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "age-gate-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/age-gate-lint",
+  "icon": "icon.png"
+}
