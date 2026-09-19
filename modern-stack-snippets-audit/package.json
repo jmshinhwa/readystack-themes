@@ -2,7 +2,7 @@
   "name": "modern-stack-snippets-audit",
   "displayName": "Snippets for 8 Stacks + Deprecated-Code Audit",
   "description": "The snippet pack you installed was written for the old major version. It still expands, and what it expands is code the framework has already removed. 48 snippets written for the current majors, and 2",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
