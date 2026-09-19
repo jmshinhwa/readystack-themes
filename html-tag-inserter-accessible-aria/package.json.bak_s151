@@ -1,0 +1,121 @@
+{
+  "name": "html-tag-inserter-accessible-aria",
+  "displayName": "HTML Tag Inserter: Accessible ARIA + WCAG 2.2",
+  "description": "36 accessible HTML tag patterns and 20 WCAG 2.2 checks that run offline on the file you have open. An accessibility reviewer never reads your CSS — they tab through your landmarks, your labels and you",
+  "version": "0.1.1",
+  "publisher": "readystack",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Snippets",
+    "Linters"
+  ],
+  "keywords": [
+    "html",
+    "tag inserter",
+    "accessibility",
+    "a11y",
+    "wcag"
+  ],
+  "activationEvents": [
+    "onLanguage:html"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "html-tag-inserter-accessible-aria.audit_file",
+        "title": "Accessibility: Audit This HTML File",
+        "category": "HTML Tag Inserter: Acces"
+      },
+      {
+        "command": "html-tag-inserter-accessible-aria.insert_snippet",
+        "title": "Accessibility: Insert an Accessible HTML Tag",
+        "category": "HTML Tag Inserter: Acces"
+      },
+      {
+        "command": "html-tag-inserter-accessible-aria.list_rules",
+        "title": "Accessibility: Show Every Rule and Tag Inside",
+        "category": "HTML Tag Inserter: Acces"
+      },
+      {
+        "command": "html-tag-inserter-accessible-aria.workspace_scan",
+        "title": "Accessibility: Audit Every File in the Workspace",
+        "category": "HTML Tag Inserter: Acces"
+      },
+      {
+        "command": "html-tag-inserter-accessible-aria.export_report",
+        "title": "Accessibility: Export the Findings as a File",
+        "category": "HTML Tag Inserter: Acces"
+      },
+      {
+        "command": "html-tag-inserter-accessible-aria.quick_fix",
+        "title": "Accessibility: Replace the Flagged Lines",
+        "category": "HTML Tag Inserter: Acces"
+      },
+      {
+        "command": "html-tag-inserter-accessible-aria.watch_on_save",
+        "title": "Accessibility: Re-check on Every Save",
+        "category": "HTML Tag Inserter: Acces"
+      }
+    ],
+    "configuration": {
+      "title": "HTML Tag Inserter: Accessible ARIA + WCAG 2.2",
+      "properties": {
+        "html-tag-inserter-accessible-aria.report_format": {
+          "type": "string",
+          "default": "csv",
+          "description": "Default format for the exported report (csv, json or html)"
+        },
+        "html-tag-inserter-accessible-aria.max_files": {
+          "type": "number",
+          "default": 500,
+          "description": "Maximum number of workspace files to check in one run"
+        },
+        "html-tag-inserter-accessible-aria.exclude_glob": {
+          "type": "string",
+          "default": "**/{node_modules,dist,build,vendor,.git}/**",
+          "description": "Paths to skip when checking the workspace"
+        },
+        "html-tag-inserter-accessible-aria.show_on_start": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check once when the editor opens"
+        },
+        "html-tag-inserter-accessible-aria.extraRules": {
+          "type": "array",
+          "default": [],
+          "description": "Extra rules of your own, checked alongside the 20 that ship inside."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./snippets/html-php-handlebars-vue-svelte-astro.code-snippets"
+      },
+      {
+        "language": "php",
+        "path": "./snippets/html-php-handlebars-vue-svelte-astro.code-snippets"
+      },
+      {
+        "language": "handlebars",
+        "path": "./snippets/html-php-handlebars-vue-svelte-astro.code-snippets"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/html-php-handlebars-vue-svelte-astro.code-snippets"
+      },
+      {
+        "language": "svelte",
+        "path": "./snippets/html-php-handlebars-vue-svelte-astro.code-snippets"
+      },
+      {
+        "language": "astro",
+        "path": "./snippets/html-php-handlebars-vue-svelte-astro.code-snippets"
+      }
+    ]
+  }
+}
