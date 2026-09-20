@@ -2,7 +2,7 @@
   "name": "jest-snippets-8-stacks",
   "displayName": "Jest Snippets + 7 More Stacks (40 Snippets)",
   "description": "One fit( merged into main turns a green suite into a single passing test. 20 checks find it in the file you have open, before the reviewer does.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
