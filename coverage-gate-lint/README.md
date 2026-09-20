@@ -1,8 +1,10 @@
-# Coverage Gate Lint
+# Code Coverage Gate - enforce thresholds in CI (lcov, cobertura, jacoco)
 
 ![Coverage Gate Lint](https://getreadystack.com/img/promo/sku54267_result_card.jpg)
 
 Your CI prints a coverage percentage. A branch rule says the coverage check must pass. Both are true, and neither one can stop a pull request — because the gate itself is configured to always succeed.
+
+For teams that gate merges on coverage: reads the report you already generate and names the files that drop below the line.
 
 That is not a rare accident. It is what a generated config looks like. `informational: true`, `if_ci_failed: success`, `patch: off`, `coverageThreshold: {}`, a `[tool.coverage.report]` section with no `fail_under`, `pytest --cov ... || true` — every one of those is valid syntax, every one of them is accepted without a warning, and every one of them turns a quality gate into a status badge. A generated snippet is written to produce a green run, and a green run is exactly what these produce. Developers report trusting AI-written code roughly a third of the time, yet the config that is supposed to catch the other two thirds is usually the part nobody reads.
 
