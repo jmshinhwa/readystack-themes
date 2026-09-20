@@ -1,8 +1,10 @@
-# CRA 24/72/14 Reporting Lint (Article 14)
+# Vulnerability Report Lint - CRA 24h/72h/14d timeline (Article 14)
 
 ![CRA 24/72/14 Reporting Lint (Article 14)](https://getreadystack.com/img/promo/sku36068_result_card.jpg)
 
 **On 11 September 2026 the EU Cyber Resilience Act's reporting obligation started applying — including to products already on the market.** From that date, a manufacturer who becomes aware of an *actively exploited vulnerability* or a *severe incident* owes three filings on a clock measured in hours: an early warning within **24 hours**, a notification within **72 hours**, and a final report within **14 days** of a corrective measure being available. They go to **ENISA** and to the **CSIRT designated as coordinator** for your main establishment, through the single reporting platform.
+
+For anyone shipping software with digital elements into the EU: Article 14 reporting is mandatory from 11 September 2026, with fines up to EUR 15m or 2.5% of turnover.
 
 Most `SECURITY.md` files in public repositories were written before any of that existed. They promise a reply "within 5 business days", point at a supervisory authority, or repeat the December 2027 date that belongs to the *other* obligations. This extension reads that file and names every line that will not survive contact with Article 14.
 
