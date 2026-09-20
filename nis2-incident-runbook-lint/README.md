@@ -1,8 +1,10 @@
-# NIS2 Incident Runbook Lint (Article 23)
+# Incident Response Runbook Lint - NIS2 24h/72h/1-month (Article 23)
 
 ![NIS2 Incident Runbook Lint (Article 23)](https://getreadystack.com/img/promo/sku46696_result_card.jpg)
 
 **Your runbook names one deadline. NIS2 Article 23 sets three.**
+
+For essential and important entities under NIS2: fines reach EUR 10m or 2% of turnover, and the runbook is what the auditor asks to see.
 
 An incident-response runbook drafted with an AI assistant usually reads well and usually carries one number: 72 hours. That number is the GDPR Article 33 habit. NIS2 Article 23(4) is staged: an **early warning within 24 hours** of becoming aware of a significant incident, an **incident notification within 72 hours**, and a **final report not later than one month** after that notification, with an intermediate report whenever the CSIRT asks and a progress report when the incident is still running at the one-month mark.
 
