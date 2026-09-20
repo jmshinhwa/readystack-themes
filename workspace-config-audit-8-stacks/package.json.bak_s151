@@ -2,7 +2,7 @@
   "name": "workspace-config-audit-8-stacks",
   "displayName": "Angular & SAP Fiori Workspace Config Audit",
   "description": "One hard-coded azure-devices.net key, or a coverage gate left at 0, slips into the repo unnoticed - 26 checks across the 8 toolchains an enterprise Angular workspace runs on, applied to the file you h",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
