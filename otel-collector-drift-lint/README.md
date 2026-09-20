@@ -1,8 +1,10 @@
-# OTel Collector Drift Lint
+# OpenTelemetry Collector Config Lint - drift and deprecated components
 
 ![OTel Collector Drift Lint](https://getreadystack.com/img/promo/sku81005_result_card.jpg)
 
 AI-generated Collector configs and configs written before 2024 share a problem: they are still valid YAML, and the Collector they were written for no longer exists. This extension reads an OpenTelemetry Collector config and reports the parts that the current Collector rejects at startup, and the attribute names that the semantic conventions renamed out from under your processors.
+
+For SRE and platform teams: deprecated receivers, exporters and pipeline drift are caught in the collector YAML before rollout.
 
 Run **OTel Drift: Lint this Collector config** on any `*.yaml` or `*.yml` file. Findings land in the Problems panel with a line number and the replacement.
 
