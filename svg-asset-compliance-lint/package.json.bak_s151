@@ -2,7 +2,7 @@
   "name": "svg-asset-compliance-lint",
   "displayName": "SVG Asset Compliance Lint",
   "description": "Lints SVG assets for the three things that survive a design export: no accessible name, a call out to a third-party server, and script that a sanitizer will run.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
