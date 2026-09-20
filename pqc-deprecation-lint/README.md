@@ -1,8 +1,10 @@
-# PQC Deprecation Lint — RSA/ECC after 2030
+# Crypto Deprecation Lint - RSA/ECC inventory for post-quantum (2030/2035)
 
 ![PQC Deprecation Lint — RSA/ECC after 2030](https://getreadystack.com/img/promo/sku51073_result_card.jpg)
 
 Your AI assistant writes `rsa.generate_private_key(key_size=2048)` and it passes review, because
+
+For security teams: NIST deprecates RSA and ECC signatures and key exchange after 2030 and disallows them after 2035.
 it *is* correct code. It is also on a clock. NIST IR 8547 puts RSA-2048, ECDSA, EdDSA and
 finite-field Diffie-Hellman in the **deprecated after 2030-12-31, disallowed after 2035-12-31**
 bucket, and FIPS 203 / 204 / 205 (ML-KEM, ML-DSA, SLH-DSA) were published on 2024-08-13 — the
