@@ -1,8 +1,8 @@
 {
   "name": "dora-register-lint",
-  "displayName": "DORA Register of Information Lint",
+  "displayName": "ICT Register Lint - DORA register of information (CSV, XLSX)",
   "description": "Lints the DORA Register of Information CSV before it reaches the supervisor: LEI check digits, ISO 8601 dates, country and currency codes, duplicate or unresolved references, expired rows.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -12,13 +12,10 @@
   ],
   "keywords": [
     "dora",
-    "register of information",
-    "lei",
+    "register",
+    "ict",
     "csv",
-    "compliance",
-    "fintech",
-    "eu",
-    "audit"
+    "financial"
   ],
   "main": "./extension.js",
   "activationEvents": [
