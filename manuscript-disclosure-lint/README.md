@@ -1,8 +1,10 @@
-# Manuscript Disclosure Lint (LaTeX & Markdown)
+# Manuscript Lint - journal disclosure statements (COI, funding, AI use)
 
 ![Manuscript Disclosure Lint](https://getreadystack.com/img/promo/sku64951_result_card.jpg)
 
 A manuscript is rejected before peer review more often for a missing paragraph than for a
+
+For authors and lab managers: missing conflict-of-interest, funding or AI-use statements are a desk-reject reason at most journals.
 weak result. Editorial office staff work through a submission form that asks, one field at a
 time, for the statements that are supposed to already be in the file: data availability,
 funding with the award ID, competing interests, author contributions, ethics approval,
