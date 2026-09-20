@@ -2,7 +2,7 @@
   "name": "pld-liability-window-lint",
   "displayName": "EU Liability Window Lint",
   "description": "Checks CHANGELOG.md and release notes for the four facts the EU Product Liability Directive makes load-bearing on 9 December 2026: release dates, support window, CVE-named security fixes, void AS-IS d",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
