@@ -2,7 +2,7 @@
   "name": "config-dsl-lint-snippet-pack",
   "displayName": "Config & DSL Lint + Snippets — 9 Sets",
   "description": "Your config files are never compiled — nothing fails until deploy. 36 snippets and 28 lint rules for 9 of them, inside the editor, offline.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
