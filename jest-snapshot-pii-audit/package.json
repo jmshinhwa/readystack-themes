@@ -1,8 +1,8 @@
 {
   "name": "jest-snapshot-pii-audit",
-  "displayName": "Jest Snapshot PII Audit",
+  "displayName": "Jest Snapshot Lint - PII and secrets in __snapshots__",
   "description": "Finds real personal data and live credentials committed inside Jest .snap snapshot files — emails, national IDs, IBANs, cards, tokens — with the GDPR article for each hit.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -13,11 +13,9 @@
   "keywords": [
     "jest",
     "snapshot",
-    "gdpr",
-    "privacy",
     "pii",
     "testing",
-    "secrets"
+    "privacy"
   ],
   "main": "./extension.js",
   "activationEvents": [
