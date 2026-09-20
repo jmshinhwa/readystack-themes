@@ -1,8 +1,10 @@
-# EU AI Act Article 50 Disclosure Lint
+# AI Act Article 50 Lint - chatbot and AI-content disclosure in code
 
 ![EU AI Act Article 50 Disclosure Lint](https://getreadystack.com/img/promo/sku39634_result_card.jpg)
 
 Article 50 of Regulation (EU) 2024/1689 has applied since **2 August 2026**. It is the transparency article: if your software talks to a person as an AI, or produces synthetic image, audio, video or text, the person has to be told, and the output has to carry a machine-readable mark. Article 99(4) prices a miss at up to **EUR 15,000,000 or 3% of total worldwide annual turnover**, whichever is higher.
+
+For teams shipping chatbots or generated media to EU users: Article 50 disclosure duties apply from 2 August 2026, with fines up to EUR 15m or 3% of turnover.
 
 The obligation lands on lines of code, not on a policy page. This extension reads the source file you have open and points at those lines.
 
