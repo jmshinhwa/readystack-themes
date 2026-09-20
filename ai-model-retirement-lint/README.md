@@ -1,8 +1,10 @@
-# AI Model Retirement Lint
+# OpenAI Model Deprecation Lint - retired model IDs in code
 
 ![AI Model Retirement Lint](https://getreadystack.com/img/promo/sku29987_result_card.jpg)
 
 **Three of the model IDs in a typical `llm.config.js` already return an error.**
+
+For apps calling model APIs: a retired model ID returns an error in production on the retirement date, not in staging.
 
 A retired model ID is not a syntax error. It is a valid string, it type-checks, and every
 test goes green - right up to the day the vendor's API answers 404 instead of a completion.
