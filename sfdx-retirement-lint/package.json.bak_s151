@@ -2,7 +2,7 @@
   "name": "sfdx-retirement-lint",
   "displayName": "Salesforce API Version & CLI Retirement Lint",
   "description": "Finds retired API versions and removed sfdx force:* commands in your DX repo before a deploy or a CI run fails with 410 GONE.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
