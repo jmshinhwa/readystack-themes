@@ -2,7 +2,7 @@
   "name": "workflow-expiry-check",
   "displayName": "Workflow Expiry - dated GitHub Actions breakage",
   "description": "Finds the lines in .github/workflows that are valid today and fail on a date GitHub has already published.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
