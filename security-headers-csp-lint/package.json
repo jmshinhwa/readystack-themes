@@ -1,8 +1,8 @@
 {
   "name": "security-headers-csp-lint",
-  "displayName": "Security Headers Lint - CSP and Dead Headers",
+  "displayName": "Security Headers Lint - CSP, HSTS and dead headers",
   "description": "Reads security headers and CSP line by line in your config file and names the lines that silently do nothing: retired headers, keywords missing their quotes, directives the browser throws away.",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -12,11 +12,11 @@
     "Linters"
   ],
   "keywords": [
-    "CSP",
-    "Content-Security-Policy",
-    "security headers",
-    "HSTS",
-    "Permissions-Policy"
+    "security-headers",
+    "csp",
+    "hsts",
+    "http",
+    "security"
   ],
   "activationEvents": [
     "onStartupFinished"
