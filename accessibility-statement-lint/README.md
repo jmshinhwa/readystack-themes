@@ -1,8 +1,10 @@
-# Accessibility Statement Lint (EU model)
+# Accessibility Statement Checker (EU model, EN 301 549)
 
 ![Accessibility Statement Lint (EU model)](https://getreadystack.com/img/promo/sku85572_result_card.jpg)
 
 An accessibility statement is a public legal document. Under Directive (EU) 2016/2102 every
+
+For web agencies and public-sector sites: a missing or stale accessibility statement is the first thing an EAA / EN 301 549 review flags.
 public sector website in the EU must publish one, and the Commission's model statement fixes
 what has to be in it: a commitment sentence, the legal basis, a scope, exactly one compliance
 status, a list of non-accessible content sorted into three reason categories, a date of
