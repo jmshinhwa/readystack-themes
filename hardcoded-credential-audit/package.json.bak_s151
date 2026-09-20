@@ -2,7 +2,7 @@
   "name": "hardcoded-credential-audit",
   "displayName": "Hardcoded Credential Audit — 8 Stacks",
   "description": "30 checks and 30 safe-config snippets across 8 file families. A key pasted into appsettings.json is not a typo you fix — it is a key you rotate on every device, pipeline and cluster that used it.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
