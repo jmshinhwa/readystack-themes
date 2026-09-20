@@ -1,8 +1,10 @@
-# Proto Wire Break Check
+# Protobuf Breaking Change Lint - wire compatibility (.proto)
 
 ![Proto Wire Break Check](https://getreadystack.com/img/promo/sku81241_result_card.jpg)
 
 Delete a field from a `.proto`, forget the `reserved` line, and six weeks later someone hands that
+
+For gRPC and protobuf teams: renumbered fields and changed types break every client on the wire, and this names them in the .proto diff.
 number to a new field. Nothing throws. The service starts, the RPC returns, and every reader built
 before the deletion decodes the new data as the old type — so the bug arrives as bad data, days
 later, in someone else's dashboard. `protoc` has nothing to say about it: a hole in the numbering is
