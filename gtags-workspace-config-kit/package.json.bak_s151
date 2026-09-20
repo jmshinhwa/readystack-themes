@@ -2,7 +2,7 @@
   "name": "gtags-workspace-config-kit",
   "displayName": "GNU GLOBAL (gtags) Workspace Setup Kit",
   "description": "46 config snippets, 26 audit rules, 8 setups in one extension — because one absolute path like /home/you/ in .vscode/settings.json breaks Go-to-Definition for every teammate who clones the repo.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
