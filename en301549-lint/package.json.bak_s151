@@ -2,7 +2,7 @@
   "name": "en301549-lint",
   "displayName": "EN 301 549 Lint — EU Accessibility Act",
   "description": "Flags the EN 301 549 clause each line breaks, and separates what is in force today from what arrives with V4.1.1.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
