@@ -1,0 +1,67 @@
+[
+  {"id":"us-oasdi-wage-base-stale","kind":"value","sev":"error","country":"US",
+   "re":"(?:^|[^0-9.,])(168600|168,600|176100|176,100)(?:[^0-9.]|$)",
+   "ctx":"wage_base|wagebase|oasdi|social_security|socialSecurity|ss_cap|taxable_wage",
+   "msg":"US Social Security (OASDI) taxable wage base is pinned to a prior-year figure. The Social Security Administration re-announces the base each autumn and the new one applies from 1 January (next reset 2027-01-01)."},
+
+  {"id":"us-402g-deferral-stale","kind":"value","sev":"error","country":"US",
+   "re":"(?:^|[^0-9.,])(23000|23,000|23500|23,500)(?:[^0-9.]|$)",
+   "ctx":"deferral|402g|401k|401\\(k\\)|elective|retirement_limit",
+   "msg":"US elective deferral limit for 401(k)/403(b) is a prior-year figure. The IRS publishes the cost-of-living adjusted limit each autumn and it applies from 1 January (next reset 2027-01-01)."},
+
+  {"id":"uk-secondary-ni-rate-stale","kind":"value","sev":"error","country":"GB",
+   "re":"(?:^|[^0-9.])(13\\.8|0\\.138)(?:[^0-9]|$)",
+   "ctx":"employer|secondary|ni_|nic|national_insurance|nationalInsurance|class1",
+   "msg":"Employer Class 1 secondary National Insurance is still at the 13.8% rate, which applied up to 5 April 2025; the rate rose to 15% from 6 April 2025. UK payroll rates reset at the start of the tax year (next reset 2027-04-06)."},
+
+  {"id":"uk-secondary-threshold-stale","kind":"value","sev":"error","country":"GB",
+   "re":"(?:^|[^0-9.,])(9100|9,100)(?:[^0-9.]|$)",
+   "ctx":"secondary|threshold|employer|ni_|nic|national_insurance",
+   "msg":"The 9100 employer secondary threshold is the 2024-25 figure; it was cut to 5000 from 6 April 2025. UK thresholds reset at the start of the tax year (next reset 2027-04-06)."},
+
+  {"id":"de-minijob-limit-stale","kind":"value","sev":"error","country":"DE",
+   "re":"(?:^|[^0-9.,])(538|556)(?:[^0-9.]|$)",
+   "ctx":"minijob|geringfug|marginal|monthly_limit|entgeltgrenze",
+   "msg":"German Minijob monthly earnings limit is a prior-year figure. The limit is recomputed from the statutory minimum wage and changes on 1 January (next reset 2027-01-01)."},
+
+  {"id":"ca-cpp-ympe-stale","kind":"value","sev":"error","country":"CA",
+   "re":"(?:^|[^0-9.,])(68500|68,500|71300|71,300)(?:[^0-9.]|$)",
+   "ctx":"ympe|cpp|pensionable|canada_pension|maximum_pensionable",
+   "msg":"Canadian CPP maximum pensionable earnings (YMPE) is a prior-year figure. The Canada Revenue Agency sets the new ceiling every year and it applies from 1 January (next reset 2027-01-01)."},
+
+  {"id":"fr-pass-stale","kind":"value","sev":"error","country":"FR",
+   "re":"(?:^|[^0-9.,])(46368|46,368|47100|47,100)(?:[^0-9.]|$)",
+   "ctx":"pass|plafond|securite_sociale|securiteSociale|social_security_ceiling",
+   "msg":"French annual social security ceiling (PASS) is a prior-year figure. The ceiling is fixed by decree each year and applies from 1 January (next reset 2027-01-01)."},
+
+  {"id":"closed-tax-year-key","kind":"line","sev":"warn","country":"any",
+   "re":"\"20(?:1[0-9]|2[0-5])\"\\s*:",
+   "msg":"This rate table is keyed to a tax year that has already closed. A table whose newest key is a past year will silently return last year's numbers for this year's payroll run."},
+
+  {"id":"undated-current-alias","kind":"line","sev":"warn","country":"any",
+   "re":"\"(?:current|latest|now|default)\"\\s*:\\s*\\{",
+   "msg":"A rate block named current/latest/default carries no date, so nothing in the file says which year it holds. Name the block by its effective date instead."},
+
+  {"id":"unresolved-rate-todo","kind":"line","sev":"warn","country":"any",
+   "re":"(?:TODO|FIXME|XXX)[^\\n]*(?:rate|limit|threshold|wage|payroll|tax|uprat)",
+   "flags":"i",
+   "msg":"An unresolved TODO/FIXME sits on a statutory figure. A reminder in a comment is not an effective date and will not stop a payroll run."},
+
+  {"id":"missing-effective-from","kind":"block_missing","sev":"error","country":"any",
+   "need":"\"(?:effective_from|effective|valid_from|from)\"\\s*:",
+   "msg":"This rate entry has no effective_from date, so no code and no reader can tell which period the figure belongs to."},
+
+  {"id":"missing-valid-to","kind":"block_missing","sev":"warn","country":"any",
+   "need":"\"(?:valid_to|effective_to|expires|until|to)\"\\s*:",
+   "msg":"This rate entry has no end date, so it will keep being applied after the statutory figure has been replaced."},
+
+  {"id":"missing-country","kind":"block_missing","sev":"error","country":"any",
+   "need":"\"(?:country|jurisdiction|iso|region|locale)\"\\s*:",
+   "msg":"This rate entry names no country or jurisdiction. Payroll rates reset on different days per country, so an entry without a jurisdiction cannot be checked against any reset date."},
+
+  {"id":"expired-rate-entry","kind":"block_expired","sev":"error","country":"any",
+   "msg":"This rate entry's own end date is already in the past relative to the run date, so the table is serving a figure it declares expired."},
+
+  {"id":"percent-without-unit","kind":"block_percent","sev":"warn","country":"any",
+   "msg":"A rate value greater than 1 is stored with no unit key. A consumer that expects a fraction will withhold by a factor of 100, and nothing in the entry says which form is meant."}
+]
