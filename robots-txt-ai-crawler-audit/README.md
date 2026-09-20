@@ -1,8 +1,10 @@
-# AI Crawler Rules for robots.txt
+# robots.txt AI Crawler Audit - GPTBot, ClaudeBot, Google-Extended
 
 ![AI Crawler Rules - robots.txt Audit for AI Search](https://getreadystack.com/img/promo/sku12686_result_card.jpg)
 
 Checks robots.txt line by line and says what each AI crawler token actually controls - training, AI-search citation, or user fetch - and which lines silently do nothing.
+
+For site owners and SEO teams: decide bot by bot which AI crawlers may read your site, and see which rules are silently ignored.
 
 ## What it finds
 
