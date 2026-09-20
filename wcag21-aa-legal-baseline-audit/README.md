@@ -1,8 +1,10 @@
-# WCAG 2.1 AA Audit: ADA Title II & EN 301 549
+# WCAG 2.1 AA Audit - HTML template legal baseline (ADA, EN 301 549)
 
 ![WCAG 2.1 AA Legal Baseline Audit for templates](https://getreadystack.com/img/promo/sku19839_result_card.jpg)
 
 Audits HTML, JSX, Vue, Twig, Blade, ERB and Razor markup against the 24 WCAG 2.1 Level AA checks that 28 CFR 35.200 and EN 301 549 actually name - not WCAG 2.2.
+
+For agencies delivering templates to regulated clients: WCAG 2.1 AA is the legal baseline under ADA Title II and EN 301 549.
 
 ## What it does for free
 
