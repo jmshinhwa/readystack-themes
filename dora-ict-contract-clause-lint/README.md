@@ -1,8 +1,10 @@
-# DORA Art. 30 ICT Contract Clause Lint
+# ICT Contract Clause Lint - DORA Article 30
 
 ![DORA Art. 30 ICT Contract Clause Lint](https://getreadystack.com/img/promo/sku47005_result_card.jpg)
 
 Your ICT vendor contracts are text files in a repository. This extension reads them like code and tells you which clauses Regulation (EU) 2022/2554 (DORA) requires and your contract does not have.
+
+For fintech vendors selling to EU banks and insurers: DORA has applied since 17 January 2025 and the Article 30 clauses are what the bank's procurement asks for.
 
 DORA has applied since **17 January 2025** — 603 days as of 12 September 2026 — and supervisory reviews of ICT third-party arrangements are running through Q4 2026. Article 30 is the article that gets quoted back at you: it lists **15 mandatory contractual provisions** — 9 in Article 30(2) for every ICT contract, and 6 more in Article 30(3) for services supporting a critical or important function.
 
