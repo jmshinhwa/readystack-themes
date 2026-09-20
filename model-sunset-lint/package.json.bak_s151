@@ -2,7 +2,7 @@
   "name": "model-sunset-lint",
   "displayName": "Model Sunset Lint - retired AI model IDs, dated",
   "description": "Finds every model ID and API parameter in your code that a vendor has already switched off or has published a date for - 109 rules across OpenAI, Anthropic, Google and Azure, each carrying the real sh",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
