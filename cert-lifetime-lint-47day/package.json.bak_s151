@@ -2,7 +2,7 @@
   "name": "cert-lifetime-lint-47day",
   "displayName": "Cert Lifetime Lint - 200/100/47-Day TLS Audit",
   "description": "Finds the 365-day and 90-day certificate assumptions left in your cert-manager, Terraform, ACME and monitoring config. The public TLS maximum is 200 days now, 100 on 2027-03-15, 47 on 2029-03-15.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
