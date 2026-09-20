@@ -1,8 +1,10 @@
-# Security Headers Lint
+# Security Headers Lint - CSP, HSTS and dead headers
 
 ![Security Headers Lint - CSP and Dead Headers](https://getreadystack.com/img/promo/sku13805_result_card.jpg)
 
 Reads security headers and CSP line by line in your config file and names the lines that silently do nothing: retired headers, keywords missing their quotes, directives the browser throws away.
+
+For web teams: a missing or misordered CSP and HSTS header is the first line of every pentest report.
 
 ## What it does for free
 
