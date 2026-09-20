@@ -1,8 +1,10 @@
-# BNPL Disclosure Lint - EU CCD2 2026
+# Checkout Disclosure Lint - BNPL and consumer credit (EU CCD2)
 
 ![BNPL Disclosure Lint - EU CCD2 2026](https://getreadystack.com/img/promo/sku102892_result_card.jpg)
 
 AI-written storefront code answers from the directive it was trained on. For consumer credit that is
+
+For EU checkouts offering pay-later: CCD2 applies from 20 November 2026 and brings BNPL under credit-disclosure rules.
 Directive 2008/48/EC, and CCD2 repeals it. This extension reads the template instead of the model.
 
 ## The change
