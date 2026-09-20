@@ -2,7 +2,7 @@
   "name": "cra-readiness-audit",
   "displayName": "CRA Readiness Audit",
   "description": "Flags the lines in your repo that break the EU Cyber Resilience Act - default passwords, disabled TLS checks, floating base images, an expired security.txt - naming the Annex each one fails.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
