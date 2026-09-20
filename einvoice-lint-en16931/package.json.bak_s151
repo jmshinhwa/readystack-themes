@@ -2,7 +2,7 @@
   "name": "einvoice-lint-en16931",
   "displayName": "E-Invoice Lint for XRechnung, Factur-X and UBL",
   "description": "Catches retired profile identifiers, code-list values outside EN 16931 and malformed dates in your e-invoice XML, in the editor, before an access point rejects the file.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
