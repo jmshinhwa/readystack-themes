@@ -1,8 +1,10 @@
-# MCP 2026 Migration Lint
+# MCP Server Lint - 2026 spec migration
 
 ![MCP 2026 Migration Lint](https://getreadystack.com/img/promo/sku35254_result_card.jpg)
 
 The 2026-07-28 revision removed the initialize handshake, sessions, ping and four more RPCs. Your assistant was trained before that and still writes them.
+
+For MCP server authors: the 2026 protocol revision changed transport and schema fields, and older servers fail silently in new clients.
 
 ## What it does for free
 
