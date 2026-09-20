@@ -1,8 +1,8 @@
 {
   "name": "pytest-deprecation-lint",
-  "displayName": "Pytest Deprecation Lint (pytest 8 removals)",
+  "displayName": "Pytest Lint - pytest 8 deprecations and removals",
   "description": "Flags pytest APIs removed in pytest 8 and pytest config keys that are silently ignored, with the replacement line and the version that removed each one.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -12,12 +12,10 @@
   ],
   "keywords": [
     "pytest",
+    "python",
+    "testing",
     "deprecation",
-    "pytest 8",
-    "python testing",
-    "conftest",
-    "migration",
-    "lint"
+    "migration"
   ],
   "main": "./extension.js",
   "activationEvents": [
