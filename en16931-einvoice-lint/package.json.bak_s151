@@ -2,7 +2,7 @@
   "name": "en16931-einvoice-lint",
   "displayName": "EN 16931 e-Invoice Lint",
   "description": "Lints invoice payloads and field mappings against EN 16931 and national CIUS rules (XRechnung, Factur-X, FatturaPA, Peppol BIS, KSeF): missing business terms, stale spec IDs, wrong mandate dates.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
