@@ -2,7 +2,7 @@
   "name": "consent-audit-eu",
   "displayName": "Pre-Consent Tracker Audit for EU Client Websites",
   "description": "Finds the analytics, pixels, fonts and embeds that fire before your cookie banner is answered - in the source, before you deploy. 24 rules.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
