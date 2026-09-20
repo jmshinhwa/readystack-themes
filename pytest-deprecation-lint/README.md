@@ -1,8 +1,10 @@
-# Pytest Deprecation Lint (pytest 8 removals)
+# Pytest Lint - pytest 8 deprecations and removals
 
 ![Pytest Deprecation Lint (pytest 8 removals)](https://getreadystack.com/img/promo/sku72262_result_card.jpg)
 
 Your CI installs `pytest` unpinned. One morning the runner picks up pytest 8, and the suite either
+
+For Python teams upgrading pytest: removed fixtures, hooks and options are found before the suite goes red.
 stops with `TypeError`, or — worse — goes green while whole test bodies never execute.
 
 This extension reads the test files, `conftest.py` and config files you already have and marks the
