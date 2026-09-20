@@ -1,8 +1,8 @@
 {
   "name": "stale-standard-citation-lint",
-  "displayName": "Stale Standard Citation Lint",
+  "displayName": "Standards Citation Lint - outdated ISO, NIST and RFC references in docs",
   "description": "Finds superseded standard editions and repealed laws cited in your .rst/.md docs — ISO 27001:2013, PCI DSS 3.2.1, FIPS 140-2, Privacy Shield, the old SCCs — with the date each one died.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -11,16 +11,11 @@
     "Linters"
   ],
   "keywords": [
-    "restructuredtext",
-    "sphinx",
-    "compliance",
-    "iso-27001",
-    "pci-dss",
-    "fips-140",
+    "standards",
+    "iso",
+    "nist",
     "documentation",
-    "linter",
-    "gdpr",
-    "audit"
+    "compliance"
   ],
   "main": "./extension.js",
   "activationEvents": [
