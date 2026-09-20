@@ -1,8 +1,8 @@
 {
   "name": "coverage-gate-lint",
-  "displayName": "Coverage Gate Lint",
+  "displayName": "Code Coverage Gate - enforce thresholds in CI (lcov, cobertura, jacoco)",
   "description": "Lints codecov.yml, .coveragerc, jest/vitest config and CI steps for coverage gates that report a number but can never fail the build.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -12,12 +12,10 @@
   ],
   "keywords": [
     "coverage",
-    "codecov",
     "ci",
-    "code coverage",
-    "pytest-cov",
-    "jest",
-    "quality gate"
+    "lcov",
+    "testing",
+    "quality"
   ],
   "main": "./extension.js",
   "activationEvents": [
