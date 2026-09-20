@@ -1,8 +1,10 @@
-# Ingress-NGINX Retirement Lint
+# Ingress NGINX Retirement Lint - migrate to Gateway API
 
 ![Ingress-NGINX Retirement Lint](https://getreadystack.com/img/promo/sku97985_result_card.jpg)
 
 Your cluster's routing rules live in annotations. The controller that read them is gone.
+
+For every cluster still on ingress-nginx: the project retires in March 2026 and stops receiving security fixes.
 
 The ingress-nginx project stopped shipping releases and security fixes on **2026-03-01**. Every
 `nginx.ingress.kubernetes.io/*` annotation in your manifests is now a line of configuration that no
