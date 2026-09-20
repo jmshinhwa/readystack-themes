@@ -1,0 +1,15 @@
+[
+ {"id":"header_missing","sev":"err","label":"検索要件の列が索引簿にない","cite":"電子帳簿保存法施行規則 第4条第1項(検索要件3項目)"},
+ {"id":"date_format","sev":"err","label":"取引年月日が和暦・曜日つきなどで機械検索できない","cite":"検索要件: 取引年月日"},
+ {"id":"date_invalid","sev":"err","label":"存在しない日付・未来日","cite":"検索要件: 取引年月日"},
+ {"id":"amount_missing","sev":"err","label":"取引金額が空欄","cite":"検索要件: 取引金額"},
+ {"id":"amount_format","sev":"err","label":"取引金額が全角・注記混じりで範囲検索できない","cite":"検索要件: 取引金額(範囲指定)"},
+ {"id":"amount_taxnote","sev":"warn","label":"税抜・税別表記(索引簿の取引金額は税込総額)","cite":"検索要件: 取引金額"},
+ {"id":"party_missing","sev":"err","label":"取引先が空欄・同上・不明","cite":"検索要件: 取引先"},
+ {"id":"file_missing","sev":"err","label":"保存ファイル名が空欄(データと索引簿が結びつかない)","cite":"電子取引データの保存"},
+ {"id":"file_charset","sev":"err","label":"ファイル名に空白や環境依存記号(\\ / : * ? \" < > |)","cite":"電子取引データの保存"},
+ {"id":"file_dup","sev":"err","label":"同じファイル名が2行以上に割り当てられている","cite":"電子取引データの保存"},
+ {"id":"file_convention","sev":"warn","label":"ファイル名に取引年月日(YYYYMMDD)が入っていない","cite":"国税庁 索引簿・ファイル名の例"},
+ {"id":"seq_gap","sev":"warn","label":"連番が飛んでいる(行の欠落)","cite":"電子取引データの保存"},
+ {"id":"retention_expired","sev":"warn","label":"取引年月日が7年より前(保存期間の確認)","cite":"帳簿書類の保存期間"}
+]
