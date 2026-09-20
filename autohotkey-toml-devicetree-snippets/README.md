@@ -1,8 +1,10 @@
-# AutoHotkey v2 · TOML · DeviceTree · 9 Packs
+# AutoHotkey v2, TOML and DeviceTree Checks
 
 ![AutoHotkey v2, TOML and DeviceTree checks for VS Code](https://getreadystack.com/img/promo/sku9417_result_card.jpg)
 
 **`status = "enabled"` is not a syntax error. The node just comes up disabled — and you find that out on the bench.**
+
+For firmware and scripting folks: catches v1 syntax in AutoHotkey v2 files, TOML type slips and DeviceTree node errors before you flash or run.
 
 DeviceTree accepts exactly two values there, `"okay"` and `"disabled"`. `"enabled"` is the most natural word in English and the wrong word here, so the node is silently switched off at boot. Nothing warns you: a grammar highlighter and a parser are not the same program.
 
