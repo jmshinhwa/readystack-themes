@@ -1,0 +1,186 @@
+[
+  {
+    "id": "disease_claim",
+    "sev": "error",
+    "art": "Art. 7(3) Reg (EU) 1169/2011",
+    "pat": "\\b(cures?|cured|prevents?|treats?|heals?|reverses?|fights?)\\s+(your\\s+|the\\s+)?(cancer|diabetes|arthritis|covid|flu|colds?|infections?|depression|disease|illness|hypertension|inflammation)\\b|\\banti-?(inflammatory|viral|bacterial|cancer)\\b|\\blowers?\\s+(your\\s+)?(blood\\s+pressure|cholesterol|blood\\s+sugar)\\b",
+    "msg": "\"{hit}\" attributes the property of preventing, treating or curing a human disease. Art. 7(3) Reg (EU) 1169/2011 bans this for any food, in labelling and in advertising, and no authorisation can make it lawful. Delete the sentence."
+  },
+  {
+    "id": "immune_boost",
+    "sev": "error",
+    "art": "Art. 10(1) Reg (EC) 1924/2006",
+    "pat": "\\b(boosts?|boosting|strengthens?|supercharges?|enhances?|builds?\\s+up)\\s+(your\\s+|the\\s+)?(immune\\s+(system|defences?|defenses?|response)|immunity)\\b|\\bimmune[-\\s](booster|boosting)\\b",
+    "msg": "\"{hit}\" is not an authorised wording. The Union Register (Reg (EU) 432/2012) authorises only \"contributes to the normal function of the immune system\", and only where the nutrient reaches 15 % of the NRV. Swap the wording and name the nutrient."
+  },
+  {
+    "id": "detox_claim",
+    "sev": "error",
+    "art": "Art. 10(1) Reg (EC) 1924/2006",
+    "pat": "\\bdetox(es|ing|ify|ifying|ification)?\\b|\\bflush(es)?\\s+out\\s+toxins\\b|\\bcleanses?\\s+(your\\s+)?(body|system|liver|gut|colon)\\b|\\bpurif(y|ies|ying)\\s+(your\\s+)?(blood|body)\\b",
+    "msg": "\"{hit}\" is a health claim with no entry in the Union Register, so Art. 10(1) Reg (EC) 1924/2006 forbids it. There is no authorised detox claim for any food or botanical. Remove it."
+  },
+  {
+    "id": "general_benefit_unbacked",
+    "sev": "warn",
+    "art": "Art. 10(3) Reg (EC) 1924/2006",
+    "pat": "\\bsuper-?food\\b|\\bsupports?\\s+(your\\s+)?(wellbeing|well-being|overall\\s+health|general\\s+health|vitality)\\b|\\bpromotes?\\s+(good\\s+)?health\\b|\\bgood\\s+for\\s+you\\b|\\bhealthy\\s+choice\\b",
+    "need": "contributes to the normal",
+    "msg": "\"{hit}\" is a non-specific reference to general wellbeing. Art. 10(3) Reg (EC) 1924/2006 allows it only when a specific authorised health claim stands next to it, and this page carries none. Add the Register wording or cut the phrase."
+  },
+  {
+    "id": "weight_loss_rate",
+    "sev": "error",
+    "art": "Art. 12(b) Reg (EC) 1924/2006",
+    "pat": "\\blose\\s+(up\\s+to\\s+)?\\d+(\\.\\d+)?\\s*(kg|kilos?|lbs?|pounds?|inches|cm)\\b|\\b\\d+\\s*(kg|lbs?|pounds?)\\s+in\\s+\\d+\\s*(days?|weeks?|months?)\\b|\\bburns?\\s+fat\\s+(fast|overnight|in\\s+days)\\b|\\bmelts?\\s+(away\\s+)?(belly\\s+)?fat\\b",
+    "msg": "\"{hit}\" states a rate or an amount of weight loss. Art. 12(b) Reg (EC) 1924/2006 prohibits that outright. Drop the figure and the timescale together."
+  },
+  {
+    "id": "doctor_endorsement",
+    "sev": "error",
+    "art": "Art. 12(c) Reg (EC) 1924/2006",
+    "pat": "\\b(recommended|approved|endorsed|prescribed|formulated)\\s+by\\s+(doctors?|physicians?|nutritionists?|dietitians?|pharmacists?)\\b|\\bdoctor-?(approved|recommended|formulated|trusted)\\b",
+    "msg": "\"{hit}\" refers to a recommendation by an individual health professional. Art. 12(c) Reg (EC) 1924/2006 prohibits it; only national associations covered by Art. 11 may be named. Remove the endorsement."
+  },
+  {
+    "id": "proof_language",
+    "sev": "error",
+    "art": "Art. 6(1) and Art. 10(1) Reg (EC) 1924/2006",
+    "pat": "\\bclinically\\s+(proven|tested)\\b|\\bscientifically\\s+proven\\b|\\bproven\\s+to\\s+(work|cure|heal|boost|reduce)\\b|\\b100\\s*%\\s*effective\\b",
+    "msg": "\"{hit}\" asserts proof of an effect on the body. Art. 6(1) Reg (EC) 1924/2006 requires every claim to rest on generally accepted scientific evidence, and Art. 10(1) permits only wordings already entered in the Union Register. Use the authorised wording or drop the phrase."
+  },
+  {
+    "id": "nutrition_claim_threshold",
+    "sev": "warn",
+    "art": "Annex to Reg (EC) 1924/2006",
+    "pat": "\\b(low[-\\s]fat|fat[-\\s]free|low[-\\s]sugars?|sugars?[-\\s]free|high[-\\s]protein|source\\s+of\\s+protein|high[-\\s]fib(re|er)|source\\s+of\\s+fib(re|er)|low[-\\s](salt|sodium)|low[-\\s](calorie|energy))\\b",
+    "need": "\\d+(\\.\\d+)?\\s*(g|mg|kcal|kJ)\\s*(per|/)\\s*100\\s*(g|ml)",
+    "thresholds": {
+      "low fat": "3 g fat / 100 g solid (1.5 g / 100 ml liquid)",
+      "fat-free": "0.5 g fat / 100 g",
+      "low sugars": "5 g sugars / 100 g solid (2.5 g / 100 ml)",
+      "sugars-free": "0.5 g sugars / 100 g",
+      "source of protein": "12 % of energy from protein",
+      "high protein": "20 % of energy from protein",
+      "source of fibre": "3 g fibre / 100 g",
+      "high fibre": "6 g fibre / 100 g",
+      "low sodium/salt": "0.12 g sodium / 100 g",
+      "low energy": "40 kcal / 100 g solid (20 kcal / 100 ml)"
+    },
+    "msg": "\"{hit}\" is a nutrition claim fixed to a figure by the Annex to Reg (EC) 1924/2006, and no per-100 g value appears on this page. Print the value: low fat 3 g/100 g, fat-free 0.5 g/100 g, low sugars 5 g/100 g, sugars-free 0.5 g/100 g, high protein 20 % of energy, source of fibre 3 g/100 g, high fibre 6 g/100 g, low sodium 0.12 g/100 g."
+  },
+  {
+    "id": "light_reduced_claim",
+    "sev": "warn",
+    "art": "Annex to Reg (EC) 1924/2006",
+    "pat": "\\b(lite|reduced[-\\s](fat|sugars?|salt|sodium|calorie|energy))\\b|\\blight\\s+(version|recipe|range|yoghurt|yogurt|mayo|mayonnaise|drink)\\b",
+    "need": "\\b(30|3[1-9]|[4-9]\\d|100)\\s*%\\s*(less|lower|fewer|reduced)",
+    "msg": "\"{hit}\" needs at least a 30 % reduction against a comparable product plus a statement of the characteristic that was reduced (Annex to Reg (EC) 1924/2006). No reduction of 30 % or more is stated on this page. Name the nutrient and the percentage."
+  },
+  {
+    "id": "no_added_sugar_statement",
+    "sev": "error",
+    "art": "Annex to Reg (EC) 1924/2006",
+    "pat": "\\b(no|without|zero)\\s+added\\s+sugars?\\b",
+    "need": "contains naturally occurring sugars",
+    "msg": "\"{hit}\" may stand only where no mono- or disaccharide and no sweetening food was added, and where the food still contains sugars the Annex requires the added statement \"CONTAINS NATURALLY OCCURRING SUGARS\". That statement is missing."
+  },
+  {
+    "id": "honey_origin_blend",
+    "sev": "error",
+    "art": "Directive (EU) 2024/1438, applicable 14 June 2026",
+    "from": "2026-06-14",
+    "scope": "\\bhoney\\b",
+    "pat": "\\bblend\\s+of\\s+(EU|E\\.U\\.|European)?\\s*(and\\s+)?non-?EU\\s+honeys?\\b|\\bblend\\s+of\\s+EU\\s+honeys?\\b",
+    "msg": "\"{hit}\" stopped being a lawful origin statement on 14 June 2026. Directive (EU) 2024/1438 requires every country of origin of a honey blend on the label, listed in descending order of weight. Name the countries."
+  },
+  {
+    "id": "jam_fruit_minimum",
+    "sev": "warn",
+    "art": "Directive 2001/113/EC as amended by Directive (EU) 2024/1438",
+    "from": "2026-06-14",
+    "pat": "\\bextra\\s+(jam|jelly|konfit\\w+|marmalade)\\b",
+    "need": "\\b(4[5-9]|[5-9]\\d|100)\\s*g\\b[^.]{0,60}fruit|fruit[^.]{0,60}\\b(4[5-9]|[5-9]\\d|100)\\s*g\\b",
+    "msg": "\"{hit}\" is a reserved description: since 14 June 2026 it needs at least 45 g of fruit per 100 g under Directive 2001/113/EC as amended by Directive (EU) 2024/1438, and no fruit content of 45 g/100 g or more is printed here."
+  },
+  {
+    "id": "juice_naturally_occurring",
+    "sev": "warn",
+    "art": "Directive (EU) 2024/1438, applicable 14 June 2026",
+    "from": "2026-06-14",
+    "scope": "\\bfruit\\s+juice|\\bjuice\\b",
+    "pat": "\\b(no\\s+added\\s+sugars?|low[-\\s]sugar|sugar[-\\s]free|less\\s+sugar)\\b",
+    "need": "fruit juices contain only naturally occurring sugars",
+    "msg": "A fruit juice page carrying \"{hit}\" must show \"fruit juices contain only naturally occurring sugars\" under the rules applicable since 14 June 2026 (Directive (EU) 2024/1438). Stock labelled before that date may run out; a web page is not stock."
+  },
+  {
+    "id": "probiotic_term",
+    "sev": "warn",
+    "art": "Art. 10(1) Reg (EC) 1924/2006",
+    "pat": "\\bpro-?biotics?\\b",
+    "msg": "The bare word \"{hit}\" is still read as a non-authorised health claim by several national authorities under Art. 10(1) Reg (EC) 1924/2006, while Italy, Spain, Poland and the Netherlands permit it on national terms. Name the strain and check the market you ship to."
+  },
+  {
+    "id": "supplement_mandatory_statements",
+    "sev": "error",
+    "art": "Art. 6(3) Directive 2002/46/EC",
+    "type": "doc",
+    "scope": "\\b(food\\s+supplement|dietary\\s+supplement|capsules?|softgels?|one\\s+tablet\\s+daily)\\b",
+    "needs": [
+      {
+        "label": "not a substitute for a varied diet",
+        "pat": "should not be used as a substitute for a varied|not a substitute for a varied"
+      },
+      {
+        "label": "do not exceed the recommended daily dose",
+        "pat": "not\\s+(to\\s+)?(be\\s+)?exceed(ed)?\\b[^.]{0,40}(daily\\s+dose|dose)|do\\s+not\\s+exceed"
+      },
+      {
+        "label": "keep out of the reach of young children",
+        "pat": "out\\s+of\\s+(the\\s+)?reach\\s+of\\s+(young\\s+)?children"
+      }
+    ],
+    "msg": "This page sells a food supplement and Art. 6(3) Directive 2002/46/EC makes three statements mandatory. Missing here: {missing}."
+  },
+  {
+    "id": "nrv_missing",
+    "sev": "warn",
+    "art": "Annex to Reg (EC) 1924/2006",
+    "pat": "\\b(source\\s+of|high\\s+in|rich\\s+in)\\s+(vitamin\\s+[a-k]\\d*|zinc|iron|magnesium|calcium|selenium|iodine|folate|folic\\s+acid|biotin|copper)\\b",
+    "need": "%\\s*(of\\s+(the\\s+)?)?(NRV|RI)\\b|NRV\\s*%",
+    "msg": "\"{hit}\" is tied to the NRV: \"source of\" needs 15 % of the NRV and \"high in\" needs 30 % (Annex to Reg (EC) 1924/2006, Reg (EU) 1169/2011 Annex XIII). No % NRV figure appears on this page."
+  },
+  {
+    "id": "balanced_diet_statement",
+    "sev": "warn",
+    "art": "Art. 10(2)(a) Reg (EC) 1924/2006",
+    "type": "doc",
+    "scope": "contributes to the normal",
+    "needs": [
+      {
+        "label": "statement on a varied and balanced diet and a healthy lifestyle",
+        "pat": "varied\\s+and\\s+balanced\\s+diet"
+      },
+      {
+        "label": "the quantity of the food needed to obtain the claimed effect",
+        "pat": "\\b\\d+(\\.\\d+)?\\s*(g|ml|mg|µg|ug|capsules?|tablets?|servings?|portions?)\\b[^.]{0,60}(daily|per\\s+day|a\\s+day)|(daily|per\\s+day|a\\s+day)[^.]{0,60}\\b\\d+(\\.\\d+)?\\s*(g|ml|mg|µg|ug|capsules?|tablets?|servings?|portions?)\\b"
+      }
+    ],
+    "msg": "This page carries an authorised health claim, so Art. 10(2) Reg (EC) 1924/2006 requires the accompanying information. Missing here: {missing}."
+  },
+  {
+    "id": "botanical_on_hold",
+    "sev": "warn",
+    "art": "Art. 28(5)-(6) Reg (EC) 1924/2006",
+    "pat": "\\b(ginkgo|valerian|echinacea|ginseng|rhodiola|ashwagandha|milk\\s+thistle|st\\.?\\s*john'?s\\s+wort|turmeric|curcumin|artichoke\\s+extract)\\b",
+    "msg": "\"{hit}\" is a botanical whose health claims sit on the Commission's \"on hold\" list under Art. 28(5)-(6) Reg (EC) 1924/2006. National rules differ by member state; do not treat an on-hold claim as authorised across the EU."
+  },
+  {
+    "id": "comparative_claim",
+    "sev": "warn",
+    "art": "Art. 9 Reg (EC) 1924/2006",
+    "pat": "\\b\\d+\\s*%\\s*(less|fewer|lower|more)\\s+\\w+\\s+than\\b|\\b(healthier|better\\s+for\\s+you|more\\s+nutritious)\\s+than\\b",
+    "need": "\\b(range\\s+of\\s+foods|other\\s+(foods|products)\\s+of\\s+the\\s+same\\s+category|same\\s+category)\\b",
+    "msg": "\"{hit}\" is a comparative claim. Art. 9 Reg (EC) 1924/2006 requires the comparison to be made with a range of foods of the same category, and that reference is not stated on this page."
+  }
+]
