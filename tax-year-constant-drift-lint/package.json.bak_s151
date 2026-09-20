@@ -2,7 +2,7 @@
   "name": "tax-year-constant-drift-lint",
   "displayName": "Tax Year Constant Drift",
   "description": "Finds tax years, statutory limits, filing thresholds, rates and deadlines hardcoded in payroll, invoicing and tax code - the constants an AI assistant completes from a year that has already passed.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE",
   "engines": {
