@@ -1,8 +1,10 @@
-# ADA Title II Deadline Lint
+# Web Accessibility Lint - WCAG 2.1 AA (ADA Title II)
 
 ![ADA Title II Deadline Lint (WCAG 2.1 AA)](https://getreadystack.com/img/promo/sku21118_result_card.jpg)
 
 **Every accessibility statement that still promises April 24, 2026 is now wrong.**
+
+For US state and local government sites and their vendors: ADA Title II requires WCAG 2.1 AA, with compliance dates in April 2026 and April 2027 depending on population.
 On 2026-04-20 the DOJ interim final rule moved the ADA Title II web deadline to
 **April 26, 2027** (28 CFR 35.200(b)). On 2026-05-07 HHS moved the Section 504
 deadline to **May 11, 2027** (45 CFR 84.84). Your linter passed both of those lines.
