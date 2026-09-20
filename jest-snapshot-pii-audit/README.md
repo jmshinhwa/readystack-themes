@@ -1,8 +1,10 @@
-# Jest Snapshot PII Audit
+# Jest Snapshot Lint - PII and secrets in __snapshots__
 
 ![Jest Snapshot PII Audit](https://getreadystack.com/img/promo/sku104838_result_card.jpg)
 
 When an assistant writes a test for you, it reaches for a response it can see. Often that is a real one — a staging payload, a curl you pasted into the chat, a recorded fetch. `toMatchSnapshot()` writes the whole thing to disk, and `__snapshots__/*.snap` goes into git with the customer still inside it.
+
+For teams with committed snapshots: real emails, tokens and names inside __snapshots__ are a data leak in the repo.
 
 This extension reads `.snap` files and names every line that carries real personal data or a live credential, with the GDPR article it touches and what to write instead.
 
