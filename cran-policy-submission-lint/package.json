@@ -1,8 +1,8 @@
 {
   "name": "cran-policy-submission-lint",
-  "displayName": "CRAN Policy Submission Lint",
+  "displayName": "CRAN Submission Lint - R package policy check (DESCRIPTION, NAMESPACE, tests)",
   "description": "Check an R package against the CRAN Repository Policy before you submit: DESCRIPTION fields, licence strings, library() in R/, setwd(), unrestored options()/par(), T/F, ::: and more.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -11,16 +11,11 @@
     "Linters"
   ],
   "keywords": [
-    "cran",
     "r",
-    "rstats",
+    "cran",
     "package",
     "submission",
-    "policy",
-    "lint",
-    "devtools",
-    "roxygen",
-    "description"
+    "lint"
   ],
   "main": "./extension.js",
   "activationEvents": [
