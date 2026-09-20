@@ -1,8 +1,8 @@
 {
   "name": "firestore-rules-guard",
-  "displayName": "Firestore Rules Guard",
+  "displayName": "Firestore Security Rules Lint - open rules and missing auth",
   "description": "Audits firestore.rules and storage.rules for public access, expired test-mode dates and unbounded uploads before you deploy.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -11,12 +11,11 @@
     "Linters"
   ],
   "keywords": [
-    "firestore",
     "firebase",
-    "security rules",
-    "storage rules",
-    "linter",
-    "cloud firestore"
+    "firestore",
+    "security-rules",
+    "auth",
+    "lint"
   ],
   "main": "./extension.js",
   "activationEvents": [
