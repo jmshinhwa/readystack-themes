@@ -2,7 +2,7 @@
   "name": "pci-payment-page-script-lint",
   "displayName": "PCI DSS 6.4.3 Payment Page Script Lint",
   "description": "Finds the third-party scripts, missing SRI hashes and CSP holes on your checkout page that fail PCI DSS 4.0.1 Requirements 6.4.3 and 11.6.1 - with the requirement number on every line.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
