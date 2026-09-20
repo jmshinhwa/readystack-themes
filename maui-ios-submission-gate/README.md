@@ -1,8 +1,10 @@
-# MAUI iOS Submission Gate
+# .NET MAUI iOS Lint - App Store submission gate
 
 ![MAUI iOS Submission Gate](https://getreadystack.com/img/promo/sku94625_result_card.jpg)
 
 App Review reads `Platforms/iOS/Info.plist` before it reads any of your C#. In a .NET MAUI solution that file is one of the few things you still edit by hand, and it is where the rejections live.
+
+For .NET MAUI teams: the Info.plist, entitlement and privacy-manifest issues that bounce an App Store submission are found before you archive.
 
 This extension reads the Apple property lists in your project as text and applies **16 checks**. Every finding names the key, the line it sits on, what App Review or App Store Connect does with it, and the edit that clears it.
 
