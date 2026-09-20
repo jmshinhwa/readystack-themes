@@ -1,8 +1,10 @@
-# CSAF Advisory Check for CRA 2026
+# CSAF Advisory Lint - security advisory JSON (CRA, VEX)
 
 ![CSAF Advisory Check for CRA 2026](https://getreadystack.com/img/promo/sku32327_result_card.jpg)
 
 ```
+
+For product security teams: CRA reporting duties apply from 11 September 2026, and a malformed CSAF document is rejected by the receiving platform.
 advisory.json:50   6.1.11  cwe.name is "Authentication Bypass" but CWE-287 is officially "Improper Authentication"
 advisory.json:59   6.1.6   product_id "CSAFPID-0001" is listed as affected and as fixed in the same vulnerability
 advisory.json:62   6.1.1   product_id "CSAFPID-0009" is used here but no full product name in the product tree defines it
