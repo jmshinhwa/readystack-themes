@@ -2,7 +2,7 @@
   "name": "devicetree-config-language-pack",
   "displayName": "DeviceTree Config Audit: 23 dtc-Style Rules, 50 Snippets",
   "description": "50 snippets and 23 audit rules for the 9 config formats your editor still shows as plain text. The Devicetree Specification v0.4 lists only \"okay\", \"disabled\", \"reserved\", \"fail\" and \"fail-sss\" - Zeph",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
