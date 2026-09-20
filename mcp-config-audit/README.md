@@ -1,8 +1,10 @@
-# MCP Server Config Audit
+# MCP Config Lint - mcp.json and claude_desktop_config security audit
 
 ![MCP Server Config Audit](https://getreadystack.com/img/promo/sku72740_result_card.jpg)
 
 Your `mcp.json` is valid JSON. That is the whole of what a linter or a schema check can tell you about it.
+
+For anyone wiring MCP servers into Claude, Cursor or VS Code: plaintext secrets and over-broad server permissions are found in the config file itself.
 
 It cannot tell you that `npx -y @scope/server` with no version resolves whatever was published most recently, on every launch, with no lockfile behind it. It cannot tell you that the token sitting in `env` stays valid until somebody rotates it, and that the file it sits in is committed, screenshotted and pasted into issues. It cannot tell you that `alwaysAllow` removed the confirmation step for the tools named in it, or that a filesystem root of `/` put every SSH key, browser profile and `.env` on the machine inside the agent's reach for the length of the session.
 
