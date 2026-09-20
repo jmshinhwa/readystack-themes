@@ -1,8 +1,10 @@
-# Age Gate Lint — UK Online Safety Act age assurance
+# Age Verification Lint - UK Online Safety Act age gate
 
 ![Age Gate Lint — UK Online Safety Act](https://getreadystack.com/img/promo/sku119983_result_card.jpg)
 
 Open an HTML file that carries an age gate. The extension reads the markup and the inline
+
+For sites with UK users: Ofcom can fine up to GBP 18m or 10% of global revenue for missing age checks.
 script, and names every part of that gate which Ofcom does not count as **highly effective
 age assurance**, with the line number and the clause it fails.
 
