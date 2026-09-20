@@ -2,7 +2,7 @@
   "name": "gdpr-privacy-notice-lint",
   "displayName": "GDPR Privacy Notice Lint",
   "description": "Reads the privacy notice in your repo against 16 rules from GDPR Articles 13 and 14, flags template placeholders, and tells you when the notice itself has gone stale. Not legal advice.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
