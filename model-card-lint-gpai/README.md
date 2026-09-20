@@ -1,8 +1,10 @@
-# Model Card Lint — EU GPAI (AI Act Art. 53)
+# Model Card Lint - Hugging Face model card and EU GPAI (Art. 53)
 
 ![Model Card Lint - EU GPAI (AI Act Art. 53)](https://getreadystack.com/img/promo/sku48562_result_card.jpg)
 
 A model card is the only document a downstream deployer, an enterprise procurement reviewer and an EU regulator all read about your model. Most cards on the Hub are still the Hugging Face template with the prose filled in and the obligations left empty.
+
+For model publishers: GPAI obligations under Article 53 have applied since 2 August 2025, and the model card is the document a regulator reads first.
 
 This extension reads the Markdown card you have open — `README.md` in a model repository, or any `.md` — and reports, line by line, what the Hub metadata spec and the EU AI Act general-purpose AI duties expect to find and do not.
 
