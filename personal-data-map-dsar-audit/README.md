@@ -1,8 +1,10 @@
-# Personal Data Map
+# Personal Data Map - find PII columns for GDPR DSAR (SQL, ORM)
 
 ![Personal Data Map: find every column a GDPR subject access request has to reach](https://getreadystack.com/img/promo/sku20608_result_card.jpg)
 
 Reads a migration, Prisma schema, Django model or TypeORM entity and marks every column a subject access request has to reach - with the GDPR article each finding hangs on. 13 rules, line numbers, no account.
+
+For anyone answering a subject access request: every column that holds personal data is mapped from your schema and ORM models.
 
 ## What it finds
 
