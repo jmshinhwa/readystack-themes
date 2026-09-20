@@ -1,8 +1,10 @@
-# Auto-Renewal Signup Lint (California ARL)
+# Subscription Signup Lint - auto-renewal law (California ARL)
 
 ![Auto-Renewal Signup Lint (California ARL)](https://getreadystack.com/img/promo/sku48727_result_card.jpg)
 
 Your subscription signup page is a legal document that happens to be written in HTML. Since
+
+For SaaS and subscription checkouts: the California Automatic Renewal Law requires clear renewal terms and an easy cancel path, and class actions are filed on the signup page alone.
 **1 January 2026**, California's Automatic Renewal Law — Cal. Bus. & Prof. Code 17600–17606, as
 amended by **AB 2863** — sets out what that page has to say, where it has to say it, and how the
 customer has to agree to it. This extension reads the page the way the statute does: **16 checks**
