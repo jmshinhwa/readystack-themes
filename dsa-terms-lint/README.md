@@ -1,8 +1,10 @@
-# DSA Terms Lint
+# Terms of Service Lint - EU Digital Services Act
 
 ![DSA Terms Lint - EU Digital Services Act](https://getreadystack.com/img/promo/sku111453_result_card.jpg)
 
 Your terms-of-service file is a compliance document now. Since **17 February 2024** the EU Digital
+
+For platforms and marketplaces with EU users: DSA fines reach 6% of global turnover.
 Services Act (Regulation (EU) 2022/2065) has applied to *every* provider of an intermediary or
 hosting service that offers it to users in the Union — not only the very large platforms. If people
 can upload, post, comment or message on the thing you built, the DSA puts named clauses in your
