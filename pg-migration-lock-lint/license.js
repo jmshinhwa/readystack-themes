@@ -9,7 +9,25 @@ const RECHECK_MS = 7 * 24 * 3600 * 1000;  // 7일마다 다시 묻는다 (환불
 
 const ALL_BENEFIT_ID = '22692551-5203-4467-b1a3-e33cdba6589d';   // s149 2026-09-17 — 팀 키(전 린터 한 키 · Polar benefit) · 상품 benefit 다음에 한 번 더 묻는다
 function validate(key) {
-  return validate1(key, BENEFIT_ID).then(function (r) { return (r.ok || r.offline || !/^[0-9a-f-]{36}$/.test(ALL_BENEFIT_ID)) ? r : validate1(key, ALL_BENEFIT_ID); });
+  return validate1(key, BENEFIT_ID).then(function (r) { return (r.ok || r.offline || !/^[0-9a-f-]{36}$/.test(ALL_BENEFIT_ID)) ? r : validate1(key, ALL_BENEFIT_ID); })
+    .then(function (r) { return (r.ok || r.offline) ? r : validateHub(key); });   // s153 2026-09-20 — Whop 구독 키: 우리 워커가 Whop 에 묻는다 (키는 워커 비밀)
+}
+// s153 — Polar 가 모르는 키를 허브 워커(/api/lic)에 한 번 더 묻는다. ★Whop 연간 구독($149.99)의 키가 여기로 열린다. 실패는 그대로 거절.
+function validateHub(key) {
+  return new Promise(function (resolve) {
+    const req = https.request({ hostname: 'getreadystack.com', path: '/api/lic?key=' + encodeURIComponent(key) + '&slug=' + encodeURIComponent(SLUG),
+      method: 'GET', timeout: 8000, headers: { 'accept': 'application/json', 'user-agent': 'readystack-vsix/' + SLUG } }, function (res) {
+      let buf = '';
+      res.on('data', function (d) { buf += d; });
+      res.on('end', function () {
+        if (res.statusCode !== 200) return resolve({ ok: false, offline: false });
+        try { const j = JSON.parse(buf); resolve({ ok: !!(j && j.ok), offline: false }); } catch (e) { resolve({ ok: false, offline: false }); }
+      });
+    });
+    req.on('timeout', function () { req.destroy(); resolve({ ok: false, offline: true }); });
+    req.on('error', function () { resolve({ ok: false, offline: true }); });
+    req.end();
+  });
 }
 function validate1(key, ben) {
   return new Promise(function (resolve) {
@@ -53,6 +71,32 @@ function pingPaywall(vscode, why) {
   } catch (e) { /* 세는 것이 실패해도 상품은 돈다 */ }
 }
 
+// ★s152 2026-09-20 — 첫 진짜 후기 요청: ★키가 있는 사람이 ★유료 실행을 3번 한 뒤 ★딱 한 번 부탁한다 (인센티브 없음 · 정직 · 가치의 순간). 익명 핑 src=vsix_review (why=review_ask/review_click/review_no).
+async function maybeAskReview(vscode, ctx) {
+  try {
+    const st = ctx.globalState;
+    if (!st.get('licenseKey') || st.get('reviewAsked')) return;
+    const n = Number(st.get('paidRuns') || 0) + 1; await st.update('paidRuns', n);
+    if (n !== 3) return;
+    await st.update('reviewAsked', Date.now());
+    _pingWhy(vscode, 'vsix_review', 'review_ask');
+    const yes = 'Write a review', no = 'No thanks';
+    const pick = await vscode.window.showInformationMessage('Three sweeps in. A one-line review on the Marketplace helps a one-person studio more than you would think.', yes, no);
+    if (pick === yes) { _pingWhy(vscode, 'vsix_review', 'review_click'); vscode.env.openExternal(vscode.Uri.parse('https://marketplace.visualstudio.com/items?itemName=ReadyStack.' + SLUG + '&ssr=false#review-details')); }
+    else if (pick === no) { _pingWhy(vscode, 'vsix_review', 'review_no'); }
+  } catch (e) { }
+}
+function _pingWhy(vscode, src, why) {
+  try {
+    if (process.env.READYSTACK_NO_TELEMETRY) return;
+    if (vscode && vscode.env && vscode.env.isTelemetryEnabled === false) return;
+    const body = JSON.stringify({ t: 'paywall', slug: SLUG, src: src, why: why });
+    const req = https.request({ hostname: 'getreadystack.com', path: '/api/ev', method: 'POST', timeout: 4000,
+      headers: { 'content-type': 'application/json', 'content-length': Buffer.byteLength(body), 'user-agent': 'readystack-vsix/' + SLUG } }, function (res) { res.resume(); });
+    req.on('timeout', function () { req.destroy(); }); req.on('error', function () {});
+    req.write(body); req.end();
+  } catch (e) { }
+}
 async function ensure(vscode, ctx, S) {
   const st = ctx.globalState;
   const key = st.get('licenseKey');
@@ -111,4 +155,4 @@ function pullFeed(ctx, slug) {
   });
 }
 
-module.exports = { ensure: ensure, validate: validate, pullFeed: pullFeed };
+module.exports = { ensure: ensure, validate: validate, maybeAskReview: maybeAskReview, pullFeed: pullFeed };
