@@ -1,8 +1,10 @@
-# Play Release Blocker Lint
+# Android Release Lint - target API 36, Play Billing and policy blockers
 
 ![Google Play Release Blocker Lint - target API 36, Billing 8, 16 KB](https://getreadystack.com/img/promo/sku29682_result_card.jpg)
 
 Finds the lines that make Google Play reject your release - target API below 36, Billing Library below 8, 4 KB-only native libs - and prints the date each gate closed.
+
+For Android teams: new apps and updates must target API 35 or higher from 31 August 2025 and API 36 from 31 August 2026.
 
 ## What it does for free
 
