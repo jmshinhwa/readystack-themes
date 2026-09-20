@@ -1,8 +1,10 @@
-# Green Claim Lint - EU EmpCo 2026
+# Marketing Copy Lint - green claims (EU EmpCo)
 
 ![Green Claim Lint - EU EmpCo 2026](https://getreadystack.com/img/promo/sku77945_result_card.jpg)
 
 On 27 September 2026 the national measures transposing **Directive (EU) 2024/825** - the "empowering consumers for the green transition" directive, EmpCo - start to apply across the EU. It amends the Unfair Commercial Practices Directive 2005/29/EC and the Consumer Rights Directive 2011/83/EU, and it moves a set of familiar marketing phrases onto the Annex I blacklist, where no case-by-case assessment and no amount of evidence can save them.
+
+For marketing and e-commerce teams in the EU: EmpCo rules apply from 27 September 2026 and ban generic eco-friendly claims without proof.
 
 Most product copy written in 2025 and 2026 was drafted, or at least polished, by a generative model. Models are fluent in exactly the vocabulary the directive now lists: "eco-friendly", "climate neutral", "our own sustainability score", "we will be net zero by 2030". This extension reads the files you already have and tells you which of those phrases are now a problem, which clause makes them one, and what to write instead.
 
