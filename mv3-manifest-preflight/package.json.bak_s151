@@ -2,7 +2,7 @@
   "name": "mv3-manifest-preflight",
   "displayName": "MV3 Manifest Preflight - Chrome Web Store",
   "description": "Checks manifest.json against Manifest V3 and Chrome Web Store upload rules: MV2 leftovers, host patterns in permissions, remote code, field limits.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
