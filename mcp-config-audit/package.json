@@ -1,8 +1,8 @@
 {
   "name": "mcp-config-audit",
-  "displayName": "MCP Server Config Audit",
+  "displayName": "MCP Config Lint - mcp.json and claude_desktop_config security audit",
   "description": "Audits mcp.json for the mistakes AI-written agent configs carry: inline API keys, unpinned npx launches, plaintext remote servers, shell wrappers, auto-approved tools and filesystem roots.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -12,13 +12,10 @@
   ],
   "keywords": [
     "mcp",
-    "mcp.json",
-    "model context protocol",
-    "ai agent",
+    "config",
     "security",
-    "copilot",
-    "cursor",
-    "claude"
+    "claude",
+    "cursor"
   ],
   "main": "./extension.js",
   "activationEvents": [
