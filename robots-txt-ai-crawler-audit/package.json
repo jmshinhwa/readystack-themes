@@ -1,8 +1,8 @@
 {
   "name": "robots-txt-ai-crawler-audit",
-  "displayName": "AI Crawler Rules - robots.txt Audit for AI Search",
+  "displayName": "robots.txt AI Crawler Audit - GPTBot, ClaudeBot, Google-Extended",
   "description": "Checks robots.txt line by line and says what each AI crawler token actually controls - training, AI-search citation, or user fetch - and which lines silently do nothing.",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -12,11 +12,11 @@
     "Linters"
   ],
   "keywords": [
-    "robots.txt",
-    "AI crawler",
-    "GPTBot",
-    "Google-Extended",
-    "SEO"
+    "robots-txt",
+    "ai-crawler",
+    "seo",
+    "gptbot",
+    "llms-txt"
   ],
   "activationEvents": [
     "onStartupFinished"
