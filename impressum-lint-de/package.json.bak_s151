@@ -2,7 +2,7 @@
   "name": "impressum-lint-de",
   "displayName": "Impressum & Shop-Pflichtangaben Lint (DE)",
   "description": "Findet veraltete Paragrafen (TMG, TTDSG, RStV) und tote OS-Plattform-Links in Impressum, Footer und Shop-Templates im Repo. 14 Regeln, Stand 2026.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
