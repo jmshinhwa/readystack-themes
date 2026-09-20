@@ -2,7 +2,7 @@
   "name": "settings-json-config-audit",
   "displayName": "settings.json Config Kit + Deprecated-Key Audit",
   "description": "32 paste-ready settings.json blocks and 24 rules that name the dead keys in your config. When a setting is renamed, the editor shows no error — it just silently stops doing the thing you configured.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
