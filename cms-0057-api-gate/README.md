@@ -1,8 +1,10 @@
-# CMS-0057 API Gate
+# FHIR API Gate - CMS-0057 prior authorization (Da Vinci)
 
 ![CMS-0057 API Gate](https://getreadystack.com/img/promo/sku77334_result_card.jpg)
 
 **Does the CapabilityStatement your payer FHIR server publishes stand up as evidence for CMS-0057-F?** Open it, and 14 rules answer that question in the editor, line by line, with the days left to 1 January 2027 on the last line.
+
+For payer and health-tech teams: the CMS-0057-F Prior Authorization API deadline is 1 January 2027.
 
 The CMS Interoperability and Prior Authorization final rule (CMS-0057-F) requires impacted payers - Medicare Advantage organizations, state Medicaid and CHIP fee-for-service programs and managed care plans, and QHP issuers on the federal exchanges - to run four HL7 FHIR R4 APIs by **1 January 2027**:
 
