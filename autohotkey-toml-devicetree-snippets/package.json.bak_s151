@@ -2,7 +2,7 @@
   "name": "autohotkey-toml-devicetree-snippets",
   "displayName": "AutoHotkey v2, TOML and DeviceTree checks for VS Code",
   "description": "22 checks and 46 snippets for the files VS Code never validates: DeviceTree overlays, TOML manifests and AutoHotkey v2 scripts. Runs offline, no account.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
