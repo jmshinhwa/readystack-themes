@@ -2,7 +2,7 @@
   "name": "email-footer-law-lint",
   "displayName": "Email Footer Law Lint",
   "description": "Lints HTML email templates for the footer duties senders get fined for: CAN-SPAM postal address and 10-business-day opt-out, CASL 60-day window, and German 5 DDG, which replaced 5 TMG on 2024-05-14.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
