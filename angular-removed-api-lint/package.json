@@ -1,8 +1,8 @@
 {
   "name": "angular-removed-api-lint",
-  "displayName": "Angular Removed-API Lint",
+  "displayName": "Angular Upgrade Lint - removed and deprecated APIs",
   "description": "Flags Angular APIs that were removed or deprecated — HttpClientModule, entryComponents, TestBed.get, class guards — plus majors past their 18-month support window.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -12,12 +12,10 @@
   ],
   "keywords": [
     "angular",
-    "deprecated",
-    "migration",
     "upgrade",
-    "lint",
-    "typescript",
-    "ai-generated"
+    "migration",
+    "deprecation",
+    "typescript"
   ],
   "main": "./extension.js",
   "activationEvents": [
