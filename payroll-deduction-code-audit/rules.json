@@ -1,0 +1,14 @@
+[
+  {"id": "roth_marked_pretax", "sev": "high", "msg": "Roth deferrals are always after-tax. This row is flagged pre_tax, so taxable wages come out low."},
+  {"id": "garnishment_pretax", "sev": "high", "msg": "Garnishments, child support and levies are withheld after tax. This row is flagged pre_tax."},
+  {"id": "missing_tax_treatment", "sev": "high", "msg": "tax_treatment is empty. Nothing in the map says whether this code reduces taxable wages."},
+  {"id": "duplicate_code_conflict", "sev": "high", "msg": "This deduction code already appears above with a different tax_treatment."},
+  {"id": "pretax_without_plan_basis", "sev": "med", "msg": "Pre-tax row names no plan_basis (125, 401k, 403b, 457b, 132), so nothing supports the exclusion."},
+  {"id": "bad_box12_letter", "sev": "high", "msg": "This box12 value is not an IRS W-2 Box 12 code letter."},
+  {"id": "deferral_without_box12", "sev": "med", "msg": "Elective-deferral code carries no W-2 Box 12 letter (D, E, G, S, AA, BB, EE)."},
+  {"id": "hsa_without_box12_w", "sev": "high", "msg": "HSA contributions report in W-2 Box 12 under code W. This row does not carry W."},
+  {"id": "hsa_no_employer_split", "sev": "med", "msg": "Box 12 code W is employer plus employee combined. This row has no employer_amount to add."},
+  {"id": "stale_plan_year", "sev": "high", "msg": "effective_date is older than the plan year being filed. Deduction limits reset every January 1."},
+  {"id": "missing_effective_date", "sev": "med", "msg": "effective_date is empty, so the row cannot be tied to a plan year."},
+  {"id": "no_withholding_order", "sev": "med", "msg": "A garnishment code is present but the map has no order column to rank it against other deductions."}
+]
