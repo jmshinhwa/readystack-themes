@@ -37,6 +37,8 @@ Payment processors publish a $15.00 fee for every dispute received, and it is no
 
 [**Get the full version - $29 once**](https://buy.polar.sh/polar_cl_acLdPf1V4wK36zA20Zdz5ARBivvJMJv1kJ9JI2lqb50) - $29 once, one licence key per person or team seat, 7-day full refund.
 
+Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+
 
 ## Install
 
