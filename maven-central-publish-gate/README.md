@@ -1,8 +1,10 @@
-# Maven Central Publish Gate
+# Maven Central Lint - pom.xml publish requirements (sources, javadoc, GPG)
 
 ![Maven Central Publish Gate](https://getreadystack.com/img/promo/sku111757_result_card.jpg)
 
 AI-generated build files are written from training data, and training data still describes the OSSRH staging flow that Sonatype closed to releases on **2025-06-30**. This extension reads a `pom.xml` the way the Maven Central Portal reads it and shows you every line that will be rejected at upload — before you burn a release tag.
+
+For Java library authors: a pom.xml missing sources, javadoc, license or GPG signing is rejected by Maven Central.
 
 ## What it checks
 
