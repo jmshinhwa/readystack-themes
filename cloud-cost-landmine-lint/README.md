@@ -1,8 +1,10 @@
-# Cloud Cost Landmine Lint
+# Terraform Cost Lint - cloud cost landmines (Terraform, CloudFormation, K8s)
 
 ![Cloud Cost Landmine Lint for Terraform, CloudFormation and Kubernetes](https://getreadystack.com/img/promo/sku32637_result_card.jpg)
 
 Names every line in the file you have open that starts a recurring cloud charge, with the published us-east-1 price and the date it changes by itself.
+
+For platform teams: the resources that quietly cost the most (NAT gateways, unbounded autoscaling, unattached volumes) are flagged in the file you have open.
 
 ## What it finds
 
