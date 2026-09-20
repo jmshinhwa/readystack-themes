@@ -1,8 +1,10 @@
-# Angular Removed-API Lint
+# Angular Upgrade Lint - removed and deprecated APIs
 
 ![Angular Removed-API Lint](https://getreadystack.com/img/promo/sku39068_result_card.jpg)
 
 Paste an Angular file — or open one in VS Code — and this tells you which lines use an API that
+
+For teams upgrading Angular majors: every removed API is a build break that the upgrade guide lists but nobody greps for.
 Angular has already removed, which ones use an API that is deprecated and on the way out, and which
 Angular major your `package.json` is pinned to relative to Angular's own support window.
 
