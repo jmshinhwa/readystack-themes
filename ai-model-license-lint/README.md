@@ -1,8 +1,10 @@
-# AI Model License Lint
+# AI Model License Lint - weights and dataset licenses in your repo
 
 ![AI Model License Lint](https://getreadystack.com/img/promo/sku67226_result_card.jpg)
 
 Your assistant suggested `meta-llama/Llama-3.2-11B-Vision-Instruct`. It compiled, it
+
+For teams pulling open weights: Llama, Gemma and CC-BY-NC terms each carry their own commercial-use limits, and the wrong one ends in legal review.
 worked, and nobody read the licence. The Llama 3.2 Community License withholds its
 grant from individuals domiciled in, and companies with a principal place of business
 in, the European Union, for the multimodal builds. An EU-established team using those
