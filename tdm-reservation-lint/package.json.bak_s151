@@ -2,7 +2,7 @@
   "name": "tdm-reservation-lint",
   "displayName": "TDM Reservation Lint",
   "description": "Lints robots.txt for the machine-readable TDM reservation EU law expects: dead crawler tokens, shadowed groups, missing AI trainers, and rules that never apply.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
