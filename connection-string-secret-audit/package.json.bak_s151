@@ -2,7 +2,7 @@
   "name": "connection-string-secret-audit",
   "displayName": "Connection String & Secret Audit — 8 Stacks",
   "description": "26 rules and 32 safe-replacement snippets for hardcoded connection strings, keys and kubeconfigs across 8 VS Code stacks. Runs on your machine, sends nothing anywhere. One-time $29.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
