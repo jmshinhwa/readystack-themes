@@ -2,7 +2,7 @@
   "name": "ada-title-ii-deadline-lint",
   "displayName": "ADA Title II Deadline Lint (WCAG 2.1 AA)",
   "description": "Flags the ADA Title II and HHS Section 504 deadlines that both agencies reset in 2026, and the WCAG 2.1 Level AA failures your source code can actually show.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
