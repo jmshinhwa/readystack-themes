@@ -1,8 +1,8 @@
 {
   "name": "bem-class-extractor-html",
-  "displayName": "BEM Class Auditor for HTML and SCSS",
+  "displayName": "BEM Class Auditor - HTML and SCSS naming",
   "description": "16 BEM naming rules read the HTML file you have open, and 22 markup and SCSS skeletons write the stylesheet shell — the class names get fixed before the pull request comes back for them.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -14,10 +14,10 @@
   ],
   "keywords": [
     "bem",
-    "html",
-    "scss",
     "css",
-    "class names"
+    "scss",
+    "html",
+    "naming"
   ],
   "activationEvents": [
     "onLanguage:html"
