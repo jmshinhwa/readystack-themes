@@ -1,8 +1,10 @@
-# EAA Form Lint: WCAG 2.2 AA for HTML
+# HTML Form Accessibility Lint - WCAG 2.2 AA (EAA)
 
 ![EAA Form Lint: WCAG 2.2 AA for HTML](https://getreadystack.com/img/promo/sku41980_result_card.jpg)
 
 Paste or open an HTML, Vue or Svelte template and this extension names every WCAG 2.2 Level AA
+
+For e-commerce and SaaS with EU customers: the European Accessibility Act has applied since 28 June 2025, and forms are where audits fail first.
 form failure **on its line**, with the success-criterion number and the one-line fix.
 
 It exists because generated markup fails in a very predictable way. A 70-line signup form written
