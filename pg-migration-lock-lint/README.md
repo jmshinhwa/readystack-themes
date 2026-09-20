@@ -1,8 +1,10 @@
-# Postgres Migration Lock Lint
+# Postgres Migration Lint - locks and downtime (ALTER TABLE, CREATE INDEX)
 
 ![Postgres Migration Lock Lint](https://getreadystack.com/img/promo/sku68909_result_card.jpg)
 
 Reads the migration you have open and names every statement that takes a lock Postgres will not share — `ACCESS EXCLUSIVE`, `SHARE`, `SHARE ROW EXCLUSIVE` — and prints the rewrite that does the same thing without stopping traffic.
+
+For backend teams: the migration that takes an ACCESS EXCLUSIVE lock on a hot table is named before it runs in production.
 
 Works on raw `.sql` migration files, Rails `ActiveRecord::Migration` classes, and Django `migrations.Migration` operation lists.
 
