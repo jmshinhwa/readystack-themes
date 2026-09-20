@@ -1,8 +1,10 @@
-# AI Output Disclosure Lint — SB 942
+# AI Output Disclosure Lint - SB 942 and AI Act Art. 50
 
 ![AI Output Disclosure Lint SB 942](https://getreadystack.com/img/promo/sku84818_result_card.jpg)
 
 Your generation code says the compliance flag flips on **January 1, 2026**. That date is dead: **AB 853 moved California SB 942 to August 2, 2026**, and it has been operative ever since. Model-written service code repeats the repealed date because most of the text it learned from was written before the amendment.
+
+For products that generate text, images or audio: California SB 942 requires a free detection tool and latent disclosures from 1 January 2026.
 
 This extension reads a JavaScript or TypeScript file and reports where the code drops the disclosures the California AI Transparency Act asks a covered provider for. **12 rules**, each anchored to a duty in the statute:
 
