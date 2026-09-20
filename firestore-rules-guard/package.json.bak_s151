@@ -2,7 +2,7 @@
   "name": "firestore-rules-guard",
   "displayName": "Firestore Rules Guard",
   "description": "Audits firestore.rules and storage.rules for public access, expired test-mode dates and unbounded uploads before you deploy.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
