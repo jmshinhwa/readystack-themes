@@ -1,8 +1,8 @@
 {
   "name": "ai-model-retirement-lint",
-  "displayName": "AI Model Retirement Lint",
+  "displayName": "OpenAI Model Deprecation Lint - retired model IDs in code",
   "description": "Finds the model IDs in your code that vendors have already switched off, or have dated to switch off, with the replacement and the date.",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -12,11 +12,11 @@
     "Linters"
   ],
   "keywords": [
-    "llm",
     "openai",
-    "anthropic",
-    "gemini",
-    "deprecation"
+    "deprecation",
+    "model",
+    "llm",
+    "api"
   ],
   "activationEvents": [
     "onStartupFinished"
