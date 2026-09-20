@@ -1,8 +1,8 @@
 {
   "name": "ai-model-license-lint",
-  "displayName": "AI Model License Lint",
+  "displayName": "AI Model License Lint - weights and dataset licenses in your repo",
   "description": "Flags open-weight AI model IDs in your code against their real licence clauses: EU-domicile exclusion, 700M MAU cap, non-commercial weights, missing Built with Llama attribution.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -11,14 +11,11 @@
     "Linters"
   ],
   "keywords": [
-    "llama license",
-    "model license",
-    "open weights",
-    "compliance",
-    "gemma terms",
-    "flux dev non-commercial",
-    "ai act",
-    "attribution"
+    "license",
+    "huggingface",
+    "model-weights",
+    "llama",
+    "compliance"
   ],
   "main": "./extension.js",
   "activationEvents": [
