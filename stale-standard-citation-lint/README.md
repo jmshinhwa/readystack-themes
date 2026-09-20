@@ -1,8 +1,10 @@
-# Stale Standard Citation Lint
+# Standards Citation Lint - outdated ISO, NIST and RFC references in docs
 
 ![Stale Standard Citation Lint](https://getreadystack.com/img/promo/sku63908_result_card.jpg)
 
 Your security page still says ISO/IEC 27001:2013. That edition stopped being certifiable on 2025-10-31, and the person reading the page is a procurement reviewer, not a friend.
+
+For compliance and documentation teams: a citation to a withdrawn standard revision is an audit finding, and this names each one.
 
 This extension reads a reStructuredText, Markdown or plain text document and reports every standard edition, framework version and legal instrument in it that has been superseded, withdrawn or repealed. Each finding carries three things: what you wrote, what replaces it, and the date the old one stopped being true — counted against the day you run the check, not against the day the rule was written.
 
