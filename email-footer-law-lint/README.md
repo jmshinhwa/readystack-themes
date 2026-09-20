@@ -1,8 +1,10 @@
-# Email Footer Law Lint (CAN-SPAM · CASL · DDG)
+# Email Footer Lint - CAN-SPAM, CASL and GDPR unsubscribe
 
 ![Email Footer Law Lint](https://getreadystack.com/img/promo/sku40591_result_card.jpg)
 
 Fourteen checks on the part of an HTML email nobody re-reads: the footer.
+
+For anyone sending marketing email: CAN-SPAM penalties run up to USD 53,088 per email.
 
 The body of a campaign gets proofread by four people. The footer is copied from the last
 template, and the last template was copied from the one before it. That is how a repealed
