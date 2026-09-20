@@ -1,8 +1,8 @@
 {
   "name": "soup-list-lint",
-  "displayName": "SOUP List Lint (IEC 62304)",
+  "displayName": "SOUP List Lint - IEC 62304 dependency inventory (medical software)",
   "description": "Checks your SOUP list against IEC 62304 8.1.2, 5.3.3, 5.3.4 and 7.1.3: manufacturer, pinned version, requirements, safety class and a dated anomaly-list review.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -11,13 +11,11 @@
     "Linters"
   ],
   "keywords": [
-    "iec 62304",
+    "iec-62304",
+    "medical-device",
+    "sbom",
     "soup",
-    "medical device",
-    "mdr",
-    "software of unknown provenance",
-    "iec 82304",
-    "technical file"
+    "compliance"
   ],
   "main": "./extension.js",
   "activationEvents": [
