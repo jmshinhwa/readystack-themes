@@ -1,8 +1,8 @@
 {
   "name": "cloud-cost-landmine-lint",
-  "displayName": "Cloud Cost Landmine Lint",
+  "displayName": "Terraform Cost Lint - cloud cost landmines (Terraform, CloudFormation, K8s)",
   "description": "Names every line in the file you have open that starts a recurring cloud charge, with the published us-east-1 price and the date it changes by itself.",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -13,10 +13,10 @@
   ],
   "keywords": [
     "terraform",
-    "aws",
-    "finops",
+    "cloudformation",
+    "kubernetes",
     "cost",
-    "kubernetes"
+    "finops"
   ],
   "activationEvents": [
     "onStartupFinished"
