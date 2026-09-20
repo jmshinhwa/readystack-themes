@@ -1,8 +1,10 @@
-# CRAN Policy Submission Lint
+# CRAN Submission Lint - R package policy check (DESCRIPTION, NAMESPACE, tests)
 
 ![CRAN Policy Submission Lint](https://getreadystack.com/img/promo/sku57570_result_card.jpg)
 
 Reads an R package the way a CRAN volunteer reads it: not "does it compute", but "does it obey the
+
+For R package authors: catches the DESCRIPTION, NAMESPACE and test-time issues that bounce a CRAN submission.
 CRAN Repository Policy". `R CMD check --as-cran` already tells you about undocumented arguments and
 missing imports. It says nothing about a `Description:` field that opens with the package name, a
 `License: MIT` string with no `+ file LICENSE`, a `library(dplyr)` call sitting in `R/`, or a
