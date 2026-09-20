@@ -1,8 +1,8 @@
 {
   "name": "manuscript-disclosure-lint",
-  "displayName": "Manuscript Disclosure Lint",
+  "displayName": "Manuscript Lint - journal disclosure statements (COI, funding, AI use)",
   "description": "Checks a manuscript before submission for the statements journals and funders now require: AI-use disclosure, data availability, funding and grant IDs, CRediT, competing interests, ethics, ORCID.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -11,16 +11,11 @@
     "Linters"
   ],
   "keywords": [
-    "latex",
     "manuscript",
-    "journal submission",
-    "data availability statement",
-    "ai disclosure",
-    "credit taxonomy",
-    "orcid",
-    "nih public access policy",
-    "icmje",
-    "open access"
+    "latex",
+    "journal",
+    "disclosure",
+    "academic"
   ],
   "main": "./extension.js",
   "activationEvents": [
