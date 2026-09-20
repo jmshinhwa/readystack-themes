@@ -1,8 +1,8 @@
 {
   "name": "ai-companion-safety-lint",
-  "displayName": "AI Companion Safety Lint",
+  "displayName": "Chatbot Safety Lint - companion AI, minors and crisis prompts",
   "description": "Lints chatbot system-prompt and persona files for California SB 243 and New York GBL Art. 47 companion-chatbot duties: AI disclosure, break reminders, crisis referral, no fake human, no fake therapist",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -11,13 +11,11 @@
     "Linters"
   ],
   "keywords": [
-    "ai companion",
-    "chatbot compliance",
-    "sb 243",
-    "system prompt",
-    "ai disclosure",
-    "companion chatbot",
-    "llm safety"
+    "chatbot",
+    "ai-safety",
+    "companion",
+    "sb-243",
+    "prompts"
   ],
   "main": "./extension.js",
   "activationEvents": [
