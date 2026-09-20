@@ -2,7 +2,7 @@
   "name": "robots-txt-ai-crawler-audit",
   "displayName": "AI Crawler Rules - robots.txt Audit for AI Search",
   "description": "Checks robots.txt line by line and says what each AI crawler token actually controls - training, AI-search citation, or user fetch - and which lines silently do nothing.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
