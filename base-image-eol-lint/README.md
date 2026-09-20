@@ -1,8 +1,10 @@
-# Base Image EOL Lint
+# Dockerfile EOL Lint - base image end-of-life (FROM tags)
 
 ![Base Image EOL Lint - Dockerfile and CI end-of-life check](https://getreadystack.com/img/promo/sku29827_result_card.jpg)
 
 Marks every base image in your Dockerfiles, compose files and CI workflows whose security patches have already stopped - or stop before 13 November 2026 - and prints the tag that replaces it.
+
+For anyone with a Dockerfile: an end-of-life base image stops getting security patches, and scanners fail the build on day one.
 
 ## What it finds
 
