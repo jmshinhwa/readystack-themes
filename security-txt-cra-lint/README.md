@@ -1,8 +1,10 @@
-# security.txt Lint — RFC 9116 + CRA contact point
+# security.txt Lint - RFC 9116 and CRA contact point
 
 ![security.txt Lint - RFC 9116 + CRA contact point](https://getreadystack.com/img/promo/sku54858_result_card.jpg)
 
 Your `/.well-known/security.txt` is the address a stranger uses to tell you that your product is
+
+For anyone publishing software into the EU: a valid security.txt is how researchers reach you before a CRA-reportable vulnerability becomes public.
 being exploited. Since **11 September 2026** the EU Cyber Resilience Act (Regulation (EU) 2024/2847,
 Article 14) has run three clocks from the moment you learn about an actively exploited vulnerability:
 an early warning within **24 hours**, a vulnerability notification within **72 hours**, and a final
