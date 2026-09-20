@@ -2,7 +2,7 @@
   "name": "data-act-switching-lint",
   "displayName": "EU Data Act Switching Clause Lint",
   "description": "Lint cloud/SaaS contract text for EU Data Act Chapter VI switching clauses: notice period, transition window, retrieval window, egress and switching charges, export format.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
