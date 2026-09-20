@@ -1,0 +1,56 @@
+{
+  "name": "view-in-browser-leak-audit",
+  "displayName": "View in Browser — Publish Leak Audit (HTML)",
+  "description": "Before you view an HTML file in the browser and then publish it: finds live API keys, localhost URLs, file:// paths, noindex and mixed content left in the page.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "view in browser",
+    "html",
+    "preview",
+    "api key",
+    "secret",
+    "localhost",
+    "publish",
+    "static site",
+    "audit",
+    "leak"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vibLeakAudit.checkFile",
+        "title": "View in Browser — Publish Leak Audit (HTML): Check this file",
+        "category": "View in Browser — Publish Leak Audit (HTML)"
+      },
+      {
+        "command": "vibLeakAudit.checkWorkspace",
+        "title": "View in Browser — Publish Leak Audit (HTML): Sweep workspace and write report (licence)",
+        "category": "View in Browser — Publish Leak Audit (HTML)"
+      },
+      {
+        "command": "vibLeakAudit.enterKey",
+        "title": "View in Browser — Publish Leak Audit (HTML): Enter licence key",
+        "category": "View in Browser — Publish Leak Audit (HTML)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "view-in-browser-leak-audit"
+  },
+  "homepage": "https://getreadystack.com/tools/view-in-browser-leak-audit",
+  "icon": "icon.png"
+}
