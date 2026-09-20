@@ -2,7 +2,7 @@
   "name": "gnu-global-cpp-vscode-config-pack",
   "displayName": "GNU Global C/C++ .vscode Config Pack",
   "description": "45 ready .vscode snippets and 21 audit rules across 8 setups: GNU Global gtags indexing, c_cpp_properties IntelliSense, gist workspaces, formatter save-actions, Dark+ colour overrides, Tailwind CSS, A",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
