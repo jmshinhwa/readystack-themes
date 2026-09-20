@@ -2,7 +2,7 @@
   "name": "outlook-email-html-lint",
   "displayName": "Outlook Email HTML Lint - Classic vs New",
   "description": "Classic Outlook renders with the Word engine, the new Outlook with WebView2. Lint one email file against both at once, line by line, before you send.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
