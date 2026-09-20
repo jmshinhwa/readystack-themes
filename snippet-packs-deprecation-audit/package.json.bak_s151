@@ -2,7 +2,7 @@
   "name": "snippet-packs-deprecation-audit",
   "displayName": "Snippet Packs + Deprecation Audit (8 Stacks)",
   "description": "8 snippet libraries, 24 named snippet groups, and an audit that names the file and line where a snippet pack still emits an API your framework major removed — the line the reviewer would have sent bac",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
