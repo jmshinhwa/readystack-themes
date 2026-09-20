@@ -1,8 +1,10 @@
-# WordPress Privacy Lint (GDPR / DSGVO)
+# WordPress GDPR Lint - DSGVO privacy checks for PHP themes and plugins
 
 ![WordPress Privacy Lint (GDPR / DSGVO)](https://getreadystack.com/img/promo/sku49970_result_card.jpg)
 
 Your plugin's privacy duties are not the site owner's problem. When a WordPress site gets a
+
+For WordPress agencies with EU clients: GDPR fines reach EUR 20m or 4% of turnover, and the theme is where the tracking code lives.
 GDPR Art. 15 export request, WordPress walks every registered
 `wp_privacy_personal_data_exporters` callback. If your plugin never registered one, the rows in
 your custom table are simply not in the export, and the site owner is the one who answers for it.
