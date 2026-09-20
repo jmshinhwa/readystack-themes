@@ -1,8 +1,10 @@
-# DORA Register of Information Lint
+# ICT Register Lint - DORA register of information (CSV, XLSX)
 
 ![DORA Register of Information Lint](https://getreadystack.com/img/promo/sku54671_result_card.jpg)
 
 Open the register CSV your team exports for DORA (Regulation (EU) 2022/2554, Article 28(3)) and press
+
+For compliance teams at EU financial entities: DORA has applied since 17 January 2025 and the register of information is what the supervisor collects.
 **DORA Register Lint: Check this file**. Every row is read where it sits — nothing is uploaded, nothing is
 sent to a model, nothing leaves the machine. The register lists who holds your data and which functions
 would stop if they did; it is not a file you can paste into a chat window.
