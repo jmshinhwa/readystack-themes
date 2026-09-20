@@ -1,8 +1,8 @@
 {
   "name": "actions-expiry-lint",
-  "displayName": "Actions Expiry Lint",
+  "displayName": "GitHub Actions Lint - expiring runners, Node versions and deprecated actions",
   "description": "Flags GitHub Actions lines that stop working on a date - retired runner images, shut-down action versions, Node runtimes past end-of-life. Checked against any 'as of' date.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -11,14 +11,11 @@
     "Linters"
   ],
   "keywords": [
-    "github actions",
+    "github-actions",
     "ci",
     "workflow",
     "deprecation",
-    "end of life",
-    "runner images",
-    "yaml",
-    "linter"
+    "runner"
   ],
   "main": "./extension.js",
   "activationEvents": [
