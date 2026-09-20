@@ -1,8 +1,10 @@
-# Swift 6 Concurrency Migration Lint
+# Swift 6 Concurrency Lint - strict concurrency migration
 
 ![Swift 6 Concurrency Migration Lint](https://getreadystack.com/img/promo/sku109792_result_card.jpg)
 
 Swift 6 language mode turns data-race safety from a warning into a compiler error. Code that builds cleanly in Swift 5 — a `static var shared` singleton, a top-level `var` cache, a `DispatchQueue` used as a lock — stops building the moment a target is switched over. Assistants still write that Swift 5 shape by default, because most of the Swift on the public internet predates the strict-concurrency rules.
+
+For iOS teams moving to Swift 6: data-race errors that appear only under strict concurrency are found before the toolchain switch.
 
 This extension reads `**/*.swift` and reports the lines that will not survive the switch, before you flip the flag.
 
