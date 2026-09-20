@@ -2,7 +2,7 @@
   "name": "ai-act-article-50-audit",
   "displayName": "EU AI Act Article 50 Transparency Audit for Your Codebase",
   "description": "Finds the AI call sites, generation code and system prompts that trigger EU AI Act Article 50 disclosure duties - in force since 2 August 2026.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
