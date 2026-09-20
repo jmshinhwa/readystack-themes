@@ -1,0 +1,186 @@
+[
+ {
+  "id": "secret_google_api_key",
+  "sev": "high",
+  "kind": "regex",
+  "re": "AIza[0-9A-Za-z_\\-]{35}",
+  "msg": "Google API key literal sits in the page source — anyone who opens View Source has it. Restrict the key by HTTP referrer or move the call server-side before you publish.",
+  "consts": {
+   "sev_order": [
+    "high",
+    "med",
+    "low"
+   ],
+   "rail": "local preview -> public host",
+   "kit": "readystack"
+  }
+ },
+ {
+  "id": "secret_aws_access_key",
+  "sev": "high",
+  "kind": "regex",
+  "re": "AKIA[0-9A-Z]{16}",
+  "msg": "AWS access key id in client-side HTML. Rotate it and sign requests from a backend — a browser page cannot keep this secret."
+ },
+ {
+  "id": "secret_stripe_live",
+  "sev": "high",
+  "kind": "regex",
+  "re": "sk_live_[0-9a-zA-Z]{10,}",
+  "msg": "Stripe SECRET key (sk_live_) in the page. Only pk_ publishable keys belong in a browser. Roll this key in the Stripe dashboard now."
+ },
+ {
+  "id": "secret_slack_token",
+  "sev": "high",
+  "kind": "regex",
+  "re": "xox[baprs]-[0-9A-Za-z-]{10,}",
+  "msg": "Slack token in the page source. Revoke it and call Slack from a server, not from the visitor's browser."
+ },
+ {
+  "id": "secret_private_key_block",
+  "sev": "high",
+  "kind": "regex",
+  "re": "-----BEGIN [A-Z ]*PRIVATE KEY-----",
+  "msg": "A PEM private key block is pasted into this HTML file. Delete it, rotate the key pair, and never ship a private key to a static host."
+ },
+ {
+  "id": "secret_firebase_apikey",
+  "sev": "high",
+  "kind": "regex",
+  "re": "apiKey\\s*:\\s*[\\\"'][^\\\"']{15,}[\\\"']",
+  "msg": "Firebase-style apiKey literal in inline script. Lock the project with security rules and App Check — a published config without rules is an open database."
+ },
+ {
+  "id": "secret_generic_assignment",
+  "sev": "high",
+  "kind": "regex",
+  "re": "(?:api[_-]?key|access[_-]?token|auth[_-]?token|client[_-]?secret|password)\\s*[:=]\\s*[\\\"'][^\\\"'\\s]{12,}[\\\"']",
+  "msg": "A credential is assigned to a literal string in this page. Move it behind a request your server makes, then rotate the value you just exposed."
+ },
+ {
+  "id": "basic_auth_in_url",
+  "sev": "high",
+  "kind": "regex",
+  "re": "https?://[A-Za-z0-9._%+-]+:[^\\s\\\"'/@]+@",
+  "msg": "user:password embedded in a URL. Credentials in a URL leak through history, logs and the Referer header. Remove them before publishing."
+ },
+ {
+  "id": "localhost_url",
+  "sev": "high",
+  "kind": "regex",
+  "re": "https?://(?:localhost|127\\.0\\.0\\.1)(?::\\d+)?",
+  "msg": "A localhost URL works in your preview and dies for every visitor. Point it at the public origin, or make it a relative path."
+ },
+ {
+  "id": "private_lan_url",
+  "sev": "high",
+  "kind": "regex",
+  "re": "https?://(?:10\\.\\d|192\\.168\\.|172\\.(?:1[6-9]|2\\d|3[01])\\.)",
+  "msg": "A private LAN address is hard-coded here. It resolves on your machine only, and it tells strangers your internal network layout."
+ },
+ {
+  "id": "file_scheme_url",
+  "sev": "high",
+  "kind": "regex",
+  "re": "file:///",
+  "msg": "A file:/// URL only opens from your own disk. Browsers block it from a web page, so this asset will be missing once published."
+ },
+ {
+  "id": "local_disk_path",
+  "sev": "high",
+  "kind": "regex",
+  "re": "(?:src|href)\\s*=\\s*[\\\"'](?:[A-Za-z]:\\\\|/Users/|/home/|/tmp/)",
+  "msg": "An absolute path from your own disk is used as src/href. It breaks on the host and it prints your username into the page."
+ },
+ {
+  "id": "mixed_content_resource",
+  "sev": "med",
+  "kind": "regex",
+  "re": "(?:src|href)\\s*=\\s*[\\\"']http://(?!localhost|127\\.0\\.0\\.1)",
+  "msg": "Plain http:// resource on a page that will be served over https. Browsers block or downgrade it — switch the URL to https://."
+ },
+ {
+  "id": "insecure_form_action",
+  "sev": "high",
+  "kind": "regex",
+  "re": "<form\\b[^>]*\\baction\\s*=\\s*[\\\"']http://",
+  "msg": "Form posts over plain http://. Whatever the visitor types travels in clear text. Change the action to https://."
+ },
+ {
+  "id": "robots_noindex",
+  "sev": "high",
+  "kind": "regex",
+  "re": "<meta\\b[^>]*name\\s*=\\s*[\\\"']robots[\\\"'][^>]*noindex",
+  "msg": "A leftover robots noindex tag. The page will publish fine and then never appear in search — the failure nobody notices for weeks."
+ },
+ {
+  "id": "cdn_unpinned_latest",
+  "sev": "med",
+  "kind": "regex",
+  "re": "src\\s*=\\s*[\\\"']https://(?:cdn\\.jsdelivr\\.net|unpkg\\.com)/[^\\\"']*@latest",
+  "msg": "Third-party script pinned to @latest. The vendor can change your live page at any moment. Pin an exact version."
+ },
+ {
+  "id": "source_map_ref",
+  "sev": "med",
+  "kind": "regex",
+  "re": "//#\\s*sourceMappingURL=",
+  "msg": "A source map reference is shipped with the page, handing readers your unminified source. Drop it from the production build."
+ },
+ {
+  "id": "commented_secret",
+  "sev": "med",
+  "kind": "regex",
+  "re": "<!--[^>]*?(?:api[_-]?key|token|password|secret)",
+  "msg": "A credential is sitting inside an HTML comment. Comments ship to the browser — commenting a secret out does not hide it."
+ },
+ {
+  "id": "placeholder_left",
+  "sev": "med",
+  "kind": "regex",
+  "re": "(?:YOUR_API_KEY|CHANGE_?ME|FIXME|TODO)",
+  "msg": "A placeholder or TODO marker survived into the page you are about to publish. Fill it in or delete the block."
+ },
+ {
+  "id": "console_debug_left",
+  "sev": "low",
+  "kind": "regex",
+  "re": "console\\.(?:log|debug|table|dir)\\s*\\(",
+  "msg": "Debug console output left in the page. It is noise at best and it prints your data objects to anyone with DevTools open."
+ },
+ {
+  "id": "debug_flag_true",
+  "sev": "low",
+  "kind": "regex",
+  "re": "\\b(?:DEBUG|VERBOSE|IS_DEV)\\s*[:=]\\s*true\\b",
+  "msg": "A debug flag is still switched on. Set it to false so the published page does not run its development branch."
+ },
+ {
+  "id": "external_script_no_sri",
+  "sev": "med",
+  "kind": "tag_missing_attr",
+  "tag": "script",
+  "when_attr": "src",
+  "when_re": "^https?://",
+  "require_attr": "integrity",
+  "msg": "External script loaded with no integrity hash. If that CDN account is ever taken over, the attacker runs code on your page. Add integrity and crossorigin."
+ },
+ {
+  "id": "blank_link_no_noopener",
+  "sev": "low",
+  "kind": "tag_missing_attr",
+  "tag": "a",
+  "when_attr": "target",
+  "when_re": "^_blank$",
+  "require_attr": "rel",
+  "require_attr_re": "noopener",
+  "msg": "target=\"_blank\" without rel=\"noopener\". The page you link to can reach back into this tab. Add rel=\"noopener\"."
+ },
+ {
+  "id": "stale_year_literal",
+  "sev": "low",
+  "kind": "year_lt_today",
+  "re": "(?:©|&copy;|Copyright)\\s*(?:&copy;\\s*)?(\\d{4})",
+  "msg": "The copyright year in this page is older than today. Visitors read a stale year as an abandoned site; generated markup gets this wrong constantly."
+ }
+]
