@@ -1,8 +1,10 @@
-# Auditor IBS/CBS para NF-e — NT 2025.002
+# NF-e XML Lint (BR) - IBS/CBS NT 2025.002 Reforma Tributária
 
 ![Auditor IBS/CBS para NF-e — NT 2025.002](https://getreadystack.com/img/promo/sku25994_result_card.jpg)
 
 Você abre o XML, roda `Auditar este XML de NF-e`, e o painel devolve isto:
+
+Para times fiscais: lê o XML da NF-e no editor e aponta os campos de IBS/CBS que a SEFAZ deixou passar (NT 2025.002).
 
 | Linha | Ocorrência |
 |---|---|
