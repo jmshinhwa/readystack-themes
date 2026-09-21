@@ -9,25 +9,7 @@ const RECHECK_MS = 7 * 24 * 3600 * 1000;  // 7일마다 다시 묻는다 (환불
 
 const ALL_BENEFIT_ID = '22692551-5203-4467-b1a3-e33cdba6589d';   // s149 2026-09-17 — 팀 키(전 린터 한 키 · Polar benefit) · 상품 benefit 다음에 한 번 더 묻는다
 function validate(key) {
-  return validate1(key, BENEFIT_ID).then(function (r) { return (r.ok || r.offline || !/^[0-9a-f-]{36}$/.test(ALL_BENEFIT_ID)) ? r : validate1(key, ALL_BENEFIT_ID); })
-    .then(function (r) { return (r.ok || r.offline) ? r : validateHub(key); });   // s153 2026-09-20 — Whop 구독 키: 우리 워커가 Whop 에 묻는다 (키는 워커 비밀)
-}
-// s153 — Polar 가 모르는 키를 허브 워커(/api/lic)에 한 번 더 묻는다. ★Whop 연간 구독($149.99)의 키가 여기로 열린다. 실패는 그대로 거절.
-function validateHub(key) {
-  return new Promise(function (resolve) {
-    const req = https.request({ hostname: 'getreadystack.com', path: '/api/lic?key=' + encodeURIComponent(key) + '&slug=' + encodeURIComponent(SLUG),
-      method: 'GET', timeout: 8000, headers: { 'accept': 'application/json', 'user-agent': 'readystack-vsix/' + SLUG } }, function (res) {
-      let buf = '';
-      res.on('data', function (d) { buf += d; });
-      res.on('end', function () {
-        if (res.statusCode !== 200) return resolve({ ok: false, offline: false });
-        try { const j = JSON.parse(buf); resolve({ ok: !!(j && j.ok), offline: false }); } catch (e) { resolve({ ok: false, offline: false }); }
-      });
-    });
-    req.on('timeout', function () { req.destroy(); resolve({ ok: false, offline: true }); });
-    req.on('error', function () { resolve({ ok: false, offline: true }); });
-    req.end();
-  });
+  return validate1(key, BENEFIT_ID).then(function (r) { return (r.ok || r.offline || !/^[0-9a-f-]{36}$/.test(ALL_BENEFIT_ID)) ? r : validate1(key, ALL_BENEFIT_ID); });
 }
 function validate1(key, ben) {
   return new Promise(function (resolve) {
