@@ -1,8 +1,10 @@
-# SAF-T (PT) + ATCUD Lint
+# SAF-T XML Lint (PT) - ATCUD, QR code, hash, NIF, AT
 
 ![SAF-T (PT) + ATCUD Lint](https://getreadystack.com/img/promo/sku114950_result_card.jpg)
 
 O ficheiro SAF-T (PT) só é validado depois de chegar à AT. Até lá, o XML que o seu programa de faturação exporta parece bem-formado: abre no editor, não dá erro de schema no olho humano, e só no portal é que devolve um código de erro — um de cada vez, obrigando a corrigir, reexportar o período inteiro e voltar a submeter.
+
+Para contabilistas: 14 verificações ao XML SAF-T (PT) antes da entrega à AT — ATCUD, QR code, hash, NIF, taxas por região e totais.
 
 Esta extensão corre **14 verificações** sobre o ficheiro aberto no VS Code e escreve cada achado com o número da linha e o documento a que pertence. Trabalha em cima do texto: não liga a lado nenhum, não envia o ficheiro, não precisa de rede.
 
