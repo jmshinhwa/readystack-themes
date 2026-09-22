@@ -1,0 +1,53 @@
+{
+  "name": "image-host-transfer-lint",
+  "displayName": "Image Host Transfer Lint",
+  "description": "Finds images, avatars, fonts and embeds in your docs that are hotlinked from non-EU hosts, so EU visitor IPs leave the EEA before anyone consents.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "gdpr",
+    "image hosting",
+    "hotlink",
+    "markdown docs",
+    "privacy",
+    "third country transfer",
+    "google fonts"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "imageHostTransfer.checkFile",
+        "title": "Image Host Transfer Lint - EU docs IP leak: Check this file",
+        "category": "Image Host Transfer Lint - EU docs IP leak"
+      },
+      {
+        "command": "imageHostTransfer.checkWorkspace",
+        "title": "Image Host Transfer Lint - EU docs IP leak: Sweep workspace and write report (licence)",
+        "category": "Image Host Transfer Lint - EU docs IP leak"
+      },
+      {
+        "command": "imageHostTransfer.enterKey",
+        "title": "Image Host Transfer Lint - EU docs IP leak: Enter licence key",
+        "category": "Image Host Transfer Lint - EU docs IP leak"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "image-host-transfer-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/image-host-transfer-lint",
+  "icon": "icon.png"
+}
