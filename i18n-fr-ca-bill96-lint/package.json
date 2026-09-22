@@ -1,0 +1,54 @@
+{
+  "name": "i18n-fr-ca-bill96-lint",
+  "displayName": "i18n fr-CA Lint — Quebec Bill 96",
+  "description": "Lints a French-Canadian locale file (fr-CA.json, .arb) for Quebec Bill 96 / OQLF problems: France-French terms, untranslated English, euro currency, slashed dates, fr-FR locale tags.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "i18n",
+    "localization",
+    "fr-CA",
+    "quebec",
+    "bill-96",
+    "oqlf",
+    "french",
+    "linter"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "frCaLint.checkFile",
+        "title": "i18n fr-CA Lint — Quebec Bill 96: Check this file",
+        "category": "i18n fr-CA Lint — Quebec Bill 96"
+      },
+      {
+        "command": "frCaLint.checkWorkspace",
+        "title": "i18n fr-CA Lint — Quebec Bill 96: Sweep workspace and write report (licence)",
+        "category": "i18n fr-CA Lint — Quebec Bill 96"
+      },
+      {
+        "command": "frCaLint.enterKey",
+        "title": "i18n fr-CA Lint — Quebec Bill 96: Enter licence key",
+        "category": "i18n fr-CA Lint — Quebec Bill 96"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "i18n-fr-ca-bill96-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/i18n-fr-ca-bill96-lint",
+  "icon": "icon.png"
+}
