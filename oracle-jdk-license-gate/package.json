@@ -1,0 +1,55 @@
+{
+  "name": "oracle-jdk-license-gate",
+  "displayName": "Oracle JDK License Gate",
+  "description": "Finds Java runtimes in your Dockerfiles, CI workflows and shell scripts that sit under Oracle's paid license terms, and shows the free OpenJDK line that replaces each one.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "java",
+    "jdk",
+    "oracle",
+    "license",
+    "compliance",
+    "docker",
+    "graalvm",
+    "temurin",
+    "ci"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "oracleJdkLicenseGate.checkFile",
+        "title": "Oracle JDK License Gate: Check this file",
+        "category": "Oracle JDK License Gate"
+      },
+      {
+        "command": "oracleJdkLicenseGate.checkWorkspace",
+        "title": "Oracle JDK License Gate: Sweep workspace and write report (licence)",
+        "category": "Oracle JDK License Gate"
+      },
+      {
+        "command": "oracleJdkLicenseGate.enterKey",
+        "title": "Oracle JDK License Gate: Enter licence key",
+        "category": "Oracle JDK License Gate"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "oracle-jdk-license-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/oracle-jdk-license-gate",
+  "icon": "icon.png"
+}
