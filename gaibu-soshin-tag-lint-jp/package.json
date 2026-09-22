@@ -1,0 +1,54 @@
+{
+  "name": "gaibu-soshin-tag-lint-jp",
+  "displayName": "タグ送信点検 — 外部送信規律の公表事項チェック",
+  "description": "HTMLに埋まった外部送信タグ(GA4・Meta Pixel・LINE・Yahoo!広告ほか)を検出し、電気通信事業法27条の12が求める公表4項目と突き合わせて、行番号つきで不足を指摘します。",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "外部送信規律",
+    "電気通信事業法",
+    "公表事項",
+    "タグマネージャ",
+    "プライバシー",
+    "html",
+    "lint",
+    "GA4"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "gaibuSoshinTagLint.checkFile",
+        "title": "タグ送信点検 — 外部送信規律の公表事項チェック: Check this file",
+        "category": "タグ送信点検 — 外部送信規律の公表事項チェック"
+      },
+      {
+        "command": "gaibuSoshinTagLint.checkWorkspace",
+        "title": "タグ送信点検 — 外部送信規律の公表事項チェック: Sweep workspace and write report (licence)",
+        "category": "タグ送信点検 — 外部送信規律の公表事項チェック"
+      },
+      {
+        "command": "gaibuSoshinTagLint.enterKey",
+        "title": "タグ送信点検 — 外部送信規律の公表事項チェック: Enter licence key",
+        "category": "タグ送信点検 — 外部送信規律の公表事項チェック"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "gaibu-soshin-tag-lint-jp"
+  },
+  "homepage": "https://getreadystack.com/tools/gaibu-soshin-tag-lint-jp",
+  "icon": "icon.png"
+}
