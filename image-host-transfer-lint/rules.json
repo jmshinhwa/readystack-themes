@@ -1,0 +1,168 @@
+[
+  {
+    "check": "google-fonts-us",
+    "kind": "host",
+    "sev": "error",
+    "host": "fonts.googleapis.com / fonts.gstatic.com",
+    "country": "United States",
+    "pattern": "fonts\\.(?:googleapis|gstatic)\\.com",
+    "msg": "Google Fonts is pulled from a US host, so the visitor's IP is transferred before the page paints. LG Munchen I, 20 O 14144/19 (2022-01-20) awarded EUR 100 damages to one visitor for exactly this. Fix: download the .woff2 next to your docs and serve it yourself.",
+    "constants": {
+      "law": "GDPR Art. 44-49 (transfers to a third country) + Art. 6(1) (no legal basis for the IP disclosure)",
+      "ruling": "LG Munchen I, 20 O 14144/19, 2022-01-20, EUR 100 per visitor",
+      "eea_note": "EEA = EU 27 + Iceland, Liechtenstein, Norway. The US has an adequacy decision (EU-US Data Privacy Framework, 2023-07-10) but only for certified recipients; a CDN edge is not certified for you by default.",
+      "today_default": "2026-09-21",
+      "scope": "asset URLs inside .md, .mdx and .html docs; fenced code blocks are treated as examples and skipped"
+    }
+  },
+  {
+    "check": "gravatar-us",
+    "kind": "host",
+    "sev": "error",
+    "host": "gravatar.com",
+    "country": "United States",
+    "pattern": "(?:secure\\.|www\\.)?gravatar\\.com",
+    "msg": "A Gravatar avatar is loaded from Automattic in the US. The request carries the reader's IP plus the MD5 of an author e-mail. Fix: commit the avatar image into the repo and point at the local path."
+  },
+  {
+    "check": "imgur-us",
+    "kind": "host",
+    "sev": "error",
+    "host": "imgur.com",
+    "country": "United States",
+    "pattern": "(?:i\\.|www\\.)?imgur\\.com",
+    "msg": "This screenshot is hotlinked from Imgur (US). Every reader of the page is announced to Imgur, and Imgur may delete or replace the file without telling you. Fix: move the image into docs/img/ and reference it relatively."
+  },
+  {
+    "check": "smms-cn",
+    "kind": "host",
+    "sev": "error",
+    "host": "sm.ms / i.loli.net",
+    "country": "China",
+    "pattern": "(?:\\bsm\\.ms\\b|i\\.loli\\.net)",
+    "msg": "This image sits on SM.MS (China). China has no EU adequacy decision, so this is an Art. 44 transfer with no safeguard on file. Fix: re-upload to a host inside the EEA or into the repo itself.",
+    "constants": {
+      "no_adequacy": "China, Russia and India have no EU adequacy decision as of 2026-09-21; an SCC set plus a transfer impact assessment would be required."
+    }
+  },
+  {
+    "check": "imgbb-postimg-us",
+    "kind": "host",
+    "sev": "error",
+    "host": "ibb.co / postimg.cc",
+    "country": "United States",
+    "pattern": "(?:\\bibb\\.co\\b|postimg\\.cc)",
+    "msg": "Free image hosts ImgBB / PostImage are US-run and give you no data processing agreement at all. Fix: host the file yourself; these links also rot once the free bucket is recycled."
+  },
+  {
+    "check": "github-raw-us",
+    "kind": "host",
+    "sev": "warn",
+    "host": "raw.githubusercontent.com / user-images.githubusercontent.com",
+    "country": "United States",
+    "pattern": "(?:raw|user-images)\\.githubusercontent\\.com",
+    "msg": "The asset is served by GitHub in the US. Fine inside GitHub, but on your own published docs page it is an uncontrolled third-country transfer. Fix: copy the file into the site build instead of hotlinking it."
+  },
+  {
+    "check": "jsdelivr-cdn",
+    "kind": "host",
+    "sev": "error",
+    "host": "cdn.jsdelivr.net",
+    "country": "United States / China edges",
+    "pattern": "cdn\\.jsdelivr\\.net",
+    "msg": "jsDelivr resolves to US and Chinese edge nodes depending on the reader, so you cannot name the receiving country in your Art. 30 record. Fix: install the package and bundle it, or self-host the single file."
+  },
+  {
+    "check": "unpkg-cdn",
+    "kind": "host",
+    "sev": "error",
+    "host": "unpkg.com",
+    "country": "United States",
+    "pattern": "unpkg\\.com",
+    "msg": "unpkg.com is a US CDN in front of npm. Loading a script from it hands the reader's IP and referrer to a party you have no contract with. Fix: vendor the file into your assets folder."
+  },
+  {
+    "check": "cdnjs-cloudflare",
+    "kind": "host",
+    "sev": "error",
+    "host": "cdnjs.cloudflare.com",
+    "country": "United States",
+    "pattern": "cdnjs\\.cloudflare\\.com",
+    "msg": "cdnjs is operated by Cloudflare (US). Subresource integrity does not help here: the transfer happens with the request, not with the payload. Fix: serve the library from your own origin."
+  },
+  {
+    "check": "china-object-storage",
+    "kind": "host",
+    "sev": "error",
+    "host": "Aliyun OSS / Tencent COS / Qiniu",
+    "country": "China",
+    "pattern": "(?:oss-cn-[a-z0-9-]+\\.aliyuncs\\.com|cos\\.ap-[a-z0-9-]+\\.myqcloud\\.com|[a-z0-9-]+\\.clouddn\\.com)",
+    "msg": "A Chinese object-storage bucket is serving this asset. Typical when an editor upload plugin was left on its default backend. Fix: repoint the upload backend at an EEA bucket and rewrite the published links."
+  },
+  {
+    "check": "youtube-embed",
+    "kind": "host",
+    "sev": "error",
+    "host": "youtube.com",
+    "country": "United States",
+    "pattern": "(?:youtube\\.com/embed|youtu\\.be/)",
+    "msg": "A plain YouTube embed sets cookies and profiles the reader on load. Fix: use youtube-nocookie.com behind a click-to-load placeholder, so nothing leaves until the reader asks for the video."
+  },
+  {
+    "check": "google-tag-analytics",
+    "kind": "host",
+    "sev": "error",
+    "host": "googletagmanager.com / google-analytics.com",
+    "country": "United States",
+    "pattern": "(?:googletagmanager\\.com|google-analytics\\.com)",
+    "msg": "Analytics fires on page load, before any consent choice exists on a docs page. Fix: gate it behind consent, or use a self-hosted counter that stores no identifier."
+  },
+  {
+    "check": "badge-host",
+    "kind": "host",
+    "sev": "warn",
+    "host": "img.shields.io / badgen.net",
+    "country": "United States",
+    "pattern": "(?:img\\.shields\\.io|badgen\\.net)",
+    "msg": "Build badges are live images: each reader pings the badge host. Harmless in a repo, a transfer on a published page. Fix: commit the rendered .svg and refresh it in CI."
+  },
+  {
+    "check": "typekit-fonts",
+    "kind": "host",
+    "sev": "error",
+    "host": "use.typekit.net / p.typekit.net",
+    "country": "United States",
+    "pattern": "(?:use|p)\\.typekit\\.net",
+    "msg": "Adobe Fonts is loaded from a US host for every reader, the same pattern the Munich Google Fonts ruling punished. Fix: switch to a licensed self-hosted webfont file."
+  },
+  {
+    "check": "comment-widget",
+    "kind": "host",
+    "sev": "error",
+    "host": "disqus.com / utteranc.es / giscus.app",
+    "country": "United States",
+    "pattern": "(?:disqus\\.com|utteranc\\.es|giscus\\.app)",
+    "msg": "A comment widget loads third-party script and, for Disqus, tracking cookies before a word is typed. Fix: load it only after an explicit click, and name the processor in your privacy notice.",
+    "constants": {
+      "art30": "Art. 30(1)(e) asks you to record transfers to third countries and the safeguards used; a widget you never listed cannot be recorded."
+    }
+  },
+  {
+    "check": "diagram-render-service",
+    "kind": "host",
+    "sev": "warn",
+    "host": "mermaid.ink / kroki.io / quickchart.io",
+    "country": "United States",
+    "pattern": "(?:mermaid\\.ink|kroki\\.io|quickchart\\.io)",
+    "msg": "The diagram source is encoded into the URL, so your internal architecture is sent to a render service along with the reader's IP. Fix: render the diagram at build time and commit the .svg."
+  },
+  {
+    "check": "insecure-asset-scheme",
+    "kind": "text",
+    "sev": "warn",
+    "host": "plain http",
+    "country": "any",
+    "pattern": "(?:\\]\\(http://|src\\s*=\\s*[\"']http://|href\\s*=\\s*[\"']http://)",
+    "msg": "This asset is fetched over plain http, so the transfer is also readable in transit. Fix: use https, or a relative path if the file lives with the docs."
+  }
+]
