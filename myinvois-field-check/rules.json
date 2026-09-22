@@ -1,0 +1,115 @@
+[
+  {
+    "id": "supplier_tin_missing",
+    "sev": "error",
+    "name": "Supplier TIN missing",
+    "msg": "AccountingSupplierParty has no PartyIdentification with schemeID \"TIN\". IRBM rejects the submission before any field is read.",
+    "fix": "Add PartyIdentification ID schemeID=\"TIN\" with the supplier's LHDN Tax Identification Number."
+  },
+  {
+    "id": "supplier_tin_format",
+    "sev": "error",
+    "name": "Supplier TIN shape is not an IRBM TIN",
+    "msg": "Supplier TIN \"{v}\" is not one or two letters followed by 9-12 digits (e.g. C25845632100, IG56003500070).",
+    "fix": "Copy the TIN from MyTax exactly: no spaces, no dashes, keep the C / IG / CS prefix.",
+    "pattern": "^[A-Z]{1,2}[0-9]{9,12}$"
+  },
+  {
+    "id": "supplier_general_tin",
+    "sev": "error",
+    "name": "General public TIN used as the supplier",
+    "msg": "TIN EI00000000010 is the general public TIN. It is a buyer-side value for consolidated and foreign-buyer e-Invoices; a supplier must submit under its own TIN.",
+    "fix": "Put your own TIN in AccountingSupplierParty and keep EI00000000010 only in AccountingCustomerParty.",
+    "general_tin": "EI00000000010"
+  },
+  {
+    "id": "supplier_msic_code",
+    "sev": "error",
+    "name": "MSIC code is not 5 digits",
+    "msg": "IndustryClassificationCode \"{v}\" is not a 5-digit MSIC 2008 code.",
+    "fix": "Use the 5-digit MSIC code shown on your LHDN profile, e.g. 62010 for computer programming activities."
+  },
+  {
+    "id": "supplier_msic_name",
+    "sev": "error",
+    "name": "MSIC business activity description empty",
+    "msg": "IndustryClassificationCode carries no name attribute, so the business activity description is blank.",
+    "fix": "Add name=\"<business activity description>\" next to the MSIC code."
+  },
+  {
+    "id": "supplier_contact_phone",
+    "sev": "warn",
+    "name": "Supplier telephone missing or too short",
+    "msg": "Supplier Contact Telephone is \"{v}\". IRBM expects a reachable number in E.164 form.",
+    "fix": "Write the phone as +60XXXXXXXXX with no spaces."
+  },
+  {
+    "id": "buyer_registration_missing",
+    "sev": "error",
+    "name": "Buyer has no registration identifier",
+    "msg": "AccountingCustomerParty carries a TIN but no BRN, NRIC, PASSPORT or ARMY identifier. IRBM validates the TIN against that second identifier.",
+    "fix": "Add a second PartyIdentification with schemeID BRN, NRIC, PASSPORT or ARMY."
+  },
+  {
+    "id": "invoice_type_code",
+    "sev": "error",
+    "name": "e-Invoice type code is not an IRBM code",
+    "msg": "InvoiceTypeCode \"{v}\" is not an IRBM e-Invoice type code.",
+    "fix": "Use 01 Invoice, 02 Credit Note, 03 Debit Note, 04 Refund Note, 11 Self-billed Invoice, 12 Self-billed Credit Note, 13 Self-billed Debit Note, 14 Self-billed Refund Note.",
+    "codes": ["01", "02", "03", "04", "11", "12", "13", "14"],
+    "note_codes": ["02", "03", "04", "12", "13", "14"]
+  },
+  {
+    "id": "einvoice_version",
+    "sev": "error",
+    "name": "e-Invoice version not declared",
+    "msg": "InvoiceTypeCode listVersionID is \"{v}\"; IRBM accepts 1.0 (unsigned) or 1.1 (signed).",
+    "fix": "Set listVersionID=\"1.1\" and sign the document, or \"1.0\" for the unsigned schema.",
+    "versions": ["1.0", "1.1"]
+  },
+  {
+    "id": "currency_code",
+    "sev": "error",
+    "name": "Document currency is not an ISO 4217 code",
+    "msg": "DocumentCurrencyCode \"{v}\" is not three capital letters.",
+    "fix": "Use the ISO 4217 alphabetic code, e.g. MYR, USD, SGD."
+  },
+  {
+    "id": "exchange_rate_missing",
+    "sev": "error",
+    "name": "Foreign currency without an exchange rate",
+    "msg": "Document currency is {v} but TaxExchangeRate CalculationRate is missing or zero. A non-MYR e-Invoice must also carry the MYR rate.",
+    "fix": "Add TaxExchangeRate with SourceCurrencyCode {v}, TargetCurrencyCode MYR and the CalculationRate used."
+  },
+  {
+    "id": "line_classification_code",
+    "sev": "error",
+    "name": "Line classification code is not an IRBM class",
+    "msg": "Line {v}: ItemClassificationCode is missing or not a 3-digit IRBM classification code in the 001-045 range.",
+    "fix": "Add CommodityClassification ItemClassificationCode listID=\"CLASS\" with a padded 3-digit code, e.g. 022 for others.",
+    "min": 1,
+    "max": 45
+  },
+  {
+    "id": "line_tax_type_code",
+    "sev": "error",
+    "name": "Tax type code is not an IRBM tax type",
+    "msg": "Line {v}: TaxCategory ID is not an IRBM tax type code.",
+    "fix": "Use 01 Sales Tax, 02 Service Tax, 03 Tourism Tax, 04 High-Value Goods Tax, 05 Sales Tax on Low Value Goods, 06 Not Applicable, E Tax exemption.",
+    "codes": ["01", "02", "03", "04", "05", "06", "E"]
+  },
+  {
+    "id": "note_reference_missing",
+    "sev": "error",
+    "name": "Credit, debit or refund note with no original reference",
+    "msg": "e-Invoice type {v} must point at the original e-Invoice, but BillingReference carries no reference number.",
+    "fix": "Add BillingReference AdditionalDocumentReference ID with the original e-Invoice internal ID or UUID."
+  },
+  {
+    "id": "signature_missing",
+    "sev": "error",
+    "name": "Version 1.1 document is not signed",
+    "msg": "listVersionID is 1.1 but the document has no UBLExtensions signature block.",
+    "fix": "Sign with version 1.1, or drop to listVersionID \"1.0\" if you submit unsigned."
+  }
+]
