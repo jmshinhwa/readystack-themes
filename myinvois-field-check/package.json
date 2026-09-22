@@ -1,0 +1,53 @@
+{
+  "name": "myinvois-field-check",
+  "displayName": "MyInvois Field Check — Malaysia e-Invoice (UBL 2.1)",
+  "description": "Lints MyInvois (LHDN/IRBM) e-Invoice JSON against the UBL 2.1 field rules: TIN, MSIC, classification code, tax type code, invoice type code.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "myinvois",
+    "e-invoice",
+    "malaysia",
+    "lhdn",
+    "irbm",
+    "ubl",
+    "einvoice"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "myinvoisFieldCheck.checkFile",
+        "title": "MyInvois Field Check — Malaysia e-Invoice: Check this file",
+        "category": "MyInvois Field Check — Malaysia e-Invoice"
+      },
+      {
+        "command": "myinvoisFieldCheck.checkWorkspace",
+        "title": "MyInvois Field Check — Malaysia e-Invoice: Sweep workspace and write report (licence)",
+        "category": "MyInvois Field Check — Malaysia e-Invoice"
+      },
+      {
+        "command": "myinvoisFieldCheck.enterKey",
+        "title": "MyInvois Field Check — Malaysia e-Invoice: Enter licence key",
+        "category": "MyInvois Field Check — Malaysia e-Invoice"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "myinvois-field-check"
+  },
+  "homepage": "https://getreadystack.com/tools/myinvois-field-check",
+  "icon": "icon.png"
+}
