@@ -1,0 +1,16 @@
+タグ送信点検 — 外部送信規律の公表事項チェック — Licence
+
+Free scope
+  開いているHTML1ファイルを15 checksで照合し、検出した外部送信タグと、公表4項目のうち欠けているものを行番号つきで全部名指しする is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  ワークスペース全体を一括照合し、タグ×公表項目の突き合わせ表をMarkdown/CSVで書き出して社外・監査に提出できる形にする is the paid part. It asks for a licence key issued at purchase (one seat, one key;
+  7-day full refund, no questions). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
