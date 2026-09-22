@@ -1,0 +1,67 @@
+[
+  {
+    "id": "fr-fr-term",
+    "sev": "error",
+    "title": "France-French term the OQLF replaces in Quebec",
+    "msg": "\"%s\" is the France-French word. Quebec usage (OQLF Grand dictionnaire terminologique) is \"%s\".",
+    "pairs": [["e-mail", "courriel"], ["email", "courriel"], ["mail", "courriel"], ["chat", "clavardage"], ["shopping", "magasinage"], ["week-end", "fin de semaine"], ["spam", "pourriel"], ["smartphone", "téléphone intelligent"], ["podcast", "balado"], ["parking", "stationnement"], ["newsletter", "infolettre"], ["live", "en direct"]]
+  },
+  {
+    "id": "english-left",
+    "sev": "error",
+    "title": "English string still sitting in the French file",
+    "msg": "This value has no French accent and reads as English. A shipped English string in the French build is exactly what an OQLF complaint cites.",
+    "stopwords": ["the", "your", "and", "with", "please", "this", "from", "you", "are", "have", "will", "not", "for", "settings", "file", "error", "password", "account", "cancel", "save"],
+    "min_len": 20,
+    "min_hits": 2
+  },
+  {
+    "id": "euro-currency",
+    "sev": "error",
+    "title": "Euro amount in a Canadian French file",
+    "msg": "A fr-CA build prices in Canadian dollars. Write the amount as \"12,50 $\" (comma decimal, dollar sign after the number), not in euros.",
+    "re": "€|\\bEUR\\b"
+  },
+  {
+    "id": "date-slash",
+    "sev": "warn",
+    "title": "Slashed day/month/year date",
+    "msg": "Quebec writes dates as 2026-09-21 (ISO) or \"21 septembre 2026\". A slashed d/m/y date is read as m/d/y by half your readers.",
+    "re": "\\b\\d{1,2}/\\d{1,2}/\\d{2,4}\\b"
+  },
+  {
+    "id": "number-separator",
+    "sev": "warn",
+    "title": "English thousands and decimal separators",
+    "msg": "French Canadian numbers group with a space and take a comma decimal: 1 234,56 — not 1,234.56.",
+    "re": "\\b\\d{1,3}(?:,\\d{3})+(?:\\.\\d+)?\\b"
+  },
+  {
+    "id": "caps-accent",
+    "sev": "warn",
+    "title": "Capital letter stripped of its accent",
+    "msg": "In Quebec the accent is kept on capitals: \"%s\" should be \"%s\".",
+    "caps": [["ETAT", "ÉTAT"], ["EVENEMENT", "ÉVÉNEMENT"], ["ECHEC", "ÉCHEC"], ["DEJA", "DÉJÀ"], ["PROBLEME", "PROBLÈME"], ["ANNULE", "ANNULÉ"], ["TELECHARGER", "TÉLÉCHARGER"], ["ACCES", "ACCÈS"], ["PARAMETRES", "PARAMÈTRES"], ["REUSSI", "RÉUSSI"], ["TERMINE", "TERMINÉ"], ["REESSAYER", "RÉESSAYER"]]
+  },
+  {
+    "id": "empty-or-todo",
+    "sev": "error",
+    "title": "Empty or placeholder translation",
+    "msg": "This key has no French text. At runtime it falls back to English, and the French build ships an English screen.",
+    "re": "^\\s*$|^\\s*(TODO|FIXME|XXX|TBD|TRANSLATE|à traduire|a traduire|to translate)\\b"
+  },
+  {
+    "id": "locale-tag",
+    "sev": "error",
+    "title": "Locale tag is fr-FR or bare fr",
+    "msg": "A Quebec build must resolve fr-CA. A bare \"fr\" or an \"fr-FR\" tag makes the loader serve France French to Quebec users.",
+    "re": "^(fr|fr[-_]FR|fr[-_]fr|french|français \\(France\\))$"
+  },
+  {
+    "id": "anglicism",
+    "sev": "warn",
+    "title": "Anglicism the OQLF flags",
+    "msg": "\"%s\" is an anglicism in this sense. Quebec usage is \"%s\".",
+    "pairs": [["digital", "numérique"], ["supporter", "prendre en charge"], ["opportunité", "occasion"], ["canceller", "annuler"], ["checker", "vérifier"], ["initier", "lancer"], ["items", "éléments"], ["update", "mise à jour"]]
+  }
+]
