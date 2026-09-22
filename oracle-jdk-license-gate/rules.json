@@ -1,0 +1,65 @@
+[
+  {
+    "id": "setup_java_oracle",
+    "re": "distribution\\s*:\\s*['\"]?oracle\\b",
+    "title": "GitHub Actions setup-java is pulling the Oracle JDK build",
+    "basis": "Oracle No-Fee Terms and Conditions (NFTC) / Oracle Technology Network license",
+    "fix": "distribution: temurin"
+  },
+  {
+    "id": "setup_java_graalvm",
+    "re": "distribution\\s*:\\s*['\"]?graalvm(?!-community)\\b",
+    "title": "setup-java distribution graalvm is Oracle GraalVM, not the community build",
+    "basis": "Oracle GraalVM Free Terms and Conditions (GFTC), same clock as the JDK it is built on",
+    "fix": "distribution: graalvm-community"
+  },
+  {
+    "id": "oracle_download_url",
+    "re": "download\\.oracle\\.com|oracle\\.com/java/technologies/downloads",
+    "title": "Java binary fetched straight from Oracle's download host",
+    "basis": "Oracle No-Fee Terms and Conditions (NFTC) / Oracle Technology Network license",
+    "fix": "https://api.adoptium.net/v3/binary/latest/21/ga/linux/x64/jdk/hotspot/normal/eclipse"
+  },
+  {
+    "id": "otn_license_cookie",
+    "re": "oraclelicense\\s*=\\s*accept",
+    "title": "Script accepts the Oracle license header to get past the download gate",
+    "basis": "Accepting Oracle Technology Network terms in automation binds the company that runs it",
+    "fix": "drop the line and fetch an OpenJDK build that needs no license header"
+  },
+  {
+    "id": "sdkman_oracle_vendor",
+    "re": "sdk\\s+install\\s+java\\s+\\S*?-(oracle|graal)\\b",
+    "title": "SDKMAN vendor suffix -oracle / -graal installs an Oracle-licensed build",
+    "basis": "Oracle No-Fee Terms and Conditions (NFTC) / Oracle GraalVM Free Terms and Conditions",
+    "fix": "sdk install java 21.0.8-tem"
+  },
+  {
+    "id": "oracle_registry_image",
+    "re": "container-registry\\.oracle\\.com/(java|graalvm)|(^|[\\s/\"'=])oracle/(jdk|graalvm|java)\\b",
+    "title": "Container image comes from Oracle's own Java registry",
+    "basis": "Oracle No-Fee Terms and Conditions (NFTC) attached to the image, not the Dockerfile",
+    "fix": "eclipse-temurin:21-jdk"
+  },
+  {
+    "id": "oracle_linux_jdk_pkg",
+    "re": "(yum|dnf|microdnf)[^\\n]*\\bjdk-(8|11|17|21|25)\\b",
+    "title": "Oracle Linux package manager is installing the Oracle JDK rpm",
+    "basis": "Oracle No-Fee Terms and Conditions (NFTC); the rpm carries the same terms as the tarball",
+    "fix": "microdnf install -y java-21-openjdk-headless"
+  },
+  {
+    "id": "oracle_java_installer_ppa",
+    "re": "oracle-java\\d*-installer|linuxuprising/java|webupd8team/java",
+    "title": "Third-party installer package that downloads the Oracle JDK for you",
+    "basis": "The installer accepts Oracle's terms on your behalf; the binary is still Oracle's",
+    "fix": "apt-get install -y temurin-21-jdk"
+  },
+  {
+    "id": "oracle_license_env_accept",
+    "re": "ACCEPT[_-]ORACLE[_-]LICENSE|accept[_-]oracle[_-]license",
+    "title": "Build sets an environment variable that accepts the Oracle license",
+    "basis": "An automated acceptance is still an acceptance of the Oracle Technology Network terms",
+    "fix": "remove the variable and switch the base image to an OpenJDK build"
+  }
+]
