@@ -1,0 +1,17 @@
+[
+  {"id":"tag_ga4","kind":"tag","sev":"error","label":"Google アナリティクス (GA4)","statute":"電気通信事業法27条の12","detect":"gtag\\(|googletagmanager\\.com/gtag|G-[A-Z0-9]{8,}","disclose":"Google\\s*アナリティクス|Google Analytics","msg":"GA4 のタグを検出。公表事項に「Google アナリティクス（Google LLC）」の行がありません → 送信先の名称として1行追加"},
+  {"id":"tag_meta","kind":"tag","sev":"error","label":"Meta ピクセル","statute":"電気通信事業法27条の12","detect":"connect\\.facebook\\.net|fbq\\(|fbevents\\.js","disclose":"Meta\\s*ピクセル|Metaピクセル|Meta Platforms|メタ・プラットフォームズ","msg":"Meta ピクセルを検出。公表事項に「Meta ピクセル（Meta Platforms）」の行がありません → 送信先の名称として1行追加"},
+  {"id":"tag_line","kind":"tag","sev":"error","label":"LINE Tag","statute":"電気通信事業法27条の12","detect":"tr\\.line\\.me|_lt\\(|LINE Tag Base Code","disclose":"LINE\\s*Tag|LINEタグ|LINEヤフー","msg":"LINE Tag を検出。公表事項に「LINE Tag（LINEヤフー）」の行がありません → 送信先の名称として1行追加"},
+  {"id":"tag_yahoo","kind":"tag","sev":"error","label":"Yahoo!広告 タグ","statute":"電気通信事業法27条の12","detect":"s\\.yjtag\\.jp|yjtag|yahoo_retargeting","disclose":"Yahoo!?\\s*広告|ヤフー広告|Yahoo!?タグマネージャー","msg":"Yahoo!広告タグを検出。公表事項に「Yahoo!広告（LINEヤフー）」の行がありません → 送信先の名称として1行追加"},
+  {"id":"tag_x","kind":"tag","sev":"error","label":"X (旧Twitter) ピクセル","statute":"電気通信事業法27条の12","detect":"static\\.ads-twitter\\.com|twq\\(","disclose":"X広告|X\\(旧Twitter\\)|Twitter広告","msg":"X広告ピクセルを検出。公表事項に「X広告（X Corp.）」の行がありません → 送信先の名称として1行追加"},
+  {"id":"tag_behavior","kind":"tag","sev":"error","label":"行動ログ計測 (Clarity / Hotjar)","statute":"電気通信事業法27条の12","detect":"clarity\\.ms|static\\.hotjar\\.com|hj\\(","disclose":"Clarity|Hotjar|行動ログ","msg":"行動ログ計測タグ（Clarity/Hotjar）を検出。公表事項に該当行がありません → 送信される情報の内容に「操作の記録」を追記"},
+  {"id":"item_info","kind":"item","sev":"error","detect":"送信される情報|送信する情報|情報の内容","msg":"公表4項目の①「送信される情報の内容」が見つかりません → 例:「閲覧したURL・端末情報・Cookie識別子」"},
+  {"id":"item_destination","kind":"item","sev":"error","detect":"送信先|送信される先|受領者","msg":"公表4項目の②「送信先の名称」が見つかりません → タグごとに事業者名を列挙"},
+  {"id":"item_purpose","kind":"item","sev":"error","detect":"利用目的|利用する目的|目的は","msg":"公表4項目の③「送信先での利用目的」が見つかりません → 例:「広告配信の最適化」「アクセス解析」"},
+  {"id":"item_optout","kind":"item","sev":"error","detect":"オプトアウト|送信の停止|停止の方法|送信を止め","msg":"公表4項目の④「オプトアウト（送信の停止）の方法」が見つかりません → 停止手順かリンクを1行追加"},
+  {"id":"notice_link","kind":"struct","sev":"error","unless":"外部送信|公表事項","msg":"外部送信タグがあるのに、公表事項（外部送信ポリシー）への導線がページにありません → フッターに「外部送信について」を追加"},
+  {"id":"consent_only","kind":"struct","sev":"warn","when":"Cookie同意|クッキー同意|同意しますか|同意する","unless":"公表|通知","msg":"同意バナーだけで公表・通知がありません。日本の外部送信規律は同意ではなく通知・公表が原則 → 公表ページを用意"},
+  {"id":"gtm_container","kind":"struct","sev":"error","when":"googletagmanager\\.com/gtm\\.js|GTM-[A-Z0-9]{4,}","unless":"個別に公表|個別に記載|コンテナ内のタグ","msg":"GTM コンテナを検出。コンテナ名だけでは足りず、中のタグを個別に公表する必要があります → 配信中のタグを列挙"},
+  {"id":"optout_steps","kind":"struct","sev":"warn","when":"オプトアウト","scope":"line","unless":"https?://|手順|設定方法","msg":"オプトアウトの語はあるが、手順もリンクもありません → 停止用URLか操作手順をその行に追加"},
+  {"id":"notice_updated","kind":"struct","sev":"warn","when":"外部送信|公表事項","unless":"最終更新|更新日|改定日","msg":"公表事項に最終更新日がありません。タグを足した日を書き換える運用ができません → 「最終更新日: YYYY-MM-DD」を追加"}
+]
