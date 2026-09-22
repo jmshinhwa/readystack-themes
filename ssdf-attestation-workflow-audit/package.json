@@ -1,0 +1,53 @@
+{
+  "name": "ssdf-attestation-workflow-audit",
+  "displayName": "SSDF Attestation Audit for GitHub Actions",
+  "description": "Audit a GitHub Actions workflow against the four CISA secure software development attestation sections and the NIST SSDF practices behind them.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "ssdf",
+    "attestation",
+    "cisa",
+    "sp-800-218",
+    "github-actions",
+    "federal",
+    "supply-chain"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "ssdfAttestation.checkFile",
+        "title": "SSDF Attestation Audit for GitHub Actions: Check this file",
+        "category": "SSDF Attestation Audit for GitHub Actions"
+      },
+      {
+        "command": "ssdfAttestation.checkWorkspace",
+        "title": "SSDF Attestation Audit for GitHub Actions: Sweep workspace and write report (licence)",
+        "category": "SSDF Attestation Audit for GitHub Actions"
+      },
+      {
+        "command": "ssdfAttestation.enterKey",
+        "title": "SSDF Attestation Audit for GitHub Actions: Enter licence key",
+        "category": "SSDF Attestation Audit for GitHub Actions"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "ssdf-attestation-workflow-audit"
+  },
+  "homepage": "https://getreadystack.com/tools/ssdf-attestation-workflow-audit",
+  "icon": "icon.png"
+}
