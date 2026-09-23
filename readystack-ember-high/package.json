@@ -2,7 +2,7 @@
   "name": "readystack-ember-high",
   "displayName": "ReadyStack Ember High Contrast",
   "description": "Near-black background, bright accents. Built for bright rooms and tired eyes. Body text measured at 14.6:1 - WCAG AAA.",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
