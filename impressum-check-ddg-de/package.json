@@ -1,0 +1,54 @@
+{
+  "name": "impressum-check-ddg-de",
+  "displayName": "Impressum-Check DE: Pflichtangaben",
+  "description": "Prueft Impressum-Seiten im Editor auf die Pflichtangaben nach § 5 DDG, § 18 Abs. 2 MStV und § 36 VSBG - und findet veraltete Rechtsgrundlagen wie § 5 TMG oder § 55 RStV.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "impressum",
+    "ddg",
+    "tmg",
+    "mstv",
+    "vsbg",
+    "pflichtangaben",
+    "anbieterkennzeichnung",
+    "abmahnung"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "impressumCheck.checkFile",
+        "title": "Impressum-Check DE: Pflichtangaben: Check this file",
+        "category": "Impressum-Check DE: Pflichtangaben"
+      },
+      {
+        "command": "impressumCheck.checkWorkspace",
+        "title": "Impressum-Check DE: Pflichtangaben: Sweep workspace and write report (licence)",
+        "category": "Impressum-Check DE: Pflichtangaben"
+      },
+      {
+        "command": "impressumCheck.enterKey",
+        "title": "Impressum-Check DE: Pflichtangaben: Enter licence key",
+        "category": "Impressum-Check DE: Pflichtangaben"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "impressum-check-ddg-de"
+  },
+  "homepage": "https://getreadystack.com/tools/impressum-check-ddg-de",
+  "icon": "icon.png"
+}
