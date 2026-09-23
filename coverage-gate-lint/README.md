@@ -47,7 +47,7 @@ The paid tier is a different axis — scope. It sweeps every coverage config and
 
 Yardstick: a contract CI/DevOps engineer bills about $150/hour, and reading every coverage config and workflow in a mid-sized monorepo by hand is most of an afternoon.
 
-The paid tier is $29 once, one licence key per person or CI seat, with a 7-day full refund.
+The paid tier is $29 once, one licence key per person or CI seat.
 
 [Full version — workspace sweep and dated report](https://buy.polar.sh/polar_cl_aNRhjxJUQvfo4XkkVInz22Vk3dZYMt8tpZyj14a3Wmz)
 
