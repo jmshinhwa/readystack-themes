@@ -49,7 +49,7 @@ Free: `Actions Expiry: Check This File` runs all thirteen checks on the workflow
 the editor, with full messages and full dates and no key. The same engine runs in the
 browser at <https://getreadystack.com/tools/actions-expiry-lint>, with nothing uploaded.
 
-Paid ($29 once, one key per person or team seat, 7-day full refund):
+Paid ($29 once, one key per person or team seat):
 `Actions Expiry: Sweep The Workspace` walks every workflow in the repository in one
 command and writes a dated `actions-expiry-report.md` you keep and attach to the change
 ticket. Yardstick: contract DevOps work is commonly quoted at $75-$150 an hour, so one
