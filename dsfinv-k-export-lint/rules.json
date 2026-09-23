@@ -1,0 +1,135 @@
+[
+ {
+  "id": "tabelle_unbekannt",
+  "sev": "error",
+  "titel": "Datei passt zu keiner DSFinV-K-Tabelle",
+  "msg": "Der Spaltenkopf beginnt wie eine DSFinV-K-Datei, entspricht aber keiner der 20 amtlichen Tabellen.",
+  "quelle": "DSFinV-K 2.4, index.xml (20 Tabellen)"
+ },
+ {
+  "id": "spalte_fehlt",
+  "sev": "error",
+  "titel": "Pflichtspalte fehlt",
+  "msg": "Eine in der amtlichen index.xml aufgeführte Spalte fehlt im Spaltenkopf.",
+  "quelle": "DSFinV-K 2.4, index.xml"
+ },
+ {
+  "id": "spalte_unbekannt",
+  "sev": "error",
+  "titel": "Zusätzliche Spalte",
+  "msg": "Der Spaltenkopf enthaelt eine Spalte, die die amtliche Tabellenbeschreibung nicht kennt.",
+  "quelle": "DSFinV-K 2.4, index.xml"
+ },
+ {
+  "id": "spalte_reihenfolge",
+  "sev": "error",
+  "titel": "Spaltenreihenfolge weicht ab",
+  "msg": "Die Spalten stehen nicht in der Reihenfolge der amtlichen index.xml.",
+  "quelle": "DSFinV-K 2.4, index.xml (VariableColumn-Reihenfolge)"
+ },
+ {
+  "id": "trennzeichen",
+  "sev": "error",
+  "titel": "Falsches Spaltentrennzeichen",
+  "msg": "Die DSFinV-K schreibt das Semikolon als ColumnDelimiter vor.",
+  "quelle": "DSFinV-K 2.4, index.xml: ColumnDelimiter ;"
+ },
+ {
+  "id": "spaltenzahl",
+  "sev": "error",
+  "titel": "Zeile hat andere Spaltenzahl",
+  "msg": "Eine Datenzeile hat mehr oder weniger Felder als der Spaltenkopf.",
+  "quelle": "DSFinV-K 2.4, Datensatzbeschreibung"
+ },
+ {
+  "id": "pflichtfeld_leer",
+  "sev": "error",
+  "titel": "Pflichtfeld leer",
+  "msg": "Z_KASSE_ID, Z_ERSTELLUNG, Z_NR oder BON_ID ist in einer Datenzeile leer.",
+  "quelle": "DSFinV-K 2.4, Kapitel Einzelaufzeichnung"
+ },
+ {
+  "id": "dezimaltrennzeichen",
+  "sev": "error",
+  "titel": "Punkt statt Komma im Betrag",
+  "msg": "Betragsfelder verwenden das Komma als Dezimaltrennzeichen; der Punkt ist das Tausendertrennzeichen.",
+  "quelle": "DSFinV-K 2.4, index.xml: DecimalSymbol , / DigitGroupingSymbol ."
+ },
+ {
+  "id": "betrag_ungueltig",
+  "sev": "error",
+  "titel": "Betrag nicht auswertbar",
+  "msg": "Ein numerisches Feld mit Nachkommastellen enthaelt keinen auswertbaren Betrag.",
+  "quelle": "DSFinV-K 2.4, index.xml: Numeric/Accuracy"
+ },
+ {
+  "id": "ganzzahl_ungueltig",
+  "sev": "error",
+  "titel": "Ganzzahlfeld nicht ganzzahlig",
+  "msg": "Ein Feld mit 0 Nachkommastellen (z. B. Z_NR, BON_NR) enthaelt keine Ganzzahl.",
+  "quelle": "DSFinV-K 2.4, index.xml: Numeric/Accuracy 0"
+ },
+ {
+  "id": "zeitstempel_iso",
+  "sev": "error",
+  "titel": "Zeitstempel nicht ISO 8601",
+  "msg": "Z_ERSTELLUNG, BON_START, BON_ENDE und die TSE-Zeitstempel müssen ISO 8601 / RFC 3339 entsprechen.",
+  "quelle": "DSFinV-K 2.4, Feldbeschreibung Z_ERSTELLUNG"
+ },
+ {
+  "id": "datum_iso",
+  "sev": "warn",
+  "titel": "Datum nicht ISO 8601",
+  "msg": "Z_BUCHUNGSTAG und REF_DATUM sollen als JJJJ-MM-TT geschrieben werden.",
+  "quelle": "DSFinV-K 2.4, Feldbeschreibung Z_BUCHUNGSTAG"
+ },
+ {
+  "id": "bon_typ_wert",
+  "sev": "error",
+  "titel": "BON_TYP ist kein amtlicher Wert",
+  "msg": "BON_TYP muss einer der 9 Vorgangstypen aus Anhang B sein.",
+  "quelle": "DSFinV-K 2.4, Anhang B"
+ },
+ {
+  "id": "gv_typ_wert",
+  "sev": "error",
+  "titel": "GV_TYP ist kein amtlicher Wert",
+  "msg": "GV_TYP muss einer der 25 Geschäftsvorfalltypen aus Anhang C sein.",
+  "quelle": "DSFinV-K 2.4, Anhang C"
+ },
+ {
+  "id": "zahlart_typ_wert",
+  "sev": "error",
+  "titel": "ZAHLART_TYP ist kein amtlicher Wert",
+  "msg": "ZAHLART_TYP muss einer der 7 Zahlarten aus Anhang D sein.",
+  "quelle": "DSFinV-K 2.4, Anhang D"
+ },
+ {
+  "id": "taxonomie_version",
+  "sev": "error",
+  "titel": "TAXONOMIE_VERSION fehlt oder ist unlesbar",
+  "msg": "Der Kassenabschluss muss die verwendete DSFinV-K-Version im Format X.Y nennen.",
+  "quelle": "DSFinV-K 2.4, Feldbeschreibung TAXONOMIE_VERSION"
+ },
+ {
+  "id": "taxonomie_veraltet",
+  "sev": "warn",
+  "titel": "TAXONOMIE_VERSION älter als 2.3",
+  "msg": "Das BZSt veröffentlicht die DSFinV-K 2.4 (Stand Januar 2024); als ausreichend gilt mindestens 2.3.",
+  "quelle": "BZSt, Anwendungsregelung zur DSFinV-K 2.4"
+ },
+ {
+  "id": "feldlaenge",
+  "sev": "warn",
+  "titel": "Feld länger als MaxLength",
+  "msg": "Ein Feld überschreitet die in der index.xml festgelegte Maximallaenge.",
+  "quelle": "DSFinV-K 2.4, index.xml: MaxLength"
+ },
+ {
+  "id": "zeilenende_crlf",
+  "sev": "warn",
+  "titel": "Zeilenende ist nicht CRLF",
+  "msg": "Die index.xml legt CRLF als RecordDelimiter fest.",
+  "quelle": "DSFinV-K 2.4, index.xml: RecordDelimiter 0D0A"
+ }
+]
