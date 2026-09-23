@@ -42,7 +42,7 @@ line. That is the whole check for one file and it does not ask for anything.
 Paid: **Bulk Sender Lint: Sweep workspace and write report** walks every matching file in the
 workspace and writes a dated `bulkSender-report.md` you keep — the evidence artefact for a
 deliverability review or a client handover. $29 once, one licence key per person or team seat,
-7-day full refund. Yardstick: a deliverability consultant bills $150–$250 an hour.
+Yardstick: a deliverability consultant bills $150–$250 an hour.
 
 Licence key: https://buy.polar.sh/polar_cl_wVUwTqi8qqkeHlhoZHE3VCSgjwBGHxsQL9rYt24DtQP
 
