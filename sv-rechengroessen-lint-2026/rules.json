@@ -1,0 +1,98 @@
+[
+  {
+    "id": "bbg_rv_alv_2025",
+    "sev": "error",
+    "kind": "stale",
+    "key": "(bbg|bemessungsgrenze|beitragsgrenze|ceiling).*((_|\\b)(rv|alv)(_|\\b)|rentenversicherung|arbeitslosenversicherung|pension|unemploy)|((_|\\b)(rv|alv)(_|\\b)|rentenversicherung|arbeitslosenversicherung).*(bbg|bemessungsgrenze|ceiling)",
+    "bad": "96[.,_ ]?600|8[.,_ ]?050(?![0-9])|7[.,_ ]?550(?![0-9])|90[.,_ ]?600",
+    "msg": "Beitragsbemessungsgrenze RV/ALV aus 2025 (96.600 EUR im Jahr, 8.050 EUR im Monat). Ab 01.01.2026 gilt bundeseinheitlich 101.400 EUR im Jahr bzw. 8.450 EUR im Monat (SVRechGrV 2026). Jeder Beitrag oberhalb der alten Grenze wird zu niedrig gerechnet."
+  },
+  {
+    "id": "bbg_kv_pv_2025",
+    "sev": "error",
+    "kind": "stale",
+    "key": "(bbg|bemessungsgrenze|beitragsgrenze|ceiling).*((_|\\b)(kv|pv|gkv)(_|\\b)|kranken|pflege|health)|((_|\\b)(kv|pv|gkv)(_|\\b)|krankenversicherung|pflegeversicherung).*(bbg|bemessungsgrenze|ceiling)",
+    "bad": "66[.,_ ]?150|5[.,_ ]?512([.,]50?)?(?![0-9])|62[.,_ ]?100|5[.,_ ]?175(?![0-9])",
+    "msg": "Beitragsbemessungsgrenze KV/PV aus 2025 (66.150 EUR im Jahr, 5.512,50 EUR im Monat). Ab 01.01.2026 gilt 69.750 EUR im Jahr bzw. 5.812,50 EUR im Monat (SVRechGrV 2026)."
+  },
+  {
+    "id": "jaeg_2025",
+    "sev": "error",
+    "kind": "stale",
+    "key": "jaeg|jahresarbeitsentgelt|versicherungspflichtgrenze",
+    "bad": "73[.,_ ]?800|6[.,_ ]?150(?![0-9])|69[.,_ ]?300|5[.,_ ]?775(?![0-9])",
+    "msg": "Jahresarbeitsentgeltgrenze (JAEG) aus 2025: 73.800 EUR. Ab 01.01.2026 liegt sie bei 77.400 EUR im Jahr (6.450 EUR im Monat). Mit dem alten Wert stuft die Abrechnung Beschaeftigte zu frueh als krankenversicherungsfrei ein."
+  },
+  {
+    "id": "bezugsgroesse_2025",
+    "sev": "error",
+    "kind": "stale",
+    "key": "bezugsgr|bezugsgroesse|reference_value",
+    "bad": "44[.,_ ]?940|3[.,_ ]?745(?![0-9])|42[.,_ ]?420|3[.,_ ]?535(?![0-9])",
+    "msg": "Bezugsgroesse aus 2025 (44.940 EUR im Jahr, 3.745 EUR im Monat). Ab 01.01.2026 gilt 47.460 EUR im Jahr bzw. 3.955 EUR im Monat. An der Bezugsgroesse haengen Mindestbemessungsgrundlagen und Beitraege freiwillig Versicherter."
+  },
+  {
+    "id": "minijob_grenze_alt",
+    "sev": "error",
+    "kind": "stale",
+    "key": "minijob|geringf(ue|ü)gig|geringfuegigkeitsgrenze|gfb_grenze|mini_job",
+    "bad": "\\b(556|538|520|450)\\b",
+    "msg": "Alte Geringfuegigkeitsgrenze. Seit 01.01.2026 liegt die Minijob-Grenze bei 603 EUR im Monat, weil sie nach § 8 Abs. 1a SGB IV an den Mindestlohn von 13,90 EUR gekoppelt ist. Mit 556 EUR meldet die Lohnabrechnung Minijobber faelschlich als versicherungspflichtig."
+  },
+  {
+    "id": "mindestlohn_alt",
+    "sev": "error",
+    "kind": "stale",
+    "key": "mindestlohn|minimum_wage|min_wage|stundenlohn_min",
+    "bad": "12[.,]82|12[.,]41|12[.,]00|9[.,]82|9[.,]60",
+    "msg": "Mindestlohn aus einem frueheren Jahr. Ab 01.01.2026 gilt 13,90 EUR je Stunde, ab 01.01.2027 dann 14,60 EUR. Der Wert steuert zugleich die Minijob-Grenze und die zulaessigen Monatsstunden."
+  },
+  {
+    "id": "zusatzbeitrag_alt",
+    "sev": "error",
+    "kind": "stale",
+    "key": "zusatzbeitrag|additional_rate|zusatz_beitrag",
+    "bad": "\\b(2[.,]50?|1[.,]70?|1[.,]60?|1[.,]30?)\\b",
+    "msg": "Durchschnittlicher GKV-Zusatzbeitrag aus einem frueheren Jahr. Fuer 2026 hat das BMG 2,9 Prozent bekannt gemacht (2025: 2,5 Prozent). Der Durchschnittswert gilt nur dort, wo kein kassenindividueller Satz gepflegt ist."
+  },
+  {
+    "id": "pflege_satz_alt",
+    "sev": "error",
+    "kind": "stale",
+    "key": "pflege|(_|\\b)pv(_|\\b)|care_rate",
+    "bad": "\\b3[.,]40?\\b|\\b3[.,]05\\b|\\b1[.,]70?\\b|\\b1[.,]525\\b",
+    "msg": "Beitragssatz der Pflegeversicherung aus einem frueheren Jahr. Seit 01.01.2025 betraegt der allgemeine Satz 3,6 Prozent (Arbeitgeber- und Arbeitnehmeranteil je 1,8 Prozent, in Sachsen abweichend)."
+  },
+  {
+    "id": "pflege_kinderabschlag_fehlt",
+    "sev": "warn",
+    "kind": "missing",
+    "trigger": "pflegeversicherung|pflege_?satz|pflege_?pct|(_|\\b)pv_?(pct|satz|rate)(_|\\b)",
+    "need": "kinder(zahl|anzahl|count)|je_?kind|pro_?kind|per_?child|abschlag",
+    "msg": "In dieser Datei steht ein Pflege-Beitragssatz, aber kein Schluessel fuer die Kinderzahl. Seit 01.07.2023 sinkt der Arbeitnehmeranteil um 0,25 Prozentpunkte je Kind ab dem zweiten bis zum fuenften Kind (hoechstens 1,00 Prozentpunkt); Kinderlose zahlen 0,6 Prozentpunkte Zuschlag. Ohne Kinderzahl rechnet die Abrechnung fuer alle Eltern gleich."
+  },
+  {
+    "id": "bbg_ost_west_getrennt",
+    "sev": "error",
+    "kind": "stale",
+    "key": "bbg|bemessungsgrenze|beitragsgrenze",
+    "bad": "_ost|_west|\\bost\\b|\\bwest\\b|neue_bundesl|alte_bundesl",
+    "msg": "Getrennte Beitragsbemessungsgrenze Ost/West. Seit 01.01.2025 gibt es in der Renten- und Arbeitslosenversicherung nur noch einen bundeseinheitlichen Wert; ein Ost-Zweig rechnet Beschaeftigte in den neuen Laendern dauerhaft falsch."
+  },
+  {
+    "id": "rechtsstand_fehlt",
+    "sev": "warn",
+    "kind": "missing",
+    "trigger": "bbg|bemessungsgrenze|minijob|mindestlohn|zusatzbeitrag|bezugsgr|jaeg|beitragssatz",
+    "need": "gueltig_ab|gültig_ab|gueltig_bis|valid_from|validfrom|effective_from|rechtsstand|stand_vom",
+    "msg": "Diese Datei enthaelt Werte der Sozialversicherung, aber kein Gueltigkeitsdatum (gueltig_ab / valid_from). Die Rechengroessen wechseln jeden 1. Januar; ohne Datum sieht beim naechsten Wechsel niemand, welches Jahr hier eingefroren ist."
+  },
+  {
+    "id": "insolvenzgeldumlage_alt",
+    "sev": "warn",
+    "kind": "stale",
+    "key": "insolvenzgeld|umlage_?u3|u3_",
+    "bad": "0[.,]06|0[.,]09|0[.,]12|\\b0[.,]0?6\\b",
+    "msg": "Insolvenzgeldumlage aus einem frueheren Jahr (0,06 Prozent galt 2024). Seit 2025 betraegt die Umlage 0,15 Prozent des umlagepflichtigen Arbeitsentgelts."
+  }
+]
