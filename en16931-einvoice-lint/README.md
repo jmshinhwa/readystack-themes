@@ -50,7 +50,7 @@ model was trained before the dates moved.
 
 Checking the file in front of you is free and complete: every rule runs, nothing is withheld,
 no watermark, no counter. The licence covers a different job — the whole workspace in one pass and a dated report file
-of your own. $29 once, one licence key per person or team seat, 7-day full refund:
+of your own. $29 once, one licence key per person or team seat:
 https://buy.polar.sh/polar_cl_KQWFnU1FA20UW0fJUPyv4JcDLH8BLJkK3rf722j26cC
 
 ## Yardstick
