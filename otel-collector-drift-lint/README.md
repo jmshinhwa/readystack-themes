@@ -22,7 +22,7 @@ Run **OTel Drift: Lint this Collector config** on any `*.yaml` or `*.yml` file. 
 
 Linting the file you have open is free and complete. All 39 rules run, every finding shows its line and its replacement. No watermark, no trial counter, nothing withheld.
 
-The licence key changes the scope, not the depth: **OTel Drift: Scan workspace** walks every YAML in the folder in one pass, writes a JSON or Markdown report you keep, and returns a non-zero exit code so a CI job can block on the errors. One key, $29 once, 7-day full refund — https://buy.polar.sh/polar_cl_vmmhH1xBuIiTeyI1tTLXEkFDotprl8ilIxhtd2l5ESK
+The licence key changes the scope, not the depth: **OTel Drift: Scan workspace** walks every YAML in the folder in one pass, writes a JSON or Markdown report you keep, and returns a non-zero exit code so a CI job can block on the errors. One key, $29 once — https://buy.polar.sh/polar_cl_vmmhH1xBuIiTeyI1tTLXEkFDotprl8ilIxhtd2l5ESK
 
 ## Yardstick
 
