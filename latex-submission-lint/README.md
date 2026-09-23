@@ -42,7 +42,7 @@ Licensed ($29 once): the same seventeen rules across every `.tex` file in the pr
 include chain of a split manuscript followed from the root file, and one exported
 submission-readiness report for the whole paper —
 [get the full version](https://buy.polar.sh/polar_cl_uLmgCBAZSFSJQ8Yvoose6IUOjSzo0hTMNwRg221VgCt). One licence key per person or team
-seat, 7-day full refund.
+seat.
 
 ## Yardstick
 
