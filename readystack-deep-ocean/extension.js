@@ -28,7 +28,7 @@ async function offer(ctx) {
     ping('pack_offer');
     const yes = 'Get the pack', no = 'No thanks';
     const pick = await vscode.window.showInformationMessage(
-      'You are using ' + LABEL + '. The same palette for your terminal (iTerm2, Windows Terminal, Alacritty, kitty) and Obsidian is $14.99 once, with a 7-day refund.', yes, no);
+      'You are using ' + LABEL + '. The same palette for your terminal (iTerm2, Windows Terminal, Alacritty, kitty) and Obsidian is $14.99 once.', yes, no);
     if (pick === yes) { ping('pack_click'); vscode.env.openExternal(vscode.Uri.parse(PACK_URL)); }
     else if (pick === no) { ping('pack_no'); }
   } catch (e) { }
