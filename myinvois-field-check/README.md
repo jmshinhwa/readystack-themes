@@ -49,6 +49,6 @@ Section 120(1)(d) of the Income Tax Act 1967 sets a fine of RM200 to RM20,000, o
 
 ## Free and paid
 
-Free: lint any MyInvois e-Invoice JSON in the editor and see every missing or invalid IRBM field, named and on a line number. Paid: export a dated workspace audit file for your tax agent and gate CI on every commit — $29 once, one licence key per person or CI seat, 7-day full refund: https://buy.polar.sh/polar_cl_HPayV45meyb7kv9EsjIQWbwGYX2LdSe0UeuJf3cB4Py
+Free: lint any MyInvois e-Invoice JSON in the editor and see every missing or invalid IRBM field, named and on a line number. Paid: export a dated workspace audit file for your tax agent and gate CI on every commit — $29 once, one licence key per person or CI seat: https://buy.polar.sh/polar_cl_HPayV45meyb7kv9EsjIQWbwGYX2LdSe0UeuJf3cB4Py
 
 MIT-licensed rule metadata. Not tax advice.
