@@ -58,7 +58,7 @@ The scan is free and complete for the file you have open: every failing row, eve
 licence key, no upload. The paid layer is a different job — exporting a dated evidence pack for the
 **whole workspace catalogue** (every feed file, every failing row, per-rule counts, as CSV and
 Markdown) so it can be handed to a marketplace, an importer or an auditor. $29 once, one licence key
-per person or team seat, 7-day full refund: https://buy.polar.sh/polar_cl_MeEOXqXAf3FoF5aXVJjeeyaoJJNIODsmsm5CK0skgvG
+per person or team seat: https://buy.polar.sh/polar_cl_MeEOXqXAf3FoF5aXVJjeeyaoJJNIODsmsm5CK0skgvG
 
 For scale: an EU Responsible Person service is sold as a monthly subscription, per brand, and
 hand-checking a feed at ten seconds a row is about fourteen hours for five thousand rows.
