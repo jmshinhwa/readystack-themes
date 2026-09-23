@@ -32,7 +32,7 @@ The paid commands change the **scope** of the same 16 rules, and give you someth
 - **Every HTML file in the repository, not only the one on screen.** Opens every file in the workspace and runs the same check on each, honouring your `max_files` and `exclude_glob` settings.
 - **A findings file you can attach to the pull request.** Writes the findings as CSV, JSON or HTML into the workspace folder; it uses your `report_format` setting when one is set, and only asks which format when it is not.
 
-[**Get a licence — $39 once**](https://buy.polar.sh/polar_cl_KpshZaXMI3nFFxkyC13chl0cdxza8558hpEYP2ERbwy) · 7-day refund, no questions.
+[**Get a licence — $39 once**](https://buy.polar.sh/polar_cl_KpshZaXMI3nFFxkyC13chl0cdxza8558hpEYP2ERbwy) · 
 
 A freelance front-end developer averaged **$73 an hour** in 2026, and the naming round is the one that repeats.
 
