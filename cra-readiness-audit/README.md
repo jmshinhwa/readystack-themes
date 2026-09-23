@@ -15,7 +15,7 @@ Flags the lines in your repo that break the EU Cyber Resilience Act - default pa
 - **Findings report as CSV, JSON or HTML** — Writes the findings to a file you can attach to a release, keep with the technical documentation, or send to the customer who asked how you handle Annex I.
 - **JSON output a build step can fail on** — Machine-readable findings so a pipeline blocks the merge that would have shipped a hard-coded credential or a floating base image.
 
-[Get the full version - $29](https://readystack.example/buy) - $29 once, one licence key per person or team seat, 7-day full refund.
+[Get the full version - $29](https://readystack.example/buy) - $29 once, one licence key per person or team seat.
 
 
 ## Install
