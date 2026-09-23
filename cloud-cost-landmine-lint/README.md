@@ -30,9 +30,9 @@ line 57  retention_in_days  = 0             Never Expire; ingestion is $0.50/GB 
 
 Amazon's own published price for the same untouched cluster after the date passes: $0.60 per cluster-hour instead of $0.10, which is $365 more every month.
 
-[**Get the full version - $29**](https://getreadystack.com) - $29 once, one licence key per person or team seat, 7-day full refund.
+[**Get the full version - $29**](https://getreadystack.com) - $29 once, one licence key per person or team seat.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 
 ## Install
