@@ -1,0 +1,72 @@
+[
+  {"id": "geg87-ausweis-typ-fehlt", "sev": "error", "law": "GModG (GEG) Sec. 87 (1) no. 1",
+   "title": "Type of Energieausweis not named",
+   "msg": "The ad never says whether the certificate is an Energiebedarfsausweis or an Energieverbrauchsausweis.",
+   "fix": "Print the exact word: \"Energiebedarfsausweis\" or \"Energieverbrauchsausweis\"."},
+
+  {"id": "geg87-ausweis-typ-widerspruch", "sev": "error", "law": "GModG (GEG) Sec. 87 (1) no. 1-2",
+   "title": "Certificate type contradicts the value label",
+   "msg": "The ad names both certificate types, or labels the value the opposite way to the type it declares.",
+   "fix": "Keep one type. Endenergiebedarf belongs to a Bedarfsausweis, Endenergieverbrauch to a Verbrauchsausweis."},
+
+  {"id": "geg87-kennwert-fehlt", "sev": "error", "law": "GModG (GEG) Sec. 87 (1) no. 2",
+   "title": "No Endenergie value in the ad",
+   "msg": "No Endenergiebedarf or Endenergieverbrauch figure in kWh appears anywhere in the ad.",
+   "fix": "Copy the number from the certificate, e.g. \"Endenergiebedarf: 96,4 kWh/(m2*a)\"."},
+
+  {"id": "geg87-einheit-falsch", "sev": "error", "law": "GModG (GEG) Sec. 87 (1) no. 2",
+   "title": "Energy value carries no per-square-metre-per-year unit",
+   "msg": "A kWh figure is printed without the unit kWh/(m2*a), so the number does not state what the certificate states.",
+   "fix": "Write the full unit: kWh/(m2*a), kWh/(m2·a) or kWh/(qm*a).",
+   "unit_forms": ["kWh/(m2*a)", "kWh/(m2·a)", "kWh/(qm*a)", "kWh/m2a"]},
+
+  {"id": "geg87-kennwert-unplausibel", "sev": "warn", "law": "GModG (GEG) Sec. 87 (1) no. 2",
+   "title": "Energy value outside any plausible certificate range",
+   "msg": "The printed value is outside 10-1000 kWh/(m2*a) and is almost certainly a typo or a unit mix-up.",
+   "fix": "Re-read the value from the certificate before the ad goes live.",
+   "min": 10, "max": 1000},
+
+  {"id": "geg87-energietraeger-fehlt", "sev": "error", "law": "GModG (GEG) Sec. 87 (1) no. 3",
+   "title": "Main heating energy source missing",
+   "msg": "The ad does not name the wesentlicher Energietraeger for heating that the certificate lists.",
+   "fix": "Name it in words, e.g. \"Wesentlicher Energietraeger: Erdgas\".",
+   "carriers": ["Erdgas", "Gas", "Heizoel", "Fernwaerme", "Waermepumpe", "Strom", "Holz", "Pellets", "Kohle", "Solarthermie", "Nahwaerme", "Fluessiggas"]},
+
+  {"id": "geg87-baujahr-fehlt", "sev": "error", "law": "GModG (GEG) Sec. 87 (1) no. 4",
+   "title": "Baujahr missing from a residential ad",
+   "msg": "A Wohngebaeude ad must print the Baujahr named in the certificate, and this ad does not.",
+   "fix": "Add \"Baujahr: 1998\" with the year from the certificate, not from the land registry."},
+
+  {"id": "geg87-effizienzklasse-fehlt", "sev": "error", "law": "GModG (GEG) Sec. 87 (1) no. 5",
+   "title": "Energieeffizienzklasse missing from a residential ad",
+   "msg": "A Wohngebaeude ad must print the Energieeffizienzklasse named in the certificate, and this ad does not.",
+   "fix": "Add \"Energieeffizienzklasse: C\" using the letter printed on the certificate."},
+
+  {"id": "geg87-effizienzklasse-ungueltig", "sev": "error", "law": "GModG (GEG) Anlage 10",
+   "title": "Efficiency class letter does not exist",
+   "msg": "The class letter in the ad is not one of the nine classes A+ to H.",
+   "fix": "Use one of A+, A, B, C, D, E, F, G, H.",
+   "classes": ["A+", "A", "B", "C", "D", "E", "F", "G", "H"]},
+
+  {"id": "geg87-klasse-passt-nicht", "sev": "error", "law": "GModG (GEG) Anlage 10",
+   "title": "Efficiency class contradicts the kWh value",
+   "msg": "The kWh value in the ad falls in a different class band than the letter the ad prints.",
+   "fix": "Re-read Anlage 10: the band the value falls in is the class that must be printed.",
+   "bands": [["A+", 30], ["A", 50], ["B", 75], ["C", 100], ["D", 130], ["E", 160], ["F", 200], ["G", 250], ["H", 100000]]},
+
+  {"id": "geg87-nwg-getrennte-werte", "sev": "error", "law": "GModG (GEG) Sec. 87 (2)",
+   "title": "Non-residential ad does not split Waerme and Strom",
+   "msg": "A Nichtwohngebaeude ad must list the Endenergie figure for Waerme and for Strom separately, and this ad lists one number.",
+   "fix": "Print two lines, e.g. \"Waerme: 120 kWh/(m2*a)\" and \"Strom: 45 kWh/(m2*a)\"."},
+
+  {"id": "geg87-ausweis-abgelaufen", "sev": "error", "law": "GModG (GEG) Sec. 79 (4)",
+   "title": "Certificate older than ten years",
+   "msg": "The issue date in the ad is more than ten years old, so the certificate behind these figures is no longer valid.",
+   "fix": "Order a new certificate before the ad runs; a certificate is valid ten years from its issue date.",
+   "valid_years": 10},
+
+  {"id": "geg87-platzhalter", "sev": "error", "law": "GModG (GEG) Sec. 87 (1)",
+   "title": "Template placeholder left in a mandatory field",
+   "msg": "An unrendered template token or a filler such as \"k.A.\" stands where a mandatory certificate figure belongs.",
+   "fix": "Bind the field to the certificate record, and fail the build when the value is empty."}
+]
