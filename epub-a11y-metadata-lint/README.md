@@ -69,7 +69,7 @@ Hub and the free web version: https://getreadystack.com/tools/epub-a11y-metadata
 
 ## Licence and refund
 
-$29 once, one licence key per person or team seat, 7-day full refund. The key is
+$29 once, one licence key per person or team seat. The key is
 validated against the Polar customer portal; no account and no telemetry.
 
 Not legal advice. It reads metadata and reports what the standard says; the
