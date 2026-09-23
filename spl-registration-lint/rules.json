@@ -1,0 +1,11 @@
+[
+  {"id": "doc_type", "sev": "err", "title": "Document type is not ESTABLISHMENT REGISTRATION", "fix": "Set the document <code> to code=\"51725-0\" (LOINC ESTABLISHMENT REGISTRATION)."},
+  {"id": "loinc_system", "sev": "err", "title": "Document code is not declared as LOINC", "fix": "Set codeSystem=\"2.16.840.1.113883.6.1\" on the document <code>."},
+  {"id": "doc_uuid", "sev": "err", "title": "Document id or setId is not a distinct UUID", "fix": "Give <id> a fresh UUID for this version and keep <setId> the stable UUID of the registration; they must never be equal."},
+  {"id": "version_number", "sev": "err", "title": "versionNumber is missing or not a positive integer", "fix": "Set <versionNumber value=\"1\"/> on a first submission and raise it by one on every resubmission."},
+  {"id": "effective_date", "sev": "err", "title": "effectiveTime is not a valid YYYYMMDD date", "fix": "Write effectiveTime as eight digits, for example value=\"20261001\"."},
+  {"id": "reg_window", "sev": "err", "title": "effectiveTime falls outside the October 1 - December 31 registration window", "fix": "Date the annual registration inside the October 1 - December 31 window of the year you are registering for."},
+  {"id": "lapse_clock", "sev": "err", "title": "Registration is for an earlier year and has already lapsed", "fix": "Re-date and resubmit the registration inside this year's October 1 - December 31 window."},
+  {"id": "duns_root", "sev": "err", "title": "No D-U-N-S number is carried on any organization", "fix": "Add <id extension=\"123456789\" root=\"1.3.6.1.4.1.519.1\"/> to the registrant and to every establishment."},
+  {"id": "duns_format", "sev": "err", "title": "D-U-N-S number is not exactly nine digits", "fix": "Write the D-U-N-S number as nine digits with no dashes, spaces or leading letters."}
+]
