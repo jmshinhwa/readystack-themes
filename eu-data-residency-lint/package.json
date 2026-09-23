@@ -1,0 +1,53 @@
+{
+  "name": "eu-data-residency-lint",
+  "displayName": "EU Data Residency Lint (Terraform, GDPR Ch. V)",
+  "description": "Finds cloud regions in your Terraform, Bicep and YAML that sit outside the EEA, and flags third-country transfers with no documented Chapter V basis.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "terraform",
+    "gdpr",
+    "data residency",
+    "eea",
+    "infrastructure as code",
+    "schrems",
+    "compliance",
+    "region"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "euDataResidency.checkFile",
+        "title": "EU Data Residency Lint (Terraform, GDPR Ch. V): Check this file",
+        "category": "EU Data Residency Lint (Terraform, GDPR Ch. V)"
+      },
+      {
+        "command": "euDataResidency.checkWorkspace",
+        "title": "EU Data Residency Lint (Terraform, GDPR Ch. V): Sweep workspace and write report (licence)",
+        "category": "EU Data Residency Lint (Terraform, GDPR Ch. V)"
+      },
+      {
+        "command": "euDataResidency.enterKey",
+        "title": "EU Data Residency Lint (Terraform, GDPR Ch. V): Enter licence key",
+        "category": "EU Data Residency Lint (Terraform, GDPR Ch. V)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "eu-data-residency-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/eu-data-residency-lint"
+}
