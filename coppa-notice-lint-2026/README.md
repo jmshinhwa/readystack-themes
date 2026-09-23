@@ -47,10 +47,9 @@ Free, with no key and no account: checking the notice open in your editor agains
 and the same 18 clauses in the browser at
 <https://getreadystack.com/tools/coppa-notice-lint-2026>. That is the whole job for one file.
 
-Paid ($29 once, one key per person or CI seat, 7-day full refund): sweeping every `.md`, `.mdx`,
+Paid ($29 once, one key per person or CI seat): sweeping every `.md`, `.mdx`,
 `.html` and `.txt` in the workspace — app notice, web notice, school notice, the translated
-copies — and writing `coppaNotice-report.md`, a dated file you keep, hand to counsel, or commit.
-The first sweep starts a 7-day trial so you see the report before the key is asked for. Licence:
+copies — and writing `coppaNotice-report.md`, a dated file you keep, hand to counsel, or commit. Licence:
 <https://buy.polar.sh/polar_cl_wQKx0P8uMksFUK1UmWN0Eq0cVxQNxuPlCLzaw3eXDlW>
 
 For scale: outside privacy counsel reviewing one children's notice bills 6–10 hours at $350–$550
