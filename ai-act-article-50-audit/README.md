@@ -19,7 +19,7 @@ For teams shipping chatbots or generated media to EU users: Article 50 disclosur
 - **Export the register (CSV / JSON / HTML)** — Writes the findings to a file in your workspace, so you can attach the register to your Article 50 records.
 - **CI report** — Writes a machine-readable JSON report so a pipeline can read it and gate a merge.
 
-[Get the full version - $49](https://buy.polar.sh/polar_cl_CgFfcIlACJrXuIyrkoDLS0KZVtswtVmyEUoIm4c4Fhc) - $49 once, one licence key per person or team seat, 7-day full refund.
+[Get the full version - $49](https://buy.polar.sh/polar_cl_CgFfcIlACJrXuIyrkoDLS0KZVtswtVmyEUoIm4c4Fhc) - $49 once, one licence key per person or team seat.
 
 
 ## Install
