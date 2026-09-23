@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "License Flip Audit - working.", "done": "Done - findings are in the License Flip Audit panel.", "nothing_found": "Nothing found. Open a manifest (package.json, requirements.txt, go.mod, Dockerfile, docker-compose.yml, pom.xml) and run it again.", "need_key": "Full version: scan every manifest in the workspace, export the report for legal, re-check on save, and write the CI file. 29 USD once, one licence key per person or team seat, 7-day full refund.", "key_ok": "Licence key accepted - the full version is unlocked.", "key_bad": "That licence key was not accepted. Check it against your Polar receipt email.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "paste": "Paste package.json, requirements.txt, go.mod, Dockerfile, docker-compose.yml or pom.xml here", "check": "Check my dependencies", "extra_rules": "Your own banned packages, checked alongside the 30 licence flips that ship inside."};
+const S = {"run": "License Flip Audit - working.", "done": "Done - findings are in the License Flip Audit panel.", "nothing_found": "Nothing found. Open a manifest (package.json, requirements.txt, go.mod, Dockerfile, docker-compose.yml, pom.xml) and run it again.", "need_key": "Full version: scan every manifest in the workspace, export the report for legal, re-check on save, and write the CI file. 29 USD once, one licence key per person or team seat.", "key_ok": "Licence key accepted - the full version is unlocked.", "key_bad": "That licence key was not accepted. Check it against your Polar receipt email.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "paste": "Paste package.json, requirements.txt, go.mod, Dockerfile, docker-compose.yml or pom.xml here", "check": "Check my dependencies", "extra_rules": "Your own banned packages, checked alongside the 30 licence flips that ship inside."};
 const PAID = ["workspace_scan", "export_report", "watch_on_save", "ci_json"];
 
 function out() {
@@ -87,7 +87,7 @@ async function paidGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   paidGate._trial = { inTrial: inTrial, until: until };
   if (inTrial) return true;
