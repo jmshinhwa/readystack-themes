@@ -33,7 +33,7 @@ A generic FHIR validator calls this file valid, because it reads the FHIR R4 sch
 
 Every check is free and needs no licence key: all 14 rules, every finding, every file, no limit. The full version changes who holds the result, not how much you can see - it exports the same audit as a dated Markdown and CSV gap report, one row per gap with its CMS-0057-F citation, for the compliance file your auditor asks for.
 
-Full version - $29 once, one licence key per person or team seat, 7-day full refund: https://buy.polar.sh/polar_cl_RqXjvqSVkQXgBWNS56pWMaOQRkjbpSGQuPGL50WDgb6
+Full version - $29 once, one licence key per person or team seat: https://buy.polar.sh/polar_cl_RqXjvqSVkQXgBWNS56pWMaOQRkjbpSGQuPGL50WDgb6
 
 ## Yardstick
 
