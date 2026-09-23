@@ -1,0 +1,141 @@
+[
+ {
+  "id": "bestellbutton_wording",
+  "sev": "error",
+  "mode": "forbid",
+  "re": "(?:<(?:button|a)\\b[^>]*>\\s*|value=\"\\s*)(?:jetzt bestellen|bestellung abschicken|bestellung absenden|bestellen|absenden|weiter|anmelden|submit|senden|order now)\\s*(?:<|\")",
+  "msg": "Der Bestellbutton ist nicht eindeutig beschriftet; zulässig ist nur \"Zahlungspflichtig bestellen\" oder eine ebenso eindeutige Formulierung",
+  "law": "§ 312j Abs. 3 BGB",
+  "since": "2012-08-01"
+ },
+ {
+  "id": "bestellbutton_fehlt",
+  "sev": "error",
+  "mode": "require",
+  "re": "zahlungspflichtig bestellen|kostenpflichtig bestellen|zahlungspflichtigen vertrag|jetzt kaufen",
+  "msg": "Keine eindeutige Bestellbutton-Beschriftung in der Datei; ohne sie kommt der Vertrag nach § 312j Abs. 4 BGB nicht zustande",
+  "law": "§ 312j Abs. 3 BGB",
+  "since": "2012-08-01"
+ },
+ {
+  "id": "gesamtpreis_fehlt",
+  "sev": "error",
+  "mode": "require",
+  "re": "gesamt(?:preis|summe|betrag)|summe gesamt|zu zahlender betrag",
+  "msg": "Der Gesamtpreis steht nicht unmittelbar vor dem Bestellbutton",
+  "law": "§ 312j Abs. 2 BGB i. V. m. Art. 246a § 1 Abs. 1 Nr. 4 EGBGB",
+  "since": "2014-06-13"
+ },
+ {
+  "id": "versandkosten_fehlt",
+  "sev": "error",
+  "mode": "require",
+  "re": "versandkosten|lieferkosten|liefer- und versandkosten",
+  "msg": "Liefer- und Versandkosten fehlen in der Bestellübersicht",
+  "law": "§ 312j Abs. 2 BGB i. V. m. Art. 246a § 1 Abs. 1 Nr. 4 EGBGB",
+  "since": "2014-06-13"
+ },
+ {
+  "id": "merkmale_fehlt",
+  "sev": "warn",
+  "mode": "require",
+  "re": "warenkorb|bestell(?:ü|ue)bersicht|order-summary|wesentliche merkmale|artikelbeschreibung|produktdetails",
+  "msg": "Keine Bestellübersicht mit den wesentlichen Merkmalen der Ware vor dem Button",
+  "law": "§ 312j Abs. 2 BGB i. V. m. Art. 246a § 1 Abs. 1 Nr. 1 EGBGB",
+  "since": "2014-06-13"
+ },
+ {
+  "id": "lieferzeit_fehlt",
+  "sev": "warn",
+  "mode": "require",
+  "re": "lieferzeit|liefertermin|lieferung in|versand in|werktage|lieferfrist",
+  "msg": "Kein Liefertermin und keine Lieferzeit angegeben",
+  "law": "Art. 246a § 1 Abs. 1 Nr. 7 EGBGB",
+  "since": "2014-06-13"
+ },
+ {
+  "id": "widerruf_fehlt",
+  "sev": "error",
+  "mode": "require",
+  "re": "widerrufsbelehrung|widerrufsrecht|widerrufsformular",
+  "msg": "Keine Widerrufsbelehrung und kein Muster-Widerrufsformular verlinkt",
+  "law": "Art. 246a § 1 Abs. 2 EGBGB",
+  "since": "2014-06-13"
+ },
+ {
+  "id": "agb_fehlt",
+  "sev": "warn",
+  "mode": "require",
+  "re": "\\bagb\\b|allgemeine gesch(?:ä|ae)ftsbedingungen",
+  "msg": "Die AGB werden im Bestellablauf nicht einbezogen (kein Hinweis, kein Link)",
+  "law": "§ 305 Abs. 2 BGB",
+  "since": "2002-01-01"
+ },
+ {
+  "id": "mwst_hinweis_fehlt",
+  "sev": "warn",
+  "mode": "require",
+  "re": "inkl\\.?\\s*(?:19|7)\\s*%\\s*mwst|inkl\\.?\\s*mehrwertsteuer|inkl\\.?\\s*mwst|einschliesslich umsatzsteuer|inkl\\.?\\s*ust",
+  "msg": "Beim Preis fehlt der Hinweis, dass die Umsatzsteuer enthalten ist",
+  "law": "§ 3 Abs. 1 PAngV",
+  "since": "2022-05-28"
+ },
+ {
+  "id": "vorangekreuzte_checkbox",
+  "sev": "error",
+  "mode": "forbid",
+  "re": "<input[^>]*type=[\"\\']?checkbox[\"\\']?[^>]*(?:\\schecked|defaultchecked|checked=\\{true\\})",
+  "msg": "Vorangekreuztes Häkchen: Zustimmung und Einwilligung müssen aktiv gesetzt werden",
+  "law": "§ 312a Abs. 3 BGB, Art. 4 Nr. 11 DSGVO",
+  "since": "2014-06-13"
+ },
+ {
+  "id": "zahlungsentgelt",
+  "sev": "error",
+  "mode": "forbid",
+  "re": "kreditkartengeb(?:ü|ue)hr|paypal-geb(?:ü|ue)hr|zahlungsgeb(?:ü|ue)hr|zuschlag f(?:ü|ue)r zahlung|aufschlag f(?:ü|ue)r (?:kreditkarte|paypal|lastschrift)",
+  "msg": "Entgelt für ein gängiges Zahlungsmittel ist unwirksam vereinbart",
+  "law": "§ 312a Abs. 4 BGB",
+  "since": "2014-06-13"
+ },
+ {
+  "id": "kuendigungsbutton_fehlt",
+  "sev": "error",
+  "mode": "require",
+  "guard": "\\babo\\b|abonnement|mitgliedschaft|monatlich|dauerschuldverh|laufzeitvertrag",
+  "re": "vertr(?:ä|ae)ge hier k(?:ü|ue)ndigen",
+  "msg": "Dauerschuldverhältnis ohne Kündigungsbutton \"Verträge hier kündigen\"",
+  "law": "§ 312k Abs. 2 BGB",
+  "since": "2022-07-01"
+ },
+ {
+  "id": "kuendigungsbutton_wording",
+  "sev": "warn",
+  "mode": "forbid",
+  "guard": "\\babo\\b|abonnement|mitgliedschaft|monatlich|dauerschuldverh|laufzeitvertrag",
+  "re": "<(?:button|a)\\b[^>]*>\\s*(?:k(?:ü|ue)ndigen|abo beenden|mitgliedschaft beenden|vertrag k(?:ü|ue)ndigen|abo k(?:ü|ue)ndigen)\\s*<",
+  "msg": "Der Kündigungsschalter trägt nicht die vorgeschriebene Beschriftung \"Verträge hier kündigen\"",
+  "law": "§ 312k Abs. 2 BGB",
+  "since": "2022-07-01"
+ },
+ {
+  "id": "bestaetigungsseite_fehlt",
+  "sev": "warn",
+  "mode": "require",
+  "guard": "\\babo\\b|abonnement|mitgliedschaft|monatlich|dauerschuldverh|laufzeitvertrag",
+  "re": "best(?:ä|ae)tigungsseite|k(?:ü|ue)ndigung best(?:ä|ae)tigen|best(?:ä|ae)tigung der k(?:ü|ue)ndigung",
+  "msg": "Keine Bestätigungsseite für die Kündigung vorgesehen",
+  "law": "§ 312k Abs. 3 BGB",
+  "since": "2022-07-01"
+ },
+ {
+  "id": "laufzeit_fehlt",
+  "sev": "error",
+  "mode": "require",
+  "guard": "\\babo\\b|abonnement|mitgliedschaft|monatlich|dauerschuldverh|laufzeitvertrag",
+  "re": "mindestlaufzeit|vertragslaufzeit|k(?:ü|ue)ndigungsfrist",
+  "msg": "Laufzeit und Kündigungsfrist des Vertrags stehen nicht vor dem Button",
+  "law": "§ 312j Abs. 2 BGB i. V. m. Art. 246a § 1 Abs. 1 Nr. 11 EGBGB",
+  "since": "2014-06-13"
+ }
+]
