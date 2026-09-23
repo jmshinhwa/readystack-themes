@@ -32,9 +32,9 @@ Open the file, run **Check this file**, and each line is named with the category
 - **CI JSON your pipeline can gate on** — Machine-readable output so a build fails before App Store Connect does.
 - **Fixes the misspelled keys in place** — Applies the exact replacement to the matched text only.
 
-[Get the full version - $29](https://getreadystack.com) - $29 once, one licence key per person or team seat, 7-day full refund.
+[Get the full version - $29](https://getreadystack.com) - $29 once, one licence key per person or team seat.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 
 ## Install
