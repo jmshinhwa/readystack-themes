@@ -40,7 +40,7 @@ The lint runs offline, on the text in front of you, with no cluster connection a
 
 Free, no key: check the manifest open in the editor against all 15 rules and get the replacement apiVersion for every hit. That is a finished answer for that file.
 
-Licensed: sweep every manifest in the workspace and write one dated migration report, ordered by removal version, for the whole chart repo. Same 15 rules, workspace scope. $29 once, one licence key per person or CI seat, 7-day full refund.
+Licensed: sweep every manifest in the workspace and write one dated migration report, ordered by removal version, for the whole chart repo. Same 15 rules, workspace scope. $29 once, one licence key per person or CI seat.
 
 A freelance Kubernetes consultant bills about 120 US dollars an hour, and reading one chart repo for beta apiVersions before an upgrade is most of a day.
 
