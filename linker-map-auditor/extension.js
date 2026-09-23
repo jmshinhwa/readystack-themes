@@ -16,7 +16,7 @@ const S = {
     + 'object file grew, enforce per-region budgets, and export a CI report.',
   buy: 'Get the full version - ' + PRICE,
   enter_key: 'Enter licence key',
-  terms: PRICE + ' once - one licence key per person or team seat - 7-day full refund. '
+  terms: PRICE + ' once - one licence key per person or team seat. '
     + 'A freelance embedded engineer averages $103/hr (contractrates.fyi, 2026); this is about 17 minutes of one.',
   key_ok: 'Licence accepted. Baseline, budgets and export are on.',
   key_bad: 'That licence key was not accepted. Check it and try again.'
@@ -127,7 +127,7 @@ async function inTrial(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) {
+  if (false) {   // s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다)
     until = Date.now() + TRIAL_MS;
     await st.update('sweepTrialUntil', until);
   }
