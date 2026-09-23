@@ -69,7 +69,7 @@ bundled dirty fixture returns 9 findings from those 10 rules; the clean fixture 
 Dating the file in front of you is free and needs no key: open the file, run the command, read every
 date. The workspace sweep — every project file in the solution in one pass, written out as a dated
 support-window evidence file you keep — is the licensed part, and the panel asks for a key at the
-moment you ask for it: $29 once, one licence key per person or team seat, 7-day full refund —
+moment you ask for it: $29 once, one licence key per person or team seat —
 [the workspace sweep and its evidence file](https://buy.polar.sh/polar_cl_Z3kgDSemeuFusqV4CgHenwXtVCDgUEjo92a1x2d70T6).
 
 ## Licence
