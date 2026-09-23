@@ -38,7 +38,7 @@ A Canadian language-service provider bills fr-CA revision at $0.10 to $0.15 a wo
 
 ## Free and licensed
 
-Every one of the 9 rules runs on the file you have open, with no licence key, in the editor and on the free web page. A licence key adds a different job: one sweep across every locale file in the workspace, a Markdown report, a CSV or JSON export you keep, and a CI exit code. $29 once, one licence key per person or CI seat, 7-day full refund. [Licence](https://buy.polar.sh/polar_cl_Y5cWABRkmxDgVdi4iAzT8S7r6r9j1U7fX036H3VfCQU)
+Every one of the 9 rules runs on the file you have open, with no licence key, in the editor and on the free web page. A licence key adds a different job: one sweep across every locale file in the workspace, a Markdown report, a CSV or JSON export you keep, and a CI exit code. $29 once, one licence key per person or CI seat. [Licence](https://buy.polar.sh/polar_cl_Y5cWABRkmxDgVdi4iAzT8S7r6r9j1U7fX036H3VfCQU)
 
 ## The web version
 
