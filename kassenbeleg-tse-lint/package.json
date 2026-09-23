@@ -1,0 +1,54 @@
+{
+  "name": "kassenbeleg-tse-lint",
+  "displayName": "Kassenbeleg-Lint — KassenSichV TSE-Pflichtangaben",
+  "description": "Prüft Kassenbeleg-Vorlagen (HTML, Handlebars, JSON) auf die Pflichtangaben nach § 6 KassenSichV und § 146a AO — Transaktionsnummer, Signaturzähler, Prüfwert, Seriennummer, Vorgangszeiten.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "kassensichv",
+    "tse",
+    "kassenbeleg",
+    "belegausgabepflicht",
+    "kasse",
+    "pos",
+    "finanzamt",
+    "dsfinv-k"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "kassenbelegLint.checkFile",
+        "title": "Kassenbeleg-Lint — KassenSichV TSE-Pflichtangaben: Check this file",
+        "category": "Kassenbeleg-Lint — KassenSichV TSE-Pflichtangaben"
+      },
+      {
+        "command": "kassenbelegLint.checkWorkspace",
+        "title": "Kassenbeleg-Lint — KassenSichV TSE-Pflichtangaben: Sweep workspace and write report (licence)",
+        "category": "Kassenbeleg-Lint — KassenSichV TSE-Pflichtangaben"
+      },
+      {
+        "command": "kassenbelegLint.enterKey",
+        "title": "Kassenbeleg-Lint — KassenSichV TSE-Pflichtangaben: Enter licence key",
+        "category": "Kassenbeleg-Lint — KassenSichV TSE-Pflichtangaben"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "kassenbeleg-tse-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/kassenbeleg-tse-lint",
+  "icon": "icon.png"
+}
