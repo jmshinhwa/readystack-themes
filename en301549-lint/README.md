@@ -16,9 +16,9 @@ Flags the EN 301 549 clause each line breaks, and separates what is in force tod
 - **Export the dated evidence file (CSV, JSON or HTML)** — File, line, clause and severity in one document you can keep, attach to your accessibility statement, or hand to an auditor. The free version shows findings on screen; it does not write a record you own.
 - **Machine-readable output so CI can fail the build** — JSON on stdout with the same findings, so a regression is caught in the pipeline instead of after release.
 
-[Get the full version — $29](https://getreadystack.com) - $29 once, one licence key per person or team seat, 7-day full refund.
+[Get the full version — $29](https://getreadystack.com) - $29 once, one licence key per person or team seat.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 
 ## Install
