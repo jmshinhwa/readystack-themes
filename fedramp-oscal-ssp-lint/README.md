@@ -60,7 +60,7 @@ The licensed part is a different axis, scope and hand-off: it sweeps **every** O
 workspace (SSP, component definitions, profiles), resolves uuid references *across* files instead of
 within one, and writes a dated report you can hand to your 3PAO.
 Full version: <https://buy.polar.sh/polar_cl_SxOM1H5OfW5QyRWyTfWSQebO53c3qNWtk5YfG04i69q> — $29 once, one licence key per person or CI seat,
-7-day full refund. Hand-review by a FedRAMP advisory consultant runs $150 to $300 an hour.
+Hand-review by a FedRAMP advisory consultant runs $150 to $300 an hour.
 
 ## Also in the browser
 
