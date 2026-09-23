@@ -53,7 +53,7 @@ gives you the complete finding list for it — that job finishes with no key.
 The paid tier answers a different question: not "is this page clean" but "is the whole shop clean, and can I
 prove it later". It audits every payment page in the workspace in one pass and exports a dated script
 inventory and justification file — the artefact your QSA or your SAQ A-EP self-assessment asks for, in a form
-you keep. $29 once, one licence key per person or team seat, 7-day full refund.
+you keep. $29 once, one licence key per person or team seat.
 
 ## Yardstick
 
