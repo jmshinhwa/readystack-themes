@@ -64,4 +64,4 @@ On the 75-line example suite shipped in `_fixtures/dirty.py`, the rule table rep
 
 ## Licence
 
-Commercial licence, see `LICENSE.txt`. 7-day full refund.
+Commercial licence, see `LICENSE.txt`.
