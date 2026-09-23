@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Choose the report format", "done": "Finished.", "nothing_found": "Nothing to report.", "paste": "Paste an HTML, JSX, Markdown or accessibility-statement file here", "check": "Check this file", "need_key": "Full version: scan every file in the repository, export the dated WCAG 2.1 AA evidence file, and rewrite the superseded deadline dates. $29 once - one licence key per person or team seat - 7-day full refund. A hybrid WCAG audit (automated plus manual sampling) is quoted at $1,500-$8,000.", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted.", "key_bad": "That key did not validate.", "extra_rules": "Extra regex rules of your own, checked alongside the 26 that ship inside."};
+const S = {"run": "Choose the report format", "done": "Finished.", "nothing_found": "Nothing to report.", "paste": "Paste an HTML, JSX, Markdown or accessibility-statement file here", "check": "Check this file", "need_key": "Full version: scan every file in the repository, export the dated WCAG 2.1 AA evidence file, and rewrite the superseded deadline dates. $29 once - one licence key per person or team seat. A hybrid WCAG audit (automated plus manual sampling) is quoted at $1,500-$8,000.", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted.", "key_bad": "That key did not validate.", "extra_rules": "Extra regex rules of your own, checked alongside the 26 that ship inside."};
 const PAID = ["workspace_scan", "export_report", "quick_fix", "ci_json"];
 
 function out() {
@@ -217,7 +217,7 @@ async function sweepGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');   // ⇒ license.js 가 저장하는 열쇠 이름 그대로
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
