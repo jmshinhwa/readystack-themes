@@ -1,0 +1,52 @@
+{
+  "name": "eudi-rp-request-lint",
+  "displayName": "EUDI Wallet Request Lint (OpenID4VP)",
+  "description": "Lint OpenID4VP presentation requests against the EU Digital Identity Wallet relying-party rules: registered client_id, a stated purpose, minimised claims, encrypted response, live registration.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "eudi wallet",
+    "eidas",
+    "openid4vp",
+    "relying party",
+    "digital identity",
+    "verifiable credentials"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "eudiRpLint.checkFile",
+        "title": "EUDI Wallet Request Lint (OpenID4VP): Check this file",
+        "category": "EUDI Wallet Request Lint (OpenID4VP)"
+      },
+      {
+        "command": "eudiRpLint.checkWorkspace",
+        "title": "EUDI Wallet Request Lint (OpenID4VP): Sweep workspace and write report (licence)",
+        "category": "EUDI Wallet Request Lint (OpenID4VP)"
+      },
+      {
+        "command": "eudiRpLint.enterKey",
+        "title": "EUDI Wallet Request Lint (OpenID4VP): Enter licence key",
+        "category": "EUDI Wallet Request Lint (OpenID4VP)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "eudi-rp-request-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/eudi-rp-request-lint",
+  "icon": "icon.png"
+}
