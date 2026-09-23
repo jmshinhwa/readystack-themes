@@ -1,0 +1,53 @@
+{
+  "name": "verfahrensdoku-gobd-check",
+  "displayName": "Verfahrensdokumentation Check",
+  "description": "Prueft eine Verfahrensdokumentation in Markdown auf die Pflichtteile der GoBD und die Aufbewahrungsfristen des §147 AO - direkt im Editor, offline.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "verfahrensdokumentation",
+    "gobd",
+    "abgabenordnung",
+    "betriebspruefung",
+    "buchhaltung",
+    "steuerberater",
+    "aufbewahrungsfrist"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "verfahrensdokuGobd.checkFile",
+        "title": "Verfahrensdokumentation Check (GoBD, §147 AO): Check this file",
+        "category": "Verfahrensdokumentation Check (GoBD, §147 AO)"
+      },
+      {
+        "command": "verfahrensdokuGobd.checkWorkspace",
+        "title": "Verfahrensdokumentation Check (GoBD, §147 AO): Sweep workspace and write report (licence)",
+        "category": "Verfahrensdokumentation Check (GoBD, §147 AO)"
+      },
+      {
+        "command": "verfahrensdokuGobd.enterKey",
+        "title": "Verfahrensdokumentation Check (GoBD, §147 AO): Enter licence key",
+        "category": "Verfahrensdokumentation Check (GoBD, §147 AO)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "verfahrensdoku-gobd-check"
+  },
+  "homepage": "https://getreadystack.com/tools/verfahrensdoku-gobd-check",
+  "icon": "icon.png"
+}
