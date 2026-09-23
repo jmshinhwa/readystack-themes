@@ -58,7 +58,7 @@ This extension reads the Apple property lists in your project as text and applie
 
 **Free, no key:** all 16 checks on any plist you open, with line numbers and fixes.
 
-**Licence key ($29 once):** the export axis — a dated Submission Evidence report in Markdown covering every plist in the solution, a file you keep, attach to the release ticket, or hand to a client. 7-day full refund.
+**Licence key ($29 once):** the export axis — a dated Submission Evidence report in Markdown covering every plist in the solution, a file you keep, attach to the release ticket, or hand to a client.
 
 Freelance iOS release consultants list $60–$150/hour on Upwork for submission review; one 5.1.1(i) rejection costs a re-cut build and a second App Review cycle.
 
