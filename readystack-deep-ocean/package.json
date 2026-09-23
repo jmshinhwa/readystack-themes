@@ -2,7 +2,7 @@
   "name": "readystack-deep-ocean",
   "displayName": "ReadyStack Deep Ocean",
   "description": "Submarine blues with aqua accents. Reads cool and quiet at any hour. Body text measured at 14.3:1 - WCAG AAA.",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
