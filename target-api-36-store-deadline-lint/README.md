@@ -25,9 +25,9 @@ build.gradle:8   error  ndkVersion 27 - native libs not 16 KB aligned (blocked s
 - **Export a dated release-readiness report** — A file with every finding and its store deadline, for the person who has to sign the release off.
 - **Re-check on every save** — The check runs again each time a build file is saved, so a version bump never lands unnoticed.
 
-[**Get the full version - $29**](https://getreadystack.com) - $29 once, one licence key per person or team seat, 7-day full refund.
+[**Get the full version - $29**](https://getreadystack.com) - $29 once, one licence key per person or team seat.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 
 ## Install
