@@ -38,7 +38,7 @@ The sample ruleset in `_fixtures/dirty.rules` is 22 lines of ordinary assistant-
 
 ## Free and full
 
-Free covers one file: open `firestore.rules`, run **Firestore Rules Guard: Audit This File**, read the findings. The full version works on a different axis — scope and ownership: it audits every `.rules` file in the workspace in one pass and writes a dated Markdown evidence report you keep and can attach to a review or a customer security questionnaire. $29 once, one licence key per person or team seat, 7-day full refund.
+Free covers one file: open `firestore.rules`, run **Firestore Rules Guard: Audit This File**, read the findings. The full version works on a different axis — scope and ownership: it audits every `.rules` file in the workspace in one pass and writes a dated Markdown evidence report you keep and can attach to a review or a customer security questionnaire. $29 once, one licence key per person or team seat.
 
 A freelance Firebase developer is quoted at $120 an hour, and a manual pass over a project's rules takes about an hour.
 
