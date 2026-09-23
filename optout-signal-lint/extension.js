@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Auditing for opt-out leaks", "done": "Audit finished.", "nothing_found": "No opt-out leak found in this file.", "paste": "Paste a tag, analytics or consent file here", "check": "Audit this file", "need_key": "Full version: Sweeps the whole workspace, writes the finding list to CSV, JSON or HTML, and returns a CI exit code so the same leak cannot merge twice. $29 once · one licence key per person or team seat · 7-day full refund. Osano, the nearest hosted consent platform, starts at $199/month.", "buy": "Get the full version — $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted. The workspace scan, export and CI output are open.", "key_bad": "That key did not validate. Check it in your Polar customer portal."};
+const S = {"run": "Auditing for opt-out leaks", "done": "Audit finished.", "nothing_found": "No opt-out leak found in this file.", "paste": "Paste a tag, analytics or consent file here", "check": "Audit this file", "need_key": "Full version: Sweeps the whole workspace, writes the finding list to CSV, JSON or HTML, and returns a CI exit code so the same leak cannot merge twice. $29 once · one licence key per person or team seat · Osano, the nearest hosted consent platform, starts at $199/month.", "buy": "Get the full version — $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted. The workspace scan, export and CI output are open.", "key_bad": "That key did not validate. Check it in your Polar customer portal."};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 // ★역방향 체험 — ★첫 스윕부터 7일. ⛔기본 유료 문장은 한 번만 붙잡아 둔다 (안내가 겹쳐 쌓이지 않게)
 const NEED_KEY = S.need_key;
@@ -98,7 +98,7 @@ async function paidGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
