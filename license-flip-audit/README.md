@@ -17,9 +17,9 @@ Finds the dependencies whose licence changed under you - Terraform 1.6+ BUSL, Re
 - **Re-check on every save** — Catches the flip at the moment a bot bump lands in your working tree, not at review time.
 - **Write the machine-readable CI file** — A JSON report your pipeline can read, so a pull request that introduces a flipped licence can be failed automatically.
 
-[Get the full version - $29](https://buy.polar.sh/polar_cl_sFzJiUXy6pSbEx0SFN1aIg7vRguyRc32MpDnb1iCHPe) - $29 once, one licence key per person or team seat, 7-day full refund.
+[Get the full version - $29](https://buy.polar.sh/polar_cl_sFzJiUXy6pSbEx0SFN1aIg7vRguyRc32MpDnb1iCHPe) - $29 once, one licence key per person or team seat.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 
 ## Install
