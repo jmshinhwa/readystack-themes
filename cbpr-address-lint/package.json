@@ -1,0 +1,53 @@
+{
+  "name": "cbpr-address-lint",
+  "displayName": "CBPR+ Structured Address Lint",
+  "description": "Lint ISO 20022 pacs.008, pacs.009 and pain.001 XML for postal addresses CBPR+ will not accept: unstructured blocks, missing Ctry or TwnNm, and values duplicated between a structured field and AdrLine.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "iso 20022",
+    "pacs.008",
+    "cbpr+",
+    "swift",
+    "structured address",
+    "cross-border payments",
+    "xml lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "cbprAddress.checkFile",
+        "title": "CBPR+ Structured Address Lint: Check this file",
+        "category": "CBPR+ Structured Address Lint"
+      },
+      {
+        "command": "cbprAddress.checkWorkspace",
+        "title": "CBPR+ Structured Address Lint: Sweep workspace and write report (licence)",
+        "category": "CBPR+ Structured Address Lint"
+      },
+      {
+        "command": "cbprAddress.enterKey",
+        "title": "CBPR+ Structured Address Lint: Enter licence key",
+        "category": "CBPR+ Structured Address Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "cbpr-address-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/cbpr-address-lint",
+  "icon": "icon.png"
+}
