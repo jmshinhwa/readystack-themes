@@ -2,7 +2,7 @@
   "name": "readystack-sepia-read",
   "displayName": "ReadyStack Sepia Read",
   "description": "Sepia, tuned like a book page. Lowest glare of the light set. Body text measured at 12.7:1 - WCAG AAA.",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
