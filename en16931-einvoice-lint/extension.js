@@ -8,7 +8,7 @@ const REPORT = require('./report.js');
 
 const S = {
   title: 'EN 16931 e-Invoice Lint - DE/FR/IT/BE/PL',
-  need_key: 'Full version: sweep every invoice mapping in the workspace in one pass and write a dated report file you keep, commit and hand to an auditor. $29 once \u00b7 one licence key per person or team seat \u00b7 7-day full refund. A German tax adviser\'s time fee is fixed by StBVV 13 at EUR 30-70 per half hour.',
+  need_key: 'Full version: sweep every invoice mapping in the workspace in one pass and write a dated report file you keep, commit and hand to an auditor. $29 once \u00b7 one licence key per person or team seat \u00b7 A German tax adviser\'s time fee is fixed by StBVV 13 at EUR 30-70 per half hour.',
   enter_key: 'Enter licence key', buy: 'Get the full version \u2014 $29',
   key_ok: 'Licence accepted. Thank you.', key_bad: 'That key did not validate. Check for typos, or get a licence.',
   clean: 'Clean against all ' + (ENGINE.RULE_COUNT || (ENGINE.RULES || []).length) + ' checks.'
@@ -70,6 +70,8 @@ function activate(ctx) {
     vscode.commands.registerCommand(PREFIX + '.checkWorkspace', function () { return checkWorkspace(ctx); }),
     vscode.commands.registerCommand(PREFIX + '.enterKey', function () { return enterKey(ctx); })
   );
+  // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'en16931-einvoice-lint', price: 29 }); } catch (e) {}
 }
 function deactivate() { if (channel) channel.dispose(); if (diags) diags.dispose(); }
 module.exports = { activate: activate, deactivate: deactivate, checkFile: checkFile, S: S };
