@@ -40,7 +40,7 @@ finding, and the clock starts when someone else notices it, not when you do.
 * **Paid ($29 once) — the whole workspace, and a report you keep.** *Sweep workspace* walks
   every `.erb` file in the project and writes a dated Markdown/CSV report — the artefact you
   attach to a release note, a pull request, or a vulnerability-handling record. One licence
-  key per person or CI seat. 7-day full refund.
+  key per person or CI seat.
 
 The axis is scope and ownership. The free tier finishes the job it starts.
 
