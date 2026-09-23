@@ -1,0 +1,52 @@
+{
+  "name": "vvt-pruefer-art-30-dsgvo",
+  "displayName": "VVT-Prüfer — Art. 30 DSGVO",
+  "description": "Prüft Ihr Verzeichnis von Verarbeitungstätigkeiten (Markdown) auf die Pflichtangaben nach Art. 30 Abs. 1 DSGVO, veralteten Stand und Drittlandtransfers ohne Garantie.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "dsgvo",
+    "vvt",
+    "art-30",
+    "datenschutz",
+    "verarbeitungsverzeichnis",
+    "compliance",
+    "linter"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vvtPruefer.checkFile",
+        "title": "VVT-Prüfer — Art. 30 DSGVO: Check this file",
+        "category": "VVT-Prüfer — Art. 30 DSGVO"
+      },
+      {
+        "command": "vvtPruefer.checkWorkspace",
+        "title": "VVT-Prüfer — Art. 30 DSGVO: Sweep workspace and write report (licence)",
+        "category": "VVT-Prüfer — Art. 30 DSGVO"
+      },
+      {
+        "command": "vvtPruefer.enterKey",
+        "title": "VVT-Prüfer — Art. 30 DSGVO: Enter licence key",
+        "category": "VVT-Prüfer — Art. 30 DSGVO"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "vvt-pruefer-art-30-dsgvo"
+  },
+  "homepage": "https://getreadystack.com/tools/vvt-pruefer-art-30-dsgvo"
+}
