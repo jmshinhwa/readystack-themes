@@ -29,7 +29,7 @@ The same engine runs in the browser, with nothing sent anywhere: https://getread
 
 ## Full version — $29 once
 
-Lint every model card in the repository in one pass, and export the dated audit as a file you keep: Markdown for the reviewer, JSON a CI step can fail on. One licence key per person or CI seat, 7-day full refund. https://buy.polar.sh/polar_cl_mHiMKq8aRodhSAoK7NzNGXWSa5Nxn3sBnksN74QXeId
+Lint every model card in the repository in one pass, and export the dated audit as a file you keep: Markdown for the reviewer, JSON a CI step can fail on. One licence key per person or CI seat. https://buy.polar.sh/polar_cl_mHiMKq8aRodhSAoK7NzNGXWSa5Nxn3sBnksN74QXeId
 
 For scale: an hour of an EU AI Act compliance consultant starts near $200, and the Act's own ceiling for a GPAI provider is €15,000,000 or 3% of worldwide annual turnover (Art. 101).
 
