@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Checking this file against EN 301 549…", "check": "Check this file", "paste": "Paste the HTML, JSX, Vue, Svelte, Blade or Twig template you are looking at.", "done": "EN 301 549 check finished.", "nothing_found": "No EN 301 549 finding on these lines. That covers the clauses this linter can see in markup — it does not cover keyboard traps, focus order or anything that needs the page running.", "need_key": "Full version: scans every template in the repository and writes the dated evidence file — file, line and clause — that your accessibility statement has to point at. $29 once · one licence key per person or team seat · 7-day full refund. A manual WCAG audit is quoted at $100–$250 per page (Accessible.org, 2026).", "buy": "Get the full version — $29", "key_ok": "Licence key accepted. Workspace scan, evidence export and CI output are on.", "key_bad": "That key did not validate. Check it was pasted whole, then try again.", "extra_rules": "Your own house rules, checked next to the 28 that ship inside.", "enter_key": "Enter licence key"};
+const S = {"run": "Checking this file against EN 301 549…", "check": "Check this file", "paste": "Paste the HTML, JSX, Vue, Svelte, Blade or Twig template you are looking at.", "done": "EN 301 549 check finished.", "nothing_found": "No EN 301 549 finding on these lines. That covers the clauses this linter can see in markup — it does not cover keyboard traps, focus order or anything that needs the page running.", "need_key": "Full version: scans every template in the repository and writes the dated evidence file — file, line and clause — that your accessibility statement has to point at. $29 once · one licence key per person or team seat · A manual WCAG audit is quoted at $100–$250 per page (Accessible.org, 2026).", "buy": "Get the full version — $29", "key_ok": "Licence key accepted. Workspace scan, evidence export and CI output are on.", "key_bad": "That key did not validate. Check it was pasted whole, then try again.", "extra_rules": "Your own house rules, checked next to the 28 that ship inside.", "enter_key": "Enter licence key"};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 
 function out() {
@@ -104,7 +104,7 @@ async function paidGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');   // ⛔license.js 가 저장하는 바로 그 이름
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     // ★손님 자신의 숫자를 먼저 읽어 준다 (endowment) — 812개 파일에서 37건을 본 그 사람에게.
