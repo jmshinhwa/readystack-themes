@@ -44,7 +44,7 @@ Free, with no key: scan the file you have open against all 10 rules and read eve
 
 The licence key adds a different axis — **scope and ownership**: the workspace sweep, which scans every `.tf` file in one pass, and the export that writes the findings to a dated Markdown or JSON file you keep as audit evidence.
 
-Hand review runs about $150/hour. The licence is $29 once, one key per person or CI seat, with a 7-day full refund.
+Hand review runs about $150/hour. The licence is $29 once, one key per person or CI seat.
 
 [Workspace sweep + dated evidence file — $29 once](https://buy.polar.sh/polar_cl_zIkhgslGAKC7DwM9YZoNxdZy6f9YhUR5XrlPP4UKzK6)
 
