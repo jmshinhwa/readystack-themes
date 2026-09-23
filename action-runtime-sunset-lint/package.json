@@ -1,0 +1,52 @@
+{
+  "name": "action-runtime-sunset-lint",
+  "displayName": "Action Runtime Sunset Lint",
+  "description": "Finds GitHub Actions steps whose JS runtime is retired or archived, with the exact version to move to and the days left before the workflow stops running.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "github actions",
+    "node20",
+    "workflow",
+    "deprecation",
+    "ci",
+    "yaml",
+    "runtime"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "actionRuntimeSunset.checkFile",
+        "title": "Action Runtime Sunset Lint: Check this file",
+        "category": "Action Runtime Sunset Lint"
+      },
+      {
+        "command": "actionRuntimeSunset.checkWorkspace",
+        "title": "Action Runtime Sunset Lint: Sweep workspace and write report (licence)",
+        "category": "Action Runtime Sunset Lint"
+      },
+      {
+        "command": "actionRuntimeSunset.enterKey",
+        "title": "Action Runtime Sunset Lint: Enter licence key",
+        "category": "Action Runtime Sunset Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "action-runtime-sunset-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/action-runtime-sunset-lint"
+}
