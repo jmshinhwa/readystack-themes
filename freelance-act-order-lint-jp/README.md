@@ -42,7 +42,7 @@ FL-B15  契約終了日 2026-10-05 まで残り 17日。30日前予告の期限�
 ## 無料でできること / 追加でできること
 
 - 無料: 開いている発注書 1 ファイルを、明示事項から支払日数まで **21 ルール全部**その場で検査して結果を出します。制限も透かしも回数制限もありません。
-- Full version: ワークスペース内の全発注書を一括検査し、取引先ごとの監査レポート（Markdown / CSV）として書き出します — $29 once · one licence key per person or team seat · 7-day full refund. https://buy.polar.sh/polar_cl_AXdOwFfCpfVvVll4ES6gxWalyzsGaQkEtrdxl1pK46t
+- Full version: ワークスペース内の全発注書を一括検査し、取引先ごとの監査レポート（Markdown / CSV）として書き出します — $29 once · one licence key per person or team seat · https://buy.polar.sh/polar_cl_AXdOwFfCpfVvVll4ES6gxWalyzsGaQkEtrdxl1pK46t
 
 ## 目安（やらなかったときの費用）
 
