@@ -55,7 +55,7 @@ the R scripts and the scratch notes in folders nobody opens together.
 - **A JSON file for CI** a pipeline step can read and fail the branch on, so the checks that ran in
   your editor also gate the merge
 
-One payment, no subscription, 7-day refund → **[Get the licence](https://buy.polar.sh/polar_cl_OOWhGWUQdzMKw1sbdABAAtVYaYUfgPFM4RdAh09oicR)**
+One payment, no subscription → **[Get the licence](https://buy.polar.sh/polar_cl_OOWhGWUQdzMKw1sbdABAAtVYaYUfgPFM4RdAh09oicR)**
 
 For scale: dedicated secret-scanning platforms bill roughly $18–$35 per developer per month, and
 native scanning on GitHub or GitLab rides on paid plans at $49–$99 per user per year.
