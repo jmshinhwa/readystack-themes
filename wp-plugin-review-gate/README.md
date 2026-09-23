@@ -56,7 +56,7 @@ Free, no key: the file you have open is checked in full, every rule, every line 
 
 Paid: the whole plugin folder in one pass — `readme.txt` read against the plugin header,
 `Stable tag` against `Version` across files — plus a dated report you keep for the
-submission. $29 once, one licence key per person or team seat, 7-day full refund:
+submission. $29 once, one licence key per person or team seat:
 https://buy.polar.sh/polar_cl_qArF3mNB1PwK3Pdmu8u0XW9Y9cxzGW2ytS3iq05dr5h
 
 A freelance WordPress developer bills $30 to $90 an hour; a pre-submission read is an hour
