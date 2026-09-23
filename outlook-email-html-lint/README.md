@@ -17,7 +17,7 @@ Classic Outlook renders with the Word engine, the new Outlook with WebView2. Lin
 - **Export a report you can hand over** — Writes the findings to CSV, JSON or HTML so a client or a colleague can read them.
 - **CI output** — Machine-readable JSON so a build step can stop a broken template before it ships.
 
-Email on Acid Basics is $99/month and Litmus Core starts at $500/month (checked 2026-09-07). This licence is $29, once. 7-day refund, no questions.
+Email on Acid Basics is $99/month and Litmus Core starts at $500/month (checked 2026-09-07). This licence is $29, once. 
 
 [Get a licence](https://buy.polar.sh/polar_cl_0zZyRdFLtRxDC42FwytNvrE9IKgRLFcSm8ED044gS16)
 
