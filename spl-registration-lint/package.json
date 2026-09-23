@@ -1,0 +1,53 @@
+{
+  "name": "spl-registration-lint",
+  "displayName": "SPL Registration Lint - FDA Establishment XML",
+  "description": "Lints FDA SPL establishment registration XML before it goes to the FDA ESG: DUNS format, LOINC document type, UUID setId, and the October 1 - December 31 annual registration window.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "spl",
+    "fda",
+    "hl7",
+    "xml",
+    "regulatory",
+    "establishment registration",
+    "duns"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "splRegLint.checkFile",
+        "title": "SPL Registration Lint - FDA Establishment XML: Check this file",
+        "category": "SPL Registration Lint - FDA Establishment XML"
+      },
+      {
+        "command": "splRegLint.checkWorkspace",
+        "title": "SPL Registration Lint - FDA Establishment XML: Sweep workspace and write report (licence)",
+        "category": "SPL Registration Lint - FDA Establishment XML"
+      },
+      {
+        "command": "splRegLint.enterKey",
+        "title": "SPL Registration Lint - FDA Establishment XML: Enter licence key",
+        "category": "SPL Registration Lint - FDA Establishment XML"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "spl-registration-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/spl-registration-lint",
+  "icon": "icon.png"
+}
