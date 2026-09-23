@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Watching this SBOM - it re-checks on every save.", "done": "Field gaps found - see the SBOM Field Check panel.", "nothing_found": "No field gaps found: every field these 34 rules look for is present.", "need_key": "Full version: every SBOM in the repo, an evidence file you keep, and CI output that fails the build before release. $29 once - one licence key per person or team seat - 7-day full refund. Published CRA cost calculators price this work at EUR 45/hour, and a documented readiness pass for one product family at EUR 12,000-25,000 of internal engineering time.", "key_ok": "Licence accepted - workspace check, evidence export and CI output are open.", "key_bad": "That key did not validate. Check it against your Polar receipt, or take the 7-day refund.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "paste": "Paste your SBOM here - bom.json (CycloneDX) or sbom.spdx.json (SPDX)", "check": "Check this SBOM", "extra_rules": "Extra rules of your own, checked alongside the 34 that ship inside."};
+const S = {"run": "Watching this SBOM - it re-checks on every save.", "done": "Field gaps found - see the SBOM Field Check panel.", "nothing_found": "No field gaps found: every field these 34 rules look for is present.", "need_key": "Full version: every SBOM in the repo, an evidence file you keep, and CI output that fails the build before release. $29 once - one licence key per person or team seat. Published CRA cost calculators price this work at EUR 45/hour, and a documented readiness pass for one product family at EUR 12,000-25,000 of internal engineering time.", "key_ok": "Licence accepted - workspace check, evidence export and CI output are open.", "key_bad": "That key did not validate. Check it against your Polar receipt.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "paste": "Paste your SBOM here - bom.json (CycloneDX) or sbom.spdx.json (SPDX)", "check": "Check this SBOM", "extra_rules": "Extra rules of your own, checked alongside the 34 that ship inside."};
 const PAID = ["workspace_scan", "export_report", "ci_json", "watch_on_save"];
 
 function out() {
@@ -204,7 +204,7 @@ async function paidGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   paidGate._inTrial = inTrial;               // ★끝 안내 문장이 읽는다 (watchOnSave._d 와 같은 방식)
   if (inTrial) return true;                  // ⛔체험 중에는 ★묻지 않는다
