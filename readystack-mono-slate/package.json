@@ -2,7 +2,7 @@
   "name": "readystack-mono-slate",
   "displayName": "ReadyStack Mono Slate",
   "description": "Near-monochrome slate with one teal accent. Minimal, for people who hate rainbows. Body text measured at 14.4:1 - WCAG AAA.",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
