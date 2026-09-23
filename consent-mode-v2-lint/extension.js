@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"paste": "Paste your gtag/GTM snippet, an HTML page, or a GTM container export (.json) here", "check": "Check consent mode", "run": "Checking consent-mode signals", "done": "Consent-mode check finished", "nothing_found": "No consent-mode problems found in this file.", "need_key": "Full version: scans every file in the workspace, writes the report to a file, and returns CI-readable JSON. $29 once - one licence key per person or team seat - 7-day full refund. A freelancer's consent-mode audit runs $400-$1,200.", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted - workspace scan, export and CI output are unlocked.", "key_bad": "That key did not validate. Check it was copied in full."};
+const S = {"paste": "Paste your gtag/GTM snippet, an HTML page, or a GTM container export (.json) here", "check": "Check consent mode", "run": "Checking consent-mode signals", "done": "Consent-mode check finished", "nothing_found": "No consent-mode problems found in this file.", "need_key": "Full version: scans every file in the workspace, writes the report to a file, and returns CI-readable JSON. $29 once - one licence key per person or team seat. A freelancer's consent-mode audit runs $400-$1,200.", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted - workspace scan, export and CI output are unlocked.", "key_bad": "That key did not validate. Check it was copied in full."};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 
 function out() {
