@@ -52,7 +52,7 @@ run in the browser, with nothing installed:
 The licence key adds a different axis, not a bigger slice of the same one: one run across **every**
 PHP file in the plugin, and a dated audit report (Markdown and JSON) that you keep — for the
 WordPress.org review reply and for your Art. 30 records. $29 once, one licence key per person or
-team seat, 7-day full refund. Yardstick: a DSGVO code review by a German IT-law firm is commonly
+team seat. Yardstick: a DSGVO code review by a German IT-law firm is commonly
 billed at EUR 200 per hour. <https://buy.polar.sh/polar_cl_sZ2Bgyx7lAEhKmhzceABGE3rRlKWXaJxUrjPm48Q1KV>
 
 ## Not what this is
