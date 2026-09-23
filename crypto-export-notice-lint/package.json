@@ -1,0 +1,52 @@
+{
+  "name": "crypto-export-notice-lint",
+  "displayName": "Crypto Export Notice Lint (EAR 742.15)",
+  "description": "Checks a README or EXPORT notice against the US EAR 742.15(b) publication items: BIS and NSA emails, published source URL, ECCN line, notification date, and the removed 740.13(e) citation.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "export control",
+    "ear",
+    "encryption",
+    "bis",
+    "eccn",
+    "open source compliance"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "cryptoExport.checkFile",
+        "title": "Crypto Export Notice Lint (EAR 742.15): Check this file",
+        "category": "Crypto Export Notice Lint (EAR 742.15)"
+      },
+      {
+        "command": "cryptoExport.checkWorkspace",
+        "title": "Crypto Export Notice Lint (EAR 742.15): Sweep workspace and write report (licence)",
+        "category": "Crypto Export Notice Lint (EAR 742.15)"
+      },
+      {
+        "command": "cryptoExport.enterKey",
+        "title": "Crypto Export Notice Lint (EAR 742.15): Enter licence key",
+        "category": "Crypto Export Notice Lint (EAR 742.15)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "crypto-export-notice-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/crypto-export-notice-lint",
+  "icon": "icon.png"
+}
