@@ -43,7 +43,7 @@ The answer is never withheld. What a licence adds is the *next* file, and the fo
 - **Write the findings to a file** - CSV, JSON or HTML, written into your workspace folder
 - **Your team's own rules** - your `extraRules` are checked alongside the built-in 21
 
-7-day full refund. Get a licence: https://buy.polar.sh/polar_cl_Ge5u327gSZxIxtXPvdIVqBgdNtoieIuKZKWfV1LjjLp
+Get a licence: https://buy.polar.sh/polar_cl_Ge5u327gSZxIxtXPvdIVqBgdNtoieIuKZKWfV1LjjLp
 
 ## Install
 
