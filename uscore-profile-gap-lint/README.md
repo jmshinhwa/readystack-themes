@@ -44,7 +44,7 @@ The free tier finishes the job on screen. Every gap, in every resource in the wo
 
 The full version adds one thing, on a different axis: taking the result away. It exports the whole workspace as a single conformance report file - every resource, its profile pin, and the USCDI v3 element it misses - in a form you can attach to a certification package or hand to a customer's auditor.
 
-$29 once, one licence key per person or team seat, 7-day full refund.
+$29 once, one licence key per person or team seat.
 
 Yardstick: a US FHIR consultant averages **$49.72/hour**, with most between $24.28 and $62.50 (ZipRecruiter, 31 July 2026); reading a real resource set by hand is an afternoon.
 
