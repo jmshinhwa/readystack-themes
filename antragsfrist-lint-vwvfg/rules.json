@@ -1,0 +1,62 @@
+[
+  {
+    "id": "frist_abgelaufen",
+    "sev": "error",
+    "msg": "Antragsfrist liegt in der Vergangenheit — die Seite lädt weiter zum Antrag ein.",
+    "fix": "Frist auf den aktuellen Aufruf setzen oder die Seite als beendet kennzeichnen."
+  },
+  {
+    "id": "fristende_wochenende",
+    "sev": "error",
+    "msg": "Fristende fällt auf Samstag/Sonntag — nach § 31 Abs. 3 S. 1 VwVfG endet die Frist erst am nächsten Werktag.",
+    "fix": "Nächsten Werktag als Fristende nennen und § 31 Abs. 3 VwVfG zitieren."
+  },
+  {
+    "id": "fristende_feiertag",
+    "sev": "error",
+    "msg": "Fristende fällt auf einen gesetzlichen Feiertag — § 31 Abs. 3 S. 1 VwVfG verschiebt das Ende auf den nächsten Werktag.",
+    "fix": "Nächsten Werktag als Fristende nennen.",
+    "feiertage": {
+      "2026": ["2026-01-01", "2026-04-03", "2026-04-06", "2026-05-01", "2026-05-14", "2026-05-25", "2026-10-03", "2026-12-25", "2026-12-26"],
+      "2027": ["2027-01-01", "2027-03-26", "2027-03-29", "2027-05-01", "2027-05-06", "2027-05-17", "2027-10-03", "2027-12-25", "2027-12-26"],
+      "2028": ["2028-01-01", "2028-04-14", "2028-04-17", "2028-05-01", "2028-05-25", "2028-06-05", "2028-10-03", "2028-12-25", "2028-12-26"]
+    },
+    "default_today": "2026-09-22"
+  },
+  {
+    "id": "frist_ohne_jahr",
+    "sev": "error",
+    "msg": "Fristdatum ohne Jahreszahl — bei einem jährlichen Aufruf ist nicht erkennbar, welcher Termin gilt.",
+    "fix": "Jahreszahl ergänzen: aus \"31.10.\" wird \"31.10.2026\"."
+  },
+  {
+    "id": "zugang_poststempel",
+    "sev": "error",
+    "msg": "\"Poststempel\" als Fristmaßstab — für behördliche Fristen zählt der Zugang bei der Behörde, nicht der Poststempel.",
+    "fix": "Formulieren: \"maßgeblich ist der Eingang bei der Bewilligungsstelle\"."
+  },
+  {
+    "id": "datumsformat_iso",
+    "sev": "warn",
+    "msg": "ISO-Datum (JJJJ-MM-TT) auf einer Fristzeile einer deutschsprachigen Seite — wird als TT.MM. fehlgelesen.",
+    "fix": "Als TT.MM.JJJJ schreiben."
+  },
+  {
+    "id": "rueckwirkend_zugesagt",
+    "sev": "error",
+    "msg": "Seite stellt eine rückwirkende Antragstellung nach Maßnahmenbeginn in Aussicht.",
+    "fix": "Satz streichen oder auf die Ausnahme in der Förderrichtlinie beschränken."
+  },
+  {
+    "id": "frist_widerspruch",
+    "sev": "error",
+    "msg": "Zwei verschiedene Fristdaten in einer Zeile — Antragsteller wissen nicht, welches gilt.",
+    "fix": "Ein Datum nennen; das zweite in eine eigene Zeile mit eigenem Label."
+  },
+  {
+    "id": "richtlinie_ohne_stand",
+    "sev": "warn",
+    "msg": "Förderrichtlinie ohne Fassungsdatum — bei einer Neufassung ist die zitierte Frist nicht mehr zuzuordnen.",
+    "fix": "\"Förderrichtlinie vom TT.MM.JJJJ\" oder \"Stand: TT.MM.JJJJ\" ergänzen."
+  }
+]
