@@ -63,7 +63,7 @@ Full version: sweep every migration in the workspace at once and write a dated f
 you keep — the artifact you hand to a QSA or attach to a change ticket — plus team and
 commercial use. A QSA-led gap analysis of your data stores is commonly quoted as a five-figure
 engagement; this reads the same migrations in the editor for $29 once, one licence key per
-person or team seat, 7-day full refund.
+person or team seat.
 
 Get a licence: https://buy.polar.sh/polar_cl_HL23mfuzaP3RMTfsQGzbUYmVSiTyJBd8Czg9B1TIuJT
 
