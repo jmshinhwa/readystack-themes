@@ -1,7 +1,7 @@
 // auto.js — s159 "the extension speaks" (2026-09-23 s158). Shipped next to extension.js; started by one line in activate().
 // [실측 s158] 419 extensions registered commands only: no check on open/save, no status bar ⇒ installs 174 · used 1 · paywall 3 (7 days).
 // ★Free = the full answer for the open file (diagnostics + status bar count) · ★paid moment = ONE workspace hint with the customer's own
-//   count → the existing checkWorkspace (reverse trial 7 days, then the key). Broad globs (**/*.md …) speak only on files that are the
+//   count → the existing checkWorkspace (s158: no free trial — the key is asked with the customer's own count; 7-day refund). Broad globs (**/*.md …) speak only on files that are the
 //   checker's target (file name carries a product word, or findings are not "everything missing") so a README is never flooded.
 // Off switches: settings readystack.autoCheck / readystack.workspaceHint. Telemetry: one anonymous "use" ping per session, respects
 //   vscode.env.isTelemetryEnabled, READYSTACK_NO_TELEMETRY and CI.
@@ -74,7 +74,7 @@ function start(ctx, o) {
     vscode.workspace.onDidOpenTextDocument(function (doc) { var ed = vscode.window.activeTextEditor; if (!ed || ed.document !== doc) run(doc); })
   );
   later(vscode.window.activeTextEditor);
-  var h = { vscode: vscode, E: E, GLOB: GLOB, PREFIX: PREFIX, title: title, toks: toks, R: R };
+  var h = { vscode: vscode, E: E, GLOB: GLOB, PREFIX: PREFIX, title: title, toks: toks, R: R, price: o.price || 29 };
   if (cfg().get('workspaceHint', true) !== false) { var ht = setTimeout(function () { hint(ctx, h); }, o.hintDelayMs == null ? 8000 : o.hintDelayMs); if (ht && ht.unref) ht.unref(); }
   return { run: run, show: show, hint: function () { return hint(ctx, h); } };
 }
@@ -96,7 +96,8 @@ async function hint(ctx, h) {
     await ctx.workspaceState.update(key, true);
     if (!total) return { files: 0, total: 0 };
     var st = ctx.globalState, hasKey = !!st.get('licenseKey'), until = Number(st.get('sweepTrialUntil') || 0);
-    var label = hasKey ? 'Sweep the workspace' : ((!until || Date.now() < until) ? 'Sweep the workspace (free for 7 days)' : 'Sweep the workspace (licence)');
+    // s158 — ⚑7일 무료 없음: 버튼이 곧 값이다(손님 숫자 바로 옆) · 이미 시작된 체험만 지킨다
+    var label = hasKey ? 'Sweep the workspace' : ((until && Date.now() < until) ? 'Sweep the workspace (trial)' : 'Get the full report ($' + (h.price || 29) + ')');
     var msg = h.title + ': ' + total + ' issue' + (total === 1 ? '' : 's') + ' in ' + files + ' file' + (files === 1 ? '' : 's') + ' of this workspace.';
     var pick = await vscode.window.showInformationMessage(msg, label, "Don't show again");
     if (pick === label) await vscode.commands.executeCommand(h.PREFIX + '.checkWorkspace');
