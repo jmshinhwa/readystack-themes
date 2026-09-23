@@ -34,7 +34,7 @@ Those five render differently in the browser and identically in your terminal. T
 
 That finishes the file in front of you, with no licence key and no account.
 
-The full version adds a different axis - scale and ownership: one command scans every file in the workspace and writes a dated Markdown migration report with a per-file count you can hand to your team. 29 dollars once, one licence key per person or team seat, 7-day full refund.
+The full version adds a different axis - scale and ownership: one command scans every file in the workspace and writes a dated Markdown migration report with a per-file count you can hand to your team. 29 dollars once, one licence key per person or team seat.
 
 ## Yardstick
 
