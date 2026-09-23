@@ -29,7 +29,7 @@ This extension reads the documentation file you have open and reports, line by l
 
 ## Free and full version
 
-Free, no key, and finished on its own: lint the file you have open, with every finding on its line. The full version works on a different axis - scope and ownership: it sweeps every documentation file in the workspace in one command and writes a dated evidence report (Markdown + CSV) you keep with your technical file. $29 once, one licence key per person or team seat, 7-day full refund: https://buy.polar.sh/polar_cl_mS0E5k9PqMWkUFlrIn7VEYPbBJmAX5ybAjvyM2dC7Zw
+Free, no key, and finished on its own: lint the file you have open, with every finding on its line. The full version works on a different axis - scope and ownership: it sweeps every documentation file in the workspace in one command and writes a dated evidence report (Markdown + CSV) you keep with your technical file. $29 once, one licence key per person or team seat: https://buy.polar.sh/polar_cl_mS0E5k9PqMWkUFlrIn7VEYPbBJmAX5ybAjvyM2dC7Zw
 
 Yardstick: a compliance consultant reviewing one technical file bills about EUR 150 per hour.
 
