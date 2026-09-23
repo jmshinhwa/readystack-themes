@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Reading the file for standing charges", "done": "Checked. Every finding below carries its published unit price.", "nothing_found": "No standing charge found in this file.", "paste": "Paste your .tf, .yaml, .yml or template.json here", "check": "Find the standing charges", "extra_rules": "Extra rules of your own, checked alongside the ones that ship inside.", "need_key": "Full version: every file in the repository instead of the one you have open, plus a CSV, JSON or HTML report and machine output that fails a build. $29 once, one licence key per person or team seat, 7-day full refund. Amazon's own published price for the same untouched cluster after the date passes is $0.60 per cluster-hour instead of $0.10, which is $365 more every month.", "buy": "Get the full version - $29", "key_ok": "Licence accepted. The workspace scan, the report and the CI output are open.", "key_bad": "That key did not validate.", "enter_key": "Enter licence key"};
+const S = {"run": "Reading the file for standing charges", "done": "Checked. Every finding below carries its published unit price.", "nothing_found": "No standing charge found in this file.", "paste": "Paste your .tf, .yaml, .yml or template.json here", "check": "Find the standing charges", "extra_rules": "Extra rules of your own, checked alongside the ones that ship inside.", "need_key": "Full version: every file in the repository instead of the one you have open, plus a CSV, JSON or HTML report and machine output that fails a build. $29 once, one licence key per person or team seat. Amazon's own published price for the same untouched cluster after the date passes is $0.60 per cluster-hour instead of $0.10, which is $365 more every month.", "buy": "Get the full version - $29", "key_ok": "Licence accepted. The workspace scan, the report and the CI output are open.", "key_bad": "That key did not validate.", "enter_key": "Enter licence key"};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 // ★역방향 체험 — ⛔S.need_key 를 덮어쓰기 전의 ★원문. 겹쳐 붙는 것을 막는다.
 const NEED_KEY = S.need_key;
@@ -98,7 +98,7 @@ async function paidGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
