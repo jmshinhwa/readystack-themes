@@ -47,7 +47,7 @@ Findings land in the Problems panel with the requirement number attached, and in
 
 The line between them is scope and ownership, not capability. One file is a complete job; a repo-wide dated inventory is a different job.
 
-QSA assessment time bills at roughly $200 an hour. 7-day full refund, no questions.
+QSA assessment time bills at roughly $200 an hour.
 
 ## How to record a justification
 
