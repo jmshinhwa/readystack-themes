@@ -39,7 +39,7 @@ Annex II(2) CRA also asks for a single point of contact for reporting, and since
 
 Free, no key: the open file, all 12 rules, every finding with its line number and the article behind it. That job finishes on its own.
 
-Full version — $29 once: every changelog in the workspace in one pass, plus a dated Markdown + CSV evidence record you keep and file. One licence key per person or team seat, 7-day full refund. https://buy.polar.sh/polar_cl_SLbJNzFJbhPz5hbdDSJNmtMORqZFq3eprmVBa2NojFU
+Full version — $29 once: every changelog in the workspace in one pass, plus a dated Markdown + CSV evidence record you keep and file. One licence key per person or team seat. https://buy.polar.sh/polar_cl_SLbJNzFJbhPz5hbdDSJNmtMORqZFq3eprmVBa2NojFU
 
 Yardstick: one hour of EU product-compliance counsel bills around $300, and one repository's release history takes longer than an hour to read.
 
