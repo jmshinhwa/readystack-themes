@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Watching this file for saves", "done": "End-of-life base images found - see the panel", "nothing_found": "No end-of-life base images in this file", "paste": "Paste a Dockerfile, docker-compose.yml or CI workflow here", "check": "Check these images", "need_key": "Full version: scans every Dockerfile, compose file and workflow in the repository at once, writes a dated CSV, JSON or HTML report, and prints machine-readable output so CI fails the build before an unpatched image ships. $29 once, one licence key per person or team seat, 7-day full refund. Snyk's Team tier is $25 per contributing developer per month.", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted - repository scan, report export and CI output are on", "key_bad": "That key did not validate. Check the key in your Polar purchase email", "extra_rules": "Image rules of your own, checked alongside the 21 that ship inside."};
+const S = {"run": "Watching this file for saves", "done": "End-of-life base images found - see the panel", "nothing_found": "No end-of-life base images in this file", "paste": "Paste a Dockerfile, docker-compose.yml or CI workflow here", "check": "Check these images", "need_key": "Full version: scans every Dockerfile, compose file and workflow in the repository at once, writes a dated CSV, JSON or HTML report, and prints machine-readable output so CI fails the build before an unpatched image ships. $29 once, one licence key per person or team seat. Snyk's Team tier is $25 per contributing developer per month.", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted - repository scan, report export and CI output are on", "key_bad": "That key did not validate. Check the key in your Polar purchase email", "extra_rules": "Image rules of your own, checked alongside the 21 that ship inside."};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 
 function out() {
@@ -99,7 +99,7 @@ async function paidGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
