@@ -1,0 +1,157 @@
+[
+ {
+  "id": "VFD-01",
+  "kind": "require",
+  "sev": "err",
+  "re": "allgemeine\\s+beschreibung",
+  "title": "Allgemeine Beschreibung fehlt",
+  "msg": "Pflichtteil fehlt: Allgemeine Beschreibung (Zweck, Umfang und Aufbau des Verfahrens).",
+  "ref": "GoBD Rz. 153"
+ },
+ {
+  "id": "VFD-02",
+  "kind": "require",
+  "sev": "err",
+  "re": "anwenderdokumentation",
+  "title": "Anwenderdokumentation fehlt",
+  "msg": "Pflichtteil fehlt: Anwenderdokumentation (wie die Mitarbeiter das Verfahren bedienen).",
+  "ref": "GoBD Rz. 153"
+ },
+ {
+  "id": "VFD-03",
+  "kind": "require",
+  "sev": "err",
+  "re": "technische\\s+systemdokumentation",
+  "title": "Technische Systemdokumentation fehlt",
+  "msg": "Pflichtteil fehlt: Technische Systemdokumentation (Systeme, Schnittstellen, Datenfluesse).",
+  "ref": "GoBD Rz. 153"
+ },
+ {
+  "id": "VFD-04",
+  "kind": "require",
+  "sev": "err",
+  "re": "betriebsdokumentation",
+  "title": "Betriebsdokumentation fehlt",
+  "msg": "Pflichtteil fehlt: Betriebsdokumentation (Betrieb, Rollen, Berechtigungen, Notfall).",
+  "ref": "GoBD Rz. 153"
+ },
+ {
+  "id": "VFD-05",
+  "kind": "require",
+  "sev": "err",
+  "re": "version\\s*:?\\s*v?\\d+\\.\\d+",
+  "title": "Versionsnummer fehlt",
+  "msg": "Keine Versionsnummer im Format 'Version: 1.4' gefunden. Ohne Versionierung ist die Fassung nicht zuordenbar.",
+  "ref": "GoBD Rz. 154"
+ },
+ {
+  "id": "VFD-06",
+  "kind": "require",
+  "sev": "err",
+  "re": "g(?:\\u00fc|ue)ltig\\s+ab\\s*:?\\s*\\d{4}-\\d{2}-\\d{2}",
+  "title": "Gueltigkeitsbeginn fehlt",
+  "msg": "Kein Gueltigkeitsbeginn im Format 'Gueltig ab: JJJJ-MM-TT'. Die GoBD verlangen einen lueckenlos dokumentierten Gueltigkeitszeitraum je Fassung.",
+  "ref": "GoBD Rz. 154"
+ },
+ {
+  "id": "VFD-07",
+  "kind": "require",
+  "sev": "err",
+  "re": "(?:\\u00e4nderungshistorie|aenderungshistorie|versionshistorie|\\u00e4nderungsnachweis)",
+  "title": "Aenderungshistorie fehlt",
+  "msg": "Keine Aenderungshistorie. Aenderungen der Verfahrensdokumentation muessen nachvollziehbar und historisch nachpruefbar sein.",
+  "ref": "GoBD Rz. 154"
+ },
+ {
+  "id": "VFD-08",
+  "kind": "require",
+  "sev": "warn",
+  "re": "(?:freigabe|freigegeben\\s+durch|verantwortlich)",
+  "title": "Freigabe/Verantwortlicher fehlt",
+  "msg": "Keine Freigabe und keine verantwortliche Person benannt. Der Pruefer fragt, wer die Fassung freigegeben hat.",
+  "ref": "GoBD Rz. 154"
+ },
+ {
+  "id": "VFD-09",
+  "kind": "forbid",
+  "sev": "err",
+  "re": "buchungsbeleg\\w*[^\\n]{0,90}?(?:zehn|10)\\s*jahre",
+  "title": "Buchungsbelege mit 10 Jahren angegeben",
+  "msg": "Buchungsbelege sind acht Jahre aufzubewahren, nicht zehn. Die Frist wurde zum 01.01.2025 verkuerzt.",
+  "ref": "§147 Abs. 3 Satz 1 AO"
+ },
+ {
+  "id": "VFD-10",
+  "kind": "require",
+  "sev": "err",
+  "re": "buchungsbeleg\\w*[^\\n]{0,90}?(?:acht|8)\\s*jahre",
+  "title": "Acht-Jahres-Frist fuer Buchungsbelege fehlt",
+  "msg": "Die Frist fuer Buchungsbelege (acht Jahre) ist nicht dokumentiert.",
+  "ref": "§147 Abs. 3 Satz 1 AO",
+  "skipIf": "VFD-09"
+ },
+ {
+  "id": "VFD-11",
+  "kind": "require",
+  "sev": "warn",
+  "re": "(?:sechs|6)\\s*jahre",
+  "title": "Sechs-Jahres-Frist fehlt",
+  "msg": "Die Sechs-Jahres-Frist fuer Handels- und Geschaeftsbriefe und sonstige Unterlagen ist nicht dokumentiert.",
+  "ref": "§147 Abs. 3 Satz 1 AO"
+ },
+ {
+  "id": "VFD-12",
+  "kind": "require",
+  "sev": "warn",
+  "re": "schluss\\s+des\\s+kalenderjahr",
+  "title": "Fristbeginn fehlt",
+  "msg": "Der Fristbeginn ist nicht dokumentiert: die Aufbewahrungsfrist beginnt mit dem Schluss des Kalenderjahrs.",
+  "ref": "§147 Abs. 4 AO"
+ },
+ {
+  "id": "VFD-13",
+  "kind": "require",
+  "sev": "err",
+  "re": "\\bz1\\b[\\s\\S]{0,260}?\\bz2\\b[\\s\\S]{0,260}?\\bz3\\b",
+  "title": "Datenzugriff Z1/Z2/Z3 fehlt",
+  "msg": "Die drei Zugriffsarten Z1 (Nur-Lese-Zugriff), Z2 (maschinelle Auswertung) und Z3 (Datentraegerueberlassung) sind nicht beschrieben.",
+  "ref": "§147 Abs. 6 AO"
+ },
+ {
+  "id": "VFD-14",
+  "kind": "require",
+  "sev": "err",
+  "re": "(?:internes\\s+kontrollsystem|\\bIKS\\b)",
+  "title": "Internes Kontrollsystem fehlt",
+  "msg": "Kein internes Kontrollsystem beschrieben (Zugangs- und Zugriffsberechtigungen, Funktionstrennung, Abstimmkontrollen).",
+  "ref": "GoBD Rz. 100"
+ },
+ {
+  "id": "VFD-15",
+  "kind": "require",
+  "sev": "err",
+  "re": "unver(?:\\u00e4|ae)nderbar",
+  "title": "Unveraenderbarkeit fehlt",
+  "msg": "Die Unveraenderbarkeit der Aufzeichnungen und die Protokollierung von Aenderungen sind nicht beschrieben.",
+  "ref": "§146 Abs. 4 AO"
+ },
+ {
+  "id": "VFD-16",
+  "kind": "require",
+  "sev": "err",
+  "re": "datensicherung",
+  "title": "Datensicherungskonzept fehlt",
+  "msg": "Kein Datensicherungskonzept beschrieben. Ohne gesicherte Verfuegbarkeit ueber die Frist ist die Aufbewahrung nicht erfuellt.",
+  "ref": "GoBD Rz. 103"
+ },
+ {
+  "id": "VFD-17",
+  "kind": "stale",
+  "sev": "warn",
+  "months": 24,
+  "re": "g(?:\\u00fc|ue)ltig\\s+ab\\s*:?\\s*(\\d{4}-\\d{2}-\\d{2})",
+  "title": "Fassung ist veraltet",
+  "msg": "Die Fassung ist aelter als 24 Monate und bildet damit die zum 01.01.2025 verkuerzte Belegfrist nicht zwingend ab.",
+  "ref": "GoBD Rz. 154"
+ }
+]
