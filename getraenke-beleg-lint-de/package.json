@@ -1,0 +1,54 @@
+{
+  "name": "getraenke-beleg-lint-de",
+  "displayName": "Belegfelder-Lint für Getränkehandel",
+  "description": "Prüft Rechnungs-, Lieferschein- und Begleitdokument-Vorlagen auf die Alkoholsteuer-Nachweisfelder: ARC, Verbrauchsteuernummer, hl reiner Alkohol, %vol, Steuersatz.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "alkoholsteuer",
+    "verbrauchsteuer",
+    "emcs",
+    "rechnung",
+    "zoll",
+    "lint",
+    "xrechnung",
+    "spirituosen"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "belegLint.checkFile",
+        "title": "Belegfelder-Lint für Getränkehandel: Check this file",
+        "category": "Belegfelder-Lint für Getränkehandel"
+      },
+      {
+        "command": "belegLint.checkWorkspace",
+        "title": "Belegfelder-Lint für Getränkehandel: Sweep workspace and write report (licence)",
+        "category": "Belegfelder-Lint für Getränkehandel"
+      },
+      {
+        "command": "belegLint.enterKey",
+        "title": "Belegfelder-Lint für Getränkehandel: Enter licence key",
+        "category": "Belegfelder-Lint für Getränkehandel"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "getraenke-beleg-lint-de"
+  },
+  "homepage": "https://getreadystack.com/tools/getraenke-beleg-lint-de",
+  "icon": "icon.png"
+}
