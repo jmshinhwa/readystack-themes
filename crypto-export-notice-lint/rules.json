@@ -1,0 +1,12 @@
+[
+  {"check": "no_export_notice", "sev": "error", "msg": "This file describes encryption but carries no export-control notice. EAR 742.15(b) attaches to the act of publishing the source, not to the release notes."},
+  {"check": "missing_bis_email", "sev": "error", "msg": "No crypt@bis.doc.gov in the notice. EAR 742.15(b)(1) asks for an email to BIS with the internet location of the published source code."},
+  {"check": "missing_nsa_email", "sev": "error", "msg": "No enc@nsa.gov in the notice. The same 742.15(b)(1) notification goes to the ENC Encryption Request Coordinator as well as to BIS."},
+  {"check": "missing_source_url", "sev": "error", "msg": "The notice names no internet location. The URL you emailed is the notification; a notice without it cannot be checked against what BIS received."},
+  {"check": "missing_eccn", "sev": "error", "msg": "No ECCN in the notice (5D002, 5E002, 5A002 or 5D992). Publicly available encryption source code is classified before it is published, not after."},
+  {"check": "removed_tsu_citation", "sev": "error", "msg": "This notice cites License Exception TSU / EAR 740.13(e) for encryption source code. BIS removed that paragraph in the 20 September 2016 encryption rule and moved the notification to 742.15(b)."},
+  {"check": "false_exemption_claim", "sev": "error", "msg": "The notice claims the code is outside export control (or EAR99) because it is open source. Public availability under 742.15(b) is conditioned on the notification; it is not automatic and EAR99 is not a classification for 5D002 encryption source."},
+  {"check": "missing_notification_date", "sev": "warn", "msg": "The notice records no date for the notification. Without a date nobody can tell which release the email covered."},
+  {"check": "stale_notification", "sev": "warn", "msg": "The recorded notification is from an earlier calendar year. Re-notify on a new internet location, and check the annual self-classification report due 1 February."},
+  {"check": "missing_renotify_clause", "sev": "warn", "msg": "The notice does not say what happens when the source moves. EAR 742.15(b)(1) wants a fresh email whenever the internet location changes."}
+]
