@@ -8,7 +8,7 @@ const REPORT = require('./report.js');
 
 const S = {
   title: 'Angular Removed-API Lint',
-  need_key: 'Full version: sweep every .ts, .html and .json in the workspace and write a dated angularRemovedApi-report.md you own and can hand to a client. $29 once \u00b7 one licence key per person or team seat \u00b7 7-day full refund. A freelance Angular upgrade consultant bills $80-$150/hour to read the same files by hand.',
+  need_key: 'Full version: sweep every .ts, .html and .json in the workspace and write a dated angularRemovedApi-report.md you own and can hand to a client. $29 once \u00b7 one licence key per person or team seat \u00b7 A freelance Angular upgrade consultant bills $80-$150/hour to read the same files by hand.',
   enter_key: 'Enter licence key', buy: 'Get the full version \u2014 $29',
   key_ok: 'Licence accepted. Thank you.', key_bad: 'That key did not validate. Check for typos, or get a licence.',
   clean: 'Clean against all ' + (ENGINE.RULE_COUNT || (ENGINE.RULES || []).length) + ' checks.'
@@ -70,6 +70,8 @@ function activate(ctx) {
     vscode.commands.registerCommand(PREFIX + '.checkWorkspace', function () { return checkWorkspace(ctx); }),
     vscode.commands.registerCommand(PREFIX + '.enterKey', function () { return enterKey(ctx); })
   );
+  // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'angular-removed-api-lint', price: 29 }); } catch (e) {}
 }
 function deactivate() { if (channel) channel.dispose(); if (diags) diags.dispose(); }
 module.exports = { activate: activate, deactivate: deactivate, checkFile: checkFile, S: S };
