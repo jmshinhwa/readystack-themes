@@ -42,7 +42,7 @@
 
 - **無料**: 開いている索引簿CSV **1ファイル**を、13ルールで最後まで検査します。件数も行番号も全部出ます。ここで1ファイルの仕事は終わります。
 - **Full version ($29)**: ワークスペース内の索引簿を**一括**検査し、税務調査で提出できる**是正レポート (CSV / Markdown)** を書き出して手元に残します。範囲と持ち出しの軸だけがライセンスキー付きです。
-  $29 once · one licence key per person or team seat · 7-day full refund — https://buy.polar.sh/polar_cl_oJ9fNvfgqLzjpjp4KbUUKBNnYCkvC7Oueu28V3cAIYo
+  $29 once · one licence key per person or team seat — https://buy.polar.sh/polar_cl_oJ9fNvfgqLzjpjp4KbUUKBNnYCkvC7Oueu28V3cAIYo
 
 ## 人に頼むといくらか
 
