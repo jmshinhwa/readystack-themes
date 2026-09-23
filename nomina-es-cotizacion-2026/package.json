@@ -1,0 +1,53 @@
+{
+  "name": "nomina-es-cotizacion-2026",
+  "displayName": "Nómina ES: tablas de cotización 2026",
+  "description": "Revisa tus ficheros de configuración de nómina (JSON, YAML, CSV) y marca los tipos, topes y tramos de cotización que siguen en valores del ejercicio anterior, con el valor oficial 2026 al lado.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "nomina",
+    "cotizacion",
+    "seguridad social",
+    "espana",
+    "tgss",
+    "mei",
+    "solidaridad"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "nominaEs.checkFile",
+        "title": "Nómina ES: tablas de cotización 2026: Check this file",
+        "category": "Nómina ES: tablas de cotización 2026"
+      },
+      {
+        "command": "nominaEs.checkWorkspace",
+        "title": "Nómina ES: tablas de cotización 2026: Sweep workspace and write report (licence)",
+        "category": "Nómina ES: tablas de cotización 2026"
+      },
+      {
+        "command": "nominaEs.enterKey",
+        "title": "Nómina ES: tablas de cotización 2026: Enter licence key",
+        "category": "Nómina ES: tablas de cotización 2026"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "nomina-es-cotizacion-2026"
+  },
+  "homepage": "https://getreadystack.com/tools/nomina-es-cotizacion-2026",
+  "icon": "icon.png"
+}
