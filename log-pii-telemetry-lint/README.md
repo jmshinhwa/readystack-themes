@@ -41,7 +41,7 @@ Run the check on both and compare the output; that is the whole behaviour of the
 
 **Free, no key, no limit:** the file you have open. Every offending line is marked in the editor with the rule, the article it touches and the fix. That answer is complete on its own — you can clean a file with it and never open the rest.
 
-**Paid ($29 once):** the same 22 rules across every `.js`/`.ts` file in the workspace, and the findings written out as a report file you keep — for the CI job, the ticket, or the auditor who asks which services log what. One licence key per person or CI seat, 7-day full refund.
+**Paid ($29 once):** the same 22 rules across every `.js`/`.ts` file in the workspace, and the findings written out as a report file you keep — for the CI job, the ticket, or the auditor who asks which services log what. One licence key per person or CI seat.
 
 The split is scope and ownership. Nothing is watermarked, nothing expires, no rule is withheld from the free file check.
 
