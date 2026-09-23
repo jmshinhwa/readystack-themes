@@ -2,7 +2,7 @@
   "name": "accessibility-statement-lint",
   "displayName": "Accessibility Statement Checker (EU model, EN 301 549)",
   "description": "Lints a published accessibility statement against the EU model statement: compliance-status wording, non-accessible content with reasons, preparation and last-review dates, feedback and enforcement se",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
