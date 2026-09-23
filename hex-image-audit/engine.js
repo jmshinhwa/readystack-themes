@@ -27,6 +27,7 @@ function check(text, opts) {
   var ela = 0, esa = 0;
   var eofLine = 0, seenIntel = false, seenSrec = false, srecTermLine = 0;
   var dataRecords = 0, tally = null, tallyLine = 0;
+  var srecHeaderLine = 0, srecHeaderName = '';
   var startAddr = null, startLine = 0;
   var fileCase = '', caseFlagged = false;
   var lastLine = 1;
@@ -167,6 +168,12 @@ function check(text, opts) {
         dataRecords++;
         var sdl = sb.length - 1 - alen - 1;
         if (sdl > 0) { claim(sa, sdl, ln); }
+      } else if (t === '0') {
+        srecHeaderLine = ln;
+        var hd = sb.slice(1 + alen, sb.length - 1);
+        var htxt = '';
+        for (var h = 0; h < hd.length; h++) { htxt += (hd[h] >= 0x20 && hd[h] < 0x7F) ? String.fromCharCode(hd[h]) : ' '; }
+        srecHeaderName = htxt.replace(/\s+/g, ' ').trim();
       } else if (t === '5' || t === '6') {
         tally = sa; tallyLine = ln;
       } else if (t === '7' || t === '8' || t === '9') {
@@ -183,6 +190,11 @@ function check(text, opts) {
   }
   if (seenSrec && !srecTermLine) {
     add('srec_count', lastLine, 'the S-record image has no S7, S8 or S9 termination record, so the entry point is undefined');
+  }
+  if (seenSrec && !srecHeaderLine) {
+    add('srec_header', lastLine, 'the image has no S0 header record, so the archived file states no module name, version or revision \u2014 nothing ties it back to the release it belongs to');
+  } else if (seenSrec && !srecHeaderName) {
+    add('srec_header', srecHeaderLine, 'the S0 header record is present but its data field carries no printable module name, so the archived image is still unidentifiable');
   }
   if (tally !== null && tally !== dataRecords) {
     add('srec_tally', tallyLine, 'the S5/S6 record declares ' + tally + ' data record' + (tally === 1 ? '' : 's') + ' but the file contains ' + dataRecords);
