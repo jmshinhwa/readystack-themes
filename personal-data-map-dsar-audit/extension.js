@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Mapping personal data in this file", "done": "Personal-data columns found - the panel lists each line and its GDPR article.", "nothing_found": "No personal-data columns matched in this file.", "paste": "Paste a migration, Prisma schema, Django model or TypeORM entity here", "check": "Map this schema", "extra_rules": "Extra rules of your own, checked alongside the 13 GDPR schema rules that ship inside.", "need_key": "Full version: map every migration and model in the repository, export the map as CSV, JSON or HTML, and fail CI on a finding - not just this open file. $29 once, one licence key per person or team seat, 7-day full refund. An independent EU privacy consultant bills EUR 100-200/hour and one manual DSAR averages about $1,524 in staff time.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "key_ok": "Licence accepted. Repository map, export and CI output are open.", "key_bad": "That key did not validate. Check it in your Polar receipt, or buy a licence."};
+const S = {"run": "Mapping personal data in this file", "done": "Personal-data columns found - the panel lists each line and its GDPR article.", "nothing_found": "No personal-data columns matched in this file.", "paste": "Paste a migration, Prisma schema, Django model or TypeORM entity here", "check": "Map this schema", "extra_rules": "Extra rules of your own, checked alongside the 13 GDPR schema rules that ship inside.", "need_key": "Full version: map every migration and model in the repository, export the map as CSV, JSON or HTML, and fail CI on a finding - not just this open file. $29 once, one licence key per person or team seat. An independent EU privacy consultant bills EUR 100-200/hour and one manual DSAR averages about $1,524 in staff time.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "key_ok": "Licence accepted. Repository map, export and CI output are open.", "key_bad": "That key did not validate. Check it in your Polar receipt, or buy a licence."};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 
 function out() {
@@ -100,7 +100,7 @@ async function paidGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get(LIC_KEY);
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
