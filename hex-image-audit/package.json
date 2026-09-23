@@ -1,8 +1,8 @@
 {
   "name": "hex-image-audit",
-  "displayName": "Intel HEX and S-record Audit - firmware image check (.hex, .srec)",
+  "displayName": "Intel HEX & S-record Image Audit",
   "description": "Recomputes every checksum in a .hex/.s19 firmware image and flags bad records, overlaps, gaps, missing EOF and unaligned pages before the image reaches the programmer.",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
