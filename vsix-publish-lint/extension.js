@@ -48,7 +48,7 @@ async function checkWorkspace(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
@@ -84,7 +84,7 @@ function activate(ctx) {
     vscode.commands.registerCommand(PREFIX + '.enterKey', function () { return enterKey(ctx); })
   );
   // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
-  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'vsix-publish-lint' }); } catch (e) {}
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'vsix-publish-lint', price: 29 }); } catch (e) {}
 }
 function deactivate() { if (channel) channel.dispose(); if (diags) diags.dispose(); }
 module.exports = { activate: activate, deactivate: deactivate, checkFile: checkFile, S: S };
