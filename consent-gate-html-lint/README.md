@@ -39,7 +39,7 @@ A tag is treated as correctly gated when it carries `type="text/plain"` with a c
 
 Checking the file in front of you is free, with all 15 rules, no account and no usage limit. The workspace sweep and the dated report are the licensed part, because that is the artefact you hand to a client rather than the answer you need while typing.
 
-Licence: $29 once - one licence key per person or team seat - 7-day full refund. The yardstick below is what a single missed line has already cost an operator in court.
+Licence: $29 once - one licence key per person or team seat. The yardstick below is what a single missed line has already cost an operator in court.
 
 The same 15 rules run, unchanged, in a single web page: https://getreadystack.com/tools/consent-gate-html-lint — paste markup, read findings, nothing is uploaded.
 
