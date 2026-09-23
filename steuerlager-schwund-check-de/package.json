@@ -1,0 +1,52 @@
+{
+  "name": "steuerlager-schwund-check-de",
+  "displayName": "Steuerlager-Schwund & Frist-Check (Alkohol)",
+  "description": "Prueft die Lagerakte eines Steuerlagers: anerkannte Verlustsaetze nach § 13 AlkStV, steuerpflichtige Ueberfehlmenge in Euro und die Anmeldefristen nach § 19 AlkStG.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "alkoholsteuer",
+    "steuerlager",
+    "fehlmengen",
+    "brennerei",
+    "zoll",
+    "alkstv",
+    "frist"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "steuerlagerCheck.checkFile",
+        "title": "Steuerlager-Schwund & Frist-Check (Alkohol): Check this file",
+        "category": "Steuerlager-Schwund & Frist-Check (Alkohol)"
+      },
+      {
+        "command": "steuerlagerCheck.checkWorkspace",
+        "title": "Steuerlager-Schwund & Frist-Check (Alkohol): Sweep workspace and write report (licence)",
+        "category": "Steuerlager-Schwund & Frist-Check (Alkohol)"
+      },
+      {
+        "command": "steuerlagerCheck.enterKey",
+        "title": "Steuerlager-Schwund & Frist-Check (Alkohol): Enter licence key",
+        "category": "Steuerlager-Schwund & Frist-Check (Alkohol)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "steuerlager-schwund-check-de"
+  },
+  "homepage": "https://getreadystack.com/tools/steuerlager-schwund-check-de"
+}
