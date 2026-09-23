@@ -60,12 +60,12 @@ evidence file you keep — one row per finding, per file, mapped to its WCAG 2.2
 what you attach to an accessibility statement or hand to a client who asks what you checked and
 when. A licence key unlocks it: https://buy.polar.sh/polar_cl_O5AMXCnn3ZETWE939bA4zjzmM0KqLt9Yp76Xm2x1Pa1
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 **Yardstick:** a WCAG audit from an accessibility vendor starts around $2,500 for one signup flow,
 and answers for the day it was run; this answers for every file, every time you save.
 
-7-day full refund. One licence key per person or team seat.
+One licence key per person or team seat.
 
 ## Scope and honesty
 
