@@ -63,7 +63,7 @@ Free: the file you have open, all 9 rules, every finding with its swap. That job
 
 Full version: the same 9 rules swept over every file in the workspace, plus a dated evidence pack -
 file, line, distribution, license basis, free-window date and swap - that you can hand to
-procurement or to an Oracle audit, plus team and commercial use. $29 once, 7-day full refund.
+procurement or to an Oracle audit, plus team and commercial use. $29 once.
 https://buy.polar.sh/polar_cl_0qxUalAkf4ad9kwGZmCwgbKANSqawgoJq6rVf2ZeWRh
 
 Hub: https://getreadystack.com/tools/oracle-jdk-license-gate
