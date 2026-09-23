@@ -31,7 +31,7 @@ The moment an unguarded public method hands one tenant another tenant's record, 
 
 Free, with no key: open any `.php` or `.blade.php` file, run **Livewire Client Surface Audit: Check this file**, and you get every finding in that file — all 10 rules, the line, and the fix. Nothing is hidden, watermarked, timed out or counted down. One file is a finished job.
 
-The full version scans every PHP and Blade file in the workspace in one run and writes a dated Markdown or JSON audit — the artefact you hand to a client, attach to a pull request, or fail a CI build on. $29 once, one licence key per person or team seat, 7-day full refund.
+The full version scans every PHP and Blade file in the workspace in one run and writes a dated Markdown or JSON audit — the artefact you hand to a client, attach to a pull request, or fail a CI build on. $29 once, one licence key per person or team seat.
 
 ## Why not a general PHP linter
 
