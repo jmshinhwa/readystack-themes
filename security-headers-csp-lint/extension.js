@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Check this file's security headers", "check": "Check", "paste": "Paste your _headers, netlify.toml, nginx.conf or the <meta http-equiv> line here", "done": "Check complete - findings are listed below.", "nothing_found": "No dead or silently-ignored security header lines found in this file.", "extra_rules": "Extra rules of your own, checked alongside the 28 that ship inside.", "need_key": "Full version: scan every config file in the workspace, export the report as CSV, JSON or HTML for a PCI evidence pack, fail CI on errors, add your own house rules, re-check on save, and apply the safe fixes. $29 once - one licence key per person or team seat - 7-day full refund. Application security consultants doing secure code review bill roughly $120 to $275 an hour, and a security-header and CSP review is a one-to-two hour job per site.", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted - workspace scan, export, CI output, custom rules, watch and quick fix are on.", "key_bad": "That licence key was not accepted. Check for stray spaces, or paste the key exactly as it arrived by email."};
+const S = {"run": "Check this file's security headers", "check": "Check", "paste": "Paste your _headers, netlify.toml, nginx.conf or the <meta http-equiv> line here", "done": "Check complete - findings are listed below.", "nothing_found": "No dead or silently-ignored security header lines found in this file.", "extra_rules": "Extra rules of your own, checked alongside the 28 that ship inside.", "need_key": "Full version: scan every config file in the workspace, export the report as CSV, JSON or HTML for a PCI evidence pack, fail CI on errors, add your own house rules, re-check on save, and apply the safe fixes. $29 once - one licence key per person or team seat. Application security consultants doing secure code review bill roughly $120 to $275 an hour, and a security-header and CSP review is a one-to-two hour job per site.", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted - workspace scan, export, CI output, custom rules, watch and quick fix are on.", "key_bad": "That licence key was not accepted. Check for stray spaces, or paste the key exactly as it arrived by email."};
 const PAID = ["workspace_scan", "export_report", "ci_json", "custom_rules", "watch_on_save", "quick_fix"];
 const NEED_KEY = S.need_key;   // ★원문을 붙잡아 둔다 — 두 번 물어도 문장이 겹치지 않는다
 const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
@@ -102,7 +102,7 @@ async function trialGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
