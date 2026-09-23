@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Checking store-blocking versions", "done": "Store requirements checked.", "nothing_found": "Nothing in this file is blocked by a store requirement.", "paste": "Paste your build.gradle, package.json, Podfile or CI workflow", "check": "Check this file", "need_key": "Full version: scans every build file in the repository, fails the CI build before a blocked version merges, re-checks on save, and exports a dated release-readiness report. $29 once, one licence key per person or team seat, 7-day full refund. Google Play's extension window closes 2026-11-01 and a senior freelance Android developer averages about $128 an hour.", "buy": "Get the full version - $29", "key_ok": "Licence accepted. Repository scan, CI output, save-watch and export are open.", "key_bad": "That key did not validate. Check it in your Polar customer portal, or buy one from the link.", "extra_rules": "Extra version rules of your own, checked alongside the ones that ship inside.", "enter_key": "Enter licence key"};
+const S = {"run": "Checking store-blocking versions", "done": "Store requirements checked.", "nothing_found": "Nothing in this file is blocked by a store requirement.", "paste": "Paste your build.gradle, package.json, Podfile or CI workflow", "check": "Check this file", "need_key": "Full version: scans every build file in the repository, fails the CI build before a blocked version merges, re-checks on save, and exports a dated release-readiness report. $29 once, one licence key per person or team seat. Google Play's extension window closes 2026-11-01 and a senior freelance Android developer averages about $128 an hour.", "buy": "Get the full version - $29", "key_ok": "Licence accepted. Repository scan, CI output, save-watch and export are open.", "key_bad": "That key did not validate. Check it in your Polar customer portal, or buy one from the link.", "extra_rules": "Extra version rules of your own, checked alongside the ones that ship inside.", "enter_key": "Enter licence key"};
 const PAID = ["workspace_scan", "ci_json", "export_report", "watch_on_save"];
 
 function out() {
@@ -89,7 +89,7 @@ async function sweepGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     // ★손님 자신의 숫자로 묻는다 (endowment) — 체험 스윕이 무엇을 덮었는지 먼저 말한다.
