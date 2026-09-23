@@ -42,7 +42,7 @@ replacement wording. That is a complete job - one contract, checked.
 
 **Paid, $29 once:** the workspace sweep and the dated report. One command runs the same 20 checks over every contract
 file in the workspace and writes a dated Markdown report with a per-file table - the artefact you hand to counsel or
-attach to a tender answer. One licence key per person or team seat. 7-day full refund.
+attach to a tender answer. One licence key per person or team seat.
 Get a key: <https://buy.polar.sh/polar_cl_PQWEmhUFLQJSTpOot3FMujKCDC8ALMzB8eBRl2DyIVx>
 
 Yardstick: an EU technology lawyer reviewing the exit clauses of one cloud contract bills at EUR 250-450 per hour.
