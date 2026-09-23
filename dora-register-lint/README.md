@@ -54,7 +54,7 @@ renaming anything.
 Free, no key, no account: **check the register CSV open in your editor** — every row, all 24 checks, with
 findings in the Problems panel and a written summary in the output channel. That is a finished job.
 
-Paid ($29 once, one licence key per person or CI seat, 7-day full refund): **sweep every register CSV in
+Paid ($29 once, one licence key per person or CI seat): **sweep every register CSV in
 the workspace and write one dated report file** — `doraRegister-report.md` — that you can attach to the
 audit trail. The full sweep runs free for seven days from the first time you use it, so you see the paid
 answer on your own file before you decide. Yardstick: one hour of the compliance analyst who would
