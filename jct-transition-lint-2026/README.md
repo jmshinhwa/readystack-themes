@@ -36,9 +36,9 @@ await fs.unlink(receiptPath);
 - **保存時の自動再検査** — 改修中に0.8が戻ってきても、保存した瞬間に気づける
 - **CI 用 JSON 出力** — プルリクで落とせる。2026年10月1日以降、0.8 が再び入るのを機械が止める
 
-[**製品版を入手 — $29**](https://buy.polar.sh/polar_cl_akmxSIxDli9uaowwy6ffgNIUozrZ7Qxg6oYFn3rQphD) - $29 once, one licence key per person or team seat, 7-day full refund.
+[**製品版を入手 — $29**](https://buy.polar.sh/polar_cl_akmxSIxDli9uaowwy6ffgNIUozrZ7Qxg6oYFn3rQphD) - $29 once, one licence key per person or team seat.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 
 ## Install
