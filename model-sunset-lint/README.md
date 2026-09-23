@@ -21,7 +21,7 @@ Finds every model ID and API parameter in your code that a vendor has already sw
 
 A US software engineer averages $70.92/hour (ZipRecruiter, August 2026). $29 is about 25 minutes of that, once.
 
-[**Get the full version - $29**](https://getreadystack.com) - $29 once, one licence key per person or team seat, 7-day full refund.
+[**Get the full version - $29**](https://getreadystack.com) - $29 once, one licence key per person or team seat.
 
 
 ## Install
