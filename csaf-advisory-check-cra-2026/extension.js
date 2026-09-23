@@ -15,11 +15,11 @@ const S = {
   nothing_found: 'No conformance findings: this document passes all 43 mandatory and profile tests.',
   not_csaf: 'This file has no "csaf_version" field, so it is not a CSAF document.',
   run: 'Checking this advisory against CSAF 2.0 section 6.1.',
-  need_key: 'Full version: every advisory in the workspace in one pass, an evidence file you keep, and a CI checker that fails the build before an advisory is published. $29 once · one licence key per person or team seat · 7-day full refund. Published CRA cost calculators calibrate this work at EUR 45 per hour of engineering and consulting effort.',
+  need_key: 'Full version: every advisory in the workspace in one pass, an evidence file you keep, and a CI checker that fails the build before an advisory is published. $29 once · one licence key per person or team seat · Published CRA cost calculators calibrate this work at EUR 45 per hour of engineering and consulting effort.',
   enter_key: 'Enter licence key',
   buy: 'Get the full version — $29',
   key_ok: 'Licence accepted - workspace check, evidence export, CI checker and check-on-save are open.',
-  key_bad: 'That key did not validate. Check it against your Polar receipt, or take the 7-day refund.',
+  key_bad: 'That key did not validate. Check it against your Polar receipt.',
   paste: 'Open a CSAF advisory (.json) and run the check.'
 };
 
@@ -114,7 +114,7 @@ async function sweepGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
