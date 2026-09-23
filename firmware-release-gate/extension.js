@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Auditing this configuration file.", "check": "Audit this config", "paste": "Paste sdkconfig, sdkconfig.defaults or prj.conf here", "done": "Findings are in the Firmware Release Gate panel.", "nothing_found": "No release-blocking settings found in this file.", "need_key": "Full version: audit every config in the repository at once, write the report file you keep with the release, and fail the build in CI on the same rules. $29 once, one licence key per person or team seat, 7-day full refund. An outside firmware-only security review starts around $6,000.", "key_ok": "Licence key accepted.", "key_bad": "That licence key was not accepted.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "extra_rules": "Extra rules of your own, checked alongside the ones that ship inside."};
+const S = {"run": "Auditing this configuration file.", "check": "Audit this config", "paste": "Paste sdkconfig, sdkconfig.defaults or prj.conf here", "done": "Findings are in the Firmware Release Gate panel.", "nothing_found": "No release-blocking settings found in this file.", "need_key": "Full version: audit every config in the repository at once, write the report file you keep with the release, and fail the build in CI on the same rules. $29 once, one licence key per person or team seat. An outside firmware-only security review starts around $6,000.", "key_ok": "Licence key accepted.", "key_bad": "That licence key was not accepted.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "extra_rules": "Extra rules of your own, checked alongside the ones that ship inside."};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 
 function out() {
@@ -84,7 +84,7 @@ async function paidGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
