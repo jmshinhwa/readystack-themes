@@ -1,0 +1,76 @@
+[
+  {"id": "arc_fehlt", "kind": "doc", "sev": "error",
+   "trigger": "Steueraussetzung|Steuerausetzung|e-VD|eVD|EMCS",
+   "need": "ARC\\s*[:=]|Administrative Reference Code|Referenzcode",
+   "msg": "Der Beleg nennt das Steueraussetzungsverfahren, aber es gibt kein ARC-Feld. Ohne ARC ist die Sendung nicht als Beförderung unter Steueraussetzung belegt."},
+
+  {"id": "arc_laenge", "kind": "capture_len", "sev": "error",
+   "re": "ARC\\s*[:=]\\s*([0-9A-Za-z]+)", "len": 21,
+   "msg": "Der ARC hat nicht die vorgeschriebenen 21 Zeichen."},
+
+  {"id": "seed_fehlt", "kind": "doc", "sev": "error",
+   "trigger": "Steuerlager|Steuerlagerinhaber|Verwender",
+   "need": "Verbrauchsteuernummer|Verbrauchsteuer-Nr|Steuerlagernummer|Steuernummer des Lagers",
+   "msg": "Steuerlager genannt, aber keine Verbrauchsteuernummer im Beleg."},
+
+  {"id": "seed_format", "kind": "capture_re", "sev": "error",
+   "re": "(?:Verbrauchsteuernummer|Verbrauchsteuer-Nr\\.?|Steuerlagernummer)\\s*[:=]\\s*([0-9A-Za-z]+)",
+   "ok": "^DE[0-9A-Z]{11}$",
+   "msg": "Die Verbrauchsteuernummer folgt nicht dem SEED-Muster: Länderkürzel DE plus 11 Zeichen, zusammen 13 Stellen."},
+
+  {"id": "alkoholgehalt_fehlt", "kind": "doc", "sev": "error",
+   "trigger": "Spirituose|Spirituosen|Lik(ö|oe)r|Whisky|Whiskey|Gin|Rum|Wodka|Korn|Obstbrand|Brand",
+   "need": "%\\s*vol|Vol\\.?\\s*-?\\s*%|Alkoholgehalt",
+   "msg": "Erzeugnis genannt, aber kein Alkoholgehalt in % vol. Ohne % vol lässt sich der reine Alkohol nicht berechnen."},
+
+  {"id": "hl_ra_fehlt", "kind": "doc", "sev": "error",
+   "trigger": "Alkoholsteuer|Verbrauchsteuer|Branntwein",
+   "need": "hl\\s*rA|hl\\s*r\\.?A\\.?|Hektoliter\\s+reine[nrs]?\\s+Alkohol",
+   "msg": "Die Bemessungsgrundlage hl reiner Alkohol (hl rA) fehlt im Beleg."},
+
+  {"id": "steuersatz_abweichend", "kind": "capture_num", "sev": "warn",
+   "re": "([0-9][0-9.,]*)\\s*(?:€|EUR)?\\s*(?:je|pro|/)\\s*hl\\s*rA",
+   "expect": 1303,
+   "satz_eur_je_hl_ra": 1303,
+   "regelsatz_quelle": "§ 2 Abs. 1 AlkStG",
+   "msg": "Abweichender Steuersatz je hl rA. Der Regelsatz nach § 2 Abs. 1 AlkStG ist 1.303 EUR je Hektoliter reinen Alkohols; ermäßigte Sätze gelten nur für die dort genannten Brennereien."},
+
+  {"id": "einheit_liter_fehlt", "kind": "doc", "sev": "warn",
+   "trigger": "hl\\s*rA|Hektoliter\\s+reine",
+   "need": "\\bLiter\\b|\\bml\\b|\\bcl\\b|\\bl\\s*je\\b|\\d\\s*l\\b",
+   "msg": "Es gibt hl rA, aber keine Literangabe. Die Umrechnung Liter mal % vol auf hl rA ist im Beleg nicht nachvollziehbar."},
+
+  {"id": "empfaenger_fehlt", "kind": "doc", "sev": "warn",
+   "trigger": "Steueraussetzung|EMCS|e-VD",
+   "need": "Empf(ä|ae)nger|Bestimmungsort|Lieferort|Bestimmungsland",
+   "msg": "Beförderung unter Steueraussetzung ohne Empfänger- oder Bestimmungsortfeld."},
+
+  {"id": "steuerlager_ort_fehlt", "kind": "doc", "sev": "warn",
+   "trigger": "Steuerlager",
+   "need": "Anschrift|Adresse|\\bOrt\\b|PLZ|Stra(ß|ss)e",
+   "msg": "Steuerlager ohne Anschrift. Die Zollstelle ordnet den Beleg dann keinem Lagerort zu."},
+
+  {"id": "ustid_format", "kind": "capture_re", "sev": "error",
+   "re": "USt-?IdNr\\.?\\s*[:=]?\\s*([A-Za-z]{2}[0-9]+)",
+   "ok": "^DE[0-9]{9}$",
+   "msg": "Die deutsche USt-IdNr. besteht aus DE und genau 9 Ziffern."},
+
+  {"id": "datum_iso", "kind": "line", "sev": "warn",
+   "re": "\\b20\\d{2}-\\d{2}-\\d{2}\\b",
+   "msg": "Datum im ISO-Format. Deutsche Zoll- und Steuerbelege werden in TT.MM.JJJJ gelesen; 03.11.2026 statt 2026-11-03."},
+
+  {"id": "dezimalpunkt", "kind": "line", "sev": "warn",
+   "re": "\\d+\\.\\d{2}\\s*(?:€|EUR)",
+   "msg": "Betrag mit englischem Dezimalpunkt. In deutschen Belegen trennt das Komma die Cent."},
+
+  {"id": "platzhalter", "kind": "line", "sev": "error",
+   "re": "\\{\\{[^}]*\\}\\}|<<[^>]*>>|XXXXX|TODO|TBD|Lorem ipsum|Muster(?:stra(?:ß|ss)e|mann|frau)",
+   "msg": "Unersetzter Platzhalter in der Vorlage. Er geht so an den Kunden und in die Betriebsprüfung."},
+
+  {"id": "erechnung_2027", "kind": "date_doc", "sev": "warn",
+   "trigger": "Rechnung|Rechnungsnummer",
+   "need": "XRechnung|ZUGFeRD|EN\\s?16931|Factur-X|CII|UBL",
+   "deadline": "2027-01-01",
+   "warn_days": 400,
+   "msg": "Rechnungsvorlage ohne strukturiertes Format (XRechnung/ZUGFeRD). Ab 01.01.2027 müssen Unternehmen mit mehr als 800.000 EUR Vorjahresumsatz B2B-Rechnungen strukturiert ausstellen; Felder, die nur im Fließtext stehen, gehen bei der Umstellung verloren."}
+]
