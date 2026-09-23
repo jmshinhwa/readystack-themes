@@ -1,0 +1,91 @@
+[
+  {
+    "id": "vvt_verantwortlicher",
+    "kind": "doc_require",
+    "sev": "error",
+    "re": "^(?:[-*+]\\s+)?\\*{0,2}Verantwortlich(?:er|e Stelle)\\*{0,2}\\s*:\\s*\\S",
+    "msg": "Art. 30 Abs. 1 lit. a DSGVO: Name und Kontaktdaten des Verantwortlichen fehlen im Kopf des Verzeichnisses"
+  },
+  {
+    "id": "vvt_dsb_kontakt",
+    "kind": "doc_require",
+    "sev": "error",
+    "re": "^(?:[-*+]\\s+)?\\*{0,2}(?:Datenschutzbeauftragter|Datenschutzbeauftragte|DSB)\\*{0,2}\\s*:\\s*\\S",
+    "msg": "Art. 30 Abs. 1 lit. a DSGVO: Kontaktdaten der oder des Datenschutzbeauftragten fehlen im Kopf des Verzeichnisses"
+  },
+  {
+    "id": "vvt_stand_veraltet",
+    "kind": "stand",
+    "sev": "error",
+    "max_days": 365,
+    "re": "^(?:[-*+]\\s+)?\\*{0,2}Stand\\*{0,2}\\s*:\\s*(\\d{4})-(\\d{2})-(\\d{2})",
+    "msg": "Art. 30 Abs. 1 DSGVO: Das Verzeichnis ist fortzuschreiben — das Stand-Datum liegt mehr als 365 Tage zurück",
+    "msg_missing": "Art. 30 Abs. 1 DSGVO: Das Verzeichnis trägt kein Stand-Datum in der Form \"Stand: JJJJ-MM-TT\""
+  },
+  {
+    "id": "vvt_zweck",
+    "kind": "act_require",
+    "sev": "error",
+    "re": "^(?:[-*+]\\s+)?\\*{0,2}(?:Zwecke der Verarbeitung|Zwecke|Zweck|Verarbeitungszweck)\\*{0,2}\\s*:\\s*\\S",
+    "msg": "Art. 30 Abs. 1 lit. b DSGVO: Zwecke der Verarbeitung fehlen in dieser Verarbeitungstätigkeit"
+  },
+  {
+    "id": "vvt_betroffene_kategorien",
+    "kind": "act_require",
+    "sev": "error",
+    "re": "^(?:[-*+]\\s+)?\\*{0,2}(?:Kategorien betroffener Personen|Betroffene Personen|Betroffenenkategorien)\\*{0,2}\\s*:\\s*\\S",
+    "msg": "Art. 30 Abs. 1 lit. c DSGVO: Kategorien betroffener Personen fehlen in dieser Verarbeitungstätigkeit"
+  },
+  {
+    "id": "vvt_datenkategorien",
+    "kind": "act_require",
+    "sev": "error",
+    "re": "^(?:[-*+]\\s+)?\\*{0,2}(?:Kategorien personenbezogener Daten|Datenkategorien|Datenarten)\\*{0,2}\\s*:\\s*\\S",
+    "msg": "Art. 30 Abs. 1 lit. c DSGVO: Kategorien personenbezogener Daten fehlen in dieser Verarbeitungstätigkeit"
+  },
+  {
+    "id": "vvt_empfaenger",
+    "kind": "act_require",
+    "sev": "error",
+    "re": "^(?:[-*+]\\s+)?\\*{0,2}(?:Kategorien von Empfängern|Empfängerkategorien|Empfänger)\\*{0,2}\\s*:\\s*\\S",
+    "msg": "Art. 30 Abs. 1 lit. d DSGVO: Kategorien von Empfängern fehlen in dieser Verarbeitungstätigkeit"
+  },
+  {
+    "id": "vvt_drittland_garantie",
+    "kind": "act_guard",
+    "sev": "error",
+    "field_re": "^(?:[-*+]\\s+)?\\*{0,2}(?:Drittlandübermittlung|Drittlandtransfer|Drittland|Übermittlung an Drittländer)\\*{0,2}\\s*:\\s*(.+)$",
+    "none_re": "^(?:nein|keine|keiner|keines|nicht vorgesehen|entfällt|entfaellt|—|-|n/a)\\b",
+    "need_re": "Art\\.\\s*46|Art\\.\\s*49|Standardvertragsklausel|SCC|Angemessenheitsbeschluss|Binding Corporate Rules|BCR|verbindliche interne Datenschutzvorschriften",
+    "msg": "Art. 30 Abs. 1 lit. e DSGVO: Drittlandübermittlung benannt, aber ohne geeignete Garantie (Art. 46 DSGVO) oder Angemessenheitsbeschluss"
+  },
+  {
+    "id": "vvt_loeschfrist",
+    "kind": "act_require",
+    "sev": "error",
+    "re": "^(?:[-*+]\\s+)?\\*{0,2}(?:Löschfristen|Löschfrist|Aufbewahrungsfrist|Speicherdauer)\\*{0,2}\\s*:\\s*\\S",
+    "msg": "Art. 30 Abs. 1 lit. f DSGVO: Vorgesehene Löschfrist fehlt in dieser Verarbeitungstätigkeit"
+  },
+  {
+    "id": "vvt_loeschfrist_vage",
+    "kind": "act_value_bad",
+    "sev": "warn",
+    "field_re": "^(?:[-*+]\\s+)?\\*{0,2}(?:Löschfristen|Löschfrist|Aufbewahrungsfrist|Speicherdauer)\\*{0,2}\\s*:\\s*(.+)$",
+    "bad_re": "^(?:nach Bedarf|unbestimmt|unbegrenzt|solange erforderlich|dauerhaft|offen|siehe oben|individuell)\\b",
+    "msg": "Art. 30 Abs. 1 lit. f DSGVO: Die Löschfrist ist keine Frist, sondern eine Absichtserklärung — Regelfrist in Tagen, Monaten oder Jahren eintragen"
+  },
+  {
+    "id": "vvt_tom",
+    "kind": "act_require",
+    "sev": "error",
+    "re": "^(?:[-*+]\\s+)?\\*{0,2}(?:Technische und organisatorische Maßnahmen|TOM)\\*{0,2}\\s*:\\s*\\S",
+    "msg": "Art. 30 Abs. 1 lit. g DSGVO: Allgemeine Beschreibung der technischen und organisatorischen Maßnahmen nach Art. 32 Abs. 1 DSGVO fehlt"
+  },
+  {
+    "id": "vvt_platzhalter",
+    "kind": "act_forbid",
+    "sev": "warn",
+    "re": "\\b(?:TODO|TBD|XXX|FIXME|\\?\\?\\?)\\b|\\bk\\.\\s?A\\.",
+    "msg": "Platzhalter in einer Pflichtangabe: Art. 30 Abs. 1 DSGVO verlangt eine ausgefüllte Angabe, kein TODO"
+  }
+]
