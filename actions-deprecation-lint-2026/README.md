@@ -23,7 +23,7 @@ Node 20 is removed from GitHub-hosted runners on 2026-09-23 and ubuntu-22.04 dep
 
 ## With a licence
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 - **Scan every workflow in the repository** — One pass over the whole workspace instead of the file you happen to have open - .github/workflows, composite action.yml files and reusable workflows together.
 - **Export the findings as CSV, JSON or HTML** — Writes the report into the workspace so you can hand it to a migration ticket or a colleague.
