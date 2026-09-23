@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.jmshinhwa/gaibu-soshin-tag-lint-jp",
+  "description": "同梱の54行の採用サイトHTML（外部送信タグ4本＋GTMコンテナ1つ）で公表もれ6件を行番号つきで名指し。電気通信事業法27条の12（2023年6月16日施行）の公表4項目を15 checksで照合",
+  "repository": {
+    "url": "https://github.com/jmshinhwa/readystack-themes",
+    "source": "github"
+  },
+  "version": "1.0.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@readystack/gaibu-soshin-tag-lint-jp",
+      "version": "1.0.1",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "--mcp",
+          "description": "run as an MCP server (stdio)"
+        }
+      ]
+    }
+  ]
+}
