@@ -1,0 +1,53 @@
+{
+  "name": "biometric-consent-audit",
+  "displayName": "Biometric Consent Audit (BIPA / CUBI / CO)",
+  "description": "Audits code that captures faces, fingerprints or voiceprints: missing written consent, missing destruction schedule, retention past the Illinois BIPA three-year cap, third-party disclosure.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "biometric",
+    "bipa",
+    "face recognition",
+    "consent",
+    "privacy",
+    "compliance",
+    "cubi"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "biometricConsentAudit.checkFile",
+        "title": "Biometric Consent Audit (BIPA / CUBI / CO): Check this file",
+        "category": "Biometric Consent Audit (BIPA / CUBI / CO)"
+      },
+      {
+        "command": "biometricConsentAudit.checkWorkspace",
+        "title": "Biometric Consent Audit (BIPA / CUBI / CO): Sweep workspace and write report (licence)",
+        "category": "Biometric Consent Audit (BIPA / CUBI / CO)"
+      },
+      {
+        "command": "biometricConsentAudit.enterKey",
+        "title": "Biometric Consent Audit (BIPA / CUBI / CO): Enter licence key",
+        "category": "Biometric Consent Audit (BIPA / CUBI / CO)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "biometric-consent-audit"
+  },
+  "homepage": "https://getreadystack.com/tools/biometric-consent-audit",
+  "icon": "icon.png"
+}
