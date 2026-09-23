@@ -52,7 +52,7 @@ The cut is **scale**, not features held back:
 - **A findings file to attach to the pull request** — `ERB: Export the findings` writes CSV, JSON or
   HTML into the workspace folder (set `report_format` to skip the prompt).
 
-One payment, one machine, no subscription. **7-day refund, no questions asked.**
+One payment, one machine, no subscription.
 
 **[Get a licence — $29](https://buy.polar.sh/polar_cl_HaD7JBRbjXRom3teYfngHxChxktOPKNtnKb6H0Vp7Cp)** · paste the key when the editor asks for it.
 
