@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Checking", "check": "Check this config", "paste": "Paste an openssl command, a Terraform file, a cert-manager Certificate or an nginx block", "done": "Findings are in the TLS Cert Lifetime Lint panel", "nothing_found": "Nothing in this file breaks under the SC-081v3 schedule", "need_key": "Full version: scan every file in the repo, take the findings away as CSV, JSON or HTML, and emit CI JSON so a pull request fails before an over-length certificate reaches production. $29 once - one licence key per person or team seat - 7-day full refund. A certificate lifecycle management platform starts at $50,000-$100,000 a year plus $1-$5 per certificate (Keyfactor Command, 2026 vendor pricing).", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted - the full version is unlocked", "key_bad": "That key did not validate. Check it, or use the 7-day refund window", "extra_rules": "Extra patterns of your own, checked alongside the 12 that ship inside."};
+const S = {"run": "Checking", "check": "Check this config", "paste": "Paste an openssl command, a Terraform file, a cert-manager Certificate or an nginx block", "done": "Findings are in the TLS Cert Lifetime Lint panel", "nothing_found": "Nothing in this file breaks under the SC-081v3 schedule", "need_key": "Full version: scan every file in the repo, take the findings away as CSV, JSON or HTML, and emit CI JSON so a pull request fails before an over-length certificate reaches production. $29 once - one licence key per person or team seat. A certificate lifecycle management platform starts at $50,000-$100,000 a year plus $1-$5 per certificate (Keyfactor Command, 2026 vendor pricing).", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted - the full version is unlocked", "key_bad": "That key did not validate. Check it, or email us", "extra_rules": "Extra patterns of your own, checked alongside the 12 that ship inside."};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 
 function out() {
@@ -98,7 +98,7 @@ function today() { return new Date().toISOString().slice(0, 10); }
 async function paidGate(ctx) {
   const st = ctx.globalState; const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     // ★체험이 끝나면 ★손님 자신의 숫자로 묻는다 (endowment)
