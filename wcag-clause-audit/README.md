@@ -46,7 +46,7 @@ One file, done completely. No watermark, no timer, no lockout after N runs.
 - **Re-audit automatically** every time you save
 
 [Get the full version - $29](https://getreadystack.com) — $29 once, one licence key per person or
-team seat, 7-day full refund. For scale: a one-off professional WCAG audit runs about $1,250–$2,750
+team seat. For scale: a one-off professional WCAG audit runs about $1,250–$2,750
 for a typical site, and a procurement-grade VPAT/ACR starts near $350 and reaches $3,000–$15,000
 when written for government procurement.
 
