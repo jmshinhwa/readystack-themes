@@ -49,7 +49,7 @@ Free audits one config completely: all 18 rules, every line number, every replac
 
 Paid changes the scope, not the depth: every agent config in a repository plus the user-scope locations for VS Code, Cursor, Claude Desktop and Windsurf in one pass, a non-zero exit code so CI fails on a blocker, and a dated evidence report of file, rule and line.
 
-$29 once · one licence key per person or team seat · 7-day full refund. Freelance application-security engineers commonly bill $100–$200 an hour.
+$29 once · one licence key per person or team seat · Freelance application-security engineers commonly bill $100–$200 an hour.
 
 ## Licence
 
