@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Auditing the payment page", "done": "Unauthorized scripts found - see the panel for the requirement each one fails and the fix.", "nothing_found": "Every script on this page carries an authorization method and an integrity method. Nothing here fails 6.4.3 or 11.6.1.", "paste": "Paste the HTML of your checkout page here", "check": "Audit this payment page", "extra_rules": "Extra rules of your own - your internal script allowlist, for example - checked alongside the 26 PCI script-security rules that ship inside.", "need_key": "Full version: export the dated 6.4.3 script inventory as the evidence file you hand the assessor, across every payment page in the repository, with CI output that fails a build when an unauthorized script appears. $29 once, one licence key per person or team seat, 7-day full refund. A PCI consultant bills about $76/hour in the US in 2026 (Salary.com, August 2026) and a QSA-assisted SAQ runs $5,000-$20,000; building the script inventory by hand is the part you are paying for.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "key_ok": "Licence accepted. Inventory export, repository-wide audit, CI output, audit-on-save and your own rules are open.", "key_bad": "That key did not validate. Check it in your Polar receipt, or buy a licence."};
+const S = {"run": "Auditing the payment page", "done": "Unauthorized scripts found - see the panel for the requirement each one fails and the fix.", "nothing_found": "Every script on this page carries an authorization method and an integrity method. Nothing here fails 6.4.3 or 11.6.1.", "paste": "Paste the HTML of your checkout page here", "check": "Audit this payment page", "extra_rules": "Extra rules of your own - your internal script allowlist, for example - checked alongside the 26 PCI script-security rules that ship inside.", "need_key": "Full version: export the dated 6.4.3 script inventory as the evidence file you hand the assessor, across every payment page in the repository, with CI output that fails a build when an unauthorized script appears. $29 once, one licence key per person or team seat. A PCI consultant bills about $76/hour in the US in 2026 (Salary.com, August 2026) and a QSA-assisted SAQ runs $5,000-$20,000; building the script inventory by hand is the part you are paying for.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "key_ok": "Licence accepted. Inventory export, repository-wide audit, CI output, audit-on-save and your own rules are open.", "key_bad": "That key did not validate. Check it in your Polar receipt, or buy a licence."};
 const PAID = ["export_report", "workspace_scan", "ci_json", "watch_on_save", "custom_rules"];
 
 function out() {
@@ -94,7 +94,7 @@ async function sweepTrial(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');   // ★손님 자기 폴더의 숫자로 묻는다 (endowment)
