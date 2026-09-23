@@ -61,11 +61,11 @@ The paid tier is a different job, not more of the same one:
 - **Rewrite the superseded deadline dates in place** - replaces the old ADA Title II and Section 504 dates with the current ones. Findings with no safe rewrite are counted and left for a manual edit.
 - **Write a machine-readable JSON file for your pipeline** - a VS Code extension has no exit code, so your pipeline reads the file.
 
-$29 once - one licence key per person or team seat - 7-day full refund.
+$29 once - one licence key per person or team seat.
 A hybrid WCAG audit (automated plus manual sampling) is quoted at $1,500-$8,000,
 and a VPAT/ACR write-up at about $350.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 [Get the full version - $29](https://buy.polar.sh/polar_cl_wzKKiGELabjwZgIKC7wl7uINCXdVkTvVTPu2e20gq4d)
 
