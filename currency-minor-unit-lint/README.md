@@ -35,7 +35,9 @@ line 11  [error]  toFixed(2) prints 1200.00 for JPY and truncates KWD 1.234 to 1
 
 Payment processors publish a $15.00 fee for every dispute received, and it is not returned when you lose the dispute.
 
-[**Get the full version - $29 once**](https://buy.polar.sh/polar_cl_acLdPf1V4wK36zA20Zdz5ARBivvJMJv1kJ9JI2lqb50) - $29 once, one licence key per person or team seat, 7-day full refund.
+[**Get the full version - $29 once**](https://buy.polar.sh/polar_cl_acLdPf1V4wK36zA20Zdz5ARBivvJMJv1kJ9JI2lqb50) - $29 once, one licence key per person or team seat.
+
+Full workspace sweep and report: licence key.
 
 
 ## Install
