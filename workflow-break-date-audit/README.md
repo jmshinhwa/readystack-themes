@@ -21,7 +21,7 @@ Names the date each line in your workflow stops working - Node 20 leaves the run
 
 A US DevOps engineer averages $59.11/hour (ZipRecruiter, 7 September 2026). This is about 29 minutes of that, once.
 
-[**Get the full version - $29**](https://getreadystack.com) - $29 once, one licence key per person or team seat, 7-day full refund.
+[**Get the full version - $29**](https://getreadystack.com) - $29 once, one licence key per person or team seat.
 
 
 ## Install
