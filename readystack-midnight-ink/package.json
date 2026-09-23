@@ -2,7 +2,7 @@
   "name": "readystack-midnight-ink",
   "displayName": "ReadyStack Midnight Ink",
   "description": "Deep navy with cool blue accents. For night sessions that need to stay calm. Body text measured at 14.4:1 - WCAG AAA.",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
