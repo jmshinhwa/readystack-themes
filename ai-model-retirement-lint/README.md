@@ -62,9 +62,9 @@ A different job, not a bigger portion of the same one:
 
 [**Get the full version - $29**](https://buy.polar.sh/polar_cl_EOiE7ckv1WZujsc6UOfnGhc0lxBYyaPS8uZLl2Fo9Ap)
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
-One key per person or team seat. 7-day full refund.
+One key per person or team seat.
 
 ## Sources
 
