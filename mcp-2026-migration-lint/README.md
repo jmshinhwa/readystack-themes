@@ -18,7 +18,7 @@ For MCP server authors: the 2026 protocol revision changed transport and schema 
 - **Migration report as a file** — Writes the findings to CSV, JSON or HTML in the workspace, so the migration can be handed to someone else or attached to a ticket.
 - **CI output that fails the build** — Machine-readable output a pipeline reads, so a removed RPC cannot be merged again after you have cleaned it out.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 Freelance senior software engineers publish an average of $101/hour (contractrates.fyi, 2026, 584 submissions).
 
