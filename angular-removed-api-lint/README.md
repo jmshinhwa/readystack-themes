@@ -57,7 +57,7 @@ Free, no key, no account: **Check this file** runs all 32 checks against the fil
 and shows the replacement line for every hit. The web page above does the same thing for a paste.
 That is a finished job — you can upgrade a file with it and never pay anything.
 
-Paid ($29 once, one key per person or team seat, 7-day full refund):
+Paid ($29 once, one key per person or team seat):
 **Sweep workspace and write report** walks every `.ts`, `.html` and `.json` outside `node_modules`,
 and writes a dated `angularRemovedApi-report.md` into your workspace root — a file you own, can
 commit, and can hand to a client or an auditor. Licence: https://buy.polar.sh/polar_cl_2wSKxziqGHTfu7JassC9u93PIE4YL8ThOikL64MVZVc
