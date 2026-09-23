@@ -54,7 +54,7 @@ job for one file.
 
 The full version sweeps every `.proto` in the workspace in one pass and writes `PROTO-WIRE-AUDIT.md`
 plus `audit.json` — a file you can commit, attach to a pull request, or fail a build on. $29 once,
-one licence key per person or team seat, 7-day full refund.
+one licence key per person or team seat.
 
 **Yardstick:** a contract backend engineer runs $60+/hour on the public marketplaces; reviewing one
 service's schema history by hand is an afternoon of that.
