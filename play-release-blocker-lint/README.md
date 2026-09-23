@@ -19,9 +19,9 @@ For Android teams: new apps and updates must target API 35 or higher from 31 Aug
 - **A dated release-readiness report you can hand to a client or a lead** — Writes the findings to CSV, JSON or HTML in the workspace, so the migration work can be quoted, tracked and signed off.
 - **Re-checks on every save while you migrate** — Runs the same rules each time you save, so a raised targetSdk or a bumped Billing Library is confirmed the moment you type it.
 
-[**Get the full version - $29**](https://getreadystack.com) - $29 once, one licence key per person or team seat, 7-day full refund.
+[**Get the full version - $29**](https://getreadystack.com) - $29 once, one licence key per person or team seat.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 
 ## Install
