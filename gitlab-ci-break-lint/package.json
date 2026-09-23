@@ -1,0 +1,53 @@
+{
+  "name": "gitlab-ci-break-lint",
+  "displayName": "GitLab CI Break Lint",
+  "description": "Finds the .gitlab-ci.yml keywords GitLab retired, plus the GitHub Actions syntax an AI assistant pastes in, before the job fails on your runner.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "gitlab",
+    "gitlab-ci",
+    "pipeline",
+    "yaml",
+    "lint",
+    "devops",
+    "ci-cd"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "gitlabCiBreakLint.checkFile",
+        "title": "GitLab CI Break Lint: Check this file",
+        "category": "GitLab CI Break Lint"
+      },
+      {
+        "command": "gitlabCiBreakLint.checkWorkspace",
+        "title": "GitLab CI Break Lint: Sweep workspace and write report (licence)",
+        "category": "GitLab CI Break Lint"
+      },
+      {
+        "command": "gitlabCiBreakLint.enterKey",
+        "title": "GitLab CI Break Lint: Enter licence key",
+        "category": "GitLab CI Break Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "gitlab-ci-break-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/gitlab-ci-break-lint",
+  "icon": "icon.png"
+}
