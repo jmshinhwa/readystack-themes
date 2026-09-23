@@ -43,7 +43,7 @@ is in the ones you did not open.
 - **Rewrites the identifier for you** — a repo full of `GPL-3.0` becomes `GPL-3.0-only` without a
   hand edit per file
 
-**$29 once · one licence key per person or team seat · 7-day full refund.**
+**$29 once · one licence key per person or team seat ·**
 An open-source licence audit runs 40–160 hours and thousands to tens of thousands of dollars per
 program; commercial SCA licence-compliance subscriptions start around $1,500/year.
 
