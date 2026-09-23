@@ -44,7 +44,7 @@ will actually be held to.
   over every `.tex` and `.md` file in the folder and writes a dated
   `manuscriptDisclosure-report.md` you keep, hand to a co-author, or attach to a
   submission-readiness check for a whole thesis or a lab's back catalogue. That part asks for
-  a licence key. The first sweep starts a 7-day trial of it.
+  a licence key.
 - **Manuscript Disclosure Lint: Enter licence key** — for the key.
 
 ## A reference point
