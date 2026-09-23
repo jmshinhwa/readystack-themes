@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Auditing the workflow file", "done": "Deprecated lines found - see the panel for the date each one stops running.", "nothing_found": "No deprecated actions, runner labels or workflow commands in this file.", "paste": "Paste a workflow YAML file here", "check": "Audit this file", "extra_rules": "Extra rules of your own, checked alongside the 25 dated GitHub deprecations that ship inside.", "need_key": "Full version: scan every workflow in the repository, export the report and fail CI on a finding - not just this open file. $29 once, one licence key per person or team seat, 7-day full refund. A freelance DevOps engineer bills about $100/hour in 2026; one blocked release morning costs more.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "key_ok": "Licence accepted. Repository scan, export, CI output, watch-on-save and custom rules are open.", "key_bad": "That key did not validate. Check it in your Polar receipt, or buy a licence."};
+const S = {"run": "Auditing the workflow file", "done": "Deprecated lines found - see the panel for the date each one stops running.", "nothing_found": "No deprecated actions, runner labels or workflow commands in this file.", "paste": "Paste a workflow YAML file here", "check": "Audit this file", "extra_rules": "Extra rules of your own, checked alongside the 25 dated GitHub deprecations that ship inside.", "need_key": "Full version: scan every workflow in the repository, export the report and fail CI on a finding - not just this open file. $29 once, one licence key per person or team seat. A freelance DevOps engineer bills about $100/hour in 2026; one blocked release morning costs more.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "key_ok": "Licence accepted. Repository scan, export, CI output, watch-on-save and custom rules are open.", "key_bad": "That key did not validate. Check it in your Polar receipt, or buy a licence."};
 const PAID = ["workspace_scan", "export_report", "ci_json", "watch_on_save", "custom_rules"];
 
 function out() {
@@ -93,7 +93,7 @@ async function sweepTrial(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     // ★자기 폴더에서 본 숫자를 먼저 보여주고 키를 묻는다 (역방향 체험의 심장)
