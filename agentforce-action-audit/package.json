@@ -1,0 +1,52 @@
+{
+  "name": "agentforce-action-audit",
+  "displayName": "Agentforce Action Audit",
+  "description": "One audit pass over Salesforce Agentforce topic metadata: flags deploy blockers and the missing AI-disclosure line before you push an agent live.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "agentforce",
+    "salesforce",
+    "genaiplugin",
+    "ai-act-article-50",
+    "metadata-lint",
+    "sfdx"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "agentforceActionAudit.checkFile",
+        "title": "Agentforce Action Audit: Check this file",
+        "category": "Agentforce Action Audit"
+      },
+      {
+        "command": "agentforceActionAudit.checkWorkspace",
+        "title": "Agentforce Action Audit: Sweep workspace and write report (licence)",
+        "category": "Agentforce Action Audit"
+      },
+      {
+        "command": "agentforceActionAudit.enterKey",
+        "title": "Agentforce Action Audit: Enter licence key",
+        "category": "Agentforce Action Audit"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "agentforce-action-audit"
+  },
+  "homepage": "https://getreadystack.com/tools/agentforce-action-audit",
+  "icon": "icon.png"
+}
