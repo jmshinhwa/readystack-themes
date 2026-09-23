@@ -24,7 +24,7 @@ Every finding names the RFC section, the publishing body and the date, the line 
 
 Open a zone file and run **SPF & DMARC Record Lint: Check this file** from the Command Palette. Findings appear in the Problems panel on the exact line, plus a written summary in the output channel. Nothing is limited, timed or watermarked: the file in front of you is checked in full, every time, by all 19 rules.
 
-The workspace sweep — every `*.zone`, `*.tf`, `*.yaml` and `*.txt` in the folder, checked in one pass and written out as one dated Markdown audit report you keep, attach to a change ticket and file as the evidence that the policy was enforced on that date — is the part that asks for a licence key. $29 once, one key per person or CI seat, 7-day full refund: https://buy.polar.sh/polar_cl_lTz1ceauyoB7vrNgatSTcYZd8Oyia1VfFLlxg3fcI1A
+The workspace sweep — every `*.zone`, `*.tf`, `*.yaml` and `*.txt` in the folder, checked in one pass and written out as one dated Markdown audit report you keep, attach to a change ticket and file as the evidence that the policy was enforced on that date — is the part that asks for a licence key. $29 once, one key per person or CI seat: https://buy.polar.sh/polar_cl_lTz1ceauyoB7vrNgatSTcYZd8Oyia1VfFLlxg3fcI1A
 
 A freelance email-deliverability specialist bills $50–$150 an hour, and the first hour goes on reading the records you already have.
 
