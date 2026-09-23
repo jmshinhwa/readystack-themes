@@ -34,9 +34,9 @@ line 10  [error]  0 0 30 2 *      this schedule never fires
 
 Healthchecks.io Business, the ordinary cron monitor, is $20 every month for 100 jobs - and by design it can only tell you after a run was already missed.
 
-[**Get the full version - $29**](https://getreadystack.com) - $29 once, one licence key per person or team seat, 7-day full refund.
+[**Get the full version - $29**](https://getreadystack.com) - $29 once, one licence key per person or team seat.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 
 ## Where the zone comes from
