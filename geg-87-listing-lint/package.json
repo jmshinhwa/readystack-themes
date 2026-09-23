@@ -1,0 +1,53 @@
+{
+  "name": "geg-87-listing-lint",
+  "displayName": "Immobilienanzeige GEG 87 Lint",
+  "description": "Lints German property-ad HTML for the energy-certificate fields GEG Section 87 demands, and flags an efficiency class that contradicts the kWh value.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "immobilienanzeige",
+    "energieausweis",
+    "geg",
+    "real-estate",
+    "html-lint",
+    "energieeffizienzklasse",
+    "germany"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "gegListingLint.checkFile",
+        "title": "Immobilienanzeige GEG 87 Lint: Check this file",
+        "category": "Immobilienanzeige GEG 87 Lint"
+      },
+      {
+        "command": "gegListingLint.checkWorkspace",
+        "title": "Immobilienanzeige GEG 87 Lint: Sweep workspace and write report (licence)",
+        "category": "Immobilienanzeige GEG 87 Lint"
+      },
+      {
+        "command": "gegListingLint.enterKey",
+        "title": "Immobilienanzeige GEG 87 Lint: Enter licence key",
+        "category": "Immobilienanzeige GEG 87 Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "geg-87-listing-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/geg-87-listing-lint",
+  "icon": "icon.png"
+}
