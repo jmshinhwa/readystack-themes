@@ -12,7 +12,7 @@ const S = {
   clean: 'Clean against all ' + ENGINE.RULE_COUNT + ' checks.',
   // The paywall is a product surface. This is the only sentence a customer reads before paying.
   need_key: 'Full version: sweeps every Markdown file in the workspace in one pass, cross-checks them against each other, and writes one dated readiness report you can hand to an auditor.',
-  terms: PRICE + ' once · one licence key per person or team seat · 7-day full refund. One hour of EU product-compliance consulting runs $150-250.',
+  terms: PRICE + ' once · one licence key per person or team seat · One hour of EU product-compliance consulting runs $150-250.',
   buy: 'Get the full version — ' + PRICE,
   enter_key: 'Enter licence key',
   key_ok: 'Licence accepted. The workspace sweep is unlocked.',
@@ -74,7 +74,7 @@ async function checkFile() {
 async function checkWorkspace(ctx) {
   const st = ctx.globalState; const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
