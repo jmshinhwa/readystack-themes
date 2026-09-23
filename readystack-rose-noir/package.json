@@ -2,7 +2,7 @@
   "name": "readystack-rose-noir",
   "displayName": "ReadyStack Rose Noir",
   "description": "Black with rose and gold. High-contrast without the glare of pure white. Body text measured at 14.2:1 - WCAG AAA.",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
