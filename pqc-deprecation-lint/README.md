@@ -55,7 +55,7 @@ withheld answer.
 The paid part is a different axis — **scope and ownership**. The workspace sweep crosses every
 file at once and writes a dated report *file* you keep: the artifact you paste into a customer
 security questionnaire, attach to a migration ticket, or diff next quarter. $29 once, one licence
-key per person or CI seat, 7-day full refund.
+key per person or CI seat.
 [Get the full version](https://buy.polar.sh/polar_cl_Q0a5F9WB3Ub2fTRsFv8TePDwMQjmT1GtVgVGl3H6oee)
 
 **Yardstick:** a security consultant doing the same cryptographic inventory by hand bills
