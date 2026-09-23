@@ -6,7 +6,7 @@ A firmware image is the one artefact in the build that nobody re-reads. It gets 
 
 For embedded teams: overlapping records, bad checksums and address gaps are found before the image reaches the programmer.
 
-This extension recomputes them. Open any `.hex`, `.ihex`, `.s19`, `.s28`, `.s37`, `.srec` or `.mot` file and it runs **16 checks** across the image, writing every finding into the Problems panel at the exact line.
+This extension recomputes them. Open any `.hex`, `.ihex`, `.s19`, `.s28`, `.s37`, `.srec` or `.mot` file and it runs **17 checks** across the image, writing every finding into the Problems panel at the exact line.
 
 ## What it checks
 
@@ -14,41 +14,58 @@ This extension recomputes them. Open any `.hex`, `.ihex`, `.s19`, `.s28`, `.s37`
 
 **Structure** — a missing or malformed `:00000001FF` end-of-file record; data records appended *after* the EOF record, which conforming loaders never read; a missing `S7`/`S8`/`S9` termination record; an `S5`/`S6` tally that no longer matches the number of data records in the file; lines that are neither a record nor blank, such as a merge marker or a generator comment.
 
+**Identity in the archive** *(added September 2026)* — an S-record image with no `S0` header record, or with an `S0` whose data field carries no printable module name. The `S0` header is where an image states its module name (`char[20]`), version and revision; the format makes it optional, so plenty of toolchains emit it blank. That is harmless on the bench and expensive in the archive: an image kept as evidence cannot be tied back to the release it belongs to. Intel HEX has no header record at all, so this check applies to S-record images only — and that absence is itself worth knowing when you choose which format to archive.
+
 **Address space** — every absolute address the image writes is mapped, honouring type 02 and type 04 extended-address records. From that map it reports overlapping records (two records writing the same absolute byte, where the flashed value depends on the load order of the tool), unwritten gaps between blocks, data records that run past `0xFFFF` with no extended-address record in effect, blocks that do not fill whole flash pages, and an entry point (`03`, `05`, `S7`/`S8`/`S9`) that lands outside anything the image writes.
 
-## Example output
+## Example output — the 11-line sample image, verbatim
 
 ```
-ERROR  L3   record_checksum    the record ends in 0x2A but the recomputed
-                               two's-complement checksum is 0xE8
-ERROR  L4   record_length      the byte-count field says 16 but the record
-                               carries 15 data bytes
-ERROR  L9   address_overlap    address 0x08000108 is already written by the
-                               record on line 7
-ERROR  L10  extended_address   the record starts at 0xFFF8 and runs 16 bytes
-                               past 0xFFFF
-ERROR  L14  data_after_eof     this record sits after the end-of-file record
-                               on line 13
-WARN   L12  start_address      the entry point 0x00000200 is not inside any
-                               address range this image writes
+WARN  L1   page_alignment    the block 0x00000000-0x0000003E does not fill
+                             whole 256-byte pages (starts on a boundary, ends
+                             193 byte(s) short of one)
+ERROR L3   record_checksum   the record ends in 0x2A but the recomputed
+                             two’s-complement checksum is 0x28
+ERROR L4   record_checksum   the record ends in 0x08 but the recomputed
+                             two’s-complement checksum is 0x1B
+ERROR L4   record_length     the byte-count field says 16 but the record
+                             carries 15 data bytes
+ERROR L5   record_start      this line begins with “<<<<<<< HEAD”, which is
+                             neither an Intel HEX record (“:”) nor an S-record
+                             (“S”)
+ERROR L6   address_overlap   address 0x00000010 is already written by the
+                             record on line 2, so the flashed byte depends on
+                             the load order of the tool
+WARN  L7   address_gap       nothing is written between 0x0000003F and
+                             0x00000300 — a 705-byte gap that keeps whatever
+                             was in flash before
+WARN  L7   page_alignment    the block 0x00000300-0x0000032F does not fill
+                             whole 256-byte pages (starts on a boundary, ends
+                             208 byte(s) short of one)
+WARN  L9   start_address     the entry point 0x00000800 is not inside any
+                             address range this image writes, so the device
+                             jumps into unprogrammed flash
+ERROR L11  data_after_eof    this record sits after the end-of-file record on
+                             line 10, so conforming loaders never read it
 ```
 
-The 14-line sample image shipped with this extension (`_fixtures/dirty.hex`) produces **18 findings, 7 of them errors**. The clean sample produces none.
+The 11-line sample image in `_fixtures/dirty.hex` produces **10 findings, 6 of them errors**, and the 6-line `_fixtures/dirty.s19` produces **5 findings, 2 of them errors**. The two clean samples (`_fixtures/clean.hex`, `_fixtures/clean.s19`) produce **none** — an audit that reports nothing on a good image is the half nobody tests.
 
 ## Free and licensed
 
-Auditing **one image** is free and complete — all 16 checks, no key, nothing truncated, in the editor or in the browser. The licence covers a different job: auditing **every image in a build output folder** in one pass and exporting a dated Markdown audit report you keep as release evidence. Since 11 September 2026 the EU Cyber Resilience Act's reporting obligations for products with digital elements are in force, and a dated, per-image audit record is the kind of thing a technical documentation file is made of.
+Auditing **one image** is free and complete — all 17 checks, no key, nothing truncated, in the editor or in the browser. The licence covers a different job: auditing **every image in a build output folder** in one pass and exporting a dated Markdown audit report you keep as release evidence. Since 11 September 2026 the EU Cyber Resilience Act's reporting obligations for products with digital elements are in force, and a dated, per-image audit record is the kind of thing a technical documentation file is made of.
 
-$29 once, one licence key per person or team seat, 7-day full refund.
+$29 once, one licence key per person or CI seat — and the first workspace sweep runs free for seven days, whole, so you see the report before you pay. [Get the full version](https://buy.polar.sh/polar_cl_AkmNU5yLwVJBdRMHSvuTCQI90j52v56xJsHZH4OTDjV)
 
-**Yardstick:** embedded firmware contract work is commonly billed at $90–$150 an hour — one hour of it costs more than this licence.
+**Yardstick:** freelance embedded software engineers average **$104 an hour** and firmware consultants **$105** (contractrates.fyi, crowdsourced rates, June 2026). One hour of one of them re-reading one image costs more than this licence.
 
-Free in your browser, running the same 16 rules: https://getreadystack.com/tools/hex-image-audit
+Free in your browser, running the same 17 rules: https://getreadystack.com/tools/hex-image-audit
 
 ## Commands
 
-- **Audit this image** — runs all 16 checks on the active file (free).
-- **Audit the build folder** — every matching image in the workspace, one dated Markdown report (licence).
+- **Check this file** — runs all 17 checks on the active image, findings in the Problems panel at their line (free, no key).
+- **Sweep workspace and write report** — every matching image in the build folder, one dated Markdown report file you keep (free for seven days, then the licence).
+- **Enter licence key** — paste the key from your purchase.
 
 ## Format notes
 
