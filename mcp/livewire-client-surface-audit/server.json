@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.jmshinhwa/livewire-client-surface-audit",
+  "description": "Marks every line of a Livewire or Blade file that the visitor's browser can call, rewrite or read",
+  "repository": {
+    "url": "https://github.com/jmshinhwa/readystack-themes",
+    "source": "github"
+  },
+  "version": "1.0.4",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@readystack/livewire-client-surface-audit",
+      "version": "1.0.4",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "--mcp",
+          "description": "run as an MCP server (stdio)"
+        }
+      ]
+    }
+  ]
+}
