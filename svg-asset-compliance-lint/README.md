@@ -46,7 +46,7 @@ Checking **the file open in front of you** is free, in the editor and on the web
 
 The **licence key** unlocks a different job on a different axis — scope and ownership. It sweeps
 every SVG in the workspace in one command and writes a dated conformity report file that you keep
-and can hand to an auditor. $29 once, one licence key per person or CI seat, 7-day full refund.
+and can hand to an auditor. $29 once, one licence key per person or CI seat.
 [Licence](https://buy.polar.sh/polar_cl_KCrTfoF5x1HdHBSeZ3leRSthm5ZGowlYQNOgE2VIwVT)
 
 Yardstick: a manual accessibility audit of a component library is quoted in the thousands of
