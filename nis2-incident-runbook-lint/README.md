@@ -42,7 +42,7 @@ The same engine, byte for byte, runs in the browser at <https://getreadystack.co
 
 Free, with no registration and no expiry: the runbook you have open, all 16 rules, every finding.
 
-Licensed: the workspace sweep. One command walks every Markdown runbook in the workspace and writes a single dated report file listing each file, each finding and the rule it failed - the artefact an auditor asks for. A licence key is one seat, 29 dollars once, 7-day full refund: <https://buy.polar.sh/polar_cl_Q5sXD7c9oqRLoEPaJWOpB8gz9waQqKebymb4y36LpKx>
+Licensed: the workspace sweep. One command walks every Markdown runbook in the workspace and writes a single dated report file listing each file, each finding and the rule it failed - the artefact an auditor asks for. A licence key is one seat, 29 dollars once: <https://buy.polar.sh/polar_cl_Q5sXD7c9oqRLoEPaJWOpB8gz9waQqKebymb4y36LpKx>
 
 For scale: the BDU consulting market survey puts the average NIS2 consultant day rate at EUR 1,300. This runs before you book that day.
 
