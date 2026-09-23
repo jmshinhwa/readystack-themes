@@ -39,7 +39,7 @@ ext install hmrc-fraud-prevention-header-lint
 
 ## Licence
 
-$29 once - one licence key per person or team seat, 7-day full refund.
+$29 once - one licence key per person or team seat.
 
 [Get the full version - $29](https://getreadystack.com)
 
