@@ -36,9 +36,9 @@ spec:
 - **Take the findings away as CSV, JSON or HTML** — Writes the report into the workspace so it can go to a ticket or an auditor.
 - **CI JSON a pipeline can fail on** — Writes machine-readable findings so a pull request is blocked before merge.
 
-[**Get the full version - $29**](https://buy.polar.sh/polar_cl_SnmEdHDa8OjzORnIjOry1XW7LZozu9qDBYIIc1eBSB5) - $29 once, one licence key per person or team seat, 7-day full refund.
+[**Get the full version - $29**](https://buy.polar.sh/polar_cl_SnmEdHDa8OjzORnIjOry1XW7LZozu9qDBYIIc1eBSB5) - $29 once, one licence key per person or team seat.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 
 ## Install
