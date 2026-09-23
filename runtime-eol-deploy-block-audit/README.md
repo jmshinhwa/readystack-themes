@@ -20,9 +20,9 @@ Finds the end-of-life runtimes an AI assistant still writes for you — node:20,
 - **Re-check on every save** — Runs automatically when you save, so a reintroduced EOL pin is caught as it is typed.
 - **Add your own internal deadline rules** — Your own regex rules from settings — internal base images, private registries, your own cutoff dates.
 
-[Get the full version — $29](https://getreadystack.com) - $29 once, one licence key per person or team seat, 7-day full refund.
+[Get the full version — $29](https://getreadystack.com) - $29 once, one licence key per person or team seat.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 
 ## Install
