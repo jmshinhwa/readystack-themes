@@ -1,0 +1,52 @@
+{
+  "name": "aviso-legal-lssi-lint-es",
+  "displayName": "Aviso Legal ES: leyes derogadas y datos LSSI",
+  "description": "Revisa el aviso legal y la politica de privacidad de tu web: cita a leyes derogadas (LOPD 15/1999, Directiva 95/46/CE) y datos obligatorios del art. 10 LSSI que faltan.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "aviso legal",
+    "lssi",
+    "rgpd",
+    "lopd",
+    "politica de privacidad",
+    "espana",
+    "linter"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "avisoLegalEs.checkFile",
+        "title": "Aviso Legal ES: leyes derogadas y datos LSSI: Check this file",
+        "category": "Aviso Legal ES: leyes derogadas y datos LSSI"
+      },
+      {
+        "command": "avisoLegalEs.checkWorkspace",
+        "title": "Aviso Legal ES: leyes derogadas y datos LSSI: Sweep workspace and write report (licence)",
+        "category": "Aviso Legal ES: leyes derogadas y datos LSSI"
+      },
+      {
+        "command": "avisoLegalEs.enterKey",
+        "title": "Aviso Legal ES: leyes derogadas y datos LSSI: Enter licence key",
+        "category": "Aviso Legal ES: leyes derogadas y datos LSSI"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "aviso-legal-lssi-lint-es"
+  },
+  "homepage": "https://getreadystack.com/tools/aviso-legal-lssi-lint-es"
+}
