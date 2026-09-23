@@ -1,0 +1,53 @@
+{
+  "name": "dsfinv-k-export-lint",
+  "displayName": "CSV Kassenprüfer — DSFinV-K Export Lint",
+  "description": "Prueft eine DSFinV-K-CSV aus dem Kassenexport gegen die amtliche Spaltenliste, Wertelisten und Formate der DSFinV-K 2.4 - direkt im Editor.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "csv",
+    "kasse",
+    "dsfinv-k",
+    "kassensicherv",
+    "gobd",
+    "linter",
+    "deutschland"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "dsfinvkLint.checkFile",
+        "title": "CSV Kassenpruefer - DSFinV-K Export Lint: Check this file",
+        "category": "CSV Kassenpruefer - DSFinV-K Export Lint"
+      },
+      {
+        "command": "dsfinvkLint.checkWorkspace",
+        "title": "CSV Kassenpruefer - DSFinV-K Export Lint: Sweep workspace and write report (licence)",
+        "category": "CSV Kassenpruefer - DSFinV-K Export Lint"
+      },
+      {
+        "command": "dsfinvkLint.enterKey",
+        "title": "CSV Kassenpruefer - DSFinV-K Export Lint: Enter licence key",
+        "category": "CSV Kassenpruefer - DSFinV-K Export Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "dsfinv-k-export-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/dsfinv-k-export-lint",
+  "icon": "icon.png"
+}
