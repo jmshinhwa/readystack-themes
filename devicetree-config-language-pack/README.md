@@ -44,7 +44,7 @@ The licence never removes a rule. Both sides run the same 23.
   removed after it damaged source lines, and no rule in this build ships a machine-checked
   replacement, so this command currently reports and never edits.
 
-**[Get the licence - $29](https://buy.polar.sh/polar_cl_CFCuxNMjv5zsartvO10MlY2XKN142StTkIxHL43Dlqa)** · one-time · 7-day refund, no questions asked.
+**[Get the licence - $29](https://buy.polar.sh/polar_cl_CFCuxNMjv5zsartvO10MlY2XKN142StTkIxHL43Dlqa)** · one-time.
 
 A freelance embedded software engineer bills about $103/hour (contractrates.fyi, 2026); a staff
 embedded firmware engineer's hour averages $58.66 (ZipRecruiter, June 2026). One sensor missing from
