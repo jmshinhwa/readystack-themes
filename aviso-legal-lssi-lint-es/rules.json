@@ -1,0 +1,124 @@
+[
+ {
+  "check": "lopd_15_1999",
+  "kind": "forbid",
+  "sev": "error",
+  "re": "(Ley Org[áa]nica\\s*15/1999|\\bLOPD\\s*15/1999|15/1999)",
+  "msg": "Cita la LOPD 15/1999, derogada el 07/12/2018 por la disposicion derogatoria unica de la LOPDGDD 3/2018. Sustituye la base legal por el RGPD (UE) 2016/679 y la LOPDGDD 3/2018."
+ },
+ {
+  "check": "directiva_95_46",
+  "kind": "forbid",
+  "sev": "error",
+  "re": "(Directiva\\s*95/46|95/46/CE)",
+  "msg": "Cita la Directiva 95/46/CE, derogada el 25/05/2018 por el art. 94 del RGPD (UE) 2016/679. Cita el RGPD."
+ },
+ {
+  "check": "registro_ficheros_aepd",
+  "kind": "forbid",
+  "sev": "error",
+  "re": "(inscri\\w*\\s+(?:de\\s+)?(?:el\\s+|los\\s+)?fichero|Registro General de Protecci[óo]n de Datos|notificaci[óo]n de ficheros)",
+  "msg": "Promete inscribir ficheros en la AEPD: esa obligacion desaparecio con el RGPD. Ahora corresponde el registro de actividades de tratamiento del art. 30 RGPD, interno y no inscrito."
+ },
+ {
+  "check": "rd_1720_2007",
+  "kind": "forbid",
+  "sev": "warn",
+  "re": "(Real Decreto\\s*1720/2007|RD\\s*1720/2007|1720/2007)",
+  "msg": "El RD 1720/2007 desarrolla la LOPD derogada y solo sigue aplicandose en lo que no contradiga el RGPD: no sirve como base del aviso legal."
+ },
+ {
+  "check": "consentimiento_tacito_cookies",
+  "kind": "forbid",
+  "sev": "error",
+  "re": "(al\\s+(?:seguir\\s+)?navegar\\s+(?:por\\s+)?(?:esta|este|la)?\\s*\\w*\\s*(?:acepta|consiente)|si contin[úu]a navegando|entendemos que acepta|acepta(?:s|n)? (?:el uso|la instalaci[óo]n) de cookies al)",
+  "msg": "Consentimiento tacito de cookies. El art. 22.2 LSSI 34/2002 y la Guia de cookies de la AEPD (2023) exigen consentimiento por accion afirmativa: seguir navegando no vale."
+ },
+ {
+  "check": "cookies_boton_rechazar",
+  "kind": "require_if",
+  "sev": "error",
+  "re_if": "cookie",
+  "re": "(rechazar|rechazo|denegar todas)",
+  "msg": "Hablas de cookies pero no hay opcion de rechazar. La Guia de cookies de la AEPD (2023) pide el rechazo en el mismo nivel que la aceptacion, en la primera capa."
+ },
+ {
+  "check": "sumision_fuero_consumidor",
+  "kind": "forbid",
+  "sev": "warn",
+  "re": "(sumisi[óo]n expresa a los (?:juzgados|tribunales)|con renuncia (?:expresa )?a (?:su|cualquier otro) fuero)",
+  "msg": "Sumision expresa a un fuero distinto del domicilio del consumidor: clausula abusiva segun el art. 90.2 del TRLGDCU (RDL 1/2007)."
+ },
+ {
+  "check": "plantilla_sin_rellenar",
+  "kind": "forbid",
+  "sev": "error",
+  "re": "(\\[\\s*(?:tu|su|TU|SU)\\s+[^\\]]{2,24}\\]|NOMBRE DE (?:LA|TU) EMPRESA|TU EMPRESA|Lorem ipsum|B00000000|XXXXXXXX)",
+  "msg": "Queda texto de plantilla sin rellenar. Sin los datos reales el art. 10 LSSI no se cumple aunque la pagina exista."
+ },
+ {
+  "check": "copyright_desactualizado",
+  "kind": "stale_year",
+  "sev": "warn",
+  "re": "(?:©|\\(c\\)|Copyright)\\s*(20\\d\\d)",
+  "msg": "El ano del copyright es anterior al ano en curso: la pagina se lee como abandonada y delata que el texto legal no se revisa."
+ },
+ {
+  "check": "lssi_nif",
+  "kind": "require",
+  "sev": "error",
+  "re": "(\\bNIF\\b|\\bCIF\\b|\\bN\\.I\\.F\\b)",
+  "msg": "Falta el NIF o CIF del titular, exigido por el art. 10.1.a de la Ley 34/2002 (LSSI)."
+ },
+ {
+  "check": "lssi_domicilio",
+  "kind": "require",
+  "sev": "error",
+  "re": "(domicilio|direcci[óo]n postal|calle\\s+\\w+|avenida\\s+\\w+)",
+  "msg": "Falta el domicilio del titular, exigido por el art. 10.1.a de la Ley 34/2002 (LSSI)."
+ },
+ {
+  "check": "lssi_contacto",
+  "kind": "require",
+  "sev": "error",
+  "re": "([\\w.+-]+@[\\w-]+\\.[a-z]{2,}|correo electr[óo]nico de contacto)",
+  "msg": "Falta un medio de contacto directo y efectivo (correo electronico), exigido por el art. 10.1.a de la Ley 34/2002 (LSSI)."
+ },
+ {
+  "check": "lssi_registro_mercantil",
+  "kind": "require_if",
+  "sev": "warn",
+  "re_if": "(\\bS\\.L\\.|\\bS\\.A\\.|sociedad limitada)",
+  "re": "Registro Mercantil",
+  "msg": "Es una sociedad y no consta la inscripcion en el Registro Mercantil (tomo, folio, hoja), exigida por el art. 10.1.b de la Ley 34/2002 (LSSI)."
+ },
+ {
+  "check": "lssi_colegio_profesional",
+  "kind": "require_if",
+  "sev": "warn",
+  "re_if": "(colegiad|arquitect|abogad|ingenier[oa]|psic[óo]log|m[ée]dic[oa]|aparejador)",
+  "re": "(Colegio (?:Oficial|Profesional)|n[úu]mero de colegiado)",
+  "msg": "Profesion regulada sin colegio ni numero de colegiado: el art. 10.1.d de la Ley 34/2002 (LSSI) exige ambos datos y el titulo academico."
+ },
+ {
+  "check": "rgpd_base_juridica",
+  "kind": "require",
+  "sev": "error",
+  "re": "(base (?:jur[íi]dica|legal)|inter[ée]s leg[íi]timo|art[íi]culo 6 del RGPD|art\\. 6 RGPD)",
+  "msg": "No se indica la base juridica del tratamiento, exigida por el art. 13.1.c del RGPD (UE) 2016/679."
+ },
+ {
+  "check": "rgpd_derechos",
+  "kind": "require",
+  "sev": "error",
+  "re": "(supresi[óo]n|portabilidad|limitaci[óo]n del tratamiento)",
+  "msg": "Faltan los derechos del RGPD (supresion, portabilidad, limitacion): los arts. 15 a 22 superan el viejo listado ARCO."
+ },
+ {
+  "check": "rgpd_reclamacion_aepd",
+  "kind": "require",
+  "sev": "warn",
+  "re": "(reclamaci[óo]n ante la (?:AEPD|Agencia Espa[ñn]ola de Protecci[óo]n de Datos)|www\\.aepd\\.es)",
+  "msg": "No se informa del derecho a reclamar ante la AEPD, exigido por el art. 13.2.d del RGPD (UE) 2016/679."
+ }
+]
