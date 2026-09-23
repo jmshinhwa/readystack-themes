@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Auditing on every save", "done": "Audit finished - see the report", "nothing_found": "Nothing fires before consent here", "paste": "Paste an HTML, JS, JSX, Vue or PHP template here", "check": "Audit this code", "need_key": "Full version: sweep every file in the repository, keep it clean on save, and export the dated evidence report. $29 once - one licence key per person or team seat - 7-day full refund. Consent scanners bill $10-$55 per domain every month.", "key_ok": "Licence accepted", "key_bad": "That key did not validate", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "extra_rules": "Extra patterns of your own, audited alongside the 24 that ship inside."};
+const S = {"run": "Auditing on every save", "done": "Audit finished - see the report", "nothing_found": "Nothing fires before consent here", "paste": "Paste an HTML, JS, JSX, Vue or PHP template here", "check": "Audit this code", "need_key": "Full version: sweep every file in the repository, keep it clean on save, and export the dated evidence report. $29 once - one licence key per person or team seat. Consent scanners bill $10-$55 per domain every month.", "key_ok": "Licence accepted", "key_bad": "That key did not validate", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "extra_rules": "Extra patterns of your own, audited alongside the 24 that ship inside."};
 const PAID = ["workspace_scan", "export_report", "watch_on_save", "ci_json", "quick_fix"];
 
 function out() {
