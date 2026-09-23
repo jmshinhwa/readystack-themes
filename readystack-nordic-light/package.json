@@ -2,7 +2,7 @@
   "name": "readystack-nordic-light",
   "displayName": "ReadyStack Nordic Light",
   "description": "Cool grey-blue light theme. Clean, quiet, no cream. Body text measured at 14.4:1 - WCAG AAA.",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
