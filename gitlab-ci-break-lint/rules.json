@@ -1,0 +1,18 @@
+[
+  {"id": "removed_ci_build_vars", "sev": "error", "title": "CI_BUILD_* variable", "fix": "Rename to the CI_JOB_* / CI_COMMIT_* equivalent (CI_BUILD_REF is CI_COMMIT_SHA, CI_BUILD_ID is CI_JOB_ID)."},
+  {"id": "removed_type_keyword", "sev": "error", "title": "type: / types: keyword", "fix": "Use stage: on a job and stages: at the top of the file."},
+  {"id": "removed_cobertura_report", "sev": "error", "title": "artifacts:reports:cobertura", "fix": "Use artifacts:reports:coverage_report with coverage_format: cobertura and path:."},
+  {"id": "removed_ci_job_jwt", "sev": "error", "title": "CI_JOB_JWT token", "fix": "Declare an id_tokens: block on the job and read that token instead."},
+  {"id": "retired_only_except", "sev": "warn", "title": "only: / except: job filter", "fix": "Move the condition into rules: with if:, changes: or exists:."},
+  {"id": "only_and_rules_conflict", "sev": "error", "title": "rules: together with only:/except:", "fix": "Keep rules: and delete only:/except: from the same job."},
+  {"id": "github_runs_on", "sev": "error", "title": "runs-on: from GitHub Actions", "fix": "GitLab picks runners by tags:. Replace runs-on: with tags: or drop it."},
+  {"id": "github_uses_steps", "sev": "error", "title": "steps: / uses: from GitHub Actions", "fix": "GitLab jobs run shell lines under script:. There is no uses: action."},
+  {"id": "github_expression", "sev": "error", "title": "${{ }} expression from GitHub Actions", "fix": "GitLab expands plain $VARIABLE. Rewrite the expression as a variable or a rules: if:."},
+  {"id": "github_top_level_key", "sev": "error", "title": "top-level on: / jobs: from GitHub Actions", "fix": "GitLab has no on: or jobs: mapping. Declare jobs at the top level and gate them with workflow:rules or rules:."},
+  {"id": "stage_not_declared", "sev": "error", "title": "stage: missing from stages:", "fix": "Add the stage name to the stages: list, or point the job at a declared stage."},
+  {"id": "needs_undefined_job", "sev": "error", "title": "needs: points at an undefined job", "fix": "Reference a job that exists in this file, or remove the needs: entry."},
+  {"id": "extends_undefined_key", "sev": "error", "title": "extends: points at an undefined key", "fix": "Define the hidden job (.name:) in this file or include the template that defines it."},
+  {"id": "start_in_without_delayed", "sev": "error", "title": "start_in: without when: delayed", "fix": "Add when: delayed to the same job, otherwise start_in: is rejected."},
+  {"id": "parallel_out_of_range", "sev": "error", "title": "parallel: outside 2-200", "fix": "Use a value between 2 and 200, or delete parallel: for a single job."},
+  {"id": "job_without_script", "sev": "error", "title": "job with no script:", "fix": "Give the job a script:, a trigger:, or an extends: that supplies one."}
+]
