@@ -2,7 +2,7 @@
   "name": "rechnung-pflichtangaben-lint-de",
   "displayName": "Rechnung Pflichtangaben Lint (§ 14 UStG)",
   "description": "Prüft PHP-Rechnungstemplates in WooCommerce- und WordPress-Plugins auf die Pflichtangaben nach §14 UStG: fehlendes Leistungsdatum, fehlende Steuernummer, unzulässiger Steuerausweis.",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
