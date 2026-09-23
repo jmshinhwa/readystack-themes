@@ -17,7 +17,7 @@ Finds retired API versions and removed sfdx force:* commands in your DX repo bef
 - **Machine output for CI** — JSON your pipeline can read, so a retired version fails the build, not the deploy.
 - **Export the findings** — Writes CSV, JSON or HTML into the workspace so you can hand the list to a team.
 
-[Get the full version - $29](https://buy.polar.sh/polar_cl_SFrevid2aV0vMegeiuuJ5c1n6mtsHt2zeUpb041va0r) - $29 once, one licence key per person or team seat, 7-day full refund.
+[Get the full version - $29](https://buy.polar.sh/polar_cl_SFrevid2aV0vMegeiuuJ5c1n6mtsHt2zeUpb041va0r) - $29 once, one licence key per person or team seat.
 
 
 ## Install
