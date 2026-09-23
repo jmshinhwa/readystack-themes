@@ -1,0 +1,72 @@
+[
+  {
+    "id": "ueberfehlmenge",
+    "sev": "error",
+    "law": "§ 13 Abs. 2 und 3 AlkStV, § 2 Abs. 1 AlkStG",
+    "title": "Fehlmenge über den anerkannten Verlustsätzen",
+    "saetze": [
+      {"key": "verarbeitung_kalt", "label": "Verarbeitung auf kaltem Weg", "satz": 1, "law": "§ 13 Abs. 2 Nr. 1 AlkStV"},
+      {"key": "verarbeitung_warm", "label": "Auszugsverfahren, Abtrieb, Warmbehandlung", "satz": 3, "law": "§ 13 Abs. 2 Nr. 2 AlkStV"},
+      {"key": "abfuellung_klein", "label": "Abfüllung in Fertigpackungen bis 5 Liter", "satz": 0.5, "law": "§ 13 Abs. 2 Nr. 3 Buchstabe a AlkStV"},
+      {"key": "abfuellung_gross", "label": "Abfüllung in andere Fertigpackungen", "satz": 0.3, "law": "§ 13 Abs. 2 Nr. 3 Buchstabe b AlkStV"},
+      {"key": "lagerung_sonst", "label": "Lagerung in anderen Behältnissen", "satz": 1, "law": "§ 13 Abs. 2 Nr. 4 AlkStV"},
+      {"key": "lagerung_holz", "label": "Lagerung in unbeschichteten Holzfässern", "satz": 4, "law": "§ 13 Abs. 2 Nr. 5 AlkStV"}
+    ]
+  },
+  {
+    "id": "verlustsatz_falsch",
+    "sev": "error",
+    "law": "§ 13 Abs. 2 AlkStV",
+    "title": "Angesetzter Verlustsatz weicht von der Verordnung ab"
+  },
+  {
+    "id": "steuersatz_falsch",
+    "sev": "error",
+    "law": "§ 2 Abs. 1 und Abs. 2 AlkStG",
+    "title": "Steuersatz je hl A ist kein gesetzlicher Satz",
+    "erlaubt": [1303, 1022, 730],
+    "regelsatz": 1303
+  },
+  {
+    "id": "ermaessigt_ohne_nachweis",
+    "sev": "warn",
+    "law": "§ 2 Abs. 2 Satz 2 und Abs. 3 AlkStG",
+    "title": "Ermäßigter Satz ohne Unabhängigkeit oder Bescheinigung in der Akte"
+  },
+  {
+    "id": "anmeldung_fehlt",
+    "sev": "error",
+    "law": "§ 19 Abs. 1 Satz 1 AlkStG",
+    "title": "Keine Steueranmeldung in der Lagerakte"
+  },
+  {
+    "id": "anmeldung_verspaetet",
+    "sev": "error",
+    "law": "§ 19 Abs. 1 Satz 1 AlkStG, § 108 Abs. 3 AO",
+    "title": "Steueranmeldung nach dem zehnten Tag des Folgemonats"
+  },
+  {
+    "id": "faelligkeit_falsch",
+    "sev": "error",
+    "law": "§ 19 Abs. 1 Satz 2 AlkStG, § 108 Abs. 3 AO",
+    "title": "Fälligkeit nicht am fünften Tag des zweiten Folgemonats"
+  },
+  {
+    "id": "bestandsanmeldung_verspaetet",
+    "sev": "error",
+    "law": "§ 12 Abs. 1 Satz 1 AlkStV",
+    "title": "Bestandsanmeldung später als einen Monat nach der Bestandsaufnahme"
+  },
+  {
+    "id": "anzeige_zu_spaet",
+    "sev": "warn",
+    "law": "§ 12 Abs. 1 Satz 4 AlkStV",
+    "title": "Beginn der Bestandsaufnahme weniger als drei Wochen vorher angezeigt"
+  },
+  {
+    "id": "menge_ohne_einheit",
+    "sev": "warn",
+    "law": "§ 2 Abs. 1 AlkStG, § 3 AlkStV",
+    "title": "Menge ohne Einheit hl A (reiner Alkohol bei 20 Grad Celsius)"
+  }
+]
