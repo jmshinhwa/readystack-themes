@@ -1,0 +1,50 @@
+# Action Runtime Sunset Lint
+
+A GitHub Actions step does not warn you when its JavaScript runtime disappears. It fails. The job goes red on the next push — usually the push that was supposed to ship a release — and the log says something about a runtime that no longer exists on the runner image.
+
+GitHub retires the **node20** action runtime on **2026-09-23**. The node16 and node12 runtimes are already gone, and so are several runner images (`ubuntu-20.04`, `macos-12`, `windows-2019`). The v3 artifact backend was switched off on 2025-01-30, so `actions/upload-artifact@v3` and `actions/download-artifact@v3` fail outright rather than degrade. Archived action repositories such as `actions/create-release` will never receive a runtime bump at all: whatever runtime they declare today is the runtime they die with.
+
+This extension reads the workflow YAML you have open and tells you, line by line, which steps are already dead, which are on the clock, and the exact version string to move to.
+
+## What it checks
+
+**23 rules**, grouped by how the step breaks:
+
+| Group | Examples |
+| --- | --- |
+| Retired action runtimes | `actions/setup-node@v1/v2/v3`, `actions/cache@v1/v2/v3`, `actions/github-script@v1…v6`, `actions/setup-python@v1…v4`, `actions/setup-java@v1/v2/v3`, `actions/setup-dotnet@v1/v2/v3` |
+| Switched-off backends | `actions/upload-artifact@v3` and older, `actions/download-artifact@v3` and older |
+| Archived action repos | `actions/create-release`, `actions/upload-release-asset` |
+| Declared runtimes in `action.yml` | `using: node12`, `using: node16` (gone), `using: node20` (retires 2026-09-23) |
+| Retired runner images | `ubuntu-16.04/18.04/20.04`, `macos-10.15/11/12`, `windows-2016/2019` |
+| Disabled workflow commands | `set-output`, `save-state`, `set-env`, `add-path` |
+| Ageing toolchains and moving pins | `node-version: 12/14/16/18`, steps pinned to `@main` or `@master` |
+
+Every finding carries the replacement, not just the complaint — `actions/setup-node@v3` → `actions/setup-node@v5`, `runs-on: ubuntu-20.04` → `runs-on: ubuntu-24.04`, `set-output` → `>> "$GITHUB_OUTPUT"`.
+
+## Measured on the sample in this repository
+
+`_fixtures/dirty.yml` is an ordinary 20-line release workflow. The linter reports **6 findings** in it: **5 steps that are already dead** on GitHub-hosted runners and 1 ageing toolchain pin. The migrated version of the same file, `_fixtures/clean.yml`, reports **0**. Today's date is an input: with `today = 2026-09-21`, a `using: node20` action is reported as *"In 2 days"*, and on 2026-09-23 the same line flips to *"Already retired"* and to high severity.
+
+## Free and full
+
+Free, with no key: open a workflow file, run **Action Runtime Sunset Lint: Check this file**, and get every one of the 23 rules applied to that file with its replacement version. That is a finished job — one file, fully answered.
+
+The full version adds a different axis: it sweeps **every** workflow and composite `action.yml` in the workspace in one pass and writes a dated migration checklist into the repository, so the list is something you own and can hand to whoever does the merge. $29 once, one licence key per person or CI seat, 7-day full refund.
+
+Yardstick: a DevOps contractor doing the same audit and migration by hand bills **$30 to $150 an hour** on the open freelance market.
+
+Full version: https://buy.polar.sh/polar_cl_jT1WSh3ks3YVOX7etB8r9YixHfNivbgp7pfOh3eXlj8
+
+## Why a chat assistant is not enough here
+
+An assistant cannot see your `.github/workflows` directory, and the runtime and image retirements it was trained on are the ones from its training window — exactly the dates that move. AI-written workflow YAML is where this bites hardest: generated pipelines still emit `@v3` pins and `set-output` because those were the common shape in the corpus. This linter reads your file and uses a dated rule table, so the answer changes when the calendar does.
+
+More tools: https://getreadystack.com/tools/action-runtime-sunset-lint
+
+## Commands
+
+- **Action Runtime Sunset Lint: Check this file** — lint the open YAML file (free)
+- **Action Runtime Sunset Lint: Sweep workspace** — every workflow and composite action, plus a written checklist (full version)
+
+MIT-licensed. No telemetry, no network calls except licence validation.
