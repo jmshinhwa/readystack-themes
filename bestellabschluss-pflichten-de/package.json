@@ -1,0 +1,53 @@
+{
+  "name": "bestellabschluss-pflichten-de",
+  "displayName": "Bestellabschluss-Check DE: Button & Pflichten",
+  "description": "Prüft Vorlagen der Bestellstrecke deutscher Onlineshops: Beschriftung des Bestellbuttons, Pflichtangaben über dem Button, Kündigungsbutton und vorangekreuzte Häkchen — 15 Regeln aus BGB, EGBGB, PAngV.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "bgb",
+    "onlineshop",
+    "bestellbutton",
+    "abmahnung",
+    "ecommerce",
+    "kasse",
+    "dsgvo"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "bestellDe.checkFile",
+        "title": "Bestellabschluss-Check DE: Button & Pflichten: Check this file",
+        "category": "Bestellabschluss-Check DE: Button & Pflichten"
+      },
+      {
+        "command": "bestellDe.checkWorkspace",
+        "title": "Bestellabschluss-Check DE: Button & Pflichten: Sweep workspace and write report (licence)",
+        "category": "Bestellabschluss-Check DE: Button & Pflichten"
+      },
+      {
+        "command": "bestellDe.enterKey",
+        "title": "Bestellabschluss-Check DE: Button & Pflichten: Enter licence key",
+        "category": "Bestellabschluss-Check DE: Button & Pflichten"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "bestellabschluss-pflichten-de"
+  },
+  "homepage": "https://getreadystack.com/tools/bestellabschluss-pflichten-de",
+  "icon": "icon.png"
+}
