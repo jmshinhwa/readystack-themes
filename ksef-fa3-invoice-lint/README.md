@@ -47,7 +47,7 @@ Free, and complete on its own: one file — the invoice XML open in the editor, 
 
 The full version works on a different axis, scope: `KSeF FA(3): Sweep Workspace` runs every invoice XML in the folder in one pass and writes a dated `REPORT.md` — file, line, rule, found value, wanted value — that you keep as your own record for the 2027 penalty regime.
 
-Full version — $29 once, one licence key per person or CI seat, 7-day full refund: <https://buy.polar.sh/polar_cl_JEQ1km4V0rbblgu9hwXyGlYM9I06o2ERzguUP2O8bd9>
+Full version — $29 once, one licence key per person or CI seat: <https://buy.polar.sh/polar_cl_JEQ1km4V0rbblgu9hwXyGlYM9I06o2ERzguUP2O8bd9>
 
 Yardstick: a mid-size KSeF ERP integration in Poland costs PLN 10,000 to PLN 50,000 and takes 2 to 4 months; most of that time is spent making the XML pass validation.
 
