@@ -17,7 +17,7 @@ Catches retired profile identifiers, code-list values outside EN 16931 and malfo
 - **Findings report as CSV, JSON or HTML** — Writes the findings to a file you can attach to a release, hand to the integration owner or keep with the test evidence.
 - **JSON output a build step can fail on** — Machine-readable findings so a pipeline blocks the merge that would have shipped a rejected invoice.
 
-[Get the full version - $29](https://buy.polar.sh/polar_cl_uvaD8HrNLY041vZaDJqCklAVjAZRz5CnK5b184gKfFx) - $29 once, one licence key per person or team seat, 7-day full refund.
+[Get the full version - $29](https://buy.polar.sh/polar_cl_uvaD8HrNLY041vZaDJqCklAVjAZRz5CnK5b184gKfFx) - $29 once, one licence key per person or team seat.
 
 
 ## Install
