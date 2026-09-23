@@ -1,0 +1,15 @@
+[
+ {"id": "missing_master_label", "sev": "error", "msg": "No top-level <masterLabel>. The topic deploys without a name and the planner cannot list it."},
+ {"id": "missing_description", "sev": "error", "msg": "No top-level <description>. The planner routes on this text, so the topic is never selected."},
+ {"id": "missing_scope", "sev": "error", "msg": "No <scope>. Nothing bounds the topic, so the agent answers questions it was never meant to touch. Add a one-line topic boundary."},
+ {"id": "scope_too_short", "sev": "warn", "msg": "<scope> is under 40 characters. Too thin to bound the topic; say what the agent must refuse."},
+ {"id": "no_instructions", "sev": "error", "msg": "No <genAiPluginInstructions> block. The topic carries no behaviour at all."},
+ {"id": "duplicate_instruction_name", "sev": "error", "msg": "Two instructions share one <developerName>. Rename the duplicate or the metadata deploy fails."},
+ {"id": "instruction_placeholder", "sev": "error", "msg": "Generated placeholder text left in an instruction. Replace it before the agent reads it to a customer."},
+ {"id": "function_not_referenced", "sev": "warn", "msg": "A <functionName> is never named in any instruction or in <scope>. Name it so the planner picks it."},
+ {"id": "no_ai_disclosure", "sev": "error", "msg": "No instruction tells the person they are talking to an AI. EU AI Act Article 50(1) has applied since 2026-08-02; the Article 99(4) ceiling is 15 million euro or 3 percent of worldwide turnover."},
+ {"id": "pii_in_instruction", "sev": "error", "msg": "An instruction carries contact or identity data. Instruction text is sent to the model on every turn; move it out of the prompt."},
+ {"id": "insecure_endpoint", "sev": "warn", "msg": "An instruction points at a plain http:// address. Use a Named Credential over https."},
+ {"id": "unescaped_ampersand", "sev": "error", "msg": "A bare & that is not an XML entity. Escape it as &amp; or the deploy stops on a parse error."},
+ {"id": "stale_api_version", "sev": "warn", "msg": "<apiVersion> predates 62.0, the release Agentforce topics shipped in. Raise it to 62.0 or later."}
+]
