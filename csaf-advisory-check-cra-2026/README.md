@@ -59,7 +59,7 @@ In the licensed version:
 * **Write the CI checker into this repository** — drops `.csaf-check/` with the same engine and a runner that exits non-zero, so a pipeline stops before a non-conformant advisory is published.
 * **Check on save: turn on or off** — re-check while you write.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 ## Settings
 
@@ -76,7 +76,7 @@ Full workspace sweep and report: free for 7 days from your first sweep, then a l
 You are writing one advisory against a 24-hour clock. Free checks that advisory completely — all 43
 checks, every finding, no hidden results. The licence changes the **scope**: the whole repository in one
 pass, an evidence file you own, and a gate in CI. $29 once, one licence key per person or team seat,
-7-day full refund. Published CRA cost calculators calibrate this work at EUR 45 per hour of engineering
+Published CRA cost calculators calibrate this work at EUR 45 per hour of engineering
 and consulting effort.
 
 ## Specification
