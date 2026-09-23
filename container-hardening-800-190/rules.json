@@ -1,0 +1,86 @@
+[
+ {"id":"no_user_instruction","kind":"dockerfile","mode":"absent","re":"^\\s*USER\\s+\\S","flags":"i","sev":"error",
+  "msg":"No USER instruction — the image runs every process as root (uid 0).","ref":"SP 800-190 4.4.3","req":"3.1.5","points":3,
+  "fix":"Create an unprivileged account and end the build with USER 10001 (a numeric uid survives a re-tagged base image)."},
+
+ {"id":"final_user_is_root","kind":"dockerfile","mode":"line","re":"^\\s*USER\\s+(root|0)\\s*$","flags":"i","sev":"error",
+  "msg":"USER root — the container runs with uid 0, so a container escape starts as host root.","ref":"SP 800-190 4.4.3","req":"3.1.5","points":3,
+  "fix":"Drop back to an unprivileged uid after the privileged build steps: USER 10001."},
+
+ {"id":"base_image_not_digest_pinned","kind":"dockerfile","mode":"line","re":"^\\s*FROM\\s+\\S+","flags":"i","sev":"warn",
+  "not":"@sha256:|^\\s*FROM\\s+scratch\\b|^\\s*FROM\\s+\\$|^\\s*FROM\\s+[A-Za-z0-9_.-]+\\s*$",
+  "msg":"Base image is pinned by tag, not by digest — the bytes you assessed are not the bytes you ship.","ref":"SP 800-190 4.1.5","req":"3.4.1","points":5,
+  "fix":"Append the digest: FROM python:3.12.11-slim@sha256:<digest>."},
+
+ {"id":"base_image_latest_tag","kind":"dockerfile","mode":"line","re":"^\\s*FROM\\s+(?:--\\S+\\s+)?[^\\s@:]+(?::latest)?\\s*(?:AS\\s+\\S+)?\\s*$","flags":"i","sev":"error",
+  "not":"^\\s*FROM\\s+scratch\\b|^\\s*FROM\\s+\\$",
+  "msg":"Base image uses :latest or no tag — the image contents change without a code change.","ref":"SP 800-190 4.2.2","req":"3.4.1","points":5,
+  "fix":"Name an immutable version and digest instead of :latest."},
+
+ {"id":"secret_literal_in_env","kind":"dockerfile","mode":"line",
+  "re":"^\\s*(ENV|ARG)\\s+[A-Za-z0-9_]*(PASS|PASSWORD|SECRET|TOKEN|APIKEY|API_KEY|CREDENTIAL|PRIVATE_KEY)[A-Za-z0-9_]*\\s*=?\\s*[\"']?[^\\s\"'$/][^\\s\"']*","flags":"i","sev":"error",
+  "not":"_FILE\\b|=\\s*[\"']?\\$",
+  "msg":"Clear-text secret baked into an image layer — it stays readable in the layer even if a later line deletes it.","ref":"SP 800-190 4.1.4","req":"3.5.2","points":5,
+  "fix":"Mount it at run time (--secret / *_FILE pointing at /run/secrets) and never as ENV or ARG."},
+
+ {"id":"add_from_remote_url","kind":"dockerfile","mode":"line","re":"^\\s*ADD\\s+(--\\S+\\s+)*https?://","flags":"i","sev":"warn",
+  "msg":"ADD pulls an unverified file from the network into the image at build time.","ref":"SP 800-190 4.1.2","req":"3.4.2","points":5,
+  "fix":"Fetch it in a RUN step, verify a published checksum, then COPY it in."},
+
+ {"id":"tls_verification_disabled","kind":"dockerfile","mode":"line",
+  "re":"(curl[^\\n]*\\s(-k|--insecure)\\b)|(wget[^\\n]*--no-check-certificate)|(strict-ssl[= ]false)|(PYTHONHTTPSVERIFY\\s*=\\s*0)|(NODE_TLS_REJECT_UNAUTHORIZED\\s*=\\s*[\"']?0)|(GIT_SSL_NO_VERIFY\\s*=\\s*(true|1))","flags":"i","sev":"error",
+  "msg":"Certificate checking is switched off for a build-time download.","ref":"SP 800-190 4.2.1","req":"3.13.8","points":3,
+  "fix":"Remove the flag and install the CA bundle the mirror actually needs."},
+
+ {"id":"plaintext_http_fetch","kind":"any","mode":"line","re":"http://(?!localhost|127\\.0\\.0\\.1|0\\.0\\.0\\.0)","flags":"i","sev":"error",
+  "not":"xmlns|schemas\\.|www\\.w3\\.org",
+  "msg":"Plain-text HTTP source — anything on the path can replace what lands in the image.","ref":"SP 800-190 4.2.1","req":"3.13.8","points":3,
+  "fix":"Use https:// and pin the package or checksum."},
+
+ {"id":"remote_script_piped_to_shell","kind":"dockerfile","mode":"line","re":"(curl|wget)[^\\n|]*\\|\\s*(sudo\\s+)?(ba|z|da)?sh\\b","flags":"i","sev":"error",
+  "msg":"Remote script piped straight into a shell — unreviewed code runs with build privileges.","ref":"SP 800-190 4.1.3","req":"3.4.6","points":5,
+  "fix":"Download, check the signature or checksum, then run the saved file."},
+
+ {"id":"sudo_in_image","kind":"dockerfile","mode":"line","re":"\\bsudo\\b","flags":"i","sev":"warn",
+  "msg":"sudo inside a container is a privilege-escalation path that the container does not need.","ref":"SP 800-190 4.4.3","req":"3.1.7","points":5,
+  "fix":"Do privileged work as root before the USER line, then drop; remove the sudo package."},
+
+ {"id":"package_install_unpinned","kind":"dockerfile","mode":"line","re":"\\b(apt-get|apt|apk|yum|dnf|microdnf)\\s+(-[^\\s]+\\s+)*(install|add)\\b","flags":"i","sev":"warn",
+  "not":"[A-Za-z0-9_.+-]+(=|==)[0-9]",
+  "msg":"Packages installed without a version pin — two builds of the same commit hold different CVEs.","ref":"SP 800-190 4.1.1","req":"3.11.2","points":5,
+  "fix":"Pin every package (curl=7.88.1-10+deb12u5) so a scan result stays true for the image you ship."},
+
+ {"id":"ssh_server_in_image","kind":"dockerfile","mode":"line","re":"\\b(openssh-server|sshd)\\b","flags":"i","sev":"warn",
+  "msg":"An SSH daemon inside the container adds a second, unmonitored way in.","ref":"SP 800-190 4.4.3","req":"3.4.7","points":5,
+  "fix":"Remove it and reach the container with docker exec / kubectl exec, which your audit trail already covers."},
+
+ {"id":"compose_privileged","kind":"compose","mode":"line","re":"^\\s*privileged\\s*:\\s*(true|yes)\\b","flags":"i","sev":"error",
+  "msg":"privileged: true hands the container every capability and the host device tree.","ref":"SP 800-190 4.4.3","req":"3.1.7","points":5,
+  "fix":"Delete it and grant only the one capability the workload actually needs."},
+
+ {"id":"compose_docker_socket_mount","kind":"compose","mode":"line","re":"/var/run/docker\\.sock","flags":"i","sev":"error",
+  "msg":"The Docker socket is mounted into the container — that is equivalent to giving it root on the host.","ref":"SP 800-190 4.3.2","req":"3.1.7","points":5,
+  "fix":"Use a socket proxy with a read-only allow-list, or move the job to a build runner outside the container."},
+
+ {"id":"compose_host_network","kind":"compose","mode":"line","re":"^\\s*network_mode\\s*:\\s*[\"']?host\\b","flags":"i","sev":"error",
+  "msg":"network_mode: host removes the network boundary between the container and the host.","ref":"SP 800-190 4.4.2","req":"3.13.1","points":5,
+  "fix":"Use a user-defined bridge network and publish only the ports you mean to publish."},
+
+ {"id":"compose_host_namespace","kind":"compose","mode":"line","re":"^\\s*(pid|ipc|userns_mode|uts)\\s*:\\s*[\"']?host\\b","flags":"i","sev":"error",
+  "msg":"A host namespace is shared with the container, so it can see and signal host processes.","ref":"SP 800-190 4.4.3","req":"3.1.7","points":5,
+  "fix":"Remove the host namespace setting; keep the container in its own pid/ipc namespace."},
+
+ {"id":"compose_dangerous_capability","kind":"compose","mode":"line","ctx":"cap_add","re":"\\b(ALL|SYS_ADMIN|NET_ADMIN|SYS_PTRACE|SYS_MODULE)\\b","flags":"","sev":"error",
+  "msg":"A capability that defeats container isolation is added back to the container.","ref":"SP 800-190 4.4.3","req":"3.1.5","points":3,
+  "fix":"cap_drop: [ALL] first, then add back only the narrow capability you can name a reason for."},
+
+ {"id":"compose_port_published_to_all_interfaces","kind":"compose","mode":"line","ctx":"ports","re":"^\\s*-\\s*[\"']?(0\\.0\\.0\\.0:)?\\d+:\\d+","flags":"","sev":"warn",
+  "msg":"Port published on every host interface — it is reachable from outside the boundary, not just from localhost.","ref":"SP 800-190 4.4.2","req":"3.13.6","points":5,
+  "fix":"Bind it explicitly: \"127.0.0.1:8080:8080\"."},
+
+ {"id":"compose_secret_literal","kind":"compose","mode":"line",
+  "re":"^\\s*(-\\s*)?[A-Za-z0-9_]*(PASS|PASSWORD|SECRET|TOKEN|APIKEY|API_KEY|CREDENTIAL|PRIVATE_KEY)[A-Za-z0-9_]*\\s*[:=]\\s*[\"']?[^\\s\"'$/][^\\s\"']*","flags":"i","sev":"error",
+  "not":"_FILE\\b|[:=]\\s*[\"']?\\$",
+  "msg":"Clear-text secret in the compose file — it lands in your repository and in every developer's shell history.","ref":"SP 800-190 4.1.4","req":"3.5.2","points":5,
+  "fix":"Move it to a compose secret or a *_FILE variable pointing at /run/secrets."}
+]
