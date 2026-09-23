@@ -44,7 +44,7 @@ Every finding carries the line number, the spec that moved, and the replacement 
 * **pyproject Gate: Sweep workspace and write report (licence)** — walks every
   `**/pyproject.toml` in the folder and writes a dated `pyprojectGate-report.md` you keep in the
   repo. This is the paid part.
-  Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+  Full workspace sweep and report: licence key.
 * **pyproject Gate: Enter licence key**
 
 ## Free and paid
@@ -52,7 +52,7 @@ Every finding carries the line number, the spec that moved, and the replacement 
 Free finishes one job completely: for the file in front of you, you get all 19 checks with nothing
 withheld, no watermark, no counter, no time limit. The paid tier changes the *scope and the
 ownership* of the answer — every manifest in a monorepo in one pass, and a dated report file that
-lives in the repo and goes into a pull request. One key, one seat, 7-day full refund.
+lives in the repo and goes into a pull request. One key, one seat.
 
 ## Yardstick
 
