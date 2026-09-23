@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Checking the e-invoice", "done": "Check finished - see the findings", "nothing_found": "No rejectable line found in this file", "paste": "Paste a UBL or CII e-invoice (XRechnung, Factur-X, Peppol BIS) here", "check": "Check this e-invoice", "need_key": "Full version: check every XML in the repository in one pass, export the findings report, and fail the CI build on a new violation. $29 once - one licence key per person or team seat - 7-day full refund. Access points bill per document, EUR 0.18 to EUR 0.25 per invoice.", "key_ok": "Licence accepted", "key_bad": "That key did not validate", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "extra_rules": "Extra rules of your own, checked alongside the 26 that ship inside."};
+const S = {"run": "Checking the e-invoice", "done": "Check finished - see the findings", "nothing_found": "No rejectable line found in this file", "paste": "Paste a UBL or CII e-invoice (XRechnung, Factur-X, Peppol BIS) here", "check": "Check this e-invoice", "need_key": "Full version: check every XML in the repository in one pass, export the findings report, and fail the CI build on a new violation. $29 once - one licence key per person or team seat. Access points bill per document, EUR 0.18 to EUR 0.25 per invoice.", "key_ok": "Licence accepted", "key_bad": "That key did not validate", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "extra_rules": "Extra rules of your own, checked alongside the 26 that ship inside."};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 
 function out() {
