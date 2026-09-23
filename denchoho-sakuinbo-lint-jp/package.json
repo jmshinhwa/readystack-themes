@@ -2,7 +2,7 @@
   "name": "denchoho-sakuinbo-lint-jp",
   "displayName": "電帳法 索引簿リンター (電子取引データ検索要件)",
   "description": "電子取引データの索引簿(CSV)を電子帳簿保存法の検索要件3項目とファイル名規則で行ごとに検査します。日本の個人事業主・小規模法人の経理向け。",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
