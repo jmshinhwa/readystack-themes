@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Reading the file for schedules that misfire", "done": "Checked. Every schedule below is followed by the times it really fires.", "nothing_found": "No schedule in this file fires at the wrong time.", "paste": "Paste your crontab, workflow, CronJob, wrangler.toml or beat file here", "check": "Find the schedules that misfire", "extra_rules": "Extra rules from your settings", "enter_key": "Enter licence key", "need_key": "Full version: every schedule in the repository merged into one calendar, exported as CSV, JSON or HTML, and machine output a CI step can fail on. $29 once - one licence key per person or team seat - 7-day full refund. Healthchecks.io Business, the ordinary cron monitor, is $20 every month and only tells you after a run was already missed.", "buy": "Get the full version - $29", "key_ok": "Licence accepted. The repository calendar, the export and the CI output are open.", "key_bad": "That key was not accepted. Check it against the receipt, or ask for the 7-day full refund."};
+const S = {"run": "Reading the file for schedules that misfire", "done": "Checked. Every schedule below is followed by the times it really fires.", "nothing_found": "No schedule in this file fires at the wrong time.", "paste": "Paste your crontab, workflow, CronJob, wrangler.toml or beat file here", "check": "Find the schedules that misfire", "extra_rules": "Extra rules from your settings", "enter_key": "Enter licence key", "need_key": "Full version: every schedule in the repository merged into one calendar, exported as CSV, JSON or HTML, and machine output a CI step can fail on. $29 once - one licence key per person or team seat. Healthchecks.io Business, the ordinary cron monitor, is $20 every month and only tells you after a run was already missed.", "buy": "Get the full version - $29", "key_ok": "Licence accepted. The repository calendar, the export and the CI output are open.", "key_bad": "That key was not accepted. Check it against the receipt, or ask for the"};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 const NEED_KEY = S.need_key;   // ★체험이 끝난 뒤 앞에 한 줄을 붙여 쓴다 (원문은 여기 남는다)
 const TRIAL_MS = 7 * 24 * 3600 * 1000;
@@ -469,7 +469,7 @@ async function trialState(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   return { st: st, hasKey: hasKey, until: until, inTrial: !hasKey && Date.now() < until };
 }
 
