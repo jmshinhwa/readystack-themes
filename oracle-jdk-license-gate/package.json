@@ -2,7 +2,7 @@
   "name": "oracle-jdk-license-gate",
   "displayName": "Oracle JDK License Gate",
   "description": "Finds Java runtimes in your Dockerfiles, CI workflows and shell scripts that sit under Oracle's paid license terms, and shows the free OpenJDK line that replaces each one.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
