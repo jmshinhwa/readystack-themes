@@ -2,7 +2,7 @@
   "name": "readystack-contrast-light",
   "displayName": "ReadyStack Contrast Light",
   "description": "Maximum-contrast light theme. Meets AAA text contrast for accessibility needs. Body text measured at 15.2:1 - WCAG AAA.",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
