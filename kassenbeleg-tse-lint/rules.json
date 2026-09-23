@@ -1,0 +1,63 @@
+[
+  {"id": "unternehmer_anschrift", "mode": "require", "sev": "error", "law": "§ 6 KassenSichV",
+   "msg": "Vollständige Anschrift des leistenden Unternehmers fehlt in der Belegvorlage",
+   "pat": ["anschrift", "adresse", "stra(ß|ss)e", "\\bplz\\b", "postleitzahl", "company_?address"],
+   "fine_eur": 25000, "fine_law": "§ 379 Abs. 4 AO", "today_default": "2026-09-19"},
+
+  {"id": "belegdatum", "mode": "require", "sev": "error", "law": "§ 6 KassenSichV",
+   "msg": "Datum der Belegausstellung fehlt in der Belegvorlage",
+   "pat": ["belegdatum", "ausstellungsdatum", "belegausstellung", "receipt_?date", "\\bdatum\\b"]},
+
+  {"id": "vorgang_beginn", "mode": "require", "sev": "error", "law": "§ 6 KassenSichV",
+   "msg": "Zeitpunkt des Vorgangsbeginns fehlt — die TSE liefert ihn, die Vorlage druckt ihn nicht",
+   "pat": ["vorgangsbeginn", "vorgang_?beginn", "beginn des vorgangs", "start_?(zeit|time)", "process_?start"]},
+
+  {"id": "vorgang_ende", "mode": "require", "sev": "error", "law": "§ 6 KassenSichV",
+   "msg": "Zeitpunkt der Vorgangsbeendigung fehlt — die TSE liefert ihn, die Vorlage druckt ihn nicht",
+   "pat": ["vorgangsende", "vorgangsbeendigung", "vorgang_?ende", "end(e)?_?(zeit|time)", "process_?end"]},
+
+  {"id": "positionen", "mode": "require", "sev": "error", "law": "§ 6 KassenSichV",
+   "msg": "Menge und Art der gelieferten Gegenstände fehlen in der Belegvorlage",
+   "pat": ["\\bmenge\\b", "artikel", "position", "\\bitems?\\b", "anzahl", "\\bqty\\b"]},
+
+  {"id": "transaktionsnummer", "mode": "require", "sev": "error", "law": "§ 6 KassenSichV",
+   "msg": "Transaktionsnummer der TSE fehlt in der Belegvorlage",
+   "pat": ["transaktionsnummer", "transaktions_?nr", "transaction_?(number|no)", "\\btrx_?nr\\b"]},
+
+  {"id": "entgelt_steuer", "mode": "require", "sev": "error", "law": "§ 6 KassenSichV",
+   "msg": "Steuersatz bzw. Steuerbetrag oder der Hinweis auf eine Steuerbefreiung fehlt",
+   "pat": ["steuersatz", "steuerbetrag", "umsatzsteuer", "\\bmwst\\b", "\\bust\\b", "tax_?rate", "steuerbefreiung"]},
+
+  {"id": "seriennummer", "mode": "require", "sev": "error", "law": "§ 6 KassenSichV",
+   "msg": "Seriennummer des Aufzeichnungssystems oder des Sicherheitsmoduls fehlt",
+   "pat": ["seriennummer", "serien_?nr", "serial_?number", "client_?id", "kassen_?id"]},
+
+  {"id": "signaturzaehler", "mode": "require", "sev": "error", "law": "§ 6 Satz 2 KassenSichV",
+   "msg": "Signaturzähler fehlt — ohne ihn ist die Belegreihe nicht prüfbar",
+   "pat": ["signaturz(ä|ae)hler", "signature_?counter", "sig_?counter"]},
+
+  {"id": "pruefwert", "mode": "require", "sev": "error", "law": "§ 6 Satz 2 KassenSichV",
+   "msg": "Prüfwert (Signaturwert) der TSE fehlt in der Belegvorlage",
+   "pat": ["pr(ü|ue)fwert", "signaturwert", "signature_?value", "sig_?value"]},
+
+  {"id": "tse_ausfall", "mode": "require", "sev": "warn", "law": "AEAO zu § 146a AO",
+   "msg": "Kein Zweig für den TSE-Ausfall — ein Ausfall muss auf dem Beleg erkennbar sein",
+   "pat": ["ausfall", "ausgefallen", "nicht verf(ü|ue)gbar", "tse_?fehler", "tse_?error"]},
+
+  {"id": "zeitformat_iso", "mode": "require", "sev": "warn", "law": "DSFinV-K",
+   "msg": "Kein ISO-8601-Zeitformat erkennbar — die Exportschnittstelle erwartet es",
+   "pat": ["iso.?8601", "\\d{4}-\\d{2}-\\d{2}", "toisostring", "\\butc\\b"]},
+
+  {"id": "belegausgabe_wunsch", "mode": "forbid", "sev": "error", "law": "§ 146a Abs. 2 AO",
+   "msg": "Beleg wird nur auf Wunsch ausgegeben — die Belegausgabe ist Pflicht",
+   "pat": ["auf wunsch", "bei bedarf", "nur auf nachfrage", "on request"]},
+
+  {"id": "platzhalter_tse", "mode": "forbid", "sev": "error", "law": "§ 6 KassenSichV",
+   "msg": "Fester Platzhalterwert an einem TSE-Feld — hier steht eine Konstante statt des Werts der Sicherheitseinrichtung",
+   "pat": ["\\b0{3,}\\b", "x{4,}", "\\btodo\\b", "dummy", "platzhalter", "lorem", "\\bn/a\\b", "1234567890"],
+   "near": ["transaktionsnummer", "signaturz", "pr(ü|ue)fwert", "seriennummer", "\\btse\\b"]},
+
+  {"id": "jahr_hartcodiert", "mode": "year", "sev": "warn", "law": "§ 146a AO",
+   "msg": "Hartcodierte Jahreszahl in der Vorlage — sie fällt beim Jahreswechsel still auf ein altes Jahr zurück",
+   "pat": []}
+]
