@@ -39,7 +39,7 @@ The paid tier is the same brain over a **wider scope**:
 - **A report file** (CSV, JSON or HTML) you can hand to a client or a DPO
 - **CI-readable JSON**, so a broken consent block fails the build instead of production
 
-One licence key per person or team seat · 7-day full refund.
+One licence key per person or team seat ·
 A freelancer's consent-mode setup or audit runs **$400–$1,200**; an agency **$1,200–$2,500+**.
 
 ## Try it without installing
