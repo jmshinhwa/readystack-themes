@@ -30,7 +30,7 @@ k8s/api-prod-tls.yaml
 - **An exported audit file** — Writes the findings to CSV, JSON or HTML for the change ticket or the auditor.
 - **Rewrite the offending durations in place** — Applies the replacement value on the rules that define one, and lists the rest for a manual edit.
 
-[**Get the full version - $29**](https://getreadystack.com) - $29 once, one licence key per person or team seat, 7-day full refund.
+[**Get the full version - $29**](https://getreadystack.com) - $29 once, one licence key per person or team seat.
 
 
 ## Install
