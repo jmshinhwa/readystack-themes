@@ -65,7 +65,7 @@ and every one of the 15 rules reports with a line number. That is the whole chec
 The full version adds the other axis - scale and the paper trail: sweep every hospital location file
 in the workspace in one pass and export one dated evidence report you keep for the file, with the
 finding counts per location and the rule text beside each one. 29 dollars once, one licence key per
-person or CI seat, 7-day full refund.
+person or CI seat.
 
 ## Commands
 
