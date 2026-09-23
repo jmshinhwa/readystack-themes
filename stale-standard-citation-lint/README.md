@@ -28,7 +28,7 @@ The other half is that grep does not know dates. `FIPS 140-2` is a string; that 
 
 Checking the document open in your editor is free and complete. All 44 rules, every finding, every replacement date, no licence key, no cap on runs. A file you check is a file you are done with.
 
-The licence covers a different job, not a bigger helping of the same one: sweeping every `.rst`, `.md` and `.txt` in the workspace and writing a dated `STALE-CITATIONS.md` — file by file, finding by finding — that you can attach to a security questionnaire or hand to an auditor. $29 once, one licence key per person or team seat, 7-day full refund.
+The licence covers a different job, not a bigger helping of the same one: sweeping every `.rst`, `.md` and `.txt` in the workspace and writing a dated `STALE-CITATIONS.md` — file by file, finding by finding — that you can attach to a security questionnaire or hand to an auditor. $29 once, one licence key per person or team seat.
 
 For comparison: GRC consultants bill $150-$300 an hour for documentation review, and one dense compliance page rarely takes under an hour.
 
