@@ -1,0 +1,52 @@
+{
+  "name": "container-hardening-800-190",
+  "displayName": "Cybersecurity Container Audit — NIST SP 800-190",
+  "description": "Audits Dockerfile and docker-compose.yml against NIST SP 800-190 container hardening controls. For US federal contractors preparing a CMMC Level 2 assessment.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "cybersecurity",
+    "dockerfile",
+    "nist 800-190",
+    "container security",
+    "cmmc",
+    "docker compose",
+    "hardening"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "containerHardening.checkFile",
+        "title": "Cybersecurity Container Audit — NIST SP 800-190: Check this file",
+        "category": "Cybersecurity Container Audit — NIST SP 800-190"
+      },
+      {
+        "command": "containerHardening.checkWorkspace",
+        "title": "Cybersecurity Container Audit — NIST SP 800-190: Sweep workspace and write report (licence)",
+        "category": "Cybersecurity Container Audit — NIST SP 800-190"
+      },
+      {
+        "command": "containerHardening.enterKey",
+        "title": "Cybersecurity Container Audit — NIST SP 800-190: Enter licence key",
+        "category": "Cybersecurity Container Audit — NIST SP 800-190"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "container-hardening-800-190"
+  },
+  "homepage": "https://getreadystack.com/tools/container-hardening-800-190"
+}
