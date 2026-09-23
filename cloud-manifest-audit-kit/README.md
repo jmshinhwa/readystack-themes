@@ -40,7 +40,7 @@ A licence changes the **scale**, never the quality of the check.
 
 **[Unlock the whole-repo scan — $29 once](https://buy.polar.sh/polar_cl_0EI3dcWH2UgJOSuTbAEdRrIUxrnBcdXX6Sa2T2EJ5og)**
 
-A managed Kubernetes security platform starts at $45 per developer per month. A 2026 cloud security-audit hour benchmarks at $275. This is $29, once — 7-day refund.
+A managed Kubernetes security platform starts at $45 per developer per month. A 2026 cloud security-audit hour benchmarks at $275. This is $29, once —
 
 ## Install
 
