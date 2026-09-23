@@ -51,7 +51,7 @@ an upgrade doing exactly this pass by hand across every component in the app.
 Free, no key: scan the file you have open and get every blocker with its Livewire 3 replacement, line by
 line. That finishes the file. Paid: scan every `.php` and `.blade.php` in the workspace in one command
 and export a REPORT.md / JSON with `file:line` you keep, plus a non-zero exit code for CI.
-$29 once - one licence key per person or team seat, 7-day full refund: <https://buy.polar.sh/polar_cl_JoEBGmMxghz3XsayVbZSJktcNspzSxRkJYcdc3S0eYU>
+$29 once - one licence key per person or team seat: <https://buy.polar.sh/polar_cl_JoEBGmMxghz3XsayVbZSJktcNspzSxRkJYcdc3S0eYU>
 
 ## Also in the browser
 
