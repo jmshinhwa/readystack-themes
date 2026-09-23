@@ -16,7 +16,7 @@ Lists every script on your checkout page that has no integrity hash, no authoris
 - **Write the script inventory out as CSV, JSON or HTML** — Bullet three of 6.4.3 asks for a maintained written inventory. This writes it into the workspace as a file you can keep, diff and hand to your assessor.
 - **Machine-readable output so the check can run in CI** — Requirement 11.6.1 asks for the check at least once every seven days. Running this in CI on a schedule is how a weekly check stops depending on someone remembering.
 
-[Get the full version - $49](https://buy.polar.sh/polar_cl_3JweRl77lj7Lnb2RWmPjP2DpCF71WE5AcU4xO1lrAFh) - $49 once, one licence key per person or team seat, 7-day full refund.
+[Get the full version - $49](https://buy.polar.sh/polar_cl_3JweRl77lj7Lnb2RWmPjP2DpCF71WE5AcU4xO1lrAFh) - $49 once, one licence key per person or team seat.
 
 
 ## Install
