@@ -74,7 +74,7 @@ finding shown, no watermark and no trial counter. A licence key unlocks a differ
 scanning every invoice XML in the workspace in one pass and exporting the findings as JSON,
 CSV or SARIF that you keep and run in CI.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 An EN 16931 / Peppol integration consultant reviews an invoice mapping at about $170 an hour.
 
