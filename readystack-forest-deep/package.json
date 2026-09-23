@@ -2,7 +2,7 @@
   "name": "readystack-forest-deep",
   "displayName": "ReadyStack Forest Deep",
   "description": "Dark forest green with lime accents. Low blue light, easy on long reviews. Body text measured at 14.2:1 - WCAG AAA.",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
