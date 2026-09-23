@@ -31,9 +31,9 @@ CONFIG_EXAMPLE_WIFI_PASSWORD="factory-default"     -> credential ships inside th
 
 An outside firmware-only security review starts around $6,000 and a full IoT device assessment runs $10,000 to $50,000; this is the config pass you run before you pay for one.
 
-[**Get the full version - $29**](https://buy.polar.sh/polar_cl_cmmWDH5sYqYlHlEAy4aCkF8gPdT40c3FhYupJ1VFP22) - $29 once, one licence key per person or team seat, 7-day full refund.
+[**Get the full version - $29**](https://buy.polar.sh/polar_cl_cmmWDH5sYqYlHlEAy4aCkF8gPdT40c3FhYupJ1VFP22) - $29 once, one licence key per person or team seat.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 
 ## Install
