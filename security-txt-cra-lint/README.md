@@ -47,7 +47,7 @@ report you keep for the audit file. Reviewing a disclosure policy with a securit
 around **$150 an hour**; this reads the file in under a second.
 
 Full version: [workspace sweep + dated JSON report](https://buy.polar.sh/polar_cl_ix6VvnndFPQPoppGXnx8ybXWfh7W2eldbZaTM2Zh2br) - $29 once, one licence key
-per person or team seat, 7-day full refund.
+per person or team seat.
 
 ## Why not a chatbot
 
