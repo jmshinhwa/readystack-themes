@@ -60,7 +60,7 @@ Audit the OpenAPI file open in the editor, top to bottom. Every finding, every l
 - Write a **dated report** (CSV, JSON or HTML) you keep next to the release as evidence the check was run against this commit
 - The JSON output is shaped for a CI step, so a pipeline can fail a branch that reintroduced `security: []`
 
-One licence key per person or CI seat. 7-day full refund.
+One licence key per person or CI seat.
 
 ## What it costs to do by hand
 
