@@ -37,7 +37,7 @@ The same ten rules run in the browser with nothing installed: https://getreadyst
 
 The next job is a different one: proving it for the whole repository, on a date, to somebody who is not you. `Article 50: Sweep Workspace` walks every matching file and writes a dated transparency record — file by file, paragraph by paragraph, with the clean files listed as clean — for your DPO, your auditor, or a market surveillance authority asking what you shipped and when.
 
-$29 once, one licence key per person or team seat, 7-day full refund: https://buy.polar.sh/polar_cl_HkduVIVNm8Az4pn2Kb4lT1WFFZg1LPla2OKZ53TlbaL
+$29 once, one licence key per person or team seat: https://buy.polar.sh/polar_cl_HkduVIVNm8Az4pn2Kb4lT1WFFZg1LPla2OKZ53TlbaL
 
 Yardstick: an EU technology lawyer reviewing one repository for Article 50 transparency bills around EUR 300 an hour.
 
