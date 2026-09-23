@@ -49,7 +49,7 @@ and 681 days old today.
 Free, no key: lint the open file against all 18 rules, in VS Code or in the browser at
 <https://getreadystack.com/tools/red-doc-en18031-lint>. That finishes the job for one declaration.
 
-Paid, $29 once, one licence key per person or CI seat, 7-day full refund: sweep **every**
+Paid, $29 once, one licence key per person or CI seat: sweep **every**
 declaration in the workspace in one pass and write one dated audit report file to keep with the
 technical documentation. The payment page is linked from the web version.
 
