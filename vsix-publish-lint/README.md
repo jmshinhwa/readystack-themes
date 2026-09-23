@@ -42,9 +42,9 @@ Every finding carries the rule id, the severity, the line number in your file, w
 
 Free lints the manifest you have open, against all 16 rules, as often as you like, offline. Nothing is watermarked, time-limited or held back; the free tier finishes that job.
 
-The licence key covers a different job — ownership of the output: lint every extension manifest in the workspace in one pass, and write the result out as a JSON or SARIF file you keep and can gate CI on. $29 once, one licence key per person or team seat, 7-day full refund.
+The licence key covers a different job — ownership of the output: lint every extension manifest in the workspace in one pass, and write the result out as a JSON or SARIF file you keep and can gate CI on. $29 once, one licence key per person or team seat.
 
-Full workspace sweep and report: free for 7 days from your first sweep, then a licence key.
+Full workspace sweep and report: licence key.
 
 **Yardstick:** specialised freelance developer work is listed at $75–$150 an hour on Upwork's 2026 rate guide.
 
