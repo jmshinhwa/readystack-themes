@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Watching this file for end-of-life runtimes", "done": "End-of-life and deploy-block findings below.", "nothing_found": "No end-of-life runtimes found here. Every version in this file is still supported.", "need_key": "Full version: scans every Dockerfile, workflow, Lambda config and manifest in the workspace at once and exports the dated audit report. $29 once · one licence key per person or team seat · 7-day full refund. A US platform engineer averages $63.95/hour (ZipRecruiter, September 2026).", "key_ok": "Licence accepted — workspace scan, export, CI output, watch-on-save and custom rules are on.", "key_bad": "That key did not validate. Check for a typo, or use the buy link to get one.", "enter_key": "Enter licence key", "buy": "Get the full version — $29", "paste": "Paste a Dockerfile, a GitHub Actions workflow, serverless.yml, requirements.txt, a .csproj or a Gemfile here", "check": "Check this file"};
+const S = {"run": "Watching this file for end-of-life runtimes", "done": "End-of-life and deploy-block findings below.", "nothing_found": "No end-of-life runtimes found here. Every version in this file is still supported.", "need_key": "Full version: scans every Dockerfile, workflow, Lambda config and manifest in the workspace at once and exports the dated audit report. $29 once · one licence key per person or team seat · A US platform engineer averages $63.95/hour (ZipRecruiter, September 2026).", "key_ok": "Licence accepted — workspace scan, export, CI output, watch-on-save and custom rules are on.", "key_bad": "That key did not validate. Check for a typo, or use the buy link to get one.", "enter_key": "Enter licence key", "buy": "Get the full version — $29", "paste": "Paste a Dockerfile, a GitHub Actions workflow, serverless.yml, requirements.txt, a .csproj or a Gemfile here", "check": "Check this file"};
 const PAID = ["workspace_scan", "export_report", "ci_json", "watch_on_save", "custom_rules"];
 
 function out() {
@@ -103,7 +103,7 @@ async function sweepTrial(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + 7 * 24 * 3600 * 1000; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     // ★체험이 끝난 뒤에야 키를 묻는다 — ★손님 자기 숫자를 먼저 부른다
