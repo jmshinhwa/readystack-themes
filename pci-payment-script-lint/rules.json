@@ -1,0 +1,98 @@
+[
+  {
+    "id": "inventory-missing",
+    "sev": "error",
+    "req": "6.4.3",
+    "msg": "This page loads third-party scripts but carries no script inventory. 6.4.3 requires a written inventory of every script on the payment page, each with a business justification. Add a <!-- pci-script-inventory --> block listing each host."
+  },
+  {
+    "id": "script-not-inventoried",
+    "sev": "error",
+    "req": "6.4.3",
+    "msg": "Script host is not listed in the page's script inventory, so it is not an authorised script under 6.4.3."
+  },
+  {
+    "id": "inventory-no-justification",
+    "sev": "error",
+    "req": "6.4.3",
+    "msg": "Inventory entry has no usable business justification. 6.4.3 asks why each script is needed, in writing; placeholders do not count."
+  },
+  {
+    "id": "script-no-integrity",
+    "sev": "error",
+    "req": "6.4.3",
+    "msg": "External payment-page script has no integrity= hash, so there is no method assuring the script has not been altered in transit or at the origin (6.4.3)."
+  },
+  {
+    "id": "script-over-http",
+    "sev": "error",
+    "req": "6.4.3",
+    "msg": "Payment-page script is loaded over plain http://. Integrity cannot be assured and the content can be rewritten on the wire."
+  },
+  {
+    "id": "script-integrity-no-crossorigin",
+    "sev": "warn",
+    "req": "6.4.3",
+    "msg": "integrity= is present but crossorigin= is missing, so the browser will not run the integrity check the way you expect on a cross-origin script."
+  },
+  {
+    "id": "script-unpinned-version",
+    "sev": "warn",
+    "req": "6.4.3",
+    "msg": "Script URL points at a moving target (latest/next), so today's authorised script is not tomorrow's. Pin a version before hashing it."
+  },
+  {
+    "id": "tag-manager-on-payment-page",
+    "sev": "warn",
+    "req": "6.4.3",
+    "msg": "A tag manager or session-recording loader can inject further scripts at runtime, which means the authorised list is decided outside this file. Container contents have to be inventoried too."
+  },
+  {
+    "id": "csp-missing",
+    "sev": "error",
+    "req": "6.4.3",
+    "msg": "No Content-Security-Policy on this payment page. Without one there is no technical method confirming that only authorised scripts execute in the consumer's browser."
+  },
+  {
+    "id": "csp-unsafe-inline",
+    "sev": "error",
+    "req": "6.4.3",
+    "msg": "script-src allows 'unsafe-inline' or a wildcard, which authorises anything. That is the same as having no script authorisation at all."
+  },
+  {
+    "id": "csp-report-only",
+    "sev": "warn",
+    "req": "6.4.3",
+    "msg": "Only Content-Security-Policy-Report-Only is set. Report-only blocks nothing; it records and lets the script run."
+  },
+  {
+    "id": "inline-script-no-nonce",
+    "sev": "warn",
+    "req": "6.4.3",
+    "msg": "Inline script has no nonce= and no hash, so it can only run if the policy is loosened for every inline script on the page."
+  },
+  {
+    "id": "tamper-detection-missing",
+    "sev": "error",
+    "req": "11.6.1",
+    "msg": "No change- and tamper-detection mechanism is declared for this page. 11.6.1 wants alerts on unauthorised modification of the HTTP headers and of the payment page content. Declare it in a <!-- pci-tamper-detection: ... --> line or set a CSP report endpoint."
+  },
+  {
+    "id": "tamper-interval-too-long",
+    "sev": "error",
+    "req": "11.6.1",
+    "msg": "Tamper detection is evaluated less often than every seven days. 11.6.1 asks for at least weekly evaluation, or the interval your targeted risk analysis defends."
+  },
+  {
+    "id": "future-dated-claim-expired",
+    "sev": "error",
+    "req": "6.4.3 / 11.6.1",
+    "msg": "This page still describes the payment-script requirements as future-dated or optional. They stopped being best practice and became mandatory on 2025-03-31."
+  },
+  {
+    "id": "stale-standard-version",
+    "sev": "warn",
+    "req": "",
+    "msg": "This file cites a retired version of the standard. v4.0.1 is the only active version; v3.2.1 retired 2024-03-31 and v4.0 retired 2024-12-31."
+  }
+]
