@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Checking for Google Play release blockers", "done": "Play release blockers found - see the panel", "nothing_found": "No Play release blocker in this file.", "paste": "Paste your build.gradle, build.gradle.kts, libs.versions.toml, AndroidManifest.xml or app.json here.", "check": "Find my release blockers", "need_key": "Full version: scan every module in the repo, fail your CI before Play does, re-check on save, and export a dated release-readiness report. $29 once - one licence key per person or team seat - 7-day full refund. Upwork's published median for an Android developer is $25/hr.", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted - workspace scan, CI output, watch and export are open.", "key_bad": "That key did not validate. Check it in your Polar customer portal."};
+const S = {"run": "Checking for Google Play release blockers", "done": "Play release blockers found - see the panel", "nothing_found": "No Play release blocker in this file.", "paste": "Paste your build.gradle, build.gradle.kts, libs.versions.toml, AndroidManifest.xml or app.json here.", "check": "Find my release blockers", "need_key": "Full version: scan every module in the repo, fail your CI before Play does, re-check on save, and export a dated release-readiness report. $29 once - one licence key per person or team seat. Upwork's published median for an Android developer is $25/hr.", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted - workspace scan, CI output, watch and export are open.", "key_bad": "That key did not validate. Check it in your Polar customer portal."};
 const PAID = ["workspace_scan", "ci_json", "export_report", "watch_on_save"];
 
 function out() {
@@ -90,7 +90,7 @@ async function sweepGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
