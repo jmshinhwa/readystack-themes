@@ -64,7 +64,7 @@ invoice profile. CGI article 1737 fines 15 EUR per missing or wrong mandatory me
   finished job — you get every finding, with line numbers, on the file in front of you.
 - **Licensed, 29 US dollars once:** sweep every invoice in the workspace and write one dated
   reception-readiness report. Same rules, different scope. One licence key per person or team
-  seat, 7-day full refund. Get a licence: https://buy.polar.sh/polar_cl_a6x1aVkUPqSGx38DFlJw68NPUQdMdCYBpENCR47YuFw
+  seat. Get a licence: https://buy.polar.sh/polar_cl_a6x1aVkUPqSGx38DFlJw68NPUQdMdCYBpENCR47YuFw
 
 ## Commands
 
