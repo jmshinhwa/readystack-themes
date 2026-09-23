@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Check this file for AI crawler mistakes", "check": "Check", "paste": "Paste your robots.txt here", "done": "Check complete - findings are listed below.", "nothing_found": "No AI crawler problems found in this file.", "need_key": "Full version: scan every robots.txt in the workspace, export the report as CSV, JSON or HTML for a client, and fail CI on errors. $29 once - one licence key per person or team seat - 7-day full refund. A freelance technical SEO consultant bills roughly $100-150 an hour.", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted - workspace scan, export and CI output are on.", "key_bad": "That licence key was not accepted. Check for stray spaces, or paste the key exactly as it arrived by email."};
+const S = {"run": "Check this file for AI crawler mistakes", "check": "Check", "paste": "Paste your robots.txt here", "done": "Check complete - findings are listed below.", "nothing_found": "No AI crawler problems found in this file.", "need_key": "Full version: scan every robots.txt in the workspace, export the report as CSV, JSON or HTML for a client, and fail CI on errors. $29 once - one licence key per person or team seat. A freelance technical SEO consultant bills roughly $100-150 an hour.", "buy": "Get the full version - $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted - workspace scan, export and CI output are on.", "key_bad": "That licence key was not accepted. Check for stray spaces, or paste the key exactly as it arrived by email."};
 const PAID = ["workspace_scan", "export_report", "ci_json", "custom_rules", "watch_on_save"];
 
 function out() {
@@ -104,7 +104,7 @@ async function trialGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (!hasKey && !until) { until = Date.now() + TRIAL_MS; await st.update('sweepTrialUntil', until); }
+  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
