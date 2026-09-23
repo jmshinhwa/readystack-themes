@@ -1,0 +1,14 @@
+[
+  {"id": "proprietary-selfhost", "sev": "error", "kind": "family-list", "msg": "@font-face serves a foundry family that is almost never covered by a desktop purchase - a separate webfont licence is normally required before this file ships"},
+  {"id": "desktop-format-served", "sev": "error", "kind": "src-format", "msg": "A .ttf/.otf/.eot binary is served to browsers from @font-face - desktop EULAs commonly licence those formats for installed use only"},
+  {"id": "font-data-uri", "sev": "error", "kind": "src-datauri", "msg": "Font binary is base64-embedded in the stylesheet - several foundry EULAs name embedding and re-distribution of the binary as a separate grant"},
+  {"id": "ofl-reserved-font-name", "sev": "error", "kind": "rfn", "msg": "An SIL OFL family is shipped under a modified name - the Reserved Font Name clause forbids keeping the original name on a modified or re-hinted build"},
+  {"id": "google-fonts-remote", "sev": "error", "kind": "host", "hosts": ["fonts.googleapis.com", "fonts.gstatic.com"], "msg": "Remote Google Fonts request sends the visitor IP address to a third country - the ground that LG Muenchen I decided in case 3 O 17493/20 on 2022-01-20"},
+  {"id": "adobe-typekit-remote", "sev": "warn", "kind": "host", "hosts": ["use.typekit.net", "p.typekit.net"], "msg": "Adobe Fonts kit is loaded remotely - that licence is bound to the domains listed in the kit, so a new domain or a self-hosted copy is out of scope"},
+  {"id": "myfonts-counter", "sev": "warn", "kind": "host", "hosts": ["counter.myfonts.net", "mfcount"], "msg": "MyFonts pageview counter is present - the webfont licence is metered by pageview, so traffic growth silently moves the tier"},
+  {"id": "fontawesome-pro", "sev": "warn", "kind": "host", "hosts": ["pro.fontawesome.com", "kit.fontawesome.com", "fa-pro"], "msg": "Font Awesome Pro asset is referenced - Pro is a per-seat paid plan and its kit token must not sit in a public repository"},
+  {"id": "third-party-font-cdn", "sev": "warn", "kind": "host", "hosts": ["fonts.bunny.net", "cdn.jsdelivr.net/npm/@fontsource", "unpkg.com/@fontsource", "cdnfonts.com"], "msg": "Font is pulled from a third-party CDN - the served binary and its licence terms are outside your build and can change without notice"},
+  {"id": "no-license-note", "sev": "warn", "kind": "file-note", "msg": "The stylesheet declares @font-face but carries no licence line - an audit letter asks for the licence covering each served family"},
+  {"id": "ofl-attribution-missing", "sev": "warn", "kind": "ofl-note", "msg": "An SIL OFL family is served but the OFL notice is not in this file - the licence requires the copyright and permission notice to travel with the font"},
+  {"id": "insecure-license-url", "sev": "info", "kind": "http-url", "msg": "Licence or foundry reference uses plain http - the linked terms cannot be shown to have been unmodified in transit"}
+]
