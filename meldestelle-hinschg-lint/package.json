@@ -1,0 +1,52 @@
+{
+  "name": "meldestelle-hinschg-lint",
+  "displayName": "Meldestelle-Prüfer (HinSchG)",
+  "description": "Findet Mängel auf der Meldestelle-Seite und in der Hinweisgeber-Richtlinie nach HinSchG: 7-Tage-Eingangsbestätigung, 3-Monats-Rückmeldung, BfJ, Löschfrist, 50er-Schwelle. 12 Regeln.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "HinSchG",
+    "Meldestelle",
+    "Hinweisgeberschutzgesetz",
+    "Whistleblowing",
+    "Compliance",
+    "Hinweisgeber"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "meldestelleLint.checkFile",
+        "title": "Meldestelle-Prüfer (HinSchG) – Pflichtangaben der Hinweisgeber-Seite: Check this file",
+        "category": "Meldestelle-Prüfer (HinSchG) – Pflichtangaben der Hinweisgeber-Seite"
+      },
+      {
+        "command": "meldestelleLint.checkWorkspace",
+        "title": "Meldestelle-Prüfer (HinSchG) – Pflichtangaben der Hinweisgeber-Seite: Sweep workspace and write report (licence)",
+        "category": "Meldestelle-Prüfer (HinSchG) – Pflichtangaben der Hinweisgeber-Seite"
+      },
+      {
+        "command": "meldestelleLint.enterKey",
+        "title": "Meldestelle-Prüfer (HinSchG) – Pflichtangaben der Hinweisgeber-Seite: Enter licence key",
+        "category": "Meldestelle-Prüfer (HinSchG) – Pflichtangaben der Hinweisgeber-Seite"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "meldestelle-hinschg-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/meldestelle-hinschg-lint",
+  "icon": "icon.png"
+}
