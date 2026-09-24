@@ -1,0 +1,156 @@
+[
+ {
+  "id": "4a-umweltfreundlich",
+  "sev": "error",
+  "anhang": "Nr. 4a",
+  "spec_ok": true,
+  "re": "\\bumwelt(?:freundlich|schonend|gerecht|verträglich)\\w*",
+  "msg": "Allgemeine Umweltaussage ohne Spezifizierung – ab 27.09.2026 verboten (UWG-Anhang Nr. 4a).",
+  "fix": "Konkret sagen, was besser ist (z. B. „Verpackung aus 80 % Recyclingkarton“) oder anerkannte Umweltleistung (EU Ecolabel, ISO 14024 Typ I) nennen."
+ },
+ {
+  "id": "4a-klimafreundlich",
+  "sev": "error",
+  "anhang": "Nr. 4a",
+  "spec_ok": true,
+  "re": "\\bklima(?:freundlich|schonend|bewusst)\\w*",
+  "msg": "„klimafreundlich“ ist eine allgemeine Umweltaussage – ab 27.09.2026 ohne Spezifizierung verboten (UWG-Anhang Nr. 4a).",
+  "fix": "Messbare Angabe im selben Satz: z. B. „30 % weniger Energieverbrauch als Modell X (Messung nach EN …)“."
+ },
+ {
+  "id": "4a-nachhaltig",
+  "sev": "error",
+  "anhang": "Nr. 4a",
+  "spec_ok": true,
+  "re": "\\bnachhaltig(?:e|er|es|en|em)?\\b",
+  "msg": "„nachhaltig“ ohne Spezifizierung ist eine allgemeine Umweltaussage (UWG-Anhang Nr. 4a, ab 27.09.2026).",
+  "fix": "Streichen oder durch die konkrete Eigenschaft ersetzen (Material, Anteil, Nachweis)."
+ },
+ {
+  "id": "4a-oekologisch",
+  "sev": "error",
+  "anhang": "Nr. 4a",
+  "spec_ok": true,
+  "re": "\\bökologisch(?:e|er|es|en|em)?\\b",
+  "msg": "„ökologisch“ als Werbeaussage ohne Spezifizierung – UWG-Anhang Nr. 4a (ab 27.09.2026).",
+  "fix": "Konkrete Eigenschaft nennen; bei Lebensmitteln nur mit Bio-Zertifizierung nach EU-Öko-Verordnung."
+ },
+ {
+  "id": "4a-naturfreundlich",
+  "sev": "error",
+  "anhang": "Nr. 4a",
+  "spec_ok": true,
+  "re": "\\bnatur(?:freundlich|schonend)\\w*",
+  "msg": "„naturfreundlich“ ist eine allgemeine Umweltaussage (UWG-Anhang Nr. 4a, ab 27.09.2026).",
+  "fix": "Durch eine konkrete, belegbare Angabe im selben Satz ersetzen."
+ },
+ {
+  "id": "4a-gruen",
+  "sev": "error",
+  "anhang": "Nr. 4a",
+  "spec_ok": true,
+  "re": "\\bgrün(?:e|er|es|en)?\\s+(?:Wahl|Produkte?|Alternative|Verpackung|Versand|Lieferung)\\b",
+  "msg": "„grün“ als Produkteigenschaft ist eine allgemeine Umweltaussage (UWG-Anhang Nr. 4a, ab 27.09.2026).",
+  "fix": "Sagen, was konkret gemeint ist (z. B. „Versand mit 100 % Ökostrom im Lager“ + Nachweis)."
+ },
+ {
+  "id": "4a-abbaubar",
+  "sev": "error",
+  "anhang": "Nr. 4a",
+  "spec_ok": true,
+  "re": "\\bbiologisch\\s+abbaubar\\w*",
+  "msg": "„biologisch abbaubar“ ohne Bedingungen (Norm, Zeitraum, Umgebung) ist eine allgemeine Umweltaussage (UWG-Anhang Nr. 4a).",
+  "fix": "Norm und Bedingungen nennen, z. B. „industriell kompostierbar nach EN 13432“."
+ },
+ {
+  "id": "4a-energieeffizient",
+  "sev": "warn",
+  "anhang": "Nr. 4a",
+  "spec_ok": true,
+  "re": "\\benergie(?:effizient|sparend)\\w*",
+  "msg": "„energieeffizient/energiesparend“ ohne Wert oder Klasse – allgemeine Umweltaussage (UWG-Anhang Nr. 4a).",
+  "fix": "Energieeffizienzklasse oder Verbrauchswert im selben Satz angeben."
+ },
+ {
+  "id": "4a-english",
+  "sev": "error",
+  "anhang": "Nr. 4a",
+  "spec_ok": true,
+  "re": "\\b(?:eco[- ]?friendly|environmentally friendly|planet[- ]friendly|sustainable)\\b",
+  "msg": "Englische allgemeine Umweltaussage – gilt in deutschen Shops genauso (UWG-Anhang Nr. 4a, ab 27.09.2026).",
+  "fix": "Konkrete, belegbare Angabe statt Schlagwort."
+ },
+ {
+  "id": "4c-klimaneutral",
+  "sev": "error",
+  "anhang": "Nr. 4c",
+  "spec_ok": false,
+  "re": "\\b(?:klima|co2|co₂|treibhausgas)[- ]?(?:neutral|positiv|kompensiert)\\w*|\\bcarbon[- ]neutral\\b|\\bnet[- ]zero\\b|\\bklimapositiv\\w*",
+  "msg": "Neutrale/positive Klimawirkung eines Produkts auf Basis von Kompensation – ab 27.09.2026 verboten (UWG-Anhang Nr. 4c). Eine Prozentangabe heilt das nicht.",
+  "fix": "Aussage streichen; Kompensationsprojekte nur als Unternehmensbeitrag beschreiben, ohne Produktwirkung zu behaupten.",
+  "skip_if": "\\bbis\\s+20[2-5]\\d\\b"
+ },
+ {
+  "id": "4c-kompensation",
+  "sev": "error",
+  "anhang": "Nr. 4c",
+  "spec_ok": false,
+  "re": "\\b(?:CO2|CO₂|Emissionen)\\S*\\s+(?:\\S+\\s+){0,6}?(?:kompensiert|ausgeglichen|neutralisiert)\\b|\\bklimakompensiert\\w*",
+  "msg": "„Emissionen ausgeglichen/kompensiert“ als Produktwirkung – UWG-Anhang Nr. 4c (ab 27.09.2026).",
+  "fix": "Nur echte Reduktionen im eigenen Lebenszyklus bewerben; Kompensation getrennt und ohne Produktbezug darstellen."
+ },
+ {
+  "id": "2a-eigenes-siegel",
+  "sev": "error",
+  "anhang": "Nr. 2a",
+  "spec_ok": false,
+  "re": "\\b(?:eigene[snm]?|unser(?:e|em|es)?|hauseigene[snm]?)\\s+(?:[\\wäöüÄÖÜ-]+\\s+)?(?:Siegel|Label|Gütesiegel|Nachhaltigkeitssiegel|Öko-Siegel|Umweltsiegel)\\b|\\bNachhaltigkeitssiegel\\b",
+  "msg": "Nachhaltigkeitssiegel ohne Zertifizierungssystem oder staatliche Festsetzung – ab 27.09.2026 verboten (UWG-Anhang Nr. 2a).",
+  "fix": "Eigenes Siegel entfernen oder durch ein Siegel mit Drittprüfung (z. B. Blauer Engel, EU Ecolabel) ersetzen."
+ },
+ {
+  "id": "10a-gesetzlich-als-vorteil",
+  "sev": "error",
+  "anhang": "Nr. 10a",
+  "spec_ok": false,
+  "re": "\\bFCKW[- ]?frei\\b|\\bohne FCKW\\b|\\bfrei von FCKW\\b|\\basbestfrei\\b",
+  "msg": "Gesetzlich vorgeschriebene Eigenschaft als Besonderheit beworben – UWG-Anhang Nr. 10a (ab 27.09.2026).",
+  "fix": "Streichen – FCKW und Asbest sind ohnehin für alle Anbieter verboten."
+ },
+ {
+  "id": "10a-gesetzeskonform",
+  "sev": "warn",
+  "anhang": "Nr. 10a",
+  "spec_ok": false,
+  "re": "\\b(?:erfüllt|entspricht|übertrifft nicht)\\s+(?:allen\\s+|den\\s+)?(?:gesetzlichen|EU-)\\s?(?:Vorgaben|Anforderungen|Umweltvorgaben)",
+  "msg": "Erfüllung gesetzlicher Pflichten als Vorteil herausgestellt? UWG-Anhang Nr. 10a prüfen.",
+  "fix": "Nur als neutrale Information, nicht als Unterscheidungsmerkmal gegenüber Wettbewerbern."
+ },
+ {
+  "id": "4b-ganzes-produkt",
+  "sev": "warn",
+  "anhang": "Nr. 4b",
+  "spec_ok": false,
+  "re": "\\b(?:100\\s?%|vollständig|komplett|zu 100 Prozent)\\s+(?:recycelbar|recycelt|plastikfrei|kompostierbar|nachhaltig|biologisch abbaubar)\\b",
+  "msg": "Aussage über das ganze Produkt – trifft sie nur auf einen Teil (z. B. Verpackung) zu, ist sie ab 27.09.2026 verboten (UWG-Anhang Nr. 4b).",
+  "fix": "Den Teil benennen: „Umverpackung zu 100 % recycelbar“."
+ },
+ {
+  "id": "5-zukunftsaussage",
+  "sev": "warn",
+  "anhang": "§ 5 UWG",
+  "spec_ok": false,
+  "re": "\\b(?:bis|ab)\\s+20[2-5]\\d\\s+(?:\\S+\\s+){0,3}?(?:klimaneutral|CO2-neutral|Netto-Null|emissionsfrei)\\b|\\b(?:klimaneutral|Netto-Null|emissionsfrei)\\s+(?:\\S+\\s+){0,2}?bis\\s+20[2-5]\\d\\b",
+  "msg": "Zukünftige Umweltleistung ab 27.09.2026 nur mit öffentlichem, realistischem Umsetzungsplan und regelmäßiger Prüfung durch unabhängige Sachverständige (§ 5 UWG n. F.).",
+  "fix": "Umsetzungsplan und Prüfbericht verlinken – oder die Aussage streichen."
+ },
+ {
+  "id": "23d-haltbarkeit",
+  "sev": "warn",
+  "anhang": "Nr. 23d",
+  "spec_ok": false,
+  "re": "\\bhält ein Leben lang\\b|\\blebenslang haltbar\\b|\\bunkaputtbar\\b|\\bhält ewig\\b",
+  "msg": "Unbelegte Haltbarkeitsaussage – neue Verbote zu Haltbarkeit und Reparierbarkeit (UWG-Anhang Nr. 23d ff., ab 27.09.2026) prüfen.",
+  "fix": "Belegte Nutzungsdauer unter normalen Bedingungen angeben (z. B. „getestet für 10.000 Zyklen“)."
+ }
+]
