@@ -1,0 +1,53 @@
+{
+  "name": "python-upgrade-removed-api-lint",
+  "displayName": "Python Upgrade Lint: Removed Stdlib 3.12-3.14",
+  "description": "Flags imports and calls removed from the Python standard library in 3.12, 3.13 and 3.14 (cgi, imp, distutils, telnetlib, unittest aliases, ast.Str) before you leave Python 3.10.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "python",
+    "python 3.13",
+    "python upgrade",
+    "pep 594",
+    "distutils",
+    "linter",
+    "deprecated",
+    "python 3.14"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pyUpgradeLint.checkFile",
+        "title": "Python Upgrade Lint: Removed Stdlib 3.12-3.14: Check this file",
+        "category": "Python Upgrade Lint: Removed Stdlib 3.12-3.14"
+      },
+      {
+        "command": "pyUpgradeLint.checkWorkspace",
+        "title": "Python Upgrade Lint: Removed Stdlib 3.12-3.14: Sweep workspace and write report (licence)",
+        "category": "Python Upgrade Lint: Removed Stdlib 3.12-3.14"
+      },
+      {
+        "command": "pyUpgradeLint.enterKey",
+        "title": "Python Upgrade Lint: Removed Stdlib 3.12-3.14: Enter licence key",
+        "category": "Python Upgrade Lint: Removed Stdlib 3.12-3.14"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "python-upgrade-removed-api-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/python-upgrade-removed-api-lint"
+}
