@@ -1,0 +1,54 @@
+{
+  "name": "foerderantrag-pruefer-sgb3",
+  "displayName": "Förderantrag-Prüfer: EGZ, KUG, Weiterbildung",
+  "description": "Prüft Förderantrag-Entwürfe an die Arbeitsagentur (Markdown) gegen SGB III: Antrag vor Beginn (§324), Eingliederungszuschuss, Weiterbildung §82, Kurzarbeitergeld-Fristen, Gründungszuschuss.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "förderantrag",
+    "arbeitsagentur",
+    "eingliederungszuschuss",
+    "kurzarbeitergeld",
+    "gründungszuschuss",
+    "sgb iii",
+    "weiterbildung",
+    "vorlage"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "foerderPruefer.checkFile",
+        "title": "Förderantrag-Prüfer: EGZ, KUG, Weiterbildung: Check this file",
+        "category": "Förderantrag-Prüfer: EGZ, KUG, Weiterbildung"
+      },
+      {
+        "command": "foerderPruefer.checkWorkspace",
+        "title": "Förderantrag-Prüfer: EGZ, KUG, Weiterbildung: Sweep workspace and write report (licence)",
+        "category": "Förderantrag-Prüfer: EGZ, KUG, Weiterbildung"
+      },
+      {
+        "command": "foerderPruefer.enterKey",
+        "title": "Förderantrag-Prüfer: EGZ, KUG, Weiterbildung: Enter licence key",
+        "category": "Förderantrag-Prüfer: EGZ, KUG, Weiterbildung"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "foerderantrag-pruefer-sgb3"
+  },
+  "homepage": "https://getreadystack.com/tools/foerderantrag-pruefer-sgb3",
+  "icon": "icon.png"
+}
