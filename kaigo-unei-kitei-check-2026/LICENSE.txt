@@ -1,0 +1,15 @@
+介護 指定申請 運営規程チェック 2026 — Licence
+
+Free scope
+  開いている運営規程1ファイルを20規則で検査し、欠けた必須号・未記載の義務・古い記載を行番号と根拠条文つきで一覧にします(無料で完結)。 is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  複数事業所・複数サービス種別の運営規程をフォルダごと一括検査し、指定更新の提出前チェック表として不備一覧を書き出します(事業所の数と保存の軸)。 is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
