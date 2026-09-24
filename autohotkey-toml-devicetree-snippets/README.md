@@ -36,7 +36,7 @@ A different axis, not a better version of the same thing:
 - **Scale — `Check every file in the workspace`** runs the identical 22 checks across every overlay, manifest and script in the repository in one pass, instead of one open file at a time. Honours `max_files` and `exclude_glob`.
 - **Handover — `Write the findings out as a file`** writes the findings as CSV, JSON or HTML into the workspace folder, ready to attach to a review, a ticket or a release checklist. Uses `report_format` when you have set it.
 
-A freelance embedded software engineer bills a median of $103.27 an hour ([contractrates.fyi](https://www.contractrates.fyi/Embedded-Software-Engineer/hourly-rates), checked 2026-09-08). The licence is under twenty minutes of that, once, with a seven-day full refund: **https://buy.polar.sh/polar_cl_FWKDlpMmDW5CMSZxln7XEJnFClvFbQRZiuCsA0NNT9v**
+A freelance embedded software engineer bills a median of $103.27 an hour ([contractrates.fyi](https://www.contractrates.fyi/Embedded-Software-Engineer/hourly-rates), checked 2026-09-08). The licence is under twenty minutes of that, once: **https://buy.polar.sh/polar_cl_FWKDlpMmDW5CMSZxln7XEJnFClvFbQRZiuCsA0NNT9v**
 
 ## Settings
 
