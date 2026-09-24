@@ -2,7 +2,7 @@
   "name": "cbpr-address-lint",
   "displayName": "CBPR+ Structured Address Lint",
   "description": "Lint ISO 20022 pacs.008, pacs.009 and pain.001 XML for postal addresses CBPR+ will not accept: unstructured blocks, missing Ctry or TwnNm, and values duplicated between a structured field and AdrLine.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
