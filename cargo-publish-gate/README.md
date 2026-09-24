@@ -63,4 +63,5 @@ findings, 8 of them hard refusals and 5 frozen-on-upload warnings, measured on 2
 
 ## Licence
 
-MIT. $29 once for the paid layer, one licence key per person or team seat.
+MIT. $29 once for the paid layer, one licence key per person or team seat,
+7-day full refund.
