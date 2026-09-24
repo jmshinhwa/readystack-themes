@@ -1,0 +1,15 @@
+Green-Claims-Lint: Umweltaussagen nach UWG 2026 — Licence
+
+Free scope
+  Prüft die offene Datei (Produkttext, Shop-Template, JSON-Feed) und zeigt jede riskante Umweltaussage mit Anhang-Nummer und Fix. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Ganzen Workspace auf einmal prüfen und alle Treffer als CSV-Liste mit Datei, Zeile und Anhang-Nummer für die Rechtsprüfung exportieren. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
