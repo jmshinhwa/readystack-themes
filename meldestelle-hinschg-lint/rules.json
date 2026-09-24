@@ -1,0 +1,14 @@
+[
+ {"id": "MS01-bfj-fehlt", "sev": "error", "law": "§ 13 Abs. 2, § 19 HinSchG", "title": "Externe Meldestelle des Bundes (Bundesamt für Justiz) wird nicht genannt", "fix": "Satz ergänzen: Sie können sich auch an die externe Meldestelle des Bundes beim Bundesamt für Justiz (BfJ) wenden."},
+ {"id": "MS02-eingang-7-tage", "sev": "error", "law": "§ 17 Abs. 1 Nr. 1 HinSchG", "title": "Eingangsbestätigung nicht spätestens nach 7 Tagen", "fix": "Wir bestätigen den Eingang Ihrer Meldung spätestens nach 7 Tagen."},
+ {"id": "MS03-rueckmeldung-3-monate", "sev": "error", "law": "§ 17 Abs. 2 HinSchG", "title": "Rückmeldung nicht innerhalb von 3 Monaten nach der Eingangsbestätigung", "fix": "Innerhalb von 3 Monaten nach der Eingangsbestätigung erhalten Sie eine Rückmeldung zu den Folgemaßnahmen."},
+ {"id": "MS04-meldewege", "sev": "error", "law": "§ 16 Abs. 3 HinSchG", "title": "Meldung nicht zugleich mündlich und in Textform möglich", "fix": "Meldungen sind mündlich (Telefon) und in Textform (Portal, E-Mail, Brief) möglich."},
+ {"id": "MS05-persoenliches-treffen", "sev": "warning", "law": "§ 16 Abs. 3 Satz 3 HinSchG", "title": "Persönliche Zusammenkunft auf Wunsch wird nicht angeboten", "fix": "Auf Ihren Wunsch ist auch eine persönliche Zusammenkunft mit der Meldestelle möglich."},
+ {"id": "MS06-loeschfrist-3-jahre", "sev": "error", "law": "§ 11 Abs. 5 HinSchG", "title": "Löschfrist der Dokumentation nicht 3 Jahre nach Abschluss des Verfahrens", "fix": "Die Dokumentation wird 3 Jahre nach Abschluss des Verfahrens gelöscht."},
+ {"id": "MS07-schwelle-250", "sev": "error", "law": "§ 12 Abs. 1, § 42 HinSchG", "title": "Veraltete Schwelle 250 Beschäftigte – seit 17.12.2023 gilt die Pflicht ab 50", "fix": "Die Pflicht gilt für Beschäftigungsgeber mit in der Regel mindestens 50 Beschäftigten."},
+ {"id": "MS08-vertraulichkeit", "sev": "error", "law": "§ 8 HinSchG", "title": "Vertraulichkeit der Identität der hinweisgebenden Person wird nicht zugesagt", "fix": "Die Identität der hinweisgebenden Person wird vertraulich behandelt."},
+ {"id": "MS09-repressalien", "sev": "warning", "law": "§ 36 HinSchG", "title": "Verbot von Repressalien wird nicht genannt", "fix": "Repressalien gegen hinweisgebende Personen sind verboten."},
+ {"id": "MS10-anonym-abgelehnt", "sev": "warning", "law": "§ 16 Abs. 1 Satz 4 HinSchG", "title": "Anonyme Meldungen werden ausgeschlossen – die Meldestelle soll sie bearbeiten", "fix": "Auch anonym eingehende Meldungen werden bearbeitet."},
+ {"id": "MS11-kontakt-fehlt", "sev": "error", "law": "§ 16 Abs. 1 HinSchG", "title": "Kein erreichbarer Meldekanal (E-Mail, Telefon oder Portal-Adresse)", "fix": "Kontakt der Meldestelle angeben: E-Mail, Telefonnummer oder Portal-URL."},
+ {"id": "MS12-stand-veraltet", "sev": "warning", "law": "§ 13 Abs. 2 HinSchG", "title": "Stand-Datum fehlt oder ist älter als 365 Tage", "fix": "Zeile ergänzen oder aktualisieren: Stand: JJJJ-MM-TT"}
+]
