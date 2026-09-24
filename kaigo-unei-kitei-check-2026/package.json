@@ -1,0 +1,55 @@
+{
+  "name": "kaigo-unei-kitei-check-2026",
+  "displayName": "介護 指定申請 運営規程チェック 2026",
+  "description": "介護保険の指定申請・指定更新に出す運営規程(.md/.txt)を、指定居宅サービス等基準 第29条・第100条の必須号と令和6年度改定の義務(虐待防止4措置・業務継続計画・ウェブサイト掲載)で検査し、欠けた号を行番号つきで示します。",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "介護",
+    "指定申請",
+    "運営規程",
+    "必要書類",
+    "訪問介護",
+    "通所介護",
+    "虐待防止",
+    "業務継続計画",
+    "kaigo"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "kaigoUneiKitei.checkFile",
+        "title": "介護 指定申請 運営規程チェック 2026: Check this file",
+        "category": "介護 指定申請 運営規程チェック 2026"
+      },
+      {
+        "command": "kaigoUneiKitei.checkWorkspace",
+        "title": "介護 指定申請 運営規程チェック 2026: Sweep workspace and write report (licence)",
+        "category": "介護 指定申請 運営規程チェック 2026"
+      },
+      {
+        "command": "kaigoUneiKitei.enterKey",
+        "title": "介護 指定申請 運営規程チェック 2026: Enter licence key",
+        "category": "介護 指定申請 運営規程チェック 2026"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "kaigo-unei-kitei-check-2026"
+  },
+  "homepage": "https://getreadystack.com/tools/kaigo-unei-kitei-check-2026",
+  "icon": "icon.png"
+}
