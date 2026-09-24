@@ -2,7 +2,7 @@
   "name": "web-stack-snippets-audit",
   "displayName": "Web Stack Snippets + Audit — 8 Stacks",
   "description": "40 snippets and 15 review rules across 8 stacks, in one install instead of eight — the audit catches the .only() you left in, the <img> with no alt, the _blank with no rel=noopener, the NEXT_PUBLIC_ s",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
