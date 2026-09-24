@@ -2,7 +2,7 @@
   "name": "eudi-rp-request-lint",
   "displayName": "EUDI Wallet Request Lint (OpenID4VP)",
   "description": "Lint OpenID4VP presentation requests against the EU Digital Identity Wallet relying-party rules: registered client_id, a stated purpose, minimised claims, encrypted response, live registration.",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
