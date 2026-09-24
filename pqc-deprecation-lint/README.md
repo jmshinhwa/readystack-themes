@@ -2,39 +2,45 @@
 
 ![PQC Deprecation Lint — RSA/ECC after 2030](https://getreadystack.com/img/promo/sku51073_result_card.jpg)
 
-Your AI assistant writes `rsa.generate_private_key(key_size=2048)` and it passes review, because
-
 For security teams: NIST deprecates RSA and ECC signatures and key exchange after 2030 and disallows them after 2035.
+
+Your AI assistant writes `rsa.generate_private_key(key_size=2048)` and it passes review, because
 it *is* correct code. It is also on a clock. NIST IR 8547 puts RSA-2048, ECDSA, EdDSA and
 finite-field Diffie-Hellman in the **deprecated after 2030-12-31, disallowed after 2035-12-31**
 bucket, and FIPS 203 / 204 / 205 (ML-KEM, ML-DSA, SLH-DSA) were published on 2024-08-13 — the
-replacements already exist. This extension reads the file you have open and tells you, per line,
-which clock each algorithm is on and where that clock stands on a date you choose.
+replacements already exist. Since 2026-06-24 the clock also has a US federal schedule: OMB
+M-26-15 tells agencies to align with IR 8547, move key establishment for high-value systems to
+PQC during 2028-2030 and signatures in 2031. This extension reads the file you have open and
+tells you, per line, which clock each algorithm is on and where that clock stands on a date you choose.
 
-It also catches the part that is not a 2030 problem at all. In the 51-line sample file shipped
-with this extension, **23 findings** come back on 2026-09-13, and **7 of them are errors on 6
-lines** — RSA-1024, SHA-1 in a signature, PKCS#1 v1.5 padding, MD5, `ssh-rsa`, and 3DES are
-disallowed *today*, before anyone mentions a quantum computer.
+It also catches the part that is not a 2030 problem at all. On a 20-line provisioning script of
+the kind an assistant writes (RSA keys, a P-256 device key, an RS256 JWT, an sshd and an nginx
+snippet), **15 findings** come back on 2026-09-23, and **4 of them are errors today** —
+RSA-1024, PKCS#1 v1.5 padding, MD5, and an `ssh_host_dsa_key` that OpenSSH 10.0 no longer loads.
 
-## What it checks — 17 rules
+**New in 1.1.0 (2026-09-23):** OpenSSH 10.0 DSA removal (`ssh-dss`, `id_dsa`), AES-ECB (NIST
+SP 800-131A Rev. 3 draft), the OpenSSH 10.0 default `mlkem768x25519-sha256` in the SSH KEX
+check, and the OMB M-26-15 dates on the key-agreement, signature and TLS checks.
+
+## What it checks — 19 rules
 
 | Area | Checks |
 | --- | --- |
 | Public key | RSA key generation, RSA under 2048 bits, ECDSA / P-256 / P-384, classical ECDH and X25519, finite-field DH, DSA, EdDSA |
-| Transport | TLS group lists with no hybrid, SSH `KexAlgorithms` with no PQ method, `ssh-rsa` host keys |
-| Legacy | SHA-1 in signatures, 3DES, MD5, AES-128 for long-lived data, RSA PKCS#1 v1.5 |
+| Transport | TLS group lists with no hybrid, SSH `KexAlgorithms` with no PQ method, `ssh-rsa` host keys, `ssh-dss` / DSA keys removed in OpenSSH 10.0 |
+| Legacy | SHA-1 in signatures, 3DES, MD5, AES-128 for long-lived data, AES in ECB mode, RSA PKCS#1 v1.5 |
 | Agility | A file that uses quantum-vulnerable crypto and names no post-quantum replacement anywhere |
 
 Each finding carries the line number, the standard it comes from (NIST IR 8547, SP 800-131A
-Rev. 2, FIPS 186-5, FIPS 203/204/205, NSA CNSA 2.0), and the concrete replacement — not "consider
+Rev. 2 and the Rev. 3 draft, FIPS 186-5, FIPS 203/204/205, NSA CNSA 2.0, OMB M-26-15, OpenSSH 10.0), and the concrete replacement — not "consider
 migrating", but `X25519MLKEM768`, `mlkem768x25519-sha256`, ML-DSA-65.
 
 ## The date is an input, not a decoration
 
-Set the date and the answer changes, because the standard changes. On the sample file:
+Set the date and the answer changes, because the standard changes. On the same 20-line script:
 
-- **2026-09-13** — 23 findings, 7 errors. RSA key generation reads *"deprecated after 2030-12-31 — 1570 days from 2026-09-13"*.
-- **2031-03-01** — 23 findings, 20 errors. The same line now reads *"deprecated since 2030-12-31, disallowed after 2035-12-31"*.
+- **2026-09-23** — 15 findings, 4 errors. RSA key generation reads *"deprecated after 2030-12-31 — 1560 days from 2026-09-23"*.
+- **2031-03-01** — 15 findings, 13 errors. The same line now reads *"deprecated since 2030-12-31, disallowed after 2035-12-31"*.
 - **2036-01-15** — *"disallowed since 2035-12-31 — not a plan any more, a finding"*.
 
 That is the number you actually need in a migration plan: not "RSA is bad", but how many working
