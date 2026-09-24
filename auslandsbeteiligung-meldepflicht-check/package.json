@@ -1,0 +1,53 @@
+{
+  "name": "auslandsbeteiligung-meldepflicht-check",
+  "displayName": "Auslandsbeteiligung Meldepflicht-Check (§ 138 AO)",
+  "description": "Prüft Ihr Beteiligungsregister (CSV) auf Mitteilungen nach § 138 Abs. 2 AO: 10 %- und 150.000-€-Schwelle, Drittstaat-Gesellschaft, 14-Monats-Frist, Bußgeld bis 25.000 €.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "auslandsbeteiligung",
+    "steuererklärung",
+    "138 AO",
+    "mitteilungspflicht",
+    "drittstaat",
+    "steuerberater",
+    "beteiligungsregister"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "auslandsMeldung.checkFile",
+        "title": "Auslandsbeteiligung Meldepflicht-Check (§ 138 AO): Check this file",
+        "category": "Auslandsbeteiligung Meldepflicht-Check (§ 138 AO)"
+      },
+      {
+        "command": "auslandsMeldung.checkWorkspace",
+        "title": "Auslandsbeteiligung Meldepflicht-Check (§ 138 AO): Sweep workspace and write report (licence)",
+        "category": "Auslandsbeteiligung Meldepflicht-Check (§ 138 AO)"
+      },
+      {
+        "command": "auslandsMeldung.enterKey",
+        "title": "Auslandsbeteiligung Meldepflicht-Check (§ 138 AO): Enter licence key",
+        "category": "Auslandsbeteiligung Meldepflicht-Check (§ 138 AO)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "auslandsbeteiligung-meldepflicht-check"
+  },
+  "homepage": "https://getreadystack.com/tools/auslandsbeteiligung-meldepflicht-check",
+  "icon": "icon.png"
+}
