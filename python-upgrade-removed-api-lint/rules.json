@@ -1,0 +1,482 @@
+[
+ {
+  "id": "distutils",
+  "removed_in": "3.12",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+distutils(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*distutils(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "distutils was removed from the standard library.",
+  "fix": "use setuptools (setuptools._distutils) or packaging / sysconfig / shutil.",
+  "source": "PEP 632"
+ },
+ {
+  "id": "imp",
+  "removed_in": "3.12",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+imp(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*imp(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The imp module was removed.",
+  "fix": "use importlib (importlib.util.spec_from_file_location, importlib.reload).",
+  "source": "What's New 3.12"
+ },
+ {
+  "id": "asyncore",
+  "removed_in": "3.12",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+asyncore(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*asyncore(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "asyncore was removed.",
+  "fix": "use asyncio.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "asynchat",
+  "removed_in": "3.12",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+asynchat(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*asynchat(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "asynchat was removed.",
+  "fix": "use asyncio streams.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "smtpd",
+  "removed_in": "3.12",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+smtpd(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*smtpd(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "smtpd was removed.",
+  "fix": "use the aiosmtpd package from PyPI.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "unittest-alias",
+  "removed_in": "3.12",
+  "sev": "error",
+  "patterns": [
+   "\\.(?:assertEquals|assertNotEquals|assertAlmostEquals|assertNotAlmostEquals|assertRegexpMatches|assertNotRegexpMatches|assertRaisesRegexp|failUnlessEqual|failIfEqual|failUnlessRaises|failUnlessAlmostEqual|failIfAlmostEqual|failUnless|failIf|assert_|assertDictContainsSubset)\\s*\\("
+  ],
+  "msg": "A deprecated unittest.TestCase alias was removed.",
+  "fix": "use assertEqual, assertNotEqual, assertAlmostEqual, assertRegex, assertRaisesRegex, assertTrue, assertFalse.",
+  "source": "What's New 3.12"
+ },
+ {
+  "id": "safeconfigparser",
+  "removed_in": "3.12",
+  "sev": "error",
+  "patterns": [
+   "\\bSafeConfigParser\\b"
+  ],
+  "msg": "configparser.SafeConfigParser was removed.",
+  "fix": "use configparser.ConfigParser.",
+  "source": "What's New 3.12"
+ },
+ {
+  "id": "readfp",
+  "removed_in": "3.12",
+  "sev": "error",
+  "patterns": [
+   "\\.readfp\\s*\\("
+  ],
+  "msg": "ConfigParser.readfp() was removed.",
+  "fix": "use read_file().",
+  "source": "What's New 3.12"
+ },
+ {
+  "id": "ssl-wrap-socket",
+  "removed_in": "3.12",
+  "sev": "error",
+  "patterns": [
+   "\\bssl\\.wrap_socket\\s*\\(",
+   "^\\s*from\\s+ssl\\s+import\\b.*\\bwrap_socket\\b"
+  ],
+  "msg": "ssl.wrap_socket() was removed.",
+  "fix": "create an ssl.SSLContext and call context.wrap_socket().",
+  "source": "What's New 3.12"
+ },
+ {
+  "id": "ssl-match-hostname",
+  "removed_in": "3.12",
+  "sev": "error",
+  "patterns": [
+   "\\bssl\\.match_hostname\\b",
+   "^\\s*from\\s+ssl\\s+import\\b.*\\bmatch_hostname\\b"
+  ],
+  "msg": "ssl.match_hostname() was removed.",
+  "fix": "let SSLContext.check_hostname verify the host.",
+  "source": "What's New 3.12"
+ },
+ {
+  "id": "locale-format",
+  "removed_in": "3.12",
+  "sev": "error",
+  "patterns": [
+   "\\blocale\\.format\\s*\\("
+  ],
+  "msg": "locale.format() was removed.",
+  "fix": "use locale.format_string().",
+  "source": "What's New 3.12"
+ },
+ {
+  "id": "pkgutil-imp",
+  "removed_in": "3.12",
+  "sev": "error",
+  "patterns": [
+   "\\bImpImporter\\b",
+   "\\bImpLoader\\b"
+  ],
+  "msg": "pkgutil.ImpImporter / ImpLoader were removed.",
+  "fix": "use importlib.machinery finders and loaders.",
+  "source": "What's New 3.12"
+ },
+ {
+  "id": "utcnow",
+  "removed_in": "3.12",
+  "sev": "warn",
+  "patterns": [
+   "\\bdatetime\\.utcnow\\s*\\(",
+   "\\bdatetime\\.utcfromtimestamp\\s*\\(",
+   "^\\s*.*\\butcnow\\s*\\(\\s*\\)"
+  ],
+  "msg": "datetime.utcnow() / utcfromtimestamp() return naive datetimes and are deprecated, not yet removed.",
+  "fix": "use datetime.now(timezone.utc) / datetime.fromtimestamp(ts, timezone.utc).",
+  "source": "What's New 3.12"
+ },
+ {
+  "id": "aifc",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+aifc(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*aifc(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The aifc module was removed (dead battery).",
+  "fix": "use a PyPI audio library such as soundfile.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "audioop",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+audioop(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*audioop(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The audioop module was removed (dead battery).",
+  "fix": "use numpy or the audioop-lts package.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "cgi",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+cgi(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*cgi(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The cgi module was removed (dead battery).",
+  "fix": "parse forms with urllib.parse.parse_qsl or email.message; use multipart for uploads.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "cgitb",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+cgitb(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*cgitb(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The cgitb module was removed (dead battery).",
+  "fix": "use the traceback module or your framework's error pages.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "chunk",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+chunk(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*chunk(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The chunk module was removed (dead battery).",
+  "fix": "read IFF chunks with struct.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "crypt",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+crypt(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*crypt(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The crypt module was removed (dead battery).",
+  "fix": "use hashlib, or bcrypt / argon2-cffi from PyPI.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "imghdr",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+imghdr(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*imghdr(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The imghdr module was removed (dead battery).",
+  "fix": "use the filetype or Pillow package.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "mailcap",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+mailcap(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*mailcap(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The mailcap module was removed (dead battery).",
+  "fix": "use mimetypes.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "msilib",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+msilib(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*msilib(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The msilib module was removed (dead battery).",
+  "fix": "use a PyPI MSI tool.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "nis",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+nis(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*nis(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The nis module was removed (dead battery).",
+  "fix": "use a PyPI replacement.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "nntplib",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+nntplib(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*nntplib(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The nntplib module was removed (dead battery).",
+  "fix": "use the pynntp package from PyPI.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "ossaudiodev",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+ossaudiodev(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*ossaudiodev(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The ossaudiodev module was removed (dead battery).",
+  "fix": "use a PyPI audio library.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "pipes",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+pipes(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*pipes(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The pipes module was removed (dead battery).",
+  "fix": "use subprocess and shlex.quote().",
+  "source": "PEP 594"
+ },
+ {
+  "id": "sndhdr",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+sndhdr(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*sndhdr(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The sndhdr module was removed (dead battery).",
+  "fix": "use the filetype package.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "spwd",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+spwd(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*spwd(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The spwd module was removed (dead battery).",
+  "fix": "use the python-pam package.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "sunau",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+sunau(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*sunau(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The sunau module was removed (dead battery).",
+  "fix": "use a PyPI audio library.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "telnetlib",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+telnetlib(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*telnetlib(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The telnetlib module was removed (dead battery).",
+  "fix": "use telnetlib3 or Exscript from PyPI, or SSH (paramiko).",
+  "source": "PEP 594"
+ },
+ {
+  "id": "uu",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+uu(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*uu(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The uu module was removed (dead battery).",
+  "fix": "use base64.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "xdrlib",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+xdrlib(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*xdrlib(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "The xdrlib module was removed (dead battery).",
+  "fix": "use struct.",
+  "source": "PEP 594"
+ },
+ {
+  "id": "lib2to3",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+lib2to3(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*lib2to3(?:\\.[\\w.]+)?(?=\\s|,|$))"
+  ],
+  "msg": "lib2to3 and the 2to3 tool were removed.",
+  "fix": "use a maintained parser such as libcst or parso.",
+  "source": "What's New 3.13"
+ },
+ {
+  "id": "tkinter-tix",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "^\\s*(?:from\\s+tkinter\\.tix(?:\\.[\\w.]+)?\\s+import\\b|import\\s+(?:[\\w.]+(?:\\s+as\\s+\\w+)?\\s*,\\s*)*tkinter\\.tix(?:\\.[\\w.]+)?(?=\\s|,|$))",
+   "^\\s*from\\s+tkinter\\s+import\\b.*\\btix\\b"
+  ],
+  "msg": "tkinter.tix was removed.",
+  "fix": "use tkinter.ttk.",
+  "source": "What's New 3.13"
+ },
+ {
+  "id": "locale-resetlocale",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "\\blocale\\.resetlocale\\s*\\("
+  ],
+  "msg": "locale.resetlocale() was removed.",
+  "fix": "use locale.setlocale(locale.LC_ALL, '').",
+  "source": "What's New 3.13"
+ },
+ {
+  "id": "typing-io-re",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "\\btyping\\.(?:io|re)\\b"
+  ],
+  "msg": "The typing.io and typing.re namespaces were removed.",
+  "fix": "import IO, TextIO, BinaryIO, Pattern, Match directly from typing.",
+  "source": "What's New 3.13"
+ },
+ {
+  "id": "unittest-makesuite",
+  "removed_in": "3.13",
+  "sev": "error",
+  "patterns": [
+   "\\bunittest\\.(?:makeSuite|findTestCases|getTestCaseNames)\\b"
+  ],
+  "msg": "unittest.makeSuite / findTestCases / getTestCaseNames were removed.",
+  "fix": "use unittest.TestLoader methods (loadTestsFromTestCase, loadTestsFromModule, getTestCaseNames).",
+  "source": "What's New 3.13"
+ },
+ {
+  "id": "ast-constants",
+  "removed_in": "3.14",
+  "sev": "error",
+  "patterns": [
+   "\\bast\\.(?:Num|Str|Bytes|NameConstant|Ellipsis)\\b"
+  ],
+  "msg": "ast.Num / Str / Bytes / NameConstant / Ellipsis were removed.",
+  "fix": "use ast.Constant and check type(node.value).",
+  "source": "What's New 3.14"
+ },
+ {
+  "id": "pkgutil-loader",
+  "removed_in": "3.14",
+  "sev": "error",
+  "patterns": [
+   "\\bpkgutil\\.(?:find_loader|get_loader)\\b"
+  ],
+  "msg": "pkgutil.find_loader() / get_loader() were removed.",
+  "fix": "use importlib.util.find_spec().",
+  "source": "What's New 3.14"
+ },
+ {
+  "id": "asyncio-child-watcher",
+  "removed_in": "3.14",
+  "sev": "error",
+  "patterns": [
+   "\\b(?:get_child_watcher|set_child_watcher|AbstractChildWatcher|SafeChildWatcher|FastChildWatcher|ThreadedChildWatcher|PidfdChildWatcher|MultiLoopChildWatcher)\\b"
+  ],
+  "msg": "asyncio child watcher classes and functions were removed.",
+  "fix": "delete the watcher setup; asyncio subprocesses work without it.",
+  "source": "What's New 3.14"
+ },
+ {
+  "id": "urlopener",
+  "removed_in": "3.14",
+  "sev": "error",
+  "patterns": [
+   "\\b(?:FancyURLopener|URLopener)\\b"
+  ],
+  "msg": "urllib.request.URLopener / FancyURLopener were removed.",
+  "fix": "use urllib.request.urlopen() or build_opener().",
+  "source": "What's New 3.14"
+ },
+ {
+  "id": "importlib-abc-resources",
+  "removed_in": "3.14",
+  "sev": "error",
+  "patterns": [
+   "\\bimportlib\\.abc\\.(?:ResourceReader|Traversable|TraversableResources)\\b",
+   "^\\s*from\\s+importlib\\.abc\\s+import\\b.*\\b(?:ResourceReader|Traversable|TraversableResources)\\b"
+  ],
+  "msg": "importlib.abc ResourceReader / Traversable / TraversableResources were removed.",
+  "fix": "import them from importlib.resources.abc.",
+  "source": "What's New 3.14"
+ },
+ {
+  "id": "sqlite3-version",
+  "removed_in": "3.14",
+  "sev": "error",
+  "patterns": [
+   "\\bsqlite3\\.version(?:_info)?\\b"
+  ],
+  "msg": "sqlite3.version / version_info (the module version) were removed.",
+  "fix": "use sqlite3.sqlite_version for the SQLite library version.",
+  "source": "What's New 3.14"
+ }
+]
