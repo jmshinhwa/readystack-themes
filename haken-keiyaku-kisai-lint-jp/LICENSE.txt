@@ -1,0 +1,15 @@
+派遣契約書チェック — 個別契約・就業条件明示書 — Licence
+
+Free scope
+  開いている1通の個別契約書・就業条件明示書を全規則で検査し、抜けている記載事項を行番号と条文つきで示す is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  ワークスペース内の全契約書をまとめて検査し、条文つきの監査レポートを書き出して保存する（範囲・保存） is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
