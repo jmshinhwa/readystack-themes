@@ -2,7 +2,7 @@
   "name": "play-declaration-gap-lint",
   "displayName": "Play Declaration Gap Lint (AndroidManifest)",
   "description": "Reads AndroidManifest.xml and names every line that forces an extra Google Play Console declaration or an Android 14+ foreground-service permission, with the form Play will ask you to fill.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
