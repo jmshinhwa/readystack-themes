@@ -1,0 +1,55 @@
+{
+  "name": "haken-keiyaku-kisai-lint-jp",
+  "displayName": "派遣契約書チェック — 個別契約・就業条件明示書",
+  "description": "労働者派遣の個別契約書と就業条件明示書の下書き(.md/.txt)を、派遣法26条1項・施行規則22条・34条の記載事項と照らし、抜けている項目を行番号つきで示します。派遣元の営業・法務担当向け。",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "派遣",
+    "派遣契約書",
+    "個別契約書",
+    "就業条件明示書",
+    "労働者派遣法",
+    "抵触日",
+    "記載例",
+    "compliance",
+    "japan"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "hakenLint.checkFile",
+        "title": "派遣契約書チェック — 個別契約・就業条件明示書: Check this file",
+        "category": "派遣契約書チェック — 個別契約・就業条件明示書"
+      },
+      {
+        "command": "hakenLint.checkWorkspace",
+        "title": "派遣契約書チェック — 個別契約・就業条件明示書: Sweep workspace and write report (licence)",
+        "category": "派遣契約書チェック — 個別契約・就業条件明示書"
+      },
+      {
+        "command": "hakenLint.enterKey",
+        "title": "派遣契約書チェック — 個別契約・就業条件明示書: Enter licence key",
+        "category": "派遣契約書チェック — 個別契約・就業条件明示書"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "haken-keiyaku-kisai-lint-jp"
+  },
+  "homepage": "https://getreadystack.com/tools/haken-keiyaku-kisai-lint-jp",
+  "icon": "icon.png"
+}
