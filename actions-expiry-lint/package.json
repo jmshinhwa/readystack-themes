@@ -2,7 +2,7 @@
   "name": "actions-expiry-lint",
   "displayName": "GitHub Actions Lint - expiring runners, Node versions and deprecated actions",
   "description": "Flags GitHub Actions lines that stop working on a date - retired runner images, shut-down action versions, Node runtimes past end-of-life. Checked against any 'as of' date.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
