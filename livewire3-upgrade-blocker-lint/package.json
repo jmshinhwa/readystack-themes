@@ -2,7 +2,7 @@
   "name": "livewire3-upgrade-blocker-lint",
   "displayName": "Livewire 3 Upgrade Blocker Lint",
   "description": "Finds Livewire 2 APIs that silently die in Livewire 3 — emit(), wire:model.defer, dispatchBrowserEvent, livewire:load, missing :key — in your .php and .blade.php files.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
