@@ -28,7 +28,7 @@ The dirty sample shipped with this extension (`_fixtures/dirty.json`) holds 10 s
 
 Free, no key, no limit, no watermark: **check the config file you have open against all 23 rules** - as often as you like, on any number of files, one at a time. That is a finished job: you can fix the file in front of you and close it.
 
-The paid part is a different axis - scale and hand-off: **one sweep over every MCP config in the workspace and in the client config folders, a dated CSV / JSON / HTML report, and machine-readable output a CI step can fail on**, so a pull request that adds an unpinned server stops before it merges. $29 once, one licence key per person or CI seat, 7-day full refund. Upwork lists cybersecurity developers at a $60 median hourly rate (Sept 2026); the sweep is the part you would otherwise pay someone to repeat every month.
+The paid part is a different axis - scale and hand-off: **one sweep over every MCP config in the workspace and in the client config folders, a dated CSV / JSON / HTML report, and machine-readable output a CI step can fail on**, so a pull request that adds an unpinned server stops before it merges. $29 once, one licence key per person or CI seat. Upwork lists cybersecurity developers at a $60 median hourly rate (Sept 2026); the sweep is the part you would otherwise pay someone to repeat every month.
 
 [Full version - $29 once](https://buy.polar.sh/polar_cl_qkyHZkQQW6eB0rXgrKfDGviLlVixnkbP42q8B3h7YrG)
 
