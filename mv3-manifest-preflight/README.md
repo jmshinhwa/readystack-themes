@@ -41,7 +41,7 @@ On the reference fixture shipped with the source (`_fixtures/dirty.json`, an MV2
 
 Free: the open file. Every rule runs, every finding is named, nothing is hidden behind a key — one manifest, finished.
 
-Paid ($29, one licence key per person or team seat, 7-day full refund): scan every `manifest.json` in the workspace in one run and export the pre-submission report as a file you keep — Markdown for the reviewer, JSON for CI.
+Paid ($29, one licence key per person or team seat): scan every `manifest.json` in the workspace in one run and export the pre-submission report as a file you keep — Markdown for the reviewer, JSON for CI.
 
 Yardstick: at an $80/h contract rate, 22 minutes of resubmission rework costs more than the licence, and a rejected upload restarts the Chrome Web Store review queue.
 
