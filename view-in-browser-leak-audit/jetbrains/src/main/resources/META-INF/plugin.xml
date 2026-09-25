@@ -1,10 +1,10 @@
 <idea-plugin>
   <id>com.getreadystack.view-in-browser-leak-audit</id>
-  <name>View in Browser — Publish Leak Audit (HTML)</name>
+  <name>View-in-Browser Leak Audit</name>
   <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
   <description><![CDATA[
   <p>24 rules read the .html file you are about to open in the browser and flag every line that behaves differently once the page has a public URL: live API keys, localhost and file:// paths, http:// resources, a leftover noindex.</p>
-<p>Right-click in the editor (or <b>Tools</b>) → <b>View in Browser — Publish Leak Audit (HTML): Check This File</b>. Each finding appears on its line with the fix. 24 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/view-in-browser-leak-audit</code> (Node.js 18+ required).</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>View-in-Browser Leak Audit: Check This File</b>. Each finding appears on its line with the fix. 24 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/view-in-browser-leak-audit</code> (Node.js 18+ required).</p>
 <p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/view-in-browser-leak-audit">getreadystack.com/tools/view-in-browser-leak-audit</a></p>
   ]]></description>
   <depends>com.intellij.modules.platform</depends>
@@ -14,7 +14,7 @@
   </extensions>
   <actions>
     <action id="com.getreadystack.view-in-browser-leak-audit.check" class="com.getreadystack.p_view_in_browser_leak_audit.RsCheckAction"
-            text="View in Browser — Publish Leak Audit (HTML): Check This File" description="Run View in Browser — Publish Leak Audit (HTML) on the file in the editor">
+            text="View-in-Browser Leak Audit: Check This File" description="Run View-in-Browser Leak Audit on the file in the editor">
       <add-to-group group-id="ToolsMenu" anchor="last"/>
       <add-to-group group-id="EditorPopupMenu" anchor="last"/>
       <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
