@@ -2,7 +2,7 @@
   "name": "denchoho-sakuin-check-2026",
   "displayName": "電帳法 索引簿チェック 2026 — 電子取引データの検索要件",
   "description": "電子帳簿保存法の電子取引データ保存で使う「索引簿」を検査します。取引年月日・取引金額・取引先・ファイル名の書き方が検索要件を満たすかを12のルールで見て、検索できない行と直し方をその場で出します。",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -48,5 +48,5 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "denchoho-sakuin-check-2026"
   },
-  "homepage": "https://getreadystack.com/tools/denchoho-sakuin-check-2026"
+  "homepage": "https://getreadystack.com/ja/tools/denchoho-sakuin-check-2026"
 }
