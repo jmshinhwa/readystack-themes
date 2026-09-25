@@ -2,7 +2,7 @@
   "name": "biometric-consent-audit",
   "displayName": "Biometric Consent Audit (BIPA / CUBI / CO)",
   "description": "Audits code that captures faces, fingerprints or voiceprints: missing written consent, missing destruction schedule, retention past the Illinois BIPA three-year cap, third-party disclosure.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,5 +49,8 @@
     "directory": "biometric-consent-audit"
   },
   "homepage": "https://getreadystack.com/tools/biometric-consent-audit",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-22"
+  }
 }
