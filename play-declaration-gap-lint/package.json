@@ -2,7 +2,7 @@
   "name": "play-declaration-gap-lint",
   "displayName": "Play Declaration Gap Lint (AndroidManifest)",
   "description": "Reads AndroidManifest.xml and names every line that forces an extra Google Play Console declaration or an Android 14+ foreground-service permission, with the form Play will ask you to fill.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -48,5 +48,8 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "play-declaration-gap-lint"
   },
-  "homepage": "https://getreadystack.com/tools/play-declaration-gap-lint"
+  "homepage": "https://getreadystack.com/tools/play-declaration-gap-lint",
+  "readystack": {
+    "rulesDate": "2026-09-20"
+  }
 }
