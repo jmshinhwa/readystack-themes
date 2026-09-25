@@ -2,7 +2,7 @@
   "name": "otel-collector-drift-lint",
   "displayName": "OpenTelemetry Collector Config Lint - drift and deprecated components",
   "description": "Flags removed Collector components and legacy semantic-convention attribute names in OpenTelemetry Collector YAML before the upgrade drops your pipeline.",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -47,5 +47,8 @@
     "directory": "otel-collector-drift-lint"
   },
   "homepage": "https://getreadystack.com/tools/otel-collector-drift-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-16"
+  }
 }
