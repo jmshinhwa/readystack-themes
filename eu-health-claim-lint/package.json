@@ -2,7 +2,7 @@
   "name": "eu-health-claim-lint",
   "displayName": "EU Health Claim Lint — Food & Supplement Pages",
   "description": "Flags unauthorised nutrition and health claims in food and supplement product pages (HTML/Markdown) against EU Reg 1924/2006, FIC 1169/2011 and the 14 June 2026 juice-honey-jam rules.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
