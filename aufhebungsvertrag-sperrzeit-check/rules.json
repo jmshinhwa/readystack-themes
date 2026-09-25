@@ -1,0 +1,11 @@
+[
+ {"id": "AV-FORM-623", "sev": "error", "title": "Elektronische Unterschrift unter dem Aufhebungsvertrag", "law": "§ 623 BGB", "fix": "Zwei Papierexemplare, beide Seiten unterschreiben eigenhändig auf derselben Urkunde."},
+ {"id": "AV-INITIATIVE", "sev": "error", "title": "Vertrag dokumentiert die Lösung auf Wunsch des Arbeitnehmers", "law": "§ 159 Abs. 1 Nr. 1 SGB III", "fix": "Anlass so benennen, wie er ist: z. B. „zur Vermeidung einer ansonsten ausgesprochenen betriebsbedingten Kündigung“."},
+ {"id": "AV-KEIN-GRUND", "sev": "warning", "title": "Kein Hinweis auf eine sonst drohende Arbeitgeberkündigung", "law": "§ 159 Abs. 3, § 148 Abs. 1 Nr. 4 SGB III", "fix": "Den Grund der drohenden Arbeitgeberkündigung (betriebs- oder personenbedingt) im Vertrag festhalten."},
+ {"id": "AV-FRIST-622", "sev": "error", "title": "Beendigung vor Ablauf der Kündigungsfrist des Arbeitgebers", "law": "§ 622 Abs. 2 BGB, § 158 Abs. 1 SGB III", "fix": "Beendigungsdatum auf das Ende der ordentlichen Arbeitgeber-Kündigungsfrist legen."},
+ {"id": "AV-RUHEN-158", "sev": "warning", "title": "Abfindung lässt das Arbeitslosengeld ruhen", "law": "§ 158 Abs. 2 SGB III", "fix": "Frist einhalten – dann ruht nichts – oder die Ruhenstage in die Finanzplanung aufnehmen."},
+ {"id": "AV-ABFINDUNG-BAND", "sev": "warning", "title": "Abfindung außerhalb 0,25–0,5 Monatsgehälter je Beschäftigungsjahr", "law": "Fachliche Weisungen der BA zu § 159 SGB III", "fix": "Höhe begründen (z. B. Sozialplan) oder die Rechtmäßigkeit der drohenden Kündigung belegen."},
+ {"id": "AV-MELDUNG-38", "sev": "warning", "title": "Kein Hinweis auf die Arbeitsuchendmeldung", "law": "§ 38 Abs. 1, § 159 Abs. 6 SGB III", "fix": "Klausel ergänzen: Pflicht zur Arbeitsuchendmeldung mit konkretem Datum."},
+ {"id": "AV-URLAUB-158", "sev": "info", "title": "Urlaubsabgeltung verlängert den Ruhenszeitraum", "law": "§ 158 Abs. 1 Satz 5 SGB III", "fix": "Resturlaub vor dem Beendigungsdatum nehmen statt abgelten, wenn die Frist unterschritten wird."},
+ {"id": "AV-ANGABEN", "sev": "warning", "title": "Angaben für die Fristrechnung fehlen", "law": "§ 622 BGB, § 158 SGB III", "fix": "Zeilen ergänzen: Beschäftigt seit · Geburtsdatum · Datum der Vereinbarung · Beendigung zum · Bruttomonatsgehalt · Abfindung."}
+]
