@@ -2,7 +2,7 @@
   "name": "spl-registration-lint",
   "displayName": "SPL Registration Lint - FDA Establishment XML",
   "description": "Lints FDA SPL establishment registration XML before it goes to the FDA ESG: DUNS format, LOINC document type, UUID setId, and the October 1 - December 31 annual registration window.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,5 +49,8 @@
     "directory": "spl-registration-lint"
   },
   "homepage": "https://getreadystack.com/tools/spl-registration-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-21"
+  }
 }
