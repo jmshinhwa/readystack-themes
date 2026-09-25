@@ -2,7 +2,7 @@
   "name": "payroll-rate-expiry-lint",
   "displayName": "Payroll Rate Expiry Lint",
   "description": "Finds payroll rate tables that still carry prior-year statutory constants or no effective date, and names the day each country resets.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -48,5 +48,8 @@
     "directory": "payroll-rate-expiry-lint"
   },
   "homepage": "https://getreadystack.com/tools/payroll-rate-expiry-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-19"
+  }
 }
