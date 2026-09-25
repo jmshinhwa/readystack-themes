@@ -60,8 +60,7 @@ The last two ask for a licence key. The free command finishes a file on its own.
 
 `CCD2: Check this folder` walks the whole storefront folder in one pass and `CCD2: Export evidence
 report` writes a dated CCD2 evidence report with per-file findings and rule ids. Licence key:
-https://buy.polar.sh/polar_cl_JnseGCHTAOcZ0AlitWyDYryhIwPKIvR6ZdDWi3IEOsc - 29 once, one licence key per person or team seat, 7-day full
-refund.
+https://buy.polar.sh/polar_cl_JnseGCHTAOcZ0AlitWyDYryhIwPKIvR6ZdDWi3IEOsc - 29 once, one licence key per person or team seat.
 
 ## Yardstick
 
