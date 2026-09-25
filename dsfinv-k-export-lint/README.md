@@ -55,7 +55,7 @@ Ohne Lizenzschlüssel wird die im Editor geöffnete CSV vollständig gegen alle 
 
 ## Auch im Browser
 
-Dieselbe Prüfmaschine, Byte für Byte, liegt als eine Seite unter <https://getreadystack.com/tools/dsfinv-k-export-lint>.
+Dieselbe Prüfmaschine, Byte für Byte, liegt als eine Seite unter <https://getreadystack.com/de/tools/dsfinv-k-export-lint>.
 
 ## Quellen
 
