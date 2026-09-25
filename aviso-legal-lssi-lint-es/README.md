@@ -54,7 +54,7 @@ Un pack de textos legales para web (aviso legal, privacidad y cookies) redactado
 
 ## El mismo motor, también en el navegador
 
-La versión web gratuita usa `engine.js` y `rules.json` sin modificar, byte a byte: https://getreadystack.com/tools/aviso-legal-lssi-lint-es
+La versión web gratuita usa `engine.js` y `rules.json` sin modificar, byte a byte: https://getreadystack.com/es/tools/aviso-legal-lssi-lint-es
 
 ## Aviso
 
