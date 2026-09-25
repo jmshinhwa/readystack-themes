@@ -2,7 +2,7 @@
   "name": "datenschutz-auskunft-lint",
   "displayName": "Datenschutz-Auskunft Linter (Art. 15 DSGVO)",
   "description": "Prueft Auskunftsschreiben-Vorlagen in Markdown auf die Pflichtangaben aus Art. 15 DSGVO, das Entgeltverbot, offene Platzhalter und die Monatsfrist ab Eingangsdatum.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -48,6 +48,6 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "datenschutz-auskunft-lint"
   },
-  "homepage": "https://getreadystack.com/tools/datenschutz-auskunft-lint",
+  "homepage": "https://getreadystack.com/de/tools/datenschutz-auskunft-lint",
   "icon": "icon.png"
 }
