@@ -48,7 +48,7 @@
 - 完全版 $29: ワークスペース内の索引簿をまとめて検査し、年度ごとの結果をCSVに書き出す（範囲）
 - 目安: 税理士へのスポット相談は1時間あたり10,000円前後です。
 
-ハブ: https://getreadystack.com/tools/denchoho-sakuin-check-2026
+ハブ: https://getreadystack.com/ja/tools/denchoho-sakuin-check-2026
 
 ## 免責
 
