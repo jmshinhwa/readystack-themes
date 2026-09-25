@@ -46,4 +46,4 @@ Externe Datenschutzberatung rechnet die Durchsicht eines Verzeichnisses in Deuts
 
 Die Erweiterung liest Markdown. Sie ersetzt keine Rechtsberatung und beurteilt nicht, ob eine Verarbeitung zulässig ist — sie prüft, ob die nach Art. 30 Abs. 1 DSGVO geforderten Angaben vorhanden, datiert und ausgefüllt sind. Art. 30 Abs. 5 DSGVO nimmt Unternehmen mit weniger als 250 Beschäftigten nur unter engen Bedingungen aus; im Zweifel gilt die Pflicht.
 
-Weitere Werkzeuge: https://getreadystack.com/tools/vvt-pruefer-art-30-dsgvo
+Weitere Werkzeuge: https://getreadystack.com/de/tools/vvt-pruefer-art-30-dsgvo
