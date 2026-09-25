@@ -73,7 +73,7 @@ je angefangene halbe Stunde.
 ## Online ohne Installation
 
 Dieselbe Engine, Byte für Byte, läuft als eine Seite im Browser:
-https://getreadystack.com/tools/rechnung-pflichtangaben-lint-de
+https://getreadystack.com/de/tools/rechnung-pflichtangaben-lint-de
 
 ## Hinweis
 
