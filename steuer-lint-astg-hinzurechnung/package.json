@@ -2,7 +2,7 @@
   "name": "steuer-lint-astg-hinzurechnung",
   "displayName": "Steuer-Lint: Hinzurechnungsbesteuerung AStG 2026",
   "description": "Prüft Steuer-Memos und KI-Entwürfe (Markdown, Text) auf veraltete AStG-Aussagen: 25 % statt 15 % Niedrigsteuer, Inländerbeherrschung, Gewerbesteuer, Gegenbeweis — 10 Regeln.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -50,5 +50,8 @@
     "directory": "steuer-lint-astg-hinzurechnung"
   },
   "homepage": "https://getreadystack.com/de/tools/steuer-lint-astg-hinzurechnung",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-24"
+  }
 }
