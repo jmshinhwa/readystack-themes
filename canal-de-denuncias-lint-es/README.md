@@ -55,7 +55,7 @@ señala lo que la ley nombra y el texto no.
 
 ## Versión web
 
-La misma lógica, sin instalar nada: <https://getreadystack.com/tools/canal-de-denuncias-lint-es>
+La misma lógica, sin instalar nada: <https://getreadystack.com/es/tools/canal-de-denuncias-lint-es>
 
 ## Privacidad
 
