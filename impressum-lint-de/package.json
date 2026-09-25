@@ -2,7 +2,7 @@
   "name": "impressum-lint-de",
   "displayName": "Impressum & Shop-Pflichtangaben Lint (DE)",
   "description": "Findet veraltete Paragrafen (TMG, TTDSG, RStV) und tote OS-Plattform-Links in Impressum, Footer und Shop-Templates im Repo. 14 Regeln, Stand 2026.",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -48,5 +48,8 @@
     "type": "git",
     "url": "https://github.com/jmshinhwa-ai/readystack"
   },
-  "homepage": "https://getreadystack.com/de/tools/impressum-lint-de"
+  "homepage": "https://getreadystack.com/de/tools/impressum-lint-de",
+  "readystack": {
+    "rulesDate": "2026-09-11"
+  }
 }
