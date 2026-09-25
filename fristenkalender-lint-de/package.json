@@ -1,0 +1,54 @@
+{
+  "name": "fristenkalender-lint-de",
+  "displayName": "Fristenkalender Lint: Fristen berechnen",
+  "description": "Prüft Fristenkalender-CSV gegen §§ 187–193 BGB und § 222 ZPO: Ereignistag, Monatsende, Wochenende und die Feiertage des richtigen Bundeslands. 12 rules, offline.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "Fristen berechnen",
+    "Fristenkalender",
+    "Fristberechnung",
+    "193 BGB",
+    "222 ZPO",
+    "Feiertage Bundesland",
+    "Kanzlei",
+    "Legal Tech"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "fristenkalenderLint.checkFile",
+        "title": "Fristenkalender Lint: Fristen berechnen: Check this file",
+        "category": "Fristenkalender Lint: Fristen berechnen"
+      },
+      {
+        "command": "fristenkalenderLint.checkWorkspace",
+        "title": "Fristenkalender Lint: Fristen berechnen: Sweep workspace and write report (licence)",
+        "category": "Fristenkalender Lint: Fristen berechnen"
+      },
+      {
+        "command": "fristenkalenderLint.enterKey",
+        "title": "Fristenkalender Lint: Fristen berechnen: Enter licence key",
+        "category": "Fristenkalender Lint: Fristen berechnen"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "fristenkalender-lint-de"
+  },
+  "homepage": "https://getreadystack.com/de/tools/fristenkalender-lint-de",
+  "icon": "icon.png"
+}
