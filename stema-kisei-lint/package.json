@@ -2,7 +2,7 @@
   "name": "stema-kisei-lint",
   "displayName": "ステマ規制チェック — アフィリエイト記事の広告表記リンター",
   "description": "アフィリエイト記事のMarkdown/HTMLを、景品表示法のステマ規制（2023年10月1日施行の指定告示）と消費者庁の運用基準で検査します。広告表記の欠落・冒頭不在・曖昧表現など12項目を行番号で指摘します。",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
