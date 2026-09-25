@@ -2,7 +2,7 @@
   "name": "hex-image-audit",
   "displayName": "Intel HEX & S-record Image Audit",
   "description": "Recomputes every checksum in a .hex/.s19 firmware image and flags bad records, overlaps, gaps, missing EOF and unaligned pages before the image reaches the programmer.",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -47,5 +47,8 @@
     "directory": "hex-image-audit"
   },
   "homepage": "https://getreadystack.com/tools/hex-image-audit",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-21"
+  }
 }
