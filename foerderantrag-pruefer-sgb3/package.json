@@ -2,7 +2,7 @@
   "name": "foerderantrag-pruefer-sgb3",
   "displayName": "Förderantrag-Prüfer: EGZ, KUG, Weiterbildung",
   "description": "Prüft Förderantrag-Entwürfe an die Arbeitsagentur (Markdown) gegen SGB III: Antrag vor Beginn (§324), Eingliederungszuschuss, Weiterbildung §82, Kurzarbeitergeld-Fristen, Gründungszuschuss.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,6 +49,6 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "foerderantrag-pruefer-sgb3"
   },
-  "homepage": "https://getreadystack.com/tools/foerderantrag-pruefer-sgb3",
+  "homepage": "https://getreadystack.com/de/tools/foerderantrag-pruefer-sgb3",
   "icon": "icon.png"
 }
