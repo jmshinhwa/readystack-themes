@@ -73,4 +73,4 @@ Die Erweiterung liest statisches Markup. Wird der Buttontext erst zur Laufzeit g
 Übersetzungsdatei geladen, sieht sie ihn nicht. Sie ersetzt keine Rechtsberatung; sie zeigt, welche
 Stellen einer Vorlage den genannten Vorschriften nicht entsprechen.
 
-Weitere Werkzeuge: https://getreadystack.com/de/tools/bestellabschluss-pflichten-de
+Weitere Werkzeuge: https://getreadystack.com/tools/bestellabschluss-pflichten-de
