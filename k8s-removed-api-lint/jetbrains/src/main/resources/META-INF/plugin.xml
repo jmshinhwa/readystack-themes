@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.k8s-removed-api-lint</id>
+  <name>Kubernetes Removed API Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>15 checks for the apiVersions kubectl no longer serves, on the manifest open in your editor</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Kubernetes Removed API Lint: Check This File</b>. Each finding appears on its line with the fix. 15 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/k8s-removed-api-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/k8s-removed-api-lint">getreadystack.com/tools/k8s-removed-api-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_k8s_removed_api_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.k8s-removed-api-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.k8s-removed-api-lint.check" class="com.getreadystack.p_k8s_removed_api_lint.RsCheckAction"
+            text="Kubernetes Removed API Lint: Check This File" description="Run Kubernetes Removed API Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
