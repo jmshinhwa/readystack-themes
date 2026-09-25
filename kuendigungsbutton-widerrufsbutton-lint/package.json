@@ -1,0 +1,55 @@
+{
+  "name": "kuendigungsbutton-widerrufsbutton-lint",
+  "displayName": "Kündigungsbutton & Widerrufsbutton Check (BGB)",
+  "description": "Prüft Shop- und Abo-Templates (HTML, Vue, JSX, Twig, Liquid) auf die drei Pflicht-Schaltflächen im BGB: zahlungspflichtig bestellen (§ 312j), Verträge hier kündigen (§ 312k), Vertrag widerrufen (§ 356",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "kündigungsbutton",
+    "widerrufsbutton",
+    "312k BGB",
+    "356a BGB",
+    "button-lösung",
+    "zahlungspflichtig bestellen",
+    "abmahnung",
+    "shopify",
+    "woocommerce"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "shopButtonLint.checkFile",
+        "title": "Kündigungsbutton & Widerrufsbutton Check (BGB): Check this file",
+        "category": "Kündigungsbutton & Widerrufsbutton Check (BGB)"
+      },
+      {
+        "command": "shopButtonLint.checkWorkspace",
+        "title": "Kündigungsbutton & Widerrufsbutton Check (BGB): Sweep workspace and write report (licence)",
+        "category": "Kündigungsbutton & Widerrufsbutton Check (BGB)"
+      },
+      {
+        "command": "shopButtonLint.enterKey",
+        "title": "Kündigungsbutton & Widerrufsbutton Check (BGB): Enter licence key",
+        "category": "Kündigungsbutton & Widerrufsbutton Check (BGB)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "kuendigungsbutton-widerrufsbutton-lint"
+  },
+  "homepage": "https://getreadystack.com/de/tools/kuendigungsbutton-widerrufsbutton-lint",
+  "icon": "icon.png"
+}
