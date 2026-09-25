@@ -5,7 +5,8 @@ var RULES = (typeof module !== 'undefined') ? require('./rules.json') : window.S
 var KNOWN = ['acknowledgments', 'canonical', 'contact', 'csaf', 'encryption',
              'expires', 'hiring', 'policy', 'preferred-languages'];
 var ONCE = ['expires', 'preferred-languages', 'canonical'];
-var RFC3339 = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/;
+/* RFC 3339 s5.6 NOTE: "T" and "Z" may be lower case (google.com and github.com publish ...t...z). */
+var RFC3339 = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/i;
 var DAY = 86400000;
 
 function ruleOf(id) {
@@ -71,7 +72,7 @@ function check(text, opts) {
   } else if (!RFC3339.test(exp.value)) {
     findings.push(finding('expires_invalid', exp.line, '(' + exp.value + ')'));
   } else {
-    var days = Math.round((Date.parse(exp.value) - now) / DAY);
+    var days = Math.round((Date.parse(exp.value.toUpperCase()) - now) / DAY);
     if (days < 0) findings.push(finding('expires_past', exp.line, '(expired ' + (-days) + ' days ago, on ' + exp.value.slice(0, 10) + ')'));
     else if (days > 365) findings.push(finding('expires_over_year', exp.line, '(' + days + ' days out)'));
   }
