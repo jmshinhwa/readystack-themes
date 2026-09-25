@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.oracle-jdk-license-gate</id>
+  <name>Oracle JDK License Gate</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds the Java lines in your build that Oracle now bills for, and the free line that replaces each one</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Oracle JDK License Gate: Check This File</b>. Each finding appears on its line with the fix. 9 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/oracle-jdk-license-gate</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/oracle-jdk-license-gate">getreadystack.com/tools/oracle-jdk-license-gate</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_oracle_jdk_license_gate.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.oracle-jdk-license-gate" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.oracle-jdk-license-gate.check" class="com.getreadystack.p_oracle_jdk_license_gate.RsCheckAction"
+            text="Oracle JDK License Gate: Check This File" description="Run Oracle JDK License Gate on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
