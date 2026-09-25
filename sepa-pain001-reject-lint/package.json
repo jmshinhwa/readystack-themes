@@ -2,7 +2,7 @@
   "name": "sepa-pain001-reject-lint",
   "displayName": "SEPA pain.001 Reject Lint",
   "description": "Lints SEPA Credit Transfer pain.001 XML against the 2019 ISO 20022 message version and EPC scheme rules: retired namespace, IBAN mod-97, CtrlSum/NbOfTxs, SEPA character set.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,5 +49,8 @@
     "directory": "sepa-pain001-reject-lint"
   },
   "homepage": "https://getreadystack.com/tools/sepa-pain001-reject-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-17"
+  }
 }
