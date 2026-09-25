@@ -42,7 +42,7 @@ async function checkFile() {
   vscode.window.showInformationMessage(n ? (n + ' finding' + (n === 1 ? '' : 's') + ' in ' + path.basename(ed.document.fileName) + ' — see the ' + S.title + ' output.') : S.clean);
 }
 async function checkWorkspace(ctx) {
-  // ★s158 2026-09-23 — ⚑정민님: 7일 무료를 없앤다 ("그냥 유료를 보여주면 사게끔 · 우리가 그렇게 하기로 했었거든").
+  // s158 2026-09-23 — no new free trial: the paid view is shown directly (trials already started are honoured).
   //   일회성 상품에서 전체 검사를 무료로 주면 ★돈 낼 일을 공짜로 끝낸다(규정 검사는 한 번 훑으면 그 일이 끝난다).
   //   ⇒ 무료 = 연 파일 하나의 답 전부(8% 법 · 절대 안 줄인다) · 유료 = 작업공간 전체 목록 + 보고서 파일.
   //   ★키를 묻는 그 순간에 ★손님 자신의 숫자(N건 · M개 파일)를 보여준다(소유 효과 · 열린 고리) · "써보기"는 7일 환불이 맡는다.
@@ -60,7 +60,7 @@ async function checkWorkspace(ctx) {
     const n = (res.findings || []).length; total += n; if (n) hit++;
     blocks.push(REPORT.toText(res, vscode.workspace.asRelativePath(u)));
   }
-  if (!total) { vscode.window.showInformationMessage('Swept ' + uris.length + ' files — ' + S.clean); return; }
+  if (!total) { const _m = 'Swept ' + uris.length + ' files — ' + S.clean; try { if (require('./auto.js').sweptClean(vscode, ctx, { msg: _m, title: S.title, slug: 'firebase-deploy-leak-audit', prefix: PREFIX })) return; } catch (e) {} vscode.window.showInformationMessage(_m); return; }   // s163 — the clean sweep offers the README badge (auto.js)
   if (!hasKey && !inTrial) {
     S.need_key = 'This workspace: ' + total + ' finding' + (total === 1 ? '' : 's') + ' in ' + hit + ' of ' + uris.length + ' files. The full list and the written report are the paid part of ' + S.title + ' — $29 once, one licence key per person or CI seat. Enter your licence key, or get one.';
     if (!(await lic.ensure(vscode, ctx, S))) return;              // ★유료 문턱: 범위(파일 하나 → 작업공간 전체) + 소유(보고서 파일)
