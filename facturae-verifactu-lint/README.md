@@ -32,7 +32,7 @@ Clave: <https://buy.polar.sh/polar_cl_OsiUcPT9Hbx1kJ35oWK3KjwcKxIRMfjV7HP581OIf8
 
 ## La misma comprobacion en el navegador
 
-El motor (`engine.js` + `rules.json`) es un unico fichero que corre igual dentro de VS Code y dentro de una pagina. La version web, gratuita y sin registro, esta en <https://getreadystack.com/tools/facturae-verifactu-lint> — pegas el XML y ves los mismos hallazgos, con las mismas lineas.
+El motor (`engine.js` + `rules.json`) es un unico fichero que corre igual dentro de VS Code y dentro de una pagina. La version web, gratuita y sin registro, esta en <https://getreadystack.com/es/tools/facturae-verifactu-lint> — pegas el XML y ves los mismos hallazgos, con las mismas lineas.
 
 ## Ficheros de ejemplo
 
