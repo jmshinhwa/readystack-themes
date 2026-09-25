@@ -71,7 +71,7 @@ Eine anwaltliche Durchsicht im Verwaltungsrecht wird üblicherweise mit
 ## Web-Version und Hub
 
 Dieselbe Prüflogik läuft ohne Installation unter
-<https://getreadystack.com/tools/antragsfrist-lint-vwvfg>.
+<https://getreadystack.com/de/tools/antragsfrist-lint-vwvfg>.
 
 ## Grenzen
 
