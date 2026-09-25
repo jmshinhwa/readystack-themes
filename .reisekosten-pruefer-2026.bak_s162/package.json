@@ -1,0 +1,53 @@
+{
+  "name": "reisekosten-pruefer-2026",
+  "displayName": "Reisekostenabrechnung Prüfer 2026 (DE)",
+  "description": "Prüft exportierte Reisekostenabrechnungen (CSV) gegen deutsches Reisekostenrecht: Verpflegungspauschale, Mahlzeitenkürzung, Dreimonatsfrist, Kilometersatz, Großbuchstabe M. 15 Checks, offline im Edito",
+  "version": "1.0.2",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "reisekostenabrechnung",
+    "reisekosten",
+    "verpflegungspauschale",
+    "lohnbuchhaltung",
+    "betriebspruefung",
+    "estg",
+    "lohnsteuer"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "reisekostenPruefer.checkFile",
+        "title": "Reisekostenabrechnung Prüfer 2026 (DE): Check this file",
+        "category": "Reisekostenabrechnung Prüfer 2026 (DE)"
+      },
+      {
+        "command": "reisekostenPruefer.checkWorkspace",
+        "title": "Reisekostenabrechnung Prüfer 2026 (DE): Sweep workspace and write report (licence)",
+        "category": "Reisekostenabrechnung Prüfer 2026 (DE)"
+      },
+      {
+        "command": "reisekostenPruefer.enterKey",
+        "title": "Reisekostenabrechnung Prüfer 2026 (DE): Enter licence key",
+        "category": "Reisekostenabrechnung Prüfer 2026 (DE)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "reisekosten-pruefer-2026"
+  },
+  "homepage": "https://getreadystack.com/tools/reisekosten-pruefer-2026",
+  "icon": "icon.png"
+}
