@@ -4,7 +4,7 @@
 
 Prüft Ihr Beteiligungsregister (`beteiligungen.csv`) Zeile für Zeile gegen die Mitteilungspflicht nach **§ 138 Abs. 2 AO** und sagt pro Auslandsgesellschaft: meldepflichtig ja/nein, nach welcher Nummer, bis zu welchem Datum – und ob die Frist schon verstrichen ist.
 
-Online ohne Installation: https://getreadystack.com/tools/auslandsbeteiligung-meldepflicht-check
+Online ohne Installation: https://getreadystack.com/de/tools/auslandsbeteiligung-meldepflicht-check
 
 **Maßstab:** Gesetzestext § 138 Abs. 2, 3 und 5 AO, § 170 Abs. 7 AO, § 379 Abs. 2 Nr. 1 AO (Bußgeld bis 25.000 €), Stand der Regeln 2026-09.
 
