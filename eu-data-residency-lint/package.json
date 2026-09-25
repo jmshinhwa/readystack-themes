@@ -2,7 +2,7 @@
   "name": "eu-data-residency-lint",
   "displayName": "EU Data Residency Lint (Terraform, GDPR Ch. V)",
   "description": "Finds cloud regions in your Terraform, Bicep and YAML that sit outside the EEA, and flags third-country transfers with no documented Chapter V basis.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
