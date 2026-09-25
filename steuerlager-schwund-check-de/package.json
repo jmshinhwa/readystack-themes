@@ -2,7 +2,7 @@
   "name": "steuerlager-schwund-check-de",
   "displayName": "Steuerlager-Schwund & Frist-Check (Alkohol)",
   "description": "Prueft die Lagerakte eines Steuerlagers: anerkannte Verlustsaetze nach § 13 AlkStV, steuerpflichtige Ueberfehlmenge in Euro und die Anmeldefristen nach § 19 AlkStG.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
