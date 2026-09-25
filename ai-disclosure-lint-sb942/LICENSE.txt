@@ -5,8 +5,7 @@ Free scope
   extension installed, and the online check at the product page is free without registration.
 
 Paid scope
-  Scan the whole workspace and export a dated evidence report (Markdown + CSV) you can hand to counsel or fail a CI build on. is the paid part. It asks for a licence key issued at purchase (one seat, one key;
-  7-day full refund, no questions). The key is checked against the payment provider and
+  Scan the whole workspace and export a dated evidence report (Markdown + CSV) you can hand to counsel or fail a CI build on. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
   cached locally for 30 days so it keeps working offline.
 
 Redistribution
