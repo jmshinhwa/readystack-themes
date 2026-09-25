@@ -2,7 +2,7 @@
   "name": "tdm-reservation-lint",
   "displayName": "TDM Reservation Lint",
   "description": "Lints robots.txt for the machine-readable TDM reservation EU law expects: dead crawler tokens, shadowed groups, missing AI trainers, and rules that never apply.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,5 +49,8 @@
     "url": "https://github.com/jmshinhwa-ai/readystack"
   },
   "homepage": "https://getreadystack.com/tools/tdm-reservation-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-13"
+  }
 }
