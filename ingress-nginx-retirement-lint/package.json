@@ -2,7 +2,7 @@
   "name": "ingress-nginx-retirement-lint",
   "displayName": "Ingress NGINX Retirement Lint - migrate to Gateway API",
   "description": "Finds retired ingress-nginx annotations and unsafe snippet directives in your Kubernetes Ingress YAML, and names the Gateway API field that replaces each one.",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -47,5 +47,8 @@
     "directory": "ingress-nginx-retirement-lint"
   },
   "homepage": "https://getreadystack.com/tools/ingress-nginx-retirement-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-17"
+  }
 }
