@@ -2,7 +2,7 @@
   "name": "bestellabschluss-pflichten-de",
   "displayName": "Bestellabschluss-Check DE: Button & Pflichten",
   "description": "Prüft Vorlagen der Bestellstrecke deutscher Onlineshops: Beschriftung des Bestellbuttons, Pflichtangaben über dem Button, Kündigungsbutton und vorangekreuzte Häkchen — 15 Regeln aus BGB, EGBGB, PAngV.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
