@@ -61,7 +61,7 @@ async function checkWorkspace(ctx) {
     const n = (res.findings || []).length; total += n; if (n) hit++;
     blocks.push(REPORT.toText(res, vscode.workspace.asRelativePath(u)));
   }
-  if (!total) { vscode.window.showInformationMessage('Swept ' + uris.length + ' files — ' + S.clean); return; }
+  if (!total) { const _m = 'Swept ' + uris.length + ' files — ' + S.clean; try { if (require('./auto.js').sweptClean(vscode, ctx, { msg: _m, title: S.title, slug: 'pyproject-release-gate', prefix: PREFIX })) return; } catch (e) {} vscode.window.showInformationMessage(_m); return; }   // s163 — the clean sweep offers the README badge (auto.js)
   if (!hasKey && !inTrial) {
     S.need_key = 'This workspace: ' + total + ' finding' + (total === 1 ? '' : 's') + ' in ' + hit + ' of ' + uris.length + ' files. The full list and the written report are the paid part of ' + S.title + ' — $29 once, one licence key per person or CI seat. Enter your licence key, or get one.';
     if (!(await lic.ensure(vscode, ctx, S))) return;              // ★유료 문턱: 범위(파일 하나 → 작업공간 전체) + 소유(보고서 파일)
