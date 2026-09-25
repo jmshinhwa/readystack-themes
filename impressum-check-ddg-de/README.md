@@ -4,7 +4,7 @@
 
 Diese Erweiterung liest eine Impressum-Seite im Editor und meldet, welche Pflichtangabe fehlt, falsch steht oder auf eine Rechtsgrundlage zeigt, die es nicht mehr gibt. Sie arbeitet offline auf der geöffneten Datei; kein Upload, keine Registrierung.
 
-Hub: https://getreadystack.com/de/tools/impressum-check-ddg-de
+Hub: https://getreadystack.com/tools/impressum-check-ddg-de
 
 ## Warum das 2026 wieder wichtig ist
 
