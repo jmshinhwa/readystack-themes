@@ -1,0 +1,93 @@
+[
+ {
+  "id": "pan-in-log",
+  "sev": "error",
+  "kind": "sink",
+  "code": "(?<![a-z])(card_?num(ber)?|card_?no|cc_?num(ber)?|credit_?card(_?num(ber)?)?|pan|primary_?account(_?number)?|account_?number)(?![a-z])",
+  "unless": "\\[\\s*-4\\s*:\\s*\\]|last_?4|last_?four|mask|truncat|redact",
+  "req": "PCI DSS v4.0.1 Req 3.5.1 (PAN rendered unreadable anywhere it is stored, logs included)",
+  "msg": "A card number (PAN) variable reaches a log, print or exception message.",
+  "fix": "log card_number[-4:] or the processor token, never the full PAN"
+ },
+ {
+  "id": "cvv-in-log",
+  "sev": "error",
+  "kind": "sink",
+  "code": "(?<![a-z])(cvv2?|cvc2?|cvn|csc|security_?code|card_?code)(?![a-z])",
+  "req": "PCI DSS v4.0.1 Req 3.3.1.2 (card verification code not retained after authorization)",
+  "msg": "The card verification code (CVV/CVC) reaches a log, print or exception message.",
+  "fix": "drop the field before any logger or error handler sees it; log nothing about it"
+ },
+ {
+  "id": "track-in-log",
+  "sev": "error",
+  "kind": "sink",
+  "code": "(?<![a-z])(track_?[12]|track_?data|mag_?stripe|swipe_?data)(?![a-z])",
+  "req": "PCI DSS v4.0.1 Req 3.3.1.1 (full track data not retained after authorization)",
+  "msg": "Magnetic-stripe track data reaches a log, print or exception message.",
+  "fix": "pass track data straight to the processor and never write it anywhere"
+ },
+ {
+  "id": "pin-in-log",
+  "sev": "error",
+  "kind": "sink",
+  "code": "(?<![a-z])(pin|pin_?block|pin_?code)(?![a-z])",
+  "req": "PCI DSS v4.0.1 Req 3.3.1.3 (PIN and PIN block not retained after authorization)",
+  "msg": "A PIN or PIN block reaches a log, print or exception message.",
+  "fix": "remove the PIN from the message; log only that PIN entry happened"
+ },
+ {
+  "id": "password-in-log",
+  "sev": "error",
+  "kind": "sink",
+  "code": "(?<![a-z])(passw(or)?d|pwd|passphrase)(?![a-z])",
+  "req": "PCI DSS v4.0.1 Req 8.3.2 (authentication factors unreadable during transmission and storage)",
+  "msg": "A password value reaches a log, print or exception message.",
+  "fix": "log the user id and the outcome only, never the password"
+ },
+ {
+  "id": "auth-header-in-log",
+  "sev": "error",
+  "kind": "sink",
+  "code": "(?<![a-z])(authorization|bearer|api_?key|secret(_?key)?|client_?secret|access_?token|refresh_?token)(?![a-z])|\\.headers(?![a-z_])",
+  "unless": "mask|redact",
+  "req": "PCI DSS v4.0.1 Req 8.3.2 (authentication factors unreadable during transmission and storage)",
+  "msg": "Request headers, an API key or a bearer token reach a log, print or exception message.",
+  "fix": "log a header allow-list (e.g. content-type, request id) instead of request.headers"
+ },
+ {
+  "id": "request-dump-in-log",
+  "sev": "warning",
+  "kind": "sink",
+  "code": "request\\.(json|data|body|form|POST|GET|values|get_json\\s*\\()|json\\.dumps\\(\\s*(request|payload|body|data)\\b",
+  "req": "PCI DSS v4.0.1 Req 3.3.1 (sensitive authentication data not retained after authorization)",
+  "msg": "A whole request body is logged; on a payment route it carries PAN and CVV.",
+  "fix": "log named, non-sensitive fields (order id, amount, currency) instead of the body"
+ },
+ {
+  "id": "locals-dump-in-log",
+  "sev": "warning",
+  "kind": "sink",
+  "code": "locals\\s*\\(\\s*\\)|(?<![a-z_])vars\\s*\\(|__dict__",
+  "req": "PCI DSS v4.0.1 Req 3.3.1 (sensitive authentication data not retained after authorization)",
+  "msg": "locals(), vars() or __dict__ is logged, which writes every variable in scope, card fields included.",
+  "fix": "log the two or three fields you need by name"
+ },
+ {
+  "id": "pan-literal-in-log",
+  "sev": "error",
+  "kind": "luhn",
+  "req": "PCI DSS v4.0.1 Req 3.5.1 (PAN rendered unreadable anywhere it is stored, logs included)",
+  "msg": "A 13-19 digit number that passes the Luhn check sits inside a log, print or exception message.",
+  "fix": "replace it with the last four digits; keep test card numbers out of log text"
+ },
+ {
+  "id": "sentry-default-pii",
+  "sev": "warning",
+  "kind": "line",
+  "code": "send_default_pii\\s*=\\s*True",
+  "req": "PCI DSS v4.0.1 Req 3.3.1 and 3.5.1 (card data sent to a third-party error tracker is stored there)",
+  "msg": "Sentry is initialised with send_default_pii=True, which attaches headers, cookies and user data to every event.",
+  "fix": "set send_default_pii=False and scrub card fields in before_send"
+ }
+]
