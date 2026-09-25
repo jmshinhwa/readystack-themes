@@ -46,7 +46,7 @@ The `_fixtures/dirty.rpy` shipped with this extension is 28 lines and compiles w
 
 Free, with no key and no counter: one `.rpy` file, every finding in it, every fix. That is a finished job for one file.
 
-The licence adds the other axis - scope and a document you keep: **Sweep workspace and write report** walks every `.rpy` file in the project in one pass and writes a release report for CI, a publisher or your own archive. $29 once, one key per person or CI seat, seven-day full refund.
+The licence adds the other axis - scope and a document you keep: **Sweep workspace and write report** walks every `.rpy` file in the project in one pass and writes a release report for CI, a publisher or your own archive. $29 once, one key per person or CI seat.
 
 Yardstick: putting one title on Steam costs $100 in Steam Direct fees, before a single crash report arrives.
 
