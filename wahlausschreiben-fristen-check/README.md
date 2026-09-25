@@ -4,7 +4,7 @@
 
 **Prüft das Wahlausschreiben einer Betriebsratswahl, bevor es aushängt:** Einspruchs- und Vorschlagsfrist, sechs Wochen bis zur Stimmabgabe, Sitzzahl, Mindestsitze des Geschlechts in der Minderheit und Stützunterschriften. Jeder Befund nennt die Zeile, das richtige Datum oder die richtige Zahl und die Fundstelle.
 
-Werkzeugseite und Web-Version: https://getreadystack.com/tools/wahlausschreiben-fristen-check
+Werkzeugseite und Web-Version: https://getreadystack.com/de/tools/wahlausschreiben-fristen-check
 
 Maßstab: Eine Wahlvorstandsschulung kostet bei Seminaranbietern zwischen 169 € und 999 € je Teilnehmer zzgl. MwSt. – dieser Check ersetzt keine Schulung, er rechnet nur die Zahlen im Aushang nach.
 
