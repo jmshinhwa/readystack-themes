@@ -2,7 +2,7 @@
   "name": "kassenbeleg-tse-lint",
   "displayName": "Kassenbeleg-Lint — KassenSichV TSE-Pflichtangaben",
   "description": "Prüft Kassenbeleg-Vorlagen (HTML, Handlebars, JSON) auf die Pflichtangaben nach § 6 KassenSichV und § 146a AO — Transaktionsnummer, Signaturzähler, Prüfwert, Seriennummer, Vorgangszeiten.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -50,5 +50,8 @@
     "directory": "kassenbeleg-tse-lint"
   },
   "homepage": "https://getreadystack.com/de/tools/kassenbeleg-tse-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-19"
+  }
 }
