@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.model-card-lint-gpai</id>
+  <name>Model Card Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Lints a Hugging Face model card against the Hub metadata spec and the EU AI Act general-purpose AI documentation duties, line by line.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Model Card Lint: Check This File</b>. Each finding appears on its line with the fix. 28 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/model-card-lint-gpai</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/model-card-lint-gpai">getreadystack.com/tools/model-card-lint-gpai</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_model_card_lint_gpai.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.model-card-lint-gpai" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.model-card-lint-gpai.check" class="com.getreadystack.p_model_card_lint_gpai.RsCheckAction"
+            text="Model Card Lint: Check This File" description="Run Model Card Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
