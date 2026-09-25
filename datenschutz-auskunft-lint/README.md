@@ -69,4 +69,4 @@ Die Erweiterung prüft Text, nicht Ihre Aktenlage. Ob eine Angabe inhaltlich sti
 § 34 BDSG im Einzelfall wirklich greift und ob die Kopie vollständig ist, bleibt die
 Entscheidung der verantwortlichen Stelle. Die Erweiterung ist keine Rechtsberatung.
 
-Alle Werkzeuge: https://getreadystack.com/tools/datenschutz-auskunft-lint
+Alle Werkzeuge: https://getreadystack.com/de/tools/datenschutz-auskunft-lint
