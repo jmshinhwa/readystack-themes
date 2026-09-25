@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.optout-signal-lint</id>
+  <name>Opt-Out Signal Lint for US State Privacy Laws</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds the ad and analytics code that keeps firing after a visitor’s browser has already sent Global Privacy Control.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Opt-Out Signal Lint for US State Privacy Laws: Check This File</b>. Each finding appears on its line with the fix. 20 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/optout-signal-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/optout-signal-lint">getreadystack.com/tools/optout-signal-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_optout_signal_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.optout-signal-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.optout-signal-lint.check" class="com.getreadystack.p_optout_signal_lint.RsCheckAction"
+            text="Opt-Out Signal Lint for US State Privacy Laws: Check This File" description="Run Opt-Out Signal Lint for US State Privacy Laws on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
