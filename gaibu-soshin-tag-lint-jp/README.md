@@ -44,7 +44,7 @@ $29（一度きり・1人または1チーム席につきライセンスキー1�
 
 ## ハブ
 
-https://getreadystack.com/tools/gaibu-soshin-tag-lint-jp
+https://getreadystack.com/ja/tools/gaibu-soshin-tag-lint-jp
 
 ## ライセンス
 
