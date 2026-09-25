@@ -57,7 +57,7 @@ Laufzeit); sie liefern Texte für die veröffentlichte Seite und lesen nicht das
 ## Webversion
 
 Dieselben 17 Regeln, dieselbe Engine, ohne Installation:
-https://getreadystack.com/tools/impressum-lint-de
+https://getreadystack.com/de/tools/impressum-lint-de
 
 ## Hinweis
 
