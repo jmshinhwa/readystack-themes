@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 /** Runs `npx @readystack/view-in-browser-leak-audit <file>` (the same engine as the VS Code extension / CLI) on files the user asked for. */
 public class RsAnnotator extends ExternalAnnotator<RsAnnotator.Input, List<RsAnnotator.Finding>> {
   static final String NPM = "@readystack/view-in-browser-leak-audit";
-  static final String NAME = "View in Browser — Publish Leak Audit (HTML)";
+  static final String NAME = "View-in-Browser Leak Audit";
   static final String URL = "https://getreadystack.com/tools/view-in-browser-leak-audit";
   static final String PRICE = "29";
   static final Set<String> AUTO = new HashSet<>(Arrays.asList());
