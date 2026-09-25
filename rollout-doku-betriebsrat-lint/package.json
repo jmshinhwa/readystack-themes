@@ -2,7 +2,7 @@
   "name": "rollout-doku-betriebsrat-lint",
   "displayName": "Rollout-Doku Lint – Betriebsrat & IT-Einführung",
   "description": "Prüft Markdown-Systembeschreibungen vor dem Go-Live eines IT-Tools: fehlt, was der Betriebsrat nach § 87 Abs. 1 Nr. 6 und § 90 BetrVG braucht? Mit KI-, Protokoll- und Löschfristen-Check.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
