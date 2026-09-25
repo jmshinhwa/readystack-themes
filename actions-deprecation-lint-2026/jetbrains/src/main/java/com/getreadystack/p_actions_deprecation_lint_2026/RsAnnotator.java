@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 /** Runs `npx @readystack/actions-deprecation-lint-2026 <file>` (the same engine as the VS Code extension / CLI) on files the user asked for. */
 public class RsAnnotator extends ExternalAnnotator<RsAnnotator.Input, List<RsAnnotator.Finding>> {
   static final String NPM = "@readystack/actions-deprecation-lint-2026";
-  static final String NAME = "GitHub Actions Deprecation Lint: the 2026 runner and action EOL";
+  static final String NAME = "Actions EOL Lint";
   static final String URL = "https://getreadystack.com/tools/actions-deprecation-lint-2026";
   static final String PRICE = "29";
   static final Set<String> AUTO = new HashSet<>(Arrays.asList());
