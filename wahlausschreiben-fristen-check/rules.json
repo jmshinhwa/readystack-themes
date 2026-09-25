@@ -1,0 +1,16 @@
+[
+ {"id": "WA01", "check": "erlass_datum", "sev": "error", "title": "Datum des Erlasses fehlt", "ref": "§ 3 Abs. 2 WO", "holidays_bund": ["01-01", "05-01", "10-03", "12-25", "12-26", "easter-2", "easter+1", "easter+39", "easter+50"]},
+ {"id": "WA02", "check": "stimmabgabe_datum", "sev": "error", "title": "Tag der Stimmabgabe fehlt", "ref": "§ 3 Abs. 2 WO"},
+ {"id": "WA03", "check": "sechs_wochen", "sev": "error", "title": "Wahlausschreiben später als sechs Wochen vor dem ersten Tag der Stimmabgabe", "ref": "§ 3 Abs. 1 WO", "weeks": 6},
+ {"id": "WA04", "check": "einspruch_frist_fehlt", "sev": "error", "title": "Letzter Tag der Einspruchsfrist gegen die Wählerliste nicht angegeben", "ref": "§ 3 Abs. 2 WO, § 4 Abs. 1 WO"},
+ {"id": "WA05", "check": "einspruch_frist", "sev": "error", "title": "Einspruchsfrist falsch berechnet (zwei Wochen, § 193 BGB)", "ref": "§ 4 Abs. 1 WO, § 41 WO, §§ 187, 188, 193 BGB", "days": 14},
+ {"id": "WA06", "check": "vorschlag_frist_fehlt", "sev": "error", "title": "Letzter Tag der Frist für Wahlvorschläge nicht angegeben", "ref": "§ 3 Abs. 2 WO, § 6 Abs. 1 WO"},
+ {"id": "WA07", "check": "vorschlag_frist", "sev": "error", "title": "Frist für Wahlvorschläge falsch berechnet (zwei Wochen, § 193 BGB)", "ref": "§ 6 Abs. 1 WO, § 41 WO, §§ 187, 188, 193 BGB", "days": 14},
+ {"id": "WA08", "check": "sitzzahl", "sev": "error", "title": "Zahl der Betriebsratsmitglieder passt nicht zur Staffel", "ref": "§ 9 BetrVG"},
+ {"id": "WA09", "check": "mindestsitze", "sev": "error", "title": "Mindestsitze des Geschlechts in der Minderheit falsch (Höchstzahlverfahren)", "ref": "§ 15 Abs. 2 BetrVG, § 5 WO"},
+ {"id": "WA10", "check": "stuetzunterschriften", "sev": "error", "title": "Mindestzahl der Stützunterschriften falsch", "ref": "§ 14 Abs. 4 BetrVG"},
+ {"id": "WA11", "check": "auszaehlung", "sev": "warning", "title": "Ort, Tag und Zeit der öffentlichen Stimmauszählung fehlen", "ref": "§ 3 Abs. 2 WO, § 13 WO"},
+ {"id": "WA12", "check": "waehlerliste_ort", "sev": "warning", "title": "Ort, an dem Wählerliste und Wahlordnung ausliegen, fehlt", "ref": "§ 3 Abs. 2 WO, § 2 Abs. 4 WO"},
+ {"id": "WA13", "check": "wahlvorstand_adresse", "sev": "warning", "title": "Betriebsadresse des Wahlvorstands fehlt", "ref": "§ 3 Abs. 2 WO"},
+ {"id": "WA14", "check": "vereinfacht_pflicht", "sev": "warning", "title": "5 bis 100 Wahlberechtigte: vereinfachtes Wahlverfahren ist Pflicht", "ref": "§ 14a BetrVG, §§ 28 ff. WO"}
+]
