@@ -60,7 +60,7 @@ columnas.
 
 ## Las mismas reglas, gratis en el navegador
 
-https://getreadystack.com/tools/nomina-es-cotizacion-2026
+https://getreadystack.com/es/tools/nomina-es-cotizacion-2026
 
 ## Versión completa
 
