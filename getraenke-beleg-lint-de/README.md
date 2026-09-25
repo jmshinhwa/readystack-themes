@@ -7,7 +7,7 @@ Dieses Lint liest die Rechnungs-, Lieferschein- und Begleitdokument-Vorlagen im 
 Alkoholsteuer fehlt oder das falsche Format hat. Es prüft Text, nicht Buchungen: genau das,
 was im Shop-Repository liegt und beim nächsten Deployment an Kundinnen und Kunden geht.
 
-Hub: https://getreadystack.com/tools/getraenke-beleg-lint-de
+Hub: https://getreadystack.com/de/tools/getraenke-beleg-lint-de
 
 ## Was geprüft wird
 
