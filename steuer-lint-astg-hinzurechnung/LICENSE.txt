@@ -1,0 +1,15 @@
+Steuer-Lint: Hinzurechnungsbesteuerung AStG 2026 — Licence
+
+Free scope
+  Prüft das geöffnete Memo und den ganzen Ordner gegen 10 Regeln zur Hinzurechnungsbesteuerung und zeigt je Fund die Zeile, den Paragrafen und seit wann die geltende Fassung gilt. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Exportiert das datierte Prüfprotokoll je Mandantenakte mit Fundstelle und Paragraf je Fund — für Vier-Augen-Prüfung, Kanzleiakte und Nutzung im Team. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
