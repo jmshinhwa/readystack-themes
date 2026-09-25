@@ -2,7 +2,7 @@
   "name": "dsfinv-k-export-lint",
   "displayName": "CSV Kassenprüfer — DSFinV-K Export Lint",
   "description": "Prueft eine DSFinV-K-CSV aus dem Kassenexport gegen die amtliche Spaltenliste, Wertelisten und Formate der DSFinV-K 2.4 - direkt im Editor.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -48,6 +48,6 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "dsfinv-k-export-lint"
   },
-  "homepage": "https://getreadystack.com/tools/dsfinv-k-export-lint",
+  "homepage": "https://getreadystack.com/de/tools/dsfinv-k-export-lint",
   "icon": "icon.png"
 }
