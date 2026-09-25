@@ -2,7 +2,7 @@
   "name": "denchoho-sakuinbo-lint-jp",
   "displayName": "電帳法 索引簿リンター (電子取引データ検索要件)",
   "description": "電子取引データの索引簿(CSV)を電子帳簿保存法の検索要件3項目とファイル名規則で行ごとに検査します。日本の個人事業主・小規模法人の経理向け。",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,6 +49,6 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "denchoho-sakuinbo-lint-jp"
   },
-  "homepage": "https://getreadystack.com/tools/denchoho-sakuinbo-lint-jp",
+  "homepage": "https://getreadystack.com/ja/tools/denchoho-sakuinbo-lint-jp",
   "icon": "icon.png"
 }
