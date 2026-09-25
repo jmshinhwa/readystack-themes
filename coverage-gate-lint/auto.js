@@ -10,6 +10,8 @@
 'use strict';
 const path = require('path');
 const https = require('https');
+const crypto = require('crypto');   // s163b — SHA-256 of every file in the dated all-clear record
+const fs = require('fs');
 const STOP = new Set(['lint', 'linter', 'check', 'checker', 'audit', 'auditor', 'gate', 'guard', 'pruefer', 'prufer', 'kit', 'pack', 'snippets',
   'clock', 'the', 'and', 'for', 'with', 'tool', 'tools', 'report', 'config', 'rules', 'rule', 'lints']);
 function tokens(slug) { return String(slug || '').toLowerCase().split(/[^a-z0-9]+/).filter(function (w) { return w.length >= 4 && !STOP.has(w) && !/^\d+$/.test(w); }); }
@@ -26,11 +28,11 @@ function relevant(o) {
 //   say it once, dated, with the rule count, and offer the dated all-clear report (the paid sweep). Only when this
 //   workspace has files the checker targets (⛔no reassurance about files it never read).
 var CLEAR_T = {
-  en: ['{t}: 0 issues in {f} file{s} of this workspace, checked against {r} rules on {d}. A dated record is what an auditor or a client asks for.', 'Get the dated all-clear report (${p})', 'Save the dated all-clear report'],
-  de: ['{t}: 0 Befunde in {f} Datei(en) dieses Arbeitsbereichs, geprüft gegen {r} Regeln am {d}. Prüfer und Kunden verlangen einen datierten Nachweis.', 'Datierten Prüfbericht holen ({p} $)', 'Datierten Prüfbericht speichern'],
-  ja: ['{t}: このワークスペースの {f} ファイルで問題 0 件（{d} 時点・{r} 項目で確認）。監査や取引先が求めるのは日付入りの記録です。', '日付入りの確認レポートを取得（${p}）', '日付入りの確認レポートを保存'],
-  es: ['{t}: 0 problemas en {f} archivo(s) de este espacio de trabajo, revisados con {r} reglas el {d}. Un auditor o un cliente pide un registro fechado.', 'Obtener el informe fechado ({p} US$)', 'Guardar el informe fechado'],
-  pt: ['{t}: 0 problemas em {f} arquivo(s) deste workspace, verificados com {r} regras em {d}. Auditores e clientes pedem um registro datado.', 'Obter o relatório datado (US$ {p})', 'Salvar o relatório datado']
+  en: ['{t}: 0 issues in {f} file{s} of this workspace, checked against {r} rules on {d}. A dated record is what an auditor or a client asks for.', 'Get the dated all-clear report — ${p}', 'Save the dated all-clear report'],
+  de: ['{t}: 0 Befunde in {f} Datei(en) dieses Arbeitsbereichs, geprüft gegen {r} Regeln am {d}. Prüfer und Kunden verlangen einen datierten Nachweis.', 'Datierten Prüfbericht holen — {p} $', 'Datierten Prüfbericht speichern'],
+  ja: ['{t}: このワークスペースの {f} ファイルで問題 0 件（{d} 時点・{r} 項目で確認）。監査や取引先が求めるのは日付入りの記録です。', '日付入りの確認レポートを取得 — ${p}', '日付入りの確認レポートを保存'],
+  es: ['{t}: 0 problemas en {f} archivo(s) de este espacio de trabajo, revisados con {r} reglas el {d}. Un auditor o un cliente pide un registro fechado.', 'Obtener el informe fechado — {p} US$', 'Guardar el informe fechado'],
+  pt: ['{t}: 0 problemas em {f} arquivo(s) deste workspace, verificados com {r} regras em {d}. Auditores e clientes pedem um registro datado.', 'Obter o relatório datado — US$ {p}', 'Salvar o relatório datado']
 };
 function clearWords(vscode, o) {
   var lang = String((vscode && vscode.env && vscode.env.language) || 'en').slice(0, 2).toLowerCase();
@@ -99,6 +101,7 @@ async function copyBadge(vscode, h, day) {
 }
 function sweptClean(vscode, ctx, o) {   // extension.js checkWorkspace: clean branch hands its message here (badge button + clean day)
   if (!vscode || !vscode.window || !o || !o.msg || !o.slug) return false;
+  if (_h && ctx && (!o.prefix || o.prefix === _h.PREFIX)) { clearReport(ctx, _h, true, o.msg); return true; }   // s163b — sell/deliver the record
   var h = { vscode: vscode, slug: o.slug, title: o.title || o.slug, PREFIX: o.prefix || '', homepage: o.homepage || pkgHome(), reviewDelayMs: o.reviewDelayMs, quietMs: o.quietMs, today: o.today || null };
   var day = h.today || today(), B = tr(BADGE_T, vscode);
   _toastAt = Date.now();
@@ -137,6 +140,92 @@ async function askReview(ctx, h) {
   else if (pick === T[2]) send(vscode, h.slug, { t: 'paywall', slug: h.slug, src: 'vsix_review', why: 'review_no' });
   return { asked: true, pick: pick || null, url: url };
 }
+// ★s163b 2026-09-25 (boss decision) — the clean-result button SELLS and DELIVERS the dated all-clear report; never a dead toast.
+//   no valid key → the existing key panel (license.js ensure: enter key · $29 once · team $149 · Whop annual keys validate via /api/lic)
+//     with the customer's own clean numbers, 5 languages + use ping why=clear_report.
+//   valid key → the paid sweep's report file (<PREFIX>-report.md, same header + report.js blocks) plus the record: tool + version,
+//     rules count + rules date, UTC time, every checked file with its SHA-256, "0 issues", and the not-a-certification line → opened.
+var KEY_T = {
+  en: ['{t}: 0 issues in {f} file{s}, checked against {r} rules on {d}. The dated all-clear report (tool version, rules date, UTC time and the SHA-256 of every file checked) is the paid part: ${p} once, one licence key per person or CI seat. Enter your licence key, or get one.',
+    'Enter licence key', 'Get a licence — ${p}', 'Licence accepted. Thank you.', 'That key did not validate. Check for typos, or get a licence.', 'Dated all-clear report written to {path}.'],
+  de: ['{t}: 0 Befunde in {f} Datei(en), geprüft gegen {r} Regeln am {d}. Der datierte Prüfbericht (Tool-Version, Regelstand, UTC-Zeit und SHA-256 jeder geprüften Datei) ist der kostenpflichtige Teil: {p} $ einmalig, ein Lizenzschlüssel pro Person oder CI-Platz. Schlüssel eingeben oder einen holen.',
+    'Lizenzschlüssel eingeben', 'Lizenz holen — {p} $', 'Lizenz akzeptiert. Danke.', 'Dieser Schlüssel war nicht gültig. Bitte auf Tippfehler prüfen oder eine Lizenz holen.', 'Datierter Prüfbericht gespeichert: {path}.'],
+  ja: ['{t}: {f} ファイルで問題 0 件（{d}・{r} 項目で確認）。日付入りの確認レポート（ツールの版・ルールの日付・UTC 時刻・確認した全ファイルの SHA-256）は有料部分です：${p} 買い切り、1 人または CI 1 席につきライセンスキー 1 つ。キーを入力するか、購入してください。',
+    'ライセンスキーを入力', 'ライセンスを購入 — ${p}', 'ライセンスを確認しました。ありがとうございます。', 'このキーは確認できませんでした。入力ミスを確かめるか、ライセンスを購入してください。', '日付入りの確認レポートを保存しました：{path}'],
+  es: ['{t}: 0 problemas en {f} archivo(s), revisados con {r} reglas el {d}. El informe fechado (versión de la herramienta, fecha de las reglas, hora UTC y el SHA-256 de cada archivo revisado) es la parte de pago: {p} US$ una vez, una clave de licencia por persona o puesto de CI. Introduce tu clave o consigue una.',
+    'Introducir clave de licencia', 'Obtener licencia — {p} US$', 'Licencia aceptada. Gracias.', 'Esa clave no se validó. Revisa si hay errores o consigue una licencia.', 'Informe fechado guardado en {path}.'],
+  pt: ['{t}: 0 problemas em {f} arquivo(s), verificados com {r} regras em {d}. O relatório datado (versão da ferramenta, data das regras, hora UTC e o SHA-256 de cada arquivo verificado) é a parte paga: US$ {p} uma vez, uma chave de licença por pessoa ou posto de CI. Insira sua chave ou obtenha uma.',
+    'Inserir chave de licença', 'Obter licença — US$ {p}', 'Licença aceita. Obrigado.', 'Essa chave não foi validada. Verifique erros de digitação ou obtenha uma licença.', 'Relatório datado salvo em {path}.']
+};
+var _h = null;   // the running extension's handle (start() sets it) — the clean branch of checkWorkspace reuses it
+function loadMod(h, name) { try { return require(path.join(h.extDir || __dirname, name)); } catch (e) { return null; } }
+function rulesDate(h) {
+  var p = loadMod(h, 'package.json');
+  if (p && p.readystack && p.readystack.rulesDate) return String(p.readystack.rulesDate);   // talk_restamp / scaffold stamp it from the rules file
+  var f = globalThis.__yjFeed; if (f && (f.updated || f.date)) return String(f.updated || f.date).slice(0, 10);
+  try { return fs.statSync(path.join(h.extDir || __dirname, 'rules.json')).mtime.toISOString().slice(0, 10) + ' (file time)'; } catch (e) { return 'not recorded'; }
+}
+async function scan(h, limit) {   // one scan for the hint and the record: target files only (broad globs: product word in the name)
+  var vscode = h.vscode, day = new Date().toISOString().slice(0, 10), out = { files: 0, total: 0, clean: 0, list: [] };
+  var uris = await vscode.workspace.findFiles(h.GLOB, '**/{node_modules,.git,dist,build,vendor}/**', limit || 300);
+  for (var i = 0; i < uris.length; i++) {
+    var u = uris[i], b, text;
+    try { b = await vscode.workspace.fs.readFile(u); if (b.byteLength > 512 * 1024) continue; text = Buffer.from(b).toString('utf8'); } catch (e) { continue; }
+    var res; try { res = h.E.engine.check(text, { today: day, path: u.fsPath }); } catch (e) { continue; }
+    var n = ((res && res.findings) || []).length;
+    if (!n) {
+      if (!isBroad(h.GLOB) || h.toks.some(function (t) { return path.basename(u.fsPath).toLowerCase().indexOf(t) >= 0; })) {
+        out.clean++; out.list.push({ uri: u, res: res, sha: crypto.createHash('sha256').update(Buffer.from(b)).digest('hex') });
+      }
+      continue;
+    }
+    if (!relevant({ glob: h.GLOB, slugTokens: h.toks, fileName: u.fsPath, findings: n, rules: h.R })) continue;
+    out.files++; out.total += n;
+  }
+  return out;
+}
+async function clearReport(ctx, h, fromSweep, sweptMsg) {
+  var vscode = h.vscode, st = ctx.globalState;
+  try {
+    var folders = vscode.workspace.workspaceFolders; if (!folders || !folders.length) return null;
+    var sc = await scan(h, 2000), day = today(), R = ruleCount(h.E) || h.R, n = sc.list.length;
+    var rel = function (u) { try { return vscode.workspace.asRelativePath(u); } catch (e) { return path.basename(u.fsPath || String(u)); } };
+    if (sc.total || !n) {                                   // not an all-clear at this moment
+      if (fromSweep) { _toastAt = Date.now(); vscode.window.showInformationMessage(sweptMsg || (h.title + ': clean.')); return { skipped: true }; }
+      await vscode.commands.executeCommand(h.PREFIX + '.checkWorkspace'); return { handed: true };   // findings now → the paid sweep lists them
+    }
+    var L = tr(KEY_T, vscode);
+    var fill = function (x, p2) { return String(x).replace('{t}', h.title).replace('{f}', n).replace('{s}', n === 1 ? '' : 's').replace('{r}', R).replace('{d}', day).replace('{p}', h.price || 29).replace('{path}', p2 || ''); };
+    var S = { title: h.title, need_key: fill(L[0]), enter_key: L[1], buy: fill(L[2]), key_ok: L[3], key_bad: L[4] };
+    var lic = loadMod(h, 'license.js');
+    if (!lic || !lic.ensure) { if (fromSweep) { vscode.window.showInformationMessage(sweptMsg || (h.title + ': clean.')); return { skipped: true }; } await vscode.commands.executeCommand(h.PREFIX + '.checkWorkspace'); return { handed: true }; }   // ⛔never loop back into the sweep
+    var had = !!st.get('licenseKey');
+    if (!had) send(vscode, h.slug, { t: 'use', slug: h.slug, src: 'vsix', why: 'clear_report', path: '/use/vsix/' + h.slug });
+    _toastAt = Date.now();
+    var ok = await lic.ensure(vscode, ctx, S);             // ★the same key panel as the paid sweep (Polar $29 · team · Whop via /api/lic)
+    if (!ok) { if (had) send(vscode, h.slug, { t: 'use', slug: h.slug, src: 'vsix', why: 'clear_report', path: '/use/vsix/' + h.slug }); return { paywall: true, msg: S.need_key }; }
+    var REPORT = loadMod(h, 'report.js'), pkg = loadMod(h, 'package.json') || {};
+    var at = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
+    var lines = ['# ' + h.title + ' — workspace report', '', 'Generated ' + day + ' · ' + n + ' files · ' + R + ' checks each · 0 findings', '',
+      '## Dated all-clear record', '',
+      '- Tool: ' + h.title + ' v' + (pkg.version || '?') + ' (' + (pkg.publisher || 'readystack') + '.' + (pkg.name || h.slug) + ')',
+      '- Rules: ' + R + ' checks · rules file dated ' + rulesDate(h),
+      '- Checked at: ' + at + ' (UTC)',
+      '- Result: 0 issues', '', '## Files checked (SHA-256)', ''];
+    sc.list.forEach(function (x) { lines.push('- `' + rel(x.uri) + '`  sha256:' + x.sha); });
+    lines.push('');
+    sc.list.forEach(function (x) { lines.push(REPORT && REPORT.toText ? REPORT.toText(x.res, rel(x.uri)) : ('== ' + rel(x.uri) + ' — Clean — no findings.')); });
+    lines.push('', 'This record shows which checks were run and when; it is not a legal certification.', '');
+    var target = vscode.Uri.joinPath(folders[0].uri, h.PREFIX + '-report.md');
+    await vscode.workspace.fs.writeFile(target, Buffer.from(lines.join('\n'), 'utf8'));
+    await st.update('lastSweep', { files: n, findings: 0, at: day });
+    try { await vscode.window.showTextDocument(await vscode.workspace.openTextDocument(target)); } catch (e) { }
+    var B = tr(BADGE_T, vscode); _toastAt = Date.now();
+    Promise.resolve(vscode.window.showInformationMessage(fill(L[5], rel(target)), B[0])).then(function (pk) { return pk === B[0] ? copyBadge(vscode, h, day) : null; }).catch(function () { });
+    reviewTick(ctx, h, 'clean', h.today || day);
+    return { report: target.fsPath, files: n };
+  } catch (e) { return null; }
+}
 var _pinged = false;
 function ping(vscode, slug, why) {
   try {
@@ -160,10 +249,11 @@ function start(ctx, o) {
   var vscode = o.vscode, E = o.ENGINE, GLOB = o.GLOB, PREFIX = o.PREFIX, title = o.title || PREFIX, slug = o.slug || PREFIX;
   if (!vscode || !E || !E.engine || !GLOB || !PREFIX) return null;
   var cfg = function () { return vscode.workspace.getConfiguration('readystack'); };
-  if (cfg().get('autoCheck', true) === false) return null;
   var toks = tokens(slug), R = ruleCount(E);
   var h = { vscode: vscode, E: E, GLOB: GLOB, PREFIX: PREFIX, title: title, toks: toks, R: R, price: o.price || 29, slug: slug,
-    homepage: o.homepage || pkgHome(), reviewDelayMs: o.reviewDelayMs, quietMs: o.quietMs, today: o.today || null };   // s163
+    homepage: o.homepage || pkgHome(), reviewDelayMs: o.reviewDelayMs, quietMs: o.quietMs, today: o.today || null, extDir: o.extDir || (ctx && (ctx.extensionPath || (ctx.extension && ctx.extension.extensionPath))) || __dirname };   // s163
+  _h = h;   // s163b
+  if (cfg().get('autoCheck', true) === false) return null;
   var last = new Map();   // s163 — findings per file: a drop = the user fixed one (review moment)
   var short = (String(title).split(/\s[—:(-]\s?|:\s/)[0] || title).trim().slice(0, 32);
   var diags = vscode.languages.createDiagnosticCollection(PREFIX + '.auto');
@@ -210,17 +300,7 @@ async function hint(ctx, h) {
     var vscode = h.vscode, key = h.PREFIX + '.hinted';
     if (ctx.workspaceState.get(key) || ctx.globalState.get(h.PREFIX + '.noHint')) return null;
     if (!vscode.workspace.workspaceFolders || !vscode.workspace.workspaceFolders.length) return null;
-    var uris = await vscode.workspace.findFiles(h.GLOB, '**/{node_modules,.git,dist,build,vendor}/**', 300);
-    var files = 0, total = 0, clean = 0, day = new Date().toISOString().slice(0, 10);
-    for (var i = 0; i < uris.length; i++) {
-      var u = uris[i], text;
-      try { var b = await vscode.workspace.fs.readFile(u); if (b.byteLength > 512 * 1024) continue; text = Buffer.from(b).toString('utf8'); } catch (e) { continue; }
-      var res; try { res = h.E.engine.check(text, { today: day, path: u.fsPath }); } catch (e) { continue; }
-      var n = ((res && res.findings) || []).length;
-      if (!n) { if (!isBroad(h.GLOB) || h.toks.some(function (t) { return path.basename(u.fsPath).toLowerCase().indexOf(t) >= 0; })) clean++; continue; }
-      if (!relevant({ glob: h.GLOB, slugTokens: h.toks, fileName: u.fsPath, findings: n, rules: h.R })) continue;
-      files++; total += n;
-    }
+    var sc = await scan(h, 300), files = sc.files, total = sc.total, clean = sc.clean, day = new Date().toISOString().slice(0, 10);   // s163b — one scan
     await ctx.workspaceState.update(key, true);
     var st = ctx.globalState, hasKey = !!st.get('licenseKey'), until = Number(st.get('sweepTrialUntil') || 0);
     if (!total) {
@@ -231,10 +311,11 @@ async function hint(ctx, h) {
       var B = tr(BADGE_T, vscode), md = null;   // s163 — ONE badge action, only on a clean result
       _toastAt = Date.now(); reviewTick(ctx, h, 'clean', h.today || day);
       var pk = await vscode.window.showInformationMessage(W.msg, lbl, B[0], "Don't show again");
-      if (pk === lbl) await vscode.commands.executeCommand(h.PREFIX + '.checkWorkspace');
+      var rep = null;
+      if (pk === lbl) rep = await clearReport(ctx, h, false);   // s163b — sells (key panel) or delivers (dated record)
       else if (pk === B[0]) md = await copyBadge(vscode, h, h.today || day);
       else if (pk === "Don't show again") await st.update(h.PREFIX + '.noHint', true);
-      return { files: 0, total: 0, clean: clean, label: lbl, msg: W.msg, badge: B[0], md: md };
+      return { files: 0, total: 0, clean: clean, label: lbl, msg: W.msg, badge: B[0], md: md, report: rep };
     }
     // s158 — ⚑7일 무료 없음: 버튼이 곧 값이다(손님 숫자 바로 옆) · 이미 시작된 체험만 지킨다
     var label = hasKey ? 'Sweep the workspace' : ((until && Date.now() < until) ? 'Sweep the workspace (trial)' : 'Get the full report ($' + (h.price || 29) + ')');
@@ -247,4 +328,4 @@ async function hint(ctx, h) {
   } catch (e) { return null; }
 }
 module.exports = { start: start, relevant: relevant, tokens: tokens, isBroad: isBroad, clearWords: clearWords,
-  sweptClean: sweptClean, badgeTopic: badgeTopic, badgeMarkdown: badgeMarkdown, reviewUrl: reviewUrl, reviewTick: reviewTick };   // s163
+  sweptClean: sweptClean, badgeTopic: badgeTopic, badgeMarkdown: badgeMarkdown, reviewUrl: reviewUrl, reviewTick: reviewTick, clearReport: clearReport, scan: scan };   // s163
