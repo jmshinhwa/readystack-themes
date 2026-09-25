@@ -47,4 +47,4 @@ Versão completa (chave de licença, $29, uma vez): a mesma análise em toda a p
 
 ## A mesma análise no browser
 
-O mesmo motor (`ext/engine.js` + `ext/rules.json`) corre numa página só: https://getreadystack.com/tools/saft-pt-atcud-lint
+O mesmo motor (`ext/engine.js` + `ext/rules.json`) corre numa página só: https://getreadystack.com/pt/tools/saft-pt-atcud-lint
