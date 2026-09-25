@@ -2,7 +2,7 @@
   "name": "saft-pt-atcud-lint",
   "displayName": "SAF-T XML Lint (PT) - ATCUD, QR code, hash, NIF, AT",
   "description": "Verifica o XML SAF-T (PT) antes de o entregar: versao 1.04_01, ATCUD, campos do QR code, hash, numeracao e totais linha a linha.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
