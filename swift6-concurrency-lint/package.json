@@ -2,7 +2,7 @@
   "name": "swift6-concurrency-lint",
   "displayName": "Swift 6 Concurrency Lint - strict concurrency migration",
   "description": "Finds the Swift 6 strict-concurrency blockers in your .swift files — global var, static var shared, @unchecked Sendable, DispatchQueue.main.async inside async — before you flip the language mode.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
