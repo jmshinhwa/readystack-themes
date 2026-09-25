@@ -4,7 +4,7 @@
 
 Diese Erweiterung liest eine als CSV exportierte Reisekostenabrechnung im Editor und prüft jede Zeile gegen das deutsche Reisekostenrecht. Sie läuft offline; die Datei verlässt den Rechner nicht.
 
-Hub: https://getreadystack.com/tools/reisekosten-pruefer-2026
+Hub: https://getreadystack.com/de/tools/reisekosten-pruefer-2026
 
 ## Was geprüft wird
 
