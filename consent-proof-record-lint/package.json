@@ -2,7 +2,7 @@
   "name": "consent-proof-record-lint",
   "displayName": "Consent Proof Record Lint (GDPR Art.7)",
   "description": "Lints stored consent-record JSON against the GDPR Article 7(1) proof-of-consent fields a supervisory authority asks for. Offline, no telemetry.",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,5 +49,8 @@
     "directory": "consent-proof-record-lint"
   },
   "homepage": "https://getreadystack.com/tools/consent-proof-record-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-18"
+  }
 }
