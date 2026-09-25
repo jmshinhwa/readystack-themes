@@ -2,7 +2,7 @@
   "name": "cms-0057-api-gate",
   "displayName": "FHIR API Gate - CMS-0057 prior authorization (Da Vinci)",
   "description": "Audit a FHIR CapabilityStatement against the CMS-0057-F prior authorization rule before the 1 January 2027 compliance date, without leaving the editor.",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
