@@ -1,0 +1,11 @@
+[
+ {"id": "SPALTE_FEHLT", "sev": "error", "title": "Pflichtspalte fehlt", "law": "", "required": ["objekt", "bundesland", "ereignis", "datum", "angezeigt_am"]},
+ {"id": "DATUM_UNGUELTIG", "sev": "error", "title": "Datum nicht lesbar oder nicht existent", "law": ""},
+ {"id": "ANZEIGE_VERSAEUMT", "sev": "error", "title": "Anzeigefrist verstrichen, keine Anzeige", "law": "§ 228 Abs. 2 BewG", "deadline_day": "03-31", "late_fee_cap_eur": 25000, "late_fee_law": "§ 152 AO"},
+ {"id": "ANZEIGE_VERSPAETET", "sev": "error", "title": "Anzeige nach dem 31. März abgegeben", "law": "§ 228 Abs. 2 BewG"},
+ {"id": "ANZEIGE_OFFEN", "sev": "warning", "title": "Anzeige noch offen, Frist läuft", "law": "§ 228 Abs. 2 BewG"},
+ {"id": "WERTFORTSCHREIBUNG", "sev": "warning", "title": "Wertänderung über 15.000 € – Wertfortschreibung", "law": "§ 222 Abs. 1 BewG", "threshold_eur": 15000, "round_down_to": 100},
+ {"id": "LANDESMODELL", "sev": "warning", "title": "Land mit eigenem Grundsteuermodell", "law": "Landesgrundsteuergesetz", "states": {"BW": "Baden-Württemberg (LGrStG)", "BY": "Bayern (BayGrStG)", "HH": "Hamburg (HmbGrStG)", "HE": "Hessen (HGrStG)", "NI": "Niedersachsen (NGrStG)"}},
+ {"id": "EIGENTUEMERWECHSEL", "sev": "info", "title": "Eigentümerwechsel – Zurechnungsfortschreibung zum 1. Januar", "law": "§ 222 Abs. 2 BewG · § 9 Abs. 1 GrStG"},
+ {"id": "EREIGNIS_UNKLAR", "sev": "warning", "title": "Ereignis keiner Anzeigeart zuordenbar", "law": ""}
+]
