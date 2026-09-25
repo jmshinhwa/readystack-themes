@@ -2,7 +2,7 @@
   "name": "vsix-publish-lint",
   "displayName": "VSIX Publish Lint",
   "description": "Lints a VS Code extension package.json for the manifest mistakes that make vsce package/publish fail or ship a broken listing. 14 rules, offline.",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,5 +49,8 @@
     "directory": "vsix-publish-lint"
   },
   "homepage": "https://getreadystack.com/tools/vsix-publish-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-11"
+  }
 }
