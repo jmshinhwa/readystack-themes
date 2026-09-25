@@ -2,7 +2,7 @@
   "name": "canal-de-denuncias-lint-es",
   "displayName": "Canal de Denuncias Lint — Ley 2/2023 (ES)",
   "description": "Revisa la política de tu canal interno de denuncias (Markdown) frente a la Ley 2/2023 española: plazos, anonimato, responsable del sistema, libro-registro y represalias. Sin conexión, sin telemetría.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
