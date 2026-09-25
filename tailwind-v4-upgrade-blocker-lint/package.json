@@ -2,7 +2,7 @@
   "name": "tailwind-v4-upgrade-blocker-lint",
   "displayName": "Tailwind v4 Upgrade Blocker Lint",
   "description": "Finds Tailwind CSS v3 syntax that v4 removed or silently redefined - @tailwind directives, bg-opacity-*, outline-none, bare border and ring - with the v4 replacement and a line number.",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -48,5 +48,8 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "tailwind-v4-upgrade-blocker-lint"
   },
-  "homepage": "https://getreadystack.com/tools/tailwind-v4-upgrade-blocker-lint"
+  "homepage": "https://getreadystack.com/tools/tailwind-v4-upgrade-blocker-lint",
+  "readystack": {
+    "rulesDate": "2026-09-18"
+  }
 }
