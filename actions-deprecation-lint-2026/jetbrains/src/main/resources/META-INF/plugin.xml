@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.actions-deprecation-lint-2026</id>
+  <name>GitHub Actions Deprecation Lint: the 2026 runner and action EOL</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Node 20 is removed from GitHub-hosted runners on 2026-09-23 and ubuntu-22.04 deprecation opens 2026-09-17. This checks a workflow file against 25 dated GitHub shutdowns and names the date each line stops running.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>GitHub Actions Deprecation Lint: the 2026 runner and action EOL: Check This File</b>. Each finding appears on its line with the fix. 25 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/actions-deprecation-lint-2026</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/actions-deprecation-lint-2026">getreadystack.com/tools/actions-deprecation-lint-2026</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_actions_deprecation_lint_2026.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.actions-deprecation-lint-2026" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.actions-deprecation-lint-2026.check" class="com.getreadystack.p_actions_deprecation_lint_2026.RsCheckAction"
+            text="GitHub Actions Deprecation Lint: the 2026 runner and action EOL: Check This File" description="Run GitHub Actions Deprecation Lint: the 2026 runner and action EOL on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
