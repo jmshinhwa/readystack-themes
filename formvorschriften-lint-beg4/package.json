@@ -1,0 +1,54 @@
+{
+  "name": "formvorschriften-lint-beg4",
+  "displayName": "Formular-Check: Schriftform & Textform (BEG IV)",
+  "description": "Prüft deutsche Formular- und Vertragsvorlagen (Markdown, HTML, Text) auf veraltete Form- und Fristangaben nach BEG IV: Kündigung, Nachweisgesetz, Belegaufbewahrung, Mahnbescheid.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "schriftform",
+    "textform",
+    "bürokratieentlastungsgesetz",
+    "nachweisgesetz",
+    "vorlage",
+    "formular",
+    "widerspruch mahnbescheid frist",
+    "german legal"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "formLint.checkFile",
+        "title": "Formular-Check: Schriftform & Textform (BEG IV): Check this file",
+        "category": "Formular-Check: Schriftform & Textform (BEG IV)"
+      },
+      {
+        "command": "formLint.checkWorkspace",
+        "title": "Formular-Check: Schriftform & Textform (BEG IV): Sweep workspace and write report (licence)",
+        "category": "Formular-Check: Schriftform & Textform (BEG IV)"
+      },
+      {
+        "command": "formLint.enterKey",
+        "title": "Formular-Check: Schriftform & Textform (BEG IV): Enter licence key",
+        "category": "Formular-Check: Schriftform & Textform (BEG IV)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "formvorschriften-lint-beg4"
+  },
+  "homepage": "https://getreadystack.com/de/tools/formvorschriften-lint-beg4",
+  "icon": "icon.png"
+}
