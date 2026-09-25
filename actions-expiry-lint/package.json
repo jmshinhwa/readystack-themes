@@ -2,7 +2,7 @@
   "name": "actions-expiry-lint",
   "displayName": "GitHub Actions Lint - expiring runners, Node versions and deprecated actions",
   "description": "Flags GitHub Actions lines that stop working on a date - retired runner images, shut-down action versions, Node runtimes past end-of-life. Checked against any 'as of' date.",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -46,5 +46,8 @@
     "url": "https://github.com/jmshinhwa-ai/readystack"
   },
   "homepage": "https://getreadystack.com/tools/actions-expiry-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-11"
+  }
 }
