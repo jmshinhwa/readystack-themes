@@ -2,7 +2,7 @@
   "name": "facturae-verifactu-lint",
   "displayName": "Facturae 3.2.2 / Veri*factu Lint (Espana)",
   "description": "Revisa facturas XML Facturae 3.2.2 antes de enviarlas a FACe: NIF/CIF con digito de control, sumas del lote, cuotas de IVA e IRPF y firma XAdES.",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,5 +49,8 @@
     "url": "https://github.com/jmshinhwa-ai/readystack"
   },
   "homepage": "https://getreadystack.com/es/tools/facturae-verifactu-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-12"
+  }
 }
