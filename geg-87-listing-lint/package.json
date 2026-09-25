@@ -2,7 +2,7 @@
   "name": "geg-87-listing-lint",
   "displayName": "Immobilienanzeige GEG 87 Lint",
   "description": "Lints German property-ad HTML for the energy-certificate fields GEG Section 87 demands, and flags an efficiency class that contradicts the kWh value.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,5 +49,8 @@
     "directory": "geg-87-listing-lint"
   },
   "homepage": "https://getreadystack.com/tools/geg-87-listing-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-20"
+  }
 }
