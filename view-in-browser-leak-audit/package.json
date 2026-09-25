@@ -2,7 +2,7 @@
   "name": "view-in-browser-leak-audit",
   "displayName": "View in Browser — Publish Leak Audit (HTML)",
   "description": "Before you view an HTML file in the browser and then publish it: finds live API keys, localhost URLs, file:// paths, noindex and mixed content left in the page.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -52,5 +52,8 @@
     "directory": "view-in-browser-leak-audit"
   },
   "homepage": "https://getreadystack.com/tools/view-in-browser-leak-audit",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-19"
+  }
 }
