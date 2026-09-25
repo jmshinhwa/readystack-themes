@@ -2,7 +2,7 @@
   "name": "manuscript-disclosure-lint",
   "displayName": "Manuscript Lint - journal disclosure statements (COI, funding, AI use)",
   "description": "Checks a manuscript before submission for the statements journals and funders now require: AI-use disclosure, data availability, funding and grant IDs, CRediT, competing interests, ethics, ORCID.",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -47,5 +47,8 @@
     "directory": "manuscript-disclosure-lint"
   },
   "homepage": "https://getreadystack.com/tools/manuscript-disclosure-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-14"
+  }
 }
