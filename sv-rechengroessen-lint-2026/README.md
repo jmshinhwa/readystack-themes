@@ -63,4 +63,4 @@ Sozialversicherungsrechengrößen-Verordnung 2026 (Werte ab 2026-01-01), § 8 Ab
 (Kinderlosenzuschlag und Abschlag je Kind), Bekanntmachung des durchschnittlichen
 Zusatzbeitragssatzes für 2026.
 
-Werkzeugseite: https://getreadystack.com/tools/sv-rechengroessen-lint-2026
+Werkzeugseite: https://getreadystack.com/de/tools/sv-rechengroessen-lint-2026
