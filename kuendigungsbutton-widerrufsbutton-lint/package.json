@@ -2,7 +2,7 @@
   "name": "kuendigungsbutton-widerrufsbutton-lint",
   "displayName": "Kündigungsbutton & Widerrufsbutton Check (BGB)",
   "description": "Prüft Shop- und Abo-Templates (HTML, Vue, JSX, Twig, Liquid) auf die drei Pflicht-Schaltflächen im BGB: zahlungspflichtig bestellen (§ 312j), Verträge hier kündigen (§ 312k), Vertrag widerrufen (§ 356",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
