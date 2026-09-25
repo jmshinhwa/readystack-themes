@@ -2,7 +2,7 @@
   "name": "antragsfrist-lint-vwvfg",
   "displayName": "Antragsfrist-Lint: Förderfristen (§ 31 VwVfG)",
   "description": "Prüft Förderprogramm-Seiten (Markdown): abgelaufene Antragsfristen, fehlende Jahreszahl, Fristende an Samstag/Sonntag/Feiertag nach § 31 Abs. 3 VwVfG und fehlender Zugangs-Hinweis.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -48,6 +48,6 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "antragsfrist-lint-vwvfg"
   },
-  "homepage": "https://getreadystack.com/tools/antragsfrist-lint-vwvfg",
+  "homepage": "https://getreadystack.com/de/tools/antragsfrist-lint-vwvfg",
   "icon": "icon.png"
 }
