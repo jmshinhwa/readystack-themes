@@ -1,0 +1,54 @@
+{
+  "name": "steuer-lint-astg-hinzurechnung",
+  "displayName": "Steuer-Lint: Hinzurechnungsbesteuerung AStG 2026",
+  "description": "Prüft Steuer-Memos und KI-Entwürfe (Markdown, Text) auf veraltete AStG-Aussagen: 25 % statt 15 % Niedrigsteuer, Inländerbeherrschung, Gewerbesteuer, Gegenbeweis — 10 Regeln.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "hinzurechnungsbesteuerung",
+    "astg",
+    "steuerberater",
+    "steuer",
+    "cfc",
+    "mandanten-memo",
+    "lint",
+    "ki-entwurf"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "steuerLintAstg.checkFile",
+        "title": "Steuer-Lint: Hinzurechnungsbesteuerung AStG 2026: Check this file",
+        "category": "Steuer-Lint: Hinzurechnungsbesteuerung AStG 2026"
+      },
+      {
+        "command": "steuerLintAstg.checkWorkspace",
+        "title": "Steuer-Lint: Hinzurechnungsbesteuerung AStG 2026: Sweep workspace and write report (licence)",
+        "category": "Steuer-Lint: Hinzurechnungsbesteuerung AStG 2026"
+      },
+      {
+        "command": "steuerLintAstg.enterKey",
+        "title": "Steuer-Lint: Hinzurechnungsbesteuerung AStG 2026: Enter licence key",
+        "category": "Steuer-Lint: Hinzurechnungsbesteuerung AStG 2026"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "steuer-lint-astg-hinzurechnung"
+  },
+  "homepage": "https://getreadystack.com/de/tools/steuer-lint-astg-hinzurechnung",
+  "icon": "icon.png"
+}
