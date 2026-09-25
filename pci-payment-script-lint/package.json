@@ -2,7 +2,7 @@
   "name": "pci-payment-script-lint",
   "displayName": "PCI DSS 6.4.3 Payment Script Lint",
   "description": "Lint checkout and payment pages against PCI DSS v4.0.1 requirements 6.4.3 and 11.6.1: script integrity, written script inventory, CSP authorisation, and weekly tamper detection.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
