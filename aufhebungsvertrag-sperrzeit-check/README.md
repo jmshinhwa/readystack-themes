@@ -4,7 +4,7 @@
 
 Prüft einen Aufhebungsvertrag (Markdown) vor der Unterschrift auf alles, was das Arbeitslosengeld (ALG) kostet: Sperrzeit nach § 159 SGB III, Kürzung der Anspruchsdauer nach § 148, Ruhen wegen Abfindung nach § 158, Kündigungsfrist nach § 622 BGB, Schriftform nach § 623 BGB und Arbeitsuchendmeldung nach § 38 SGB III. Stand: Gesetzestext September 2026.
 
-Kostenlose Web-Version und Hintergrund: https://getreadystack.com/tools/aufhebungsvertrag-sperrzeit-check
+Kostenlose Web-Version und Hintergrund: https://getreadystack.com/de/tools/aufhebungsvertrag-sperrzeit-check
 
 Zum Vergleich: Eine anwaltliche Erstberatung für Verbraucher kostet ohne Gebührenvereinbarung bis zu 190 € (§ 34 Abs. 1 RVG).
 
