@@ -39,8 +39,7 @@ this file is clean.
 
 The licence covers a different axis — **scope and a file you keep**: sweep every file in the
 package in one command and write a dated `cran-policy-lint-report.md` you can commit next to the
-tarball or paste into your submission comments. $29 once, one key per person or CI seat, 7-day full
-refund — [get a licence key](https://buy.polar.sh/polar_cl_3p5QJlCGs0PUdsfxchdv4o2Jyr2C8Op4waTgt0xQNDs).
+tarball or paste into your submission comments. $29 once, one key per person or CI seat — [get a licence key](https://buy.polar.sh/polar_cl_3p5QJlCGs0PUdsfxchdv4o2Jyr2C8Op4waTgt0xQNDs).
 
 Yardstick: a freelance R developer in North America bills $50–$100 an hour (Upwork, 2026); one
 rejected submission is a round trip of rework plus another wait in the queue.
