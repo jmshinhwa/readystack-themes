@@ -1,0 +1,54 @@
+{
+  "name": "rollout-doku-betriebsrat-lint",
+  "displayName": "Rollout-Doku Lint – Betriebsrat & IT-Einführung",
+  "description": "Prüft Markdown-Systembeschreibungen vor dem Go-Live eines IT-Tools: fehlt, was der Betriebsrat nach § 87 Abs. 1 Nr. 6 und § 90 BetrVG braucht? Mit KI-, Protokoll- und Löschfristen-Check.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "betriebsrat",
+    "mitbestimmung",
+    "betrvg",
+    "systembeschreibung",
+    "betriebsvereinbarung",
+    "it-einfuehrung",
+    "ki",
+    "markdown lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "rolloutDoku.checkFile",
+        "title": "Rollout-Doku Lint – Betriebsrat & IT-Einführung: Check this file",
+        "category": "Rollout-Doku Lint – Betriebsrat & IT-Einführung"
+      },
+      {
+        "command": "rolloutDoku.checkWorkspace",
+        "title": "Rollout-Doku Lint – Betriebsrat & IT-Einführung: Sweep workspace and write report (licence)",
+        "category": "Rollout-Doku Lint – Betriebsrat & IT-Einführung"
+      },
+      {
+        "command": "rolloutDoku.enterKey",
+        "title": "Rollout-Doku Lint – Betriebsrat & IT-Einführung: Enter licence key",
+        "category": "Rollout-Doku Lint – Betriebsrat & IT-Einführung"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "rollout-doku-betriebsrat-lint"
+  },
+  "homepage": "https://getreadystack.com/de/tools/rollout-doku-betriebsrat-lint",
+  "icon": "icon.png"
+}
