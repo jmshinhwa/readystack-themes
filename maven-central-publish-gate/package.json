@@ -2,7 +2,7 @@
   "name": "maven-central-publish-gate",
   "displayName": "Maven Central Lint - pom.xml publish requirements (sources, javadoc, GPG)",
   "description": "Lint pom.xml against Maven Central Portal release rules: retired OSSRH endpoints, missing POM metadata, SNAPSHOT deps, signing and jar requirements.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
