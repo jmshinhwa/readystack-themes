@@ -33,7 +33,7 @@ Two fixtures ship with the source. `_fixtures/clean.md` — a notice with both a
 
 Free, with no key and no limit: `Crypto Export Notice Lint: Check File` runs all ten checks on the file open in the editor and writes the findings into the Problems panel and an output channel. That job finishes on its own.
 
-Licensed, on a different axis — scope and ownership: `Check Workspace` sweeps every Markdown file in the repository and writes `cryptoExport-report.md`, a dated file you keep in the repo and hand to whoever asks. The sweep runs free for seven days from the first time you use it, then asks for a licence key. Seven-day full refund, one key per person or CI seat.
+Licensed, on a different axis — scope and ownership: `Check Workspace` sweeps every Markdown file in the repository and writes `cryptoExport-report.md`, a dated file you keep in the repo and hand to whoever asks. The sweep runs free for seven days from the first time you use it, then asks for a licence key. One key per person or CI seat.
 
 ## The yardstick
 
