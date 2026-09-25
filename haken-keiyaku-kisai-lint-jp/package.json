@@ -2,7 +2,7 @@
   "name": "haken-keiyaku-kisai-lint-jp",
   "displayName": "派遣契約書チェック — 個別契約・就業条件明示書",
   "description": "労働者派遣の個別契約書と就業条件明示書の下書き(.md/.txt)を、派遣法26条1項・施行規則22条・34条の記載事項と照らし、抜けている項目を行番号つきで示します。派遣元の営業・法務担当向け。",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -51,5 +51,8 @@
     "directory": "haken-keiyaku-kisai-lint-jp"
   },
   "homepage": "https://getreadystack.com/ja/tools/haken-keiyaku-kisai-lint-jp",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-23"
+  }
 }
