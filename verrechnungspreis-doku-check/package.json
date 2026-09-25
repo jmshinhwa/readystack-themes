@@ -1,0 +1,53 @@
+{
+  "name": "verrechnungspreis-doku-check",
+  "displayName": "Verrechnungspreis Doku Check: Local File & Transaktionsmatrix",
+  "description": "Prüft Verrechnungspreis-Dokumentation (Local File, Markdown) gegen 16 Regeln aus §90 Abs. 3/4 AO und §4 GAufzV und rechnet die 30-Tage-Vorlagefrist samt Mindestzuschlag nach §162 Abs. 4 AO.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "verrechnungspreise",
+    "transfer pricing",
+    "local file",
+    "transaktionsmatrix",
+    "gaufzv",
+    "betriebspruefung",
+    "aussensteuer",
+    "steuer"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vpDoku.checkFile",
+        "title": "Verrechnungspreis Doku Check: Local File & Transaktionsmatrix: Check this file",
+        "category": "Verrechnungspreis Doku Check: Local File & Transaktionsmatrix"
+      },
+      {
+        "command": "vpDoku.checkWorkspace",
+        "title": "Verrechnungspreis Doku Check: Local File & Transaktionsmatrix: Sweep workspace and write report (licence)",
+        "category": "Verrechnungspreis Doku Check: Local File & Transaktionsmatrix"
+      },
+      {
+        "command": "vpDoku.enterKey",
+        "title": "Verrechnungspreis Doku Check: Local File & Transaktionsmatrix: Enter licence key",
+        "category": "Verrechnungspreis Doku Check: Local File & Transaktionsmatrix"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "verrechnungspreis-doku-check"
+  },
+  "homepage": "https://getreadystack.com/de/tools/verrechnungspreis-doku-check"
+}
