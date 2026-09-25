@@ -5,6 +5,8 @@
 //   checker's target (file name carries a product word, or findings are not "everything missing") so a README is never flooded.
 // Off switches: settings readystack.autoCheck / readystack.workspaceHint. Telemetry: one anonymous "use" ping per session, respects
 //   vscode.env.isTelemetryEnabled, READYSTACK_NO_TELEMETRY and CI.
+// s163 2026-09-25 — two free levers so each installed checker advertises itself: ①README badge after a clean result
+//   ②one review ask after value. See the block above ping().
 'use strict';
 const path = require('path');
 const https = require('https');
@@ -36,13 +38,117 @@ function clearWords(vscode, o) {
   var fill = function (x) { return x.replace('{t}', o.title).replace('{f}', o.files).replace('{s}', o.files === 1 ? '' : 's').replace('{r}', o.rules).replace('{d}', o.day).replace('{p}', o.price); };
   return { msg: fill(T[0]), buy: fill(T[1]), save: T[2] };
 }
+// ★s163 2026-09-25 — two free levers: every installed checker advertises itself (the owner has no ad budget).
+//   ① README badge after a CLEAN result (the all-clear hint + the clean sweep in extension.js): ONE button copies Markdown →
+//      shields.io endpoint https://getreadystack.com/badge/<slug>.json (static · badge_json.py writes it in deploy_hub.sh)
+//      with a dated label, linking to the product page (package.json homepage = hub_url.py) + ?ref=badge.
+//      Words are true: "<topic> · <date> | checked · ReadyStack" — ⛔never "compliant"/"certified" (no legal promise).
+//   ② ONE review ask, only after value: the 3rd day with a clean result, or the first finding the user fixed.
+//      Shares 'reviewAsked' with license.js (s152) → never twice across both · marked BEFORE showing (dismiss = done) ·
+//      no incentive, nothing gated · silent after "Don't show again" or readystack.reviewAsk=false · VS Code →
+//      Marketplace #review-details, any other host (Cursor · VSCodium · Windsurf …) → Open VSX reviews.
+var BADGE_T = {
+  en: ['Add a badge to your README', 'Badge Markdown copied - paste it into your README. It shows the date of this check and links to the checker.'],
+  de: ['Badge zur README hinzufügen', 'Badge-Markdown kopiert - in die README einfügen. Es zeigt das Datum dieser Prüfung und verlinkt auf den Prüfer.'],
+  ja: ['README にバッジを追加', 'バッジの Markdown をコピーしました。README に貼り付けてください。今回の確認日とチェッカーへのリンクが表示されます。'],
+  es: ['Añadir una insignia al README', 'Markdown de la insignia copiado: pégalo en tu README. Muestra la fecha de esta revisión y enlaza al verificador.'],
+  pt: ['Adicionar um selo ao README', 'Markdown do selo copiado: cole no seu README. Ele mostra a data desta verificação e leva ao verificador.']
+};
+var REVIEW_T = {
+  en: ['If this saved you time, a short review helps others find it.', 'Write a review', 'No thanks'],
+  de: ['Wenn Ihnen das Zeit gespart hat, hilft eine kurze Bewertung anderen, es zu finden.', 'Bewertung schreiben', 'Nein danke'],
+  ja: ['時間の節約になったら、短いレビューがほかの人が見つける助けになります。', 'レビューを書く', '今回はしない'],
+  es: ['Si te ahorró tiempo, una reseña breve ayuda a que otros lo encuentren.', 'Escribir una reseña', 'No, gracias'],
+  pt: ['Se isso economizou seu tempo, uma avaliação curta ajuda outras pessoas a encontrá-lo.', 'Escrever uma avaliação', 'Não, obrigado']
+};
+function lang(vscode) { return String((vscode && vscode.env && vscode.env.language) || 'en').slice(0, 2).toLowerCase(); }
+function tr(T, vscode) { return T[lang(vscode)] || T.en; }
+function today() { return new Date().toISOString().slice(0, 10); }
+var TOOLWORD = /(?:[\s-]+(?:lint|linter|lints|gate|check|checker|audit|auditor|guard|prüfer|pruefer|preflight)|\s*(?:チェック|チェッカー|リンター|リント|点検))$/i;   // Latin tool word needs a separator (Kassenprüfer stays)
+function badgeTopic(title) {   // ★one source: badge_json.py asks this function for every JSON label (no second copy in Python)
+  var full = String(title || '').trim();
+  var t = full.split(/\s[—–-]\s|:\s/)[0].replace(/\s+\(.*$|（.*$/, '').trim() || full;   // ' (EU model…)' goes · 'FA(3)' stays
+  for (var i = 0; i < 2; i++) { var u = t.replace(TOOLWORD, '').trim(); if (u.length >= 2) t = u; }
+  t = t.replace(/[\[\]]/g, '').trim();
+  if (t.length > 48) { var cut = t.slice(0, 48), sp = cut.lastIndexOf(' '); t = (sp > 20 ? cut.slice(0, sp) : cut).trim(); }
+  return t || 'ReadyStack';
+}
+function enc(x) { return encodeURIComponent(x).replace(/[()'!*]/g, function (c) { return '%' + c.charCodeAt(0).toString(16).toUpperCase(); }); }
+function badgeMarkdown(o) {
+  var slug = String(o.slug || ''), topic = badgeTopic(o.title || slug), day = o.day || today();
+  var home = String(o.homepage || ('https://getreadystack.com/tools/' + slug)).split('#')[0].split('?')[0];
+  var img = 'https://img.shields.io/endpoint?url=https://getreadystack.com/badge/' + slug + '.json&label=' + enc(topic + ' · ' + day);
+  return '[![' + topic + ' · checked ' + day + ' · ReadyStack](' + img + ')](' + home + '?ref=badge)';
+}
+function reviewUrl(vscode, ctx, slug) {
+  var id = String((ctx && ctx.extension && ctx.extension.id) || ('readystack.' + slug));
+  var name = id.indexOf('.') > 0 ? id.slice(id.indexOf('.') + 1) : String(slug);
+  var app = String((vscode && vscode.env && vscode.env.appName) || '');
+  return /visual studio code/i.test(app) ? 'https://marketplace.visualstudio.com/items?itemName=ReadyStack.' + name + '&ssr=false#review-details'
+    : 'https://open-vsx.org/extension/ReadyStack/' + name + '/reviews';
+}
+var _toastAt = 0;
+function pkgHome() { try { return require(path.join(__dirname, 'package.json')).homepage || null; } catch (e) { return null; } }
+async function copyBadge(vscode, h, day) {
+  var md = badgeMarkdown({ slug: h.slug, title: h.title, day: day || today(), homepage: h.homepage });
+  try { await vscode.env.clipboard.writeText(md); } catch (e) { }
+  send(vscode, h.slug, { t: 'use', slug: h.slug, src: 'vsix', why: 'badge_copy', path: '/badge/vsix/' + h.slug });
+  _toastAt = Date.now();
+  try { vscode.window.showInformationMessage(tr(BADGE_T, vscode)[1]); } catch (e) { }
+  return md;
+}
+function sweptClean(vscode, ctx, o) {   // extension.js checkWorkspace: clean branch hands its message here (badge button + clean day)
+  if (!vscode || !vscode.window || !o || !o.msg || !o.slug) return false;
+  var h = { vscode: vscode, slug: o.slug, title: o.title || o.slug, PREFIX: o.prefix || '', homepage: o.homepage || pkgHome(), reviewDelayMs: o.reviewDelayMs, quietMs: o.quietMs, today: o.today || null };
+  var day = h.today || today(), B = tr(BADGE_T, vscode);
+  _toastAt = Date.now();
+  Promise.resolve(vscode.window.showInformationMessage(o.msg, B[0])).then(function (pk) { return pk === B[0] ? copyBadge(vscode, h, day) : null; }).catch(function () { });
+  reviewTick(ctx, h, 'clean', day);
+  return true;
+}
+async function reviewTick(ctx, h, evt, day) {
+  try {
+    var st = ctx && ctx.globalState; if (!st || st.get('reviewAsked')) return null;
+    day = day || today();
+    if (evt === 'clean') {
+      if (st.get('readystack.cleanDay') === day) return null;                 // one clean result per day counts
+      var n = Number(st.get('readystack.cleanDays') || 0) + 1;
+      await st.update('readystack.cleanDay', day); await st.update('readystack.cleanDays', n);
+      if (n < 3) return null;                                                   // ⛔never before the 3rd clean day
+    } else if (evt === 'resolved') {
+      await st.update('readystack.resolved', Number(st.get('readystack.resolved') || 0) + 1);
+    } else return null;
+    var wait = h.reviewDelayMs == null ? 20000 : h.reviewDelayMs;
+    if (!wait) return await askReview(ctx, h);
+    return await new Promise(function (res) { var t = setTimeout(function () { askReview(ctx, h).then(res, function () { res(null); }); }, wait); if (t && t.unref) t.unref(); });
+  } catch (e) { return null; }
+}
+async function askReview(ctx, h) {
+  var vscode = h.vscode, st = ctx.globalState;
+  if (st.get('reviewAsked') || (h.PREFIX && st.get(h.PREFIX + '.noHint'))) return null;
+  try { if (vscode.workspace.getConfiguration('readystack').get('reviewAsk', true) === false) return null; } catch (e) { }
+  if (h.quietMs !== 0 && Date.now() - _toastAt < (h.quietMs || 60000)) return null;   // another toast just now → a later day
+  st.update('reviewAsked', Date.now());          // ★before showing: a dismissed toast counts too → exactly once (shared with license.js)
+  _toastAt = Date.now();
+  var T = tr(REVIEW_T, vscode), url = reviewUrl(vscode, ctx, h.slug);
+  send(vscode, h.slug, { t: 'paywall', slug: h.slug, src: 'vsix_review', why: 'review_ask' });
+  var pick = await vscode.window.showInformationMessage(T[0], T[1], T[2]);
+  if (pick === T[1]) { send(vscode, h.slug, { t: 'paywall', slug: h.slug, src: 'vsix_review', why: 'review_click' }); try { await vscode.env.openExternal(vscode.Uri.parse(url)); } catch (e) { } }
+  else if (pick === T[2]) send(vscode, h.slug, { t: 'paywall', slug: h.slug, src: 'vsix_review', why: 'review_no' });
+  return { asked: true, pick: pick || null, url: url };
+}
 var _pinged = false;
 function ping(vscode, slug, why) {
   try {
     if (_pinged) return; _pinged = true;
+    send(vscode, slug, { t: 'use', slug: slug, src: 'vsix', why: why || 'auto', path: '/use/vsix/' + slug });   // s163 — [실측] no path → worker 400 {"why":"path"}: 'use' was never counted
+  } catch (e) { /* counting never breaks the product */ }
+}
+function send(vscode, slug, o) {
+  try {
     if (process.env.READYSTACK_NO_TELEMETRY || process.env.CI) return;
     if (vscode && vscode.env && vscode.env.isTelemetryEnabled === false) return;
-    var body = JSON.stringify({ t: 'use', slug: slug, src: 'vsix', why: why || 'auto' });
+    var body = JSON.stringify(o);
     var req = https.request({ hostname: 'getreadystack.com', path: '/api/ev', method: 'POST', timeout: 4000,
       headers: { 'content-type': 'application/json', 'content-length': Buffer.byteLength(body), 'user-agent': 'readystack-vsix/' + slug } },
       function (res) { res.resume(); });
@@ -56,6 +162,9 @@ function start(ctx, o) {
   var cfg = function () { return vscode.workspace.getConfiguration('readystack'); };
   if (cfg().get('autoCheck', true) === false) return null;
   var toks = tokens(slug), R = ruleCount(E);
+  var h = { vscode: vscode, E: E, GLOB: GLOB, PREFIX: PREFIX, title: title, toks: toks, R: R, price: o.price || 29, slug: slug,
+    homepage: o.homepage || pkgHome(), reviewDelayMs: o.reviewDelayMs, quietMs: o.quietMs, today: o.today || null };   // s163
+  var last = new Map();   // s163 — findings per file: a drop = the user fixed one (review moment)
   var short = (String(title).split(/\s[—:(-]\s?|:\s/)[0] || title).trim().slice(0, 32);
   var diags = vscode.languages.createDiagnosticCollection(PREFIX + '.auto');
   var bar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 90);
@@ -74,6 +183,8 @@ function start(ctx, o) {
       var d = new vscode.Diagnostic(doc.lineAt(ln).range, String(x.msg || x.message || x.check || ''), sevOf(x)); d.source = short; return d;
     }));
     ping(vscode, slug);
+    var k = String((doc.uri && (doc.uri.fsPath || doc.uri.toString())) || doc.fileName), prev = last.get(k); last.set(k, f.length);
+    if (prev > f.length) reviewTick(ctx, h, 'resolved', h.today); else if (!f.length) reviewTick(ctx, h, 'clean', h.today);   // s163
     return { n: f.length };
   }
   function show(ed) {
@@ -91,7 +202,6 @@ function start(ctx, o) {
     vscode.workspace.onDidOpenTextDocument(function (doc) { var ed = vscode.window.activeTextEditor; if (!ed || ed.document !== doc) run(doc); })
   );
   later(vscode.window.activeTextEditor);
-  var h = { vscode: vscode, E: E, GLOB: GLOB, PREFIX: PREFIX, title: title, toks: toks, R: R, price: o.price || 29, slug: slug };
   if (cfg().get('workspaceHint', true) !== false) { var ht = setTimeout(function () { hint(ctx, h); }, o.hintDelayMs == null ? 8000 : o.hintDelayMs); if (ht && ht.unref) ht.unref(); }
   return { run: run, show: show, hint: function () { return hint(ctx, h); } };
 }
@@ -118,18 +228,23 @@ async function hint(ctx, h) {
       var W = clearWords(vscode, { title: h.title, files: clean, rules: h.R, day: day, price: h.price || 29 });
       var lbl = hasKey ? W.save : W.buy;
       ping(vscode, h.slug || h.PREFIX, 'clear');
-      var pk = await vscode.window.showInformationMessage(W.msg, lbl, "Don't show again");
+      var B = tr(BADGE_T, vscode), md = null;   // s163 — ONE badge action, only on a clean result
+      _toastAt = Date.now(); reviewTick(ctx, h, 'clean', h.today || day);
+      var pk = await vscode.window.showInformationMessage(W.msg, lbl, B[0], "Don't show again");
       if (pk === lbl) await vscode.commands.executeCommand(h.PREFIX + '.checkWorkspace');
+      else if (pk === B[0]) md = await copyBadge(vscode, h, h.today || day);
       else if (pk === "Don't show again") await st.update(h.PREFIX + '.noHint', true);
-      return { files: 0, total: 0, clean: clean, label: lbl, msg: W.msg };
+      return { files: 0, total: 0, clean: clean, label: lbl, msg: W.msg, badge: B[0], md: md };
     }
     // s158 — ⚑7일 무료 없음: 버튼이 곧 값이다(손님 숫자 바로 옆) · 이미 시작된 체험만 지킨다
     var label = hasKey ? 'Sweep the workspace' : ((until && Date.now() < until) ? 'Sweep the workspace (trial)' : 'Get the full report ($' + (h.price || 29) + ')');
     var msg = h.title + ': ' + total + ' issue' + (total === 1 ? '' : 's') + ' in ' + files + ' file' + (files === 1 ? '' : 's') + ' of this workspace.';
+    _toastAt = Date.now();
     var pick = await vscode.window.showInformationMessage(msg, label, "Don't show again");
     if (pick === label) await vscode.commands.executeCommand(h.PREFIX + '.checkWorkspace');
     else if (pick === "Don't show again") await st.update(h.PREFIX + '.noHint', true);
     return { files: files, total: total, label: label, msg: msg };
   } catch (e) { return null; }
 }
-module.exports = { start: start, relevant: relevant, tokens: tokens, isBroad: isBroad, clearWords: clearWords };
+module.exports = { start: start, relevant: relevant, tokens: tokens, isBroad: isBroad, clearWords: clearWords,
+  sweptClean: sweptClean, badgeTopic: badgeTopic, badgeMarkdown: badgeMarkdown, reviewUrl: reviewUrl, reviewTick: reviewTick };   // s163
