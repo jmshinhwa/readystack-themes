@@ -64,4 +64,4 @@ Bezug: https://buy.polar.sh/polar_cl_Zgg6KjspBqWL6jk6fxKrOY8xIlybVUGE45Q2R0VVmOU
 
 Dieselbe Prüflogik liegt in `ext/engine.js` und läuft ohne Installation als eine HTML-Seite.
 
-Weitere Werkzeuge: https://getreadystack.com/tools/kassenbeleg-tse-lint
+Weitere Werkzeuge: https://getreadystack.com/de/tools/kassenbeleg-tse-lint
