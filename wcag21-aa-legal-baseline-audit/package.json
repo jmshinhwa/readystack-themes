@@ -2,7 +2,7 @@
   "name": "wcag21-aa-legal-baseline-audit",
   "displayName": "WCAG 2.1 AA Audit - HTML template legal baseline (ADA, EN 301 549)",
   "description": "Audits HTML, JSX, Vue, Twig, Blade, ERB and Razor markup against the 24 WCAG 2.1 Level AA checks that 28 CFR 35.200 and EN 301 549 actually name - not WCAG 2.2.",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
