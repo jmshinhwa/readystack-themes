@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.epub-a11y-metadata-lint</id>
+  <name>EPUB Accessibility Metadata Lint (EAA)</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>18 rules over the accessibility metadata in your .opf: 12 findings in the sample file, 9 of them errors, 6 of them invented or malformed values</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>EPUB Accessibility Metadata Lint (EAA): Check This File</b>. Each finding appears on its line with the fix. 18 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/epub-a11y-metadata-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/epub-a11y-metadata-lint">getreadystack.com/tools/epub-a11y-metadata-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_epub_a11y_metadata_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.epub-a11y-metadata-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.epub-a11y-metadata-lint.check" class="com.getreadystack.p_epub_a11y_metadata_lint.RsCheckAction"
+            text="EPUB Accessibility Metadata Lint (EAA): Check This File" description="Run EPUB Accessibility Metadata Lint (EAA) on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
