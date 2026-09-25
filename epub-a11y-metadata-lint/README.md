@@ -67,7 +67,7 @@ Hub and the free web version: https://getreadystack.com/tools/epub-a11y-metadata
 * `EPUB A11y: Sweep this folder` — every `.opf` in the workspace, dated report
 * `EPUB A11y: Enter licence key`
 
-## Licence and refund
+## Licence
 
 $29 once, one licence key per person or team seat. The key is
 validated against the Polar customer portal; no account and no telemetry.
