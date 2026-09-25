@@ -2,7 +2,7 @@
   "name": "livewire-client-surface-audit",
   "displayName": "Livewire Client Surface Audit",
   "description": "Finds the lines in your Laravel Livewire and Blade files that the browser can reach, change or call, and names the fix on each one.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,5 +49,8 @@
     "directory": "livewire-client-surface-audit"
   },
   "homepage": "https://getreadystack.com/tools/livewire-client-surface-audit",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-14"
+  }
 }
