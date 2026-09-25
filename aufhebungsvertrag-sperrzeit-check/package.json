@@ -2,7 +2,7 @@
   "name": "aufhebungsvertrag-sperrzeit-check",
   "displayName": "Arbeitslosengeld-Check für Aufhebungsverträge",
   "description": "Prüft Aufhebungsverträge (Markdown) vor der Unterschrift: Sperrzeit § 159 SGB III, Ruhen wegen Abfindung § 158, Kündigungsfrist § 622 BGB, Schriftform § 623 BGB, Arbeitsuchendmeldung § 38.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
