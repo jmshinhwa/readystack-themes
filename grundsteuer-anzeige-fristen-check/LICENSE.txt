@@ -1,0 +1,15 @@
+Grundsteuer Fristen-Check für Objektlisten — Licence
+
+Free scope
+  Prüft die ganze Objektliste und zeigt jede versäumte oder offene Anzeigefrist mit Datum und Paragraf. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Prüfbericht als Datei für die Akte exportieren und alle Objekte eines Bestands in einem Lauf fristgerecht dokumentieren. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
