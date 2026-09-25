@@ -1,0 +1,53 @@
+{
+  "name": "grundsteuer-anzeige-fristen-check",
+  "displayName": "Grundsteuer Fristen-Check für Objektlisten",
+  "description": "Prüft Objekt-Änderungslisten (CSV) auf Grundsteuer-Anzeigefristen: § 228 BewG (31. März des Folgejahres), Wertfortschreibung über 15.000 € (§ 222 BewG), Landesmodelle, Eigentümerwechsel.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "grundsteuer",
+    "änderungsanzeige",
+    "wertfortschreibung",
+    "hausverwaltung",
+    "bewg",
+    "grundsteuerwert",
+    "steuerberater"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "grundsteuerCheck.checkFile",
+        "title": "Grundsteuer Fristen-Check für Objektlisten: Check this file",
+        "category": "Grundsteuer Fristen-Check für Objektlisten"
+      },
+      {
+        "command": "grundsteuerCheck.checkWorkspace",
+        "title": "Grundsteuer Fristen-Check für Objektlisten: Sweep workspace and write report (licence)",
+        "category": "Grundsteuer Fristen-Check für Objektlisten"
+      },
+      {
+        "command": "grundsteuerCheck.enterKey",
+        "title": "Grundsteuer Fristen-Check für Objektlisten: Enter licence key",
+        "category": "Grundsteuer Fristen-Check für Objektlisten"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "grundsteuer-anzeige-fristen-check"
+  },
+  "homepage": "https://getreadystack.com/de/tools/grundsteuer-anzeige-fristen-check",
+  "icon": "icon.png"
+}
