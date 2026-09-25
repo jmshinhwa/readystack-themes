@@ -2,7 +2,7 @@
   "name": "cran-policy-submission-lint",
   "displayName": "CRAN Submission Lint - R package policy check (DESCRIPTION, NAMESPACE, tests)",
   "description": "Check an R package against the CRAN Repository Policy before you submit: DESCRIPTION fields, licence strings, library() in R/, setwd(), unrestored options()/par(), T/F, ::: and more.",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
