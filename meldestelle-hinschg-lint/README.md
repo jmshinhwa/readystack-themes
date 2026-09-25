@@ -50,6 +50,6 @@ Kostenlos: die geöffnete Datei gegen alle 12 Regeln, ohne Begrenzung. Vollversi
 
 Maßstab: Eine anwaltliche Durchsicht wird nach Zeitaufwand abgerechnet; dieser Prüfer ersetzt sie nicht, er findet die 12 prüfbaren Pflichtangaben vorher.
 
-Web-Version und Hinweise: https://getreadystack.com/tools/meldestelle-hinschg-lint
+Web-Version und Hinweise: https://getreadystack.com/de/tools/meldestelle-hinschg-lint
 
 Keine Rechtsberatung. Stand der Regeln: 2026-09-23.
