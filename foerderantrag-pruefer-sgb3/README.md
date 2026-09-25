@@ -35,7 +35,7 @@ Eine Überschrift je Leistung (`## Eingliederungszuschuss …`, `## Weiterbildun
 
 - Datei öffnen → Befunde erscheinen im Problems-Panel.
 - Befehlspalette: „Förderantrag-Prüfer: aktuelle Datei prüfen“.
-- Web-Version ohne Installation: https://getreadystack.com/tools/foerderantrag-pruefer-sgb3
+- Web-Version ohne Installation: https://getreadystack.com/de/tools/foerderantrag-pruefer-sgb3
 
 ## Zum Vergleich
 
