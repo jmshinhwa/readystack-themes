@@ -62,7 +62,7 @@ als Markdown oder CSV fürs Belegheft nach § 10 AlkStV heraus:
 Maßstab: Ein Steuerberater rechnet dieselbe Stunde nach § 13 StBVV mit einer Zeitgebühr von
 16,50 bis 41 Euro je angefangene Viertelstunde ab.
 
-Webversion und Schwesterwerkzeuge: https://getreadystack.com/tools/steuerlager-schwund-check-de
+Webversion und Schwesterwerkzeuge: https://getreadystack.com/de/tools/steuerlager-schwund-check-de
 
 ## Format der Lagerakte
 
