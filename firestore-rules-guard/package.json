@@ -2,7 +2,7 @@
   "name": "firestore-rules-guard",
   "displayName": "Firestore Security Rules Lint - open rules and missing auth",
   "description": "Audits firestore.rules and storage.rules for public access, expired test-mode dates and unbounded uploads before you deploy.",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -47,5 +47,8 @@
     "directory": "firestore-rules-guard"
   },
   "homepage": "https://getreadystack.com/tools/firestore-rules-guard",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-14"
+  }
 }
