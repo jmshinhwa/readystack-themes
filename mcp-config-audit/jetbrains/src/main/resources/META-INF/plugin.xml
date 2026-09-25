@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.mcp-config-audit</id>
+  <name>MCP Server Config Audit</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Audit one mcp.json for what an agent config gives away — inline API keys, unpinned npx launches, plaintext remote servers, shell wrappers, auto-approved tools, whole-machine filesystem roots — with line numbers. The shipped sample config _fixtures/dirty.mcp.json (33 lines, five servers) returns 14 findings, 8 of them blocking.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>MCP Server Config Audit: Check This File</b>. Each finding appears on its line with the fix. 18 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/mcp-config-audit</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/mcp-config-audit">getreadystack.com/tools/mcp-config-audit</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_mcp_config_audit.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.mcp-config-audit" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.mcp-config-audit.check" class="com.getreadystack.p_mcp_config_audit.RsCheckAction"
+            text="MCP Server Config Audit: Check This File" description="Run MCP Server Config Audit on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
