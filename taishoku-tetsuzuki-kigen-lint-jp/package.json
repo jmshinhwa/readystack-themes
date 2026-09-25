@@ -2,7 +2,7 @@
   "name": "taishoku-tetsuzuki-kigen-lint-jp",
   "displayName": "退職手続き 期限リント — 健康保険 任意継続・国保・雇用保険",
   "description": "退職・入社手続きマニュアル(Markdown)の届出期限を検査。健康保険 任意継続20日・国保14日・資格喪失届5日・雇用保険10日・源泉徴収票1か月・特定の法人の電子申請義務の誤記を行番号つきで指摘。",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,5 +49,8 @@
     "directory": "taishoku-tetsuzuki-kigen-lint-jp"
   },
   "homepage": "https://getreadystack.com/ja/tools/taishoku-tetsuzuki-kigen-lint-jp",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-24"
+  }
 }
