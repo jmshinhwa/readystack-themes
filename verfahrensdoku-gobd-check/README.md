@@ -6,7 +6,7 @@ Prüft eine Verfahrensdokumentation im Markdown-Format gegen **17 Regeln** aus d
 GoBD (BMF-Schreiben vom 28.11.2019) und der Abgabenordnung — in VS Code, offline,
 ohne Upload und ohne Konto.
 
-Werkzeug-Seite: <https://getreadystack.com/tools/verfahrensdoku-gobd-check>
+Werkzeug-Seite: <https://getreadystack.com/de/tools/verfahrensdoku-gobd-check>
 
 ## Warum es das gibt
 
