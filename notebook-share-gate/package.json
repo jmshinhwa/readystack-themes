@@ -2,7 +2,7 @@
   "name": "notebook-share-gate",
   "displayName": "Notebook Share Gate",
   "description": "Audits saved .ipynb cell outputs for live credentials, customer personal data and internal hostnames before you share, commit or attach the notebook.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
