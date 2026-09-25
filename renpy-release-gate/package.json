@@ -2,7 +2,7 @@
   "name": "renpy-release-gate",
   "displayName": "Ren'Py Release Gate",
   "description": "Catch the Ren'Py script bugs that compile fine and only crash in a player's save: unescaped [ and {, define-instead-of-default, tab indents, developer mode shipped.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -47,5 +47,8 @@
     "directory": "renpy-release-gate"
   },
   "homepage": "https://getreadystack.com/tools/renpy-release-gate",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-14"
+  }
 }
