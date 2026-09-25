@@ -4,7 +4,7 @@
 
 電子取引データの**索引簿 (CSV)** を、電子帳簿保存法の**検索要件3項目**とファイル名規則で**行ごとに**検査します。日本の個人事業主・小規模法人の経理担当者向け。エディタの中だけで動き、データはどこにも送信されません。
 
-ハブ: https://getreadystack.com/tools/denchoho-sakuinbo-lint-jp
+ハブ: https://getreadystack.com/ja/tools/denchoho-sakuinbo-lint-jp
 
 ## これが見つけるもの
 
