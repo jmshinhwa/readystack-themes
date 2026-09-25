@@ -1,0 +1,55 @@
+{
+  "name": "python-pci-log-leak-lint",
+  "displayName": "Python Log Leak Lint: PCI DSS Card Data",
+  "description": "Flags Python logging, print and raise calls that write card numbers, CVV, track data, PINs, passwords or auth headers into logs, with the PCI DSS v4.0.1 requirement and a fix per line.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "python",
+    "logging",
+    "pci dss",
+    "cvv",
+    "card data",
+    "lint",
+    "fintech",
+    "security",
+    "log checker"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pyPciLogLeak.checkFile",
+        "title": "Python Log Leak Lint: PCI DSS Card Data: Check this file",
+        "category": "Python Log Leak Lint: PCI DSS Card Data"
+      },
+      {
+        "command": "pyPciLogLeak.checkWorkspace",
+        "title": "Python Log Leak Lint: PCI DSS Card Data: Sweep workspace and write report (licence)",
+        "category": "Python Log Leak Lint: PCI DSS Card Data"
+      },
+      {
+        "command": "pyPciLogLeak.enterKey",
+        "title": "Python Log Leak Lint: PCI DSS Card Data: Enter licence key",
+        "category": "Python Log Leak Lint: PCI DSS Card Data"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "python-pci-log-leak-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/python-pci-log-leak-lint",
+  "icon": "icon.png"
+}
