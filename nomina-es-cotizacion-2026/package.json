@@ -2,7 +2,7 @@
   "name": "nomina-es-cotizacion-2026",
   "displayName": "Nómina ES: tablas de cotización 2026",
   "description": "Revisa tus ficheros de configuración de nómina (JSON, YAML, CSV) y marca los tipos, topes y tramos de cotización que siguen en valores del ejercicio anterior, con el valor oficial 2026 al lado.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,5 +49,8 @@
     "directory": "nomina-es-cotizacion-2026"
   },
   "homepage": "https://getreadystack.com/es/tools/nomina-es-cotizacion-2026",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-22"
+  }
 }
