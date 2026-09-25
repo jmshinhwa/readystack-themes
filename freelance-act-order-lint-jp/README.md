@@ -37,7 +37,7 @@ FL-B15  契約終了日 2026-10-05 まで残り 17日。30日前予告の期限�
 2. コマンドパレット → `フリーランス新法: このファイルを検査`
 3. 結果は「問題」パネルに行単位で出ます
 
-ブラウザ版（インストール不要・アップロードなし・同じエンジン）: https://getreadystack.com/tools/freelance-act-order-lint-jp
+ブラウザ版（インストール不要・アップロードなし・同じエンジン）: https://getreadystack.com/ja/tools/freelance-act-order-lint-jp
 
 ## 無料でできること / 追加でできること
 
