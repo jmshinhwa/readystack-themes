@@ -58,8 +58,7 @@ answer, counted from the day the mail arrives.
 Checking the notice open in your editor is free and always will be — all 16 rules, every finding,
 no key, no limit on how many times you run it. The licensed command sweeps every notice in the
 workspace in one pass and writes a dated evidence report you keep:
-<https://buy.polar.sh/polar_cl_sHFWy5cMZEnka87rCDg3F8t1bTkKSKQZcbXaQ1qRwVS> — $29 once, one licence key per person or CI seat, 7-day full
-refund. A law firm reviewing one notice bills at counsel's hourly rate, about €250 an hour.
+<https://buy.polar.sh/polar_cl_sHFWy5cMZEnka87rCDg3F8t1bTkKSKQZcbXaQ1qRwVS> — $29 once, one licence key per person or CI seat. A law firm reviewing one notice bills at counsel's hourly rate, about €250 an hour.
 
 ## Also free in the browser
 
