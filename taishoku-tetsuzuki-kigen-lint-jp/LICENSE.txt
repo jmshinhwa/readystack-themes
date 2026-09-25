@@ -1,0 +1,15 @@
+退職手続き 期限リント — 任意継続・国保・雇用保険 — Licence
+
+Free scope
+  開いている手順書1ファイルの届出期限の誤記を全ルールで検査し、行番号と正しい期限を表示する is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  ワークスペース全体の手順書を一括検査し、根拠条文つきの監査レポート(Markdown/CSV)として書き出す is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
