@@ -1,0 +1,14 @@
+[
+ {"id": "FR01", "check": "spalten_fehlen", "sev": "error", "law": "CSV-Format", "title": "Zeile hat weniger als 5 Spalten (akte;ereignis;zugang;frist;fristende;land)"},
+ {"id": "FR02", "check": "datum_ungueltig", "sev": "error", "law": "§ 187 BGB", "title": "Zugangs- oder Fristende-Datum ist kein gültiges Datum (YYYY-MM-DD oder TT.MM.JJJJ)"},
+ {"id": "FR03", "check": "frist_unlesbar", "sev": "error", "law": "§ 188 BGB", "title": "Fristdauer unlesbar (erlaubt: 14 Tage, 2 Wochen, 1 Monat, 1 Jahr)"},
+ {"id": "FR04", "check": "land_unbekannt", "sev": "warning", "law": "§ 193 BGB", "title": "Bundesland fehlt oder unbekannt — Landesfeiertage nicht prüfbar"},
+ {"id": "FR05", "check": "fristende_fehlt", "sev": "error", "law": "§ 188 BGB", "title": "Fristende nicht eingetragen"},
+ {"id": "FR06", "check": "ende_auf_ruhetag", "sev": "error", "law": "§ 193 BGB / § 222 Abs. 2 ZPO", "title": "Notiertes Fristende fällt auf Samstag, Sonntag oder Feiertag im Land"},
+ {"id": "FR07", "check": "ereignistag_mitgezaehlt", "sev": "warning", "law": "§ 187 Abs. 1 BGB", "title": "Ereignistag mitgezählt — Fristende einen Tag zu früh"},
+ {"id": "FR08", "check": "monatsende_ueberlaufen", "sev": "error", "law": "§ 188 Abs. 3 BGB", "title": "Monatsfrist über das Monatsende hinaus gerechnet — Frist endet am letzten Tag des Monats"},
+ {"id": "FR09", "check": "feiertag_anderes_land", "sev": "error", "law": "§ 193 BGB", "title": "Verschoben wegen eines Feiertags, der in diesem Bundesland nicht gilt"},
+ {"id": "FR10", "check": "heiligabend_silvester", "sev": "error", "law": "§ 193 BGB", "title": "24.12. oder 31.12. als Feiertag behandelt — beide sind Werktage"},
+ {"id": "FR11", "check": "zu_spaet", "sev": "error", "law": "§§ 187–193 BGB", "title": "Notiertes Fristende liegt nach dem richtigen Fristende"},
+ {"id": "FR12", "check": "zu_frueh", "sev": "warning", "law": "§§ 187–193 BGB", "title": "Notiertes Fristende liegt vor dem richtigen Fristende"}
+]
