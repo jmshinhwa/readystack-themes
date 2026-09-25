@@ -1,0 +1,53 @@
+{
+  "name": "taishoku-tetsuzuki-kigen-lint-jp",
+  "displayName": "退職手続き 期限リント — 健康保険 任意継続・国保・雇用保険",
+  "description": "退職・入社手続きマニュアル(Markdown)の届出期限を検査。健康保険 任意継続20日・国保14日・資格喪失届5日・雇用保険10日・源泉徴収票1か月・特定の法人の電子申請義務の誤記を行番号つきで指摘。",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "健康保険 任意継続 手続き",
+    "国民健康保険 脱退 手続き",
+    "退職手続き",
+    "資格喪失届",
+    "雇用保険",
+    "労務",
+    "社会保険"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "taishokuKigen.checkFile",
+        "title": "退職手続き 期限リント — 任意継続・国保・雇用保険: Check this file",
+        "category": "退職手続き 期限リント — 任意継続・国保・雇用保険"
+      },
+      {
+        "command": "taishokuKigen.checkWorkspace",
+        "title": "退職手続き 期限リント — 任意継続・国保・雇用保険: Sweep workspace and write report (licence)",
+        "category": "退職手続き 期限リント — 任意継続・国保・雇用保険"
+      },
+      {
+        "command": "taishokuKigen.enterKey",
+        "title": "退職手続き 期限リント — 任意継続・国保・雇用保険: Enter licence key",
+        "category": "退職手続き 期限リント — 任意継続・国保・雇用保険"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "taishoku-tetsuzuki-kigen-lint-jp"
+  },
+  "homepage": "https://getreadystack.com/ja/tools/taishoku-tetsuzuki-kigen-lint-jp",
+  "icon": "icon.png"
+}
