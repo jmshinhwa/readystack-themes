@@ -2,7 +2,7 @@
   "name": "steuer-lint-astg-hinzurechnung",
   "displayName": "Steuer-Lint: Hinzurechnungsbesteuerung AStG 2026",
   "description": "Prüft Steuer-Memos und KI-Entwürfe (Markdown, Text) auf veraltete AStG-Aussagen: 25 % statt 15 % Niedrigsteuer, Inländerbeherrschung, Gewerbesteuer, Gegenbeweis — 10 Regeln.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
