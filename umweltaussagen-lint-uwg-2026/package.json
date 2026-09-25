@@ -2,7 +2,7 @@
   "name": "umweltaussagen-lint-uwg-2026",
   "displayName": "Green-Claims-Lint: Umweltaussagen nach UWG 2026",
   "description": "Findet in Produkttexten Umweltaussagen, die ab 27.09.2026 nach dem UWG-Anhang (Nr. 2a, 4a, 4b, 4c, 10a) verboten sind: umweltfreundlich, klimaneutral, eigene Siegel – mit Nummer und Fix.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -48,6 +48,6 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "umweltaussagen-lint-uwg-2026"
   },
-  "homepage": "https://getreadystack.com/tools/umweltaussagen-lint-uwg-2026",
+  "homepage": "https://getreadystack.com/de/tools/umweltaussagen-lint-uwg-2026",
   "icon": "icon.png"
 }
