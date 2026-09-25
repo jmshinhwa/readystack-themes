@@ -2,7 +2,7 @@
   "name": "autorenew-signup-lint",
   "displayName": "Subscription Signup Lint - auto-renewal law (California ARL)",
   "description": "Lints subscription signup and pricing pages against California's Automatic Renewal Law as amended by AB 2863, in force 2026-01-01.",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -47,5 +47,8 @@
     "directory": "autorenew-signup-lint"
   },
   "homepage": "https://getreadystack.com/tools/autorenew-signup-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-13"
+  }
 }
