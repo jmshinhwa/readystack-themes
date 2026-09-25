@@ -1,0 +1,54 @@
+{
+  "name": "aufhebungsvertrag-sperrzeit-check",
+  "displayName": "Arbeitslosengeld-Check für Aufhebungsverträge",
+  "description": "Prüft Aufhebungsverträge (Markdown) vor der Unterschrift: Sperrzeit § 159 SGB III, Ruhen wegen Abfindung § 158, Kündigungsfrist § 622 BGB, Schriftform § 623 BGB, Arbeitsuchendmeldung § 38.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "arbeitslosengeld",
+    "aufhebungsvertrag",
+    "sperrzeit",
+    "abfindung",
+    "sgb iii",
+    "arbeitsrecht",
+    "kündigungsfrist",
+    "hr"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "aufhebungsCheck.checkFile",
+        "title": "Arbeitslosengeld-Check für Aufhebungsverträge: Check this file",
+        "category": "Arbeitslosengeld-Check für Aufhebungsverträge"
+      },
+      {
+        "command": "aufhebungsCheck.checkWorkspace",
+        "title": "Arbeitslosengeld-Check für Aufhebungsverträge: Sweep workspace and write report (licence)",
+        "category": "Arbeitslosengeld-Check für Aufhebungsverträge"
+      },
+      {
+        "command": "aufhebungsCheck.enterKey",
+        "title": "Arbeitslosengeld-Check für Aufhebungsverträge: Enter licence key",
+        "category": "Arbeitslosengeld-Check für Aufhebungsverträge"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "aufhebungsvertrag-sperrzeit-check"
+  },
+  "homepage": "https://getreadystack.com/tools/aufhebungsvertrag-sperrzeit-check",
+  "icon": "icon.png"
+}
