@@ -2,7 +2,7 @@
   "name": "image-host-transfer-lint",
   "displayName": "Image Host Transfer Lint",
   "description": "Finds images, avatars, fonts and embeds in your docs that are hotlinked from non-EU hosts, so EU visitor IPs leave the EEA before anyone consents.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
