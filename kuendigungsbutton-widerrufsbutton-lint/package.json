@@ -2,7 +2,7 @@
   "name": "kuendigungsbutton-widerrufsbutton-lint",
   "displayName": "Kündigungsbutton & Widerrufsbutton Check (BGB)",
   "description": "Prüft Shop- und Abo-Templates (HTML, Vue, JSX, Twig, Liquid) auf die drei Pflicht-Schaltflächen im BGB: zahlungspflichtig bestellen (§ 312j), Verträge hier kündigen (§ 312k), Vertrag widerrufen (§ 356",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -51,5 +51,8 @@
     "directory": "kuendigungsbutton-widerrufsbutton-lint"
   },
   "homepage": "https://getreadystack.com/de/tools/kuendigungsbutton-widerrufsbutton-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-24"
+  }
 }
