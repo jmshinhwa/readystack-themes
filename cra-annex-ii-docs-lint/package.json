@@ -2,7 +2,7 @@
   "name": "cra-annex-ii-docs-lint",
   "displayName": "CRA Annex II User Docs Lint",
   "description": "Lints the user documentation that ships with your product against the mandatory Annex II items of the EU Cyber Resilience Act: support-period end date, vulnerability contact, EU DoC address, secure de",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,5 +49,8 @@
     "directory": "cra-annex-ii-docs-lint"
   },
   "homepage": "https://getreadystack.com/tools/cra-annex-ii-docs-lint",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-16"
+  }
 }
