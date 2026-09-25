@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.einvoice-mandate-lint</id>
+  <name>E-Invoice Mandate Lint - EU 2026</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Lints UBL and CII invoice XML against EN 16931 and the national e-invoicing mandates that are live in 2026</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>E-Invoice Mandate Lint - EU 2026: Check This File</b>. Each finding appears on its line with the fix. Offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/einvoice-mandate-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/einvoice-mandate-lint">getreadystack.com/tools/einvoice-mandate-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_einvoice_mandate_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.einvoice-mandate-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.einvoice-mandate-lint.check" class="com.getreadystack.p_einvoice_mandate_lint.RsCheckAction"
+            text="E-Invoice Mandate Lint - EU 2026: Check This File" description="Run E-Invoice Mandate Lint - EU 2026 on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
