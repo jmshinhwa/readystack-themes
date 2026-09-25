@@ -1,0 +1,53 @@
+{
+  "name": "wahlausschreiben-fristen-check",
+  "displayName": "Wahlausschreiben Fristen-Check (BetrVG · WO)",
+  "description": "Prüft das Wahlausschreiben der Betriebsratswahl: Einspruchs- und Vorschlagsfrist nach § 193 BGB, 6-Wochen-Frist, Sitzzahl § 9 BetrVG, Mindestsitze (d'Hondt), Stützunterschriften.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "betriebsratswahl",
+    "wahlausschreiben",
+    "frist berechnen",
+    "wahlordnung",
+    "betrvg",
+    "wahlvorstand",
+    "betriebsrat"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "wahlFristen.checkFile",
+        "title": "Wahlausschreiben Fristen-Check (BetrVG · WO): Check this file",
+        "category": "Wahlausschreiben Fristen-Check (BetrVG · WO)"
+      },
+      {
+        "command": "wahlFristen.checkWorkspace",
+        "title": "Wahlausschreiben Fristen-Check (BetrVG · WO): Sweep workspace and write report (licence)",
+        "category": "Wahlausschreiben Fristen-Check (BetrVG · WO)"
+      },
+      {
+        "command": "wahlFristen.enterKey",
+        "title": "Wahlausschreiben Fristen-Check (BetrVG · WO): Enter licence key",
+        "category": "Wahlausschreiben Fristen-Check (BetrVG · WO)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "wahlausschreiben-fristen-check"
+  },
+  "homepage": "https://getreadystack.com/tools/wahlausschreiben-fristen-check",
+  "icon": "icon.png"
+}
