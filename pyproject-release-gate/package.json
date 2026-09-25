@@ -2,7 +2,7 @@
   "name": "pyproject-release-gate",
   "displayName": "pyproject.toml Release Gate (PEP 639)",
   "description": "Catches pyproject.toml metadata that breaks your next release: end-of-life requires-python, PEP 639 licence drift, classifier conflicts, setuptools too old for SPDX. Date-aware, offline.",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -53,5 +53,8 @@
     "directory": "pyproject-release-gate"
   },
   "homepage": "https://getreadystack.com/tools/pyproject-release-gate",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-11"
+  }
 }
