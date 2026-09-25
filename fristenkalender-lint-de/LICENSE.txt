@@ -1,0 +1,15 @@
+Fristenkalender Lint: Fristen berechnen — Licence
+
+Free scope
+  Prüft eine Fristenkalender-CSV Zeile für Zeile und nennt pro falschem Fristende das richtige Datum samt Paragraf und Feiertag. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Prüft alle CSV-Exporte eines Ordners in einem Lauf und exportiert eine Fristenliste für die Kanzleiakte (Umfang und Nachweis). is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
