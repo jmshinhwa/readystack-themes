@@ -1,0 +1,31 @@
+# Pipeline drafted by an AI assistant, then edited by hand.
+image: node:20
+
+types:
+  - build
+  - test
+  - deploy
+
+variables:
+  NODE_ENV: "test"
+
+build:
+  type: build
+  script:
+    - echo "Building $CI_BUILD_REF"
+    - npm ci
+    - npm run build
+
+test:
+  script:
+    - npm test -- --coverage
+  artifacts:
+    reports:
+      cobertura: coverage/cobertura-coverage.xml
+
+deploy:
+  script:
+    - echo "$CI_JOB_JWT" > /tmp/vault-token
+    - ./scripts/deploy.sh
+  only:
+    - main
