@@ -2,7 +2,7 @@
   "name": "gitlab-ci-break-lint",
   "displayName": "GitLab CI Break Lint",
   "description": "Finds the .gitlab-ci.yml keywords GitLab retired, plus the GitHub Actions syntax an AI assistant pastes in, before the job fails on your runner.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
