@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.hollerith.tiles</groupId>
+  <artifactId>tile-cache</artifactId>
+  <version>2.4.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>Tile Cache</name>
+  <url>https://github.com/hollerith/tile-cache</url>
+
+  <properties>
+    <maven.compiler.release>17</maven.compiler.release>
+    <gpg.skip>true</gpg.skip>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>internal-mirror</id>
+      <url>http://repo.internal.hollerith.io/maven2</url>
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>2.0.13</version>
+    </dependency>
+    <dependency>
+      <groupId>io.hollerith.tiles</groupId>
+      <artifactId>tile-codec</artifactId>
+      <version>0.9.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.vendor.sdk</groupId>
+      <artifactId>vendor-sdk</artifactId>
+      <version>4.1.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/vendor-sdk-4.1.0.jar</systemPath>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.13</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>3.2.4</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>
