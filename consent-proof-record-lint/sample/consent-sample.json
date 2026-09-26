@@ -1,0 +1,48 @@
+{
+  "export_id": "consent-log-2026-09",
+  "records": [
+    {
+      "subject_id": "u_91ab7c",
+      "collected_at": "2026-02-11",
+      "purposes": { "all": true },
+      "notice_version": "v3",
+      "consent_method": "banner",
+      "withdrawal_method": "https://nordwind.example/privacy/preferences",
+      "controller": "Nordwind Retail GmbH",
+      "expires_at": "2028-02-11",
+      "legal_basis": "consent"
+    },
+    {
+      "collected_at": "2025-08-04T10:22:00Z",
+      "purposes": {
+        "analytics": { "granted": true, "user_action": false },
+        "ads": { "granted": true, "user_action": false }
+      },
+      "notice_version": "v2",
+      "notice_text_hash": "sha256:9f2c61ae4b8d370f5c2a98e1740bd3652f8ce09a1db47c3e80f6a25dc9143b77",
+      "consent_method": "implied_by_continued_browsing",
+      "withdrawal_method": "write to support",
+      "controller": "Nordwind Retail GmbH",
+      "expires_at": "2026-08-04T10:22:00Z",
+      "legal_basis": "consent"
+    },
+    {
+      "subject_id": "u_77de20",
+      "collected_at": "2026-05-20T14:03:51Z",
+      "purposes": { "analytics": true, "ads": false, "personalisation": false },
+      "notice_version": "privacy-notice-2026-05-18",
+      "notice_text_hash": "sha256:4f1c9a2be73d5087ac11d6e0f8b34c92a7d05e61bb4f2c8390de77a1c5b02e44",
+      "consent_method": "banner_save_selection",
+      "controller": "Nordwind Retail GmbH",
+      "expires_at": "2027-05-20T14:03:51Z",
+      "legal_basis": "legitimate_interest",
+      "tcf": { "tc_string": "CQKm9YAQKm9YAAKA1AENB5CgAP_gAEPgACiQhFBd" }
+    },
+    {
+      "subject_id": "u_0c4188",
+      "purposes": { "analytics": true, "ads": true },
+      "consent_method": "banner_accept_all",
+      "withdrawal_method": "https://nordwind.example/privacy/preferences"
+    }
+  ]
+}
