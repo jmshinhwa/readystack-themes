@@ -2,7 +2,7 @@
   "name": "meldestelle-hinschg-lint",
   "displayName": "Meldestelle-Prüfer (HinSchG)",
   "description": "Findet Mängel auf der Meldestelle-Seite und in der Hinweisgeber-Richtlinie nach HinSchG: 7-Tage-Eingangsbestätigung, 3-Monats-Rückmeldung, BfJ, Löschfrist, 50er-Schwelle. 12 Regeln.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
