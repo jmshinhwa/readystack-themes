@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url("https://use.typekit.net/abc1234.css");
+@import url("https://fonts.bunny.net/css?family=lato:400,700");
+@import url("https://pro.fontawesome.com/releases/v5.15.4/css/all.css");
+
+/* MyFonts Webfont Build - counter.myfonts.net/cjs/webfont-build-8841.js */
+/* brand terms sheet: http://www.foundry-terms.example/webfont-tiers */
+
+@font-face {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/HelveticaNeue-Roman.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Gotham";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../assets/fonts/Gotham-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../assets/fonts/ProximaNova-Semibold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Open Sans Custom";
+  font-style: normal;
+  font-weight: 400;
+  src: url(data:font/woff2;base64,d09GMgABAAAAAAZgABAAAAAADEwAAAYNAAEAAAAA) format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/Inter-Regular.woff2") format("woff2");
+}
+
+body {
+  font-family: "Helvetica Neue", "Proxima Nova", Arial, sans-serif;
+}
+
+.display {
+  font-family: "Gotham", "Open Sans Custom", sans-serif;
+}
