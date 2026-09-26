@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>Zur Kasse</title></head>
+<body>
+<main class="kasse">
+  <h1>Zur Kasse</h1>
+
+  <section class="position">
+    <h2>Kaffee-Abo Hausmischung</h2>
+    <p class="preis">29,00 €</p>
+    <p class="hinweis">Wird monatlich abgebucht.</p>
+    <p class="zahlung">Bei Zahlung per Kreditkarte fällt eine Kreditkartengebühr von 2,5 % an.</p>
+  </section>
+
+  <form action="/order" method="post">
+    <label><input type="checkbox" name="agb" checked> Ich akzeptiere die AGB.</label>
+    <label><input type="checkbox" name="werbung" checked> Ja, bitte Angebote per E-Mail.</label>
+    <button type="submit" class="btn">Jetzt bestellen</button>
+  </form>
+
+  <section class="konto">
+    <h2>Mein Abo</h2>
+    <a href="/support">Kündigen</a>
+  </section>
+</main>
+</body>
+</html>
