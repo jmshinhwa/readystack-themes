@@ -1,0 +1,57 @@
+{
+  "name": "streitbeilegung-hinweis-lint",
+  "displayName": "Streitbeilegung-Hinweis Lint (VSBG § 36 · OS-Link)",
+  "description": "Findet den toten OS-Plattform-Link (ODR-VO aufgehoben, Plattform seit 20.07.2025 aus) und fehlende oder unvollständige Hinweise nach § 36 VSBG in Impressum, AGB und Footer.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "impressum",
+    "vsbg",
+    "os-plattform",
+    "streitbeilegung",
+    "agb",
+    "online-shop",
+    "abmahnung",
+    "uwg"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "streitbeilegungLint.checkFile",
+        "title": "Streitbeilegung-Hinweis Lint (VSBG § 36 · OS-Link): Check this file",
+        "category": "Streitbeilegung-Hinweis Lint (VSBG § 36 · OS-Link)"
+      },
+      {
+        "command": "streitbeilegungLint.checkWorkspace",
+        "title": "Streitbeilegung-Hinweis Lint (VSBG § 36 · OS-Link): Sweep workspace and write report (licence)",
+        "category": "Streitbeilegung-Hinweis Lint (VSBG § 36 · OS-Link)"
+      },
+      {
+        "command": "streitbeilegungLint.enterKey",
+        "title": "Streitbeilegung-Hinweis Lint (VSBG § 36 · OS-Link): Enter licence key",
+        "category": "Streitbeilegung-Hinweis Lint (VSBG § 36 · OS-Link)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "streitbeilegung-hinweis-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/streitbeilegung-hinweis-lint",
+  "readystack": {
+    "rulesDate": "2026-09-25"
+  },
+  "icon": "icon.png"
+}
