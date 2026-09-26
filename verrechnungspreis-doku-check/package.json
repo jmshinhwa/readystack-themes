@@ -2,7 +2,7 @@
   "name": "verrechnungspreis-doku-check",
   "displayName": "Verrechnungspreis Doku Check: Local File & Transaktionsmatrix",
   "description": "Prüft Verrechnungspreis-Dokumentation (Local File, Markdown) gegen 16 Regeln aus §90 Abs. 3/4 AO und §4 GAufzV und rechnet die 30-Tage-Vorlagefrist samt Mindestzuschlag nach §162 Abs. 4 AO.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
