@@ -1,0 +1,6 @@
+; example.com — the state a mid-size domain is usually in after four years of adding senders
+$TTL 3600
+example.com.            3600 IN TXT "v=spf1 include:_spf.google.com include:sendgrid.net include:mailgun.org include:servers.mcsv.net include:spf.protection.outlook.com include:_spf.salesforce.com include:helpscout.net include:_spf.atlassian.net a mx ptr ~all"
+example.com.            3600 IN TXT "v=spf1 include:mail.zendesk.com +all"
+_dmarc.example.com.     3600 IN TXT "v=DMARC1; p=reject; pct=10; t=y; sp=none; np=none; rua=mailto:reports@dmarc-vendor.example"
+sel1._domainkey.example.com. 3600 IN TXT "v=DKIM1; k=rsa; t=y; p="
