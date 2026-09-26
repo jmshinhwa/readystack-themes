@@ -1,0 +1,57 @@
+{
+  "name": "nencho-fuyo-csv-lint-r8",
+  "displayName": "年末調整 扶養控除 チェック（令和8年分・62万円）",
+  "description": "年末調整の扶養親族CSVを令和8年分の新要件で検査。所得62万円・給与所得控除74万円・特定親族特別控除・配偶者特別控除・国外居住親族の必要書類。控除漏れと過大控除を行ごとに表示。",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "年末調整",
+    "扶養控除",
+    "令和8年分",
+    "特定親族特別控除",
+    "配偶者特別控除",
+    "国外居住親族",
+    "給与計算",
+    "nenmatsu chosei"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "nenchoFuyo.checkFile",
+        "title": "年末調整 扶養控除 チェック（令和8年分・62万円）: Check this file",
+        "category": "年末調整 扶養控除 チェック（令和8年分・62万円）"
+      },
+      {
+        "command": "nenchoFuyo.checkWorkspace",
+        "title": "年末調整 扶養控除 チェック（令和8年分・62万円）: Sweep workspace and write report (licence)",
+        "category": "年末調整 扶養控除 チェック（令和8年分・62万円）"
+      },
+      {
+        "command": "nenchoFuyo.enterKey",
+        "title": "年末調整 扶養控除 チェック（令和8年分・62万円）: Enter licence key",
+        "category": "年末調整 扶養控除 チェック（令和8年分・62万円）"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "nencho-fuyo-csv-lint-r8"
+  },
+  "homepage": "https://getreadystack.com/ja/tools/nencho-fuyo-csv-lint-r8",
+  "readystack": {
+    "rulesDate": "2026-09-25"
+  },
+  "icon": "icon.png"
+}
