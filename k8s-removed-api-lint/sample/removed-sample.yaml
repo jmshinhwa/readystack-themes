@@ -1,0 +1,117 @@
+# payments-api - manifests as an assistant wrote them from the shape of older examples
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: payments-api
+  annotations:
+    seccomp.security.alpha.kubernetes.io/pod: runtime/default
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: payments-api
+    spec:
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+      containers:
+        - name: api
+          image: registry.internal/payments-api:1.8.2
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: payments-reconcile
+spec:
+  schedule: "*/15 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: reconcile
+              image: registry.internal/reconcile:0.4.1
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: payments-api-pdb
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: payments-api
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: payments-api-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: payments-api
+  minReplicas: 3
+  maxReplicas: 12
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: payments-api
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: pay.internal.example
+      http:
+        paths:
+          - path: /v1
+            backend:
+              serviceName: payments-api
+              servicePort: 8080
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: paymentroutes.payments.example
+spec:
+  group: payments.example
+  version: v1alpha1
+  scope: Namespaced
+  names:
+    kind: PaymentRoute
+    plural: paymentroutes
+---
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: payments-restricted
+spec:
+  privileged: false
+  runAsUser:
+    rule: MustRunAsNonRoot
+  fsGroup:
+    rule: RunAsAny
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments-worker
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: payments-worker
+    spec:
+      containers:
+        - name: worker
+          image: registry.internal/payments-worker:1.8.2
