@@ -1,0 +1,81 @@
+# otel-collector.yaml - gateway collector, carried over from the 2023 rollout
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+  jaeger:
+    protocols:
+      thrift_http:
+        endpoint: 0.0.0.0:14268
+    remote_sampling:
+      strategy_file: /etc/otel/strategies.json
+  opencensus:
+    endpoint: 0.0.0.0:55678
+
+processors:
+  batch:
+    timeout: 5s
+  attributes/http:
+    actions:
+      - key: http.method
+        action: upsert
+        value: GET
+      - key: http.status_code
+        action: extract
+      - key: http.url
+        action: delete
+      - key: http.user_agent
+        action: delete
+  filter/noise:
+    traces:
+      span:
+        - 'attributes["http.target"] == "/healthz"'
+        - 'attributes["net.peer.name"] == "127.0.0.1"'
+  transform/db:
+    trace_statements:
+      - context: span
+        statements:
+          - set(attributes["db.query"], attributes["db.statement"])
+          - delete_key(attributes, "db.name")
+          - keep_keys(attributes, ["db.system", "db.operation"])
+  resource/env:
+    attributes:
+      - key: deployment.environment
+        value: prod
+        action: insert
+      - key: telemetry.auto.version
+        action: delete
+
+exporters:
+  jaeger:
+    endpoint: jaeger-collector:14250
+    tls:
+      insecure: true
+  logging:
+    loglevel: debug
+  otlphttp/metrics:
+    endpoint: https://metrics.internal:4318
+
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+  memory_ballast:
+    size_mib: 512
+
+service:
+  telemetry:
+    metrics:
+      address: 0.0.0.0:8888
+  extensions: [health_check, memory_ballast]
+  pipelines:
+    traces:
+      receivers: [otlp, jaeger, opencensus]
+      processors: [batch, attributes/http, filter/noise, transform/db, resource/env]
+      exporters: [jaeger, logging]
+    metrics:
+      receivers: [otlp]
+      processors: [batch, resource/env]
+      exporters: [otlphttp/metrics, logging]
