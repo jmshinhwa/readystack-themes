@@ -1,0 +1,25 @@
+<!-- Belegvorlage, generiert -->
+<!-- gedruckt: 2026-03-14T18:22:05+01:00 -->
+<div class="receipt">
+  <header>
+    <strong>{{shop.name}}</strong>
+  </header>
+
+  <p>Datum: {{bon.datum}}</p>
+
+  <table>
+    {{#each items}}
+    <tr><td>Menge {{this.qty}}</td><td>{{this.name}}</td><td>{{this.preis}} EUR</td></tr>
+    {{/each}}
+  </table>
+
+  <p>Gesamt: {{bon.summe}} EUR</p>
+  <p>MwSt {{bon.mwst}} %</p>
+
+  <section class="fiskal">
+    <p>Kassen-Seriennummer: KASSE-01</p>
+    <p>Transaktionsnummer: 0000</p>
+  </section>
+
+  <footer>Beleg auf Wunsch an der Kasse erhältlich.</footer>
+</div>
