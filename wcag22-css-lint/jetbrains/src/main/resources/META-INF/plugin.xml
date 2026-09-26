@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.wcag22-css-lint</id>
+  <name>WCAG 2.2 CSS Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Reads your stylesheet and names the success criterion each rule breaks, including the three WCAG 2.2 added that WCAG 2.1 linters never learned.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>WCAG 2.2 CSS Lint: Check This File</b>. Each finding appears on its line with the fix. 14 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/wcag22-css-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/wcag22-css-lint">getreadystack.com/tools/wcag22-css-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_wcag22_css_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.wcag22-css-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.wcag22-css-lint.check" class="com.getreadystack.p_wcag22_css_lint.RsCheckAction"
+            text="WCAG 2.2 CSS Lint: Check This File" description="Run WCAG 2.2 CSS Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
