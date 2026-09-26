@@ -93,7 +93,7 @@ async function sweepTrial(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
+  /* s158: no new free trial is opened (trials already started are honoured) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     // ★자기 폴더에서 본 숫자를 먼저 보여주고 키를 묻는다 (역방향 체험의 심장)
