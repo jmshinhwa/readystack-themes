@@ -2,7 +2,7 @@
   "name": "security-txt-cra-lint",
   "displayName": "security.txt Lint - RFC 9116 and CRA contact point",
   "description": "Lints security.txt against RFC 9116 and the EU Cyber Resilience Act reporting contact point that has applied since 11 September 2026.",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
