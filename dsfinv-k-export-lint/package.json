@@ -2,7 +2,7 @@
   "name": "dsfinv-k-export-lint",
   "displayName": "CSV Kassenprüfer — DSFinV-K Export Lint",
   "description": "Prueft eine DSFinV-K-CSV aus dem Kassenexport gegen die amtliche Spaltenliste, Wertelisten und Formate der DSFinV-K 2.4 - direkt im Editor.",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
