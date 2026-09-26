@@ -1,0 +1,12 @@
+code,description,tax_treatment,plan_basis,box12,employer_amount,employee_amount,effective_date
+401KEE,401(k) elective deferral,pre_tax,401k,D,0.00,250.00,2026-01-01
+ROTH401K,Roth 401(k) deferral,pre_tax,401k,AA,0.00,150.00,2026-01-01
+CHILDSUP,Child support withholding order,pre_tax,,,0.00,180.00,2026-01-01
+DENTAL,Dental premium,,,,20.00,12.00,2026-01-01
+HSAEE,HSA employee contribution,pre_tax,125,,,120.00,2026-01-01
+FSAMED,Medical FSA,pre_tax,125,X,0.00,90.00,2026-01-01
+TRANSIT,Qualified transit benefit,pre_tax,132,,0.00,80.00,2024-01-01
+UNIFORM,Uniform purchase repayment,post_tax,,,0.00,25.00,
+457BEE,457(b) elective deferral,pre_tax,457b,,0.00,200.00,2026-01-01
+MEDPPO,Medical PPO premium,pre_tax,,,300.00,140.00,2026-01-01
+MEDPPO,Medical PPO premium legacy,post_tax,,,300.00,140.00,2026-01-01
