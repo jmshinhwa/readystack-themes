@@ -1,0 +1,73 @@
+<!doctype html>
+<!-- Pricing card component, written against Tailwind v3. Build tokens live in tailwind.config.js. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Plans</title>
+  <style>
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    @layer utilities {
+      .text-balance-safe {
+        text-wrap: balance;
+        color: theme(colors.slate.700);
+      }
+    }
+
+    .plan-title {
+      @apply text-xl font-semibold;
+    }
+  </style>
+</head>
+<body class="bg-slate-50">
+  <main class="mx-auto max-w-3xl p-8">
+    <h1 class="text-3xl font-bold tw-text-slate-900">Choose a plan</h1>
+
+    <section class="mt-8 grid gap-6 md:grid-cols-3">
+      <article class="rounded border bg-white p-6 shadow">
+        <h2 class="plan-title">Starter</h2>
+        <p class="mt-2 text-slate-600 text-opacity-80">For one person.</p>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li class="flex">
+            <span class="flex-shrink-0 w-5">-</span>
+            <span class="overflow-ellipsis whitespace-nowrap overflow-hidden">One project workspace</span>
+          </li>
+          <li class="flex">
+            <span class="flex-grow">Email support</span>
+          </li>
+        </ul>
+        <a href="#start" class="mt-6 block rounded-sm bg-sky-600 px-4 py-2 text-white outline-none focus:ring">
+          Start
+        </a>
+      </article>
+
+      <article class="rounded border-2 bg-gradient-to-r from-sky-500 to-indigo-500 p-6 drop-shadow-sm">
+        <h2 class="plan-title text-white">Team</h2>
+        <p class="mt-2 text-white bg-opacity-90">For up to ten seats.</p>
+        <ul class="mt-4 space-y-2 text-sm first:*:pt-0">
+          <li class="flex">
+            <span class="flex-shrink-0 w-5">-</span>
+            <span>Shared workspaces</span>
+          </li>
+        </ul>
+        <a href="#team" class="mt-6 block rounded bg-[--brand] px-4 py-2 outline-none">
+          Talk to us
+        </a>
+      </article>
+
+      <article class="rounded border bg-white p-6 shadow-sm blur-sm">
+        <h2 class="plan-title">Enterprise</h2>
+        <p class="mt-2 text-slate-600 decoration-clone">Invoiced yearly.</p>
+        <div class="mt-4 space-x-3 text-sm text-slate-500 border-opacity-50">
+          <span>SSO</span><span>SLA</span>
+        </div>
+        <a href="#sales" class="mt-6 block rounded bg-slate-900 px-4 py-2 text-white ring">
+          Contact sales
+        </a>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
