@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="refresh" content="900;url=/session-expired">
+  <title>Create your account</title>
+  <style>
+    .field input { border: 1px solid #ccc; }
+    .field input:focus { outline: none; }
+    .icon-btn { width: 20px; height: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="/logo.svg" class="logo">
+    <a href="/help" aria-hidden="true">Help</a>
+  </header>
+
+  <main>
+    <h1>Create your account</h1>
+
+    <form action="/signup" method="post">
+      <div class="field">
+        <input type="email" name="email" placeholder="Email address">
+      </div>
+
+      <div class="field">
+        <input type="email" name="confirm_email" placeholder="Confirm email address">
+      </div>
+
+      <div class="field">
+        <input type="text" name="full_name" class="control">
+      </div>
+
+      <div class="field">
+        <input type="tel" name="phone" aria-invalid="true" placeholder="Mobile number">
+      </div>
+
+      <div class="field">
+        <label for="pw">Password</label>
+        <input type="password" id="pw" name="password" autocomplete="off" onpaste="return false">
+      </div>
+
+      <div class="field">
+        <select name="country" class="control">
+          <option value="de">Germany</option>
+          <option value="ie">Ireland</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <input type="checkbox" name="terms" style="width:16px;height:16px">
+        I accept the terms
+      </div>
+
+      <button class="icon-btn" style="width:20px;height:20px"><svg viewBox="0 0 16 16"><path d="M8 0v16"></path></svg></button>
+
+      <div class="submit" onclick="submitForm()">Create account</div>
+      <span role="button">Cancel</span>
+      <a href="/terms" tabindex="3">Read the terms</a>
+    </form>
+
+    <ul class="plan-order">
+      <li draggable="true">Starter plan</li>
+    </ul>
+  </main>
+</body>
+</html>
