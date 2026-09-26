@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.agentforce-action-audit</id>
+  <name>Agentforce Action Audit</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>13 rules on a Salesforce Agentforce topic file, before the deploy and before Article 50</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Agentforce Action Audit: Check This File</b>. Each finding appears on its line with the fix. 13 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/agentforce-action-audit</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/agentforce-action-audit">getreadystack.com/tools/agentforce-action-audit</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_agentforce_action_audit.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.agentforce-action-audit" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.agentforce-action-audit.check" class="com.getreadystack.p_agentforce_action_audit.RsCheckAction"
+            text="Agentforce Action Audit: Check This File" description="Run Agentforce Action Audit on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
