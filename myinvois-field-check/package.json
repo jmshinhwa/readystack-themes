@@ -2,7 +2,7 @@
   "name": "myinvois-field-check",
   "displayName": "MyInvois Field Check — Malaysia e-Invoice (UBL 2.1)",
   "description": "Lints MyInvois (LHDN/IRBM) e-Invoice JSON against the UBL 2.1 field rules: TIN, MSIC, classification code, tax type code, invoice type code.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
