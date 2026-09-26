@@ -2,7 +2,7 @@
   "name": "streitbeilegung-hinweis-lint",
   "displayName": "Streitbeilegung-Hinweis Lint (VSBG § 36 · OS-Link)",
   "description": "Findet den toten OS-Plattform-Link (ODR-VO aufgehoben, Plattform seit 20.07.2025 aus) und fehlende oder unvollständige Hinweise nach § 36 VSBG in Impressum, AGB und Footer.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,7 +49,7 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "streitbeilegung-hinweis-lint"
   },
-  "homepage": "https://getreadystack.com/tools/streitbeilegung-hinweis-lint",
+  "homepage": "https://getreadystack.com/de/tools/streitbeilegung-hinweis-lint",
   "readystack": {
     "rulesDate": "2026-09-25"
   },
