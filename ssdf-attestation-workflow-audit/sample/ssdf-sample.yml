@@ -1,0 +1,21 @@
+name: deploy
+on:
+  pull_request_target:
+    branches: [main]
+permissions: write-all
+jobs:
+  ship:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: install
+        run: npm install
+      - name: label the build
+        run: echo "building ${{ github.event.pull_request.title }}"
+      - name: publish
+        run: echo "${{ secrets.NPM_TOKEN }}" > ~/.npmrc && npm publish
+      - uses: actions/attest-build-provenance@c074443f1aee8d4aeeae555aebba3282517141b2
+        with:
+          subject-path: dist/*.tgz
