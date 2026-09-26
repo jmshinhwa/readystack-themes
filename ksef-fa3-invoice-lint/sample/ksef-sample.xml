@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-2"?>
+<Faktura xmlns="http://crd.gov.pl/wzor/2023/06/29/12648/">
+  <Naglowek>
+    <KodFormularza kodSystemowy="FA (2)" wersjaSchemy="1-0E">FA</KodFormularza>
+    <WariantFormularza>2</WariantFormularza>
+    <DataWytworzeniaFa>2026-09-14</DataWytworzeniaFa>
+  </Naglowek>
+  <Podmiot1>
+    <DaneIdentyfikacyjne>
+      <NIP>PL 526-231-11-82</NIP>
+      <Nazwa>Kowalski Systemy Sp. z o.o.</Nazwa>
+    </DaneIdentyfikacyjne>
+  </Podmiot1>
+  <Podmiot2>
+    <DaneIdentyfikacyjne>
+      <NIP>1234567890</NIP>
+      <Nazwa></Nazwa>
+    </DaneIdentyfikacyjne>
+  </Podmiot2>
+  <Fa>
+    <KodWaluty>zl</KodWaluty>
+    <P_1>14.09.2026</P_1>
+    <P_2></P_2>
+    <P_13_1>4 200,00</P_13_1>
+    <P_14_1>966,00</P_14_1>
+    <P_15>5166,00</P_15>
+    <Adnotacje>
+      <P_16>2</P_16>
+      <P_17>2</P_17>
+    </Adnotacje>
+    <RodzajFaktury>KOR</RodzajFaktury>
+    <FaWiersz>
+      <NrWierszaFa>1</NrWierszaFa>
+      <P_7>Wdrozenie integracji KSeF</P_7>
+      <P_8B>1,00</P_8B>
+      <P_9A>4 200,00</P_9A>
+      <P_11>4200,00</P_11>
+      <P_12>23</P_12>
+    </FaWiersz>
+  </Fa>
+</Faktura>
