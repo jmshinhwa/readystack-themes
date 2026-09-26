@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <title>Vapour Row — premium e-liquid, shipped from Manchester</title>
+</head>
+<body>
+  <div id="age-gate" class="overlay">
+    <h1>Are you over 18?</h1>
+    <p>By entering this site you confirm you are 18 or older.</p>
+    <label><input type="checkbox" id="confirm"> I am over 18</label>
+    <form id="dobForm">
+      <input type="text" name="dob" placeholder="DD/MM/YYYY">
+      <button type="submit">Enter</button>
+    </form>
+    <p class="small">A debit card on file also proves your age at checkout.</p>
+  </div>
+
+  <main id="shop" hidden>
+    <h2>Disposables, 20mg</h2>
+  </main>
+
+  <script>
+    document.getElementById('confirm').addEventListener('change', function () {
+      localStorage.setItem('ageVerified', 'true');
+      document.cookie = 'age_ok=1; path=/; max-age=31536000';
+      document.getElementById('age-gate').classList.add('gate-done');
+      document.getElementById('shop').hidden = false;
+    });
+    if (localStorage.getItem('ageVerified') === 'true') {
+      document.querySelector('#age-gate').classList.remove('overlay-gate');
+      document.getElementById('shop').hidden = false;
+    }
+  </script>
+</body>
+</html>
