@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Merino Overcoat - checkout</title></head>
+<body>
+<main class="product">
+  <h1>Merino Overcoat</h1>
+  <p class="price">249.00 EUR</p>
+
+  <section class="credit-offer">
+    <h2>Buy now, pay later</h2>
+    <p>Pay in 4 interest-free instalments of 62.25 EUR.</p>
+    <p class="badge">No credit check. Guaranteed approval in seconds.</p>
+    <p class="promo">You are pre-approved for a spending limit of 1,500 EUR.</p>
+    <p class="promo">A personalised offer based on your profile, ready at the tap of a button.</p>
+    <p class="addon">Payment protection cover is mandatory with this plan.</p>
+    <p class="legal">Deferred payments below 200 EUR are exempt, so nothing extra is shown here.</p>
+    <p class="legal">This interest-free plan is not regulated as consumer credit.</p>
+    <p class="legal">Governed by Directive 2008/48/EC.</p>
+    <div aria-hidden="true">Representative example available on request.</div>
+    <small style="font-size:9px">APR 0%</small>
+
+    <form method="post" action="/checkout">
+      <label><input type="radio" name="method" value="paylater" checked> Pay in 4 instalments</label>
+      <label><input type="radio" name="method" value="card"> Pay by card</label>
+      <button type="submit">Place order</button>
+    </form>
+    <p class="fine">Terms apply</p>
+  </section>
+</main>
+</body>
+</html>
