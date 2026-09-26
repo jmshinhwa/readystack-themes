@@ -2,7 +2,7 @@
   "name": "nencho-fuyo-csv-lint-r8",
   "displayName": "年末調整 扶養控除 チェック（令和8年分・62万円）",
   "description": "年末調整の扶養親族CSVを令和8年分の新要件で検査。所得62万円・給与所得控除74万円・特定親族特別控除・配偶者特別控除・国外居住親族の必要書類。控除漏れと過大控除を行ごとに表示。",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
