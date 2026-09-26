@@ -1,0 +1,96 @@
+{
+  "_D": "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2",
+  "_A": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
+  "_B": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
+  "Invoice": [
+    {
+      "UBLExtensions": [{ "UBLExtension": [{ "ExtensionURI": [{ "_": "urn:oasis:names:specification:ubl:dsig:enveloped:xades" }] }] }],
+      "ID": [{ "_": "INV-2026-0913" }],
+      "IssueDate": [{ "_": "2026-09-18" }],
+      "IssueTime": [{ "_": "10:05:00Z" }],
+      "InvoiceTypeCode": [{ "_": "INV", "listVersionID": "1.1" }],
+      "DocumentCurrencyCode": [{ "_": "USD" }],
+      "AccountingSupplierParty": [
+        {
+          "Party": [
+            {
+              "IndustryClassificationCode": [{ "_": "0111", "name": "Software development services" }],
+              "PartyIdentification": [
+                { "ID": [{ "_": "EI00000000010", "schemeID": "TIN" }] },
+                { "ID": [{ "_": "202001234567", "schemeID": "BRN" }] }
+              ],
+              "PartyLegalEntity": [{ "RegistrationName": [{ "_": "Teratai Software Sdn Bhd" }] }],
+              "PostalAddress": [
+                {
+                  "CityName": [{ "_": "Petaling Jaya" }],
+                  "PostalZone": [{ "_": "47810" }],
+                  "CountrySubentityCode": [{ "_": "10" }],
+                  "AddressLine": [{ "Line": [{ "_": "Level 8, Menara Teratai" }] }],
+                  "Country": [{ "IdentificationCode": [{ "_": "MYS", "listID": "ISO3166-1" }] }]
+                }
+              ],
+              "Contact": [{ "Telephone": [{ "_": "+60378901234" }], "ElectronicMail": [{ "_": "billing@teratai.example" }] }]
+            }
+          ]
+        }
+      ],
+      "AccountingCustomerParty": [
+        {
+          "Party": [
+            {
+              "PartyIdentification": [
+                { "ID": [{ "_": "C20495834100", "schemeID": "TIN" }] },
+                { "ID": [{ "_": "201901987654", "schemeID": "BRN" }] }
+              ],
+              "PartyLegalEntity": [{ "RegistrationName": [{ "_": "Harbourline Logistics Pte Ltd" }] }],
+              "PostalAddress": [
+                {
+                  "CityName": [{ "_": "Johor Bahru" }],
+                  "PostalZone": [{ "_": "80200" }],
+                  "CountrySubentityCode": [{ "_": "01" }],
+                  "AddressLine": [{ "Line": [{ "_": "Unit 12-3, Wisma Pelabuhan" }] }],
+                  "Country": [{ "IdentificationCode": [{ "_": "MYS", "listID": "ISO3166-1" }] }]
+                }
+              ],
+              "Contact": [{ "Telephone": [{ "_": "+60712233445" }], "ElectronicMail": [{ "_": "ap@harbourline.example" }] }]
+            }
+          ]
+        }
+      ],
+      "InvoiceLine": [
+        {
+          "ID": [{ "_": "1" }],
+          "InvoicedQuantity": [{ "_": 12, "unitCode": "MON" }],
+          "LineExtensionAmount": [{ "_": 4200.0, "currencyID": "USD" }],
+          "Item": [
+            {
+              "Description": [{ "_": "Cross-border freight coordination" }],
+              "CommodityClassification": [{ "ItemClassificationCode": [{ "_": "0022", "listID": "CLASS" }] }]
+            }
+          ],
+          "TaxTotal": [
+            {
+              "TaxAmount": [{ "_": 336.0, "currencyID": "USD" }],
+              "TaxSubtotal": [
+                {
+                  "TaxableAmount": [{ "_": 4200.0, "currencyID": "USD" }],
+                  "TaxAmount": [{ "_": 336.0, "currencyID": "USD" }],
+                  "TaxCategory": [{ "ID": [{ "_": "SST" }], "Percent": [{ "_": 8.0 }] }]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "TaxTotal": [{ "TaxAmount": [{ "_": 336.0, "currencyID": "USD" }] }],
+      "LegalMonetaryTotal": [
+        {
+          "LineExtensionAmount": [{ "_": 4200.0, "currencyID": "USD" }],
+          "TaxExclusiveAmount": [{ "_": 4200.0, "currencyID": "USD" }],
+          "TaxInclusiveAmount": [{ "_": 4536.0, "currencyID": "USD" }],
+          "PayableAmount": [{ "_": 4536.0, "currencyID": "USD" }]
+        }
+      ]
+    }
+  ]
+}
