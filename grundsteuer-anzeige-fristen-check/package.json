@@ -2,7 +2,7 @@
   "name": "grundsteuer-anzeige-fristen-check",
   "displayName": "Grundsteuer Fristen-Check für Objektlisten",
   "description": "Prüft Objekt-Änderungslisten (CSV) auf Grundsteuer-Anzeigefristen: § 228 BewG (31. März des Folgejahres), Wertfortschreibung über 15.000 € (§ 222 BewG), Landesmodelle, Eigentümerwechsel.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
