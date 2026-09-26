@@ -1,0 +1,74 @@
+[
+ {
+  "id": "SB01",
+  "check": "os-link-tot",
+  "sev": "error",
+  "since": "2025-07-20",
+  "law": "VO (EU) 2024/3228",
+  "msg": "Link auf die OS-Plattform (ec.europa.eu/consumers/odr): die Plattform ist seit 20.07.2025 abgeschaltet, der Link führt ins Leere.",
+  "fix": "Link ersatzlos löschen."
+ },
+ {
+  "id": "SB02",
+  "check": "os-plattform-text",
+  "sev": "error",
+  "since": "2025-07-20",
+  "law": "VO (EU) 2024/3228",
+  "msg": "Text zur Online-Streitbeilegungs-Plattform (OS): die Pflicht aus Art. 14 ODR-VO ist mit der Aufhebung der ODR-VO entfallen, der Hinweis beschreibt eine Plattform, die es nicht mehr gibt.",
+  "fix": "Absatz löschen; nur den Hinweis nach § 36 VSBG behalten."
+ },
+ {
+  "id": "SB03",
+  "check": "odr-vo-zitat",
+  "sev": "error",
+  "since": "2025-07-20",
+  "law": "VO (EU) Nr. 524/2013",
+  "msg": "Zitat der ODR-VO (Art. 14 / VO Nr. 524/2013): die Verordnung ist aufgehoben (VO (EU) 2024/3228).",
+  "fix": "Zitat entfernen; als Grundlage § 36 VSBG nennen."
+ },
+ {
+  "id": "SB04",
+  "check": "os-email-baustein",
+  "sev": "warning",
+  "since": "2025-07-20",
+  "law": "VO (EU) Nr. 524/2013",
+  "msg": "Baustein \"Unsere E-Mail-Adresse finden Sie oben im Impressum\" gehört zum alten OS-Link-Text und steht jetzt ohne Bezug da.",
+  "fix": "Satz mit dem OS-Absatz löschen."
+ },
+ {
+  "id": "SB05",
+  "check": "vsbg-hinweis-fehlt",
+  "sev": "error",
+  "since": "2016-04-01",
+  "law": "§ 36 Abs. 1 VSBG",
+  "msg": "Impressum/AGB ohne Hinweis, ob Sie an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilnehmen (Pflicht ab mehr als 10 Beschäftigten am 31.12. des Vorjahres, § 36 Abs. 3 VSBG).",
+  "fix": "Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
+ },
+ {
+  "id": "SB06",
+  "check": "vsbg-halbe-aussage",
+  "sev": "warning",
+  "since": "2016-04-01",
+  "law": "§ 36 Abs. 1 Nr. 1 VSBG",
+  "msg": "Hinweis sagt nur \"nicht verpflichtet\" und lässt offen, ob Sie bereit sind – § 36 Abs. 1 Nr. 1 VSBG verlangt, inwieweit Sie bereit ODER verpflichtet sind.",
+  "fix": "\"nicht bereit und nicht verpflichtet\" (oder: \"bereit\" + zuständige Stelle mit Anschrift und Webseite)."
+ },
+ {
+  "id": "SB07",
+  "check": "stelle-ohne-anschrift",
+  "sev": "error",
+  "since": "2016-04-01",
+  "law": "§ 36 Abs. 2 VSBG",
+  "msg": "Teilnahme zugesagt, aber die zuständige Verbraucherschlichtungsstelle steht ohne Anschrift und Webseite da.",
+  "fix": "Name, Postanschrift und Webseite der zuständigen Verbraucherschlichtungsstelle ergänzen."
+ },
+ {
+  "id": "SB08",
+  "check": "alte-stellenbezeichnung",
+  "sev": "warning",
+  "since": "2020-01-01",
+  "law": "§ 29 VSBG",
+  "msg": "\"Allgemeine Verbraucherschlichtungsstelle\" gibt es seit 01.01.2020 nicht mehr; zuständig ist die Universalschlichtungsstelle des Bundes.",
+  "fix": "\"Universalschlichtungsstelle des Bundes\" schreiben."
+ }
+]
