@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>com.northwind.fieldroute</string>
+	<key>CFBundleShortVersionString</key>
+	<string>4.2.0</string>
+	<key>CFBundleVersion</key>
+	<string>412</string>
+	<key>NSCameraUsageDescription</key>
+	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to your photos</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Face ID</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Contacts are used in the app.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location is recorded in the background to keep the delivery trail accurate.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Bluetooth is used to pair with the handheld label scanner.</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Step counts are read to show how far the driver walked on the route.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>audio</string>
+	</array>
+	<key>SKAdNetworkItems</key>
+	<array>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>v9wttpbfk9.skadnetwork</string>
+		</dict>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>UIApplicationExitsOnSuspend</key>
+	<true/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<string>false</string>
+</dict>
+</plist>
