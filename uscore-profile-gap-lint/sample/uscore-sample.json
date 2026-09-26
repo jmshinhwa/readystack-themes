@@ -1,0 +1,76 @@
+{
+  "resourceType": "Bundle",
+  "id": "legacy-export-set",
+  "type": "collection",
+  "meta": {
+    "versionId": "3"
+  },
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "pt-9001",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient|3.1.1"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0203",
+                  "code": "MR"
+                }
+              ]
+            },
+            "system": "http://hospital.example.org/mrn",
+            "value": "9001"
+          }
+        ],
+        "name": [{ "family": "Nowak", "given": ["Piotr"] }],
+        "gender": "male",
+        "birthDate": "1965-11-02"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-9001-a",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition|5.0.1"
+          ]
+        },
+        "subject": { "reference": "Patient/pt-9001" }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-9001-a",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab"
+          ]
+        },
+        "status": "final",
+        "subject": { "reference": "Patient/pt-9001" }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "CapabilityStatement",
+        "id": "cap-legacy",
+        "status": "active",
+        "kind": "instance",
+        "fhirVersion": "3.0.2",
+        "format": ["json"],
+        "instantiates": [
+          "http://hl7.org/fhir/STU3/capabilitystatement.html"
+        ]
+      }
+    }
+  ]
+}
