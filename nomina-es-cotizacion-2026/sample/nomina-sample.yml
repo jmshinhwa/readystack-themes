@@ -1,0 +1,14 @@
+# Tabla de cotizacion — Regimen General · empresa demo (12 trabajadores)
+# Copiada del ejercicio anterior y nunca revisada
+cotizacion.ejercicio: 2025
+cotizacion.tope_maximo_base: 4909.50
+cotizacion.contingencias_comunes.total: 28.30
+cotizacion.contingencias_comunes.empresa: 23.60
+cotizacion.contingencias_comunes.trabajador: 4.70
+cotizacion.mei.total: 0.80
+cotizacion.mei.empresa: 0.67
+cotizacion.mei.trabajador: 0.13
+cotizacion.solidaridad.tramo1.tipo: 0.92
+cotizacion.solidaridad.tramo1.hasta_pct: 10
+cotizacion.solidaridad.tramo2.tipo: 1.00
+cotizacion.solidaridad.tramo2.hasta_pct: 40
