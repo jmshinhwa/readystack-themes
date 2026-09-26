@@ -1,0 +1,53 @@
+{
+  "schema": "payroll-rate-table/v1",
+  "rates": {
+    "2025": {
+      "us_social_security": {
+        "label": "OASDI taxable wage base",
+        "wage_base": 176100,
+        "rate": 6.2
+      },
+      "us_401k_elective": {
+        "label": "Elective deferral limit",
+        "deferral_limit": 23500,
+        "country": "US",
+        "effective_from": "2025-01-01"
+      }
+    },
+    "current": {
+      "gb_employer_ni": {
+        "label": "Employer secondary national_insurance rate",
+        "rate": 13.8,
+        "country": "GB",
+        "effective_from": "2024-04-06",
+        "valid_to": "2025-04-06"
+      },
+      "gb_secondary_threshold": {
+        "label": "Employer secondary threshold",
+        "threshold": 9100,
+        "country": "GB"
+      }
+    },
+    "eu": {
+      "de_minijob": {
+        "label": "Minijob monthly_limit",
+        "limit": 556,
+        "effective_from": "2025-01-01",
+        "valid_to": "2026-01-01"
+      },
+      "fr_pass": {
+        "label": "Plafond annuel securite_sociale",
+        "ceiling": 47100,
+        "country": "FR"
+      }
+    },
+    "ca_cpp_ympe": {
+      "label": "Maximum pensionable earnings",
+      "ceiling": 71300,
+      "country": "CA",
+      "effective_from": "2025-01-01",
+      "valid_to": "2026-01-01"
+    }
+  },
+  "notes": "TODO: uprate the employer threshold before the next payroll run"
+}
