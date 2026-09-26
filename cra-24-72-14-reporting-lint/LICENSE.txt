@@ -10,9 +10,6 @@ Full scope
   One key covers one person, or one seat on a team. A key may be moved between machines
   belonging to the same person or seat.
 
-Refund
-  Seven days, in full, for any reason.
-
 Restrictions
   You may not redistribute, resell, sublicense or publish the extension package or the
   rule table as your own product, and you may not remove or bypass the licence check.
