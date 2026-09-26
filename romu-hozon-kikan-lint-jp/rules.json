@@ -1,0 +1,22 @@
+[
+ {"id": "ishiwata_kenshin", "check": "hozon_nensu", "doc": "石綿健康診断個人票", "match": "石綿.*(健康診断|健診)", "years": 40, "transitional": null, "basis": "石綿則41条（安衛法103条）", "fine": "¥500,000", "fine_basis": "安衛法120条", "kisan": "当該労働者が常時従事しなくなった日"},
+ {"id": "tokkan_kenshin", "check": "hozon_nensu", "doc": "特別管理物質の健康診断個人票", "match": "特別管理物質", "years": 30, "transitional": null, "basis": "特化則40条2項（安衛法103条）", "fine": "¥500,000", "fine_basis": "安衛法120条", "kisan": "作成日"},
+ {"id": "denri_kenshin", "check": "hozon_nensu", "doc": "電離放射線健康診断個人票", "match": "電離放射線.*(健康診断|健診)", "years": 30, "transitional": null, "basis": "電離則57条（安衛法103条）", "fine": "¥500,000", "fine_basis": "安衛法120条", "kisan": "作成日"},
+ {"id": "jinpai", "check": "hozon_nensu", "doc": "じん肺健康診断の記録・エックス線写真", "match": "じん肺", "years": 7, "transitional": null, "basis": "じん肺法17条", "fine": "", "fine_basis": "", "kisan": "作成日"},
+ {"id": "ippan_kenshin", "check": "hozon_nensu", "doc": "健康診断個人票（一般健診）", "match": "健康診断個人票|一般健康診断|健康診断結果|健診結果", "years": 5, "transitional": null, "basis": "安衛則51条（安衛法103条）", "fine": "¥500,000", "fine_basis": "安衛法120条", "kisan": "作成日"},
+ {"id": "stress_check", "check": "hozon_nensu", "doc": "ストレスチェック結果の記録", "match": "ストレスチェック", "years": 5, "transitional": null, "basis": "安衛則52条の13", "fine": "¥500,000", "fine_basis": "安衛法120条", "kisan": "作成日"},
+ {"id": "mensetsu_shido", "check": "hozon_nensu", "doc": "面接指導結果の記録", "match": "面接指導", "years": 5, "transitional": null, "basis": "安衛則52条の6", "fine": "¥500,000", "fine_basis": "安衛法120条", "kisan": "作成日"},
+ {"id": "rodo_jikan_jokyo", "check": "hozon_nensu", "doc": "労働時間の状況の記録（安衛法）", "match": "労働時間の状況", "years": 3, "transitional": null, "basis": "安衛則52条の7の3", "fine": "", "fine_basis": "", "kisan": "作成日"},
+ {"id": "eisei_iinkai", "check": "hozon_nensu", "doc": "安全・衛生委員会の議事録", "match": "(安全|衛生)委員会", "years": 3, "transitional": null, "basis": "安衛則23条4項", "fine": "", "fine_basis": "", "kisan": "開催日"},
+ {"id": "nenkyu_kanribo", "check": "hozon_nensu", "doc": "年次有給休暇管理簿", "match": "年次有給休暇管理簿|年休管理簿|有給休暇管理簿", "years": 5, "transitional": 3, "basis": "労基則24条の7・72条（経過措置3年）", "fine": "", "fine_basis": "", "kisan": "基準日から1年の期間満了日"},
+ {"id": "rodosha_meibo", "check": "hozon_nensu", "doc": "労働者名簿", "match": "労働者名簿", "years": 5, "transitional": 3, "basis": "労基法109条・143条（経過措置3年）", "fine": "¥300,000", "fine_basis": "労基法120条", "kisan": "退職・解雇・死亡の日", "kisan_bad": "作成|入社|雇入|採用"},
+ {"id": "chingin_daicho", "check": "hozon_nensu", "doc": "賃金台帳", "match": "賃金台帳", "years": 5, "transitional": 3, "basis": "労基法109条・143条（経過措置3年）", "fine": "¥300,000", "fine_basis": "労基法120条", "kisan": "最後の記入をした日"},
+ {"id": "shukkinbo", "check": "hozon_nensu", "doc": "出勤簿・タイムカード", "match": "出勤簿|タイムカード|タイムシート|勤怠記録", "years": 5, "transitional": 3, "basis": "労基法109条・143条（経過措置3年）", "fine": "¥300,000", "fine_basis": "労基法120条", "kisan": "最後の記入をした日"},
+ {"id": "koyo_juyo", "check": "hozon_nensu", "doc": "雇入れ・解雇・退職に関する書類", "match": "雇入れ|雇用契約書|労働条件通知書|解雇|退職届|退職に関する", "years": 5, "transitional": 3, "basis": "労基法109条・143条（経過措置3年）", "fine": "¥300,000", "fine_basis": "労基法120条", "kisan": "労働者の退職・死亡の日"},
+ {"id": "koyo_hihokensha", "check": "hozon_nensu", "doc": "雇用保険の被保険者に関する書類", "match": "雇用保険.*被保険者", "years": 4, "transitional": null, "basis": "雇用保険法施行規則143条", "fine": "", "fine_basis": "", "kisan": "完結の日"},
+ {"id": "koyo_hoken", "check": "hozon_nensu", "doc": "雇用保険に関する書類", "match": "雇用保険", "years": 2, "transitional": null, "basis": "雇用保険法施行規則143条", "fine": "", "fine_basis": "", "kisan": "完結の日"},
+ {"id": "rosai_hoken", "check": "hozon_nensu", "doc": "労災保険・労働保険料に関する書類", "match": "労災保険|労働保険", "years": 3, "transitional": null, "basis": "労災則51条・徴収則70条", "fine": "", "fine_basis": "", "kisan": "完結の日"},
+ {"id": "shaho", "check": "hozon_nensu", "doc": "健康保険・厚生年金保険に関する書類", "match": "健康保険|厚生年金", "years": 2, "transitional": null, "basis": "健保則34条・厚年則28条", "fine": "", "fine_basis": "", "kisan": "完結の日"},
+ {"id": "kisan_meibo", "check": "kisanbi", "doc": "労働者名簿の起算日", "applies_to": "rodosha_meibo"},
+ {"id": "haiki_hayasugi", "check": "haiki_yoteibi", "doc": "廃棄予定日が法定期間より前", "date_re": "(\\d{4})[-/.](\\d{1,2})[-/.](\\d{1,2})", "note": "行の1つ目の日付＝起算日、2つ目＝廃棄予定日"}
+]
