@@ -127,7 +127,7 @@ async function inTrial(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  if (false) {   // s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다)
+  if (false) {   // s158: no new free trial is opened (trials already started are honoured)
     until = Date.now() + TRIAL_MS;
     await st.update('sweepTrialUntil', until);
   }
