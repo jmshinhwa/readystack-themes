@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.wcag21-aa-legal-baseline-audit</id>
+  <name>WCAG 2.1 AA Legal Baseline Audit for templates</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Audits HTML, JSX, Vue, Twig, Blade, ERB and Razor markup against the 24 WCAG 2.1 Level AA checks that 28 CFR 35.200 and EN 301 549 actually name - not WCAG 2.2.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>WCAG 2.1 AA Legal Baseline Audit for templates: Check This File</b>. Each finding appears on its line with the fix. 24 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/wcag21-aa-legal-baseline-audit</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/wcag21-aa-legal-baseline-audit">getreadystack.com/tools/wcag21-aa-legal-baseline-audit</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_wcag21_aa_legal_baseline_audit.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.wcag21-aa-legal-baseline-audit" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.wcag21-aa-legal-baseline-audit.check" class="com.getreadystack.p_wcag21_aa_legal_baseline_audit.RsCheckAction"
+            text="WCAG 2.1 AA Legal Baseline Audit for templates: Check This File" description="Run WCAG 2.1 AA Legal Baseline Audit for templates on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
