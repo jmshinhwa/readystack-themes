@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuditFile xmlns="urn:OECD:StandardAuditFile-Tax:PT_1.04_01">
+  <Header>
+    <AuditFileVersion>1.04</AuditFileVersion>
+    <CompanyID>Lisboa 501843247</CompanyID>
+    <TaxRegistrationNumber>501843247</TaxRegistrationNumber>
+    <TaxAccountingBasis>F</TaxAccountingBasis>
+    <CompanyName>Oficina Digital Unipessoal Lda</CompanyName>
+    <FiscalYear>2026</FiscalYear>
+    <StartDate>2026-01-01</StartDate>
+    <EndDate>2026-06-30</EndDate>
+    <CurrencyCode>EUR</CurrencyCode>
+    <DateCreated>2026-09-18</DateCreated>
+    <TaxEntity>Global</TaxEntity>
+    <ProductCompanyTaxID>501843247</ProductCompanyTaxID>
+    <SoftwareCertificateNumber>2310</SoftwareCertificateNumber>
+    <ProductID>FaturaPro/Oficina Digital</ProductID>
+    <ProductVersion>4.2.1</ProductVersion>
+  </Header>
+  <MasterFiles>
+    <Customer>
+      <CustomerID>C001</CustomerID>
+      <AccountID>Desconhecido</AccountID>
+      <CustomerTaxID>513001230</CustomerTaxID>
+      <CompanyName>Papelaria do Rossio Lda</CompanyName>
+      <BillingAddress>
+        <AddressDetail>Rua Augusta 120</AddressDetail>
+        <City>Lisboa</City>
+        <PostalCode>1100-053</PostalCode>
+        <Country>PT</Country>
+      </BillingAddress>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Customer>
+      <CustomerID>C002</CustomerID>
+      <AccountID>Desconhecido</AccountID>
+      <CustomerTaxID>999999990</CustomerTaxID>
+      <CompanyName>Consumidor final</CompanyName>
+      <BillingAddress>
+        <AddressDetail>Desconhecido</AddressDetail>
+        <City>Funchal</City>
+        <PostalCode>9000-082</PostalCode>
+      </BillingAddress>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+  </MasterFiles>
+  <SourceDocuments>
+    <SalesInvoices>
+      <NumberOfEntries>3</NumberOfEntries>
+      <Invoice>
+        <InvoiceNo>FT2026A/12</InvoiceNo>
+        <ATCUD>jfv5zxpt-12</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2026-03-04T10:12:07</InvoiceStatusDate>
+          <SourceID>ana</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>oVZ8sK1pQ2rT5uW7yA0bC3dE6fG9hJ2kL5mN8pR1</Hash>
+        <HashControl>1</HashControl>
+        <Period>3</Period>
+        <InvoiceDate>2026-03-04</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SourceID>ana</SourceID>
+        <SystemEntryDate>2026-03-04T10:12:07</SystemEntryDate>
+        <CustomerID>C001</CustomerID>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>SRV01</ProductCode>
+          <ProductDescription>Manutencao mensal</ProductDescription>
+          <Quantity>1.00</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>400.00</UnitPrice>
+          <TaxPointDate>2026-03-04</TaxPointDate>
+          <Description>Manutencao mensal</Description>
+          <CreditAmount>400.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21</TaxPercentage>
+          </Tax>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>84.00</TaxPayable>
+          <NetTotal>400.00</NetTotal>
+          <GrossTotal>492.00</GrossTotal>
+        </DocumentTotals>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FT 2026A/13</InvoiceNo>
+        <ATCUD>JFV5ZXPT-9</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2026-08-11T16:40:55</InvoiceStatusDate>
+          <SourceID>ana</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>4+e8klxXfZczqjTi1QYLY2SrXjBa5b9LQ8k6t+11JY7y76nWM2gRe3KkvpL7aBCrWPDulS0Y6EvSjixeNkzaCF5wl7HpVhjubUr+nJjG4srS1MAwWKuKJudRk5tlW+Z652ZAPvi3aR0V4Mn2fR2Zag52PIYRe9WF1IKJqvh/Uifk</Hash>
+        <HashControl>1</HashControl>
+        <Period>8</Period>
+        <InvoiceDate>2026-08-11</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SourceID>ana</SourceID>
+        <SystemEntryDate>2026-08-11T16:40:55</SystemEntryDate>
+        <CustomerID>C002</CustomerID>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>SRV02</ProductCode>
+          <ProductDescription>Instalacao no Funchal</ProductDescription>
+          <Quantity>1.00</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>250.00</UnitPrice>
+          <TaxPointDate>2026-08-11</TaxPointDate>
+          <Description>Instalacao no Funchal</Description>
+          <CreditAmount>250.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT-MA</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>22</TaxPercentage>
+          </Tax>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>SRV03</ProductCode>
+          <ProductDescription>Formacao certificada</ProductDescription>
+          <Quantity>1.00</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>100.00</UnitPrice>
+          <TaxPointDate>2026-08-11</TaxPointDate>
+          <Description>Formacao certificada</Description>
+          <CreditAmount>100.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT-MA</TaxCountryRegion>
+            <TaxCode>ISE</TaxCode>
+            <TaxPercentage>0</TaxPercentage>
+          </Tax>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>55.00</TaxPayable>
+          <NetTotal>300.00</NetTotal>
+          <GrossTotal>355.00</GrossTotal>
+        </DocumentTotals>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FR 2026A/1</InvoiceNo>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2026-05-02T09:01:00</InvoiceStatusDate>
+          <SourceID>rui</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <HashControl>1</HashControl>
+        <Period>5</Period>
+        <InvoiceDate>2026-11-30</InvoiceDate>
+        <InvoiceType>FR</InvoiceType>
+        <SourceID>rui</SourceID>
+        <SystemEntryDate>2026-05-02T09:01:00</SystemEntryDate>
+        <CustomerID>C002</CustomerID>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>SRV04</ProductCode>
+          <ProductDescription>Reparacao no Funchal</ProductDescription>
+          <Quantity>1.00</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>80.00</UnitPrice>
+          <TaxPointDate>2026-05-02</TaxPointDate>
+          <Description>Reparacao no Funchal</Description>
+          <CreditAmount>80.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT-MA</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23</TaxPercentage>
+          </Tax>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>18.40</TaxPayable>
+          <NetTotal>80.00</NetTotal>
+          <GrossTotal>98.40</GrossTotal>
+        </DocumentTotals>
+      </Invoice>
+    </SalesInvoices>
+  </SourceDocuments>
+</AuditFile>
