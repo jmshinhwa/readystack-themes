@@ -2,7 +2,7 @@
   "name": "fristenkalender-lint-de",
   "displayName": "Fristenkalender Lint: Fristen berechnen",
   "description": "Prüft Fristenkalender-CSV gegen §§ 187–193 BGB und § 222 ZPO: Ereignistag, Monatsende, Wochenende und die Feiertage des richtigen Bundeslands. 12 rules, offline.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
