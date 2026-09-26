@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03">
+  <CstmrCdtTrfInitn>
+    <GrpHdr>
+      <MsgId>MSG-BATCH-SEPTEMBER-2026-WEEK-38-RUN-002</MsgId>
+      <CreDtTm>2026-09-15</CreDtTm>
+      <NbOfTxs>2</NbOfTxs>
+      <CtrlSum>101430.51</CtrlSum>
+      <InitgPty>
+        <Nm>Halden Logistics BV</Nm>
+      </InitgPty>
+    </GrpHdr>
+    <PmtInf>
+      <PmtInfId>PMT-SEPTEMBER-2026-WEEK-38-SUPPLIER-RUN</PmtInfId>
+      <PmtMtd>TRF</PmtMtd>
+      <PmtTpInf>
+        <SvcLvl>
+          <Cd>INST</Cd>
+        </SvcLvl>
+      </PmtTpInf>
+      <ReqdExctnDt>2026-09-01</ReqdExctnDt>
+      <Dbtr>
+        <Nm>Halden Logistics BV</Nm>
+      </Dbtr>
+      <DbtrAcct>
+        <Id>
+          <IBAN>NL91ABNA0417164300</IBAN>
+        </Id>
+      </DbtrAcct>
+      <DbtrAgt>
+        <FinInstnId>
+          <BIC>DEUTDEFF5</BIC>
+        </FinInstnId>
+      </DbtrAgt>
+      <ChrgBr>SHAR</ChrgBr>
+      <CdtTrfTxInf>
+        <PmtId>
+          <EndToEndId>INVOICE-2026-4471-SUPPLIER-PAYMENT-RUN-38</EndToEndId>
+        </PmtId>
+        <Amt>
+          <InstdAmt Ccy="EUR">99500.00</InstdAmt>
+        </Amt>
+        <Cdtr>
+          <Nm>Weber Verpackung und Industrieverpackungssysteme Gesellschaft mit beschraenkter Haftung</Nm>
+        </Cdtr>
+        <CdtrAcct>
+          <Id>
+            <IBAN>DE89370400440532013001</IBAN>
+          </Id>
+        </CdtrAcct>
+        <RmtInf>
+          <Strd>
+            <CdtrRefInf>
+              <Ref>RF18539007547035</Ref>
+            </CdtrRefInf>
+          </Strd>
+        </RmtInf>
+      </CdtTrfTxInf>
+      <CdtTrfTxInf>
+        <PmtId>
+          <EndToEndId>INV-1</EndToEndId>
+        </PmtId>
+        <Amt>
+          <InstdAmt Ccy="GBP">1250.005</InstdAmt>
+        </Amt>
+        <Cdtr>
+          <Nm>Bridgewater Packaging Ltd</Nm>
+        </Cdtr>
+        <CdtrAcct>
+          <Id>
+            <IBAN>US64SVBKUS6S3300958879</IBAN>
+          </Id>
+        </CdtrAcct>
+        <RmtInf>
+          <Ustrd>Payment for invoices 2026-4472, 2026-4473, 2026-4474 and 2026-4475 covering pallets, shrink wrap, edge protectors and the September surcharge agreed on the call with accounts payable</Ustrd>
+        </RmtInf>
+      </CdtTrfTxInf>
+      <CdtTrfTxInf>
+        <Amt>
+          <InstdAmt Ccy="EUR">480.50</InstdAmt>
+        </Amt>
+        <Cdtr>
+          <Nm>Müller u. Söhne KG</Nm>
+        </Cdtr>
+        <CdtrAcct>
+          <Id>
+            <IBAN>DE89370400440532013000</IBAN>
+          </Id>
+        </CdtrAcct>
+        <RmtInf>
+          <Ustrd>Rechnung 2026-4480</Ustrd>
+        </RmtInf>
+      </CdtTrfTxInf>
+      <CdtTrfTxInf>
+        <PmtId>
+          <EndToEndId>INV-1</EndToEndId>
+        </PmtId>
+        <Amt>
+          <InstdAmt Ccy="EUR">200.00</InstdAmt>
+        </Amt>
+        <Cdtr>
+          <Nm>Atelier Rousseau SARL</Nm>
+        </Cdtr>
+        <CdtrAcct>
+          <Id>
+            <IBAN>FR1420041010050500013M02606</IBAN>
+          </Id>
+        </CdtrAcct>
+        <RmtInf>
+          <Ustrd>Invoice 2026-4481</Ustrd>
+        </RmtInf>
+      </CdtTrfTxInf>
+    </PmtInf>
+  </CstmrCdtTrfInitn>
+</Document>
