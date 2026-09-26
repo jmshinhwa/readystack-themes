@@ -2,7 +2,7 @@
   "name": "python-pci-log-leak-lint",
   "displayName": "Python Log Leak Lint: PCI DSS Card Data",
   "description": "Flags Python logging, print and raise calls that write card numbers, CVV, track data, PINs, passwords or auth headers into logs, with the PCI DSS v4.0.1 requirement and a fix per line.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
