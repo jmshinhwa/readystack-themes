@@ -2,7 +2,7 @@
 
 ![Streitbeilegung-Hinweis Lint (VSBG § 36 · OS-Link)](https://getreadystack.com/img/promo/sku271720_result_card.jpg)
 
-Findet in Impressum-, AGB- und Footer-Dateien (HTML, Markdown, PHP-, Twig- und Liquid-Templates) den alten Absatz zur EU-Plattform für Online-Streitbeilegung und prüft den Pflichthinweis nach § 36 VSBG. Kostenlose Web-Version und Hintergrund: https://getreadystack.com/tools/streitbeilegung-hinweis-lint
+Findet in Impressum-, AGB- und Footer-Dateien (HTML, Markdown, PHP-, Twig- und Liquid-Templates) den alten Absatz zur EU-Plattform für Online-Streitbeilegung und prüft den Pflichthinweis nach § 36 VSBG. Kostenlose Web-Version und Hintergrund: https://getreadystack.com/de/tools/streitbeilegung-hinweis-lint
 
 ## Warum jetzt
 
