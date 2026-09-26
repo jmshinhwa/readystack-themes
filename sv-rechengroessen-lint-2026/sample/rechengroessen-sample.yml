@@ -1,0 +1,17 @@
+sozialversicherung:
+  bbg_rv_monat_eur: 8050
+  bbg_rv_jahr_eur: 96600
+  bbg_alv_jahr_eur: 96600
+  bbg_kv_monat_eur: 5512.50
+  bbg_kv_jahr_eur: 66150
+  bemessungsgrenze_rv_ost_jahr_eur: 89400
+  jaeg_jahr_eur: 73800
+  bezugsgroesse_monat_eur: 3745
+  minijob_grenze_eur: 556
+  mindestlohn_eur_stunde: 12.82
+  rv_pct: 18.6
+  alv_pct: 2.6
+  kv_allgemein_pct: 14.6
+  kv_zusatzbeitrag_pct: 2.5
+  pflegeversicherung_pct: 3.4
+  umlage_insolvenzgeld_u3_pct: 0.06
