@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Join Streamly</title></head>
+<body>
+<!-- Legal signed off in 2025: compliant with the FTC click-to-cancel rule -->
+<main>
+  <h1>Streamly Premium</h1>
+  <p class="hook">Start your free trial today. First month 50% off.</p>
+  <p class="price">Just $14.99</p>
+  <ul class="perks">
+    <li>4K streaming on four screens</li>
+    <li>Offline downloads</li>
+    <li>No ads</li>
+    <li>Billed annually after your trial</li>
+  </ul>
+  <p class="fine">See our <a href="/terms">terms</a> for the full subscription details.</p>
+  <form method="post" action="/api/join">
+    <input type="email" name="email" placeholder="Email">
+    <input type="password" name="password" placeholder="Password">
+    <label><input type="checkbox" name="agree" checked> I accept the terms of service and agree that my subscription will auto-renew.</label>
+    <button type="submit">Start watching</button>
+  </form>
+  <p class="help">To cancel, contact support and our team will call you back within two business days.</p>
+  <div id="retention" hidden>
+    <p>Are you sure you want to cancel? Keep your plan and get 30% off for three months.</p>
+  </div>
+</main>
+</body>
+</html>
