@@ -204,7 +204,7 @@ async function paidGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
+  /* s158: no new free trial is opened (trials already started are honoured) */
   const inTrial = !hasKey && Date.now() < until;
   paidGate._inTrial = inTrial;               // ★끝 안내 문장이 읽는다 (watchOnSave._d 와 같은 방식)
   if (inTrial) return true;                  // ⛔체험 중에는 ★묻지 않는다
