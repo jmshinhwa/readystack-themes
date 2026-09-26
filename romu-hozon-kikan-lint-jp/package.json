@@ -2,7 +2,7 @@
   "name": "romu-hozon-kikan-lint-jp",
   "displayName": "労務書類 保存期間チェック",
   "description": "文書保存期間表（Markdown/CSV）の賃金台帳・労働者名簿・健康診断個人票・雇用保険書類などを、労基法109条・安衛則・雇用保険法施行規則143条の法定保存年数と起算日で行ごとに検査します。",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,7 +49,7 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "romu-hozon-kikan-lint-jp"
   },
-  "homepage": "https://getreadystack.com/tools/romu-hozon-kikan-lint-jp",
+  "homepage": "https://getreadystack.com/ja/tools/romu-hozon-kikan-lint-jp",
   "readystack": {
     "rulesDate": "2026-09-25"
   },
