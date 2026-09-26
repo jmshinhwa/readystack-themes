@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "Tab Saver Pro - save, sync and restore every open tab across all of your Chrome windows and devices",
+  "short_name": "Tab Saver Pro Sync",
+  "version": "1.0.0-beta",
+  "description": "Saves and restores your open tabs.",
+  "icons": { "16": "icons/16.png", "48": "icons/48.png" },
+  "browser_action": { "default_popup": "popup.html", "default_title": "Tab Saver" },
+  "background": { "scripts": ["background.js"], "persistent": false },
+  "content_security_policy": "script-src 'self' https://cdn.jsdelivr.net; object-src 'self'",
+  "permissions": [
+    "tabs",
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "*://*/*",
+    "https://api.tabsaver.example/*"
+  ],
+  "optional_permissions": ["https://*.googleapis.com/*"],
+  "web_accessible_resources": ["injected.js", "icons/48.png"],
+  "content_scripts": [
+    {
+      "js": ["https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "externally_connectable": { "matches": ["*://*/*"] },
+  "update_url": "https://clients2.google.com/service/update2/crx",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA"
+}
