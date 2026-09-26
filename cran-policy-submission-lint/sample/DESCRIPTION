@@ -1,0 +1,43 @@
+#### FILE: DESCRIPTION ####
+Package: surveytools
+Type: Package
+Title: this package provides tools for weighted survey analysis.
+Version: 0.3.1.9000
+Date: 2026-11-30
+Authors@R: c(person("Jane", "Doe", email = "your.name@example.com", role = c("aut", "cre")),
+    person("Sam", "Lee", email = "sam@example.com", role = c("aut", "cre")))
+Description: This package provides tools.
+License: MIT
+Depends: R (>= 4.1.0), dplyr, ggplot2
+Encoding: UTF-8
+
+#### FILE: NAMESPACE ####
+exportPattern("^[[:alpha:]]+")
+importFrom(stats,weighted.mean)
+
+#### FILE: R/weights.R ####
+library(dplyr)
+
+#' Rescale survey weights
+#'
+#' @examples
+#' \dontrun{
+#' rescale_weights(x)
+#' }
+#' @export
+rescale_weights <- function(x, normalise = T) {
+  if (!requireNamespace("ggplot2", quietly = TRUE)) install.packages("ggplot2")
+  setwd("/tmp/survey")
+  options(stringsAsFactors = FALSE)
+  par(mfrow = c(1, 2))
+  set.seed(42)
+  ip <- installed.packages()
+  w <- dplyr:::check_weights(x)
+  cat("rescaling", length(x), "weights\n")
+  write.csv(w, "~/survey-weights.csv")
+  assign("last_weights", w, envir = .GlobalEnv)
+  cached <<- w
+  source("helpers.R")
+  print(w)
+  w  # naive fallback for the naïve case
+}
