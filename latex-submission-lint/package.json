@@ -2,7 +2,7 @@
   "name": "latex-submission-lint",
   "displayName": "LaTeX Submission Lint: Desk-Reject Check",
   "description": "Lints your .tex manuscript for what desk-rejects papers: missing data availability, funding, competing-interest and generative-AI statements, obsolete packages, absolute figure paths.",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
