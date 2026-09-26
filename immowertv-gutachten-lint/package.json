@@ -1,0 +1,56 @@
+{
+  "name": "immowertv-gutachten-lint",
+  "displayName": "Gutachten-Lint: ImmoWertV 2021 und BewG",
+  "description": "Prüft Verkehrswertgutachten-Entwürfe (Markdown) auf veraltete Normen und Modellwerte: ImmoWertV 2010, SW-RL, NHK 2000, GND 70 statt 80 Jahre, RND unter 30 %, alter Liegenschaftszins.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "immowertv",
+    "verkehrswertgutachten",
+    "bewertungsgesetz",
+    "immobilienbewertung",
+    "sachverstaendige",
+    "grundstueck",
+    "bewg"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "immowertvLint.checkFile",
+        "title": "Gutachten-Lint: ImmoWertV 2021 und BewG: Check this file",
+        "category": "Gutachten-Lint: ImmoWertV 2021 und BewG"
+      },
+      {
+        "command": "immowertvLint.checkWorkspace",
+        "title": "Gutachten-Lint: ImmoWertV 2021 und BewG: Sweep workspace and write report (licence)",
+        "category": "Gutachten-Lint: ImmoWertV 2021 und BewG"
+      },
+      {
+        "command": "immowertvLint.enterKey",
+        "title": "Gutachten-Lint: ImmoWertV 2021 und BewG: Enter licence key",
+        "category": "Gutachten-Lint: ImmoWertV 2021 und BewG"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "immowertv-gutachten-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/immowertv-gutachten-lint",
+  "readystack": {
+    "rulesDate": "2026-09-25"
+  },
+  "icon": "icon.png"
+}
