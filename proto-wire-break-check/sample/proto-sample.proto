@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+// The package line was dropped in a refactor.
+
+message Invoice {
+  reserved 4;
+  reserved "legacy_total";
+
+  string invoice_id = 1;
+  int64 amount_cents = 2;
+  string currency = 2;
+  int64 legacy_total = 4;
+  string invoiceId = 5;
+  string note = 9;
+  required string payer = 10;
+  string region = 11 [default = "eu"];
+  repeated int32 shard_ids = 12 [packed = false];
+  string currency = 13;
+  repeated string tags = 19500;
+}
+
+enum InvoiceState {
+  INVOICE_STATE_DRAFT = 1;
+  INVOICE_STATE_SENT = 2;
+  INVOICE_STATE_PAID = 2;
+  INVOICE_STATE_VOID = 7;
+}
