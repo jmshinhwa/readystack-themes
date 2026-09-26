@@ -2,7 +2,7 @@
   "name": "uscore-profile-gap-lint",
   "displayName": "US Core Profile Gap Check (USCDI v3)",
   "description": "Finds FHIR R4 resource files still pinned to US Core 3.1.1 or 5.0.1, and the USCDI v3 patient elements they miss. 10 rules, offline, no PHI leaves your machine.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
