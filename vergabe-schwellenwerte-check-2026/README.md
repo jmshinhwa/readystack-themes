@@ -4,7 +4,7 @@
 
 Findet veraltete EU-Schwellenwerte in Vergabe-Vorlagen, Dienstanweisungen und Konfigurationsdateien (Markdown, JSON, YAML, Text) und nennt pro Zeile den Wert, der seit 2026-01-01 gilt.
 
-Werkzeugseite: https://getreadystack.com/tools/vergabe-schwellenwerte-check-2026
+Werkzeugseite: https://getreadystack.com/de/tools/vergabe-schwellenwerte-check-2026
 
 **Maßstab:** Ein Nachprüfungsverfahren vor der Vergabekammer kostet mindestens 2.500 € Gebühr (§182 Abs. 2 GWB) — ein einziger falsch eingeordneter Auftrag ist teurer als jede Prüfung vorher.
 
