@@ -1,0 +1,25 @@
+name: release
+on:
+  push:
+    tags: ['v*']
+  pull_request_target:
+
+permissions: write-all
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'http://registry.npmjs.org'
+      - run: npm install -g npm@10
+      - run: curl -sL https://releases.example.test/setup.sh | sh
+      - run: npm install
+      - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+      - run: npm publish --otp=123456
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          FALLBACK_TOKEN: npm_exampleplaceholdertokenvalue0123456789
