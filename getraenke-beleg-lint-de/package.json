@@ -2,7 +2,7 @@
   "name": "getraenke-beleg-lint-de",
   "displayName": "Belegfelder-Lint für Getränkehandel",
   "description": "Prüft Rechnungs-, Lieferschein- und Begleitdokument-Vorlagen auf die Alkoholsteuer-Nachweisfelder: ARC, Verbrauchsteuernummer, hl reiner Alkohol, %vol, Steuersatz.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
