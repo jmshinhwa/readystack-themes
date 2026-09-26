@@ -1,0 +1,39 @@
+# device.yaml - shipped defaults for the LX-220 cellular gateway, build 3.4.1
+device: LX-220 cellular gateway
+firmware_version: 3.4.1
+region: EU
+radio: lte-cat1 + wifi 2.4GHz
+
+admin:
+  username: admin
+  password: admin
+  telnet: enabled
+  debug_console: true
+
+wifi:
+  ssid: LX220-setup
+  security: open
+  wifi_psk: "Lx220Default2024"
+
+cloud:
+  broker: mqtt://ingest.example-telemetry.net:1883
+  allow_anonymous: true
+  tls_verify: false
+  telemetry: enabled
+  report_to: http://metrics.example-telemetry.net/v1/events
+  log_fields: imei, gps, firmware_version
+
+ota:
+  ota_url: http://updates.example-vendor.net/lx220/latest.bin
+  verify_signature: false
+
+api:
+  listen: 0.0.0.0:8080
+  authentication: none
+
+compliance:
+  red_article: 3(3)(d)(e)(f)
+  standard: EN 303 645
+  applies_from: 2024-08-01
+  notes: tested against EN 18031 in the lab
+  support_until: 2026-06-30
