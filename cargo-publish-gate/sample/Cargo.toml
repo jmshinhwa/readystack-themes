@@ -1,0 +1,28 @@
+[package]
+name = "ubl-invoice"
+version = "0.0.0"
+publish = false
+keywords = [
+  "ubl",
+  "invoice",
+  "xml",
+  "einvoice",
+  "parser",
+  "electronic-invoicing-en16931",
+]
+categories = [
+  "parser-implementations",
+  "encoding",
+  "text-processing",
+  "data-structures",
+  "development-tools",
+  "command-line-utilities",
+]
+
+[dependencies]
+serde = "*"
+quick-xml = { git = "https://github.com/tafia/quick-xml" }
+ubl-core = { path = "../ubl-core" }
+
+[dev-dependencies]
+pretty_assertions = "1"
