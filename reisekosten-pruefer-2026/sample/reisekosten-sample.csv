@@ -1,0 +1,7 @@
+datum;mitarbeiter;ziel;land;anlass;abwesenheit_std;verpflegung_eur;fruehstueck;mittag;abend;kuerzung_eur;km;km_satz_eur;uebernachtung_eur;beleg;tage_am_ort;m_kennzeichen;mahlzeitwert_eur
+2026-03-10;M. Keller;Hamburg;DE;Kundentermin;9;28,00;nein;nein;nein;0,00;240;0,30;0,00;ja;1;nein;0,00
+2026-03-11;M. Keller;Hamburg;DE;Kundentermin;24;28,00;ja;nein;nein;0,00;0;0,30;95,00;ja;2;ja;0,00
+2026-03-12;M. Keller;Hamburg;DE;Kundentermin;24;28,00;nein;nein;ja;0,00;0;0,30;95,00;ja;3;ja;0,00
+2026-04-02;S. Brandt;Köln;DE;Montage;24;28,00;nein;nein;nein;0,00;180;0,35;0,00;ja;8;nein;0,00
+2026-04-03;S. Brandt;Köln;DE;Montage;24;28,00;nein;nein;nein;0,00;0;0,30;0,00;ja;104;nein;0,00
+2026-05-06;T. Adam;Lissabon;PT;Messe;24;28,00;nein;nein;nein;0,00;0;0,30;0,00;ja;1;nein;0,00
