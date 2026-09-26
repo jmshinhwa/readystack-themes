@@ -63,6 +63,80 @@ var REVIEW_T = {
   es: ['Si te ahorró tiempo, una reseña breve ayuda a que otros lo encuentren.', 'Escribir una reseña', 'No, gracias'],
   pt: ['Se isso economizou seu tempo, uma avaliação curta ajuda outras pessoas a encontrá-lo.', 'Escrever uma avaliação', 'Não, obrigado']
 };
+// ★s164 2026-09-26 — the first minute. [실측 9/26] VS Code installs 349 · used 16: almost every installer's folder has none
+//   of the files a checker reads, so hint() stayed silent and the product was never felt (no value seen = no paywall ever met).
+//   ⇒ ONCE per install, say so and offer two one-click ways to watch it work: check a file of the user's own (their own data =
+//   endowment) or the bundled sample (sample/ in the package, only when present). Free, nothing gated; the first finding is
+//   quoted (a concrete loss beats a feature list). Marked before showing, so "Not now" or closing it ends it for good.
+var WELCOME_T = {
+  en: ['{t} is installed, but this folder has no {k} file for it to check yet. See what it catches in one click:', 'Check a file of mine', 'Show me on a sample', 'Not now',
+       '{t} on the sample: {n} issue{s} against {r} checks. First: {m} Your own files get the same check the moment you open them.'],
+  de: ['{t} ist installiert, aber dieser Ordner enthält noch keine {k}-Datei zum Prüfen. Mit einem Klick sehen, was es findet:', 'Eine eigene Datei prüfen', 'An einem Beispiel zeigen', 'Später',
+       '{t} am Beispiel: {n} Befund(e) bei {r} Prüfungen. Zuerst: {m} Ihre eigenen Dateien werden genauso geprüft, sobald Sie sie öffnen.'],
+  ja: ['{t} をインストールしました。このフォルダには確認対象の {k} ファイルがまだありません。ワンクリックで何を見つけるか確認できます:', '自分のファイルを確認', 'サンプルで見る', '後で',
+       'サンプルの結果: {r} 項目中 {n} 件の問題。最初の指摘: {m} 自分のファイルも開いた瞬間に同じ確認が行われます。'],
+  es: ['{t} está instalado, pero esta carpeta aún no tiene ningún archivo {k} que revisar. Mira lo que detecta con un clic:', 'Revisar un archivo mío', 'Mostrármelo con un ejemplo', 'Ahora no',
+       '{t} con el ejemplo: {n} problema(s) en {r} reglas. El primero: {m} Tus archivos reciben la misma revisión en cuanto los abres.'],
+  pt: ['{t} está instalado, mas esta pasta ainda não tem nenhum arquivo {k} para verificar. Veja o que ele encontra com um clique:', 'Verificar um arquivo meu', 'Mostrar num exemplo', 'Agora não',
+       '{t} no exemplo: {n} problema(s) em {r} regras. O primeiro: {m} Seus arquivos recebem a mesma verificação assim que você os abre.']
+};
+function kindOf(glob) {   // '**/security.txt' → 'security.txt' · '**/*.{yml,yaml}' → '.yml/.yaml' · '**/*.html' → '.html'
+  var g = String(glob || '').replace(/^\*\*\//, '');
+  var m = g.match(/^\*\.\{([a-z0-9,]+)\}$/i); if (m) return m[1].split(',').map(function (x) { return '.' + x; }).join('/');
+  m = g.match(/^\*\.([a-z0-9]+)$/i); if (m) return '.' + m[1];
+  return g;
+}
+function globExts(glob) {   // the file dialog filter
+  var g = String(glob || '').replace(/^\*\*\//, '');
+  var m = g.match(/\.\{([a-z0-9,]+)\}$/i); if (m) return m[1].split(',');
+  m = g.match(/\.([a-z0-9]+)$/i); if (m) return [m[1]];
+  return [];
+}
+function sampleOf(h) {
+  try { var d = path.join(h.extDir || __dirname, 'sample'); var f = fs.readdirSync(d).filter(function (x) { return x.charAt(0) !== '.'; }).sort(); return f.length ? path.join(d, f[0]) : null; } catch (e) { return null; }
+}
+function fillW(x, h, o) {
+  o = o || {};
+  return String(x).replace('{t}', h.title).replace('{k}', kindOf(h.GLOB)).replace('{r}', h.R).replace('{n}', o.n == null ? '' : o.n)
+    .replace('{s}', o.n === 1 ? '' : 's').replace('{m}', o.m || '');
+}
+async function pickMine(ctx, h, T) {
+  var vscode = h.vscode, ex = globExts(h.GLOB), opt = { canSelectMany: false, openLabel: T[1] };
+  if (ex.length) { opt.filters = {}; opt.filters[kindOf(h.GLOB)] = ex; }
+  var picked = vscode.window.showOpenDialog ? await vscode.window.showOpenDialog(opt) : null;
+  if (!picked || !picked.length) return { pick: 'cancel' };
+  var doc = await vscode.workspace.openTextDocument(picked[0]);
+  await vscode.window.showTextDocument(doc);
+  send(vscode, h.slug || h.PREFIX, { t: 'use', slug: h.slug || h.PREFIX, src: 'vsix', why: 'welcome_pick', path: '/use/vsix/' + (h.slug || h.PREFIX) });
+  return { pick: 'mine', r: h.api && h.api.run ? h.api.run(doc) : null };
+}
+async function welcome(ctx, h) {
+  try {
+    var vscode = h.vscode, st = ctx && ctx.globalState, key = h.PREFIX + '.welcomed';
+    if (!st || st.get(key) || st.get(h.PREFIX + '.noHint')) return null;
+    await st.update(key, today());
+    var T = tr(WELCOME_T, vscode), smp = sampleOf(h);
+    var btns = [T[1]].concat(smp ? [T[2]] : []).concat([T[3]]);
+    _toastAt = Date.now();
+    var pk = await vscode.window.showInformationMessage.apply(vscode.window, [fillW(T[0], h)].concat(btns));
+    if (pk === T[1]) return Object.assign({ shown: true }, await pickMine(ctx, h, T));
+    if (smp && pk === T[2]) {
+      var su = vscode.Uri && vscode.Uri.file ? vscode.Uri.file(smp) : { scheme: 'file', fsPath: smp };
+      var sd = await vscode.workspace.openTextDocument(su);
+      await vscode.window.showTextDocument(sd);
+      var res = null; try { res = h.E.engine.check(fs.readFileSync(smp, 'utf8'), { today: today(), path: smp }); } catch (e) { }
+      var f = (res && res.findings) || [];
+      if (h.api && h.api.run) h.api.run(sd);
+      send(vscode, h.slug || h.PREFIX, { t: 'use', slug: h.slug || h.PREFIX, src: 'vsix', why: 'welcome_sample', path: '/use/vsix/' + (h.slug || h.PREFIX) });
+      var first = f.length ? String(f[0].msg || f[0].message || f[0].check || '').trim().slice(0, 160) : '';
+      if (first && !/[.!?。]$/.test(first)) first += '.';
+      var pk2 = await vscode.window.showInformationMessage(fillW(T[4], h, { n: f.length, m: first }), T[1]);
+      var more = pk2 === T[1] ? await pickMine(ctx, h, T) : null;
+      return { shown: true, pick: 'sample', findings: f.length, then: more };
+    }
+    return { shown: true, pick: pk ? 'later' : 'dismissed' };
+  } catch (e) { return null; }
+}
 function lang(vscode) { return String((vscode && vscode.env && vscode.env.language) || 'en').slice(0, 2).toLowerCase(); }
 function tr(T, vscode) { return T[lang(vscode)] || T.en; }
 function today() { return new Date().toISOString().slice(0, 10); }
@@ -284,6 +358,7 @@ function start(ctx, o) {
     bar.tooltip = r.n ? (r.n + ' finding' + (r.n === 1 ? '' : 's') + ' in this file against ' + R + ' checks - click for the list') : ('Clean against ' + R + ' checks on ' + new Date().toISOString().slice(0, 10));
     bar.show(); return r;
   }
+  h.api = { run: run, show: show };   // s164 — welcome() checks the picked/sample file with the same free run()
   var t = null;
   function later(ed) { clearTimeout(t); t = setTimeout(function () { show(ed); }, 400); if (t && t.unref) t.unref(); }
   ctx.subscriptions.push(
@@ -299,12 +374,12 @@ async function hint(ctx, h) {
   try {
     var vscode = h.vscode, key = h.PREFIX + '.hinted';
     if (ctx.workspaceState.get(key) || ctx.globalState.get(h.PREFIX + '.noHint')) return null;
-    if (!vscode.workspace.workspaceFolders || !vscode.workspace.workspaceFolders.length) return null;
+    if (!vscode.workspace.workspaceFolders || !vscode.workspace.workspaceFolders.length) return await welcome(ctx, h);   // s164 — no folder open: the first minute still speaks (once)
     var sc = await scan(h, 300), files = sc.files, total = sc.total, clean = sc.clean, day = new Date().toISOString().slice(0, 10);   // s163b — one scan
     await ctx.workspaceState.update(key, true);
     var st = ctx.globalState, hasKey = !!st.get('licenseKey'), until = Number(st.get('sweepTrialUntil') || 0);
     if (!total) {
-      if (!clean) return { files: 0, total: 0, clean: 0 };            // nothing here this checker reads → stay quiet
+      if (!clean) return { files: 0, total: 0, clean: 0, welcome: await welcome(ctx, h) };   // s164 — nothing here it reads → ONE first-minute offer, then quiet
       var W = clearWords(vscode, { title: h.title, files: clean, rules: h.R, day: day, price: h.price || 29 });
       var lbl = hasKey ? W.save : W.buy;
       ping(vscode, h.slug || h.PREFIX, 'clear');
@@ -328,4 +403,5 @@ async function hint(ctx, h) {
   } catch (e) { return null; }
 }
 module.exports = { start: start, relevant: relevant, tokens: tokens, isBroad: isBroad, clearWords: clearWords,
-  sweptClean: sweptClean, badgeTopic: badgeTopic, badgeMarkdown: badgeMarkdown, reviewUrl: reviewUrl, reviewTick: reviewTick, clearReport: clearReport, scan: scan };   // s163
+  sweptClean: sweptClean, badgeTopic: badgeTopic, badgeMarkdown: badgeMarkdown, reviewUrl: reviewUrl, reviewTick: reviewTick, clearReport: clearReport, scan: scan,   // s163
+  welcome: welcome, kindOf: kindOf, globExts: globExts, sampleOf: sampleOf };   // s164
