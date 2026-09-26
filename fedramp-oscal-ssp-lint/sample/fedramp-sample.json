@@ -1,0 +1,157 @@
+{
+  "system-security-plan": {
+    "uuid": "ssp-0001",
+    "metadata": {
+      "title": "Claims Platform SSP",
+      "published": "2025-05-02T09:00:00",
+      "last-modified": "2025-05-02T09:00:00Z",
+      "oscal-version": "1.0.4",
+      "roles": [
+        {
+          "id": "system-owner",
+          "title": "System Owner"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+          "type": "organization",
+          "name": "Northwind Cloud Systems, Inc."
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "system-owner",
+          "party-uuids": [
+            "9c8e7d6f-1234-4aaa-9bbb-ccccdddd0000"
+          ]
+        }
+      ]
+    },
+    "system-characteristics": {
+      "system-ids": [
+        {
+          "identifier-type": "https://fedramp.gov",
+          "id": "F1234567890"
+        }
+      ],
+      "system-name": "Claims Platform",
+      "description": "TBD - narrative to be supplied before submission.",
+      "security-sensitivity-level": "moderate",
+      "system-information": {
+        "information-types": [
+          {
+            "uuid": "info-type-1",
+            "title": "Benefit claim records",
+            "description": "Claim submissions and adjudication decisions.",
+            "confidentiality-impact": {
+              "base": "fips-199-moderate"
+            }
+          }
+        ]
+      },
+      "security-impact-level": {
+        "security-objective-confidentiality": "Moderate"
+      },
+      "status": {
+        "state": "operational"
+      },
+      "authorization-boundary": {
+        "description": "TODO: diagram and narrative."
+      }
+    },
+    "system-implementation": {
+      "users": [
+        {
+          "uuid": "7f3e2d1c-5b6a-4c8d-9e0f-1a2b3c4d5e6f",
+          "title": "Platform engineer",
+          "role-ids": [
+            "system-owner"
+          ]
+        }
+      ],
+      "components": [
+        {
+          "uuid": "3c9a7e21-4d55-4b0a-ab12-9f8e7d6c5b4a",
+          "type": "software",
+          "title": "API gateway",
+          "description": "Terminates TLS.",
+          "status": {
+            "state": "operational"
+          }
+        }
+      ]
+    },
+    "control-implementation": {
+      "description": "Control narratives.",
+      "implemented-requirements": [
+        {
+          "uuid": "0a1b2c3d-4e5f-4a6b-8c7d-9e0f1a2b3c4d",
+          "control-id": "AC-2(1)",
+          "props": [
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            }
+          ],
+          "by-components": [
+            {
+              "uuid": "3d4e5f60-7182-4d9e-bf0a-2b3c4d5e6f70",
+              "component-uuid": "gateway-component",
+              "description": "Accounts are reviewed."
+            }
+          ]
+        },
+        {
+          "uuid": "1b2c3d4e-5f60-4b7c-9d8e-0f1a2b3c4d5e",
+          "control-id": "ac-6",
+          "by-components": [
+            {
+              "uuid": "4e5f6071-8293-4e0f-800b-3c4d5e6f7081",
+              "component-uuid": "3c9a7e21-4d55-4b0a-ab12-9f8e7d6c5b4a",
+              "description": "Least privilege is applied."
+            }
+          ]
+        },
+        {
+          "uuid": "2c3d4e5f-6071-4c8d-ae9f-1a2b3c4d5e6f",
+          "control-id": "si-4.12",
+          "props": [
+            {
+              "name": "implementation-status",
+              "value": "planned"
+            }
+          ],
+          "by-components": [
+            {
+              "uuid": "5f607182-93a4-4f10-911c-4d5e6f708192",
+              "component-uuid": "3c9a7e21-4d55-4b0a-ab12-9f8e7d6c5b4a",
+              "description": "Alerting work is in flight."
+            }
+          ]
+        },
+        {
+          "uuid": "2a7c9f30-8b41-4d62-9e05-6f7a8b9c0d1e",
+          "control-id": "cp-9",
+          "props": [
+            {
+              "name": "implementation-status",
+              "value": "planned"
+            },
+            {
+              "name": "planned-completion-date",
+              "value": "2026-06-30"
+            }
+          ],
+          "by-components": [
+            {
+              "uuid": "8b9c0d1e-2f30-4415-a526-7b8c9d0e1f20",
+              "component-uuid": "3c9a7e21-4d55-4b0a-ab12-9f8e7d6c5b4a",
+              "description": "Backup restore test is scheduled."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
