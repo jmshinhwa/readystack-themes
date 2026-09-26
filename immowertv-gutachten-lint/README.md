@@ -36,7 +36,7 @@ Das Jahressteuergesetz 2022 hat die Grundbesitzbewertung im Bewertungsgesetz an 
 2. Befehlspalette: **Gutachten-Lint: Datei prüfen**. Befunde erscheinen im Problems-Fenster mit Zeilennummer.
 3. Jede Zeile nach der Korrektur-Spalte oben anpassen und erneut prüfen, bis 0 Befunde bleiben.
 
-Dieselbe Prüfung läuft ohne Installation im Browser: https://getreadystack.com/tools/immowertv-gutachten-lint
+Dieselbe Prüfung läuft ohne Installation im Browser: https://getreadystack.com/de/tools/immowertv-gutachten-lint
 
 ## Umfang
 
