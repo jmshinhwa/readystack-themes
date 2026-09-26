@@ -1,0 +1,29 @@
+{
+  "response_type": "vp_token",
+  "client_id": "https://pay.shop-example.eu",
+  "response_mode": "direct_post",
+  "response_uri": "https://pay.shop-example.eu/oid4vp/response",
+  "state": "a91f",
+  "registration_valid_until": "2026-08-31",
+  "client_metadata": {
+    "client_name": "Shop Example Payments"
+  },
+  "dcql_query": {
+    "credentials": [
+      {
+        "id": "pid_basic",
+        "format": "dc+sd-jwt",
+        "meta": { "vct_values": ["urn:eudi:pid:1"] },
+        "claims": [
+          { "path": ["birth_date"] },
+          { "path": ["resident_address"] }
+        ]
+      },
+      {
+        "id": "loyalty",
+        "format": "mso_mdoc",
+        "meta": { "doctype_value": "com.example.loyalty.card" }
+      }
+    ]
+  }
+}
