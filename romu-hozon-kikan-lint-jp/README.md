@@ -4,7 +4,7 @@
 
 社内の「文書保存期間表」「文書管理規程」の表（Markdown・CSV・テキスト）を開くと、賃金台帳・労働者名簿・出勤簿・健康診断個人票・雇用保険や社会保険の書類について、**法定の保存年数より短い行**、**起算日の誤り**、**法定の保存満了より前の廃棄予定日**を行番号つきで示します。
 
-ツールページ: https://getreadystack.com/tools/romu-hozon-kikan-lint-jp
+ツールページ: https://getreadystack.com/ja/tools/romu-hozon-kikan-lint-jp
 
 ## 何を検査するか（20 rules）
 
