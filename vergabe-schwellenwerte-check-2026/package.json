@@ -2,7 +2,7 @@
   "name": "vergabe-schwellenwerte-check-2026",
   "displayName": "Vergabe Schwellenwerte Check 2026",
   "description": "Findet veraltete EU-Schwellenwerte (221.000, 5.538.000, 143.000, 443.000 …) in Vergabe-Vorlagen und Konfigurationsdateien und nennt den seit 2026-01-01 gültigen Wert nach §106 GWB.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,7 +49,7 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "vergabe-schwellenwerte-check-2026"
   },
-  "homepage": "https://getreadystack.com/tools/vergabe-schwellenwerte-check-2026",
+  "homepage": "https://getreadystack.com/de/tools/vergabe-schwellenwerte-check-2026",
   "readystack": {
     "rulesDate": "2026-09-25"
   },
