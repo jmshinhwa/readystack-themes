@@ -2,7 +2,7 @@
   "name": "sv-rechengroessen-lint-2026",
   "displayName": "SV-Rechengrößen 2026 Lint (Lohn-Konfig)",
   "description": "Findet veraltete deutsche Sozialversicherungs-Werte in Lohn- und HR-Konfigurationsdateien: BBG, JAEG, Bezugsgröße, Minijob-Grenze, Mindestlohn, Zusatzbeitrag und Pflege-Kinderabschlag ab 01.01.2026.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
