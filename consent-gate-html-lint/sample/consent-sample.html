@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Nordlicht Physiotherapie — Termin buchen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4KDX2QP7ZL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4KDX2QP7ZL');
+  </script>
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '921470553318842'); fbq('track', 'PageView');
+  </script>
+  <script src="https://static.hotjar.com/c/hotjar-3841205.js?sv=6" async></script>
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <h1>Physiotherapie in Kiel</h1>
+  <p>Termine Montag bis Freitag, 8 bis 18 Uhr.</p>
+
+  <h2>So finden Sie uns</h2>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/aqz-KE-bpKQ"
+          title="Praxisrundgang" frameborder="0" allowfullscreen></iframe>
+
+  <h2>Termin anfragen</h2>
+  <form action="/termin" method="post">
+    <label>Name <input name="name" required></label>
+    <label>E-Mail <input name="email" type="email" required></label>
+    <button class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI">Anfrage senden</button>
+  </form>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <footer><a href="/datenschutz">Datenschutz</a> &middot; <a href="/impressum">Impressum</a></footer>
+</body>
+</html>
