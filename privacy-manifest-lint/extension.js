@@ -2,7 +2,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Checking", "done": "Findings are in the Privacy Manifest Lint panel", "nothing_found": "No required-reason API and no manifest defect in this file", "need_key": "Full version: scan every file in the repo, export the findings as CSV/JSON/HTML, emit CI JSON, and auto-fix the misspelled manifest keys. $29 once - one licence key per person or team seat. An experienced freelance iOS developer bills $85-145/hour in 2026.", "key_ok": "Licence accepted - the full version is unlocked", "key_bad": "That key did not validate. Check it, or use the refund window", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "paste": "Paste your PrivacyInfo.xcprivacy, or a source file in C#, Dart, JS/TS, Swift, Obj-C or Kotlin", "check": "Check this file", "extra_rules": "Your own regex rules, checked alongside the 48 that ship inside."};
+const S = {"run": "Checking", "done": "Findings are in the Privacy Manifest Lint panel", "nothing_found": "No required-reason API and no manifest defect in this file", "need_key": "Full version: scan every file in the repo, export the findings as CSV/JSON/HTML, emit CI JSON, and auto-fix the misspelled manifest keys. $29 once - one licence key per person or team seat. An experienced freelance iOS developer bills $85-145/hour in 2026.", "key_ok": "Licence accepted - the full version is unlocked", "key_bad": "That key did not validate. Check it, or contact support", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "paste": "Paste your PrivacyInfo.xcprivacy, or a source file in C#, Dart, JS/TS, Swift, Obj-C or Kotlin", "check": "Check this file", "extra_rules": "Your own regex rules, checked alongside the 48 that ship inside."};
 const PAID = ["workspace_scan", "export_report", "ci_json", "quick_fix"];
 const NEED_KEY = S.need_key;   // ★체험이 끝난 뒤 문턱 문구의 ★바탕 (⛔S.need_key 에 앞말을 겹쳐 쌓지 않으려고 원문을 붙들어 둔다)
 
@@ -97,7 +97,7 @@ async function listRules() {
 async function paidGate(ctx) {
   const st = ctx.globalState; const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  /* s158 ⚑정민님: 7일 무료 없음 — 새 체험을 열지 않는다 (이미 시작된 체험만 지킨다) */
+  /* s158: no new free trial is opened (trials already started are honoured) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
