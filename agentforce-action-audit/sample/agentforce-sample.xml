@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <description>Handles order status questions for retail customers in the EU & UK.</description>
+    <developerName>Order_Status</developerName>
+    <genAiFunctions>
+        <functionName>Get_Order_Status</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>Cancel_Order</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>When the customer asks where their parcel is, run Get_Order_Status and read back the tracking number.</description>
+        <developerName>instruction_0</developerName>
+        <masterLabel>instruction_0</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>TODO: describe the refund path here.</description>
+        <developerName>instruction_0</developerName>
+        <masterLabel>instruction_1</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the customer is still unhappy, hand the case to support@acme-retail.example and close the conversation.</description>
+        <developerName>instruction_2</developerName>
+        <masterLabel>instruction_2</masterLabel>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Order Status</masterLabel>
+    <pluginType>Topic</pluginType>
+</GenAiPlugin>
