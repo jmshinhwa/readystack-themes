@@ -1,0 +1,21 @@
+name: release
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: npm
+      - run: npm ci && npm run build
+      - name: publish the version we just built
+        run: echo "::set-output name=version::$(node -p 'require(\"./package.json\").version')"
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist/
