@@ -2,7 +2,7 @@
   "name": "kaigo-unei-kitei-check-2026",
   "displayName": "介護 指定申請 運営規程チェック 2026",
   "description": "介護保険の指定申請・指定更新に出す運営規程(.md/.txt)を、指定居宅サービス等基準 第29条・第100条の必須号と令和6年度改定の義務(虐待防止4措置・業務継続計画・ウェブサイト掲載)で検査し、欠けた号を行番号つきで示します。",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
