@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08">
+  <FIToFICstmrCdtTrf>
+    <GrpHdr>
+      <MsgId>CBPR-DIRTY-0001</MsgId>
+      <CreDtTm>2026-09-20T09:15:00Z</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+    </GrpHdr>
+    <CdtTrfTxInf>
+      <PmtId>
+        <UETR>b7c8d9e0-2222-4333-8444-555566667777</UETR>
+      </PmtId>
+      <IntrBkSttlmAmt Ccy="USD">92500.00</IntrBkSttlmAmt>
+      <Dbtr>
+        <Nm>Harbour Freight Logistics Ltd</Nm>
+        <PstlAdr>
+          <AdrLine>Unit 7, Canary Wharf Business Park</AdrLine>
+          <AdrLine>London E14 5AB, United Kingdom</AdrLine>
+        </PstlAdr>
+      </Dbtr>
+      <Cdtr>
+        <Nm>Pacific Rim Trading Co</Nm>
+        <PstlAdr>
+          <AdrLine>Level 22, One Raffles Quay, North Tower, Marina Bay Financial Centre</AdrLine>
+          <AdrLine>Raffles Place, Downtown Core, Central Business District, Singapore 048583</AdrLine>
+          <AdrLine>Republic of Singapore</AdrLine>
+          <Ctry>SG</Ctry>
+        </PstlAdr>
+      </Cdtr>
+      <UltmtCdtr>
+        <Nm>Lombardia Componenti SpA</Nm>
+        <PstlAdr>
+          <StrtNm>Via Roma</StrtNm>
+          <BldgNb>12</BldgNb>
+          <PstCd>20121</PstCd>
+          <TwnNm>Milano</TwnNm>
+          <AdrLine>Via Roma 12, 20121 Milano</AdrLine>
+          <Ctry>ITA</Ctry>
+        </PstlAdr>
+      </UltmtCdtr>
+      <CdtrAgt>
+        <FinInstnId>
+          <BICFI>BCGECHGGXXX</BICFI>
+          <PstlAdr>
+            <Dept>Treasury &amp; Payments</Dept>
+            <StrtNm>Rue du Commerce 17</StrtNm>
+            <PstCd>1204</PstCd>
+            <TwnNm>Gen&#232;ve</TwnNm>
+          </PstlAdr>
+        </FinInstnId>
+      </CdtrAgt>
+    </CdtTrfTxInf>
+  </FIToFICstmrCdtTrf>
+</Document>
