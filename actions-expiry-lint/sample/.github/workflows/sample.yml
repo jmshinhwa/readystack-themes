@@ -1,0 +1,65 @@
+name: build-and-release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: ['18.20.4', '20.x', '21']
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+      - run: npm ci && npm test
+      - name: publish coverage
+        uses: codecov/codecov-action@v3
+      - uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage/
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: export the version
+        run: echo "::set-output name=version::$(cat VERSION)"
+      - name: remember the cache hit
+        run: echo "::save-state name=cachehit::true"
+
+  mac:
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: echo "::add-path::$HOME/.local/bin"
+
+  win:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v4
+      - uses: peter-evans/create-pull-request@master
+
+  release:
+    needs: [test, docs]
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/download-artifact@v3
+      - uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
