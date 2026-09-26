@@ -1,0 +1,32 @@
+<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
+
+<article class="product">
+  <h1><%= @product.name %></h1>
+
+  <div class="description"><%= raw @product.description_html %></div>
+  <p class="blurb"><%= @product.blurb.html_safe %></p>
+  <div class="announcement"><%== @announcement.body %></div>
+
+  <%= render inline: @product.custom_template %>
+
+  <p><a href="<%= @product.homepage %>">Vendor site</a></p>
+  <p><%= link_to "Back to results", params[:return_to] %></p>
+
+  <button onclick="track(<%= @product.id %>)">Buy</button>
+  <img src=<%= @product.image_url %> alt="Product">
+
+  <div class="notes"><%= content_tag(:div, @product.notes, {}, false) %></div>
+
+  <div class="review"><%= sanitize(@review.body) %></div>
+  <div class="review"><%= simple_format(@review.body, {}, sanitize: false) %></div>
+</article>
+
+<script>
+  var name = "<%= @user.name %>";
+  var cfg = <%= @config.to_json %>;
+  window.init(name, cfg);
+</script>
+
+<style>
+  .banner { background: url(<%= @product.banner_url %>); }
+</style>
