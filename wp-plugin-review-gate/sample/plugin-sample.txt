@@ -1,0 +1,23 @@
+=== Speedy SEO Toolkit ===
+Contributors: alexdev
+Tags: seo, sitemap, schema, meta tags, performance
+Requires at least: 6.9
+Tested up to: 6.8.2
+Stable tag: trunk
+License: GPLv2 or later
+
+Speedy SEO Toolkit adds sitemaps, schema output, meta tag control, redirects, breadcrumbs and a readable on-page score to your WordPress site, with no configuration needed at all.
+
+== Description ==
+
+Sitemaps, schema, meta tags and redirects in one plugin.
+
+== Installation ==
+
+1. Upload the folder to wp-content/plugins.
+2. Activate the plugin.
+
+== Changelog ==
+
+= 2.4.1 =
+* Faster sitemap generation.
