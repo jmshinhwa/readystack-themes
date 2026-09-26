@@ -1,0 +1,32 @@
+# robots.txt
+Disallow: /wp-admin/
+
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /checkout/
+Crawl-delay: 10
+Noindex: /drafts/
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: ChatGPT-Bot
+Disallow: /
+
+User-agent: CCBot
+Disallow:
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Googlebot
+Disallow: private/
+
+User-agent: GPTBot
+Disallow: /
+
+Allow all: yes
+Sitemap: /sitemap.xml
