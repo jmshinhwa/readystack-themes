@@ -1,0 +1,15 @@
+[
+ {"id": "bau-2024-25", "sev": "error", "kind": "stale", "old": "5538000", "now": "5.404.000", "period": "2024/25", "cls": "Bauaufträge und Konzessionen (GWB, VgV, SektVO, KonzVgV)"},
+ {"id": "bau-2022-23", "sev": "error", "kind": "stale", "old": "5382000", "now": "5.404.000", "period": "2022/23", "cls": "Bauaufträge und Konzessionen (GWB, VgV, SektVO, KonzVgV)"},
+ {"id": "bau-2020-21", "sev": "error", "kind": "stale", "old": "5350000", "now": "5.404.000", "period": "2020/21", "cls": "Bauaufträge und Konzessionen (GWB, VgV, SektVO, KonzVgV)"},
+ {"id": "liefer-dl-2024-25", "sev": "error", "kind": "stale", "old": "221000", "now": "216.000", "period": "2024/25", "cls": "Liefer- und Dienstleistungen aller übrigen Auftraggeber (Kommunen, Länder)"},
+ {"id": "liefer-dl-2022-23", "sev": "error", "kind": "stale", "old": "215000", "now": "216.000", "period": "2022/23", "cls": "Liefer- und Dienstleistungen aller übrigen Auftraggeber (Kommunen, Länder)"},
+ {"id": "liefer-dl-2020-21", "sev": "error", "kind": "stale", "old": "214000", "now": "216.000", "period": "2020/21", "cls": "Liefer- und Dienstleistungen aller übrigen Auftraggeber (Kommunen, Länder)"},
+ {"id": "bund-2024-25", "sev": "error", "kind": "stale", "old": "143000", "now": "140.000", "period": "2024/25", "cls": "Liefer- und Dienstleistungen oberer und oberster Bundesbehörden"},
+ {"id": "bund-2020-21", "sev": "error", "kind": "stale", "old": "139000", "now": "140.000", "period": "2020/21", "cls": "Liefer- und Dienstleistungen oberer und oberster Bundesbehörden"},
+ {"id": "sektoren-2024-25", "sev": "error", "kind": "stale", "old": "443000", "now": "432.000", "period": "2024/25", "cls": "Liefer- und Dienstleistungen Sektorenauftraggeber (SektVO) und Verteidigung (VSVgV)"},
+ {"id": "sektoren-2022-23", "sev": "error", "kind": "stale", "old": "431000", "now": "432.000", "period": "2022/23", "cls": "Liefer- und Dienstleistungen Sektorenauftraggeber (SektVO) und Verteidigung (VSVgV)"},
+ {"id": "sektoren-2020-21", "sev": "error", "kind": "stale", "old": "428000", "now": "432.000", "period": "2020/21", "cls": "Liefer- und Dienstleistungen Sektorenauftraggeber (SektVO) und Verteidigung (VSVgV)"},
+ {"id": "zeitraum-veraltet", "sev": "warning", "kind": "period", "msg": "Schwellenwert-Zeitraum {p} ist abgelaufen — seit 2026-01-01 gilt der Zeitraum 2026/2027 (Delegierte VO (EU) 2025/2150, 2025/2151, 2025/2152)"},
+ {"id": "standardformular", "sev": "warning", "kind": "text", "pattern": "\\bTED[- ]?Standardformular\\w*|\\bStandardformular(?:e|en)?\\b", "msg": "Verweis auf alte TED-Standardformulare — EU-Bekanntmachungen laufen seit 2023-10-25 nur noch über eForms (DVO (EU) 2019/1780, in Deutschland eForms-DE)"}
+]
