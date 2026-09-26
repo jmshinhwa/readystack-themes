@@ -2,7 +2,7 @@
   "name": "vvt-pruefer-art-30-dsgvo",
   "displayName": "VVT-Prüfer — Art. 30 DSGVO",
   "description": "Prüft Ihr Verzeichnis von Verarbeitungstätigkeiten (Markdown) auf die Pflichtangaben nach Art. 30 Abs. 1 DSGVO, veralteten Stand und Drittlandtransfers ohne Garantie.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
