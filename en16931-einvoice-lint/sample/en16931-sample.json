@@ -1,0 +1,23 @@
+{
+  "country": "FR",
+  "profile": "urn:factur-x.eu:1p0:minimum",
+  "invoice_number": "F-2026-0917",
+  "issue_date": "2026-09-09",
+  "currency": "EUR",
+  "e_invoicing_mandate_start": "2026-01-01",
+  "allow_pdf_fallback": true,
+  "seller": {
+    "name": "Atelier Vermeil SAS",
+    "vat_identifier": "FR40303265045"
+  },
+  "buyer": {
+    "name": "Groupe Lantier SA",
+    "electronic_address": "0002:73282932000074"
+  },
+  "vat": [
+    { "vat_rate": 0, "taxable_amount": 1527.22 }
+  ],
+  "totals": {
+    "payable_amount": 1832.6667
+  }
+}
