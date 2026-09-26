@@ -1,0 +1,23 @@
+{
+  "name": "Release Notes Helper",
+  "displayName": "Release Notes Helper",
+  "description": "Generates release notes from your git history, groups them by conventional commit type, renders a CHANGELOG entry, copies it to the clipboard, opens a preview pane, and lets you publish it straight to a GitHub release without leaving the editor.",
+  "version": "0.9.1-beta.2",
+  "engines": { "vscode": "^1.74.0" },
+  "categories": ["Linter", "Other"],
+  "badges": [
+    { "url": "https://my-jenkins.internal.example/badge.svg", "href": "https://my-jenkins.internal.example", "description": "build" }
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "*",
+    "onCommand:releaseNotesHelper.generate"
+  ],
+  "contributes": {
+    "commands": [
+      { "command": "releaseNotesHelper.generate", "title": "Release Notes: Generate" }
+    ]
+  },
+  "scripts": { "compile": "tsc -p ./" },
+  "devDependencies": { "@types/vscode": "^1.96.0", "typescript": "^5.4.0" }
+}
