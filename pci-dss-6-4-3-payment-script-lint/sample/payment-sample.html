@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Checkout — Northlight Supply Co.</title>
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://js.stripe.com https://www.googletagmanager.com https://cdn.jsdelivr.net; frame-src https://js.stripe.com">
+
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <script src="https://www.googletagmanager.com/gtm.js?id=GTM-NL7Q2K"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/card-validator@10.0.0/dist/card-validator.min.js"
+          integrity="sha384-6qOq5Q0m1uQ2Kx8fP2eH0bM7cQ0wS6h1Zr9k4Yy0Jt3Xv8Lp5Nd2Rf7Gs4Aw1Bc"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({ event: 'begin_checkout', value: 149.00, currency: 'USD' });
+  </script>
+</head>
+<body>
+  <main>
+    <h1>Pay $149.00</h1>
+    <form id="payment-form" action="/api/charge" method="post">
+      <div id="card-element"></div>
+      <button id="submit" type="submit">Pay now</button>
+    </form>
+  </main>
+  <script nonce="r4nd0m-per-response">
+    const stripe = Stripe('pk_live_51NxExample');
+    stripe.elements().create('card').mount('#card-element');
+  </script>
+</body>
+</html>
