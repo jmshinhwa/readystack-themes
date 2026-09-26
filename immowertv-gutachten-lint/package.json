@@ -2,7 +2,7 @@
   "name": "immowertv-gutachten-lint",
   "displayName": "Gutachten-Lint: ImmoWertV 2021 und BewG",
   "description": "Prüft Verkehrswertgutachten-Entwürfe (Markdown) auf veraltete Normen und Modellwerte: ImmoWertV 2010, SW-RL, NHK 2000, GND 70 statt 80 Jahre, RND unter 30 %, alter Liegenschaftszins.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
