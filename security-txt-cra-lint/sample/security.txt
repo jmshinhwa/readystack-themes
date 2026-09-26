@@ -1,0 +1,10 @@
+# security.txt - example.com
+Contact: security@example.com
+Contacts: https://example.com/report-a-vulnerability
+Expires: 2026-06-30T00:00:00Z
+Encryption: http://example.com/pgp-key.txt
+Canonical: https://example.com/security.txt
+CSAF: https://example.com/.well-known/csaf/index.json
+Preferred-Languages: en
+Preferred-Languages: fr
+Acknowledgments https://example.com/hall-of-fame
