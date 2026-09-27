@@ -1,0 +1,56 @@
+{
+  "name": "dienstplan-ruhezeit-check",
+  "displayName": "Dienstplan-Check: Ruhezeit und Pausen (ArbZG)",
+  "description": "Prüft Dienstplan-CSV vor der Veröffentlichung: 11 h Ruhezeit (§5), Pausen (§4), 10-h-Grenze (§3), 60-h-Woche, Nachtarbeit (§6), Sonntag (§9/§11). Mit Zeile und Paragraf.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "dienstplan",
+    "ruhezeit",
+    "arbeitszeitgesetz",
+    "schichtplan",
+    "pausen",
+    "arbzg",
+    "arbeitszeit berechnen"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "dienstplanRuhezeit.checkFile",
+        "title": "Dienstplan-Check: Ruhezeit und Pausen (ArbZG): Check this file",
+        "category": "Dienstplan-Check: Ruhezeit und Pausen (ArbZG)"
+      },
+      {
+        "command": "dienstplanRuhezeit.checkWorkspace",
+        "title": "Dienstplan-Check: Ruhezeit und Pausen (ArbZG): Sweep workspace and write report (licence)",
+        "category": "Dienstplan-Check: Ruhezeit und Pausen (ArbZG)"
+      },
+      {
+        "command": "dienstplanRuhezeit.enterKey",
+        "title": "Dienstplan-Check: Ruhezeit und Pausen (ArbZG): Enter licence key",
+        "category": "Dienstplan-Check: Ruhezeit und Pausen (ArbZG)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "dienstplan-ruhezeit-check"
+  },
+  "homepage": "https://getreadystack.com/tools/dienstplan-ruhezeit-check",
+  "readystack": {
+    "rulesDate": "2026-09-26"
+  },
+  "icon": "icon.png"
+}
