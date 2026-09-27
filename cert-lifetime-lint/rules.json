@@ -1,0 +1,130 @@
+[
+  {
+    "id": "openssl-days",
+    "pattern": "-days\\s+(?:2[0-9]{2}|[3-9][0-9]{2}|[0-9]{4,})",
+    "flags": "",
+    "sev": "error",
+    "message": "openssl -days is 200 or more. A public CA has not issued that since 15 March 2026 (200-day cap); private and internal CAs are exempt.",
+    "fix": "-days 90"
+  },
+  {
+    "id": "keytool-validity",
+    "pattern": "-validity\\s+(?:2[0-9]{2}|[3-9][0-9]{2}|[0-9]{4,})",
+    "flags": "",
+    "sev": "error",
+    "message": "keytool -validity is 200 or more, over the 200-day public TLS cap in force since 15 March 2026. The cap falls to 100 days on 15 March 2027.",
+    "fix": "-validity 90"
+  },
+  {
+    "id": "certmanager-duration-hours",
+    "pattern": "duration:\\s*[\"']?(?:4[89][0-9]{2}|[5-9][0-9]{3}|[0-9]{5,})h",
+    "flags": "",
+    "sev": "error",
+    "message": "cert-manager duration is 4800h (200 days) or more. A public issuer refuses it; the ACME order fails and the Certificate never becomes Ready.",
+    "fix": "duration: 2160h"
+  },
+  {
+    "id": "duration-days",
+    "pattern": "duration:\\s*[\"']?(?:2[0-9]{2}|[3-9][0-9]{2}|[0-9]{4,})d\\b",
+    "flags": "",
+    "sev": "error",
+    "message": "Certificate duration of 200 days or more is over the public TLS cap. 100 days becomes the cap on 15 March 2027 and 47 days on 15 March 2029.",
+    "fix": "duration: 90d"
+  },
+  {
+    "id": "certmanager-renewbefore",
+    "pattern": "renewBefore:\\s*[\"']?(?:1[1-9][0-9]{2}|[2-9][0-9]{3}|[0-9]{5,})h",
+    "flags": "",
+    "sev": "warn",
+    "message": "renewBefore of 1100h (about 46 days) or more is longer than a 47-day certificate lives from 15 March 2029. cert-manager rejects renewBefore greater than or equal to duration.",
+    "fix": "renewBefore: 360h"
+  },
+  {
+    "id": "tf-validity-period-hours",
+    "pattern": "validity_period_hours\\s*=\\s*(?:4[89][0-9]{2}|[5-9][0-9]{3}|[0-9]{5,})",
+    "flags": "",
+    "sev": "error",
+    "message": "validity_period_hours is 4800 (200 days) or more, over the public TLS cap in force since 15 March 2026.",
+    "fix": "validity_period_hours = 2160"
+  },
+  {
+    "id": "tf-min-days-remaining",
+    "pattern": "min_days_remaining\\s*=\\s*[\"']?(?:[6-9][0-9]|[0-9]{3,})",
+    "flags": "",
+    "sev": "warn",
+    "message": "min_days_remaining of 60 or more never clears once certificates last 47 days (15 March 2029). Terraform then re-issues on every apply.",
+    "fix": "min_days_remaining = 21"
+  },
+  {
+    "id": "ca-profile-expiry",
+    "pattern": "(?:expiry|not-after|notAfter|maxTLSCertDuration|defaultTLSCertDuration)[\"']?\\s*[:=]\\s*[\"']?(?:4[89][0-9]{2}|[5-9][0-9]{3}|[0-9]{5,})h",
+    "flags": "i",
+    "sev": "error",
+    "message": "This CA profile issues certificates of 4800h (200 days) or longer, over the public TLS cap since 15 March 2026.",
+    "fix": "\"expiry\": \"2160h\""
+  },
+  {
+    "id": "step-not-after",
+    "pattern": "not_after:\\s*[\"']?\\+(?:2[0-9]{2}|[3-9][0-9]{2}|[0-9]{4,})d",
+    "flags": "",
+    "sev": "error",
+    "message": "not_after of +200d or longer is over the public TLS cap. The cap falls to 100 days on 15 March 2027.",
+    "fix": "not_after: \"+90d\""
+  },
+  {
+    "id": "cron-renew-cadence",
+    "pattern": "\\*/(?:[3-9]|1[0-2])\\s+\\*\\s.*\\b(?:certbot|acme|lego|renew)\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "This renewal job runs every 3 months or less often. A 100-day certificate (15 March 2027) can expire between two runs.",
+    "fix": "0 3 * * * certbot renew"
+  },
+  {
+    "id": "cron-renew-monthly-yearly",
+    "pattern": "@(?:yearly|annually|monthly)\\b.*\\b(?:cert|certbot|acme|lego|renew|ssl|tls)\\b",
+    "flags": "i",
+    "sev": "warn",
+    "message": "A monthly or yearly renewal cadence leaves no retry room once certificates last 47 days (15 March 2029).",
+    "fix": "@daily certbot renew"
+  },
+  {
+    "id": "398-day-max",
+    "pattern": "\\b398\\b(?=[^\\n]*(?:day|valid|cert|tls|ssl|expir))|(?:day|valid|cert|tls|ssl|expir)[^\\n]*\\b398\\b",
+    "flags": "i",
+    "sev": "warn",
+    "message": "398 days stopped being the maximum on 14 March 2026. The cap is 200 days now, 100 days from 15 March 2027 and 47 days from 15 March 2029.",
+    "fix": "200"
+  },
+  {
+    "id": "expiry-warning-threshold",
+    "pattern": "(?:warn|alert|expir[a-z]*|renew[a-z]*)[_a-z]*_?days\\s*[:=]\\s*[\"']?(?:[6-9][0-9]|[0-9]{3,})",
+    "flags": "i",
+    "sev": "warn",
+    "message": "An expiry warning threshold of 60 days or more fires permanently once certificates last 47 days (15 March 2029).",
+    "fix": "14"
+  },
+  {
+    "id": "openssl-checkend",
+    "pattern": "-checkend\\s+(?:[5-9][0-9]{6}|[0-9]{8,})",
+    "flags": "",
+    "sev": "warn",
+    "message": "-checkend of 5000000 seconds (about 58 days) is longer than a 47-day certificate lives, so the check is always true from 15 March 2029.",
+    "fix": "-checkend 1209600"
+  },
+  {
+    "id": "traefik-certificates-duration",
+    "pattern": "certificatesDuration\\s*[:=]\\s*[\"']?(?:4[89][0-9]{2}|[5-9][0-9]{3}|[0-9]{5,})",
+    "flags": "",
+    "sev": "error",
+    "message": "Traefik certificatesDuration is 4800 hours (200 days) or more, over the public TLS cap since 15 March 2026.",
+    "fix": "certificatesDuration = 2160"
+  },
+  {
+    "id": "one-year-cert",
+    "pattern": "(?:cert[a-z]*|tls|ssl)[^\\n]{0,40}\\b(?:1|one)[\\s-]*year\\b",
+    "flags": "i",
+    "sev": "warn",
+    "message": "A one-year public TLS certificate can no longer be issued. The maximum has been 200 days since 15 March 2026.",
+    "fix": "200 days"
+  }
+]
