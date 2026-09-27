@@ -1,0 +1,14 @@
+services:
+  api:
+    build: .
+    depends_on: [cache, search, store]
+  cache:
+    image: redis:7.4.1
+  search:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
+  store:
+    image: bitnami/postgresql:16.4.0
+  vault:
+    image: hashicorp/vault:1.17.2
+  dashboards:
+    image: grafana/grafana:11.2.0
