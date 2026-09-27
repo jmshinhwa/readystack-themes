@@ -2,12 +2,12 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
+const GLOB = '**/*.{js,ts,jsx,tsx,mjs,cjs,html,htm,vue,svelte,php,liquid}';
+const PREFIX = 'optout-signal-lint';
+const ENGINE = require('./engine.js');
 const S = {"run": "Auditing for opt-out leaks", "done": "Audit finished.", "nothing_found": "No opt-out leak found in this file.", "paste": "Paste a tag, analytics or consent file here", "check": "Audit this file", "need_key": "Full version: Sweeps the whole workspace, writes the finding list to CSV, JSON or HTML, and returns a CI exit code so the same leak cannot merge twice. $29 once · one licence key per person or team seat · Osano, the nearest hosted consent platform, starts at $199/month.", "buy": "Get the full version — $29", "enter_key": "Enter licence key", "key_ok": "Licence accepted. The workspace scan, export and CI output are open.", "key_bad": "That key did not validate. Check it in your Polar customer portal."};
+S.title = 'Opt-Out Signal Lint for US State Privacy Laws';   // = package.json displayName (auto.js · clean-sweep badge)
 const PAID = ["workspace_scan", "export_report", "ci_json"];
-// ★역방향 체험 — ★첫 스윕부터 7일. ⛔기본 유료 문장은 한 번만 붙잡아 둔다 (안내가 겹쳐 쌓이지 않게)
-const NEED_KEY = S.need_key;
-const TRIAL_MS = 7 * 24 * 3600 * 1000;
-const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
 
 function out() {
   if (!out._c) out._c = vscode.window.createOutputChannel('Opt-Out Signal Lint');
@@ -45,25 +45,12 @@ function report(rows) {
   return n;
 }
 
-// ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질).
-const RULES = [{"pattern": "navigator\\.doNotTrack|window\\.doNotTrack|msDoNotTrack", "flags": "", "sev": "error", "message": "Do Not Track is not an opt-out preference signal under any US state privacy law. The twelve states that require a universal signal recognise Global Privacy Control, not DNT.", "fix": "navigator.globalPrivacyControl === true"}, {"pattern": "globalPrivacyControl\\s*[=!]==?\\s*[\\'\"]", "flags": "", "sev": "error", "message": "navigator.globalPrivacyControl is a boolean. Comparing it to a string is always false, so this opt-out branch never runs.", "fix": "navigator.globalPrivacyControl === true"}, {"pattern": "sec-gpc[\\'\"\\]\\s]*[=!]==?\\s*[\\'\"](true|yes|on)[\\'\"]", "flags": "i", "sev": "error", "message": "The Sec-GPC request header carries the value 1, never the string \"true\", so this server-side opt-out never fires.", "fix": "req.headers['sec-gpc'] === '1'"}, {"pattern": "fbq\\s*\\(\\s*[\\'\"]init[\\'\"]", "flags": "", "sev": "error", "message": "Meta Pixel init sends identifiers to Meta for cross-context behavioural advertising, which is a sale or share. It must not run for a visitor whose browser sent Global Privacy Control.", "fix": "if (!optedOut) fbq('init', id)"}, {"pattern": "ttq\\.(load|page|track)\\s*\\(", "flags": "", "sev": "error", "message": "The TikTok pixel is cross-context behavioural advertising. A visitor in the twelve opt-out-signal states who sent GPC must not have it loaded at all.", "fix": "load ttq only after the signal check passes"}, {"pattern": "gtag\\s*\\(\\s*[\\'\"]config[\\'\"]\\s*,\\s*[\\'\"]AW-", "flags": "", "sev": "error", "message": "A Google Ads (AW-) tag is a share for cross-context advertising. It has to be gated on the opt-out signal, not only on an EU cookie banner.", "fix": "gate the AW- config on the GPC check"}, {"pattern": "[\\'\"]?(ad_storage|ad_user_data|ad_personalization)[\\'\"]?\\s*:\\s*[\\'\"]granted[\\'\"]", "flags": "", "sev": "error", "message": "Advertising storage defaults to granted, so a GPC visitor is already shared on the very first page load, before any banner logic runs.", "fix": "default these to 'denied' and update only after reading the signal"}, {"pattern": "(allow_google_signals|allow_ad_personalization_signals)\\s*:\\s*true", "flags": "", "sev": "error", "message": "Google Signals turns Analytics data into cross-context advertising audiences. That is a share you must stop for a GPC visitor.", "fix": "allow_google_signals: false when the signal is present"}, {"pattern": "\\b(em|ph)\\s*:\\s*[\\w.$\\[\\]]*(email|phone|mail|tel|number)\\b", "flags": "i", "sev": "error", "message": "Advanced matching is passing a raw email or phone number to an ad platform. That is a sale of an identifier, and the field must be SHA-256 hashed even for a visitor who has not opted out.", "fix": "em: sha256(normalise(user.email))"}, {"pattern": "(acceptAll|acceptAllCookies|grantAllConsent|grantAll)\\s*\\(\\s*\\)", "flags": "", "sev": "error", "message": "Auto-accepting on load overwrites the opt-out a GPC visitor already sent, and asymmetric accept/reject is the dark pattern the CPPA regulations name.", "fix": "never call acceptAll() without an affirmative click"}, {"pattern": "(region|state|geo|country|jurisdiction)\\s*[=!]==?\\s*[\\'\"](CA|California)[\\'\"]", "flags": "i", "sev": "error", "message": "Honouring the signal for California alone misses the other eleven states that require it as of 1 January 2026.", "fix": "OPT_OUT_STATES.has(region) over all twelve states"}, {"pattern": "\\b(isEU|inEEA|isEEA|gdprApplies|isGdpr|gdprRegion)\\b", "flags": "", "sev": "warn", "message": "An EU-only gate leaves US visitors ungated. The opt-out signal has to be honoured whether or not the EU check is true.", "fix": "check the signal before, and independently of, the EU branch"}, {"pattern": "Do Not Sell My Personal Information", "flags": "i", "sev": "warn", "message": "Since CPRA the required wording is \"Do Not Sell or Share My Personal Information\", or the single combined link titled \"Your Privacy Choices\".", "fix": "Your Privacy Choices"}, {"pattern": "(hotjar|fullstory|logrocket|smartlook|mouseflow|clarity)\\s*[.(]", "flags": "i", "sev": "warn", "message": "Session-replay scripts capture form input. Running one for a GPC visitor is both a share and the fact pattern behind the CIPA wiretapping suits.", "fix": "start replay only after the signal check passes"}, {"pattern": "\\b(rdt|snaptr|pintrk|twq|lintrk)\\s*\\(|_linkedin_partner_id", "flags": "", "sev": "warn", "message": "Reddit, Snap, Pinterest, X and LinkedIn pixels are all cross-context advertising shares and need the same gate as the Meta and Google tags.", "fix": "gate every ad pixel on one shared optedOut flag"}, {"pattern": "(analytics|rudderanalytics)\\.(load|initialize)\\s*\\(", "flags": "", "sev": "warn", "message": "Loading a CDP fans the visitor out to every enabled destination, ad destinations included, so gating individual tags downstream proves nothing.", "fix": "load the CDP after the signal check, or disable ad destinations"}, {"pattern": "googletagmanager\\.com/gtm\\.js|[\\'\"]GTM-[A-Z0-9]{4,}", "flags": "", "sev": "warn", "message": "The GTM container loads whatever tags it holds, so gating your own tags proves nothing. The container itself must be gated on the signal.", "fix": "gate the container, not only the tags inside it"}, {"pattern": "dataLayer\\.push\\s*\\([^)]*\\b(email|user_id|userId|phone|customerId)\\b", "flags": "i", "sev": "warn", "message": "Pushing an identifier into the dataLayer hands it to every tag in the container, including the advertising tags.", "fix": "push a hashed or pseudonymous id, and only when not opted out"}, {"pattern": "(defaultConsent|consentDefault|initialConsent|consentState)\\s*[:=]\\s*[\\'\"]?(true|granted|all|accepted|opted_in)", "flags": "i", "sev": "warn", "message": "Consent state starts as opted in. In an opt-out state that is defensible only until a GPC signal arrives, and this code never looks.", "fix": "start from the signal, not from a hard-coded default"}, {"pattern": "getCurrentPosition\\s*\\(|watchPosition\\s*\\(", "flags": "", "sev": "info", "message": "Precise geolocation is sensitive personal information, which triggers the limit-the-use right and the combined \"Your Privacy Choices\" link.", "fix": "coarsen to city level, or add the limit-use control"}];
+// ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질). 두뇌 = ./engine.js
+const RULES = ENGINE.RULES;
 function scan(text, fileName) {
-  const lines = String(text).split(/\r?\n/);
-  const cfg = vscode.workspace.getConfiguration('optout-signal-lint');
-  const extra = cfg.get('extraRules');
-  const feed = (globalThis.__yjFeed && Array.isArray(globalThis.__yjFeed.rules)) ? globalThis.__yjFeed.rules : [];
-  const rules = RULES.concat(Array.isArray(extra) ? extra : [], feed);
-  const hits = [];
-  for (let i = 0; i < lines.length; i++) {
-    for (const r of rules) {
-      let re;
-      try { re = new RegExp(r.pattern, r.flags || ''); } catch (e) { continue; }
-      // ★s126 — ★심각도를 실어 보낸다. ⛔없으면 min_severity 가 ★전부를 지운다 (내가 만들 뻔한 거짓말)
-      if (re.test(lines[i])) hits.push({ line: i + 1, msg: r.message, fix: r.fix || null,
-                                         sev: r.sev || 'warn' });
-    }
-  }
-  return hits;
+  const extra = vscode.workspace.getConfiguration(PREFIX).get('extraRules');
+  const res = ENGINE.engine.check(text, { today: new Date().toISOString().slice(0, 10), path: fileName, extraRules: extra });
+  return (res.findings || []).map(function (f) { return { line: f.line, msg: f.msg, fix: f.fix || null, sev: f.sev || 'warn' }; });
 }
 
 const SNIPPETS = {};
@@ -92,22 +79,21 @@ async function listRules() {
 }
 
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-//   ★체험 중(inTrial)이면 ⛔키를 묻지 않고 ★전체 스윕과 보고서를 ★줄이지 않고 그대로 준다.
-//   ★7일이 지난 뒤 물을 때는 ★지난 스윕이 본 숫자를 먼저 보여준다.
+//   키를 물을 때 ★손님 자신의 숫자(지난 스윕)를 앞에 붙인다.
+//   s158 이전에 이미 열린 기간(sweepTrialUntil)만 조용히 지킨다 · ⛔새로 열지 않는다.
+//   ⛔무료 경로(열린 파일·선택 범위 검사)에는 어떤 제한도 두지 않는다 (8% 법).
+const NEED_KEY = S.need_key;   // ★원문장 — 매번 그 앞에 손님의 숫자만 붙인다 (⛔겹쳐 쌓지 않게)
 async function paidGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  /* s158: no new free trial is opened (trials already started are honoured) */
-  const inTrial = !hasKey && Date.now() < until;
-  if (!inTrial) {
+  const inPeriod = !hasKey && Date.now() < until;
+  if (!inPeriod) {
     const last = st.get('lastSweep');
-    S.need_key = (last && last.files
-      ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ')
-      : '') + NEED_KEY;
-    if (!(await lic.ensure(vscode, ctx, S))) return null;
+    S.need_key = (last && last.files ? ('Your last sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
+    if (!(await lic.ensure(vscode, ctx, S))) return null;   // ★유료 문턱: 범위(파일 하나 → 작업공간 전체) + 소유(보고서 파일)
   }
-  return { inTrial: inTrial };
+  return { inPeriod: inPeriod, until: until };
 }
 
 async function scanWorkspace(ctx) {
@@ -127,10 +113,10 @@ async function scanWorkspace(ctx) {
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
   const n = report(rows);
+  if (!n) { const _m = S.nothing_found + ' ' + files.length + ' files, 0 findings.'; try { if (require('./auto.js').sweptClean(vscode, ctx, { msg: _m, title: S.title, slug: 'optout-signal-lint', prefix: PREFIX })) { await st.update('lastSweep', { files: files.length, findings: 0, at: new Date().toISOString().slice(0, 10) }); return; } } catch (e) {} }   // s163 — the clean sweep offers the README badge (auto.js)
   await st.update('lastSweep', { files: files.length, findings: n, at: new Date().toISOString().slice(0, 10) });
   vscode.window.showInformationMessage(
-    (n ? S.done : S.nothing_found) + ' ' + files.length + ' files, ' + n + ' findings.'
-    + (g.inTrial ? TRIAL_NOTE : ''));
+    (n ? S.done : S.nothing_found) + ' ' + files.length + ' files, ' + n + ' findings.');
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
@@ -165,7 +151,7 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'optout-signal-lint-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath + (g.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
 }
 
 async function ciJson(ctx) {
@@ -177,7 +163,7 @@ async function ciJson(ctx) {
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'optout-signal-lint-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath + (g.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
 }
 
 function activate(ctx) {
@@ -189,10 +175,15 @@ function activate(ctx) {
   reg('optout-signal-lint.workspace_scan', function () { return scanWorkspace(ctx); });
   reg('optout-signal-lint.export_report', function () { return exportReport(ctx); });
   reg('optout-signal-lint.ci_json', function () { return ciJson(ctx); });
+  // auto.js (status bar · hint) calls <PREFIX>.checkFile / <PREFIX>.checkWorkspace → the same free file check / paid sweep
+  reg(PREFIX + '.checkFile', runCurrent);
+  reg(PREFIX + '.checkWorkspace', function () { return scanWorkspace(ctx); });
   // ★설정을 읽는다 — show_on_start. ⛔전에는 안 읽어서 설정이 거짓말이었다 (s126)
   if (vscode.workspace.getConfiguration('optout-signal-lint').get('show_on_start') === true) {
     if (typeof runCurrent === 'function') { try { runCurrent(ctx); } catch (e) { /* 열린 파일이 없으면 조용히 */ } }
   }
+  // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'optout-signal-lint', price: 29 }); } catch (e) {}
 }
 function deactivate() {
   if (typeof watchOnSave === 'function' && watchOnSave._d) watchOnSave._d.dispose();
