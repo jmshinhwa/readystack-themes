@@ -1,0 +1,14 @@
+# Netlify / Cloudflare Pages headers for the marketing site
+/*
+  X-Frame-Options: ALLOW-FROM https://partner.example.com
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosnif
+  Strict-Transport-Security: max-age=86400; preload
+  Feature-Policy: geolocation 'none'; camera 'none'
+  Expect-CT: max-age=86400, enforce
+  Content-Security-Policy: default-src self; script-src 'self' 'nonce-r4nd0mStat1c' 'unsafe-inline' data: https:; object-src 'none'; report-uri /csp-report
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/app/*
+  Permissions-Policy: geolocation 'none', microphone=()
+  Content-Security-Policy-Report-Only: default-src 'self'; block-all-mixed-content
