@@ -3,8 +3,11 @@ const vscode = require('vscode');
 const path = require('path');
 const M = require('./mapparse.js');
 const lic = require('./license.js');
+const GLOB = '**/*.map';
+const PREFIX = 'linkerMapAuditor';
+const ENGINE = require('./engine.js');
 
-const SLUG = 'linkerMapAuditor';
+const SLUG = PREFIX;
 const PRICE = '$29';
 
 const S = {
@@ -22,12 +25,9 @@ const S = {
   key_bad: 'That licence key was not accepted. Check it and try again.'
 };
 
-// The paywall sentence as written above; the trial prefixes it with what the
-// customer just saw, so this stays the sentence and never accumulates.
+// The paywall sentence as written above; need() prefixes it with what the
+// customer's last export covered, so this stays the sentence and never accumulates.
 const NEED_KEY_BASE = S.need_key;
-
-const TRIAL_MS = 7 * 24 * 3600 * 1000;
-const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
 
 let LAST = null;          // last parsed map
 let CHANNEL = null;
@@ -121,24 +121,19 @@ function baselineKey() {
   return 'baseline:' + (ws && ws.length ? ws[0].uri.toString() : 'global');
 }
 
-// Reverse trial: the licensed answer runs on the customer's own build for 7
-// days from the first licensed command, then the key is asked for.
-async function inTrial(ctx) {
+// s158: no new free window is opened; one a customer already started runs to its end.
+async function inWindow(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
-  let until = Number(st.get('sweepTrialUntil') || 0);
-  if (false) {   // s158: no new free trial is opened (trials already started are honoured)
-    until = Date.now() + TRIAL_MS;
-    await st.update('sweepTrialUntil', until);
-  }
+  const until = Number(st.get('sweepTrialUntil') || 0);
   return !hasKey && Date.now() < until;
 }
 
 async function need(ctx) {
-  if (await inTrial(ctx)) return true;
+  if (await inWindow(ctx)) return true;
   const last = ctx.globalState.get('lastSweep');
   S.need_key = (last && last.files
-    ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ')
+    ? ('Your last export covered ' + last.files + ' object files and found ' + last.findings + ' findings. ')
     : '') + NEED_KEY_BASE;
   return lic.ensure(vscode, ctx, S);
 }
@@ -252,10 +247,23 @@ async function exportReport(ctx) {
   await ctx.globalState.update('lastSweep', {
     files: parsed.objects.length, findings: budget.failed, at: new Date().toISOString()
   });
-  const trialing = await inTrial(ctx);
-  vscode.window.showInformationMessage(
-    'Wrote linker-map-report.json and linker-map-report.md.' + (trialing ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage('Wrote linker-map-report.json and linker-map-report.md.');
   return { json: jUri.fsPath, md: mUri.fsPath };
+}
+
+// The paid take-away for the workspace: bring up the first map the engine flags, then export it.
+async function checkWorkspace(ctx) {
+  const ed = vscode.window.activeTextEditor;
+  const onMap = ed && ed.document && vscode.languages.match({ pattern: GLOB }, ed.document) > 0;
+  if (!LAST && !onMap) {
+    const uris = await vscode.workspace.findFiles(GLOB, '**/node_modules/**', 200);
+    for (let i = 0; i < uris.length; i++) {
+      const doc = await vscode.workspace.openTextDocument(uris[i]);
+      const res = ENGINE.engine.check(doc.getText(), { path: uris[i].fsPath });
+      if ((res.findings || []).length) { await vscode.window.showTextDocument(doc); break; }
+    }
+  }
+  return exportReport(ctx);
 }
 
 function activate(ctx) {
@@ -268,6 +276,10 @@ function activate(ctx) {
   reg('diffBaseline', function () { return diffBaseline(ctx); });
   reg('checkBudget', function () { return checkBudget(ctx); });
   reg('exportReport', function () { return exportReport(ctx); });
+  // auto.js hands off to these two: the status bar count and the workspace hint.
+  reg('checkFile', function () { return analyze(); });
+  reg('checkWorkspace', function () { return checkWorkspace(ctx); });
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: 'Linker Map Auditor - FLASH & RAM budget for GNU ld map files', slug: 'linker-map-auditor', price: 29 }); } catch (e) {}
 }
 
 function deactivate() {
