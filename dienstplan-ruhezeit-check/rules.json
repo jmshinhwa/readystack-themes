@@ -1,0 +1,14 @@
+[
+ {"id": "ARBZG-3-TAG", "sev": "error", "law": "§ 3 ArbZG", "title": "Mehr als 10 h Arbeitszeit an einem Tag", "fix": "Schicht auf höchstens 10 h Arbeitszeit (ohne Pausen) kürzen"},
+ {"id": "ARBZG-3-WOCHE", "sev": "error", "law": "§ 3, § 11 Abs. 2 ArbZG", "title": "Mehr als 60 h in einer Kalenderwoche", "fix": "Woche auf höchstens 60 h (6 Werktage x 10 h) planen"},
+ {"id": "ARBZG-4-PAUSE", "sev": "error", "law": "§ 4 ArbZG", "title": "Pause zu kurz", "fix": "mehr als 6 h: 30 Min, mehr als 9 h: 45 Min Pause einplanen"},
+ {"id": "ARBZG-5-RUHEZEIT", "sev": "error", "law": "§ 5 ArbZG", "title": "Ruhezeit unter 11 h", "fix": "nächsten Schichtbeginn so legen, dass 11 h Ruhezeit bleiben"},
+ {"id": "ARBZG-6-NACHT", "sev": "warning", "law": "§ 6 Abs. 2 ArbZG", "title": "Nachtschicht über 8 h", "fix": "8 h im Schnitt innerhalb 1 Kalendermonat oder 4 Wochen nachweisen"},
+ {"id": "ARBZG-11-ERSATZRUHETAG", "sev": "error", "law": "§ 11 Abs. 3 ArbZG", "title": "Sonntagsarbeit ohne Ersatzruhetag", "fix": "freien Werktag innerhalb von 2 Wochen um den Sonntag einplanen"},
+ {"id": "JARBSCHG-8-TAG", "sev": "error", "law": "§ 8 JArbSchG", "title": "Jugendliche: mehr als 8 h am Tag", "fix": "Schicht auf 8 h Arbeitszeit kürzen"},
+ {"id": "JARBSCHG-8-WOCHE", "sev": "error", "law": "§ 8 JArbSchG", "title": "Jugendliche: mehr als 40 h in der Woche", "fix": "Woche auf 40 h planen"},
+ {"id": "JARBSCHG-11-PAUSE", "sev": "error", "law": "§ 11 JArbSchG", "title": "Jugendliche: Pause zu kurz", "fix": "mehr als 4,5 h: 30 Min, mehr als 6 h: 60 Min Pause"},
+ {"id": "JARBSCHG-13-FREIZEIT", "sev": "error", "law": "§ 13 JArbSchG", "title": "Jugendliche: Freizeit unter 12 h", "fix": "nächsten Beginn so legen, dass 12 h Freizeit bleiben"},
+ {"id": "JARBSCHG-14-NACHT", "sev": "error", "law": "§ 14 JArbSchG", "title": "Jugendliche: Arbeit zwischen 20 und 6 Uhr", "fix": "Schicht in 6 bis 20 Uhr legen (Ausnahmen § 14 Abs. 2 prüfen)"},
+ {"id": "CSV-ZEILE", "sev": "warning", "law": "Dienstplan-CSV", "title": "Zeile nicht lesbar", "fix": "Spalten Mitarbeiter;Datum;Beginn;Ende;Pause (Alter optional) füllen"}
+]
