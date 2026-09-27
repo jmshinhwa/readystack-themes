@@ -1,0 +1,116 @@
+[
+  {
+    "pattern": "\\b(MsgBox|StringReplace|IfWinExist|IfWinActive|SetFormat|StringSplit|EnvSet)\\s*,",
+    "flags": "m",
+    "message": "AutoHotkey v1 command syntax with a comma. Version 2 calls functions: MsgBox(\"text\")."
+  },
+  {
+    "pattern": ":=\\s*\"[^\"\\n]*%[A-Za-z_][A-Za-z0-9_]*%",
+    "flags": "m",
+    "message": "AutoHotkey v2 does not expand %var% inside quotes, so this string is stored literally. Join instead: \"total \" count."
+  },
+  {
+    "pattern": "#Requires\\s+AutoHotkey\\s+v1",
+    "flags": "im",
+    "message": "This script is pinned to AutoHotkey v1, so every v2 snippet in this pack will fail to load here.",
+    "fix": "#Requires AutoHotkey v2.0"
+  },
+  {
+    "pattern": "=\\s*\\{[^}\\n]*,\\s*\\}",
+    "flags": "m",
+    "message": "A TOML inline table may not end with a trailing comma. The parser stops on this line."
+  },
+  {
+    "pattern": "=\\s*0[0-9]+\\s*(#|$)",
+    "flags": "m",
+    "message": "TOML rejects an integer with a leading zero. Write 9, or quote it as \"09\" if it is a code."
+  },
+  {
+    "pattern": "^\\s*\\[\\[?[A-Za-z0-9_.\\-]+\\]\\]?[ \\t]+[^#\\s]",
+    "flags": "m",
+    "message": "Nothing but a comment may follow a TOML table header on the same line."
+  },
+  {
+    "pattern": "^\\s*(compatible|status|clock-names|reg)\\s*=\\s*(<[^>\\n]*>|\"[^\"\\n]*\")[ \\t]*$",
+    "flags": "m",
+    "message": "This DeviceTree property is not closed with a semicolon, and the compiler will report the error on a later line."
+  },
+  {
+    "pattern": "status\\s*=\\s*\"(ok|enable|enabled|on|true)\"",
+    "flags": "im",
+    "message": "DeviceTree accepts only \"okay\" or \"disabled\" here. Anything else leaves the node switched off at boot.",
+    "fix": "status = \"okay\""
+  },
+  {
+    "pattern": "^\\s*[A-Za-z0-9]+_[A-Za-z0-9_]*@[0-9a-fA-F]+\\s*\\{",
+    "flags": "m",
+    "message": "Node names use hyphens, not underscores, under the Devicetree naming rules. Labels may keep the underscore."
+  },
+  {
+    "pattern": "@ConfigProperty\\(\\s*name\\s*=\\s*\"[^\"]+\"\\s*\\)",
+    "flags": "m",
+    "message": "@ConfigProperty with no defaultValue makes the key mandatory, and deployment fails when it is missing in one environment."
+  },
+  {
+    "pattern": "@Retry\\((?![^)]*maxRetries)[^)]*\\)",
+    "flags": "m",
+    "message": "@Retry with no maxRetries falls back to the default of 3. State the number so the retry budget is visible to a reviewer."
+  },
+  {
+    "pattern": "^\\s*label\\s+[A-Za-z_][A-Za-z0-9_]*\\s*$",
+    "flags": "m",
+    "message": "A Ren'Py label must end with a colon, otherwise the script fails to parse at launch."
+  },
+  {
+    "pattern": "^\\t+\\s*(label|menu|scene|show|hide|play|jump|call|return)\\b",
+    "flags": "m",
+    "message": "This Ren'Py line is indented with a tab. Script files must use spaces, or the game refuses to start."
+  },
+  {
+    "pattern": "URL\\(string:\\s*\"[^\"]*\"\\)!",
+    "flags": "m",
+    "message": "A force-unwrapped URL crashes the app on a malformed address. Use guard let and throw instead."
+  },
+  {
+    "pattern": "\\btry!\\s",
+    "flags": "m",
+    "message": "try! turns a thrown error into a crash. Use try with a catch, or try? when nil is acceptable."
+  },
+  {
+    "pattern": "\\.forEach\\s*\\{[^}]*\\breturn\\b",
+    "flags": "m",
+    "message": "return inside forEach leaves only that closure and the loop keeps going. Use a for loop when you mean to stop."
+  },
+  {
+    "pattern": "number\\s*<\\s*-?[0-9.]+\\s*,\\s*-?[0-9.]+\\s*>",
+    "flags": "m",
+    "message": "An Inkling ranged number is written with two dots, not a comma: number<0 .. 1>."
+  },
+  {
+    "pattern": "inkling\\s+\"1\\.[0-9]\"",
+    "flags": "m",
+    "message": "This file targets Inkling 1.x, and the graph and concept snippets in this pack are 2.0.",
+    "fix": "inkling \"2.0\""
+  },
+  {
+    "pattern": "(api[_-]?key|secret|token|password)\\s*[:=]\\s*[\"'][A-Za-z0-9_\\-]{16,}[\"']",
+    "flags": "im",
+    "message": "A credential is written straight into this file. Move it to an environment variable or a file the repository ignores."
+  },
+  {
+    "pattern": "^\\s*-\\s+uses:\\s*[A-Za-z0-9_.\\-]+/[A-Za-z0-9_.\\-]+[ \\t]*$",
+    "flags": "m",
+    "message": "This workflow step is not pinned to a version, so it can change under you. Add a tag such as @v4 or a commit SHA."
+  },
+  {
+    "pattern": "^\\s*(insert_final_newline|trim_trailing_whitespace|root)\\s*=\\s*(True|False)\\b",
+    "flags": "m",
+    "message": "An .editorconfig boolean is lower-case. True is read as an unknown value and the setting is skipped."
+  },
+  {
+    "pattern": "\"editor\\.semanticHighlighting\\.enabled\"\\s*:\\s*false",
+    "flags": "m",
+    "message": "Semantic highlighting is switched off here, so the Python semantic colour rules in this pack never take effect.",
+    "fix": "\"editor.semanticHighlighting.enabled\": true"
+  }
+]
