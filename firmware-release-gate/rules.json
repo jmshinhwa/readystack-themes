@@ -1,0 +1,128 @@
+[
+  {
+    "id": "secure_boot_off",
+    "pattern": "^\\s*#\\s*CONFIG_SECURE_BOOT is not set",
+    "flags": "",
+    "sev": "error",
+    "message": "Secure boot is off: the ROM will boot any image written to flash. Set CONFIG_SECURE_BOOT=y and choose the Secure Boot V2 scheme before the release build."
+  },
+  {
+    "id": "flash_enc_dev_mode",
+    "pattern": "^\\s*CONFIG_SECURE_FLASH_ENCRYPTION_MODE_DEVELOPMENT=y",
+    "flags": "",
+    "sev": "error",
+    "message": "Flash encryption is in Development mode: the unit still accepts re-flashing and the key stays readable. Production units need CONFIG_SECURE_FLASH_ENCRYPTION_MODE_RELEASE=y."
+  },
+  {
+    "id": "flash_enc_off",
+    "pattern": "^\\s*#\\s*CONFIG_SECURE_FLASH_ENC_ENABLED is not set",
+    "flags": "",
+    "sev": "error",
+    "message": "Flash encryption is off: firmware, certificates and NVS can be read straight off the flash chip. Set CONFIG_SECURE_FLASH_ENC_ENABLED=y."
+  },
+  {
+    "id": "secure_boot_allow",
+    "pattern": "^\\s*CONFIG_SECURE_BOOT_ALLOW_[A-Z0-9_]+=y",
+    "flags": "",
+    "sev": "error",
+    "message": "A secure-boot escape hatch is enabled, so JTAG, the ROM console or the UART bootloader stays reachable on a locked unit. Remove every CONFIG_SECURE_BOOT_ALLOW_* line from the release config."
+  },
+  {
+    "id": "tls_skip_cert_verify",
+    "pattern": "^\\s*CONFIG_ESP_TLS_SKIP_SERVER_CERT_VERIFY=y",
+    "flags": "",
+    "sev": "error",
+    "message": "TLS server certificates are not verified: anything on the path can terminate your OTA and telemetry sessions. Remove this line and pin a CA bundle instead."
+  },
+  {
+    "id": "esp_tls_insecure",
+    "pattern": "^\\s*CONFIG_ESP_TLS_INSECURE=y",
+    "flags": "",
+    "sev": "error",
+    "message": "esp-tls insecure mode is compiled in, which lets any call site skip certificate checks at runtime. Remove CONFIG_ESP_TLS_INSECURE from the release config."
+  },
+  {
+    "id": "ota_allow_http",
+    "pattern": "^\\s*CONFIG_ESP_HTTPS_OTA_ALLOW_HTTP=y",
+    "flags": "",
+    "sev": "error",
+    "message": "OTA is allowed to fall back to plain HTTP, so whoever sits on the path chooses the next firmware image. Remove CONFIG_ESP_HTTPS_OTA_ALLOW_HTTP."
+  },
+  {
+    "id": "plaintext_endpoint",
+    "pattern": "^\\s*CONFIG_[A-Z0-9_]*(?:URL|URI|ENDPOINT|SERVER|HOST)[A-Z0-9_]*=\"http://",
+    "flags": "",
+    "sev": "error",
+    "message": "A plaintext http:// endpoint is baked into the build config and ships inside the image. Move it to https:// before the release build."
+  },
+  {
+    "id": "hardcoded_credential",
+    "pattern": "^\\s*CONFIG_[A-Z0-9_]*(?:PASSWORD|PASSPHRASE|PSK|SECRET|TOKEN|API_?KEY)[A-Z0-9_]*=\"[^\"]+\"",
+    "flags": "",
+    "sev": "error",
+    "message": "A credential is hard-coded in the build config: it ships inside every image and it is already in your git history. Read it from NVS or from a provisioning step."
+  },
+  {
+    "id": "panic_gdbstub",
+    "pattern": "^\\s*CONFIG_[A-Z0-9_]*PANIC[A-Z0-9_]*GDBSTUB=y",
+    "flags": "",
+    "sev": "error",
+    "message": "The panic handler drops into a GDB stub, so a crash hands an attacker a debugger on the device. Ship the print-and-reboot panic handler instead."
+  },
+  {
+    "id": "debug_log_level",
+    "pattern": "^\\s*CONFIG_(?:BOOTLOADER_)?LOG_(?:DEFAULT_)?LEVEL=[45]",
+    "flags": "",
+    "sev": "warn",
+    "message": "Log level is Debug or Verbose, so boot detail and buffer contents leave a shipped unit over the UART. Use level 1 (error) or 2 (warn) for release."
+  },
+  {
+    "id": "nvs_encryption_off",
+    "pattern": "^\\s*#\\s*CONFIG_NVS_ENCRYPTION is not set",
+    "flags": "",
+    "sev": "warn",
+    "message": "NVS encryption is off: Wi-Fi credentials and tokens sit in cleartext in the NVS partition. Set CONFIG_NVS_ENCRYPTION=y."
+  },
+  {
+    "id": "mcuboot_unsigned",
+    "pattern": "^\\s*CONFIG_BOOT_SIGNATURE_TYPE_NONE=y",
+    "flags": "",
+    "sev": "error",
+    "message": "MCUboot is set to accept unsigned images, so anything written to the update slot will boot. Choose an ECDSA or RSA signature type."
+  },
+  {
+    "id": "mcuboot_no_validate",
+    "pattern": "^\\s*#\\s*CONFIG_BOOT_VALIDATE_SLOT0 is not set",
+    "flags": "",
+    "sev": "error",
+    "message": "MCUboot does not validate the primary slot at boot, so a tampered image is never caught after it is installed. Set CONFIG_BOOT_VALIDATE_SLOT0=y."
+  },
+  {
+    "id": "mcuboot_downgrade",
+    "pattern": "^\\s*#\\s*CONFIG_MCUBOOT_DOWNGRADE_PREVENTION is not set",
+    "flags": "",
+    "sev": "warn",
+    "message": "Downgrade prevention is off: a signed but withdrawn image can be rolled back onto the device. Set CONFIG_MCUBOOT_DOWNGRADE_PREVENTION=y."
+  },
+  {
+    "id": "no_hw_stack_protection",
+    "pattern": "^\\s*#\\s*CONFIG_HW_STACK_PROTECTION is not set",
+    "flags": "",
+    "sev": "warn",
+    "message": "Hardware stack protection is off, so a stack overflow becomes silent memory corruption instead of a fault. Set CONFIG_HW_STACK_PROTECTION=y."
+  },
+  {
+    "id": "shell_enabled",
+    "pattern": "^\\s*CONFIG_SHELL=y",
+    "flags": "",
+    "sev": "warn",
+    "message": "An interactive shell is built in, so on a shipped unit the serial console is a command prompt. Keep CONFIG_SHELL in the debug overlay only."
+  },
+  {
+    "id": "debug_build",
+    "pattern": "^\\s*CONFIG_(?:DEBUG|DEBUG_OPTIMIZATIONS|COMPILER_OPTIMIZATION_(?:NONE|DEBUG))=y",
+    "flags": "",
+    "sev": "info",
+    "message": "This is a debug build configuration; a release unit should be built at the size or performance optimisation level."
+  }
+]
