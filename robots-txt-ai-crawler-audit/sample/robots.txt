@@ -1,0 +1,23 @@
+User-agent: *
+Disallow: /admin/
+Crawl-delay: 10
+
+User-agent: GPT-Bot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: ChatGPT
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+Noindex: /drafts/
+Host: www.example.com
+Sitemap: /sitemap.xml
+# see also /llms.txt
