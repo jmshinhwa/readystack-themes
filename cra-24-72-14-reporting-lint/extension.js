@@ -4,6 +4,8 @@ const path = require('path');
 const lic = require('./license.js');
 const ENGINE = require('./engine.js');
 const REPORT = require('./report.js');
+const GLOB = '**/*.md';
+const PREFIX = 'craReporting';
 
 const PRICE = '$49';
 const S = {
@@ -19,7 +21,7 @@ const S = {
   key_bad: 'That key did not validate. Check it against your receipt, or contact support.'
 };
 
-// The trial prompt prepends the customer's own numbers to this; keep the original sentence intact.
+// The paywall prompt prepends the customer's own numbers to this; keep the original sentence intact.
 const NEED_KEY_BASE = S.need_key;
 
 let channel = null;
@@ -28,7 +30,7 @@ function out() {
   return channel;
 }
 
-function cfg() { return vscode.workspace.getConfiguration('craReporting'); }
+function cfg() { return vscode.workspace.getConfiguration(PREFIX); }
 
 function today() {
   const pinned = String(cfg().get('today') || '').trim();
@@ -69,21 +71,20 @@ async function checkFile() {
 }
 
 // PAID — the same checks, a wider scope: every Markdown file at once, plus one report file.
-// Reverse trial: the full sweep and the report run free for 7 days from the first sweep, then the key.
 // The customer decides after seeing their own repository's numbers, so the paywall quotes them back.
 async function checkWorkspace(ctx) {
   const st = ctx.globalState; const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  /* s158: no new free trial is opened (trials already started are honoured) */
+  /* s158: none are opened any more; windows already granted are honoured */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
-    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY_BASE;
+    S.need_key = (last && last.files ? ('Your last sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY_BASE;
     if (!(await lic.ensure(vscode, ctx, S))) return null;
   }
   const folders = vscode.workspace.workspaceFolders;
   if (!folders || !folders.length) { vscode.window.showInformationMessage(S.nothing_open); return null; }
-  const glob = String(cfg().get('include_glob') || '**/*.md');
+  const glob = String(cfg().get('include_glob') || GLOB);
   const uris = await vscode.workspace.findFiles(glob, '**/node_modules/**', 2000);
   const day = today();
   const blocks = [];
@@ -113,7 +114,7 @@ async function checkWorkspace(ctx) {
   await vscode.workspace.fs.writeFile(target, Buffer.from(lines.join('\n'), 'utf8'));
   const total = show(blocks);
   await st.update('lastSweep', { files: blocks.length, findings: total, at: day });
-  vscode.window.showInformationMessage('Swept ' + blocks.length + ' files. Report written to ' + vscode.workspace.asRelativePath(target) + '.' + (inTrial ? ' The full sweep is free for 7 days from your first sweep.' : ''));
+  vscode.window.showInformationMessage('Swept ' + blocks.length + ' files. Report written to ' + vscode.workspace.asRelativePath(target) + '.');
   return blocks;
 }
 
@@ -126,10 +127,11 @@ async function enterKey(ctx) {
 function activate(ctx) {
   try { lic.pullFeed(ctx, "cra-24-72-14-reporting-lint").then(function (f) { if (f && Array.isArray(f.rules) && ENGINE && Array.isArray(ENGINE.RULES)) { globalThis.__yjFeed = f; for (var i = 0; i < f.rules.length; i++) ENGINE.RULES.push(f.rules[i]); } }).catch(function () {}); } catch (e) {}
   ctx.subscriptions.push(
-    vscode.commands.registerCommand('craReporting.checkFile', () => checkFile()),
-    vscode.commands.registerCommand('craReporting.checkWorkspace', () => checkWorkspace(ctx)),
-    vscode.commands.registerCommand('craReporting.enterKey', () => enterKey(ctx))
+    vscode.commands.registerCommand(PREFIX + '.checkFile', () => checkFile()),
+    vscode.commands.registerCommand(PREFIX + '.checkWorkspace', () => checkWorkspace(ctx)),
+    vscode.commands.registerCommand(PREFIX + '.enterKey', () => enterKey(ctx))
   );
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'cra-24-72-14-reporting-lint', price: 49 }); } catch (e) {}
 }
 function deactivate() { if (channel) channel.dispose(); }
 module.exports = { activate, deactivate, checkFile, S };
