@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.cron-schedule-lint</id>
+  <name>Cron Schedule Lint for crontab, Kubernetes CronJob, GitHub</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Names every schedule line in the file you have open that fires at the wrong hour, twice, or never at all - and prints the next three times each one really fires, in the zone that actually applies.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Cron Schedule Lint for crontab, Kubernetes CronJob, GitHub: Check This File</b>. Each finding appears on its line with the fix. 29 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/cron-schedule-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/cron-schedule-lint">getreadystack.com/tools/cron-schedule-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_cron_schedule_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.cron-schedule-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.cron-schedule-lint.check" class="com.getreadystack.p_cron_schedule_lint.RsCheckAction"
+            text="Cron Schedule Lint for crontab, Kubernetes CronJob, GitHub: Check This File" description="Run Cron Schedule Lint for crontab, Kubernetes CronJob, GitHub on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
