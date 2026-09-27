@@ -2,7 +2,7 @@
   "name": "terraform-provider-pin-lint",
   "displayName": "Terraform Provider Pin Lint",
   "description": "Finds unpinned providers, missing source addresses and floating module refs in .tf files — the lines that let a clean terraform init pull a new major.",
-  "version": "1.0.8",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -47,8 +47,5 @@
     "directory": "terraform-provider-pin-lint"
   },
   "homepage": "https://getreadystack.com/tools/terraform-provider-pin-lint",
-  "icon": "icon.png",
-  "readystack": {
-    "rulesDate": "2026-09-16"
-  }
+  "icon": "icon.png"
 }
