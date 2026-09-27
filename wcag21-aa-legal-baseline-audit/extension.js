@@ -2,8 +2,14 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
+const GLOB = '**/*.{html,htm,jsx,tsx,vue,twig,php,erb,cshtml,razor}';
+const PREFIX = 'wcag21-aa-legal-baseline-audit';
+const ENGINE = require('./engine.js');
 const S = {"run": "WCAG 2.1 AA audit", "done": "Audit finished - findings are in the output panel.", "nothing_found": "Nothing to report - no open file, or no WCAG 2.1 AA failures in it.", "need_key": "Full version: audit every template in the workspace and export the findings as CSV, JSON or HTML. $29 once - one licence key per person or team seat. A consultancy audit is $100-$250 per page.", "key_ok": "Licence accepted. Workspace audit, export, quick fix and watch-on-save are on.", "key_bad": "That licence key did not validate. The free per-file audit keeps working meanwhile.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "paste": "Paste an HTML, JSX, Vue, Twig, Blade, ERB or Razor template here", "check": "Audit this markup", "extra_rules": "Your own rules, checked alongside the 24 that ship inside."};
+S.title = 'WCAG 2.1 AA Audit - HTML template legal baseline (ADA, EN 301 549)';   // = package.json displayName (auto.js · clean-sweep badge)
 const PAID = ["workspace_scan", "export_report", "quick_fix", "watch_on_save"];
+
+function today() { return new Date().toISOString().slice(0, 10); }
 
 function out() {
   if (!out._c) out._c = vscode.window.createOutputChannel('WCAG 2.1 AA Audit: ADA Title II & EN 301 549');
@@ -41,25 +47,12 @@ function report(rows) {
   return n;
 }
 
-// ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질).
-const RULES = [{"sev": "error", "pattern": "<html\\b(?![^>]*\\slang\\s*=)", "flags": "i", "message": "3.1.1 Language of Page (A) - <html> has no lang attribute, so the screen reader guesses the voice.", "fix": "Add lang to the <html> tag, e.g. lang=\"en\"."}, {"sev": "error", "pattern": "<img\\b(?![^>]*\\s(?:alt(?=[\\s=/>]|$)|aria-label\\s*=|aria-labelledby\\s*=|role\\s*=\\s*[\"\\']?(?:presentation|none)\\b|aria-hidden\\s*=\\s*[\"\\']?true\\b))", "flags": "i", "message": "1.1.1 Non-text Content (A) - <img> has no alt. Use alt=\"\" only when the image is decorative.", "fix": "Add alt text, or alt=\"\" if the image is decorative."}, {"sev": "error", "pattern": "<input\\b(?=[^>]*type\\s*=\\s*[\"\\']?image)(?![^>]*\\s(?:alt|aria-label)\\s*=)", "flags": "i", "message": "1.1.1 Non-text Content (A) - <input type=\"image\"> has no alt. The picture is the button's only name.", "fix": "Add alt describing the action, not the picture."}, {"sev": "warn", "pattern": "<svg\\b(?![^>]*\\s(?:aria-label|aria-labelledby|aria-hidden|role)\\s*=)", "flags": "i", "message": "1.1.1 Non-text Content (A) - <svg> is neither named nor hidden. Check for a <title> child.", "fix": "Add aria-hidden=\"true\" if decorative, or role=\"img\" with aria-label."}, {"sev": "error", "pattern": "<iframe\\b(?![^>]*\\stitle\\s*=)", "flags": "i", "message": "4.1.2 Name, Role, Value (A) - <iframe> has no title. The frame list announces it as \"frame\".", "fix": "Add title describing what the frame contains."}, {"sev": "error", "pattern": "tabindex\\s*=\\s*[\"\\']?\\+?[1-9]\\d*[\"\\']?", "flags": "i", "message": "2.4.3 Focus Order (A) - a positive tabindex forces an order that fights the DOM order.", "fix": "Use tabindex=\"0\" and let the DOM order decide.", "replace": "tabindex=\"0\""}, {"sev": "error", "pattern": "user-scalable\\s*=\\s*(?:no|0)\\b", "flags": "i", "message": "1.4.4 Resize Text (AA) - user-scalable=no blocks pinch zoom. This is an AA failure, not a preference.", "fix": "Remove it, or set user-scalable=yes.", "replace": "user-scalable=yes"}, {"sev": "error", "pattern": "maximum-scale\\s*=\\s*1(?:\\.0+)?\\b", "flags": "i", "message": "1.4.4 Resize Text (AA) - maximum-scale=1 caps zoom at 100%. AA needs text to reach 200%.", "fix": "Raise the cap, e.g. maximum-scale=5.", "replace": "maximum-scale=5"}, {"sev": "warn", "pattern": ">\\s*(?:click here|read more|learn more|more|here|details|link)\\s*</a>", "flags": "i", "message": "2.4.4 Link Purpose (A) - the link text does not say where it goes. In a link list it reads as \"click here\".", "fix": "Put the destination in the link text."}, {"sev": "error", "pattern": "<a\\b(?![^>]*\\s(?:aria-label|aria-labelledby|title)\\s*=)[^>]*>\\s*<i\\b", "flags": "i", "message": "4.1.2 Name, Role, Value (A) - icon-only link with no accessible name. It is announced as \"link\".", "fix": "Add aria-label, or visually hidden text inside the link."}, {"sev": "error", "pattern": "<button\\b[^>]*>\\s*</button>", "flags": "i", "message": "4.1.2 Name, Role, Value (A) - <button> is empty, so it has no accessible name at all.", "fix": "Put text inside, or add aria-label."}, {"sev": "error", "pattern": "<button\\b(?![^>]*\\s(?:aria-label|aria-labelledby|title)\\s*=)[^>]*>\\s*<(?:i|svg)\\b", "flags": "i", "message": "4.1.2 Name, Role, Value (A) - icon-only button with no accessible name.", "fix": "Add aria-label describing the action."}, {"sev": "error", "pattern": "<(?:div|span|li|td|p|img)\\b[^>]*\\son(?:click|mousedown|mouseup)\\s*=", "flags": "i", "message": "2.1.1 Keyboard (A) - a click handler on a <div>/<span> cannot be reached by Tab.", "fix": "Use <button>, or add role, tabindex=\"0\" and a key handler."}, {"sev": "warn", "pattern": "<[a-z][a-z0-9]*\\b(?![^>]*\\sonfocus\\s*=)[^>]*\\sonmouseover\\s*=", "flags": "i", "message": "2.1.1 Keyboard (A) - onmouseover with no onfocus. A keyboard user never triggers it.", "fix": "Mirror the hover handler with onfocus/onblur."}, {"sev": "warn", "pattern": "<a\\b[^>]*href\\s*=\\s*[\"\\'](?:#|javascript:void\\(0\\)|javascript:;)[\"\\']", "flags": "i", "message": "2.1.1 Keyboard (A) - href=\"#\" is a button in disguise. Enter fires it, Space does not.", "fix": "Use <button type=\"button\"> for an action, <a> for a destination."}, {"sev": "warn", "pattern": "<input\\b(?![^>]*\\stype\\s*=\\s*[\"\\']?(?:hidden|submit|button|reset|image)\\b)(?![^>]*\\s(?:id|aria-label|aria-labelledby|title)\\s*=)", "flags": "i", "message": "3.3.2 Labels or Instructions (A) - <input> has no id or aria-label, so no <label> can point at it. Confirm it is wrapped in one.", "fix": "Add id and a <label for>, or aria-label."}, {"sev": "warn", "pattern": "<label\\b(?![^>]*\\sfor\\s*=)", "flags": "i", "message": "1.3.1 Info and Relationships (A) - <label> has no for attribute. Wrapping also works, so check the markup.", "fix": "Add for pointing at the control id, or wrap the control."}, {"sev": "error", "pattern": "<input\\b(?=[^>]*(?:type\\s*=\\s*[\"\\']?(?:email|tel)|name\\s*=\\s*[\"\\'](?:email|e-mail|tel|phone|fname|lname|fullname|name|address|zip|postal|country|cc-number|username)[\"\\']))(?![^>]*\\sautocomplete\\s*=)", "flags": "i", "message": "1.3.5 Identify Input Purpose (AA) - no autocomplete token. This criterion is NEW in WCAG 2.1, so WCAG 2.0-era checkers never report it.", "fix": "Add the autocomplete token for the field, e.g. autocomplete=\"email\"."}, {"sev": "error", "pattern": "<(?:audio|video)\\b(?=[^>]*\\sautoplay)(?![^>]*\\smuted)", "flags": "i", "message": "1.4.2 Audio Control (A) - media autoplays with sound and no in-page way to stop it.", "fix": "Remove autoplay, add muted, or give a pause control in the page."}, {"sev": "error", "pattern": "<(?:marquee|blink)\\b", "flags": "i", "message": "2.2.2 Pause, Stop, Hide (A) - <marquee>/<blink> moves past 5 seconds with no pause control.", "fix": "Replace with static markup, or add a pause control."}, {"sev": "error", "pattern": "<(?:a\\b(?=[^>]*\\shref\\s*=)|(?:button|input|select|textarea)\\b)(?![^>]*\\stabindex\\s*=\\s*[\"\\']?-1)(?![^>]*\\sdisabled(?=[\\s=/>]|$))[^>]*\\saria-hidden\\s*=\\s*[\"\\']?true", "flags": "i", "message": "4.1.2 Name, Role, Value (A) - aria-hidden=\"true\" on a focusable control. Tab lands on something the screen reader cannot see.", "fix": "Remove aria-hidden, or take the control out of the tab order too."}, {"sev": "warn", "pattern": "<h[1-6]\\b[^>]*>\\s*</h[1-6]>", "flags": "i", "message": "2.4.6 Headings and Labels (AA) - empty heading. It still shows as a blank row in the heading list.", "fix": "Give the heading text, or remove the element."}, {"sev": "warn", "pattern": "<(?:select|textarea)\\b(?![^>]*\\s(?:id|aria-label|aria-labelledby|title)\\s*=)", "flags": "i", "message": "3.3.2 Labels or Instructions (A) - <select>/<textarea> has no id or aria-label for a label to attach to.", "fix": "Add id and a <label for>, or aria-label."}, {"sev": "error", "pattern": "<(?!(?:button|input|select|textarea|summary)\\b|(?:a|area)\\b[^>]*\\shref\\s*=)[a-z][a-z0-9]*\\b(?![^>]*\\stabindex\\s*=)[^>]*\\srole\\s*=\\s*[\"\\']button[\"\\']", "flags": "i", "message": "2.1.1 Keyboard (A) - role=\"button\" without tabindex. It announces as a button but cannot be focused.", "fix": "Add tabindex=\"0\", or use a real <button>."}];
+// ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질). 두뇌 = ./engine.js
+const RULES = ENGINE.RULES;
 function scan(text, fileName) {
-  const lines = String(text).split(/\r?\n/);
-  const cfg = vscode.workspace.getConfiguration('wcag21-aa-legal-baseline-audit');
-  const extra = cfg.get('extraRules');
-  const feed = (globalThis.__yjFeed && Array.isArray(globalThis.__yjFeed.rules)) ? globalThis.__yjFeed.rules : [];
-  const rules = RULES.concat(Array.isArray(extra) ? extra : [], feed);
-  const hits = [];
-  for (let i = 0; i < lines.length; i++) {
-    for (const r of rules) {
-      let re;
-      try { re = new RegExp(r.pattern, r.flags || ''); } catch (e) { continue; }
-      // ★s126 — ★심각도를 실어 보낸다. ⛔없으면 min_severity 가 ★전부를 지운다 (내가 만들 뻔한 거짓말)
-      if (re.test(lines[i])) hits.push({ line: i + 1, msg: r.message, fix: r.fix || null,
-                                         sev: r.sev || 'warn' });
-    }
-  }
-  return hits;
+  const extra = vscode.workspace.getConfiguration(PREFIX).get('extraRules');
+  const res = ENGINE.engine.check(text, { today: today(), path: fileName, extraRules: extra });
+  return (res.findings || []).map(function (f) { return { line: f.line, msg: f.msg, fix: f.fix || null, sev: f.sev || 'warn' }; });
 }
 
 const SNIPPETS = {};
@@ -87,34 +80,26 @@ async function listRules() {
   c.show(true);
 }
 
-// ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
-
-// ★역방향 체험 — ⛔새 상품이 아니다. ★유료 결과(작업공간 전체 스윕 + 보고서)를 ★먼저 겪게 한다.
-//   손님이 돈 낼지 정하는 순간은 ★자기 폴더에서 자기 발견 수를 본 뒤다 ⇒ 첫 스윕부터 7일간 키 없이 ★줄이지 않고 다 준다.
-//   ⛔무료 경로(열린 파일·고른 줄·규칙 목록)는 이 문을 지나지 않는다 — 어떤 제한도 없다.
-const NEED_KEY_BASE = S.need_key;
-async function sweepTrial(ctx) {
-  const st = ctx.globalState;
-  const hasKey = !!st.get('licenseKey');
-  let until = Number(st.get('sweepTrialUntil') || 0);
-  /* s158: no new free trial is opened (trials already started are honoured) */
-  const inTrial = !hasKey && Date.now() < until;
-  if (!inTrial) {
-    // ★체험이 끝난 뒤에는 ★손님 자신의 숫자로 묻는다 (812개 파일에서 37건을 본 그 사람이다)
+// ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령(열린 파일·고른 줄·규칙 목록)은 이 문을 지나지 않는다.
+//   ⛔무료 경로에는 어떤 제한도 두지 않는다 (8% 법). 문턱 문구는 ★손님 자신의 숫자를 부른다 (endowment).
+//   이미 시작된 기간(sweepTrialUntil)은 약속이니 끝까지 지킨다 · ⛔새로 열지 않는다.
+const NEED_KEY = S.need_key;   // ⛔원래 문장은 그대로 두고 ★앞에만 붙인다 (겹쳐 쌓이지 않게)
+async function paidGate(ctx) {
+  const st = ctx.globalState; const hasKey = !!st.get('licenseKey');
+  const until = Number(st.get('sweepTrialUntil') || 0);
+  const inPeriod = !hasKey && Date.now() < until;
+  if (!inPeriod) {
     const last = st.get('lastSweep');
-    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY_BASE;
+    S.need_key = (last && last.files ? ('Your last sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
     const ok = await lic.ensure(vscode, ctx, S);
-    S.need_key = NEED_KEY_BASE;   // ⛔다른 유료 문(quick fix 등)의 문구까지 물들이지 않는다
-    if (!ok) return null;
+    S.need_key = NEED_KEY;
+    if (!ok) return false;
   }
-  return { st: st, inTrial: inTrial };
+  return true;
 }
-const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
 
 async function scanWorkspace(ctx) {
-  const t = await sweepTrial(ctx);
-  if (!t) return;
+  if (!(await paidGate(ctx))) return;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('wcag21-aa-legal-baseline-audit');
   const _max = Number(_c.get('max_files')) || 2000;
@@ -128,16 +113,16 @@ async function scanWorkspace(ctx) {
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
   const n = report(rows);
-  await t.st.update('lastSweep', { files: rows.length, findings: n, at: new Date().toISOString().slice(0, 10) });
-  vscode.window.showInformationMessage((n ? S.done : S.nothing_found) + (t.inTrial ? TRIAL_NOTE : ''));
+  if (!n) { const _m = S.nothing_found + ' ' + rows.length + ' files, 0 findings.'; try { if (require('./auto.js').sweptClean(vscode, ctx, { msg: _m, title: S.title, slug: 'wcag21-aa-legal-baseline-audit', prefix: PREFIX })) { await ctx.globalState.update('lastSweep', { files: rows.length, findings: 0, at: today() }); return; } } catch (e) {} }   // s163 — the clean sweep offers the README badge (auto.js)
+  await ctx.globalState.update('lastSweep', { files: rows.length, findings: n, at: today() });
+  vscode.window.showInformationMessage(n ? S.done : S.nothing_found);
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
 //   🔴s125: ⛔전에는 CSV 하나만 썼는데 ★프롬프트는 "CSV / JSON / HTML" 이라고 약속했다
 //     ⇒ ★검수가 옳게 잡았다("⑤거짓 주장"). ★법(S24): 한계를 만나면 ⛔좁히지 말고 ★손을 넓힌다.
 async function exportReport(ctx) {
-  const t = await sweepTrial(ctx);
-  if (!t) return;
+  if (!(await paidGate(ctx))) return;
   const ed = vscode.window.activeTextEditor;
   const rows = ed ? [{ file: ed.document.fileName, hits: scan(ed.document.getText(), ed.document.fileName) }] : [];
   const ws = vscode.workspace.workspaceFolders;
@@ -164,7 +149,7 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'wcag21-aa-legal-baseline-audit-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath + (t.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
 }
 
 async function quickFix(ctx) {
@@ -212,10 +197,15 @@ function activate(ctx) {
   reg('wcag21-aa-legal-baseline-audit.export_report', function () { return exportReport(ctx); });
   reg('wcag21-aa-legal-baseline-audit.quick_fix', function () { return quickFix(ctx); });
   reg('wcag21-aa-legal-baseline-audit.watch_on_save', function () { return watchOnSave(ctx); });
+  // auto.js (status bar · hint) calls <PREFIX>.checkFile / <PREFIX>.checkWorkspace → the same free file check / paid sweep
+  reg(PREFIX + '.checkFile', runCurrent);
+  reg(PREFIX + '.checkWorkspace', function () { return scanWorkspace(ctx); });
   // ★설정을 읽는다 — show_on_start. ⛔전에는 안 읽어서 설정이 거짓말이었다 (s126)
   if (vscode.workspace.getConfiguration('wcag21-aa-legal-baseline-audit').get('show_on_start') === true) {
     if (typeof runCurrent === 'function') { try { runCurrent(ctx); } catch (e) { /* 열린 파일이 없으면 조용히 */ } }
   }
+  // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'wcag21-aa-legal-baseline-audit', price: 29 }); } catch (e) {}
 }
 function deactivate() {
   if (typeof watchOnSave === 'function' && watchOnSave._d) watchOnSave._d.dispose();
