@@ -2,7 +2,11 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
+const GLOB = '**/*.{html,htm,php,liquid,erb,ejs,hbs,njk,twig,cshtml,jsp,vue,svelte,jsx,tsx}';
+const PREFIX = 'pci-payment-page-script-audit';
+const ENGINE = require('./engine.js');
 const S = {"run": "Auditing the payment page", "done": "Unauthorized scripts found - see the panel for the requirement each one fails and the fix.", "nothing_found": "Every script on this page carries an authorization method and an integrity method. Nothing here fails 6.4.3 or 11.6.1.", "paste": "Paste the HTML of your checkout page here", "check": "Audit this payment page", "extra_rules": "Extra rules of your own - your internal script allowlist, for example - checked alongside the 26 PCI script-security rules that ship inside.", "need_key": "Full version: export the dated 6.4.3 script inventory as the evidence file you hand the assessor, across every payment page in the repository, with CI output that fails a build when an unauthorized script appears. $29 once, one licence key per person or team seat. A PCI consultant bills about $76/hour in the US in 2026 (Salary.com, August 2026) and a QSA-assisted SAQ runs $5,000-$20,000; building the script inventory by hand is the part you are paying for.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "key_ok": "Licence accepted. Inventory export, repository-wide audit, CI output, audit-on-save and your own rules are open.", "key_bad": "That key did not validate. Check it in your Polar receipt, or buy a licence."};
+S.title = 'PCI Payment Page Script Audit';   // = package.json displayName (auto.js · clean-sweep badge)
 const PAID = ["export_report", "workspace_scan", "ci_json", "watch_on_save", "custom_rules"];
 
 function out() {
@@ -41,25 +45,12 @@ function report(rows) {
   return n;
 }
 
-// ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질).
-const RULES = [{"pattern": "<script(?![^>]*\\bintegrity=)[^>]*\\bsrc=[\"\\']https?://(?!(?:js\\.stripe\\.com|checkout\\.stripe\\.com|www\\.paypal\\.com|js\\.braintreegateway\\.com|pay\\.google\\.com|x\\.klarnacdn\\.net|js\\.squareup\\.com|checkoutshopper-live\\.adyen\\.com))", "flags": "i", "sev": "error", "fix": "integrity=\"sha384-...\" crossorigin=\"anonymous\"", "message": "External script on a payment page with no integrity= attribute. PCI DSS 4.0.1 requirement 6.4.3, mandatory since 2025-03-31, needs a method that assures the integrity of every script the browser executes. Add integrity=\"sha384-...\" crossorigin=\"anonymous\", or record the alternative integrity method in the inventory row for this script."}, {"pattern": "<script(?![^>]*\\bcrossorigin\\b)[^>]*\\bintegrity=", "flags": "i", "sev": "error", "fix": "crossorigin=\"anonymous\"", "message": "integrity= without crossorigin=. The browser cannot run the CORS check, so it refuses the file or ignores the hash - the SRI you wrote proves nothing to an assessor while looking like a control. Add crossorigin=\"anonymous\"."}, {"pattern": "integrity=[\"\\']\\s*sha1-", "flags": "i", "sev": "error", "fix": "integrity=\"sha384-...\"", "message": "SRI accepts sha256, sha384 and sha512 only. A sha1- digest is ignored by every browser, so this script is unprotected while the markup claims otherwise - the worst state to be in when a QSA reads requirement 6.4.3."}, {"pattern": "<script[^>]*\\bsrc=[\"\\']//", "flags": "i", "sev": "warn", "fix": "src=\"https://...\"", "message": "Protocol-relative script URL. It inherits the page scheme, downgrades silently on an http page, and cannot name a fixed origin in your 6.4.3 inventory. Write the full https:// origin."}, {"pattern": "src=[\"\\'][^\"\\']*(?:@latest|/latest/|@\\^|@~)", "flags": "i", "sev": "error", "fix": "pin the exact version + its SRI hash", "message": "The script is pinned to a moving version (@latest, ^, ~). The bytes can change between the day the inventory was signed and the day a customer pays, which is the exact gap requirement 6.4.3 integrity assurance exists to close. Pin the exact version and add its hash."}, {"pattern": "googletagmanager\\.com|/gtag/js|dataLayer\\.push|gtm\\.js", "flags": "i", "sev": "error", "fix": "remove the container from payment pages", "message": "A tag manager on the payment page. Anyone with container access can add a script after your inventory was signed, so the inventory can never be complete. 6.4.3 requires each script to be authorized before it executes - take the container off payment pages, or document a change control that authorizes every tag it can load."}, {"pattern": "static\\.hotjar\\.com|hotjar-|clarity\\.ms|fullstory\\.com|logrocket|smartlook|mouseflow|sessioncam", "flags": "i", "sev": "error", "fix": "exclude the payment page from the recorder", "message": "A session recorder on a page that carries card fields. It reads keystrokes and DOM mutations, so it is in scope for 6.4.3, and if it ever captures the PAN field it pulls the recording vendor inside your cardholder data environment."}, {"pattern": "connect\\.facebook\\.net|fbevents\\.js|analytics\\.tiktok\\.com|snap\\.licdn\\.com|static\\.ads-twitter\\.com|googleads\\.g\\.doubleclick\\.net|/pixel\\.js", "flags": "i", "sev": "error", "fix": "move the pixel to the confirmation page", "message": "A marketing pixel on the payment page. It is third-party JavaScript in the customer browser, so 6.4.3 wants an inventory entry, a written business justification and an integrity method - three things a pixel snippet never ships with. Fire it on the order-confirmation page instead."}, {"pattern": "widget\\.intercom\\.io|js\\.driftt\\.com|embed\\.tawk\\.to|static\\.zdassets\\.com|js\\.hs-scripts\\.com|crisp\\.chat", "flags": "i", "sev": "error", "fix": "load the widget outside the payment page", "message": "A chat or support widget loads and updates its own remote code. Its bytes change without a release on your side, so no SRI hash stays valid and 6.4.3 integrity assurance breaks on the vendor next deploy, silently."}, {"pattern": "createElement\\(\\s*[\"\\']script", "flags": "i", "sev": "error", "fix": "el.integrity = \"sha384-...\"; el.crossOrigin = \"anonymous\"", "message": "This page builds a <script> element in JavaScript. SRI does not apply to a node created this way unless you set the integrity property yourself, and the URL never appears in a scan of the HTML - so it is missing from the inventory too."}, {"pattern": "document\\.write\\(", "flags": "i", "sev": "error", "fix": "append an element you can hash and authorize", "message": "document.write() injects markup after parsing and can pull in a script that no inventory records and no hash covers. Replace it with an element you create, hash and authorize."}, {"pattern": "\\beval\\(|new Function\\(", "flags": "i", "sev": "error", "fix": "remove eval; parse JSON with JSON.parse", "message": "eval() or new Function() executes code that has no URL and no hash, so it can be neither inventoried nor integrity-checked. It also forces unsafe-eval into the CSP, which removes the CSP as a valid 6.4.3 authorization method for the whole page."}, {"pattern": "import\\(\\s*[\"\\']https?://", "flags": "i", "sev": "error", "fix": "self-host the module and hash it", "message": "A dynamic import() of a remote module. A script-element SRI hash does not cover it and a static scan of the HTML cannot see it, so it is invisible to the inventory. Self-host it, or constrain it with script-src and give it an inventory row."}, {"pattern": "\\son(?:click|submit|change|load|error|focus|blur|input|mouseover)\\s*=\\s*[\"\\']", "flags": "i", "sev": "error", "fix": "addEventListener in an authorized script file", "message": "An inline event handler. It runs only if the CSP allows unsafe-inline, and that one keyword disables script authorization for every script on the page. Move the handler into a nonced or hashed file."}, {"pattern": "<meta[^>]+Content-Security-Policy", "flags": "i", "sev": "error", "fix": "send the CSP as an HTTP response header", "message": "The CSP is delivered in a <meta> tag. A meta policy cannot carry report-uri or report-to - the browser ignores both there. PCI DSS 11.6.1 requires an alert when the payment page scripts or headers change, and a meta CSP can block but can never tell you it blocked. Send the header from the server."}, {"pattern": "script-src[^;>]*\\'unsafe-inline\\'", "flags": "i", "sev": "error", "fix": "script-src 'nonce-{random}' 'strict-dynamic'", "message": "unsafe-inline in script-src. Any injected inline script executes, so the CSP stops being a method to confirm that each script is authorized and 6.4.3 has no control left behind it. Replace it with a per-response nonce or sha256 hashes."}, {"pattern": "script-src[^;>]*\\'unsafe-eval\\'", "flags": "i", "sev": "warn", "fix": "drop 'unsafe-eval' from script-src", "message": "unsafe-eval in script-src lets any authorized script run code built from a string, so an attacker who lands one injected line can execute anything without loading a file the inventory would show."}, {"pattern": "script-src[^;>]*(?:\\s\\*[\\s;\"\\']|\\shttps:[\\s;\"\\'])", "flags": "i", "sev": "error", "fix": "list the exact script origins", "message": "script-src allows a wildcard (* or https:). Every host on the internet is authorized, which is the opposite of the 6.4.3 authorization requirement, and it means a skimmer hosted anywhere loads without a CSP violation being raised."}, {"pattern": "Content-Security-Policy-Report-Only", "flags": "i", "sev": "warn", "fix": "run an enforcing policy alongside Report-Only", "message": "Report-Only covers the detection half of 11.6.1 but authorizes nothing: it never blocks. 6.4.3 needs a policy that actually stops an unauthorized script. Keep Report-Only for tuning and ship an enforcing policy next to it."}, {"pattern": "<base\\s[^>]*href", "flags": "i", "sev": "error", "fix": "remove <base> from payment pages", "message": "A <base> element rewrites every relative script URL on this page. One injected attribute moves your own bundle to another host while the HTML still reads exactly the same, and the inventory no longer describes what actually loads."}, {"pattern": "serviceWorker\\.register", "flags": "i", "sev": "warn", "fix": "scope the worker away from the payment path", "message": "A service worker can rewrite the response for the payment page itself, scripts included, out of a cache that no page-level SRI can check. Scope it away from the payment path or record it as an integrity-relevant component."}, {"pattern": "<script(?![^>]*\\b(?:src|nonce|type=[\"\\']application/(?:ld\\+json|json)))[^>]*>", "flags": "i", "sev": "warn", "fix": "nonce=\"{random}\" on the tag, or move it to a hashed file", "message": "Inline script with no nonce and no hash. The only policy that lets it run is unsafe-inline, which voids script authorization for the page. Add a nonce that changes on every response, or move the code into a file you can hash."}, {"pattern": "jquery[-/.]?(?:1\\.|2\\.|3\\.[0-4])[0-9.]*(?:\\.min)?\\.js", "flags": "i", "sev": "error", "fix": "jQuery 3.7.1", "message": "jQuery below 3.5.0 carries CVE-2020-11022 and CVE-2020-11023, HTML-manipulation XSS. On a payment page an XSS is a card-skimming primitive, and requirement 6.3.3 wants a critical patch applied within one month of release."}, {"pattern": "js\\.stripe\\.com|www\\.paypal\\.com/sdk|js\\.braintreegateway\\.com|checkoutshopper-live\\.adyen\\.com|x\\.klarnacdn\\.net|js\\.squareup\\.com", "flags": "i", "sev": "info", "fix": "add an inventory row, no SRI hash", "message": "A payment processor script. These are loaded directly from the vendor with no SRI hash on purpose - the vendor rotates the file - so a linter that demands integrity here is wrong. It still needs a 6.4.3 inventory row whose justification is that it renders the hosted card fields."}, {"pattern": "<iframe[^>]*src=[\"\\']https?://", "flags": "i", "sev": "info", "fix": "confirm the scoping with your acquirer", "message": "A third-party iframe on the payment page. Fully outsourced checkouts used to mark 6.4.3 and 11.6.1 not applicable on a QSA agreement alone; the PCI SSC revised FAQ 1331 on 2026-08-04 so that agreement is no longer sufficient and the acquirer must confirm. Scripts on the parent page stay in scope either way."}, {"pattern": "autocomplete=[\"\\']cc-(?:number|csc|exp)|name=[\"\\'](?:cardnumber|card_number|cvc|cvv)", "flags": "i", "sev": "info", "fix": "render card fields in the processor iframe", "message": "A card field rendered by your own markup rather than the processor iframe. That makes this an SAQ A-EP payment page, so every script on it - analytics and chat included - falls under 6.4.3 and 11.6.1 rather than being out of scope."}];
+// ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질). 두뇌 = ./engine.js
+const RULES = ENGINE.RULES;
 function scan(text, fileName) {
-  const lines = String(text).split(/\r?\n/);
-  const cfg = vscode.workspace.getConfiguration('pci-payment-page-script-audit');
-  const extra = cfg.get('extraRules');
-  const feed = (globalThis.__yjFeed && Array.isArray(globalThis.__yjFeed.rules)) ? globalThis.__yjFeed.rules : [];
-  const rules = RULES.concat(Array.isArray(extra) ? extra : [], feed);
-  const hits = [];
-  for (let i = 0; i < lines.length; i++) {
-    for (const r of rules) {
-      let re;
-      try { re = new RegExp(r.pattern, r.flags || ''); } catch (e) { continue; }
-      // ★s126 — ★심각도를 실어 보낸다. ⛔없으면 min_severity 가 ★전부를 지운다 (내가 만들 뻔한 거짓말)
-      if (re.test(lines[i])) hits.push({ line: i + 1, msg: r.message, fix: r.fix || null,
-                                         sev: r.sev || 'warn' });
-    }
-  }
-  return hits;
+  const extra = vscode.workspace.getConfiguration(PREFIX).get('extraRules');
+  const res = ENGINE.engine.check(text, { today: new Date().toISOString().slice(0, 10), path: fileName, extraRules: extra });
+  return (res.findings || []).map(function (f) { return { line: f.line, msg: f.msg, fix: f.fix || null, sev: f.sev || 'warn' }; });
 }
 
 const SNIPPETS = {};
@@ -84,35 +75,29 @@ async function showReport() { out().show(true); }
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
 async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
 
-// ★이 확장이 이미 쓰는 need_key 문장 — ⛔체험 안내를 앞에 붙일 때 ★원본이 겹쳐 쌓이지 않도록 따로 잡아 둔다.
-const NEED_KEY = S.need_key;
-
-// ★역방향 체험(reverse trial) — ★유료 결과(작업공간 전체 스윕 + 보고서 파일)를 ★첫 스윕부터 7일간 키 없이 준다.
-//   [검색 2026-09-12] freemium 2–4% ↔ reverse trial 8–12% · 손님이 정하는 순간은 ★자기 폴더의 숫자를 본 뒤다.
-//   ⛔체험 중에는 ★아무것도 줄이지 않는다 (같은 규칙 · 같은 파일 수 · 같은 보고서). ⛔무료 경로는 이 문을 지나지 않는다 (8% 법).
-async function sweepTrial(ctx) {
+// ★유료 스윕 문턱 — 키를 물을 때 ★손님 자신의 숫자(지난 스윕)를 앞에 붙인다.
+//   s158 이전에 이미 열린 기간(sweepTrialUntil)만 조용히 지킨다 · ⛔새로 열지 않는다.
+//   ⛔무료 경로(열린 파일·선택 범위 검사)에는 어떤 제한도 두지 않는다 (8% 법).
+const NEED_KEY = S.need_key;   // ★원문장 — 매번 그 앞에 손님의 숫자만 붙인다 (⛔겹쳐 쌓지 않게)
+async function sweepGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
-  let until = Number(st.get('sweepTrialUntil') || 0);
-  /* s158: no new free trial is opened (trials already started are honoured) */
-  const inTrial = !hasKey && Date.now() < until;
-  if (!inTrial) {
-    const last = st.get('lastSweep');   // ★손님 자기 폴더의 숫자로 묻는다 (endowment)
-    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
+  const until = Number(st.get('sweepTrialUntil') || 0);
+  const inPeriod = !hasKey && Date.now() < until;
+  if (!inPeriod) {
+    const last = st.get('lastSweep');
+    S.need_key = (last && last.files ? ('Your last sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
     if (!(await lic.ensure(vscode, ctx, S))) return null;
   }
-  return { inTrial: inTrial, st: st };
+  return { inPeriod: inPeriod, st: st };
 }
-
-// ★체험 중이면 끝 안내 문장에 붙이는 한 줄
-const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
 //   🔴s125: ⛔전에는 CSV 하나만 썼는데 ★프롬프트는 "CSV / JSON / HTML" 이라고 약속했다
 //     ⇒ ★검수가 옳게 잡았다("⑤거짓 주장"). ★법(S24): 한계를 만나면 ⛔좁히지 말고 ★손을 넓힌다.
 async function exportReport(ctx) {
-  const trial = await sweepTrial(ctx);
-  if (!trial) return;
+  const g = await sweepGate(ctx);
+  if (!g) return;
   const ed = vscode.window.activeTextEditor;
   const rows = ed ? [{ file: ed.document.fileName, hits: scan(ed.document.getText(), ed.document.fileName) }] : [];
   const ws = vscode.workspace.workspaceFolders;
@@ -139,12 +124,12 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'pci-payment-page-script-audit-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath + (trial.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
 }
 
 async function scanWorkspace(ctx) {
-  const trial = await sweepTrial(ctx);
-  if (!trial) return;
+  const g = await sweepGate(ctx);
+  if (!g) return;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('pci-payment-page-script-audit');
   const _max = Number(_c.get('max_files')) || 2000;
@@ -158,9 +143,10 @@ async function scanWorkspace(ctx) {
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
   const n = report(rows);
-  // ★스윕이 끝나면 ★손님의 숫자를 적어 둔다 — 체험이 끝난 날 이 숫자로 키를 묻는다
-  await trial.st.update('lastSweep', { files: rows.length, findings: n, at: new Date().toISOString().slice(0, 10) });
-  vscode.window.showInformationMessage((n ? S.done : S.nothing_found) + (trial.inTrial ? TRIAL_NOTE : ''));
+  // ★스윕이 끝나면 ★손님의 숫자를 적어 둔다 — 다음에 키를 물을 때 이 숫자를 보여준다
+  if (!n) { const _m = S.nothing_found + ' ' + rows.length + ' files, 0 findings.'; try { if (require('./auto.js').sweptClean(vscode, ctx, { msg: _m, title: S.title, slug: 'pci-payment-page-script-audit', prefix: PREFIX })) { await g.st.update('lastSweep', { files: rows.length, findings: 0, at: new Date().toISOString().slice(0, 10) }); return; } } catch (e) {} }   // s163 — the clean sweep offers the README badge (auto.js)
+  await g.st.update('lastSweep', { files: rows.length, findings: n, at: new Date().toISOString().slice(0, 10) });
+  vscode.window.showInformationMessage(n ? S.done : S.nothing_found);
 }
 
 async function ciJson(ctx) {
@@ -201,10 +187,15 @@ function activate(ctx) {
   reg('pci-payment-page-script-audit.ci_json', function () { return ciJson(ctx); });
   reg('pci-payment-page-script-audit.watch_on_save', function () { return watchOnSave(ctx); });
   reg('pci-payment-page-script-audit.custom_rules', function () { return customRules(ctx); });
+  // auto.js (status bar · hint) calls <PREFIX>.checkFile / <PREFIX>.checkWorkspace → the same free file check / paid sweep
+  reg(PREFIX + '.checkFile', runCurrent);
+  reg(PREFIX + '.checkWorkspace', function () { return scanWorkspace(ctx); });
   // ★설정을 읽는다 — show_on_start. ⛔전에는 안 읽어서 설정이 거짓말이었다 (s126)
   if (vscode.workspace.getConfiguration('pci-payment-page-script-audit').get('show_on_start') === true) {
     if (typeof runCurrent === 'function') { try { runCurrent(ctx); } catch (e) { /* 열린 파일이 없으면 조용히 */ } }
   }
+  // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'pci-payment-page-script-audit', price: 29 }); } catch (e) {}
 }
 function deactivate() {
   if (typeof watchOnSave === 'function' && watchOnSave._d) watchOnSave._d.dispose();
