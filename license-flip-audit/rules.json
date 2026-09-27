@@ -1,0 +1,156 @@
+[
+  {
+    "pattern": "hashicorp/terraform:v?(?:1\\.(?:[6-9]|\\d\\d)|[2-9])",
+    "message": "Terraform 1.6+ is BUSL-1.1, not MPL-2.0 (relicensed 2023-08-10; 1.5.7 was the last MPL release). Production use is allowed except in a competing service. OpenTofu is the MPL-2.0 fork.",
+    "sev": "error"
+  },
+  {
+    "pattern": "hashicorp/vault:v?(?:1\\.(?:1[5-9]|[2-9]\\d)|[2-9])",
+    "message": "Vault 1.15+ is BUSL-1.1 (1.14.1 was the last MPL-2.0 release, 2023-08-10). OpenBao is the MPL-2.0 fork.",
+    "sev": "error"
+  },
+  {
+    "pattern": "hashicorp/consul:v?(?:1\\.(?:1[7-9]|[2-9]\\d)|[2-9])",
+    "message": "Consul 1.17+ is BUSL-1.1 (1.16.1 was the last MPL-2.0 release, 2023-08-10).",
+    "sev": "error"
+  },
+  {
+    "pattern": "hashicorp/nomad:v?(?:1\\.(?:[7-9]|\\d\\d)|[2-9])",
+    "message": "Nomad 1.7+ is BUSL-1.1 (1.6.1 was the last MPL-2.0 release, 2023-08-10).",
+    "sev": "error"
+  },
+  {
+    "pattern": "github\\.com/hashicorp/(?:terraform|vault|consul|nomad|boundary|waypoint|packer|vagrant)(?![\\w-])",
+    "message": "HashiCorp module: every release after 2023-08-10 is BUSL-1.1 (Terraform >=1.6, Vault >=1.15, Consul >=1.17, Nomad >=1.7). Check the version pinned on this line against that boundary.",
+    "sev": "warn"
+  },
+  {
+    "pattern": "hashicorp/(?:boundary|waypoint|packer|vagrant):",
+    "message": "Boundary, Waypoint, Packer and Vagrant were all relicensed to BUSL-1.1 on 2023-08-10. Only releases cut before that date are MPL-2.0.",
+    "sev": "warn"
+  },
+  {
+    "pattern": "redis:(?:7\\.[4-9])",
+    "message": "Redis 7.4 through 7.8 is dual RSALv2 / SSPLv1 - source-available, not open source. Redis 7.2.x and earlier are BSD-3-Clause.",
+    "sev": "error"
+  },
+  {
+    "pattern": "redis:(?:8\\.|9\\.)",
+    "message": "Redis 8.0+ (May 2025) is tri-licensed: AGPLv3 or SSPLv1 or RSALv2. AGPLv3 is OSI-approved but still copyleft - choose one of the three and record which.",
+    "sev": "warn"
+  },
+  {
+    "pattern": "redis:latest|image:\\s*[\"\\x27]?redis[\"\\x27]?\\s*$",
+    "message": "An unpinned redis tag now pulls Redis 8.x, licensed differently from the 7.2 BSD-3-Clause build. Pin an explicit tag so a docker pull cannot change your licence.",
+    "sev": "warn"
+  },
+  {
+    "pattern": "elasticsearch:(?:7\\.(?:1[1-9]|[2-9]\\d)|[89]\\.)",
+    "message": "Elasticsearch 7.11+ left Apache-2.0 for SSPL + Elastic License 2.0 (Feb 2021); AGPLv3 was added as a third option from 8.16 (Sept 2024). 7.10.2 was the last Apache-2.0 release.",
+    "sev": "error"
+  },
+  {
+    "pattern": "kibana:(?:7\\.(?:1[1-9]|[2-9]\\d)|[89]\\.)",
+    "message": "Kibana 7.11+ carries the same change as Elasticsearch: SSPL + Elastic License 2.0 from Feb 2021, AGPLv3 added from 8.16. 7.10.2 was the last Apache-2.0 release.",
+    "sev": "error"
+  },
+  {
+    "pattern": "docker\\.elastic\\.co/(?:elasticsearch|kibana|logstash)",
+    "message": "Elastic registry image: the 7.11 licence change applies. Confirm the tag on this line is 7.10.x or earlier if your policy requires Apache-2.0.",
+    "sev": "info"
+  },
+  {
+    "pattern": "(?:docker\\.io/)?bitnami/[a-z0-9._-]+",
+    "message": "Bitnami changed on 2025-08-28: every versioned tag moved to docker.io/bitnamilegacy (no patches, no updates, no support) and docker.io/bitnami keeps only a limited set of hardened latest tags. Move to a maintained source or a paid Bitnami Secure subscription.",
+    "sev": "error"
+  },
+  {
+    "pattern": "charts\\.bitnami\\.com",
+    "message": "The Bitnami Helm chart index is part of the 2025-08-28 change - charts still point at image tags that were moved to bitnamilegacy. Re-point the image repository before the next deploy.",
+    "sev": "error"
+  },
+  {
+    "pattern": "image:\\s*[\"\\x27]?(?:docker\\.io/)?(?:library/)?mongo(?:db)?:",
+    "message": "MongoDB Community Server is SSPL-1.0 (since 4.0.3, Oct 2018), not OSI open source; offering it as a service triggers the source-release clause. The MongoDB drivers stay Apache-2.0 - this is about running the server.",
+    "sev": "error"
+  },
+  {
+    "pattern": "cockroachdb/cockroach",
+    "message": "CockroachDB has not been Apache-2.0 since 19.2: BSL 1.1 from 2019, and the CockroachDB Software License from v24.3 (Nov 2024). Read the tier limits before production use.",
+    "sev": "warn"
+  },
+  {
+    "pattern": "grafana/(?:grafana|loki|tempo|mimir)",
+    "message": "Grafana moved from Apache-2.0 to AGPLv3 at v8.0 (April 2021); Loki, Tempo and Mimir are AGPLv3 too. Running it is fine - embedding or redistributing is where AGPLv3 bites.",
+    "sev": "warn"
+  },
+  {
+    "pattern": "minio/minio",
+    "message": "The MinIO server is AGPLv3 (moved from Apache-2.0 in April 2021).",
+    "sev": "warn"
+  },
+  {
+    "pattern": "getsentry/(?:sentry|snuba|relay)",
+    "message": "Sentry's server code is under the FSL (Functional Source License, Nov 2023; BSL 1.1 before that) - source-available, converting to Apache-2.0 after two years. The client SDKs stay MIT.",
+    "sev": "warn"
+  },
+  {
+    "pattern": "n8nio/n8n|\"n8n\"\\s*:",
+    "message": "n8n ships under the Sustainable Use License (fair-code), not open source: internal business use is allowed, hosting it for other people is not.",
+    "sev": "warn"
+  },
+  {
+    "pattern": "\"highcharts[a-z-]*\"\\s*:",
+    "message": "Highcharts is proprietary: free for personal and non-commercial use, paid licence for commercial use. It sits in npm next to MIT chart libraries and is routinely assumed to be one.",
+    "sev": "error"
+  },
+  {
+    "pattern": "\"(?:@ag-grid-enterprise/[a-z-]+|ag-grid-enterprise|ag-grid-charts-enterprise)\"\\s*:",
+    "message": "ag-grid-enterprise requires a paid AG Grid licence key. Only ag-grid-community is MIT.",
+    "sev": "error"
+  },
+  {
+    "pattern": "\"@mui/x-[a-z-]*-(?:pro|premium)\"\\s*:",
+    "message": "MUI X Pro and Premium packages are commercial and need a licence key; the non-Pro MUI X packages are MIT.",
+    "sev": "error"
+  },
+  {
+    "pattern": "\"handsontable\"\\s*:|\"@handsontable/[a-z-]+\"\\s*:",
+    "message": "Handsontable is not MIT: free for non-commercial use, paid licence for commercial use.",
+    "sev": "error"
+  },
+  {
+    "pattern": "\"tinymce\"\\s*:\\s*\"[\\^~>=v\\s]*(?:[7-9]|[1-9]\\d)\\.",
+    "message": "TinyMCE 7+ (March 2024) is GPL-2.0-or-later or a paid licence; TinyMCE 6 was MIT. GPLv2+ inside a distributed closed-source app is the trap this version bump creates.",
+    "sev": "error"
+  },
+  {
+    "pattern": "\"@fortawesome/(?:pro-|fontawesome-pro)",
+    "message": "Font Awesome Pro packages require a paid subscription and must not be published in a public repository or a public npm token.",
+    "sev": "error"
+  },
+  {
+    "pattern": "^\\s*PyQt[56](?![\\w-])",
+    "message": "PyQt is GPL-3.0 or a paid Riverbank commercial licence - a closed-source app that ships PyQt needs the commercial one. PySide (Qt for Python) is LGPL-3.0.",
+    "sev": "error",
+    "flags": "i"
+  },
+  {
+    "pattern": "^\\s*(?:mysqlclient|mysql-connector-python)(?![\\w-])",
+    "message": "MySQL client libraries are GPL-2.0 with the FOSS Exception, which only covers a listed set of open licences - a closed-source product is not on that list. PyMySQL is MIT.",
+    "sev": "warn",
+    "flags": "i"
+  },
+  {
+    "pattern": "^\\s*PySimpleGUI(?![\\w-])",
+    "message": "PySimpleGUI 5 was commercial (a 99 USD perpetual licence) from April 2024, then re-released under LGPL-3.0 in 2025 after PySimpleSoft shut down. A copy vendored during 2024 carries the commercial terms, and a policy that still blocks it is out of date.",
+    "sev": "info",
+    "flags": "i"
+  },
+  {
+    "pattern": "<artifactId>\\s*itext",
+    "message": "iText 5 and 7 are AGPL-3.0 or a paid commercial licence, and AGPL-3.0 is triggered by network use, not only by distribution.",
+    "sev": "error",
+    "flags": "i"
+  }
+]
