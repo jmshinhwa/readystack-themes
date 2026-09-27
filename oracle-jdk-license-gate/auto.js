@@ -370,6 +370,34 @@ function start(ctx, o) {
   if (cfg().get('workspaceHint', true) !== false) { var ht = setTimeout(function () { hint(ctx, h); }, o.hintDelayMs == null ? 8000 : o.hintDelayMs); if (ht && ht.unref) ht.unref(); }
   return { run: run, show: show, hint: function () { return hint(ctx, h); } };
 }
+// s165 2026-09-27 — THE STAKE: at the money moment, say what the vendor bills (a product's own stake.json, copied from the
+//   vendor's price list · never estimated). No stake.json = the old message, unchanged. [measured] Oracle JDK License Gate held
+//   1/3 of all our VS Code installs with zero promotion while its paywall said only "N issues · $29" — the fear is the payroll bill.
+var STAKE_T = { en: 'Estimate for my company', de: 'Für mein Unternehmen berechnen', ja: '自社の金額を試算', es: 'Calcular para mi empresa', pt: 'Calcular para minha empresa' };
+var _stake;
+function money(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+function stakeOf(h) {
+  try {
+    if (_stake === undefined) { _stake = null; var fp = require('path').join(h.extDir || __dirname, 'stake.json'); if (require('fs').existsSync(fp)) _stake = JSON.parse(require('fs').readFileSync(fp, 'utf8')); }
+    var s = _stake; if (!s || !Array.isArray(s.bands) || !s.bands.length || !s.line) return null;
+    var L = lang(h.vscode), ex = Number(s.example_heads || 500), r = rateOf(s, ex); if (!r) return null;
+    var pick = function (o) { return o ? (o[L] || o.en || '') : ''; };
+    var line = pick(s.line).replace('{ex}', money(ex)).replace('{exy}', money(ex * r * Number(s.months || 12)));
+    return { s: s, line: line, btn: STAKE_T[L] || STAKE_T.en, ask: pick(s.ask), result: pick(s.result), above: pick(s.above) };
+  } catch (e) { return null; }
+}
+function rateOf(s, n) { for (var i = 0; i < s.bands.length; i++) { var b = s.bands[i]; if (n >= b[0] && n <= b[1]) return Number(b[2]); } return null; }
+async function stakeEstimate(h, SK, label) {
+  var vscode = h.vscode;
+  var v = await vscode.window.showInputBox({ prompt: SK.ask, placeHolder: '500', validateInput: function (x) { return /^\s*[\d,.\s]+\s*$/.test(String(x || '')) ? null : '123'; } });
+  var n = parseInt(String(v || '').replace(/[^\d]/g, ''), 10); if (!n || n < 1) return null;
+  send(vscode, h.slug || h.PREFIX, { t: 'use', slug: h.slug || h.PREFIX, src: 'vsix', why: 'stake_estimate', path: '/use/vsix/' + (h.slug || h.PREFIX) });
+  var r = rateOf(SK.s, n), msg;
+  if (!r) msg = SK.above || SK.line;
+  else msg = SK.result.replace('{heads}', money(n)).replace('{rate}', r.toFixed(2)).replace('{year}', money(n * r * Number(SK.s.months || 12))).replace('{src}', SK.s.source || '');
+  var pk = await vscode.window.showInformationMessage(msg, label);
+  return { n: n, rate: r, msg: msg, pick: pk };
+}
 async function hint(ctx, h) {
   try {
     var vscode = h.vscode, key = h.PREFIX + '.hinted';
@@ -396,12 +424,16 @@ async function hint(ctx, h) {
     var label = hasKey ? 'Sweep the workspace' : ((until && Date.now() < until) ? 'Sweep the workspace (trial)' : 'Get the full report ($' + (h.price || 29) + ')');
     var msg = h.title + ': ' + total + ' issue' + (total === 1 ? '' : 's') + ' in ' + files + ' file' + (files === 1 ? '' : 's') + ' of this workspace.';
     _toastAt = Date.now();
-    var pick = await vscode.window.showInformationMessage(msg, label, "Don't show again");
+    var SK = stakeOf(h), est = null;   // s165 — the stake line + one estimate button, only when the product ships stake.json
+    if (SK) msg = msg + ' ' + SK.line;
+    var pick = SK ? await vscode.window.showInformationMessage(msg, SK.btn, label, "Don't show again") : await vscode.window.showInformationMessage(msg, label, "Don't show again");
+    if (SK && pick === SK.btn) { est = await stakeEstimate(h, SK, label); pick = est ? est.pick : undefined; }
     if (pick === label) await vscode.commands.executeCommand(h.PREFIX + '.checkWorkspace');
     else if (pick === "Don't show again") await st.update(h.PREFIX + '.noHint', true);
-    return { files: files, total: total, label: label, msg: msg };
+    return { files: files, total: total, label: label, msg: msg, stake: SK ? SK.line : null, estimate: est };
   } catch (e) { return null; }
 }
 module.exports = { start: start, relevant: relevant, tokens: tokens, isBroad: isBroad, clearWords: clearWords,
   sweptClean: sweptClean, badgeTopic: badgeTopic, badgeMarkdown: badgeMarkdown, reviewUrl: reviewUrl, reviewTick: reviewTick, clearReport: clearReport, scan: scan,   // s163
-  welcome: welcome, kindOf: kindOf, globExts: globExts, sampleOf: sampleOf };   // s164
+  welcome: welcome, kindOf: kindOf, globExts: globExts, sampleOf: sampleOf,   // s164
+  stakeOf: stakeOf, rateOf: rateOf };   // s165
