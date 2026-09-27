@@ -2,7 +2,11 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
+const GLOB = '**/{mcp.json,.mcp.json,claude_desktop_config.json,*.js,*.ts,*.mjs,*.cjs,*.py}';
+const PREFIX = 'mcp-2026-migration-lint';
+const ENGINE = require('./engine.js');
 const S = {"run": "Checking against MCP 2026-07-28", "check": "Check this against MCP 2026-07-28", "paste": "Paste your mcp.json, claude_desktop_config.json, or MCP server source here", "done": "Done - see the MCP 2026 Migration Lint panel", "nothing_found": "Nothing here breaks under MCP 2026-07-28.", "need_key": "Full version: every mcp.json and server file in the whole repository in one pass, exported as a report, and a CI check that fails the build.", "buy": "Get the full version - $29 once", "key_ok": "Licence accepted - workspace scan, report export and CI output are on.", "key_bad": "That key did not validate. Check it was pasted whole.", "enter_key": "Enter licence key"};
+S.title = 'MCP Server Lint - 2026 spec migration';   // = package.json displayName (auto.js · clean-sweep badge)
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 
 function out() {
@@ -41,25 +45,12 @@ function report(rows) {
   return n;
 }
 
-// ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질).
-const RULES = [{"pattern": "\"type\"\\s*:\\s*\"sse\"", "message": "HTTP+SSE transport is Deprecated under the 2026-07-28 feature lifecycle (deprecated since protocol 2025-03-26). Removal is allowed after the 12-month window.", "fix": "\"type\": \"http\"  (Streamable HTTP)", "sev": "error"}, {"pattern": "\"transportType\"\\s*:\\s*\"sse\"", "message": "Same deprecated HTTP+SSE transport, written with the SDK-style key.", "fix": "\"transportType\": \"http\"", "sev": "error"}, {"pattern": "\"mcpServers\"\\s*:", "message": "Key is mcpServers. Correct for Claude Code .mcp.json and claude_desktop_config.json; VS Code .vscode/mcp.json reads the key servers and shows no server under mcpServers.", "fix": "In .vscode/mcp.json use \"servers\": { ... }", "sev": "info"}, {"pattern": "\"-y\"\\s*,\\s*\"(?![^\"]*@\\d)[^\"]+\"", "message": "npx -y with an unpinned package: the agent installs whatever version is published the moment it launches, on every start.", "fix": "Pin it: \"pkg@1.4.2\"", "sev": "warn"}, {"pattern": "\"[A-Z0-9_]*(?:KEY|TOKEN|SECRET|PASSWORD|CREDENTIAL)[A-Z0-9_]*\"\\s*:\\s*\"(?!\\$\\{)[^\"]{8,}\"", "message": "Literal credential in the config file. This file is commonly committed; the agent process also inherits it.", "fix": "VS Code: \"inputs\" + \"${input:my-key}\", or \"envFile\". Claude Code: \"${env:MY_KEY}\"", "sev": "error"}, {"pattern": "(?:protocolVersion|PROTOCOL_VERSION|MCP-Protocol-Version)\\s*[:=]\\s*[\"\\'](?:2024-11-05|2025-03-26|2025-06-18|2025-11-25)[\"\\']", "message": "Superseded protocol version. The current revision is 2026-07-28, and the version now travels in _meta on every request, not in a handshake.", "fix": "_meta[\"io.modelcontextprotocol/protocolVersion\"] = \"2026-07-28\"", "sev": "warn"}, {"pattern": "(?:method|Method)\\s*[:=]\\s*[\"\\']initialize[\"\\']|InitializeRequestSchema", "message": "The initialize handshake was REMOVED in 2026-07-28. MCP is stateless: protocol version and client capabilities ride in _meta on every request.", "fix": "Implement server/discover; read _meta[\"io.modelcontextprotocol/clientCapabilities\"]", "sev": "error"}, {"pattern": "[\"\\']notifications/initialized[\"\\']|InitializedNotificationSchema", "message": "notifications/initialized was REMOVED with the handshake in 2026-07-28.", "fix": "Delete it. Nothing replaces it — every request is self-describing.", "sev": "error"}, {"pattern": "Mcp-Session-Id", "message": "The Mcp-Session-Id header and protocol-level sessions were REMOVED in 2026-07-28. List endpoints no longer vary per connection.", "fix": "Mint your own handle server-side and pass it as an ordinary tool argument.", "sev": "error"}, {"pattern": "Last-Event-ID|lastEventId", "message": "SSE stream resumability and message redelivery were REMOVED in 2026-07-28. A broken stream loses the in-flight request.", "fix": "Re-issue the request with a new request ID.", "sev": "error"}, {"pattern": "(?:method|Method)\\s*[:=]\\s*[\"\\']ping[\"\\']|PingRequestSchema", "message": "ping was REMOVED in 2026-07-28.", "fix": "Delete the handler. Use transport-level keepalive if you need liveness.", "sev": "error"}, {"pattern": "[\"\\']logging/setLevel[\"\\']|SetLevelRequestSchema", "message": "logging/setLevel was REMOVED in 2026-07-28. Log level is now per-request.", "fix": "_meta[\"io.modelcontextprotocol/logLevel\"] on the request", "sev": "error"}, {"pattern": "[\"\\']notifications/roots/list_changed[\"\\']|RootsListChangedNotificationSchema", "message": "notifications/roots/list_changed was REMOVED in 2026-07-28.", "fix": "Pass directories as tool parameters or server configuration.", "sev": "error"}, {"pattern": "[\"\\']resources/(?:un)?subscribe[\"\\']|(?:Un)?SubscribeRequestSchema", "message": "resources/subscribe and resources/unsubscribe were REPLACED in 2026-07-28 by a single subscriptions/listen stream.", "fix": "subscriptions/listen, opting in to resourceSubscriptions", "sev": "error"}, {"pattern": "[\"\\']tasks/result[\"\\']", "message": "tasks/result was removed when Tasks moved out of core into the io.modelcontextprotocol/tasks extension in 2026-07-28.", "fix": "Poll tasks/get; use tasks/update to send input", "sev": "error"}, {"pattern": "[\"\\']tasks/list[\"\\']", "message": "tasks/list was removed in the redesigned Tasks extension (2026-07-28).", "fix": "Track task handles yourself; poll tasks/get", "sev": "error"}, {"pattern": "[\"\\']notifications/elicitation/complete[\"\\']", "message": "This notification, introduced in 2025-11-25, was REMOVED in 2026-07-28. Under MRTR the client learns the outcome by retrying the original request.", "fix": "Delete it; encode your correlation id in requestState", "sev": "error"}, {"pattern": "elicitationId", "message": "The elicitationId field of URL-mode elicitation was REMOVED in 2026-07-28.", "fix": "Encode your own identifier in requestState", "sev": "error"}, {"pattern": "[\"\\']roots/list[\"\\']|ListRootsRequestSchema", "message": "Server-initiated roots/list is replaced by the Multi Round-Trip Requests pattern in 2026-07-28, and Roots itself is Deprecated. The lifecycle policy sets a minimum 12-month window, so removal is no earlier than 2027-07-28.", "fix": "Return InputRequiredResult with inputRequests; or take the path as a tool parameter", "sev": "error"}, {"pattern": "[\"\\']sampling/createMessage[\"\\']|CreateMessageRequestSchema", "message": "Server-initiated sampling/createMessage is replaced by MRTR in 2026-07-28, and Sampling is Deprecated. Minimum 12-month window means removal no earlier than 2027-07-28.", "fix": "Return InputRequiredResult, or call the LLM provider API directly", "sev": "error"}, {"pattern": "[\"\\']elicitation/create[\"\\']|ElicitRequestSchema", "message": "Server-initiated elicitation/create is replaced by MRTR in 2026-07-28.", "fix": "Return resultType \"input_required\" with inputRequests; read inputResponses on the retry", "sev": "error"}, {"pattern": "includeContext\\s*[:=]\\s*[\"\\'](?:thisServer|allServers)[\"\\']", "message": "includeContext values thisServer and allServers are Deprecated as of 2026-07-28 (soft-deprecated since 2025-11-25).", "fix": "Omit the field, or use \"none\"", "sev": "warn"}, {"pattern": "-32002", "message": "Resource-not-found changed from -32002 to -32602 (Invalid Params) in 2026-07-28, to align with JSON-RPC.", "fix": "-32602", "sev": "error"}, {"pattern": "-3200[134]\\b", "message": "Renumbered in 2026-07-28 by the error-code allocation policy: HeaderMismatch -32001 to -32020, MissingRequiredClientCapability -32003 to -32021, UnsupportedProtocolVersion -32004 to -32022. -32000..-32019 stays implementation-defined.", "fix": "Use the -32020..-32099 MCP range", "sev": "warn"}, {"pattern": "SSE(?:Server|Client)Transport", "message": "SDK transport class for the Deprecated HTTP+SSE transport.", "fix": "StreamableHTTPServerTransport / StreamableHTTPClientTransport", "sev": "error"}, {"pattern": "registration_endpoint|client_id_issued_at", "message": "OAuth 2.0 Dynamic Client Registration (RFC 7591) is Deprecated as of 2026-07-28 in favour of Client ID Metadata Documents. It stays available only for authorization servers that do not support CIMD.", "fix": "Client ID Metadata Documents; if you keep DCR, send application_type", "sev": "warn"}, {"pattern": "[\"\\']notifications/message[\"\\']", "message": "Servers MUST NOT emit notifications/message for a request that did not carry io.modelcontextprotocol/logLevel in _meta (2026-07-28). Logging is also Deprecated.", "fix": "Gate on _meta logLevel; or write to stderr / OpenTelemetry", "sev": "warn"}];
+// ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질). 두뇌 = ./engine.js
+const RULES = ENGINE.RULES;
 function scan(text, fileName) {
-  const lines = String(text).split(/\r?\n/);
-  const cfg = vscode.workspace.getConfiguration('mcp-2026-migration-lint');
-  const extra = cfg.get('extraRules');
-  const feed = (globalThis.__yjFeed && Array.isArray(globalThis.__yjFeed.rules)) ? globalThis.__yjFeed.rules : [];
-  const rules = RULES.concat(Array.isArray(extra) ? extra : [], feed);
-  const hits = [];
-  for (let i = 0; i < lines.length; i++) {
-    for (const r of rules) {
-      let re;
-      try { re = new RegExp(r.pattern, r.flags || ''); } catch (e) { continue; }
-      // ★s126 — ★심각도를 실어 보낸다. ⛔없으면 min_severity 가 ★전부를 지운다 (내가 만들 뻔한 거짓말)
-      if (re.test(lines[i])) hits.push({ line: i + 1, msg: r.message, fix: r.fix || null,
-                                         sev: r.sev || 'warn' });
-    }
-  }
-  return hits;
+  const extra = vscode.workspace.getConfiguration(PREFIX).get('extraRules');
+  const res = ENGINE.engine.check(text, { today: new Date().toISOString().slice(0, 10), path: fileName, extraRules: extra });
+  return (res.findings || []).map(function (f) { return { line: f.line, msg: f.msg, fix: f.fix || null, sev: f.sev || 'warn' }; });
 }
 
 const SNIPPETS = {};
@@ -88,25 +79,21 @@ async function listRules() {
 }
 
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-//   ★s144 — reverse trial (paid taste): the FULL workspace sweep + the written report run free for
-//   7 days from the first sweep, then the key. [검색 2026-09-12] freemium 2–4% ↔ reverse trial 8–12%
-//   (dev-tool trials median 24%) · the customer decides after seeing THEIR OWN folder's findings.
-//   ⛔체험 중에는 줄이지 않는다 — 스윕도 보고서도 그대로 다 준다. ⛔무료 경로는 어떤 제한도 없다 (8% 법).
+//   키를 물을 때 ★손님 자신의 숫자(지난 스윕)를 앞에 붙인다.
+//   s158 이전에 이미 열린 기간(sweepTrialUntil)만 조용히 지킨다 · ⛔새로 열지 않는다.
+//   ⛔무료 경로(열린 파일·선택 범위 검사)에는 어떤 제한도 두지 않는다 (8% 법).
 const NEED_KEY = S.need_key;   // ★원문장 — 매번 그 앞에 손님의 숫자만 붙인다 (⛔겹쳐 쌓지 않게)
-const TRIAL_MS = 7 * 24 * 3600 * 1000;
-const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
 async function paidGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  /* s158: no new free trial is opened (trials already started are honoured) */
-  const inTrial = !hasKey && Date.now() < until;
-  if (!inTrial) {
+  const inPeriod = !hasKey && Date.now() < until;
+  if (!inPeriod) {
     const last = st.get('lastSweep');
-    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
+    S.need_key = (last && last.files ? ('Your last sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
     if (!(await lic.ensure(vscode, ctx, S))) return null;   // ★유료 문턱: 범위(파일 하나 → 작업공간 전체) + 소유(보고서 파일)
   }
-  return { inTrial: inTrial, until: until };
+  return { inPeriod: inPeriod, until: until };
 }
 
 async function scanWorkspace(ctx) {
@@ -126,11 +113,12 @@ async function scanWorkspace(ctx) {
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
   const total = report(rows);
+  if (!total) { const _m = 'Swept ' + files.length + ' files - ' + S.nothing_found; try { if (require('./auto.js').sweptClean(vscode, ctx, { msg: _m, title: S.title, slug: 'mcp-2026-migration-lint', prefix: PREFIX })) { await st.update('lastSweep', { files: files.length, findings: 0, at: new Date().toISOString().slice(0, 10) }); return; } } catch (e) {} }   // s163 — the clean sweep offers the README badge (auto.js)
   // ★스윕이 끝나면 손님의 숫자를 기억한다 — 체험이 끝나 키를 물을 때 그 숫자로 묻는다.
   await st.update('lastSweep', { files: files.length, findings: total,
                                  at: new Date().toISOString().slice(0, 10) });
   vscode.window.showInformationMessage('Swept ' + files.length + ' files - ' + total + ' findings. '
-    + S.done + (gate.inTrial ? TRIAL_NOTE : ''));
+    + S.done);
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
@@ -165,7 +153,7 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'mcp-2026-migration-lint-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath + (gate.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
 }
 
 async function ciJson(ctx) {
@@ -177,7 +165,7 @@ async function ciJson(ctx) {
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'mcp-2026-migration-lint-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath + (gate.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
 }
 
 function activate(ctx) {
@@ -189,10 +177,15 @@ function activate(ctx) {
   reg('mcp-2026-migration-lint.workspace_scan', function () { return scanWorkspace(ctx); });
   reg('mcp-2026-migration-lint.export_report', function () { return exportReport(ctx); });
   reg('mcp-2026-migration-lint.ci_json', function () { return ciJson(ctx); });
+  // auto.js (status bar · hint) calls <PREFIX>.checkFile / <PREFIX>.checkWorkspace → the same free file check / paid sweep
+  reg(PREFIX + '.checkFile', runCurrent);
+  reg(PREFIX + '.checkWorkspace', function () { return scanWorkspace(ctx); });
   // ★설정을 읽는다 — show_on_start. ⛔전에는 안 읽어서 설정이 거짓말이었다 (s126)
   if (vscode.workspace.getConfiguration('mcp-2026-migration-lint').get('show_on_start') === true) {
     if (typeof runCurrent === 'function') { try { runCurrent(ctx); } catch (e) { /* 열린 파일이 없으면 조용히 */ } }
   }
+  // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'mcp-2026-migration-lint', price: 29 }); } catch (e) {}
 }
 function deactivate() {
   if (typeof watchOnSave === 'function' && watchOnSave._d) watchOnSave._d.dispose();
