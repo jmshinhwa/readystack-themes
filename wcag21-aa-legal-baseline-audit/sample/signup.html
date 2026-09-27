@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Create your account</title>
+</head>
+<body>
+  <header>
+    <a href="/"><img src="/img/logo.png"></a>
+    <a href="/cart" aria-label="Cart"><i class="icon-cart"></i></a>
+  </header>
+  <main>
+    <h1>Create your account</h1>
+    <form action="/signup" method="post">
+      <label for="email">Email</label>
+      <input id="email" type="email" name="email">
+      <label for="plan">Plan</label>
+      <select id="plan" name="plan"><option>Starter</option><option>Team</option></select>
+      <div class="submit" onclick="document.forms[0].submit()">Sign up</div>
+    </form>
+    <p>Already have an account? <a href="/login">click here</a></p>
+    <iframe src="https://www.youtube.com/embed/xyz"></iframe>
+  </main>
+</body>
+</html>
