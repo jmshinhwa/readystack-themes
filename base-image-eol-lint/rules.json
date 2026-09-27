@@ -1,0 +1,149 @@
+[
+  {
+    "pattern": "\\bnode:20\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "node:20 - Node.js 20 reached end-of-life on 30 April 2026. No security release has shipped for it since. Replace with node:24-trixie (Active LTS to 30 April 2028).",
+    "fix": "FROM node:24-trixie"
+  },
+  {
+    "pattern": "\\bnode:18\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "node:18 - Node.js 18 reached end-of-life on 30 April 2025. Replace with node:24-trixie (Active LTS to 30 April 2028).",
+    "fix": "FROM node:24-trixie"
+  },
+  {
+    "pattern": "\\bnode:(?:14|16)\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "Node.js 14 (end-of-life 30 April 2023) and Node.js 16 (11 September 2023) have been unpatched for over two years. Replace with node:24-trixie.",
+    "fix": "FROM node:24-trixie"
+  },
+  {
+    "pattern": "\\bpython:3\\.(?:7|8|9)\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "Python 3.9 reached end-of-life on 31 October 2025 (3.8 on 7 October 2024, 3.7 on 27 June 2023). 3.9.25 was the final security release. Replace with python:3.13-trixie.",
+    "fix": "FROM python:3.13-trixie"
+  },
+  {
+    "pattern": "\\bpython:3\\.10\\b",
+    "flags": "i",
+    "sev": "warn",
+    "message": "python:3.10 - Python 3.10 reaches end-of-life on 31 October 2026. After that date the PSF ships no further security patches. Replace with python:3.13-trixie.",
+    "fix": "FROM python:3.13-trixie"
+  },
+  {
+    "pattern": "\\b(?:debian:11|bullseye)\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "Debian 11 bullseye LTS ended on 31 August 2026 - no security updates from September 2026 onward. Replace with debian:trixie, or bookworm if you need LTS to 30 June 2028.",
+    "fix": "FROM debian:trixie"
+  },
+  {
+    "pattern": "\\b(?:debian:(?:8|9|10)|buster|stretch|jessie)\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "Debian 10 buster LTS ended on 30 June 2024; stretch and jessie are older still. Replace with debian:trixie.",
+    "fix": "FROM debian:trixie"
+  },
+  {
+    "pattern": "\\b(?:ubuntu:20\\.04|ubuntu-20\\.04|ubuntu:focal|:focal\\b)",
+    "flags": "i",
+    "sev": "error",
+    "message": "Ubuntu 20.04 focal left standard support on 31 May 2025. Patches now require a paid Ubuntu Pro (ESM) subscription. Replace with ubuntu:24.04, supported to April 2029.",
+    "fix": "FROM ubuntu:24.04"
+  },
+  {
+    "pattern": "\\b(?:ubuntu:1[68]\\.04|ubuntu-1[68]\\.04|bionic|xenial)\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "Ubuntu 18.04 bionic and 16.04 xenial left standard support in 2023 and 2021. Replace with ubuntu:24.04.",
+    "fix": "FROM ubuntu:24.04"
+  },
+  {
+    "pattern": "\\balpine:3\\.(?:[0-9]|1[0-9]|20)\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "This Alpine branch is out of support: 3.20 ended 1 April 2026, 3.19 on 1 November 2025, and everything older before that. Replace with alpine:3.23 (supported to 1 November 2027).",
+    "fix": "FROM alpine:3.23"
+  },
+  {
+    "pattern": "\\balpine:3\\.21\\b",
+    "flags": "i",
+    "sev": "warn",
+    "message": "alpine:3.21 - Alpine keeps a branch for two years, so 3.21 reaches end of support on 1 November 2026. Replace with alpine:3.23 (to 1 November 2027).",
+    "fix": "FROM alpine:3.23"
+  },
+  {
+    "pattern": "\\bdotnet/(?:aspnet|sdk|runtime|samples):(?:6|7)\\.0\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": ".NET 6 reached end of support on 12 November 2024 and .NET 7 on 14 May 2024. Replace with mcr.microsoft.com/dotnet/aspnet:10.0 (LTS to 14 November 2028).",
+    "fix": "FROM mcr.microsoft.com/dotnet/aspnet:10.0"
+  },
+  {
+    "pattern": "\\bdotnet/(?:aspnet|sdk|runtime|samples):(?:8|9)\\.0\\b",
+    "flags": "i",
+    "sev": "warn",
+    "message": ".NET 8 (LTS) and .NET 9 (STS) both reach end of support on 10 November 2026 - the LTS release dies on the same day as the STS one. Replace with dotnet/aspnet:10.0, LTS to 14 November 2028.",
+    "fix": "FROM mcr.microsoft.com/dotnet/aspnet:10.0"
+  },
+  {
+    "pattern": "\\bpostgres(?:ql)?:(?:9\\.[0-9]|1[0-3])\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "PostgreSQL 13 reached end of life on 13 November 2025; 12 and older are further behind. The community ships no security patches for them. Replace with postgres:17.",
+    "fix": "image: postgres:17"
+  },
+  {
+    "pattern": "\\bpostgres(?:ql)?:14\\b",
+    "flags": "i",
+    "sev": "warn",
+    "message": "postgres:14 - PostgreSQL supports a major version for five years, so 14 reaches end of life on 12 November 2026. Replace with postgres:17.",
+    "fix": "image: postgres:17"
+  },
+  {
+    "pattern": "\\bmysql:5\\.[0-9]\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "MySQL 5.7 reached end of life on 31 October 2023 and 5.6 in February 2021. Replace with mysql:8.4, the current LTS.",
+    "fix": "image: mysql:8.4"
+  },
+  {
+    "pattern": "\\bphp:(?:7\\.[0-9]|8\\.[01])\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "PHP 8.1 security support ended on 31 December 2025; 8.0 and every 7.x are older. Replace with php:8.4-trixie.",
+    "fix": "FROM php:8.4-trixie"
+  },
+  {
+    "pattern": "\\bphp:8\\.2\\b",
+    "flags": "i",
+    "sev": "warn",
+    "message": "php:8.2 - PHP 8.2 reaches end of life on 31 December 2026, after which the PHP project ships no patches for it. Replace with php:8.4-trixie.",
+    "fix": "FROM php:8.4-trixie"
+  },
+  {
+    "pattern": "\\bcentos:(?:6|7|8|stream8)\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "CentOS 7 reached end of life on 30 June 2024 and CentOS 8 on 31 December 2021. The distribution line is finished. Replace with a maintained base such as debian:trixie.",
+    "fix": "FROM debian:trixie"
+  },
+  {
+    "pattern": "\\bopenjdk:",
+    "flags": "i",
+    "sev": "warn",
+    "message": "The openjdk Docker Official Image is deprecated and no longer updated. Replace with eclipse-temurin:21-jre-noble.",
+    "fix": "FROM eclipse-temurin:21-jre-noble"
+  },
+  {
+    "pattern": "\\b[\\w./-]+:latest\\b",
+    "flags": "i",
+    "sev": "info",
+    "message": "A :latest tag floats. The image you build today is not the image you built last month, so no end-of-life check - this one included - can tell you what is actually in the layer. Pin a dated tag.",
+    "fix": "pin an explicit tag, e.g. FROM debian:trixie"
+  }
+]
