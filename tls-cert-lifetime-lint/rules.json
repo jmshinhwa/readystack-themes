@@ -1,0 +1,101 @@
+[
+  {
+    "id": "openssl-days-over-200",
+    "pattern": "-days[\\s=]+(?:[1-9][0-9]{3,}|[3-9][0-9]{2}|2(?:[1-9][0-9]|0[1-9]))\\b",
+    "flags": "",
+    "sev": "error",
+    "message": "openssl -days is over 200. Since 2026-03-15 a publicly trusted TLS certificate may not exceed 200 days (CA/Browser Forum ballot SC-081v3), and the cap falls to 100 days on 2027-03-15. A public CA will refuse or truncate this request.",
+    "fix": "Use -days 90 and let ACME renew, or keep this key for an internal CA only."
+  },
+  {
+    "id": "openssl-days-101-200",
+    "pattern": "-days[\\s=]+(?:1(?:[1-9][0-9]|0[1-9])|200)\\b",
+    "flags": "",
+    "sev": "warn",
+    "message": "openssl -days is between 101 and 200. That is inside the 200-day cap in force today but over the 100-day cap that starts 2027-03-15 (SC-081v3). This request stops working on that date.",
+    "fix": "Move to a 90-day ACME renewal before 2027-03-15."
+  },
+  {
+    "id": "tf-validity-hours-over-4800",
+    "pattern": "validity_period_hours\\s*=\\s*(?:[1-9][0-9]{5,}|[1-9][0-9]{4}|[5-9][0-9]{3}|49[0-9]{2}|48[1-9][0-9]|480[1-9])\\b",
+    "flags": "",
+    "sev": "error",
+    "message": "Terraform validity_period_hours is over 4800 hours (200 days), the public TLS maximum in force since 2026-03-15. On 2027-03-15 the ceiling becomes 2400 hours and on 2029-03-15 it becomes 1128 hours (47 days) - SC-081v3.",
+    "fix": "Set validity_period_hours = 2160 (90 days) and drive renewal from ACME."
+  },
+  {
+    "id": "certmanager-duration-over-4800h",
+    "pattern": "duration:\\s*\\\"?(?:[1-9][0-9]{5,}|[1-9][0-9]{4}|[5-9][0-9]{3}|49[0-9]{2}|48[1-9][0-9]|480[1-9])h\\b",
+    "flags": "",
+    "sev": "error",
+    "message": "cert-manager duration is over 4800h (200 days). A publicly trusted issuer cannot honour it under SC-081v3; the certificate comes back shorter than the manifest claims, so renewBefore is computed against a lifetime that does not exist.",
+    "fix": "duration: 2160h with renewBefore: 720h, and let the issuer own the schedule."
+  },
+  {
+    "id": "certmanager-duration-2401-4800h",
+    "pattern": "duration:\\s*\\\"?(?:2(?:[5-9][0-9]{2}|4(?:[1-9][0-9]|0[1-9]))|3[0-9]{3}|4[0-7][0-9]{2}|4800)h\\b",
+    "flags": "",
+    "sev": "warn",
+    "message": "cert-manager duration is between 2401h and 4800h. Legal today, refused from 2027-03-15 when the public TLS maximum drops to 100 days (2400h) - SC-081v3.",
+    "fix": "Set duration: 2160h now so the 2027 change is a no-op."
+  },
+  {
+    "id": "expiry-alert-too-late",
+    "pattern": "(?:cert(?:ificate)?[_-]?expiry|expiry[_-]?days|days[_-]?(?:until|to|before)[_-]?expir\\w*|expires?[_-]?in[_-]?days)\\D{0,12}\\b(?:[0-9]|1[0-9]|2[01])\\b",
+    "flags": "i",
+    "sev": "warn",
+    "message": "This expiry alert only fires with 21 days or less left. Under a 100-day certificate (2027-03-15) and a 47-day certificate (2029-03-15) the renewal window has already closed by then, so the page arrives after the outage is unavoidable.",
+    "fix": "Alert at one third of the certificate lifetime - 33 days for a 100-day certificate, 15 for a 47-day one."
+  },
+  {
+    "id": "hpkp-public-key-pins",
+    "pattern": "Public-Key-Pins(?:-Report-Only)?\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "HTTP Public Key Pinning is being sent. Every major browser removed support for it, and a pin set outlives a certificate that is now re-keyed every 47 to 100 days, so it locks visitors out of the site it was meant to protect.",
+    "fix": "Delete the header; use a CAA record plus Certificate Transparency monitoring instead."
+  },
+  {
+    "id": "tls-1-0-1-1-enabled",
+    "pattern": "(?:ssl_protocols|SSLProtocol|sslProtocols|ssl_min_version|minimum_protocol_version)\\b[^\\n]*\\bTLSv?1(?:[._]?[01])?(?![.\\d])",
+    "flags": "",
+    "sev": "error",
+    "message": "TLS 1.0 or TLS 1.1 is still enabled. RFC 8996 deprecated both, current browsers refuse them, and PCI DSS forbids them for cardholder data.",
+    "fix": "Leave only TLSv1.2 and TLSv1.3 on this directive."
+  },
+  {
+    "id": "go-mintls-10-11",
+    "pattern": "tls\\.VersionTLS1[01]\\b",
+    "flags": "",
+    "sev": "error",
+    "replace": "tls.VersionTLS12",
+    "message": "Go tls.Config MinVersion is pinned to TLS 1.0 or 1.1, both deprecated by RFC 8996. Anything negotiating down to them is a downgrade path you are keeping open on purpose.",
+    "fix": "MinVersion: tls.VersionTLS12"
+  },
+  {
+    "id": "sha1-signature",
+    "pattern": "-sha1\\b",
+    "flags": "",
+    "sev": "error",
+    "replace": "-sha256",
+    "message": "SHA-1 signing is requested. Public CAs stopped signing SHA-1 certificates in 2016 and browsers reject the chain outright, so this certificate cannot be used on a public endpoint.",
+    "fix": "-sha256"
+  },
+  {
+    "id": "rsa-key-under-2048",
+    "pattern": "\\brsa:(?:512|1024)\\b",
+    "flags": "",
+    "sev": "error",
+    "replace": "rsa:2048",
+    "message": "An RSA key under 2048 bits is being generated. NIST SP 800-131A disallows it and no publicly trusted CA will sign it, so the request fails at issuance rather than at deployment.",
+    "fix": "rsa:2048, or an EC P-256 key with -newkey ec -pkeyopt ec_paramgen_curve:P-256."
+  },
+  {
+    "id": "stale-max-lifetime-claim",
+    "pattern": "\\b(?:397|398|825)\\b[^\\n]{0,24}\\bdays?\\b|\\bdays?\\b[^\\n]{0,24}\\b(?:397|398|825)\\b",
+    "flags": "i",
+    "sev": "warn",
+    "message": "This text still states the old 397, 398 or 825-day maximum. The public TLS maximum has been 200 days since 2026-03-15, becomes 100 days on 2027-03-15 and 47 days on 2029-03-15 (SC-081v3), so anyone planning a renewal from this line plans it wrong.",
+    "fix": "State the current cap and the two dated step-downs."
+  }
+]
