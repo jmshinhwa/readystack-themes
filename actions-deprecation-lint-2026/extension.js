@@ -1,7 +1,10 @@
-// ⛔손으로 고치지 마라 — vsix_build.py 가 찍는다.
+// ⛔뼈대 (s165 rebuild28) — 두뇌는 ./engine.js + rules.json · 첫 1분은 ./auto.js · 유료 문턱은 license.js
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
+const GLOB = '**/*.{yml,yaml}';
+const PREFIX = 'actions-deprecation-lint-2026';
+const ENGINE = require('./engine.js');
 const S = {"run": "Auditing the workflow file", "done": "Deprecated lines found - see the panel for the date each one stops running.", "nothing_found": "No deprecated actions, runner labels or workflow commands in this file.", "paste": "Paste a workflow YAML file here", "check": "Audit this file", "extra_rules": "Extra rules of your own, checked alongside the 25 dated GitHub deprecations that ship inside.", "need_key": "Full version: scan every workflow in the repository, export the report and fail CI on a finding - not just this open file. $29 once, one licence key per person or team seat. A freelance DevOps engineer bills about $100/hour in 2026; one blocked release morning costs more.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "key_ok": "Licence accepted. Repository scan, export, CI output, watch-on-save and custom rules are open.", "key_bad": "That key did not validate. Check it in your Polar receipt, or buy a licence."};
 const PAID = ["workspace_scan", "export_report", "ci_json", "watch_on_save", "custom_rules"];
 
@@ -42,24 +45,11 @@ function report(rows) {
 }
 
 // ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질).
-const RULES = [{"pattern": "actions/checkout@v[1-4]\\b", "flags": "i", "sev": "warn", "fix": "actions/checkout@v5", "message": "actions/checkout@v1-v4 runs on Node 20. Node 20 is removed from GitHub-hosted runners on 2026-09-23 - move to actions/checkout@v5 (needs runner 2.327.1 or later)."}, {"pattern": "actions/setup-node@v[1-4]\\b", "flags": "i", "sev": "warn", "fix": "actions/setup-node@v5", "message": "actions/setup-node@v1-v4 runs on Node 20, removed from the runner on 2026-09-23 - move to actions/setup-node@v5."}, {"pattern": "actions/(upload|download)-artifact@v3\\b", "flags": "i", "sev": "error", "fix": "actions/upload-artifact@v6", "message": "artifact actions v3 were shut down on 2025-01-30 - the step fails today. Move to v6 (v4 changed to immutable artifacts, so a job that uploaded the same name twice needs merge-multiple)."}, {"pattern": "actions/(upload|download)-artifact@v[45]\\b", "flags": "i", "sev": "warn", "fix": "actions/upload-artifact@v6", "message": "artifact actions v4 and v5 still default to Node 20, which the runner drops on 2026-09-23 - move to v6 (needs runner 2.327.1 or later)."}, {"pattern": "actions/cache@v[12]\\b", "flags": "i", "sev": "error", "fix": "actions/cache@v5", "message": "actions/cache@v1 and @v2 stopped working on 2025-02-01, and the v1 cache service was shut down on 2025-04-15 - move to actions/cache@v5."}, {"pattern": "actions/cache@v[34]\\b", "flags": "i", "sev": "warn", "fix": "actions/cache@v5", "message": "actions/cache@v3-v4 runs on Node 20, removed from the runner on 2026-09-23 - move to actions/cache@v5, which uses the rewritten cache service."}, {"pattern": "actions/setup-python@v[1-5]\\b", "flags": "i", "sev": "warn", "fix": "actions/setup-python@v6", "message": "actions/setup-python@v1-v5 runs on Node 20, removed from the runner on 2026-09-23 - move to actions/setup-python@v6."}, {"pattern": "actions/setup-java@v[1-4]\\b", "flags": "i", "sev": "warn", "fix": "actions/setup-java@v6", "message": "actions/setup-java@v1-v4 is deprecated and runs on Node 20, removed from the runner on 2026-09-23 - move to actions/setup-java@v6."}, {"pattern": "runs-on:.*ubuntu-18\\.04", "flags": "i", "sev": "error", "fix": "ubuntu-24.04", "message": "the ubuntu-18.04 runner image was removed on 2022-12-01 - the job cannot start. Use ubuntu-24.04."}, {"pattern": "runs-on:.*ubuntu-20\\.04", "flags": "i", "sev": "error", "fix": "ubuntu-24.04", "message": "the ubuntu-20.04 runner image became fully unsupported on 2025-04-15 - the job fails to start. Use ubuntu-24.04."}, {"pattern": "runs-on:.*ubuntu-22\\.04", "flags": "i", "sev": "warn", "fix": "ubuntu-24.04", "message": "ubuntu-22.04 and ubuntu-22.04-arm enter deprecation on 2026-09-17 and are fully unsupported on 2027-04-17 - move to ubuntu-24.04 or ubuntu-26.04 before the brownouts start."}, {"pattern": "runs-on:.*windows-2019", "flags": "i", "sev": "error", "fix": "windows-2025", "message": "the windows-2019 runner image became fully unsupported on 2025-06-30 - the job fails to start. Use windows-2022 or windows-2025."}, {"pattern": "runs-on:.*macos-1[12]\\b", "flags": "i", "sev": "error", "fix": "macos-15", "message": "macos-11 was removed on 2024-06-28 and macos-12 on 2024-12-03 - the job cannot start. Use macos-15, or macos-15-intel if the build needs x86_64."}, {"pattern": "runs-on:.*macos-13\\b", "flags": "i", "sev": "error", "fix": "macos-15-intel", "message": "the macos-13 runner image was retired on 2025-12-04 - the job cannot start. Use macos-15 (arm64) or macos-15-intel for x86_64 builds."}, {"pattern": "runs-on:.*macos-latest", "flags": "i", "sev": "info", "fix": "macos-15-intel", "message": "macos-latest is arm64. An x86_64-only build silently needs macos-15-intel or a -large label, and GitHub drops x86_64 macOS after the macos-15 image retires in autumn 2027."}, {"pattern": "runs-on:.*ubuntu-latest", "flags": "i", "sev": "info", "fix": "ubuntu-24.04", "message": "ubuntu-latest resolves to ubuntu-24.04 today and moves without notice when GitHub promotes the next LTS (ubuntu-26.04 labels already exist). Pin the version if the build depends on the image contents."}, {"pattern": "::set-output", "flags": "i", "sev": "error", "fix": "echo \"name=value\" >> \"$GITHUB_OUTPUT\"", "message": "the ::set-output workflow command was disabled on 2023-06-01 and is now ignored - write to the $GITHUB_OUTPUT file instead."}, {"pattern": "::save-state", "flags": "i", "sev": "error", "fix": "echo \"name=value\" >> \"$GITHUB_STATE\"", "message": "the ::save-state workflow command was disabled on 2023-06-01 and is now ignored - write to the $GITHUB_STATE file instead."}, {"pattern": "::(set-env|add-path)", "flags": "i", "sev": "error", "fix": "echo \"NAME=value\" >> \"$GITHUB_ENV\"", "message": "the ::set-env and ::add-path commands were disabled on 2020-11-16 for a security advisory - write to $GITHUB_ENV or $GITHUB_PATH instead."}, {"pattern": "using:\\s*['\"]?node(12|16)['\"]?", "flags": "i", "sev": "error", "fix": "using: 'node24'", "message": "this action declares the node12 or node16 runtime, which no longer exists on the runner - declare using: 'node24'."}, {"pattern": "using:\\s*['\"]?node20['\"]?", "flags": "i", "sev": "warn", "fix": "using: 'node24'", "message": "this action declares the node20 runtime. Node 24 became the runner default on 2026-06-16 and Node 20 is removed on 2026-09-23 - declare using: 'node24' (needs runner 2.327.1 or later)."}, {"pattern": "ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION", "flags": "i", "sev": "warn", "fix": "using: 'node24'", "message": "this opt-out pins actions back to Node 20. It stops working on 2026-09-23 when Node 20 is removed from the runner - migrate the action to node24 instead of setting it."}, {"pattern": "FORCE_JAVASCRIPT_ACTIONS_TO_NODE24", "flags": "i", "sev": "info", "fix": "", "message": "this was the early opt-in to Node 24. Node 24 has been the runner default since 2026-06-16, so the variable no longer changes anything and can be deleted."}, {"pattern": "actions/(create-release|upload-release-asset)", "flags": "i", "sev": "warn", "fix": "gh release create", "message": "actions/create-release and actions/upload-release-asset were archived by GitHub and receive no runtime updates - use the gh CLI (gh release create) or softprops/action-gh-release."}, {"pattern": "node-version:\\s*['\"]?(16|18)(\\.|['\"]|\\s|$)", "flags": "i", "sev": "warn", "fix": "node-version: '24'", "message": "Node 16 reached end-of-life on 2023-09-11 and Node 18 on 2025-04-30 - neither gets security patches. Build against Node 22 or 24."}];
+// ★규칙은 rules.json · 두뇌는 engine.js (웹판과 같은 두뇌). 설정의 extraRules 만 여기서 얹는다.
 function scan(text, fileName) {
-  const lines = String(text).split(/\r?\n/);
-  const cfg = vscode.workspace.getConfiguration('actions-deprecation-lint-2026');
-  const extra = cfg.get('extraRules');
-  const feed = (globalThis.__yjFeed && Array.isArray(globalThis.__yjFeed.rules)) ? globalThis.__yjFeed.rules : [];
-  const rules = RULES.concat(Array.isArray(extra) ? extra : [], feed);
-  const hits = [];
-  for (let i = 0; i < lines.length; i++) {
-    for (const r of rules) {
-      let re;
-      try { re = new RegExp(r.pattern, r.flags || ''); } catch (e) { continue; }
-      // ★s126 — ★심각도를 실어 보낸다. ⛔없으면 min_severity 가 ★전부를 지운다 (내가 만들 뻔한 거짓말)
-      if (re.test(lines[i])) hits.push({ line: i + 1, msg: r.message, fix: r.fix || null,
-                                         sev: r.sev || 'warn' });
-    }
-  }
-  return hits;
+  const extra = vscode.workspace.getConfiguration('actions-deprecation-lint-2026').get('extraRules');
+  const res = ENGINE.engine.check(text, { today: new Date().toISOString().slice(0, 10), path: fileName, extra: Array.isArray(extra) ? extra : [] });
+  return (res.findings || []).map(function (f) { return { line: f.line, msg: f.msg, fix: f.fix, sev: f.sev }; });
 }
 
 const SNIPPETS = {};
@@ -84,29 +74,25 @@ async function showReport() { out().show(true); }
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
 async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
 
-// ★역방향 체험 — ★첫 스윕부터 7일간 ★전체 스윕과 보고서를 키 없이 ★줄이지 않고 준다. 그 뒤에 키를 묻는다.
-//   ⛔무료 경로(열린 파일·고른 줄)는 이 문도 지나지 않는다.
-const TRIAL_MS = 7 * 24 * 3600 * 1000;
-const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
+// ★유료 문 — 작업공간 스윕 · 보고서 · CI. ⛔무료 경로(열린 파일·고른 줄)는 이 문을 지나지 않는다.
 const NEED_KEY = S.need_key;   // ⛔원문을 잡아둔다 — 아래에서 앞에 붙이므로 쌓이면 안 된다
-async function sweepTrial(ctx) {
+async function sweepGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
-  let until = Number(st.get('sweepTrialUntil') || 0);
-  /* s158: no new free trial is opened (trials already started are honoured) */
-  const inTrial = !hasKey && Date.now() < until;
-  if (!inTrial) {
-    // ★자기 폴더에서 본 숫자를 먼저 보여주고 키를 묻는다 (역방향 체험의 심장)
+  const until = Number(st.get('sweepTrialUntil') || 0);   // s158 — already-started windows are honoured; none are opened
+  const open = !hasKey && Date.now() < until;
+  if (!open) {
+    // ★자기 폴더에서 본 숫자를 먼저 보여주고 키를 묻는다
     const last = st.get('lastSweep');
-    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found '
+    S.need_key = (last && last.files ? ('Your last sweep covered ' + last.files + ' files and found '
       + last.findings + ' findings. ') : '') + NEED_KEY;
     if (!(await lic.ensure(vscode, ctx, S))) return null;
   }
-  return { inTrial: inTrial, st: st };
+  return { st: st };
 }
 
 async function scanWorkspace(ctx) {
-  const t = await sweepTrial(ctx);
+  const t = await sweepGate(ctx);
   if (!t) return;
   // ★설정을 읽는다 — max_files · exclude_glob. ⛔전에는 박혀 있어서 설정이 거짓말이었다 (s126)
   const _c = vscode.workspace.getConfiguration('actions-deprecation-lint-2026');
@@ -123,14 +109,14 @@ async function scanWorkspace(ctx) {
   const found = report(rows);
   await t.st.update('lastSweep', { files: rows.length, findings: found,
                                    at: new Date().toISOString().slice(0, 10) });
-  vscode.window.showInformationMessage((found ? S.done : S.nothing_found) + (t.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage((found ? S.done : S.nothing_found));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
 //   🔴s125: ⛔전에는 CSV 하나만 썼는데 ★프롬프트는 "CSV / JSON / HTML" 이라고 약속했다
 //     ⇒ ★검수가 옳게 잡았다("⑤거짓 주장"). ★법(S24): 한계를 만나면 ⛔좁히지 말고 ★손을 넓힌다.
 async function exportReport(ctx) {
-  const t = await sweepTrial(ctx);
+  const t = await sweepGate(ctx);
   if (!t) return;
   const ed = vscode.window.activeTextEditor;
   const rows = ed ? [{ file: ed.document.fileName, hits: scan(ed.document.getText(), ed.document.fileName) }] : [];
@@ -158,11 +144,11 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'actions-deprecation-lint-2026-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath + (t.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
 }
 
 async function ciJson(ctx) {
-  const t = await sweepTrial(ctx);
+  const t = await sweepGate(ctx);
   if (!t) return;
   const ed = vscode.window.activeTextEditor;
   const hits = ed ? scan(ed.document.getText(), ed.document.fileName) : [];
@@ -170,7 +156,7 @@ async function ciJson(ctx) {
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'actions-deprecation-lint-2026-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath + (t.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
 }
 
 async function watchOnSave(ctx) {
@@ -200,6 +186,10 @@ function activate(ctx) {
   reg('actions-deprecation-lint-2026.ci_json', function () { return ciJson(ctx); });
   reg('actions-deprecation-lint-2026.watch_on_save', function () { return watchOnSave(ctx); });
   reg('actions-deprecation-lint-2026.custom_rules', function () { return customRules(ctx); });
+  // s165 — auto.js (status bar · first-minute hint) calls PREFIX.checkFile / PREFIX.checkWorkspace
+  reg(PREFIX + '.checkFile', runCurrent);
+  reg(PREFIX + '.checkWorkspace', function () { return scanWorkspace(ctx); });
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: 'GitHub Actions Deprecation Lint', slug: 'actions-deprecation-lint-2026', price: 29 }); } catch (e) {}
   // ★설정을 읽는다 — show_on_start. ⛔전에는 안 읽어서 설정이 거짓말이었다 (s126)
   if (vscode.workspace.getConfiguration('actions-deprecation-lint-2026').get('show_on_start') === true) {
     if (typeof runCurrent === 'function') { try { runCurrent(ctx); } catch (e) { /* 열린 파일이 없으면 조용히 */ } }
