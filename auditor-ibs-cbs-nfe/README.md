@@ -55,7 +55,7 @@ O documento fiscal **não sai da sua máquina**. Nada é enviado para nenhum ser
 - **Laudo em arquivo (CSV/JSON/HTML)** — para anexar ao chamado ou mandar ao contador
 - **Saída JSON para o CI** — quebra o build antes de subir XML fora da NT
 
-$29, uma única vez · uma chave por pessoa ou assento de equipe · reembolso total em 7 dias.
+$29, uma única vez · uma chave por pessoa ou assento de equipe.
 Assinaturas de apoio à Reforma Tributária para times fiscais partem de R$ 147/mês.
 
 Full workspace sweep and report: licence key.
