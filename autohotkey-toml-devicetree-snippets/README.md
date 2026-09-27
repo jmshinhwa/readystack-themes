@@ -27,7 +27,7 @@ Packs: AutoHotkey v2 (7) · TOML (6) · DeviceTree (5) · MicroProfile/Java (5) 
 - **Insert a snippet from the 9 packs** — any of the 46, at the cursor
 - **Show everything inside this pack** — every rule message and every snippet trigger, so you can read what it does before you trust it
 
-That is the whole job on one file. No watermark, no trial counter, no locked answers.
+That is the whole job on one file. No watermark, no locked answers.
 
 ## What a licence adds — $29 once
 
