@@ -1,0 +1,15 @@
+# m h dom mon dow  command
+SHELL=/bin/bash
+MAILTO=ops@example.com
+
+# nightly database dump
+30 2 * * * pg_dump appdb > /var/backups/appdb-$(date +%Y-%m-%d).sql
+
+# month-end invoice run
+0 4 31 * * /opt/billing/bin/close-month
+
+# weekly report, first Monday of the month
+0 6 1-7 * 1 /opt/reports/bin/weekly
+
+# cache warmer
+*/7 * * * * /opt/app/bin/warm-cache
