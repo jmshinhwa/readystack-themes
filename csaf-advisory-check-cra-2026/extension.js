@@ -4,9 +4,12 @@ const vscode = require('vscode');
 const path = require('path');
 const fs = require('fs');
 const lic = require('./license.js');
-const CSAF = require('./csaf.js');
+const ENGINE = require('./engine.js');
+const CSAF = ENGINE.CSAF;
+const GLOB = '**/*.json';
+const PREFIX = 'csaf-advisory-check-cra-2026';
 
-const SLUG = 'csaf-advisory-check-cra-2026';
+const SLUG = PREFIX;
 const DISPLAY = 'CSAF Advisory Check';
 const RULES = CSAF.TESTS;                 // 43 numbered tests from CSAF 2.0 section 6.1
 
@@ -23,10 +26,8 @@ const S = {
   paste: 'Open a CSAF advisory (.json) and run the check.'
 };
 
-// The sentence the extension already uses, kept apart so the trial can put a line in front of it.
+// The sentence the extension already uses, kept apart so the last sweep's numbers can go in front of it.
 const NEED_KEY = S.need_key;
-const TRIAL_MS = 7 * 24 * 3600 * 1000;
-const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
 
 let DIAG = null;
 function diag() {
@@ -46,10 +47,7 @@ function opts() {
   };
 }
 function runEngine(text) {
-  const o = opts();
-  const res = CSAF.check(text, { base: o.base });
-  if (o.skip.length) res.findings = res.findings.filter((f) => o.skip.indexOf(f.test) < 0);
-  return res;
+  return ENGINE.raw(text, opts());
 }
 
 function paint(doc, res) {
@@ -107,18 +105,17 @@ async function listTests() {
   c.show(true);
 }
 
-// ── reverse trial: the workspace pass and the evidence file, free for 7 days ───
-// The first sweep starts the 7 days. After that the key is asked for, with the numbers
-// that sweep found put in front of the sentence.
+// ── paid gate: the workspace pass and the evidence file ───────────────────────
+// The key is asked for with the numbers of the last sweep put in front of the sentence.
+// (s158: nothing new is opened for free; an access window already started is honoured.)
 async function sweepGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  /* s158: no new free trial is opened (trials already started are honoured) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
-    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found '
+    S.need_key = (last && last.files ? ('Your last sweep covered ' + last.files + ' files and found '
       + last.findings + ' findings. ') : '') + NEED_KEY;
     if (!(await lic.ensure(vscode, ctx, S))) return null;
   }
@@ -143,8 +140,7 @@ async function workspaceScan(ctx) {
   const found = report(rows);
   workspaceScan._last = rows;
   await gate.st.update('lastSweep', { files: rows.length, findings: found, at: new Date().toISOString().slice(0, 10) });
-  vscode.window.showInformationMessage(rows.length + ' CSAF document(s) checked.'
-    + (gate.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage(rows.length + ' CSAF document(s) checked.');
   return rows;
 }
 
@@ -168,8 +164,7 @@ async function exportEvidence(ctx) {
   fs.writeFileSync(target, body, 'utf8');
   const doc = await vscode.workspace.openTextDocument(target);
   vscode.window.showTextDocument(doc, { preview: false });
-  vscode.window.showInformationMessage('Evidence written: ' + path.basename(target)
-    + (gate.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage('Evidence written: ' + path.basename(target));
   return target;
 }
 function esc(s) { return '"' + String(s === undefined ? '' : s).replace(/"/g, '""') + '"'; }
@@ -273,11 +268,14 @@ function activate(ctx) {
   reg('showReport', showReport);
   reg('listTests', listTests);
   reg('workspaceScan', () => workspaceScan(ctx));
+  reg('checkWorkspace', () => workspaceScan(ctx));   // the name auto.js's workspace hint calls (not in the listing)
   reg('exportEvidence', () => exportEvidence(ctx));
   reg('exportCiChecker', () => exportCiChecker(ctx));
   reg('watchOnSave', () => watchOnSave(ctx));
   ctx.subscriptions.push(diag());
   if (cfg().get('runOnSave') === true) { watchOnSave(ctx); }
+  // s158 — the extension speaks: check on open/save · status bar N · one workspace hint → workspaceScan (auto.js · settings readystack.autoCheck/workspaceHint turn it off)
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: 'CSAF Advisory Lint - security advisory JSON (CRA, VEX)', slug: 'csaf-advisory-check-cra-2026', price: 29 }); } catch (e) {}
 }
 function deactivate() { if (DIAG) DIAG.dispose(); }
 
