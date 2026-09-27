@@ -1,0 +1,78 @@
+{
+  "document": {
+    "category": "csaf_security_advisory",
+    "csaf_version": "2.0",
+    "lang": "en",
+    "source_lang": "en",
+    "publisher": {
+      "category": "vendor",
+      "name": "Northwind Robotics GmbH",
+      "namespace": "https://psirt.example.com"
+    },
+    "title": "Northwind Gateway 4.2.0 - authentication bypass",
+    "tracking": {
+      "current_release_date": "2026-09-10T09:00:00Z",
+      "id": "NWR-2026-0007",
+      "initial_release_date": "2026-09-08T09:00:00Z",
+      "revision_history": [
+        { "date": "2026-09-08T09:00:00Z", "number": "1", "summary": "Initial release" },
+        { "date": "2026-09-10T09:00:00Z", "number": "3", "summary": "Fix available" }
+      ],
+      "status": "final",
+      "version": "3"
+    }
+  },
+  "product_tree": {
+    "full_product_names": [
+      { "name": "Northwind Gateway 4.2.0", "product_id": "CSAFPID-0001" }
+    ],
+    "branches": [
+      {
+        "category": "vendor",
+        "name": "Northwind Robotics GmbH",
+        "branches": [
+          {
+            "category": "product_version",
+            "name": "4.2.0 and earlier",
+            "product": {
+              "name": "Northwind Gateway 4.2.0",
+              "product_id": "CSAFPID-0001",
+              "product_identification_helper": { "purl": "northwind/gateway@4.2.0" }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "vulnerabilities": [
+    {
+      "cve": "CVE-2026-11111",
+      "cwe": { "id": "CWE-287", "name": "Authentication Bypass" },
+      "notes": [
+        { "category": "description", "text": "The session check can be skipped by sending an empty cookie." }
+      ],
+      "flags": [
+        { "label": "component_not_present" }
+      ],
+      "product_status": {
+        "known_affected": ["CSAFPID-0001"],
+        "fixed": ["CSAFPID-0001"]
+      },
+      "remediations": [
+        { "category": "vendor_fix", "details": "Update to 4.2.1.", "product_ids": ["CSAFPID-0009"] },
+        { "category": "workaround", "details": "Disable the web interface." }
+      ],
+      "scores": [
+        {
+          "cvss_v3": {
+            "version": "3.1",
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "baseScore": 9.1,
+            "baseSeverity": "HIGH"
+          },
+          "products": ["CSAFPID-0001"]
+        }
+      ]
+    }
+  ]
+}
