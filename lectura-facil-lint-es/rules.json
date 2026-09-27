@@ -1,0 +1,14 @@
+[
+ {"id": "LF01", "check": "frase-larga", "sev": "warning", "title": "Frase de más de 20 palabras", "fix": "Parte la frase en dos o más frases cortas. Una idea por frase."},
+ {"id": "LF02", "check": "punto-y-coma", "sev": "warning", "title": "Punto y coma", "fix": "Cambia el punto y coma por un punto y empieza una frase nueva."},
+ {"id": "LF03", "check": "numero-romano", "sev": "warning", "title": "Número romano", "fix": "Escribe el número con cifras: siglo 21, título 3."},
+ {"id": "LF04", "check": "porcentaje", "sev": "warning", "title": "Porcentaje", "fix": "Explica la parte con palabras: 4 de cada 10."},
+ {"id": "LF05", "check": "abreviatura", "sev": "warning", "title": "Abreviatura", "fix": "Escribe la palabra completa: artículo, número, página, por ejemplo."},
+ {"id": "LF06", "check": "sigla-sin-explicar", "sev": "warning", "title": "Sigla sin explicar", "fix": "La primera vez escribe el nombre completo y la sigla entre paréntesis: Documento Nacional de Identidad (DNI)."},
+ {"id": "LF07", "check": "voz-pasiva", "sev": "warning", "title": "Voz pasiva", "fix": "Di quién hace la acción: La comisión revisa las solicitudes."},
+ {"id": "LF08", "check": "futuro-subjuntivo", "sev": "error", "title": "Futuro de subjuntivo", "fix": "Usa el presente: si recibes, si tienes, si hay."},
+ {"id": "LF09", "check": "fecha-numerica", "sev": "warning", "title": "Fecha solo con números", "fix": "Escribe el mes con letras: 30 de noviembre de 2026."},
+ {"id": "LF10", "check": "mayusculas-sostenidas", "sev": "warning", "title": "Texto entero en mayúsculas", "fix": "Escribe en minúsculas y usa negrita o un título para destacar."},
+ {"id": "LF11", "check": "cursiva", "sev": "warning", "title": "Texto en cursiva", "fix": "Quita la cursiva. Si hace falta destacar, usa negrita."},
+ {"id": "LF12", "check": "sin-version-lectura-facil", "sev": "error", "title": "Formulario o guía de trámite sin versión en lectura fácil", "fix": "Publica una versión en lectura fácil del formulario y de la guía y enlázala en este documento (RD 707/2026, art. 10.2.a)."}
+]
