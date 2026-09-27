@@ -28,7 +28,7 @@ Every finding carries the article it comes from and one concrete line to write i
 2. Run **CRA 24/72/14: Check this file** from the command palette.
 3. Read the findings in the output panel and fix them.
 
-That is the free scope, and it is the whole rule set — no watermark, no trial counter, no withheld finding.
+That is the free scope, and it is the whole rule set — no watermark, no usage counter, no withheld finding.
 
 The full version widens the **scope**: it sweeps every Markdown file in the workspace in one pass, works out which checks are answered *nowhere* in the repository rather than merely missing from one file, and writes a single dated `CRA-24-72-14-READINESS.md` you can hand to an auditor. Run **CRA 24/72/14: Sweep the whole workspace** to unlock it with a licence key.
 
