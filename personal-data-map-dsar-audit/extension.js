@@ -2,7 +2,11 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
+const GLOB = '**/{*.sql,*.prisma,models.py,models/*.py,*.entity.ts,*.entity.js,entities/*.ts,*.model.ts}';
+const PREFIX = 'personal-data-map-dsar-audit';
+const ENGINE = require('./engine.js');
 const S = {"run": "Mapping personal data in this file", "done": "Personal-data columns found - the panel lists each line and its GDPR article.", "nothing_found": "No personal-data columns matched in this file.", "paste": "Paste a migration, Prisma schema, Django model or TypeORM entity here", "check": "Map this schema", "extra_rules": "Extra rules of your own, checked alongside the 13 GDPR schema rules that ship inside.", "need_key": "Full version: map every migration and model in the repository, export the map as CSV, JSON or HTML, and fail CI on a finding - not just this open file. $29 once, one licence key per person or team seat. An independent EU privacy consultant bills EUR 100-200/hour and one manual DSAR averages about $1,524 in staff time.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "key_ok": "Licence accepted. Repository map, export and CI output are open.", "key_bad": "That key did not validate. Check it in your Polar receipt, or buy a licence."};
+S.title = 'Personal Data Map - find PII columns for GDPR DSAR (SQL, ORM)';   // = package.json displayName (auto.js · clean-sweep badge)
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 
 function out() {
@@ -41,25 +45,12 @@ function report(rows) {
   return n;
 }
 
-// ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질).
-const RULES = [{"pattern": "(?:(?:(?<![A-Za-z0-9_])(?:SEXUAL_ORIENTATION|sexual-orientation|sexual_orientation|POLITICAL_OPINION|political-opinion|political_opinion|sexualOrientation|politicalOpinion|CRIMINAL_RECORD|criminal-record|criminal_record|POLITICAL_VIEW|criminalRecord|political-view|political_view|politicalView|UNION_MEMBER|union-member|union_member|TRADE_UNION|trade-union|trade_union|unionMember|CONVICTION|conviction|tradeUnion|BIOMETRIC|DISABILIT|ETHNICITY|RELIGIOUS|biometric|disabilit|ethnicity|religious|RELIGION|SEX_LIFE|religion|sex-life|sex_life|DIAGNOS|GENETIC|MEDICAL|diagnos|genetic|medical|sexLife|ETHNIC|HEALTH|RACIAL|ethnic|health|racial)|(?<=[a-z0-9])(?:SexualOrientation|PoliticalOpinion|CriminalRecord|PoliticalView|UnionMember|Conviction|TradeUnion|Biometric|Disabilit|Ethnicity|Religious|Religion|Diagnos|Genetic|Medical|SexLife|Ethnic|Health|Racial))[A-Za-z0-9_]{0,24})(?:\\s*:\\s*[A-Za-z_$\\[]|\\s*=\\s*(?:models\\.|db\\.Column|Column\\(|sa\\.Column|mapped_column)|\\s*@Column|\\s+[A-Za-z_]*(?:[Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Nn][Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Tt][Ee][Xx][Tt]|[Cc][Hh][Aa][Rr]|[Ss][Tt][Rr][Ii][Nn][Gg]|[Jj][Ss][Oo][Nn]|[Bb][Oo][Oo][Ll]|[Ii][Nn][Tt]|[Ss][Ee][Rr][Ii][Aa][Ll]|[Dd][Aa][Tt][Ee]|[Tt][Ii][Mm][Ee]|[Dd][Ee][Cc][Ii][Mm][Aa][Ll]|[Nn][Uu][Mm][Ee][Rr][Ii][Cc]|[Uu][Uu][Ii][Dd]|[Bb][Ll][Oo][Bb]|[Bb][Yy][Tt][Ee][Aa]|[Ee][Nn][Uu][Mm]|[Ii][Nn][Ee][Tt]|[Cc][Ii][Tt][Ee][Xx][Tt]|[Mm][Oo][Nn][Ee][Yy]|[Ff][Ll][Oo][Aa][Tt]|[Rr][Ee][Aa][Ll]))", "flags": "", "message": "Art. 9 special-category data. It needs an Art. 9(2) condition on top of your Art. 6 legal basis, and it pushes this table over the Art. 35 DPIA threshold.", "sev": "error", "fix": "Record the Art. 9(2) condition beside this column and run a DPIA."}, {"pattern": "(?:(?:(?<![A-Za-z0-9_])(?:NATIONAL_INSURANCE|national-insurance|national_insurance|nationalInsurance|DRIVERS_LICENCE|DRIVERS_LICENSE|SOCIAL_SECURITY|TAX_FILE_NUMBER|drivers-licence|drivers-license|drivers_licence|drivers_license|social-security|social_security|tax-file-number|tax_file_number|DRIVER_LICENCE|DRIVER_LICENSE|driver-licence|driver-license|driver_licence|driver_license|driversLicence|driversLicense|socialSecurity|driverLicence|driverLicense|taxFileNumber|NATIONAL_ID|national-id|national_id|nationalId|PASSPORT|passport)|(?<=[a-z0-9])(?:NationalInsurance|DriversLicence|DriversLicense|SocialSecurity|DriverLicence|DriverLicense|TaxFileNumber|NationalId|Passport))[A-Za-z0-9_]{0,24}|(?:(?<![A-Za-z0-9_])(?:NINO|nino|SSN|ssn)|(?<=[a-z0-9])(?:Nino|Ssn))(?:[_-]?(?:id|no|num|number|code|value)|Id|No|Num|Number|Code|Value)?)(?:\\s*:\\s*[A-Za-z_$\\[]|\\s*=\\s*(?:models\\.|db\\.Column|Column\\(|sa\\.Column|mapped_column)|\\s*@Column|\\s+[A-Za-z_]*(?:[Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Nn][Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Tt][Ee][Xx][Tt]|[Cc][Hh][Aa][Rr]|[Ss][Tt][Rr][Ii][Nn][Gg]|[Jj][Ss][Oo][Nn]|[Bb][Oo][Oo][Ll]|[Ii][Nn][Tt]|[Ss][Ee][Rr][Ii][Aa][Ll]|[Dd][Aa][Tt][Ee]|[Tt][Ii][Mm][Ee]|[Dd][Ee][Cc][Ii][Mm][Aa][Ll]|[Nn][Uu][Mm][Ee][Rr][Ii][Cc]|[Uu][Uu][Ii][Dd]|[Bb][Ll][Oo][Bb]|[Bb][Yy][Tt][Ee][Aa]|[Ee][Nn][Uu][Mm]|[Ii][Nn][Ee][Tt]|[Cc][Ii][Tt][Ee][Xx][Tt]|[Mm][Oo][Nn][Ee][Yy]|[Ff][Ll][Oo][Aa][Tt]|[Rr][Ee][Aa][Ll]))", "flags": "", "message": "National identifier. Art. 87 lets each Member State restrict its processing, and a breach of it raises the Art. 34 duty to tell the person directly.", "sev": "error", "fix": "Store a salted hash or an internal id, and keep the raw number out of joins."}, {"pattern": "(?:(?:(?<![A-Za-z0-9_])(?:CLIENT_SECRET|REFRESH_TOKEN|SESSION_TOKEN|client-secret|client_secret|refresh-token|refresh_token|session-token|session_token|ACCESS_TOKEN|access-token|access_token|clientSecret|refreshToken|sessionToken|PRIVATE_KEY|accessToken|private-key|private_key|privateKey|PASSWORD|password|API_KEY|api-key|api_key|PASSWD|SECRET|apiKey|passwd|secret)|(?<=[a-z0-9])(?:ClientSecret|RefreshToken|SessionToken|AccessToken|PrivateKey|Password|ApiKey|Passwd|Secret))(?![_-]?(?:[Hh]ash|HASH|[Dd]igest|[Bb]crypt|[Aa]rgon|[Ss]crypt|sha\\d|[Ee]ncrypted|[Ee]nc|[Kk]ms|KMS|[Vv]ault)\\b)[A-Za-z0-9_]{0,24}|(?:(?<![A-Za-z0-9_])(?:APIKEY|apikey|PWD|pwd)|(?<=[a-z0-9])(?:Apikey|Pwd))(?![_-]?(?:[Hh]ash|HASH|[Dd]igest|[Bb]crypt|[Aa]rgon|[Ss]crypt|sha\\d|[Ee]ncrypted|[Ee]nc|[Kk]ms|KMS|[Vv]ault)\\b)(?:[_-]?(?:id|no|num|number|code|value)|Id|No|Num|Number|Code|Value)?)(?:\\s*:\\s*[A-Za-z_$\\[]|\\s*=\\s*(?:models\\.|db\\.Column|Column\\(|sa\\.Column|mapped_column)|\\s*@Column|\\s+[A-Za-z_]*(?:[Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Nn][Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Tt][Ee][Xx][Tt]|[Cc][Hh][Aa][Rr]|[Ss][Tt][Rr][Ii][Nn][Gg]|[Jj][Ss][Oo][Nn]|[Bb][Oo][Oo][Ll]|[Ii][Nn][Tt]|[Ss][Ee][Rr][Ii][Aa][Ll]|[Dd][Aa][Tt][Ee]|[Tt][Ii][Mm][Ee]|[Dd][Ee][Cc][Ii][Mm][Aa][Ll]|[Nn][Uu][Mm][Ee][Rr][Ii][Cc]|[Uu][Uu][Ii][Dd]|[Bb][Ll][Oo][Bb]|[Bb][Yy][Tt][Ee][Aa]|[Ee][Nn][Uu][Mm]|[Ii][Nn][Ee][Tt]|[Cc][Ii][Tt][Ee][Xx][Tt]|[Mm][Oo][Nn][Ee][Yy]|[Ff][Ll][Oo][Aa][Tt]|[Rr][Ee][Aa][Ll]))", "flags": "", "message": "Credential under a plain name. Art. 32 requires state-of-the-art protection, and a DSAR export under Art. 15 must never return this column.", "sev": "error", "fix": "Rename to <name>_hash and store a derived value, or move it to a secret store."}, {"pattern": "(?:[Cc][Rr][Ee][Aa][Tt][Ee]\\s+(?:[Oo][Rr]\\s+[Rr][Ee][Pp][Ll][Aa][Cc][Ee]\\s+)?[Tt][Aa][Bb][Ll][Ee]|^\\s*[Mm][Oo][Dd][Ee][Ll]\\s+|^\\s*[Cc][Ll][Aa][Ss][Ss]\\s+)[^\\n]*(?:[Aa][Uu][Dd][Ii][Tt]|[Hh][Ii][Ss][Tt][Oo][Rr][Yy]|[Aa][Rr][Cc][Hh][Ii][Vv][Ee]|[Bb][Aa][Cc][Kk][Uu][Pp]|[Ss][Hh][Aa][Dd][Oo][Ww]|[Ss][Nn][Aa][Pp][Ss][Hh][Oo][Tt]|[Jj][Oo][Uu][Rr][Nn][Aa][Ll]|[Ee][Vv][Ee][Nn][Tt][Ll][Oo][Gg]|_[Oo][Ll][Dd]|_[Cc][Oo][Pp][Yy]|_[Ll][Oo][Gg])", "flags": "", "message": "Copy table. Art. 17 erasure and Art. 15 access have to reach the copies too - this is where most incomplete DSARs are found, not in the main table.", "sev": "error"}, {"pattern": "[Rr][Ee][Ff][Ee][Rr][Ee][Nn][Cc][Ee][Ss]\\s+[`\"\\[]?\\w*(?:[Uu][Ss][Ee][Rr]|[Cc][Uu][Ss][Tt][Oo][Mm][Ee][Rr]|[Pp][Ee][Rr][Ss][Oo][Nn]|[Pp][Aa][Tt][Ii][Ee][Nn][Tt]|[Ee][Mm][Pp][Ll][Oo][Yy][Ee][Ee]|[Mm][Ee][Mm][Bb][Ee][Rr]|[Cc][Ll][Ii][Ee][Nn][Tt]|[Ss][Uu][Bb][Ss][Cc][Rr][Ii][Bb][Ee][Rr]|[Cc][Oo][Nn][Tt][Aa][Cc][Tt])\\w*[`\"\\]]?\\s*\\([^)]*\\)(?![^\\n]*[Oo][Nn]\\s+[Dd][Ee][Ll][Ee][Tt][Ee])", "flags": "", "message": "Foreign key to the subject table with no ON DELETE rule on this line. Erase the person and this row survives, so the Art. 17 erasure is incomplete.", "sev": "warn"}, {"pattern": "(?:(?:(?<![A-Za-z0-9_])(?:MOBILE_NUMBER|mobile-number|mobile_number|ADDRESS_LINE|address-line|address_line|mobileNumber|MAIDEN_NAME|POSTAL_CODE|addressLine|maiden-name|maiden_name|postal-code|postal_code|FIRST_NAME|GIVEN_NAME|first-name|first_name|given-name|given_name|maidenName|postalCode|FULL_NAME|LAST_NAME|TELEPHONE|firstName|full-name|full_name|givenName|last-name|last_name|telephone|POSTCODE|ZIP_CODE|fullName|lastName|postcode|zip-code|zip_code|SURNAME|surname|zipCode|E_MAIL|MSISDN|STREET|e-mail|e_mail|msisdn|street|EMAIL|PHONE|eMail|email|phone)|(?<=[a-z0-9])(?:MobileNumber|AddressLine|MaidenName|PostalCode|FirstName|GivenName|Telephone|FullName|LastName|Postcode|Surname|ZipCode|Msisdn|Street|EMail|Email|Phone))[A-Za-z0-9_]{0,24})(?:\\s*:\\s*[A-Za-z_$\\[]|\\s*=\\s*(?:models\\.|db\\.Column|Column\\(|sa\\.Column|mapped_column)|\\s*@Column|\\s+[A-Za-z_]*(?:[Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Nn][Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Tt][Ee][Xx][Tt]|[Cc][Hh][Aa][Rr]|[Ss][Tt][Rr][Ii][Nn][Gg]|[Jj][Ss][Oo][Nn]|[Bb][Oo][Oo][Ll]|[Ii][Nn][Tt]|[Ss][Ee][Rr][Ii][Aa][Ll]|[Dd][Aa][Tt][Ee]|[Tt][Ii][Mm][Ee]|[Dd][Ee][Cc][Ii][Mm][Aa][Ll]|[Nn][Uu][Mm][Ee][Rr][Ii][Cc]|[Uu][Uu][Ii][Dd]|[Bb][Ll][Oo][Bb]|[Bb][Yy][Tt][Ee][Aa]|[Ee][Nn][Uu][Mm]|[Ii][Nn][Ee][Tt]|[Cc][Ii][Tt][Ee][Xx][Tt]|[Mm][Oo][Nn][Ee][Yy]|[Ff][Ll][Oo][Aa][Tt]|[Rr][Ee][Aa][Ll]))", "flags": "", "message": "Direct identifier. Every Art. 15 export and every Art. 17 erasure has to reach this column, so the table belongs in your Art. 30 record.", "sev": "info"}, {"pattern": "(?:(?:(?<![A-Za-z0-9_])(?:DATE_OF_BIRTH|date-of-birth|date_of_birth|dateOfBirth|BIRTH_DATE|birth-date|birth_date|AGE_GROUP|AGE_YEARS|BIRTHDATE|age-group|age-years|age_group|age_years|birthDate|birthdate|AGE_BAND|GUARDIAN|IS_MINOR|age-band|ageGroup|ageYears|age_band|guardian|is-minor|is_minor|ageBand|isMinor)|(?<=[a-z0-9])(?:DateOfBirth|BirthDate|Birthdate|AgeGroup|AgeYears|Guardian|AgeBand|IsMinor))[A-Za-z0-9_]{0,24}|(?:(?<![A-Za-z0-9_])(?:AGE|DOB|age|dob)|(?<=[a-z0-9])(?:Age|Dob))(?:[_-]?(?:id|no|num|number|code|value)|Id|No|Num|Number|Code|Value)?)(?:\\s*:\\s*[A-Za-z_$\\[]|\\s*=\\s*(?:models\\.|db\\.Column|Column\\(|sa\\.Column|mapped_column)|\\s*@Column|\\s+[A-Za-z_]*(?:[Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Nn][Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Tt][Ee][Xx][Tt]|[Cc][Hh][Aa][Rr]|[Ss][Tt][Rr][Ii][Nn][Gg]|[Jj][Ss][Oo][Nn]|[Bb][Oo][Oo][Ll]|[Ii][Nn][Tt]|[Ss][Ee][Rr][Ii][Aa][Ll]|[Dd][Aa][Tt][Ee]|[Tt][Ii][Mm][Ee]|[Dd][Ee][Cc][Ii][Mm][Aa][Ll]|[Nn][Uu][Mm][Ee][Rr][Ii][Cc]|[Uu][Uu][Ii][Dd]|[Bb][Ll][Oo][Bb]|[Bb][Yy][Tt][Ee][Aa]|[Ee][Nn][Uu][Mm]|[Ii][Nn][Ee][Tt]|[Cc][Ii][Tt][Ee][Xx][Tt]|[Mm][Oo][Nn][Ee][Yy]|[Ff][Ll][Oo][Aa][Tt]|[Rr][Ee][Aa][Ll]))", "flags": "", "message": "Age data. If a user can be under 16 (Art. 8; several Member States set 13), the child cannot give valid consent alone and a parental-consent path has to exist.", "sev": "warn"}, {"pattern": "(?:(?:(?<![A-Za-z0-9_])(?:ADVERTISING_ID|advertising-id|advertising_id|advertisingId|FINGERPRINT|REMOTE_ADDR|fingerprint|remote-addr|remote_addr|IP_ADDRESS|USER_AGENT|VISITOR_ID|ip-address|ip_address|remoteAddr|user-agent|user_agent|visitor-id|visitor_id|COOKIE_ID|DEVICE_ID|cookie-id|cookie_id|device-id|device_id|ipAddress|userAgent|visitorId|cookieId|deviceId|IP_ADDR|ip-addr|ip_addr|ipAddr)|(?<=[a-z0-9])(?:AdvertisingId|Fingerprint|RemoteAddr|IpAddress|UserAgent|VisitorId|CookieId|DeviceId|IpAddr))[A-Za-z0-9_]{0,24}|(?:(?<![A-Za-z0-9_])(?:GAID|IDFA|gaid|idfa)|(?<=[a-z0-9])(?:Gaid|Idfa))(?:[_-]?(?:id|no|num|number|code|value)|Id|No|Num|Number|Code|Value)?)(?:\\s*:\\s*[A-Za-z_$\\[]|\\s*=\\s*(?:models\\.|db\\.Column|Column\\(|sa\\.Column|mapped_column)|\\s*@Column|\\s+[A-Za-z_]*(?:[Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Nn][Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Tt][Ee][Xx][Tt]|[Cc][Hh][Aa][Rr]|[Ss][Tt][Rr][Ii][Nn][Gg]|[Jj][Ss][Oo][Nn]|[Bb][Oo][Oo][Ll]|[Ii][Nn][Tt]|[Ss][Ee][Rr][Ii][Aa][Ll]|[Dd][Aa][Tt][Ee]|[Tt][Ii][Mm][Ee]|[Dd][Ee][Cc][Ii][Mm][Aa][Ll]|[Nn][Uu][Mm][Ee][Rr][Ii][Cc]|[Uu][Uu][Ii][Dd]|[Bb][Ll][Oo][Bb]|[Bb][Yy][Tt][Ee][Aa]|[Ee][Nn][Uu][Mm]|[Ii][Nn][Ee][Tt]|[Cc][Ii][Tt][Ee][Xx][Tt]|[Mm][Oo][Nn][Ee][Yy]|[Ff][Ll][Oo][Aa][Tt]|[Rr][Ee][Aa][Ll]))", "flags": "", "message": "Online identifier. Recital 30 and CJEU C-582/14 (Breyer) make a dynamic IP personal data when you can identify the user - these are the columns teams leave out of the Art. 30 record.", "sev": "warn"}, {"pattern": "(?:(?:(?<![A-Za-z0-9_])(?:COORDINATES|GEOLOCATION|coordinates|geolocation|GEO_POINT|LONGITUDE|geo-point|geo_point|longitude|GEO_HASH|LATITUDE|geo-hash|geoPoint|geo_hash|latitude|GEOHASH|geoHash|geohash|GPS|gps)|(?<=[a-z0-9])(?:Coordinates|Geolocation|Longitude|GeoPoint|Latitude|GeoHash|Geohash|Gps))[A-Za-z0-9_]{0,24}|(?:(?<![A-Za-z0-9_])(?:LAT|LNG|LON|lat|lng|lon)|(?<=[a-z0-9])(?:Lat|Lng|Lon))(?:[_-]?(?:id|no|num|number|code|value)|Id|No|Num|Number|Code|Value)?)(?:\\s*:\\s*[A-Za-z_$\\[]|\\s*=\\s*(?:models\\.|db\\.Column|Column\\(|sa\\.Column|mapped_column)|\\s*@Column|\\s+[A-Za-z_]*(?:[Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Nn][Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Tt][Ee][Xx][Tt]|[Cc][Hh][Aa][Rr]|[Ss][Tt][Rr][Ii][Nn][Gg]|[Jj][Ss][Oo][Nn]|[Bb][Oo][Oo][Ll]|[Ii][Nn][Tt]|[Ss][Ee][Rr][Ii][Aa][Ll]|[Dd][Aa][Tt][Ee]|[Tt][Ii][Mm][Ee]|[Dd][Ee][Cc][Ii][Mm][Aa][Ll]|[Nn][Uu][Mm][Ee][Rr][Ii][Cc]|[Uu][Uu][Ii][Dd]|[Bb][Ll][Oo][Bb]|[Bb][Yy][Tt][Ee][Aa]|[Ee][Nn][Uu][Mm]|[Ii][Nn][Ee][Tt]|[Cc][Ii][Tt][Ee][Xx][Tt]|[Mm][Oo][Nn][Ee][Yy]|[Ff][Ll][Oo][Aa][Tt]|[Rr][Ee][Aa][Ll]))", "flags": "", "message": "Precise location. Continuous location tied to an identified person is systematic monitoring and counts toward the Art. 35 DPIA threshold.", "sev": "warn"}, {"pattern": "(?:(?:(?<![A-Za-z0-9_])(?:MESSAGE_BODY|message-body|message_body|DESCRIPTION|description|messageBody|BIOGRAPHY|FREE_TEXT|biography|free-text|free_text|FEEDBACK|feedback|freeText|COMMENT|REMARKS|comment|remarks|REASON|reason|NOTES|notes)|(?<=[a-z0-9])(?:Description|MessageBody|Biography|Feedback|FreeText|Comment|Remarks|Reason|Notes))[A-Za-z0-9_]{0,24}|(?:(?<![A-Za-z0-9_])(?:NOTE|note|BIO|bio)|(?<=[a-z0-9])(?:Note|Bio))(?:[_-]?(?:id|no|num|number|code|value)|Id|No|Num|Number|Code|Value)?)(?:\\s*:\\s*[A-Za-z_$\\[]|\\s*=\\s*(?:models\\.|db\\.Column|Column\\(|sa\\.Column|mapped_column)|\\s*@Column|\\s+[A-Za-z_]*(?:[Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Nn][Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Tt][Ee][Xx][Tt]|[Cc][Hh][Aa][Rr]|[Ss][Tt][Rr][Ii][Nn][Gg]|[Jj][Ss][Oo][Nn]|[Bb][Oo][Oo][Ll]|[Ii][Nn][Tt]|[Ss][Ee][Rr][Ii][Aa][Ll]|[Dd][Aa][Tt][Ee]|[Tt][Ii][Mm][Ee]|[Dd][Ee][Cc][Ii][Mm][Aa][Ll]|[Nn][Uu][Mm][Ee][Rr][Ii][Cc]|[Uu][Uu][Ii][Dd]|[Bb][Ll][Oo][Bb]|[Bb][Yy][Tt][Ee][Aa]|[Ee][Nn][Uu][Mm]|[Ii][Nn][Ee][Tt]|[Cc][Ii][Tt][Ee][Xx][Tt]|[Mm][Oo][Nn][Ee][Yy]|[Ff][Ll][Oo][Aa][Tt]|[Rr][Ee][Aa][Ll]))", "flags": "", "message": "Free-text column. An Art. 15 request covers whatever a colleague typed here and you cannot predict it, so this field has to be searched rather than skipped.", "sev": "info"}, {"pattern": "(?:(?:(?<![A-Za-z0-9_])(?:STRIPE_CUSTOMER|stripe-customer|stripe_customer|stripeCustomer|EXTERNAL_CRM|external-crm|external_crm|externalCrm|SALESFORCE|SEGMENT_ID|salesforce|segment-id|segment_id|AMPLITUDE|MAILCHIMP|amplitude|mailchimp|segmentId|INTERCOM|MIXPANEL|intercom|mixpanel|HUBSPOT|KLAVIYO|POSTHOG|ZENDESK|hubspot|klaviyo|posthog|zendesk|BRAZE|braze)|(?<=[a-z0-9])(?:StripeCustomer|ExternalCrm|Salesforce|Amplitude|Mailchimp|SegmentId|Intercom|Mixpanel|Hubspot|Klaviyo|Posthog|Zendesk|Braze))[A-Za-z0-9_]{0,24})(?:\\s*:\\s*[A-Za-z_$\\[]|\\s*=\\s*(?:models\\.|db\\.Column|Column\\(|sa\\.Column|mapped_column)|\\s*@Column|\\s+[A-Za-z_]*(?:[Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Nn][Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Tt][Ee][Xx][Tt]|[Cc][Hh][Aa][Rr]|[Ss][Tt][Rr][Ii][Nn][Gg]|[Jj][Ss][Oo][Nn]|[Bb][Oo][Oo][Ll]|[Ii][Nn][Tt]|[Ss][Ee][Rr][Ii][Aa][Ll]|[Dd][Aa][Tt][Ee]|[Tt][Ii][Mm][Ee]|[Dd][Ee][Cc][Ii][Mm][Aa][Ll]|[Nn][Uu][Mm][Ee][Rr][Ii][Cc]|[Uu][Uu][Ii][Dd]|[Bb][Ll][Oo][Bb]|[Bb][Yy][Tt][Ee][Aa]|[Ee][Nn][Uu][Mm]|[Ii][Nn][Ee][Tt]|[Cc][Ii][Tt][Ee][Xx][Tt]|[Mm][Oo][Nn][Ee][Yy]|[Ff][Ll][Oo][Aa][Tt]|[Rr][Ee][Aa][Ll]))", "flags": "", "message": "This column proves personal data left for a processor. That processor has to be named in your Art. 30(1) record and covered by an Art. 28 contract.", "sev": "warn"}, {"pattern": "(?:(?:(?<![A-Za-z0-9_])(?:DELETED_FLAG|deleted-flag|deleted_flag|ARCHIVED_AT|IS_ARCHIVED|SOFT_DELETE|archived-at|archived_at|deletedFlag|is-archived|is_archived|soft-delete|soft_delete|DELETED_AT|IS_DELETED|IS_REMOVED|archivedAt|deleted-at|deleted_at|is-deleted|is-removed|isArchived|is_deleted|is_removed|softDelete|deletedAt|isDeleted|isRemoved)|(?<=[a-z0-9])(?:DeletedFlag|ArchivedAt|IsArchived|SoftDelete|DeletedAt|IsDeleted|IsRemoved))[A-Za-z0-9_]{0,24})(?:\\s*:\\s*[A-Za-z_$\\[]|\\s*=\\s*(?:models\\.|db\\.Column|Column\\(|sa\\.Column|mapped_column)|\\s*@Column|\\s+[A-Za-z_]*(?:[Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Nn][Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Tt][Ee][Xx][Tt]|[Cc][Hh][Aa][Rr]|[Ss][Tt][Rr][Ii][Nn][Gg]|[Jj][Ss][Oo][Nn]|[Bb][Oo][Oo][Ll]|[Ii][Nn][Tt]|[Ss][Ee][Rr][Ii][Aa][Ll]|[Dd][Aa][Tt][Ee]|[Tt][Ii][Mm][Ee]|[Dd][Ee][Cc][Ii][Mm][Aa][Ll]|[Nn][Uu][Mm][Ee][Rr][Ii][Cc]|[Uu][Uu][Ii][Dd]|[Bb][Ll][Oo][Bb]|[Bb][Yy][Tt][Ee][Aa]|[Ee][Nn][Uu][Mm]|[Ii][Nn][Ee][Tt]|[Cc][Ii][Tt][Ee][Xx][Tt]|[Mm][Oo][Nn][Ee][Yy]|[Ff][Ll][Oo][Aa][Tt]|[Rr][Ee][Aa][Ll]))", "flags": "", "message": "Soft delete. Art. 17 erasure is not a flag - the row still holds the person and read replicas still serve it. Name the hard-delete or anonymise job that follows.", "sev": "warn"}, {"pattern": "(?:(?:(?<![A-Za-z0-9_])(?:ACCOUNT_NUMBER|ROUTING_NUMBER|account-number|account_number|routing-number|routing_number|accountNumber|routingNumber|BANK_ACCOUNT|bank-account|bank_account|CARD_NUMBER|bankAccount|card-number|card_number|CARDHOLDER|cardNumber|cardholder|SORT_CODE|sort-code|sort_code|sortCode)|(?<=[a-z0-9])(?:AccountNumber|RoutingNumber|BankAccount|CardNumber|Cardholder|SortCode))[A-Za-z0-9_]{0,24}|(?:(?<![A-Za-z0-9_])(?:SWIFT|swift|IBAN|iban|BIC|CVC|CVV|bic|cvc|cvv)|(?<=[a-z0-9])(?:Swift|Iban|Bic|Cvc|Cvv))(?:[_-]?(?:id|no|num|number|code|value)|Id|No|Num|Number|Code|Value)?)(?:\\s*:\\s*[A-Za-z_$\\[]|\\s*=\\s*(?:models\\.|db\\.Column|Column\\(|sa\\.Column|mapped_column)|\\s*@Column|\\s+[A-Za-z_]*(?:[Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Nn][Vv][Aa][Rr][Cc][Hh][Aa][Rr]|[Tt][Ee][Xx][Tt]|[Cc][Hh][Aa][Rr]|[Ss][Tt][Rr][Ii][Nn][Gg]|[Jj][Ss][Oo][Nn]|[Bb][Oo][Oo][Ll]|[Ii][Nn][Tt]|[Ss][Ee][Rr][Ii][Aa][Ll]|[Dd][Aa][Tt][Ee]|[Tt][Ii][Mm][Ee]|[Dd][Ee][Cc][Ii][Mm][Aa][Ll]|[Nn][Uu][Mm][Ee][Rr][Ii][Cc]|[Uu][Uu][Ii][Dd]|[Bb][Ll][Oo][Bb]|[Bb][Yy][Tt][Ee][Aa]|[Ee][Nn][Uu][Mm]|[Ii][Nn][Ee][Tt]|[Cc][Ii][Tt][Ee][Xx][Tt]|[Mm][Oo][Nn][Ee][Yy]|[Ff][Ll][Oo][Aa][Tt]|[Rr][Ee][Aa][Ll]))", "flags": "", "message": "Payment data. PCI DSS forbids storing CVV at all, and card data widens both the Art. 32 duty and what you must report within 72 hours under Art. 33.", "sev": "warn"}];
+// ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질). 두뇌 = ./engine.js
+const RULES = ENGINE.RULES;
 function scan(text, fileName) {
-  const lines = String(text).split(/\r?\n/);
-  const cfg = vscode.workspace.getConfiguration('personal-data-map-dsar-audit');
-  const extra = cfg.get('extraRules');
-  const feed = (globalThis.__yjFeed && Array.isArray(globalThis.__yjFeed.rules)) ? globalThis.__yjFeed.rules : [];
-  const rules = RULES.concat(Array.isArray(extra) ? extra : [], feed);
-  const hits = [];
-  for (let i = 0; i < lines.length; i++) {
-    for (const r of rules) {
-      let re;
-      try { re = new RegExp(r.pattern, r.flags || ''); } catch (e) { continue; }
-      // ★s126 — ★심각도를 실어 보낸다. ⛔없으면 min_severity 가 ★전부를 지운다 (내가 만들 뻔한 거짓말)
-      if (re.test(lines[i])) hits.push({ line: i + 1, msg: r.message, fix: r.fix || null,
-                                         sev: r.sev || 'warn' });
-    }
-  }
-  return hits;
+  const extra = vscode.workspace.getConfiguration(PREFIX).get('extraRules');
+  const res = ENGINE.engine.check(text, { today: new Date().toISOString().slice(0, 10), path: fileName, extraRules: extra });
+  return (res.findings || []).map(function (f) { return { line: f.line, msg: f.msg, fix: f.fix || null, sev: f.sev || 'warn' }; });
 }
 
 const SNIPPETS = {};
@@ -88,28 +79,26 @@ async function listRules() {
 }
 
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-//   ★역방향 체험 — ★첫 스윕부터 7일은 키 없이 ★전체 스윕과 보고서를 ⛔줄이지 않고 그대로 준다.
-//   그 뒤에 묻는다 — 손님은 ★자기 폴더에서 본 숫자를 알고 정한다.
+//   키를 물을 때 ★손님 자신의 숫자(지난 스윕)를 앞에 붙인다.
+//   s158 이전에 이미 열린 기간(sweepTrialUntil)만 조용히 지킨다 · ⛔새로 열지 않는다.
+//   ⛔무료 경로(열린 파일·선택 범위 검사)에는 어떤 제한도 두지 않는다 (8% 법).
 const LIC_KEY = 'licenseKey';              // ⛔license.js 가 저장하는 이름과 같아야 한다
-const TRIAL_MS = 7 * 24 * 3600 * 1000;
-const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
-const NEED_KEY = S.need_key;               // ★이 확장이 이미 쓰던 문장 — 앞에 체험 결과 한 줄만 덧댄다
+const NEED_KEY = S.need_key;               // ★원문장 — 매번 그 앞에 손님의 숫자만 붙인다 (⛔겹쳐 쌓지 않게)
 
-// 통과하면 { inTrial } 을, 막히면 null 을 낸다.
+// 통과하면 { inPeriod } 을, 막히면 null 을 낸다.
 async function paidGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get(LIC_KEY);
-  let until = Number(st.get('sweepTrialUntil') || 0);
-  /* s158: no new free trial is opened (trials already started are honoured) */
-  const inTrial = !hasKey && Date.now() < until;
-  if (!inTrial) {
+  const until = Number(st.get('sweepTrialUntil') || 0);
+  const inPeriod = !hasKey && Date.now() < until;
+  if (!inPeriod) {
     const last = st.get('lastSweep');
     S.need_key = (last && last.files
-      ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ')
+      ? ('Your last sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ')
       : '') + NEED_KEY;
     if (!(await lic.ensure(vscode, ctx, S))) return null;
   }
-  return { inTrial: inTrial };
+  return { inPeriod: inPeriod };
 }
 
 async function scanWorkspace(ctx) {
@@ -132,11 +121,12 @@ async function scanWorkspace(ctx) {
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
   report(rows);
+  if (!_findings) { const _m = S.nothing_found + ' ' + _files + ' files, 0 findings.'; try { if (require('./auto.js').sweptClean(vscode, ctx, { msg: _m, title: S.title, slug: 'personal-data-map-dsar-audit', prefix: PREFIX })) { await ctx.globalState.update('lastSweep', { files: _files, findings: 0, at: new Date().toISOString().slice(0, 10) }); return; } } catch (e) {} }   // s163 — the clean sweep offers the README badge (auto.js)
   await ctx.globalState.update('lastSweep', {
     files: _files, findings: _findings, at: new Date().toISOString().slice(0, 10)
   });
   vscode.window.showInformationMessage((_findings ? S.done : S.nothing_found)
-    + (gate.inTrial ? TRIAL_NOTE : ''));
+    + ' ' + _files + ' files, ' + _findings + ' findings.');
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
@@ -171,8 +161,7 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'personal-data-map-dsar-audit-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath
-    + (gate.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
 }
 
 async function ciJson(ctx) {
@@ -184,8 +173,7 @@ async function ciJson(ctx) {
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'personal-data-map-dsar-audit-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath
-    + (gate.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
 }
 
 function activate(ctx) {
@@ -197,10 +185,15 @@ function activate(ctx) {
   reg('personal-data-map-dsar-audit.workspace_scan', function () { return scanWorkspace(ctx); });
   reg('personal-data-map-dsar-audit.export_report', function () { return exportReport(ctx); });
   reg('personal-data-map-dsar-audit.ci_json', function () { return ciJson(ctx); });
+  // auto.js (status bar · hint) calls <PREFIX>.checkFile / <PREFIX>.checkWorkspace → the same free file check / paid sweep
+  reg(PREFIX + '.checkFile', runCurrent);
+  reg(PREFIX + '.checkWorkspace', function () { return scanWorkspace(ctx); });
   // ★설정을 읽는다 — show_on_start. ⛔전에는 안 읽어서 설정이 거짓말이었다 (s126)
   if (vscode.workspace.getConfiguration('personal-data-map-dsar-audit').get('show_on_start') === true) {
     if (typeof runCurrent === 'function') { try { runCurrent(ctx); } catch (e) { /* 열린 파일이 없으면 조용히 */ } }
   }
+  // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'personal-data-map-dsar-audit', price: 29 }); } catch (e) {}
 }
 function deactivate() {
   if (typeof watchOnSave === 'function' && watchOnSave._d) watchOnSave._d.dispose();
