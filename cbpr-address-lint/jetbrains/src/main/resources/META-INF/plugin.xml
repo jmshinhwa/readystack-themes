@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.cbpr-address-lint</id>
+  <name>CBPR+ Structured Address Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Find the ISO 20022 postal addresses your correspondent bank will repair by hand, before you send the message</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>CBPR+ Structured Address Lint: Check This File</b>. Each finding appears on its line with the fix. 9 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/cbpr-address-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/cbpr-address-lint">getreadystack.com/tools/cbpr-address-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_cbpr_address_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.cbpr-address-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.cbpr-address-lint.check" class="com.getreadystack.p_cbpr_address_lint.RsCheckAction"
+            text="CBPR+ Structured Address Lint: Check This File" description="Run CBPR+ Structured Address Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
