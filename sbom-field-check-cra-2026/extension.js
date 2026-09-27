@@ -2,7 +2,11 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
+const GLOB = '**/{bom.json,sbom.json,*.cdx.json,*.bom.json,*.sbom.json,*.spdx.json,*.spdx.jsonld,*.spdx}';
+const PREFIX = 'sbom-field-check-cra-2026';
+const ENGINE = require('./engine.js');
 const S = {"run": "Watching this SBOM - it re-checks on every save.", "done": "Field gaps found - see the SBOM Field Check panel.", "nothing_found": "No field gaps found: every field these 34 rules look for is present.", "need_key": "Full version: every SBOM in the repo, an evidence file you keep, and CI output that fails the build before release. $29 once - one licence key per person or team seat. Published CRA cost calculators price this work at EUR 45/hour, and a documented readiness pass for one product family at EUR 12,000-25,000 of internal engineering time.", "key_ok": "Licence accepted - workspace check, evidence export and CI output are open.", "key_bad": "That key did not validate. Check it against your Polar receipt.", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "paste": "Paste your SBOM here - bom.json (CycloneDX) or sbom.spdx.json (SPDX)", "check": "Check this SBOM", "extra_rules": "Extra rules of your own, checked alongside the 34 that ship inside."};
+S.title = 'SBOM Field Check for CRA 2026';   // = package.json displayName (auto.js · clean-sweep badge)
 const PAID = ["workspace_scan", "export_report", "ci_json", "watch_on_save"];
 
 function out() {
@@ -41,140 +45,14 @@ function report(rows) {
   return n;
 }
 
-// ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질).
-const RULES = [{"json": {"kind": "ver", "path": "specVersion", "min": "1.6", "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Spec version below the bar: BSI TR-03183-2 accepts CycloneDX 1.6+ or SPDX 3.0.1+ only", "sev": "error"}, {"json": {"kind": "ver", "path": "spdxVersion", "min": "3.0.1", "when": {"path": "spdxVersion"}}, "message": "Spec version below the bar: SPDX 2.x does not qualify, BSI TR-03183-2 requires SPDX 3.0.1+", "sev": "error"}, {"json": {"kind": "ver", "path": "@graph.specVersion", "min": "3.0.1", "when": {"path": "@context"}}, "message": "Spec version below the bar: SPDX 3.0.1 is the lowest version BSI TR-03183-2 accepts", "sev": "error"}, {"json": {"kind": "doc", "paths": ["metadata.timestamp"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "SBOM Timestamp absent: BSI TR-03183-2 requires an ISO-8601 creation time on the document", "sev": "error"}, {"json": {"kind": "doc", "paths": ["metadata.authors.name", "metadata.manufacturer.name", "metadata.supplier.name"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "SBOM Author absent: BSI TR-03183-2 requires the creator (e-mail or URL of the producer)", "sev": "error"}, {"json": {"kind": "doc", "paths": ["metadata.tools.components.name", "metadata.tools.name"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "SBOM Tool Name absent: CISA 2026 minimum elements ask which tool produced this document", "sev": "warn"}, {"json": {"kind": "doc", "paths": ["metadata.tools.components.version", "metadata.tools.version"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "SBOM Tool Version absent: a finding cannot be reproduced without the generator version", "sev": "info"}, {"json": {"kind": "doc", "paths": ["metadata.lifecycles.phase"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "SBOM Generation Context absent: no metadata.lifecycles phase (design, build, deployed, runtime)", "sev": "warn"}, {"json": {"kind": "doc", "paths": ["serialNumber"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "SBOM identity absent: no serialNumber, so two revisions of this document cannot be told apart", "sev": "warn"}, {"json": {"kind": "doc", "paths": ["version"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "SBOM Version absent: no document version integer", "sev": "info"}, {"json": {"kind": "doc", "paths": ["dependencies"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "No dependencies[] at all: the CRA requires the SBOM to cover at least the top-level dependencies", "sev": "error"}, {"json": {"kind": "each", "list": "components", "paths": ["supplier.name", "manufacturer.name", "author", "publisher"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Component Producer absent (no supplier, manufacturer, author or publisher)", "sev": "error"}, {"json": {"kind": "each", "list": "components", "paths": ["version"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Component Version absent", "sev": "error"}, {"json": {"kind": "each", "list": "components", "paths": ["purl", "cpe", "bom-ref", "externalReferences.url"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Component Identifiers absent (no purl, cpe or bom-ref) - cannot be matched to a CVE", "sev": "error"}, {"json": {"kind": "each", "list": "components", "paths": ["hashes.content"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Component Hash absent: BSI TR-03183-2 requires a SHA-512 of the deployable component", "sev": "error"}, {"json": {"kind": "each", "list": "components", "paths": ["licenses"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Component License absent", "sev": "error"}, {"json": {"kind": "each_bad", "list": "components", "path": "version", "bad": ["noassertion", "none", "unknown", "n/a", "*", "latest"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Component Version is a placeholder, not a version", "sev": "warn"}, {"json": {"kind": "each_bad", "list": "components", "path": "name", "bad": [""], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Component has no usable name", "sev": "warn"}, {"json": {"kind": "each", "list": "packages", "paths": ["supplier", "originator"], "when": {"path": "spdxVersion"}}, "message": "Component Producer absent (SPDX supplier / originator)", "sev": "error"}, {"json": {"kind": "each", "list": "packages", "paths": ["versionInfo"], "when": {"path": "spdxVersion"}}, "message": "Component Version absent (SPDX versionInfo)", "sev": "error"}, {"json": {"kind": "each", "list": "packages", "paths": ["checksums.checksumValue"], "when": {"path": "spdxVersion"}}, "message": "Component Hash absent (SPDX checksums) - BSI TR-03183-2 requires SHA-512", "sev": "error"}, {"json": {"kind": "each", "list": "packages", "paths": ["externalRefs.referenceLocator"], "when": {"path": "spdxVersion"}}, "message": "Component Identifiers absent (SPDX externalRefs: no purl or cpe)", "sev": "error"}, {"json": {"kind": "each", "list": "packages", "paths": ["licenseConcluded", "licenseDeclared"], "when": {"path": "spdxVersion"}}, "message": "Component License absent (SPDX licenseConcluded / licenseDeclared)", "sev": "error"}, {"json": {"kind": "each_bad", "list": "packages", "path": "supplier", "bad": ["noassertion"], "when": {"path": "spdxVersion"}}, "message": "Component Producer is NOASSERTION: the field exists but resolves to nothing", "sev": "warn"}, {"json": {"kind": "each_bad", "list": "packages", "path": "versionInfo", "bad": ["noassertion", "none", "unknown"], "when": {"path": "spdxVersion"}}, "message": "Component Version is NOASSERTION: the field exists but resolves to nothing", "sev": "warn"}, {"json": {"kind": "each", "paths": ["suppliedBy", "originatedBy"], "when": {"path": "@context"}, "list": "@graph", "filter": {"path": "type", "has": "software_Package"}}, "message": "Component Producer absent (SPDX 3 suppliedBy / originatedBy)", "sev": "error"}, {"json": {"kind": "each", "paths": ["packageVersion"], "when": {"path": "@context"}, "list": "@graph", "filter": {"path": "type", "has": "software_Package"}}, "message": "Component Version absent (SPDX 3 packageVersion)", "sev": "error"}, {"json": {"kind": "each", "paths": ["verifiedUsing"], "when": {"path": "@context"}, "list": "@graph", "filter": {"path": "type", "has": "software_Package"}}, "message": "Component Hash absent (SPDX 3 verifiedUsing)", "sev": "error"}, {"json": {"kind": "each", "paths": ["externalIdentifier"], "when": {"path": "@context"}, "list": "@graph", "filter": {"path": "type", "has": "software_Package"}}, "message": "Component Identifiers absent (SPDX 3 externalIdentifier: no packageUrl or cpe23)", "sev": "error"}, {"pattern": "^\\s*SPDXVersion:\\s*SPDX-[012]\\.", "flags": "", "sev": "error", "message": "SPDX tag-value document at 2.x or lower: below the SPDX 3.0.1 bar"}, {"pattern": "^\\s*PackageSupplier:\\s*NOASSERTION", "flags": "", "sev": "warn", "message": "Component Producer is NOASSERTION on this package"}, {"pattern": "^\\s*PackageVersion:\\s*(NOASSERTION|NONE)\\s*$", "flags": "", "sev": "warn", "message": "Component Version is NOASSERTION on this package"}, {"pattern": "^\\s*PackageChecksum:\\s*(MD5|SHA1):", "flags": "", "sev": "info", "message": "Hash is MD5 or SHA-1: BSI TR-03183-2 names SHA-512 for the deployable component"}, {"pattern": "\"alg\"\\s*:\\s*\"(?:MD5|SHA-1)\"", "flags": "i", "sev": "info", "message": "Hash is MD5 or SHA-1: BSI TR-03183-2 names SHA-512 for the deployable component"}];
-
-// ★JSON 구조 검사 (s138) — ⛔줄 정규식이 ★못 보는 것을 본다: 문서 전체의 빠진 칸 · 목록 각 칸의 빠진 칸.
-//   ★어휘 넷뿐이다: doc(문서에 이 칸이 있나) · ver(판 번호가 기준 이상인가)
-//                  each(목록의 각 칸에 이 칸이 있나) · each_bad(값이 쓸모없는 값인가)
-var JRULES = [{"json": {"kind": "ver", "path": "specVersion", "min": "1.6", "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Spec version below the bar: BSI TR-03183-2 accepts CycloneDX 1.6+ or SPDX 3.0.1+ only", "sev": "error"}, {"json": {"kind": "ver", "path": "spdxVersion", "min": "3.0.1", "when": {"path": "spdxVersion"}}, "message": "Spec version below the bar: SPDX 2.x does not qualify, BSI TR-03183-2 requires SPDX 3.0.1+", "sev": "error"}, {"json": {"kind": "ver", "path": "@graph.specVersion", "min": "3.0.1", "when": {"path": "@context"}}, "message": "Spec version below the bar: SPDX 3.0.1 is the lowest version BSI TR-03183-2 accepts", "sev": "error"}, {"json": {"kind": "doc", "paths": ["metadata.timestamp"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "SBOM Timestamp absent: BSI TR-03183-2 requires an ISO-8601 creation time on the document", "sev": "error"}, {"json": {"kind": "doc", "paths": ["metadata.authors.name", "metadata.manufacturer.name", "metadata.supplier.name"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "SBOM Author absent: BSI TR-03183-2 requires the creator (e-mail or URL of the producer)", "sev": "error"}, {"json": {"kind": "doc", "paths": ["metadata.tools.components.name", "metadata.tools.name"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "SBOM Tool Name absent: CISA 2026 minimum elements ask which tool produced this document", "sev": "warn"}, {"json": {"kind": "doc", "paths": ["metadata.tools.components.version", "metadata.tools.version"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "SBOM Tool Version absent: a finding cannot be reproduced without the generator version", "sev": "info"}, {"json": {"kind": "doc", "paths": ["metadata.lifecycles.phase"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "SBOM Generation Context absent: no metadata.lifecycles phase (design, build, deployed, runtime)", "sev": "warn"}, {"json": {"kind": "doc", "paths": ["serialNumber"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "SBOM identity absent: no serialNumber, so two revisions of this document cannot be told apart", "sev": "warn"}, {"json": {"kind": "doc", "paths": ["version"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "SBOM Version absent: no document version integer", "sev": "info"}, {"json": {"kind": "doc", "paths": ["dependencies"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "No dependencies[] at all: the CRA requires the SBOM to cover at least the top-level dependencies", "sev": "error"}, {"json": {"kind": "each", "list": "components", "paths": ["supplier.name", "manufacturer.name", "author", "publisher"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Component Producer absent (no supplier, manufacturer, author or publisher)", "sev": "error"}, {"json": {"kind": "each", "list": "components", "paths": ["version"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Component Version absent", "sev": "error"}, {"json": {"kind": "each", "list": "components", "paths": ["purl", "cpe", "bom-ref", "externalReferences.url"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Component Identifiers absent (no purl, cpe or bom-ref) - cannot be matched to a CVE", "sev": "error"}, {"json": {"kind": "each", "list": "components", "paths": ["hashes.content"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Component Hash absent: BSI TR-03183-2 requires a SHA-512 of the deployable component", "sev": "error"}, {"json": {"kind": "each", "list": "components", "paths": ["licenses"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Component License absent", "sev": "error"}, {"json": {"kind": "each_bad", "list": "components", "path": "version", "bad": ["noassertion", "none", "unknown", "n/a", "*", "latest"], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Component Version is a placeholder, not a version", "sev": "warn"}, {"json": {"kind": "each_bad", "list": "components", "path": "name", "bad": [""], "when": {"path": "bomFormat", "eq": "CycloneDX"}}, "message": "Component has no usable name", "sev": "warn"}, {"json": {"kind": "each", "list": "packages", "paths": ["supplier", "originator"], "when": {"path": "spdxVersion"}}, "message": "Component Producer absent (SPDX supplier / originator)", "sev": "error"}, {"json": {"kind": "each", "list": "packages", "paths": ["versionInfo"], "when": {"path": "spdxVersion"}}, "message": "Component Version absent (SPDX versionInfo)", "sev": "error"}, {"json": {"kind": "each", "list": "packages", "paths": ["checksums.checksumValue"], "when": {"path": "spdxVersion"}}, "message": "Component Hash absent (SPDX checksums) - BSI TR-03183-2 requires SHA-512", "sev": "error"}, {"json": {"kind": "each", "list": "packages", "paths": ["externalRefs.referenceLocator"], "when": {"path": "spdxVersion"}}, "message": "Component Identifiers absent (SPDX externalRefs: no purl or cpe)", "sev": "error"}, {"json": {"kind": "each", "list": "packages", "paths": ["licenseConcluded", "licenseDeclared"], "when": {"path": "spdxVersion"}}, "message": "Component License absent (SPDX licenseConcluded / licenseDeclared)", "sev": "error"}, {"json": {"kind": "each_bad", "list": "packages", "path": "supplier", "bad": ["noassertion"], "when": {"path": "spdxVersion"}}, "message": "Component Producer is NOASSERTION: the field exists but resolves to nothing", "sev": "warn"}, {"json": {"kind": "each_bad", "list": "packages", "path": "versionInfo", "bad": ["noassertion", "none", "unknown"], "when": {"path": "spdxVersion"}}, "message": "Component Version is NOASSERTION: the field exists but resolves to nothing", "sev": "warn"}, {"json": {"kind": "each", "paths": ["suppliedBy", "originatedBy"], "when": {"path": "@context"}, "list": "@graph", "filter": {"path": "type", "has": "software_Package"}}, "message": "Component Producer absent (SPDX 3 suppliedBy / originatedBy)", "sev": "error"}, {"json": {"kind": "each", "paths": ["packageVersion"], "when": {"path": "@context"}, "list": "@graph", "filter": {"path": "type", "has": "software_Package"}}, "message": "Component Version absent (SPDX 3 packageVersion)", "sev": "error"}, {"json": {"kind": "each", "paths": ["verifiedUsing"], "when": {"path": "@context"}, "list": "@graph", "filter": {"path": "type", "has": "software_Package"}}, "message": "Component Hash absent (SPDX 3 verifiedUsing)", "sev": "error"}, {"json": {"kind": "each", "paths": ["externalIdentifier"], "when": {"path": "@context"}, "list": "@graph", "filter": {"path": "type", "has": "software_Package"}}, "message": "Component Identifiers absent (SPDX 3 externalIdentifier: no packageUrl or cpe23)", "sev": "error"}];
-function jHas(v) {
-  if (v === null || v === undefined) return false;
-  if (typeof v === 'string') return v.trim() !== '';
-  if (Array.isArray(v)) return v.length > 0;
-  if (typeof v === 'object') return Object.keys(v).length > 0;
-  return true;
-}
-function jVal(o, p) {
-  var parts = String(p).split('.'), cur = o, i, k, got;
-  for (i = 0; i < parts.length; i++) {
-    if (cur === null || cur === undefined) return undefined;
-    if (Array.isArray(cur)) {                       // ★목록을 만나면 ★남은 길을 각 칸에 물어본다
-      for (k = 0; k < cur.length; k++) {
-        got = jVal(cur[k], parts.slice(i).join('.'));
-        if (jHas(got)) return got;
-      }
-      return undefined;
-    }
-    if (typeof cur !== 'object') return undefined;
-    cur = cur[parts[i]];
-  }
-  return cur;
-}
-function jAny(o, paths) {
-  for (var i = 0; i < (paths || []).length; i++) { if (jHas(jVal(o, paths[i]))) return true; }
-  return false;
-}
-function jNum(s) {
-  var m = String(s === undefined || s === null ? '' : s).match(/(\d+(?:\.\d+)*)/);
-  return m ? m[1].split('.').map(Number) : null;
-}
-function jCmp(a, b) {
-  for (var i = 0; i < Math.max(a.length, b.length); i++) {
-    var x = a[i] || 0, y = b[i] || 0;
-    if (x !== y) return x < y ? -1 : 1;
-  }
-  return 0;
-}
-function jWhen(doc, w) {
-  if (!w) return true;
-  var v = jVal(doc, w.path);
-  if (w.eq !== undefined) return String(jHas(v) ? v : '').toLowerCase() === String(w.eq).toLowerCase();
-  if (w.has !== undefined) {
-    var s = Array.isArray(v) ? v.join(' ') : String(jHas(v) ? v : '');
-    return s.toLowerCase().indexOf(String(w.has).toLowerCase()) >= 0;
-  }
-  return jHas(v);
-}
-function jList(doc, j) {
-  var arr = jVal(doc, j.list);
-  if (!Array.isArray(arr)) return [];
-  if (!j.filter) return arr;
-  return arr.filter(function (e) {
-    var v = jVal(e, j.filter.path);
-    var s = Array.isArray(v) ? v.join(' ') : String(jHas(v) ? v : '');
-    return s.toLowerCase().indexOf(String(j.filter.has).toLowerCase()) >= 0;
-  });
-}
-function jLine(raw, needle) {
-  if (!needle) return 1;
-  var s = String(raw), i = s.indexOf(JSON.stringify(String(needle)));
-  if (i < 0) i = s.indexOf(String(needle));
-  if (i < 0) return 1;
-  return s.slice(0, i).split(/\r?\n/).length;
-}
-function jName(e) {
-  if (!e || typeof e !== 'object') return '';
-  return String(e.name || e.packageName || e['bom-ref'] || e.bomRef || e.SPDXID || e.spdxId || '');
-}
-// ⇒ ★JSON 이 아니면 null 을 돌려준다 (그러면 ★줄 규칙만 돈다)
-function analyzeJson(raw) {
-  var doc;
-  try { doc = JSON.parse(raw); } catch (e) { return null; }
-  if (!doc || typeof doc !== 'object' || Array.isArray(doc)) return null;
-  var hits = [], i, r, j;
-  for (i = 0; i < JRULES.length; i++) {
-    r = JRULES[i]; j = r.json || {};
-    if (!jWhen(doc, j.when)) continue;
-    if (j.kind === 'doc') {
-      if (!jAny(doc, j.paths)) hits.push({ line: 1, msg: r.message, sev: r.sev || 'warn' });
-    } else if (j.kind === 'ver') {
-      var got = jNum(jVal(doc, j.path)), min = jNum(j.min);
-      if (!got) hits.push({ line: 1, msg: r.message + ' — found: none', sev: r.sev || 'error' });
-      else if (jCmp(got, min) < 0) hits.push({ line: jLine(raw, j.path),
-        msg: r.message + ' — found: ' + got.join('.'), sev: r.sev || 'error' });
-    } else if (j.kind === 'each' || j.kind === 'each_bad') {
-      var arr = jList(doc, j), miss = [], k, e, v, sv;
-      for (k = 0; k < arr.length; k++) {
-        e = arr[k];
-        if (j.kind === 'each') { if (!jAny(e, j.paths)) miss.push(e); }
-        else {
-          v = jVal(e, j.path);
-          sv = jHas(v) ? String(v).trim().toLowerCase() : '';
-          if ((j.bad || []).indexOf(sv) >= 0) miss.push(e);
-        }
-      }
-      if (miss.length) {
-        var ex = miss.slice(0, 4).map(jName).filter(Boolean);
-        hits.push({ line: jLine(raw, jName(miss[0])),
-          msg: r.message + ' — ' + miss.length + ' of ' + arr.length
-               + (ex.length ? ' (e.g. ' + ex.join(', ') + ')' : ''),
-          sev: r.sev || 'error' });
-      }
-    }
-  }
-  return hits;
-}
-
+// ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질). 두뇌 = ./engine.js (규칙 = rules.json)
+const RULES = ENGINE.RULES;
 function scan(text, fileName) {
-  const lines = String(text).split(/\r?\n/);
-  const cfg = vscode.workspace.getConfiguration('sbom-field-check-cra-2026');
-  const extra = cfg.get('extraRules');
-  const feed = (globalThis.__yjFeed && Array.isArray(globalThis.__yjFeed.rules)) ? globalThis.__yjFeed.rules : [];
-  const rules = RULES.concat(Array.isArray(extra) ? extra : [], feed);
-  // ★s138 — ★구조 규칙을 ★먼저. ⛔JSON 이 아니면 null 이라 ★줄 규칙만 돈다.
-  const hits = (JRULES.length ? (analyzeJson(text) || []) : []);
-  for (let i = 0; i < lines.length; i++) {
-    for (const r of rules) {
-      if (!r || !r.pattern) continue;   // ★s138 — ★구조 규칙은 ★정규식이 없다. ⛔건너뛴다.
-      let re;
-      try { re = new RegExp(r.pattern, r.flags || ''); } catch (e) { continue; }
-      // ★s126 — ★심각도를 실어 보낸다. ⛔없으면 min_severity 가 ★전부를 지운다 (내가 만들 뻔한 거짓말)
-      if (re.test(lines[i])) hits.push({ line: i + 1, msg: r.message, fix: r.fix || null,
-                                         sev: r.sev || 'warn' });
-    }
-  }
-  return hits;
+  const extra = vscode.workspace.getConfiguration(PREFIX).get('extraRules');
+  const res = ENGINE.engine.check(text, { today: new Date().toISOString().slice(0, 10), path: fileName, extraRules: extra });
+  return (res.findings || []).map(function (f) {
+    return ('fix' in f) ? { line: f.line, msg: f.msg, fix: f.fix, sev: f.sev } : { line: f.line, msg: f.msg, sev: f.sev };
+  });
 }
 
 const SNIPPETS = {};
@@ -192,25 +70,18 @@ async function listRules() {
 async function showReport() { out().show(true); }
 
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-// ★s144 — ★역방향 체험(reverse trial): 유료 결과를 ★먼저 겪게 한다.
-//   [검색 2026-09-12] 무료→유료 2~4% ↔ 역방향 체험 8~12% (개발자 도구 체험 중앙값 24%).
-//   손님이 돈 낼지 정하는 순간은 ★자기 폴더의 파일 수와 건수를 본 뒤다
-//   ⇒ ★첫 스윕부터 7일은 키를 묻지 않고 ★작업공간 전체 스윕·증거 파일·CI 출력을 ★줄이지 않고 그대로 준다.
-//   ⛔무료 경로(audit_file · list_rules · show_report)는 이 문을 지나지 않는다 (8% 법).
+//   키를 물을 때 ★손님 자신의 숫자(지난 스윕)를 앞에 붙인다.
+//   s158 이전에 이미 열린 기간(sweepTrialUntil)만 조용히 지킨다 · ⛔새로 열지 않는다.
+//   ⛔무료 경로(audit_file · list_rules · show_report)에는 어떤 제한도 두지 않는다 (8% 법).
 const NEED_KEY = S.need_key;                 // ⛔손님 숫자를 앞에 붙이기 전의 원문
-const TRIAL_MS = 7 * 24 * 3600 * 1000;
 
 async function paidGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
-  let until = Number(st.get('sweepTrialUntil') || 0);
-  /* s158: no new free trial is opened (trials already started are honoured) */
-  const inTrial = !hasKey && Date.now() < until;
-  paidGate._inTrial = inTrial;               // ★끝 안내 문장이 읽는다 (watchOnSave._d 와 같은 방식)
-  if (inTrial) return true;                  // ⛔체험 중에는 ★묻지 않는다
-  // ★체험이 끝난 뒤 — ★손님 자신의 숫자를 ★먼저 말하고 키를 묻는다
+  const until = Number(st.get('sweepTrialUntil') || 0);
+  if (!hasKey && Date.now() < until) return true;
   const last = st.get('lastSweep');
-  S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found '
+  S.need_key = (last && last.files ? ('Your last sweep covered ' + last.files + ' files and found '
     + last.findings + ' findings. ') : '') + NEED_KEY;
   return await lic.ensure(vscode, ctx, S);
 }
@@ -230,14 +101,14 @@ async function scanWorkspace(ctx) {
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
   report(rows);
-  // ★s144 — ★스윕한 숫자를 적어 둔다. ⛔체험이 끝나면 이 숫자가 키를 묻는 문장 앞에 선다.
+  // ★스윕한 숫자를 적어 둔다 — 다음에 키를 물을 때 이 숫자가 문장 앞에 선다.
   let _tot = 0;
   for (const r of rows) _tot += r.hits.length;
   await ctx.globalState.update('lastSweep', { files: rows.length, findings: _tot,
                                               at: new Date().toISOString().slice(0, 10) });
-  vscode.window.showInformationMessage('Swept ' + rows.length + ' files - ' + _tot
-    + ' field gaps. See the SBOM Field Check panel.'
-    + (paidGate._inTrial ? ' The full sweep is free for 7 days from your first sweep.' : ''));
+  const _m = 'Swept ' + rows.length + ' files - ' + _tot + ' field gaps. See the SBOM Field Check panel.';
+  if (!_tot) { try { if (require('./auto.js').sweptClean(vscode, ctx, { msg: _m, title: S.title, slug: 'sbom-field-check-cra-2026', prefix: PREFIX })) return; } catch (e) {} }   // s163 — the clean sweep offers the README badge (auto.js)
+  vscode.window.showInformationMessage(_m);
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
@@ -306,10 +177,15 @@ function activate(ctx) {
   reg('sbom-field-check-cra-2026.export_report', function () { return exportReport(ctx); });
   reg('sbom-field-check-cra-2026.ci_json', function () { return ciJson(ctx); });
   reg('sbom-field-check-cra-2026.watch_on_save', function () { return watchOnSave(ctx); });
+  // auto.js (status bar · hint) calls <PREFIX>.checkFile / <PREFIX>.checkWorkspace → the same free file check / paid sweep
+  reg(PREFIX + '.checkFile', runCurrent);
+  reg(PREFIX + '.checkWorkspace', function () { return scanWorkspace(ctx); });
   // ★설정을 읽는다 — show_on_start. ⛔전에는 안 읽어서 설정이 거짓말이었다 (s126)
   if (vscode.workspace.getConfiguration('sbom-field-check-cra-2026').get('show_on_start') === true) {
     if (typeof runCurrent === 'function') { try { runCurrent(ctx); } catch (e) { /* 열린 파일이 없으면 조용히 */ } }
   }
+  // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'sbom-field-check-cra-2026', price: 29 }); } catch (e) {}
 }
 function deactivate() {
   if (typeof watchOnSave === 'function' && watchOnSave._d) watchOnSave._d.dispose();
