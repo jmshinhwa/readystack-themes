@@ -1,0 +1,219 @@
+[
+  {
+    "pattern": "targetSdk(?:Version)?[\"\\']?\\s*[:=]?\\s*[\"\\']?35\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "[error] Play stopped accepting this on 2026-08-31: a new release must target Android 16 (API 36). API 35 keeps the listing alive but no update can be published. The extension window closes 2026-11-01.  Fix: targetSdk = 36",
+    "fix": "targetSdk = 36"
+  },
+  {
+    "pattern": "targetSdk(?:Version)?[\"\\']?\\s*[:=]?\\s*[\"\\']?3[0-4]\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "[error] Two Play gates fail on this line: releases have needed API 36 since 2026-08-31, and an existing app below API 35 is hidden from new users on devices running a newer Android than it targets.  Fix: targetSdk = 36",
+    "fix": "targetSdk = 36"
+  },
+  {
+    "pattern": "targetSdk(?:Version)?[\"\\']?\\s*[:=]?\\s*[\"\\']?2[1-9]\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "[error] Target API below 30. Play has refused updates at this level for years and the listing is invisible to new users on modern devices. Go straight to API 36, not one step at a time.  Fix: targetSdk = 36",
+    "fix": "targetSdk = 36"
+  },
+  {
+    "pattern": "compileSdk(?:Version)?[\"\\']?\\s*[:=]?\\s*[\"\\']?3[0-5]\\b",
+    "flags": "i",
+    "sev": "warn",
+    "message": "[warn] You cannot target API 36 while compiling against a lower SDK. Raise compileSdk first, then raise targetSdk, then fix what stops building.  Fix: compileSdk = 36",
+    "fix": "compileSdk = 36"
+  },
+  {
+    "pattern": "com\\.android\\.billingclient:billing(?:-ktx)?:[1-7]\\.",
+    "flags": "i",
+    "sev": "error",
+    "message": "[error] Play Billing Library below 8.0.0. Since 2026-08-31 Play rejects any new release using it. Builds already published keep transacting, so you only find out when you try to ship a fix. Extension closes 2026-11-01.  Fix: com.android.billingclient:billing:8.0.0",
+    "fix": "com.android.billingclient:billing:8.0.0"
+  },
+  {
+    "pattern": "billing(?:client)?\\s*=\\s*[\"\\'][1-7]\\.",
+    "flags": "i",
+    "sev": "error",
+    "message": "[error] The version catalog pins Play Billing Library below 8.0.0, which Play stopped accepting in new releases on 2026-08-31.  Fix: billing = \"8.0.0\"",
+    "fix": "billing = \"8.0.0\""
+  },
+  {
+    "pattern": "android:extractNativeLibs\\s*=\\s*[\"\\']true[\"\\']",
+    "flags": "i",
+    "sev": "error",
+    "message": "[error] Compressed native libraries cannot be 16 KB aligned. Play has required 16 KB page-size support from releases targeting Android 15 and above since 2025-11-01; the Play Console extension ran out on 2026-05-31.  Fix: android:extractNativeLibs=\"false\"",
+    "fix": "android:extractNativeLibs=\"false\""
+  },
+  {
+    "pattern": "useLegacyPackaging\\s*[:=]\\s*true",
+    "flags": "i",
+    "sev": "error",
+    "message": "[error] useLegacyPackaging = true compresses your .so files and breaks the 16 KB alignment Play has required since 2025-11-01.  Fix: useLegacyPackaging = false",
+    "fix": "useLegacyPackaging = false"
+  },
+  {
+    "pattern": "max-page-size=0x1000",
+    "flags": "i",
+    "sev": "error",
+    "message": "[error] The linker is pinned to a 4 KB page. On a device with 16 KB pages this library will not load, and Play refuses the upload.  Fix: -Wl,-z,max-page-size=16384",
+    "fix": "-Wl,-z,max-page-size=16384"
+  },
+  {
+    "pattern": "ndkVersion\\s*[\"\\']?\\s*[:=]?\\s*[\"\\']?(?:1[0-9]|2[0-7])\\.",
+    "flags": "i",
+    "sev": "warn",
+    "message": "[warn] NDK below r28 does not emit 16 KB aligned shared libraries by default. Google names NDK r28 or newer as the fix for the 16 KB requirement.  Fix: ndkVersion = \"28.0.13004108\"",
+    "fix": "ndkVersion = \"28.0.13004108\""
+  },
+  {
+    "pattern": "com\\.android\\.tools\\.build:gradle:(?:[0-7]\\.|8\\.[0-4]\\.)",
+    "flags": "i",
+    "sev": "warn",
+    "message": "[warn] Android Gradle Plugin below 8.5.1 does not align native libraries to 16 KB by default. Google names AGP 8.5.1 or newer as the tooling floor for that requirement.  Fix: com.android.tools.build:gradle:8.5.1 or newer",
+    "fix": "com.android.tools.build:gradle:8.5.1 or newer"
+  },
+  {
+    "pattern": "agp\\s*=\\s*[\"\\'](?:[0-7]\\.|8\\.[0-4]\\.)",
+    "flags": "i",
+    "sev": "warn",
+    "message": "[warn] The version catalog pins AGP below 8.5.1, under the tooling floor Google names for 16 KB alignment.  Fix: agp = \"8.5.1\"",
+    "fix": "agp = \"8.5.1\""
+  },
+  {
+    "pattern": "windowOptOutEdgeToEdgeEnforcement",
+    "flags": "i",
+    "sev": "error",
+    "message": "[error] This opt-out is ignored once the app targets API 36. Your content will draw behind the status and navigation bars, so handle window insets instead of opting out.  Fix: remove it and pad with WindowInsets",
+    "fix": "remove it and pad with WindowInsets"
+  },
+  {
+    "pattern": "android:screenOrientation\\s*=\\s*[\"\\'](?:portrait|sensorPortrait|reversePortrait|userPortrait|landscape|sensorLandscape|reverseLandscape|userLandscape)[\"\\']",
+    "flags": "i",
+    "sev": "warn",
+    "message": "[warn] Ignored on displays 600dp wide and above once the app targets API 36. The activity fills a tablet or unfolded screen in whatever orientation the user holds it, with no pillarboxing.  Fix: make the layout adaptive rather than locking the orientation",
+    "fix": "make the layout adaptive rather than locking the orientation"
+  },
+  {
+    "pattern": "android:resizeableActivity\\s*=\\s*[\"\\']false[\"\\']",
+    "flags": "i",
+    "sev": "warn",
+    "message": "[warn] Resizability restrictions no longer apply on displays 600dp and wider for apps targeting API 36. The activity is resized anyway, so test it before Play forces the target.  Fix: android:resizeableActivity=\"true\"",
+    "fix": "android:resizeableActivity=\"true\""
+  },
+  {
+    "pattern": "android:maxAspectRatio",
+    "flags": "i",
+    "sev": "warn",
+    "message": "[warn] Aspect-ratio limits are ignored on large screens for apps targeting API 36; the app fills the display window whatever its ratio.  Fix: remove it and test a 16:10 tablet layout",
+    "fix": "remove it and test a 16:10 tablet layout"
+  },
+  {
+    "pattern": "android:enableOnBackInvokedCallback\\s*=\\s*[\"\\']false[\"\\']",
+    "flags": "i",
+    "sev": "info",
+    "message": "[info] Predictive back animations run across the system on Android 16, including back-to-home, cross-task and cross-activity. Opting out leaves your app the only one without them.  Fix: android:enableOnBackInvokedCallback=\"true\"",
+    "fix": "android:enableOnBackInvokedCallback=\"true\""
+  },
+  {
+    "pattern": "android:debuggable\\s*=\\s*[\"\\']true[\"\\']",
+    "flags": "i",
+    "sev": "error",
+    "message": "[error] Play rejects any bundle whose manifest is debuggable. Delete the attribute; the debug build type sets it for you.  Fix: delete android:debuggable from the manifest",
+    "fix": "delete android:debuggable from the manifest"
+  },
+  {
+    "pattern": "com\\.google\\.android\\.play:core:",
+    "flags": "i",
+    "sev": "error",
+    "message": "[error] The monolithic Play Core library is deprecated and crashes on Android 14 and newer. Split it into the libraries you actually use.  Fix: com.google.android.play:app-update / :asset-delivery / :review",
+    "fix": "com.google.android.play:app-update / :asset-delivery / :review"
+  },
+  {
+    "pattern": "jcenter\\s*\\(",
+    "flags": "",
+    "sev": "warn",
+    "message": "[warn] JCenter is read-only and being shut down. A build that resolves through it can stop resolving without warning, and a build you cannot run is a release you cannot ship.  Fix: mavenCentral()",
+    "fix": "mavenCentral()"
+  },
+  {
+    "pattern": "QUERY_ALL_PACKAGES",
+    "flags": "",
+    "sev": "error",
+    "message": "[error] Broad package visibility needs an approved Play Console declaration and is refused for most app categories. Without it the release is rejected.  Fix: replace with a <queries> element listing the packages you need",
+    "fix": "replace with a <queries> element listing the packages you need"
+  },
+  {
+    "pattern": "MANAGE_EXTERNAL_STORAGE",
+    "flags": "",
+    "sev": "error",
+    "message": "[error] All-files access needs an approved Play declaration and is granted only to a short list of app types. MediaStore or the Storage Access Framework passes review.  Fix: use MediaStore or the Storage Access Framework",
+    "fix": "use MediaStore or the Storage Access Framework"
+  },
+  {
+    "pattern": "REQUEST_INSTALL_PACKAGES",
+    "flags": "",
+    "sev": "error",
+    "message": "[error] Installing other packages needs a Play Console declaration form and is limited to eligible app types. Undeclared, the release is rejected.  Fix: remove it, or file the declaration before you upload",
+    "fix": "remove it, or file the declaration before you upload"
+  },
+  {
+    "pattern": "android\\.permission\\.(?:READ_SMS|RECEIVE_SMS|SEND_SMS|READ_CALL_LOG|WRITE_CALL_LOG|PROCESS_OUTGOING_CALLS)",
+    "flags": "",
+    "sev": "error",
+    "message": "[error] SMS and Call Log are restricted permissions. Play accepts them only from an app whose approved default-handler role needs them, with a declaration on file.  Fix: use the SMS Retriever API or an intent instead",
+    "fix": "use the SMS Retriever API or an intent instead"
+  },
+  {
+    "pattern": "WRITE_EXTERNAL_STORAGE[\"\\'](?:(?!maxSdkVersion)[^>])*/?>",
+    "flags": "",
+    "sev": "warn",
+    "message": "[warn] WRITE_EXTERNAL_STORAGE with no android:maxSdkVersion. Under scoped storage it does nothing on API 29 and above, and it still reads as broad storage access on your listing.  Fix: android:maxSdkVersion=\"28\"",
+    "fix": "android:maxSdkVersion=\"28\""
+  },
+  {
+    "pattern": "SCHEDULE_EXACT_ALARM",
+    "flags": "",
+    "sev": "warn",
+    "message": "[warn] Exact alarms need a Play declaration and are granted mainly to alarm, clock and calendar apps. Anything else should use setAndAllowWhileIdle or WorkManager.  Fix: use WorkManager, or USE_EXACT_ALARM if the app qualifies",
+    "fix": "use WorkManager, or USE_EXACT_ALARM if the app qualifies"
+  },
+  {
+    "pattern": "android\\.permission\\.FOREGROUND_SERVICE[\"\\']",
+    "flags": "",
+    "sev": "warn",
+    "message": "[warn] Since API 34 every foreground service also needs a typed FOREGROUND_SERVICE_* permission and android:foregroundServiceType, and Play wants a declaration explaining the use.  Fix: add FOREGROUND_SERVICE_DATA_SYNC (or the right type) and foregroundServiceType",
+    "fix": "add FOREGROUND_SERVICE_DATA_SYNC (or the right type) and foregroundServiceType"
+  },
+  {
+    "pattern": "com\\.google\\.android\\.gms\\.permission\\.AD_ID",
+    "flags": "",
+    "sev": "info",
+    "message": "[info] Declaring the advertising ID permission commits you to a matching Data safety declaration, and an app aimed at children must not declare it at all.  Fix: remove it if you do not read the advertising ID",
+    "fix": "remove it if you do not read the advertising ID"
+  },
+  {
+    "pattern": "android:usesCleartextTraffic\\s*=\\s*[\"\\']true[\"\\']",
+    "flags": "i",
+    "sev": "warn",
+    "message": "[warn] Cleartext HTTP is flagged by the Play pre-launch report and has to be disclosed on the Data safety form. Move the endpoints to HTTPS or scope it in a network security config.  Fix: android:usesCleartextTraffic=\"false\" plus a network security config",
+    "fix": "android:usesCleartextTraffic=\"false\" plus a network security config"
+  },
+  {
+    "pattern": "<uses-sdk",
+    "flags": "i",
+    "sev": "info",
+    "message": "[info] <uses-sdk> in the manifest is overridden by the Gradle values, so the number here can disagree with what Play actually receives. Keep the SDK levels in build.gradle only.  Fix: delete <uses-sdk> and set the levels in build.gradle",
+    "fix": "delete <uses-sdk> and set the levels in build.gradle"
+  },
+  {
+    "pattern": "<(?:activity|activity-alias|service|receiver)\\b(?:(?!android:exported)[^>])*>",
+    "flags": "i",
+    "sev": "info",
+    "message": "[info] No android:exported on this line. Every component with an intent filter has had to declare it since API 31, and a missing value fails the build before Play ever sees it.  Fix: android:exported=\"false\"",
+    "fix": "android:exported=\"false\""
+  }
+]
