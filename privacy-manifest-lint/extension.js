@@ -2,7 +2,11 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
+const GLOB = '**/*.{xcprivacy,swift,m,mm,h,cs,dart,js,jsx,ts,tsx,kt}';
+const PREFIX = 'privacy-manifest-lint';
+const ENGINE = require('./engine.js');
 const S = {"run": "Checking", "done": "Findings are in the Privacy Manifest Lint panel", "nothing_found": "No required-reason API and no manifest defect in this file", "need_key": "Full version: scan every file in the repo, export the findings as CSV/JSON/HTML, emit CI JSON, and auto-fix the misspelled manifest keys. $29 once - one licence key per person or team seat. An experienced freelance iOS developer bills $85-145/hour in 2026.", "key_ok": "Licence accepted - the full version is unlocked", "key_bad": "That key did not validate. Check it, or contact support", "enter_key": "Enter licence key", "buy": "Get the full version - $29", "paste": "Paste your PrivacyInfo.xcprivacy, or a source file in C#, Dart, JS/TS, Swift, Obj-C or Kotlin", "check": "Check this file", "extra_rules": "Your own regex rules, checked alongside the 48 that ship inside."};
+S.title = 'Privacy Manifest Lint - xcprivacy & ITMS-91053';   // = package.json displayName (auto.js · clean-sweep badge)
 const PAID = ["workspace_scan", "export_report", "ci_json", "quick_fix"];
 const NEED_KEY = S.need_key;   // ★체험이 끝난 뒤 문턱 문구의 ★바탕 (⛔S.need_key 에 앞말을 겹쳐 쌓지 않으려고 원문을 붙들어 둔다)
 
@@ -44,25 +48,12 @@ function report(rows) {
   return n;
 }
 
-// ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질).
-const RULES = [{"pattern": ">DDA9\\.1<", "flags": "", "sev": "info", "message": "DDA9.1 belongs to NSPrivacyAccessedAPICategoryFileTimestamp - display file timestamps to the person using the device; the value must not be sent off-device. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">C617\\.1<", "flags": "", "sev": "info", "message": "C617.1 belongs to NSPrivacyAccessedAPICategoryFileTimestamp - read timestamps/size/metadata of files inside the app container, app group container, or the app CloudKit container. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">3B52\\.1<", "flags": "", "sev": "info", "message": "3B52.1 belongs to NSPrivacyAccessedAPICategoryFileTimestamp - read metadata of files or directories the person explicitly granted access to, e.g. through a document picker. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">0A2A\\.1<", "flags": "", "sev": "info", "message": "0A2A.1 belongs to NSPrivacyAccessedAPICategoryFileTimestamp - third-party SDK that wraps file-timestamp APIs and touches them only when the containing app calls the wrapper. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">35F9\\.1<", "flags": "", "sev": "info", "message": "35F9.1 belongs to NSPrivacyAccessedAPICategorySystemBootTime - measure the time elapsed between events inside your app, or drive timers. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">8FFB\\.1<", "flags": "", "sev": "info", "message": "8FFB.1 belongs to NSPrivacyAccessedAPICategorySystemBootTime - calculate absolute timestamps for events that happened inside your app, such as UIKit or AVFAudio events. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">3D61\\.1<", "flags": "", "sev": "info", "message": "3D61.1 belongs to NSPrivacyAccessedAPICategorySystemBootTime - include boot time in an optional bug report that the person chooses to submit. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">85F4\\.1<", "flags": "", "sev": "info", "message": "85F4.1 belongs to NSPrivacyAccessedAPICategoryDiskSpace - display disk space to the person, in bytes or in minutes of a media type. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">E174\\.1<", "flags": "", "sev": "info", "message": "E174.1 belongs to NSPrivacyAccessedAPICategoryDiskSpace - check space before writing, or free space by deleting; the app must visibly react to the disk-space level. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">7D9E\\.1<", "flags": "", "sev": "info", "message": "7D9E.1 belongs to NSPrivacyAccessedAPICategoryDiskSpace - include disk space in an optional bug report that the person chooses to submit. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">B728\\.1<", "flags": "", "sev": "info", "message": "B728.1 belongs to NSPrivacyAccessedAPICategoryDiskSpace - health-research app detecting and telling participants about low disk space that affects data collection. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">3EC4\\.1<", "flags": "", "sev": "info", "message": "3EC4.1 belongs to NSPrivacyAccessedAPICategoryActiveKeyboards - your app is a custom keyboard app whose primary function is providing a systemwide keyboard. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">54BD\\.1<", "flags": "", "sev": "info", "message": "54BD.1 belongs to NSPrivacyAccessedAPICategoryActiveKeyboards - read active keyboards to present the correct customised UI; the app must have text fields and visibly change behaviour. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">CA92\\.1<", "flags": "", "sev": "info", "message": "CA92.1 belongs to NSPrivacyAccessedAPICategoryUserDefaults - read/write data exclusive to the app itself - not other apps, not the system. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">1C8F\\.1<", "flags": "", "sev": "info", "message": "1C8F.1 belongs to NSPrivacyAccessedAPICategoryUserDefaults - read/write data only within apps, app extensions and App Clips in the same App Group. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">C56D\\.1<", "flags": "", "sev": "info", "message": "C56D.1 belongs to NSPrivacyAccessedAPICategoryUserDefaults - third-party SDK that wraps the user-defaults APIs and touches them only when the containing app calls the wrapper. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": ">AC6B\\.1<", "flags": "", "sev": "info", "message": "AC6B.1 belongs to NSPrivacyAccessedAPICategoryUserDefaults - read com.apple.configuration.managed or write com.apple.feedback.managed for MDM managed app configuration - MDM ONLY. If this code sits under any other category, App Store Connect returns ITMS-91055 / ITMS-91056."}, {"pattern": "<string>(?!(?:DDA9|C617|3B52|0A2A|35F9|8FFB|3D61|85F4|E174|7D9E|B728|3EC4|54BD|CA92|1C8F|C56D|AC6B)\\.1</string>)[0-9A-Za-z]{4}\\.[0-9]+</string>", "flags": "", "sev": "error", "message": "Not a reason code Apple issues. Exactly 17 exist and every one ends in \".1\": DDA9.1, C617.1, 3B52.1, 0A2A.1, 35F9.1, 8FFB.1, 3D61.1, 85F4.1, E174.1, 7D9E.1, B728.1, 3EC4.1, 54BD.1, CA92.1, 1C8F.1, C56D.1, AC6B.1. Upload returns ITMS-91055 / ITMS-91056."}, {"pattern": "NSPrivacyAccessedAPICategoryUserDefault<", "flags": "", "sev": "error", "message": "Category is plural: NSPrivacyAccessedAPICategoryUserDefaults. Upload returns ITMS-91056.", "replace": "NSPrivacyAccessedAPICategoryUserDefaults<", "fix": "NSPrivacyAccessedAPICategoryUserDefaults<"}, {"pattern": "NSPrivacyAccessedAPICategoryFileTimestamps<", "flags": "", "sev": "error", "message": "Category is singular: NSPrivacyAccessedAPICategoryFileTimestamp. Upload returns ITMS-91056.", "replace": "NSPrivacyAccessedAPICategoryFileTimestamp<", "fix": "NSPrivacyAccessedAPICategoryFileTimestamp<"}, {"pattern": "NSPrivacyAccessedAPICategoryBootTime<", "flags": "", "sev": "error", "message": "Category is NSPrivacyAccessedAPICategorySystemBootTime - \"System\" is not optional. Upload returns ITMS-91056.", "replace": "NSPrivacyAccessedAPICategorySystemBootTime<", "fix": "NSPrivacyAccessedAPICategorySystemBootTime<"}, {"pattern": "NSPrivacyAccessedAPICategoryActiveKeyboard<", "flags": "", "sev": "error", "message": "Category is plural: NSPrivacyAccessedAPICategoryActiveKeyboards. Upload returns ITMS-91056.", "replace": "NSPrivacyAccessedAPICategoryActiveKeyboards<", "fix": "NSPrivacyAccessedAPICategoryActiveKeyboards<"}, {"pattern": "NSPrivacyAccessedAPICategoryDiskSpaces<", "flags": "", "sev": "error", "message": "Category is singular: NSPrivacyAccessedAPICategoryDiskSpace. Upload returns ITMS-91056.", "replace": "NSPrivacyAccessedAPICategoryDiskSpace<", "fix": "NSPrivacyAccessedAPICategoryDiskSpace<"}, {"pattern": "<key>NSPrivacyAccessedAPIReasons</key>", "flags": "", "sev": "error", "message": "The key is NSPrivacyAccessedAPITypeReasons. \"Type\" is missing here. Upload returns ITMS-91056.", "replace": "<key>NSPrivacyAccessedAPITypeReasons</key>", "fix": "<key>NSPrivacyAccessedAPITypeReasons</key>"}, {"pattern": "<key>NSPrivacyAccessedAPICategory</key>", "flags": "", "sev": "error", "message": "The key is NSPrivacyAccessedAPIType; the category name is its <string> value, not the key. Upload returns ITMS-91056.", "replace": "<key>NSPrivacyAccessedAPIType</key>", "fix": "<key>NSPrivacyAccessedAPIType</key>"}, {"pattern": "<key>NSPrivacyTrackingDomain</key>", "flags": "", "sev": "error", "message": "The key is plural: NSPrivacyTrackingDomains. Upload returns ITMS-91056.", "replace": "<key>NSPrivacyTrackingDomains</key>", "fix": "<key>NSPrivacyTrackingDomains</key>"}, {"pattern": "<key>NSPrivacyCollectedDataType</key>", "flags": "", "sev": "error", "message": "The top-level key is plural: NSPrivacyCollectedDataTypes. Upload returns ITMS-91056.", "replace": "<key>NSPrivacyCollectedDataTypes</key>", "fix": "<key>NSPrivacyCollectedDataTypes</key>"}, {"pattern": "<key>NSPrivacyAccessedAPIType</key>\\s*<array>", "flags": "", "sev": "error", "message": "An array of declarations goes under the plural key NSPrivacyAccessedAPITypes. Upload returns ITMS-91056.", "replace": "<key>NSPrivacyAccessedAPITypes</key>\n\t<array>", "fix": "<key>NSPrivacyAccessedAPITypes</key>\n\t<array>"}, {"pattern": "\\b(NS)?UserDefaults\\b", "flags": "", "sev": "warn", "message": "UserDefaults is a required-reason API. Declare NSPrivacyAccessedAPICategoryUserDefaults with CA92.1 (app-only), 1C8F.1 (App Group), C56D.1 (SDK wrapper) or AC6B.1 (MDM only)."}, {"pattern": "\\bPreferences\\.(Default|Get|Set|Remove|Clear|ContainsKey)\\b", "flags": "", "sev": "warn", "message": ".NET MAUI Preferences maps to NSUserDefaults on iOS. Declare NSPrivacyAccessedAPICategoryUserDefaults, normally CA92.1."}, {"pattern": "Microsoft\\.Maui\\.Storage\\.Preferences", "flags": "", "sev": "warn", "message": ".NET MAUI Preferences maps to NSUserDefaults on iOS. Declare NSPrivacyAccessedAPICategoryUserDefaults, normally CA92.1."}, {"pattern": "\\bSharedPreferences\\.getInstance\\b", "flags": "", "sev": "warn", "message": "Flutter shared_preferences uses NSUserDefaults in its default iOS implementation. Confirm the plugin version ships its own manifest, or declare NSPrivacyAccessedAPICategoryUserDefaults yourself."}, {"pattern": "\\.systemUptime\\b", "flags": "", "sev": "warn", "message": "systemUptime is a required-reason API. Declare NSPrivacyAccessedAPICategorySystemBootTime with 35F9.1, 8FFB.1 or 3D61.1."}, {"pattern": "\\bmach_absolute_time\\s*\\(", "flags": "", "sev": "warn", "message": "mach_absolute_time() is a required-reason API. Declare NSPrivacyAccessedAPICategorySystemBootTime with 35F9.1, 8FFB.1 or 3D61.1."}, {"pattern": "\\bEnvironment\\.TickCount\\b", "flags": "", "sev": "warn", "message": ".NET Environment.TickCount reads the system uptime clock on iOS. Declare NSPrivacyAccessedAPICategorySystemBootTime, normally 35F9.1."}, {"pattern": "\\bCACurrentMediaTime\\s*\\(", "flags": "", "sev": "info", "message": "CACurrentMediaTime() is derived from the system boot-time clock. Check whether your use falls under NSPrivacyAccessedAPICategorySystemBootTime."}, {"pattern": "\\bvolume(Available|Total)Capacity(ForImportantUsage|ForOpportunisticUsage)?Key\\b", "flags": "", "sev": "warn", "message": "Volume capacity keys are required-reason APIs. Declare NSPrivacyAccessedAPICategoryDiskSpace with 85F4.1, E174.1, 7D9E.1 or B728.1."}, {"pattern": "\\bNSFileSystem(FreeSize|Size)\\b", "flags": "", "sev": "warn", "message": "NSFileSystemFreeSize / NSFileSystemSize are required-reason APIs. Declare NSPrivacyAccessedAPICategoryDiskSpace."}, {"pattern": "\\b(statfs|statvfs|fstatfs|fstatvfs)\\s*\\(", "flags": "", "sev": "warn", "message": "statfs family reads disk space. Declare NSPrivacyAccessedAPICategoryDiskSpace with 85F4.1, E174.1, 7D9E.1 or B728.1."}, {"pattern": "\\bDriveInfo\\b|\\bAvailableFreeSpace\\b|\\bTotalFreeSpace\\b", "flags": "", "sev": "warn", "message": ".NET DriveInfo free-space members read disk space on iOS. Declare NSPrivacyAccessedAPICategoryDiskSpace."}, {"pattern": "\\bgetFreeDiskStorage\\b|\\bgetTotalDiskCapacity\\b", "flags": "", "sev": "warn", "message": "react-native-device-info disk helpers read disk space. Declare NSPrivacyAccessedAPICategoryDiskSpace, or confirm the library ships its own manifest."}, {"pattern": "\\b(getattrlist|getattrlistbulk|fgetattrlist|getattrlistat)\\s*\\(", "flags": "", "sev": "warn", "message": "getattrlist family reads file metadata. Declare NSPrivacyAccessedAPICategoryFileTimestamp with DDA9.1, C617.1, 3B52.1 or 0A2A.1."}, {"pattern": "\\b(stat|fstat|lstat|fstatat)\\s*\\(", "flags": "", "sev": "warn", "message": "stat family reads file timestamps. Declare NSPrivacyAccessedAPICategoryFileTimestamp with DDA9.1, C617.1, 3B52.1 or 0A2A.1."}, {"pattern": "\\b(creationDate|modificationDate|fileModificationDate|fileCreationDate)\\b", "flags": "", "sev": "warn", "message": "File date properties are required-reason APIs. Declare NSPrivacyAccessedAPICategoryFileTimestamp."}, {"pattern": "\\bNSURL(ContentModificationDate|CreationDate)Key\\b|\\b(contentModificationDateKey|creationDateKey)\\b", "flags": "", "sev": "warn", "message": "URL resource date keys are required-reason APIs. Declare NSPrivacyAccessedAPICategoryFileTimestamp."}, {"pattern": "\\bFile\\.Get(CreationTime|LastWriteTime|LastAccessTime)(Utc)?\\b", "flags": "", "sev": "warn", "message": ".NET File.Get*Time calls stat on iOS. Declare NSPrivacyAccessedAPICategoryFileTimestamp, normally C617.1 for files in your own container."}, {"pattern": "\\.lastModifiedSync\\s*\\(|\\.lastModified\\s*\\(|\\.statSync\\s*\\(", "flags": "", "sev": "warn", "message": "Dart File.lastModified / stat read file timestamps. Declare NSPrivacyAccessedAPICategoryFileTimestamp."}, {"pattern": "\\bactiveInputModes\\b", "flags": "", "sev": "warn", "message": "UITextInputMode.activeInputModes is a required-reason API. Declare NSPrivacyAccessedAPICategoryActiveKeyboards with 3EC4.1 or 54BD.1."}];
+// ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질). 두뇌 = ./engine.js
+const RULES = ENGINE.RULES;
 function scan(text, fileName) {
-  const lines = String(text).split(/\r?\n/);
-  const cfg = vscode.workspace.getConfiguration('privacy-manifest-lint');
-  const extra = cfg.get('extraRules');
-  const feed = (globalThis.__yjFeed && Array.isArray(globalThis.__yjFeed.rules)) ? globalThis.__yjFeed.rules : [];
-  const rules = RULES.concat(Array.isArray(extra) ? extra : [], feed);
-  const hits = [];
-  for (let i = 0; i < lines.length; i++) {
-    for (const r of rules) {
-      let re;
-      try { re = new RegExp(r.pattern, r.flags || ''); } catch (e) { continue; }
-      // ★s126 — ★심각도를 실어 보낸다. ⛔없으면 min_severity 가 ★전부를 지운다 (내가 만들 뻔한 거짓말)
-      if (re.test(lines[i])) hits.push({ line: i + 1, msg: r.message, fix: r.fix || null,
-                                         sev: r.sev || 'warn' });
-    }
-  }
-  return hits;
+  const extra = vscode.workspace.getConfiguration(PREFIX).get('extraRules');
+  const res = ENGINE.engine.check(text, { today: today(), path: fileName, extraRules: extra });
+  return (res.findings || []).map(function (f) { return { line: f.line, msg: f.msg, fix: f.fix || null, sev: f.sev || 'warn' }; });
 }
 
 const SNIPPETS = {};
@@ -91,28 +82,18 @@ async function listRules() {
 }
 
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령(열린 파일·고른 줄·규칙 목록)은 이 문을 지나지 않는다.
-// ★s144 — ★역방향 체험(유료 맛보기): ★첫 스윕부터 7일간 ★작업공간 전체 스윕과 보고서를 ★줄이지 않고 키 없이 다 준다. 그 뒤에 키를 묻는다.
-//   [검색 2026-09-12] freemium 2~4% ↔ 역방향 체험 8~12% (개발자 도구 체험 중앙값 24%) · 손님이 ★자기 폴더의 결과를 본 순간에 묻는 문턱이 설치 시점보다 3~5배.
-//   ⛔무료 경로는 어떤 제한도 두지 않는다 (8% 법). 문턱 문구는 ★손님 자신의 숫자를 부른다 (endowment).
+//   ⛔무료 경로에는 어떤 제한도 두지 않는다 (8% 법). 문턱 문구는 ★손님 자신의 숫자를 부른다 (endowment).
+//   이미 시작된 기간(sweepTrialUntil)은 약속이니 끝까지 지킨다 · ⛔새로 열지 않는다.
 async function paidGate(ctx) {
   const st = ctx.globalState; const hasKey = !!st.get('licenseKey');
-  let until = Number(st.get('sweepTrialUntil') || 0);
-  /* s158: no new free trial is opened (trials already started are honoured) */
-  const inTrial = !hasKey && Date.now() < until;
-  if (!inTrial) {
+  const until = Number(st.get('sweepTrialUntil') || 0);
+  const inPeriod = !hasKey && Date.now() < until;
+  if (!inPeriod) {
     const last = st.get('lastSweep');
-    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
+    S.need_key = (last && last.files ? ('Your last sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
     if (!(await lic.ensure(vscode, ctx, S))) return false;
   }
   return true;
-}
-
-// ★체험 중인가 — 끝 안내 문장에 붙일 한 마디를 고르려고 ★묻기만 한다 (⛔여기서 상태를 쓰지 않는다).
-function trialNote(ctx) {
-  const st = ctx.globalState;
-  const until = Number(st.get('sweepTrialUntil') || 0);
-  const inTrial = !st.get('licenseKey') && !!until && Date.now() < until;
-  return inTrial ? ' The full sweep is free for 7 days from your first sweep.' : '';
 }
 
 async function scanWorkspace(ctx) {
@@ -130,9 +111,10 @@ async function scanWorkspace(ctx) {
     } catch (e) { /* 열 수 없는 파일은 건너뛴다 */ }
   }
   const found = report(rows);
-  // ★스윕이 끝나면 ★손님 자신의 숫자를 적어 둔다 — 체험이 끝난 뒤 문턱이 이 숫자를 부른다.
+  if (!found) { const _m = S.nothing_found + ' ' + rows.length + ' files, 0 findings.'; try { if (require('./auto.js').sweptClean(vscode, ctx, { msg: _m, title: S.title, slug: 'privacy-manifest-lint', prefix: PREFIX })) { await ctx.globalState.update('lastSweep', { files: rows.length, findings: 0, at: today() }); return; } } catch (e) {} }   // s163 — the clean sweep offers the README badge (auto.js)
+  // ★스윕이 끝나면 ★손님 자신의 숫자를 적어 둔다 — 문턱이 이 숫자를 부른다.
   await ctx.globalState.update('lastSweep', { files: rows.length, findings: found, at: today() });
-  vscode.window.showInformationMessage('Swept ' + rows.length + ' files (' + found + ' findings). ' + S.done + '.' + trialNote(ctx));
+  vscode.window.showInformationMessage('Swept ' + rows.length + ' files (' + found + ' findings). ' + S.done + '.');
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
@@ -214,10 +196,15 @@ function activate(ctx) {
   reg('privacy-manifest-lint.export_report', function () { return exportReport(ctx); });
   reg('privacy-manifest-lint.ci_json', function () { return ciJson(ctx); });
   reg('privacy-manifest-lint.quick_fix', function () { return quickFix(ctx); });
+  // auto.js (status bar · hint) calls <PREFIX>.checkFile / <PREFIX>.checkWorkspace → the same free file check / paid sweep
+  reg(PREFIX + '.checkFile', runCurrent);
+  reg(PREFIX + '.checkWorkspace', function () { return scanWorkspace(ctx); });
   // ★설정을 읽는다 — show_on_start. ⛔전에는 안 읽어서 설정이 거짓말이었다 (s126)
   if (vscode.workspace.getConfiguration('privacy-manifest-lint').get('show_on_start') === true) {
     if (typeof runCurrent === 'function') { try { runCurrent(ctx); } catch (e) { /* 열린 파일이 없으면 조용히 */ } }
   }
+  // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'privacy-manifest-lint', price: 29 }); } catch (e) {}
 }
 function deactivate() {
   if (typeof watchOnSave === 'function' && watchOnSave._d) watchOnSave._d.dispose();
