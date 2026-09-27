@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.dora-ict-contract-clause-lint</id>
+  <name>DORA Art. 30 ICT Contract Clause Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Twenty-two checks over the ICT vendor contracts in your repository - every missing Article 30 clause named, with the wording to paste in.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>DORA Art. 30 ICT Contract Clause Lint: Check This File</b>. Each finding appears on its line with the fix. 22 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/dora-ict-contract-clause-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/dora-ict-contract-clause-lint">getreadystack.com/tools/dora-ict-contract-clause-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_dora_ict_contract_clause_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.dora-ict-contract-clause-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.dora-ict-contract-clause-lint.check" class="com.getreadystack.p_dora_ict_contract_clause_lint.RsCheckAction"
+            text="DORA Art. 30 ICT Contract Clause Lint: Check This File" description="Run DORA Art. 30 ICT Contract Clause Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
