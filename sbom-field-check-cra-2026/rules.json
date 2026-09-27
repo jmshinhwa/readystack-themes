@@ -1,0 +1,480 @@
+[
+  {
+    "json": {
+      "kind": "ver",
+      "path": "specVersion",
+      "min": "1.6",
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "Spec version below the bar: BSI TR-03183-2 accepts CycloneDX 1.6+ or SPDX 3.0.1+ only",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "ver",
+      "path": "spdxVersion",
+      "min": "3.0.1",
+      "when": {
+        "path": "spdxVersion"
+      }
+    },
+    "message": "Spec version below the bar: SPDX 2.x does not qualify, BSI TR-03183-2 requires SPDX 3.0.1+",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "ver",
+      "path": "@graph.specVersion",
+      "min": "3.0.1",
+      "when": {
+        "path": "@context"
+      }
+    },
+    "message": "Spec version below the bar: SPDX 3.0.1 is the lowest version BSI TR-03183-2 accepts",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "doc",
+      "paths": [
+        "metadata.timestamp"
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "SBOM Timestamp absent: BSI TR-03183-2 requires an ISO-8601 creation time on the document",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "doc",
+      "paths": [
+        "metadata.authors.name",
+        "metadata.manufacturer.name",
+        "metadata.supplier.name"
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "SBOM Author absent: BSI TR-03183-2 requires the creator (e-mail or URL of the producer)",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "doc",
+      "paths": [
+        "metadata.tools.components.name",
+        "metadata.tools.name"
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "SBOM Tool Name absent: CISA 2026 minimum elements ask which tool produced this document",
+    "sev": "warn"
+  },
+  {
+    "json": {
+      "kind": "doc",
+      "paths": [
+        "metadata.tools.components.version",
+        "metadata.tools.version"
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "SBOM Tool Version absent: a finding cannot be reproduced without the generator version",
+    "sev": "info"
+  },
+  {
+    "json": {
+      "kind": "doc",
+      "paths": [
+        "metadata.lifecycles.phase"
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "SBOM Generation Context absent: no metadata.lifecycles phase (design, build, deployed, runtime)",
+    "sev": "warn"
+  },
+  {
+    "json": {
+      "kind": "doc",
+      "paths": [
+        "serialNumber"
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "SBOM identity absent: no serialNumber, so two revisions of this document cannot be told apart",
+    "sev": "warn"
+  },
+  {
+    "json": {
+      "kind": "doc",
+      "paths": [
+        "version"
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "SBOM Version absent: no document version integer",
+    "sev": "info"
+  },
+  {
+    "json": {
+      "kind": "doc",
+      "paths": [
+        "dependencies"
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "No dependencies[] at all: the CRA requires the SBOM to cover at least the top-level dependencies",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "each",
+      "list": "components",
+      "paths": [
+        "supplier.name",
+        "manufacturer.name",
+        "author",
+        "publisher"
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "Component Producer absent (no supplier, manufacturer, author or publisher)",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "each",
+      "list": "components",
+      "paths": [
+        "version"
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "Component Version absent",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "each",
+      "list": "components",
+      "paths": [
+        "purl",
+        "cpe",
+        "bom-ref",
+        "externalReferences.url"
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "Component Identifiers absent (no purl, cpe or bom-ref) - cannot be matched to a CVE",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "each",
+      "list": "components",
+      "paths": [
+        "hashes.content"
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "Component Hash absent: BSI TR-03183-2 requires a SHA-512 of the deployable component",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "each",
+      "list": "components",
+      "paths": [
+        "licenses"
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "Component License absent",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "each_bad",
+      "list": "components",
+      "path": "version",
+      "bad": [
+        "noassertion",
+        "none",
+        "unknown",
+        "n/a",
+        "*",
+        "latest"
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "Component Version is a placeholder, not a version",
+    "sev": "warn"
+  },
+  {
+    "json": {
+      "kind": "each_bad",
+      "list": "components",
+      "path": "name",
+      "bad": [
+        ""
+      ],
+      "when": {
+        "path": "bomFormat",
+        "eq": "CycloneDX"
+      }
+    },
+    "message": "Component has no usable name",
+    "sev": "warn"
+  },
+  {
+    "json": {
+      "kind": "each",
+      "list": "packages",
+      "paths": [
+        "supplier",
+        "originator"
+      ],
+      "when": {
+        "path": "spdxVersion"
+      }
+    },
+    "message": "Component Producer absent (SPDX supplier / originator)",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "each",
+      "list": "packages",
+      "paths": [
+        "versionInfo"
+      ],
+      "when": {
+        "path": "spdxVersion"
+      }
+    },
+    "message": "Component Version absent (SPDX versionInfo)",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "each",
+      "list": "packages",
+      "paths": [
+        "checksums.checksumValue"
+      ],
+      "when": {
+        "path": "spdxVersion"
+      }
+    },
+    "message": "Component Hash absent (SPDX checksums) - BSI TR-03183-2 requires SHA-512",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "each",
+      "list": "packages",
+      "paths": [
+        "externalRefs.referenceLocator"
+      ],
+      "when": {
+        "path": "spdxVersion"
+      }
+    },
+    "message": "Component Identifiers absent (SPDX externalRefs: no purl or cpe)",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "each",
+      "list": "packages",
+      "paths": [
+        "licenseConcluded",
+        "licenseDeclared"
+      ],
+      "when": {
+        "path": "spdxVersion"
+      }
+    },
+    "message": "Component License absent (SPDX licenseConcluded / licenseDeclared)",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "each_bad",
+      "list": "packages",
+      "path": "supplier",
+      "bad": [
+        "noassertion"
+      ],
+      "when": {
+        "path": "spdxVersion"
+      }
+    },
+    "message": "Component Producer is NOASSERTION: the field exists but resolves to nothing",
+    "sev": "warn"
+  },
+  {
+    "json": {
+      "kind": "each_bad",
+      "list": "packages",
+      "path": "versionInfo",
+      "bad": [
+        "noassertion",
+        "none",
+        "unknown"
+      ],
+      "when": {
+        "path": "spdxVersion"
+      }
+    },
+    "message": "Component Version is NOASSERTION: the field exists but resolves to nothing",
+    "sev": "warn"
+  },
+  {
+    "json": {
+      "kind": "each",
+      "paths": [
+        "suppliedBy",
+        "originatedBy"
+      ],
+      "when": {
+        "path": "@context"
+      },
+      "list": "@graph",
+      "filter": {
+        "path": "type",
+        "has": "software_Package"
+      }
+    },
+    "message": "Component Producer absent (SPDX 3 suppliedBy / originatedBy)",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "each",
+      "paths": [
+        "packageVersion"
+      ],
+      "when": {
+        "path": "@context"
+      },
+      "list": "@graph",
+      "filter": {
+        "path": "type",
+        "has": "software_Package"
+      }
+    },
+    "message": "Component Version absent (SPDX 3 packageVersion)",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "each",
+      "paths": [
+        "verifiedUsing"
+      ],
+      "when": {
+        "path": "@context"
+      },
+      "list": "@graph",
+      "filter": {
+        "path": "type",
+        "has": "software_Package"
+      }
+    },
+    "message": "Component Hash absent (SPDX 3 verifiedUsing)",
+    "sev": "error"
+  },
+  {
+    "json": {
+      "kind": "each",
+      "paths": [
+        "externalIdentifier"
+      ],
+      "when": {
+        "path": "@context"
+      },
+      "list": "@graph",
+      "filter": {
+        "path": "type",
+        "has": "software_Package"
+      }
+    },
+    "message": "Component Identifiers absent (SPDX 3 externalIdentifier: no packageUrl or cpe23)",
+    "sev": "error"
+  },
+  {
+    "pattern": "^\\s*SPDXVersion:\\s*SPDX-[012]\\.",
+    "flags": "",
+    "sev": "error",
+    "message": "SPDX tag-value document at 2.x or lower: below the SPDX 3.0.1 bar"
+  },
+  {
+    "pattern": "^\\s*PackageSupplier:\\s*NOASSERTION",
+    "flags": "",
+    "sev": "warn",
+    "message": "Component Producer is NOASSERTION on this package"
+  },
+  {
+    "pattern": "^\\s*PackageVersion:\\s*(NOASSERTION|NONE)\\s*$",
+    "flags": "",
+    "sev": "warn",
+    "message": "Component Version is NOASSERTION on this package"
+  },
+  {
+    "pattern": "^\\s*PackageChecksum:\\s*(MD5|SHA1):",
+    "flags": "",
+    "sev": "info",
+    "message": "Hash is MD5 or SHA-1: BSI TR-03183-2 names SHA-512 for the deployable component"
+  },
+  {
+    "pattern": "\"alg\"\\s*:\\s*\"(?:MD5|SHA-1)\"",
+    "flags": "i",
+    "sev": "info",
+    "message": "Hash is MD5 or SHA-1: BSI TR-03183-2 names SHA-512 for the deployable component"
+  }
+]
