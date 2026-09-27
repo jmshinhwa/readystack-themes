@@ -1,0 +1,142 @@
+[
+  {
+    "pattern": "navigator\\.doNotTrack|window\\.doNotTrack|msDoNotTrack",
+    "flags": "",
+    "sev": "error",
+    "message": "Do Not Track is not an opt-out preference signal under any US state privacy law. The twelve states that require a universal signal recognise Global Privacy Control, not DNT.",
+    "fix": "navigator.globalPrivacyControl === true"
+  },
+  {
+    "pattern": "globalPrivacyControl\\s*[=!]==?\\s*[\\'\"]",
+    "flags": "",
+    "sev": "error",
+    "message": "navigator.globalPrivacyControl is a boolean. Comparing it to a string is always false, so this opt-out branch never runs.",
+    "fix": "navigator.globalPrivacyControl === true"
+  },
+  {
+    "pattern": "sec-gpc[\\'\"\\]\\s]*[=!]==?\\s*[\\'\"](true|yes|on)[\\'\"]",
+    "flags": "i",
+    "sev": "error",
+    "message": "The Sec-GPC request header carries the value 1, never the string \"true\", so this server-side opt-out never fires.",
+    "fix": "req.headers['sec-gpc'] === '1'"
+  },
+  {
+    "pattern": "fbq\\s*\\(\\s*[\\'\"]init[\\'\"]",
+    "flags": "",
+    "sev": "error",
+    "message": "Meta Pixel init sends identifiers to Meta for cross-context behavioural advertising, which is a sale or share. It must not run for a visitor whose browser sent Global Privacy Control.",
+    "fix": "if (!optedOut) fbq('init', id)"
+  },
+  {
+    "pattern": "ttq\\.(load|page|track)\\s*\\(",
+    "flags": "",
+    "sev": "error",
+    "message": "The TikTok pixel is cross-context behavioural advertising. A visitor in the twelve opt-out-signal states who sent GPC must not have it loaded at all.",
+    "fix": "load ttq only after the signal check passes"
+  },
+  {
+    "pattern": "gtag\\s*\\(\\s*[\\'\"]config[\\'\"]\\s*,\\s*[\\'\"]AW-",
+    "flags": "",
+    "sev": "error",
+    "message": "A Google Ads (AW-) tag is a share for cross-context advertising. It has to be gated on the opt-out signal, not only on an EU cookie banner.",
+    "fix": "gate the AW- config on the GPC check"
+  },
+  {
+    "pattern": "[\\'\"]?(ad_storage|ad_user_data|ad_personalization)[\\'\"]?\\s*:\\s*[\\'\"]granted[\\'\"]",
+    "flags": "",
+    "sev": "error",
+    "message": "Advertising storage defaults to granted, so a GPC visitor is already shared on the very first page load, before any banner logic runs.",
+    "fix": "default these to 'denied' and update only after reading the signal"
+  },
+  {
+    "pattern": "(allow_google_signals|allow_ad_personalization_signals)\\s*:\\s*true",
+    "flags": "",
+    "sev": "error",
+    "message": "Google Signals turns Analytics data into cross-context advertising audiences. That is a share you must stop for a GPC visitor.",
+    "fix": "allow_google_signals: false when the signal is present"
+  },
+  {
+    "pattern": "\\b(em|ph)\\s*:\\s*[\\w.$\\[\\]]*(email|phone|mail|tel|number)\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "Advanced matching is passing a raw email or phone number to an ad platform. That is a sale of an identifier, and the field must be SHA-256 hashed even for a visitor who has not opted out.",
+    "fix": "em: sha256(normalise(user.email))"
+  },
+  {
+    "pattern": "(acceptAll|acceptAllCookies|grantAllConsent|grantAll)\\s*\\(\\s*\\)",
+    "flags": "",
+    "sev": "error",
+    "message": "Auto-accepting on load overwrites the opt-out a GPC visitor already sent, and asymmetric accept/reject is the dark pattern the CPPA regulations name.",
+    "fix": "never call acceptAll() without an affirmative click"
+  },
+  {
+    "pattern": "(region|state|geo|country|jurisdiction)\\s*[=!]==?\\s*[\\'\"](CA|California)[\\'\"]",
+    "flags": "i",
+    "sev": "error",
+    "message": "Honouring the signal for California alone misses the other eleven states that require it as of 1 January 2026.",
+    "fix": "OPT_OUT_STATES.has(region) over all twelve states"
+  },
+  {
+    "pattern": "\\b(isEU|inEEA|isEEA|gdprApplies|isGdpr|gdprRegion)\\b",
+    "flags": "",
+    "sev": "warn",
+    "message": "An EU-only gate leaves US visitors ungated. The opt-out signal has to be honoured whether or not the EU check is true.",
+    "fix": "check the signal before, and independently of, the EU branch"
+  },
+  {
+    "pattern": "Do Not Sell My Personal Information",
+    "flags": "i",
+    "sev": "warn",
+    "message": "Since CPRA the required wording is \"Do Not Sell or Share My Personal Information\", or the single combined link titled \"Your Privacy Choices\".",
+    "fix": "Your Privacy Choices"
+  },
+  {
+    "pattern": "(hotjar|fullstory|logrocket|smartlook|mouseflow|clarity)\\s*[.(]",
+    "flags": "i",
+    "sev": "warn",
+    "message": "Session-replay scripts capture form input. Running one for a GPC visitor is both a share and the fact pattern behind the CIPA wiretapping suits.",
+    "fix": "start replay only after the signal check passes"
+  },
+  {
+    "pattern": "\\b(rdt|snaptr|pintrk|twq|lintrk)\\s*\\(|_linkedin_partner_id",
+    "flags": "",
+    "sev": "warn",
+    "message": "Reddit, Snap, Pinterest, X and LinkedIn pixels are all cross-context advertising shares and need the same gate as the Meta and Google tags.",
+    "fix": "gate every ad pixel on one shared optedOut flag"
+  },
+  {
+    "pattern": "(analytics|rudderanalytics)\\.(load|initialize)\\s*\\(",
+    "flags": "",
+    "sev": "warn",
+    "message": "Loading a CDP fans the visitor out to every enabled destination, ad destinations included, so gating individual tags downstream proves nothing.",
+    "fix": "load the CDP after the signal check, or disable ad destinations"
+  },
+  {
+    "pattern": "googletagmanager\\.com/gtm\\.js|[\\'\"]GTM-[A-Z0-9]{4,}",
+    "flags": "",
+    "sev": "warn",
+    "message": "The GTM container loads whatever tags it holds, so gating your own tags proves nothing. The container itself must be gated on the signal.",
+    "fix": "gate the container, not only the tags inside it"
+  },
+  {
+    "pattern": "dataLayer\\.push\\s*\\([^)]*\\b(email|user_id|userId|phone|customerId)\\b",
+    "flags": "i",
+    "sev": "warn",
+    "message": "Pushing an identifier into the dataLayer hands it to every tag in the container, including the advertising tags.",
+    "fix": "push a hashed or pseudonymous id, and only when not opted out"
+  },
+  {
+    "pattern": "(defaultConsent|consentDefault|initialConsent|consentState)\\s*[:=]\\s*[\\'\"]?(true|granted|all|accepted|opted_in)",
+    "flags": "i",
+    "sev": "warn",
+    "message": "Consent state starts as opted in. In an opt-out state that is defensible only until a GPC signal arrives, and this code never looks.",
+    "fix": "start from the signal, not from a hard-coded default"
+  },
+  {
+    "pattern": "getCurrentPosition\\s*\\(|watchPosition\\s*\\(",
+    "flags": "",
+    "sev": "info",
+    "message": "Precise geolocation is sensitive personal information, which triggers the limit-the-use right and the combined \"Your Privacy Choices\" link.",
+    "fix": "coarsen to city level, or add the limit-use control"
+  }
+]
