@@ -58,7 +58,7 @@ Jede Meldung sagt außerdem, in wie vielen Tagen die Schicht beginnt, damit du w
 
 ## Benutzung
 
-Öffne eine `.csv` in VS Code: die Befunde erscheinen im Problems-Panel. Die gleiche Prüfung läuft ohne Installation im Browser: https://getreadystack.com/tools/dienstplan-ruhezeit-check
+Öffne eine `.csv` in VS Code: die Befunde erscheinen im Problems-Panel. Die gleiche Prüfung läuft ohne Installation im Browser: https://getreadystack.com/de/tools/dienstplan-ruhezeit-check
 
 ## Kostenlos und Vollversion
 
