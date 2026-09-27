@@ -1,0 +1,34 @@
+{
+ "_why": "s165 2026-09-27 — the money moment names what the vendor bills. Numbers copied from Oracle's own price list (fetched 2026-09-27), never estimated.",
+ "vendor": "Oracle",
+ "months": 12,
+ "example_heads": 500,
+ "bands": [[1, 999, 15.00], [1000, 2999, 12.00], [3000, 9999, 10.50], [10000, 19999, 8.25], [20000, 29999, 6.75], [30000, 39999, 5.70], [40000, 49999, 5.25]],
+ "source": "Oracle Java SE Universal Subscription Global Price List",
+ "source_url": "https://www.oracle.com/a/ocom/docs/corporate/pricing/java-se-subscription-pricelist-5028356.pdf",
+ "measured_at": "2026-09-27",
+ "line": {
+  "en": "Once Oracle's no-fee terms end, Java SE is billed on your whole headcount, contractors included - at list price a {ex}-person company pays ${exy} a year.",
+  "de": "Sobald Oracles gebührenfreie Bedingungen enden, wird Java SE nach der gesamten Belegschaft abgerechnet, Auftragnehmer inklusive - zum Listenpreis zahlt ein Unternehmen mit {ex} Personen ${exy} pro Jahr.",
+  "ja": "Oracle の無償条件 (NFTC) が終わると、Java SE は利用者数ではなく全従業員数 (委託先を含む) で課金されます。定価では {ex} 人の会社で年 ${exy} です。",
+  "es": "Cuando terminan los términos gratuitos de Oracle, Java SE se factura por toda la plantilla, contratistas incluidos: a precio de lista, una empresa de {ex} personas paga ${exy} al año.",
+  "pt": "Quando os termos gratuitos da Oracle terminam, o Java SE é cobrado pelo quadro inteiro, terceirizados incluídos: a preço de tabela, uma empresa de {ex} pessoas paga US${exy} por ano."
+ },
+ "ask": {
+  "en": "How many employees and contractors does your company have?",
+  "de": "Wie viele Beschäftigte und Auftragnehmer hat Ihr Unternehmen?",
+  "ja": "御社の従業員と委託先の合計人数は?",
+  "es": "¿Cuántos empleados y contratistas tiene su empresa?",
+  "pt": "Quantos funcionários e terceirizados sua empresa tem?"
+ },
+ "result": {
+  "en": "{heads} people x ${rate}/month x 12 = ${year} a year at Oracle's list price ({src}). The full report lists every line in this workspace that pulls an Oracle build, with the free OpenJDK line that replaces it.",
+  "de": "{heads} Personen x ${rate}/Monat x 12 = ${year} pro Jahr zum Oracle-Listenpreis ({src}). Der vollständige Bericht listet jede Zeile in diesem Workspace, die einen Oracle-Build zieht, mit der freien OpenJDK-Zeile als Ersatz.",
+  "ja": "{heads} 人 x ${rate}/月 x 12 = 年 ${year} (Oracle 定価 · {src})。完全レポートは、このワークスペースで Oracle ビルドを取得しているすべての行と、置き換えられる無償の OpenJDK の行を一覧にします。",
+  "es": "{heads} personas x ${rate}/mes x 12 = ${year} al año a precio de lista de Oracle ({src}). El informe completo enumera cada línea de este espacio de trabajo que usa una build de Oracle, con la línea OpenJDK gratuita que la sustituye.",
+  "pt": "{heads} pessoas x US${rate}/mês x 12 = US${year} por ano a preço de tabela da Oracle ({src}). O relatório completo lista cada linha deste workspace que usa uma build da Oracle, com a linha OpenJDK gratuita que a substitui."
+ },
+ "above": {
+  "en": "Above 49,999 people Oracle does not publish a list price; it quotes directly. The full report is the evidence to bring to that conversation."
+ }
+}
