@@ -1,0 +1,57 @@
+{
+  "name": "lectura-facil-lint-es",
+  "displayName": "Accesibilidad cognitiva: lint de lectura fácil",
+  "description": "Revisa guías y formularios en Markdown con 12 reglas de lectura fácil y lenguaje claro (RD 707/2026, UNE 153101). Cada fallo con su línea y cómo arreglarlo. Vigor: 2027-01-02.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "accesibilidad cognitiva",
+    "lectura facil",
+    "lenguaje claro",
+    "RD 707/2026",
+    "UNE 153101",
+    "accesibilidad",
+    "spanish",
+    "linter"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "lecturaFacil.checkFile",
+        "title": "Accesibilidad cognitiva: lint de lectura fácil: Check this file",
+        "category": "Accesibilidad cognitiva: lint de lectura fácil"
+      },
+      {
+        "command": "lecturaFacil.checkWorkspace",
+        "title": "Accesibilidad cognitiva: lint de lectura fácil: Sweep workspace and write report (licence)",
+        "category": "Accesibilidad cognitiva: lint de lectura fácil"
+      },
+      {
+        "command": "lecturaFacil.enterKey",
+        "title": "Accesibilidad cognitiva: lint de lectura fácil: Enter licence key",
+        "category": "Accesibilidad cognitiva: lint de lectura fácil"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "lectura-facil-lint-es"
+  },
+  "homepage": "https://getreadystack.com/es/tools/lectura-facil-lint-es",
+  "readystack": {
+    "rulesDate": "2026-09-26"
+  },
+  "icon": "icon.png"
+}
