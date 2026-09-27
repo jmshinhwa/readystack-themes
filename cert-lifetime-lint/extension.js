@@ -2,6 +2,9 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
+const GLOB = '**/*.{yaml,yml,tf,hcl,sh,bash,json,toml,conf,cnf,py,cron,env,ini}';
+const PREFIX = 'cert-lifetime-lint';
+const ENGINE = require('./engine.js');
 const S = {"run": "Checking the open file for over-cap certificate settings", "done": "Check finished.", "nothing_found": "Nothing in this file exceeds the public TLS caps.", "need_key": "Full version: scans every file in the repo, writes a dated report, and fails CI on findings. $29 once · one licence key per person or team seat · Hosted certificate-expiry monitoring is $25-29 a month.", "key_ok": "Licence accepted — workspace scan, report export and CI output are on.", "key_bad": "That key did not validate. Check the key in your Polar receipt email.", "buy": "Get the full version — $29", "enter_key": "Enter licence key", "paste": "Paste a Kubernetes manifest, Terraform file, crontab or shell script here", "check": "Check this config", "extra_rules": "Extra patterns of your own, checked alongside the 16 that ship inside."};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 
@@ -42,24 +45,16 @@ function report(rows) {
 }
 
 // ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질).
-const RULES = [{"pattern": "-days\\s+(?:2[0-9]{2}|[3-9][0-9]{2}|[0-9]{4,})", "flags": "", "sev": "error", "message": "openssl -days is 200 or more. A public CA has not issued that since 15 March 2026 (200-day cap); private and internal CAs are exempt.", "fix": "-days 90"}, {"pattern": "-validity\\s+(?:2[0-9]{2}|[3-9][0-9]{2}|[0-9]{4,})", "flags": "", "sev": "error", "message": "keytool -validity is 200 or more, over the 200-day public TLS cap in force since 15 March 2026. The cap falls to 100 days on 15 March 2027.", "fix": "-validity 90"}, {"pattern": "duration:\\s*[\"']?(?:4[89][0-9]{2}|[5-9][0-9]{3}|[0-9]{5,})h", "flags": "", "sev": "error", "message": "cert-manager duration is 4800h (200 days) or more. A public issuer refuses it; the ACME order fails and the Certificate never becomes Ready.", "fix": "duration: 2160h"}, {"pattern": "duration:\\s*[\"']?(?:2[0-9]{2}|[3-9][0-9]{2}|[0-9]{4,})d\\b", "flags": "", "sev": "error", "message": "Certificate duration of 200 days or more is over the public TLS cap. 100 days becomes the cap on 15 March 2027 and 47 days on 15 March 2029.", "fix": "duration: 90d"}, {"pattern": "renewBefore:\\s*[\"']?(?:1[1-9][0-9]{2}|[2-9][0-9]{3}|[0-9]{5,})h", "flags": "", "sev": "warn", "message": "renewBefore of 1100h (about 46 days) or more is longer than a 47-day certificate lives from 15 March 2029. cert-manager rejects renewBefore greater than or equal to duration.", "fix": "renewBefore: 360h"}, {"pattern": "validity_period_hours\\s*=\\s*(?:4[89][0-9]{2}|[5-9][0-9]{3}|[0-9]{5,})", "flags": "", "sev": "error", "message": "validity_period_hours is 4800 (200 days) or more, over the public TLS cap in force since 15 March 2026.", "fix": "validity_period_hours = 2160"}, {"pattern": "min_days_remaining\\s*=\\s*[\"']?(?:[6-9][0-9]|[0-9]{3,})", "flags": "", "sev": "warn", "message": "min_days_remaining of 60 or more never clears once certificates last 47 days (15 March 2029). Terraform then re-issues on every apply.", "fix": "min_days_remaining = 21"}, {"pattern": "(?:expiry|not-after|notAfter|maxTLSCertDuration|defaultTLSCertDuration)[\"']?\\s*[:=]\\s*[\"']?(?:4[89][0-9]{2}|[5-9][0-9]{3}|[0-9]{5,})h", "flags": "i", "sev": "error", "message": "This CA profile issues certificates of 4800h (200 days) or longer, over the public TLS cap since 15 March 2026.", "fix": "\"expiry\": \"2160h\""}, {"pattern": "not_after:\\s*[\"']?\\+(?:2[0-9]{2}|[3-9][0-9]{2}|[0-9]{4,})d", "flags": "", "sev": "error", "message": "not_after of +200d or longer is over the public TLS cap. The cap falls to 100 days on 15 March 2027.", "fix": "not_after: \"+90d\""}, {"pattern": "\\*/(?:[3-9]|1[0-2])\\s+\\*\\s.*\\b(?:certbot|acme|lego|renew)\\b", "flags": "i", "sev": "error", "message": "This renewal job runs every 3 months or less often. A 100-day certificate (15 March 2027) can expire between two runs.", "fix": "0 3 * * * certbot renew"}, {"pattern": "@(?:yearly|annually|monthly)\\b.*\\b(?:cert|certbot|acme|lego|renew|ssl|tls)\\b", "flags": "i", "sev": "warn", "message": "A monthly or yearly renewal cadence leaves no retry room once certificates last 47 days (15 March 2029).", "fix": "@daily certbot renew"}, {"pattern": "\\b398\\b(?=[^\\n]*(?:day|valid|cert|tls|ssl|expir))|(?:day|valid|cert|tls|ssl|expir)[^\\n]*\\b398\\b", "flags": "i", "sev": "warn", "message": "398 days stopped being the maximum on 14 March 2026. The cap is 200 days now, 100 days from 15 March 2027 and 47 days from 15 March 2029.", "fix": "200"}, {"pattern": "(?:warn|alert|expir[a-z]*|renew[a-z]*)[_a-z]*_?days\\s*[:=]\\s*[\"']?(?:[6-9][0-9]|[0-9]{3,})", "flags": "i", "sev": "warn", "message": "An expiry warning threshold of 60 days or more fires permanently once certificates last 47 days (15 March 2029).", "fix": "14"}, {"pattern": "-checkend\\s+(?:[5-9][0-9]{6}|[0-9]{8,})", "flags": "", "sev": "warn", "message": "-checkend of 5000000 seconds (about 58 days) is longer than a 47-day certificate lives, so the check is always true from 15 March 2029.", "fix": "-checkend 1209600"}, {"pattern": "certificatesDuration\\s*[:=]\\s*[\"']?(?:4[89][0-9]{2}|[5-9][0-9]{3}|[0-9]{5,})", "flags": "", "sev": "error", "message": "Traefik certificatesDuration is 4800 hours (200 days) or more, over the public TLS cap since 15 March 2026.", "fix": "certificatesDuration = 2160"}, {"pattern": "(?:cert[a-z]*|tls|ssl)[^\\n]{0,40}\\b(?:1|one)[\\s-]*year\\b", "flags": "i", "sev": "warn", "message": "A one-year public TLS certificate can no longer be issued. The maximum has been 200 days since 15 March 2026.", "fix": "200 days"}];
+const RULES = ENGINE.RULES;
 function scan(text, fileName) {
-  const lines = String(text).split(/\r?\n/);
-  const cfg = vscode.workspace.getConfiguration('cert-lifetime-lint');
+  const cfg = vscode.workspace.getConfiguration(PREFIX);
   const extra = cfg.get('extraRules');
-  const feed = (globalThis.__yjFeed && Array.isArray(globalThis.__yjFeed.rules)) ? globalThis.__yjFeed.rules : [];
-  const rules = RULES.concat(Array.isArray(extra) ? extra : [], feed);
-  const hits = [];
-  for (let i = 0; i < lines.length; i++) {
-    for (const r of rules) {
-      let re;
-      try { re = new RegExp(r.pattern, r.flags || ''); } catch (e) { continue; }
-      // ★s126 — ★심각도를 실어 보낸다. ⛔없으면 min_severity 가 ★전부를 지운다 (내가 만들 뻔한 거짓말)
-      if (re.test(lines[i])) hits.push({ line: i + 1, msg: r.message, fix: r.fix || null,
-                                         sev: r.sev || 'warn' });
-    }
-  }
-  return hits;
+  const today = new Date().toISOString().slice(0, 10);
+  // ★두뇌는 ./engine.js (rules.json + extraRules + 키 고객 규칙 피드) — 무료·유료·auto.js 가 같은 판정을 쓴다
+  const res = ENGINE.engine.check(text, { today: today, path: fileName, extra: Array.isArray(extra) ? extra : [] });
+  return (res.findings || []).map(function (f) {
+    return { line: f.line, msg: f.msg, fix: f.fix || null, sev: f.sev || 'warn', check: f.check };
+  });
 }
 
 const SNIPPETS = {};
@@ -155,6 +150,10 @@ function activate(ctx) {
   reg('cert-lifetime-lint.workspace_scan', function () { return scanWorkspace(ctx); });
   reg('cert-lifetime-lint.export_report', function () { return exportReport(ctx); });
   reg('cert-lifetime-lint.ci_json', function () { return ciJson(ctx); });
+  // auto.js 가 부르는 이름(PREFIX.checkFile / PREFIX.checkWorkspace) · package.json 목록에는 없다
+  reg(PREFIX + '.checkFile', runCurrent);
+  reg(PREFIX + '.checkWorkspace', function () { return scanWorkspace(ctx); });
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: 'Cert Lifetime Lint - TLS validity caps 200/100/47', slug: 'cert-lifetime-lint', price: 29 }); } catch (e) {}
   // ★설정을 읽는다 — show_on_start. ⛔전에는 안 읽어서 설정이 거짓말이었다 (s126)
   if (vscode.workspace.getConfiguration('cert-lifetime-lint').get('show_on_start') === true) {
     if (typeof runCurrent === 'function') { try { runCurrent(ctx); } catch (e) { /* 열린 파일이 없으면 조용히 */ } }
