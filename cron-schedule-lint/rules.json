@@ -1,0 +1,205 @@
+[
+  {
+    "pattern": "-\\s*cron:\\s*['\\\"]\\s*(?:\\S+\\s+){5}\\S+\\s*['\\\"]",
+    "flags": "",
+    "sev": "error",
+    "message": "GitHub Actions takes a five-field POSIX cron. Six fields is not a schedule it can read, the workflow simply never runs on time, and the Actions tab shows nothing at all. Drop the leading seconds field.",
+    "fix": "- cron: '0 3 * * *'"
+  },
+  {
+    "pattern": "@Scheduled\\s*\\([^)]*cron\\s*=\\s*\\\"(?:[^\\s\\\"]+\\s+){4}[^\\s\\\"]+\\\"",
+    "flags": "",
+    "sev": "error",
+    "message": "Spring's @Scheduled cron takes six fields, seconds first. A five-field Unix expression is rejected at startup with 'Cron expression must consist of 6 fields'. Prepend a 0 for the seconds field.",
+    "fix": "@Scheduled(cron = \"0 0 3 * * *\")"
+  },
+  {
+    "pattern": "cron\\(\\s*(?:[^\\s)]+\\s+){4}[^\\s)]+\\s*\\)",
+    "flags": "",
+    "sev": "error",
+    "message": "Amazon EventBridge cron() takes six fields and the sixth is the YEAR, not seconds: cron(minutes hours day-of-month month day-of-week year). A five-field Unix expression is rejected when the rule is created.",
+    "fix": "cron(0 3 * * ? *)"
+  },
+  {
+    "pattern": "cron\\(\\s*[^\\s)]+\\s+[^\\s)]+\\s+(?!\\?)[^\\s)]+\\s+[^\\s)]+\\s+(?!\\?)[^\\s)]+\\s+[^\\s)]+\\s*\\)",
+    "flags": "",
+    "sev": "error",
+    "message": "EventBridge will not accept a value or a * in both day-of-month and day-of-week; one of the two must be a ?. Note also that EventBridge numbers the week 1-7 with 1 = Sunday, so a Unix 1 (Monday) becomes Sunday here.",
+    "fix": "cron(0 3 * * ? *)"
+  },
+  {
+    "pattern": "CronScheduleBuilder\\.cronSchedule\\s*\\(|org\\.quartz\\.CronExpression|new\\s+CronTrigger\\b",
+    "flags": "",
+    "sev": "warn",
+    "message": "Quartz numbers the week 1-7 with 1 = Sunday, one place off from Unix cron, and it requires a ? in either day-of-month or day-of-week. A Unix expression pasted here runs on the wrong weekday rather than failing.",
+    "fix": ""
+  },
+  {
+    "pattern": "^\\s*schedule:\\s*['\\\"]?(?:[^\\s'\\\"]+\\s+){5}[^\\s'\\\"]+",
+    "flags": "",
+    "sev": "error",
+    "message": "A Kubernetes CronJob schedule is five fields. The API server rejects six, so kubectl apply fails - or, in a Helm template rendered at deploy time, the release fails and the old CronJob keeps running the old schedule.",
+    "fix": "schedule: \"0 3 * * *\""
+  },
+  {
+    "pattern": "^\\s*concurrencyPolicy:\\s*[\\\"']?Allow",
+    "flags": "",
+    "sev": "warn",
+    "message": "Allow is also what you get when the field is absent. The moment one run takes longer than the interval, the next run starts anyway and the two overlap - two exports, two invoices, two emails to the same customer. Forbid or Replace is usually what was meant.",
+    "fix": "concurrencyPolicy: Forbid"
+  },
+  {
+    "pattern": "^\\s*startingDeadlineSeconds:\\s*(?:[1-9]\\d{5,})\\b",
+    "flags": "",
+    "sev": "error",
+    "message": "A startingDeadlineSeconds window this long lets the CronJob controller count more than 100 missed starts. At 100 it stops scheduling this CronJob permanently and logs one line - 'Cannot determine if job needs to be started: too many missed start time (> 100)' - with no event, no alert and no restart.",
+    "fix": "startingDeadlineSeconds: 200"
+  },
+  {
+    "pattern": "^\\s*suspend:\\s*true",
+    "flags": "",
+    "sev": "warn",
+    "message": "A suspended CronJob keeps accumulating missed start times. Resume it after more than 100 missed intervals and the controller refuses to schedule it again at all, so a job paused over a long freeze never comes back on its own.",
+    "fix": ""
+  },
+  {
+    "pattern": "^\\s*restartPolicy:\\s*[\\\"']?Always",
+    "flags": "",
+    "sev": "error",
+    "message": "A Job pod template may only use Never or OnFailure. Always is rejected by the API server, so this CronJob is never created and nothing anywhere reports a missing schedule.",
+    "fix": "restartPolicy: OnFailure"
+  },
+  {
+    "pattern": "^\\s*(?:CRON_TZ|TZ)\\s*=\\s*[A-Za-z]",
+    "flags": "",
+    "sev": "warn",
+    "message": "CRON_TZ is a Vixie/cronie extension. busybox crond, which is the cron in every Alpine image, ignores it and runs in the container's own zone. Set the zone inside the job's command instead if the image is not running cronie.",
+    "fix": ""
+  },
+  {
+    "pattern": "^\\s*ENV\\s+TZ\\s*[=\\s]",
+    "flags": "",
+    "sev": "warn",
+    "message": "Setting TZ in an image that has no tzdata package changes nothing: both glibc and musl fall back to UTC when /usr/share/zoneinfo is missing, so every schedule in the container silently runs on UTC. Add tzdata (apk add --no-cache tzdata, or apt-get install -y tzdata).",
+    "fix": "RUN apk add --no-cache tzdata"
+  },
+  {
+    "pattern": "cron:.*#.*\\b(?:EST|EDT|PST|PDT|CST|CDT|CET|CEST|BST|IST|KST|JST|AEST|local time)\\b",
+    "flags": "i",
+    "sev": "error",
+    "message": "GitHub Actions runs every scheduled workflow on UTC and offers no per-schedule zone. A comment naming a local zone is right for half the year: on 2026-10-25 in Europe and 2026-11-01 in the United States the local hour this really fires at moves by one, and nothing in the file changes.",
+    "fix": ""
+  },
+  {
+    "pattern": "^\\s*crons\\s*=\\s*\\[",
+    "flags": "",
+    "sev": "warn",
+    "message": "Cloudflare Workers cron triggers run on UTC only; there is no per-trigger time zone. A 09:00 local job needs its expression changed by hand on every DST date, or it drifts an hour twice a year.",
+    "fix": ""
+  },
+  {
+    "pattern": "\\\"schedule\\\"\\s*:\\s*\\\"[^\\\"]*\\*/",
+    "flags": "",
+    "sev": "error",
+    "message": "Vercel runs cron jobs on UTC only, and on the Hobby plan any expression that resolves to more often than once a day fails at deploy time rather than at runtime, so the deployment itself is rejected.",
+    "fix": ""
+  },
+  {
+    "pattern": "crontab\\s*\\(",
+    "flags": "",
+    "sev": "info",
+    "message": "Celery beat runs its schedules on UTC unless the timezone setting is set. Once it is set, the beat schedule moves with DST, so a job written for 02:30 local silently does not run, or runs twice, on the transition day.",
+    "fix": ""
+  },
+  {
+    "pattern": "^\\s*schedule:\\s*$",
+    "flags": "",
+    "sev": "warn",
+    "message": "A scheduled workflow in a public repository is disabled automatically after 60 days with no repository activity. GitHub sends one email to whoever last enabled it and shows nothing in the Actions tab; the workflow just stops.",
+    "fix": ""
+  },
+  {
+    "pattern": "-\\s*cron:\\s*['\\\"]\\s*\\*/[1-4]\\s",
+    "flags": "",
+    "sev": "error",
+    "message": "GitHub Actions will not run a schedule more often than every 5 minutes. A shorter interval does not error - it is simply not honoured.",
+    "fix": "- cron: '*/5 * * * *'"
+  },
+  {
+    "pattern": "-\\s*cron:\\s*['\\\"]\\s*0\\s+",
+    "flags": "",
+    "sev": "info",
+    "message": "Every scheduled workflow on GitHub that fires at minute 0 lands in the same queue. GitHub's own documentation warns that runs during periods of high load may be delayed, and delayed runs are dropped rather than queued. Move the minute off 0.",
+    "fix": "- cron: '7 3 * * *'"
+  },
+  {
+    "pattern": "catchup\\s*=\\s*True",
+    "flags": "",
+    "sev": "error",
+    "message": "With a start_date in the past this queues one DAG run for every interval between that date and now, the moment the DAG is unpaused - hundreds of runs at once, every one of them consuming worker time and downstream API quota.",
+    "fix": "catchup=False"
+  },
+  {
+    "pattern": "start_date\\s*=\\s*(?:[A-Za-z_.]*\\.)?now\\s*\\(|days_ago\\s*\\(",
+    "flags": "",
+    "sev": "error",
+    "message": "A start_date evaluated when the file is parsed moves every time the scheduler re-reads it, so the first interval never closes and the DAG never runs. Pin a fixed datetime instead.",
+    "fix": "start_date=datetime(2026, 1, 1)"
+  },
+  {
+    "pattern": "^\\s*OnCalendar\\s*=",
+    "flags": "",
+    "sev": "info",
+    "message": "A systemd timer fires within AccuracySec of the stated time and AccuracySec defaults to 1min, so this is not an exact-second schedule. Without Persistent=true a run missed while the machine was down never happens at all.",
+    "fix": "AccuracySec=1s\nPersistent=true"
+  },
+  {
+    "pattern": "^\\s*@reboot\\b",
+    "flags": "",
+    "sev": "warn",
+    "message": "@reboot fires on every start of the cron daemon, not once per machine boot. In a container that restarts - a rolling deploy, an OOM kill, a node drain - this runs again each time.",
+    "fix": ""
+  },
+  {
+    "pattern": "^\\s*@(?:daily|midnight)\\b",
+    "flags": "",
+    "sev": "info",
+    "message": "@daily is 0 0 * * * in the daemon's own zone. Midnight is the busiest minute on every shared runner and the exact instant the date rolls over, so a job that stamps 'yesterday' is one minute of clock skew away from stamping the wrong day.",
+    "fix": "17 0 * * *"
+  },
+  {
+    "pattern": "cron\\.schedule\\s*\\(\\s*['\\\"](?:\\S+\\s+){5}\\S+['\\\"]",
+    "flags": "",
+    "sev": "info",
+    "message": "node-cron reads a six-field expression as seconds first. The identical string copied into a crontab file or a Kubernetes CronJob means something completely different, because there the first field is minutes.",
+    "fix": ""
+  },
+  {
+    "pattern": "^\\s*[\\d*/,\\-]+\\s+[\\d*/,\\-]+\\s+(?:\\?\\s|\\S+\\s+\\?\\s|\\S+\\s+\\S+\\s+\\?\\s)",
+    "flags": "",
+    "sev": "error",
+    "message": "? is a Quartz and EventBridge character. Vixie cron, cronie, busybox crond and Kubernetes CronJob all reject it, and a crontab that fails to load leaves the previous crontab running.",
+    "fix": ""
+  },
+  {
+    "pattern": "^\\s*[\\d*/,\\-]+\\s+[\\d*/,\\-]+\\s+\\S*[LW#]\\S*\\s",
+    "flags": "",
+    "sev": "error",
+    "message": "L (last), W (nearest weekday) and # (nth weekday) are Quartz extensions. POSIX cron, Kubernetes CronJob and GitHub Actions do not understand them, so 'last day of month' has to be written as a guard inside the command.",
+    "fix": ""
+  },
+  {
+    "pattern": "^\\s*(?:[\\d*/,\\-]+\\s+){5}.*[^\\\\]%",
+    "flags": "",
+    "sev": "error",
+    "message": "In a crontab an unescaped % ends the command; everything after it is fed to the job on standard input. date +%Y-%m-%d therefore runs as date + and the filename comes out empty. Escape each one as \\%.",
+    "fix": "date +\\%Y-\\%m-\\%d"
+  },
+  {
+    "pattern": "^\\s*(?:[\\d*/,\\-]+\\s+){5}(?:python[23]?|node|npm|npx|php|ruby|java|aws|kubectl|docker|psql|pg_dump)\\b",
+    "flags": "",
+    "sev": "error",
+    "message": "cron runs with a minimal PATH of /usr/bin:/bin and none of your shell profile, so a bare python, node, aws or kubectl that works in your terminal is 'command not found' at 03:00 - and the error goes to local mail that nobody reads. Use the absolute path.",
+    "fix": "/usr/local/bin/python3"
+  }
+]
