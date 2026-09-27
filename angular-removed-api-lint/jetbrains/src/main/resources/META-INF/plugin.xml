@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.angular-removed-api-lint</id>
+  <name>Angular Removed-API Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>32 checks for Angular APIs that were removed or deprecated, plus the support window on your version pin. The bundled legacy fixture — one NgModule file and its spec — returns 34 findings, 9 of them errors for removed APIs, 18 warnings and 7 advisories.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Angular Removed-API Lint: Check This File</b>. Each finding appears on its line with the fix. Offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/angular-removed-api-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/angular-removed-api-lint">getreadystack.com/tools/angular-removed-api-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_angular_removed_api_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.angular-removed-api-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.angular-removed-api-lint.check" class="com.getreadystack.p_angular_removed_api_lint.RsCheckAction"
+            text="Angular Removed-API Lint: Check This File" description="Run Angular Removed-API Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
