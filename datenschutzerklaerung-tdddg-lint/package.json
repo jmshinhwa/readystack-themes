@@ -1,0 +1,56 @@
+{
+  "name": "datenschutzerklaerung-tdddg-lint",
+  "displayName": "Datenschutzerklärung Check – TDDDG, DDG, DPF",
+  "description": "Prüft Datenschutzerklärungen (.md/.html) auf veraltete Rechtsgrundlagen (TMG, TTDSG, Privacy Shield, alte SCC) und fehlende Pflichtangaben nach Art. 13 DSGVO – 16 Regeln, mit Zeile und Ersatz.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "datenschutzerklärung",
+    "dsgvo",
+    "tdddg",
+    "ddg",
+    "privacy policy",
+    "data privacy framework",
+    "datenschutz"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "dsCheck.checkFile",
+        "title": "Datenschutzerklärung Check – TDDDG, DDG, DPF: Check this file",
+        "category": "Datenschutzerklärung Check – TDDDG, DDG, DPF"
+      },
+      {
+        "command": "dsCheck.checkWorkspace",
+        "title": "Datenschutzerklärung Check – TDDDG, DDG, DPF: Sweep workspace and write report (licence)",
+        "category": "Datenschutzerklärung Check – TDDDG, DDG, DPF"
+      },
+      {
+        "command": "dsCheck.enterKey",
+        "title": "Datenschutzerklärung Check – TDDDG, DDG, DPF: Enter licence key",
+        "category": "Datenschutzerklärung Check – TDDDG, DDG, DPF"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "datenschutzerklaerung-tdddg-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/datenschutzerklaerung-tdddg-lint",
+  "readystack": {
+    "rulesDate": "2026-09-26"
+  },
+  "icon": "icon.png"
+}
