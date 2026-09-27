@@ -1,0 +1,177 @@
+[
+  {
+    "pattern": "actions/checkout@v[1-4]\\b",
+    "flags": "i",
+    "sev": "warn",
+    "fix": "actions/checkout@v5",
+    "message": "actions/checkout@v1-v4 runs on Node 20. Node 20 is removed from GitHub-hosted runners on 2026-09-23 - move to actions/checkout@v5 (needs runner 2.327.1 or later)."
+  },
+  {
+    "pattern": "actions/setup-node@v[1-4]\\b",
+    "flags": "i",
+    "sev": "warn",
+    "fix": "actions/setup-node@v5",
+    "message": "actions/setup-node@v1-v4 runs on Node 20, removed from the runner on 2026-09-23 - move to actions/setup-node@v5."
+  },
+  {
+    "pattern": "actions/(upload|download)-artifact@v3\\b",
+    "flags": "i",
+    "sev": "error",
+    "fix": "actions/upload-artifact@v6",
+    "message": "artifact actions v3 were shut down on 2025-01-30 - the step fails today. Move to v6 (v4 changed to immutable artifacts, so a job that uploaded the same name twice needs merge-multiple)."
+  },
+  {
+    "pattern": "actions/(upload|download)-artifact@v[45]\\b",
+    "flags": "i",
+    "sev": "warn",
+    "fix": "actions/upload-artifact@v6",
+    "message": "artifact actions v4 and v5 still default to Node 20, which the runner drops on 2026-09-23 - move to v6 (needs runner 2.327.1 or later)."
+  },
+  {
+    "pattern": "actions/cache@v[12]\\b",
+    "flags": "i",
+    "sev": "error",
+    "fix": "actions/cache@v5",
+    "message": "actions/cache@v1 and @v2 stopped working on 2025-02-01, and the v1 cache service was shut down on 2025-04-15 - move to actions/cache@v5."
+  },
+  {
+    "pattern": "actions/cache@v[34]\\b",
+    "flags": "i",
+    "sev": "warn",
+    "fix": "actions/cache@v5",
+    "message": "actions/cache@v3-v4 runs on Node 20, removed from the runner on 2026-09-23 - move to actions/cache@v5, which uses the rewritten cache service."
+  },
+  {
+    "pattern": "actions/setup-python@v[1-5]\\b",
+    "flags": "i",
+    "sev": "warn",
+    "fix": "actions/setup-python@v6",
+    "message": "actions/setup-python@v1-v5 runs on Node 20, removed from the runner on 2026-09-23 - move to actions/setup-python@v6."
+  },
+  {
+    "pattern": "actions/setup-java@v[1-4]\\b",
+    "flags": "i",
+    "sev": "warn",
+    "fix": "actions/setup-java@v6",
+    "message": "actions/setup-java@v1-v4 is deprecated and runs on Node 20, removed from the runner on 2026-09-23 - move to actions/setup-java@v6."
+  },
+  {
+    "pattern": "runs-on:.*ubuntu-18\\.04",
+    "flags": "i",
+    "sev": "error",
+    "fix": "ubuntu-24.04",
+    "message": "the ubuntu-18.04 runner image was removed on 2022-12-01 - the job cannot start. Use ubuntu-24.04."
+  },
+  {
+    "pattern": "runs-on:.*ubuntu-20\\.04",
+    "flags": "i",
+    "sev": "error",
+    "fix": "ubuntu-24.04",
+    "message": "the ubuntu-20.04 runner image became fully unsupported on 2025-04-15 - the job fails to start. Use ubuntu-24.04."
+  },
+  {
+    "pattern": "runs-on:.*ubuntu-22\\.04",
+    "flags": "i",
+    "sev": "warn",
+    "fix": "ubuntu-24.04",
+    "message": "ubuntu-22.04 and ubuntu-22.04-arm enter deprecation on 2026-09-17 and are fully unsupported on 2027-04-17 - move to ubuntu-24.04 or ubuntu-26.04 before the brownouts start."
+  },
+  {
+    "pattern": "runs-on:.*windows-2019",
+    "flags": "i",
+    "sev": "error",
+    "fix": "windows-2025",
+    "message": "the windows-2019 runner image became fully unsupported on 2025-06-30 - the job fails to start. Use windows-2022 or windows-2025."
+  },
+  {
+    "pattern": "runs-on:.*macos-1[12]\\b",
+    "flags": "i",
+    "sev": "error",
+    "fix": "macos-15",
+    "message": "macos-11 was removed on 2024-06-28 and macos-12 on 2024-12-03 - the job cannot start. Use macos-15, or macos-15-intel if the build needs x86_64."
+  },
+  {
+    "pattern": "runs-on:.*macos-13\\b",
+    "flags": "i",
+    "sev": "error",
+    "fix": "macos-15-intel",
+    "message": "the macos-13 runner image was retired on 2025-12-04 - the job cannot start. Use macos-15 (arm64) or macos-15-intel for x86_64 builds."
+  },
+  {
+    "pattern": "runs-on:.*macos-latest",
+    "flags": "i",
+    "sev": "info",
+    "fix": "macos-15-intel",
+    "message": "macos-latest is arm64. An x86_64-only build silently needs macos-15-intel or a -large label, and GitHub drops x86_64 macOS after the macos-15 image retires in autumn 2027."
+  },
+  {
+    "pattern": "runs-on:.*ubuntu-latest",
+    "flags": "i",
+    "sev": "info",
+    "fix": "ubuntu-24.04",
+    "message": "ubuntu-latest resolves to ubuntu-24.04 today and moves without notice when GitHub promotes the next LTS (ubuntu-26.04 labels already exist). Pin the version if the build depends on the image contents."
+  },
+  {
+    "pattern": "::set-output",
+    "flags": "i",
+    "sev": "error",
+    "fix": "echo \"name=value\" >> \"$GITHUB_OUTPUT\"",
+    "message": "the ::set-output workflow command was disabled on 2023-06-01 and is now ignored - write to the $GITHUB_OUTPUT file instead."
+  },
+  {
+    "pattern": "::save-state",
+    "flags": "i",
+    "sev": "error",
+    "fix": "echo \"name=value\" >> \"$GITHUB_STATE\"",
+    "message": "the ::save-state workflow command was disabled on 2023-06-01 and is now ignored - write to the $GITHUB_STATE file instead."
+  },
+  {
+    "pattern": "::(set-env|add-path)",
+    "flags": "i",
+    "sev": "error",
+    "fix": "echo \"NAME=value\" >> \"$GITHUB_ENV\"",
+    "message": "the ::set-env and ::add-path commands were disabled on 2020-11-16 for a security advisory - write to $GITHUB_ENV or $GITHUB_PATH instead."
+  },
+  {
+    "pattern": "using:\\s*['\"]?node(12|16)['\"]?",
+    "flags": "i",
+    "sev": "error",
+    "fix": "using: 'node24'",
+    "message": "this action declares the node12 or node16 runtime, which no longer exists on the runner - declare using: 'node24'."
+  },
+  {
+    "pattern": "using:\\s*['\"]?node20['\"]?",
+    "flags": "i",
+    "sev": "warn",
+    "fix": "using: 'node24'",
+    "message": "this action declares the node20 runtime. Node 24 became the runner default on 2026-06-16 and Node 20 is removed on 2026-09-23 - declare using: 'node24' (needs runner 2.327.1 or later)."
+  },
+  {
+    "pattern": "ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION",
+    "flags": "i",
+    "sev": "warn",
+    "fix": "using: 'node24'",
+    "message": "this opt-out pins actions back to Node 20. It stops working on 2026-09-23 when Node 20 is removed from the runner - migrate the action to node24 instead of setting it."
+  },
+  {
+    "pattern": "FORCE_JAVASCRIPT_ACTIONS_TO_NODE24",
+    "flags": "i",
+    "sev": "info",
+    "fix": "",
+    "message": "this was the early opt-in to Node 24. Node 24 has been the runner default since 2026-06-16, so the variable no longer changes anything and can be deleted."
+  },
+  {
+    "pattern": "actions/(create-release|upload-release-asset)",
+    "flags": "i",
+    "sev": "warn",
+    "fix": "gh release create",
+    "message": "actions/create-release and actions/upload-release-asset were archived by GitHub and receive no runtime updates - use the gh CLI (gh release create) or softprops/action-gh-release."
+  },
+  {
+    "pattern": "node-version:\\s*['\"]?(16|18)(\\.|['\"]|\\s|$)",
+    "flags": "i",
+    "sev": "warn",
+    "fix": "node-version: '24'",
+    "message": "Node 16 reached end-of-life on 2023-09-11 and Node 18 on 2025-04-30 - neither gets security patches. Build against Node 22 or 24."
+  }
+]
