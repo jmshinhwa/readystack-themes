@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">
+  <NFe>
+    <infNFe Id="NFe35260912345678000195550010000012341000012345" versao="4.00">
+      <ide>
+        <cUF>35</cUF>
+        <natOp>Venda de mercadoria</natOp>
+        <mod>55</mod>
+        <serie>1</serie>
+        <nNF>1234</nNF>
+        <dhEmi>2026-09-15T10:30:00-03:00</dhEmi>
+      </ide>
+      <det nItem="1">
+        <prod>
+          <cProd>SKU-0042</cProd>
+          <xProd>Cafeteira elétrica 1,2L</xProd>
+          <NCM>85167100</NCM>
+          <CFOP>5102</CFOP>
+          <vProd>1500.00</vProd>
+        </prod>
+        <imposto>
+          <IBSCBS>
+            <CST>000</CST>
+            <cClassTrib>000000</cClassTrib>
+            <gIBSCBS>
+              <vBC>1500,00</vBC>
+              <gIBSUF>
+                <pIBSUF>0.00</pIBSUF>
+                <vIBSUF>0.000</vIBSUF>
+              </gIBSUF>
+              <gCBS>
+                <pCBS>0.90</pCBS>
+                <vCBS>13.50</vCBS>
+              </gCBS>
+            </gIBSCBS>
+          </IBSCBS>
+        </imposto>
+      </det>
+      <det nItem="2">
+        <prod>
+          <cProd>SKU-0077</cProd>
+          <xProd>Filtro de papel 103</xProd>
+          <NCM>48236900</NCM>
+          <CFOP>5102</CFOP>
+          <vProd>35.00</vProd>
+        </prod>
+        <imposto>
+          <IBSCBS/>
+        </imposto>
+      </det>
+    </infNFe>
+  </NFe>
+</nfeProc>
