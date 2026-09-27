@@ -1,0 +1,90 @@
+[
+  {
+    "id": "empty_ibscbs_group",
+    "pattern": "<g?IBSCBS\\s*/>|<g?IBSCBS>\\s*</g?IBSCBS>",
+    "flags": "i",
+    "message": "Grupo IBS/CBS vazio. Desde o Ato Técnico Conjunto CGIBS/RFB nº 1 (31/07/2026) a SEFAZ autoriza o documento assim mesmo, mas a obrigação de informar segue vigente (Ato Conjunto RFB/CGIBS nº 4, 30/07/2026). Preencha CST, cClassTrib e os grupos gIBSUF, gIBSMun e gCBS.",
+    "fix": "<gIBSCBS><CST>000</CST><cClassTrib>000001</cClassTrib>...</gIBSCBS>",
+    "sev": "error"
+  },
+  {
+    "id": "pibsuf_rate_2026",
+    "pattern": "<pIBSUF>(?!0*\\.10*<)[^<]*</pIBSUF>",
+    "flags": "",
+    "message": "Alíquota de IBS estadual fora do previsto para 2026. Em 2026 pIBSUF deve ser 0,1% (alíquota-teste da LC 214/2025). Benefício se declara no grupo de redução (gRed), nunca zerando a alíquota-base.",
+    "fix": "<pIBSUF>0.10</pIBSUF>",
+    "sev": "error"
+  },
+  {
+    "id": "pcbs_rate_2026",
+    "pattern": "<pCBS>(?!0*\\.90*<)[^<]*</pCBS>",
+    "flags": "",
+    "message": "Alíquota de CBS fora do previsto para 2026. Em 2026 pCBS deve ser 0,9% (alíquota-teste da LC 214/2025). Redução vai no grupo gRed, não na alíquota-base.",
+    "fix": "<pCBS>0.90</pCBS>",
+    "sev": "error"
+  },
+  {
+    "id": "pibsmun_nonzero_2026",
+    "pattern": "<pIBSMun>(?!0*\\.?0*<)[^<]*</pIBSMun>",
+    "flags": "",
+    "message": "Alíquota de IBS municipal diferente de zero em 2026. O 0,1% de IBS cabe integralmente à parcela estadual neste ano (art. 343 da LC nº 214/2025); a parcela municipal é zero, mas a tag deve continuar presente e preenchida.",
+    "fix": "<pIBSMun>0.00</pIBSMun>",
+    "sev": "error"
+  },
+  {
+    "id": "cclasstrib_format",
+    "pattern": "<cClassTrib>(?!\\d{6}</)[^<]*</cClassTrib>",
+    "flags": "",
+    "message": "cClassTrib fora do formato. O Código de Classificação Tributária da NT 2025.002 tem exatamente 6 dígitos numéricos, retirados da tabela do Informe Técnico RT 2025.002.",
+    "fix": "<cClassTrib>000001</cClassTrib>",
+    "sev": "error"
+  },
+  {
+    "id": "cclasstrib_draft_000000",
+    "pattern": "<cClassTrib>0{6}</cClassTrib>",
+    "flags": "",
+    "message": "cClassTrib 000000 é um valor de rascunho, não existe na tabela oficial — ela começa em 000001. Combinado com CST incompatível, este é o caso da Rejeição 1024 quando as validações voltarem.",
+    "fix": "<cClassTrib>000001</cClassTrib>",
+    "sev": "error"
+  },
+  {
+    "id": "decimal_comma",
+    "pattern": "<(?:vBC|pIBSUF|pIBSMun|pCBS|vIBSUF|vIBSMun|vCBS|vIBS|vBCIBSCBS)>[^<]*,[^<]*</",
+    "flags": "",
+    "message": "Vírgula decimal em campo numérico. O XML da NF-e usa ponto como separador decimal; vírgula quebra o schema antes mesmo das regras de IBS/CBS.",
+    "fix": "Troque a vírgula por ponto: 1500.00",
+    "sev": "error"
+  },
+  {
+    "id": "money_over_2_decimals",
+    "pattern": "<(?:vBC|vIBSUF|vIBSMun|vCBS|vIBS|vBCIBSCBS)>\\d+\\.\\d{3,}</",
+    "flags": "",
+    "message": "Campo de valor com mais de 2 casas decimais. Os campos monetários do grupo IBS/CBS são gravados com 2 decimais; arredonde antes de serializar.",
+    "fix": "Arredonde para 2 casas: 1500.00",
+    "sev": "warn"
+  },
+  {
+    "id": "whitespace_in_fiscal_field",
+    "pattern": "<(?:CST|cClassTrib|pIBSUF|pIBSMun|pCBS|vBC)>[ \\t]+[^<]*</",
+    "flags": "",
+    "message": "Espaço em branco dentro de campo fiscal. O leiaute da NF-e não admite espaços ou indentação no conteúdo das tags; remova o preenchimento.",
+    "fix": "<CST>000</CST>",
+    "sev": "warn"
+  },
+  {
+    "id": "missing_gibsmun",
+    "pattern": "</gIBSUF>\\s*(?:<gCBS>|</gIBS>|</g?IBSCBS>)",
+    "flags": "i",
+    "message": "Grupo gIBSMun ausente logo após gIBSUF. Omitir a tag municipal porque a alíquota é zero em 2026 é o erro estrutural mais comum: o grupo é obrigatório mesmo com valor zero.",
+    "fix": "<gIBSMun><pIBSMun>0.00</pIBSMun><vIBSMun>0.00</vIBSMun></gIBSMun>",
+    "sev": "error"
+  },
+  {
+    "id": "negative_value",
+    "pattern": "<(?:vBC|vIBSUF|vIBSMun|vCBS|vIBS|vBCIBSCBS)>\\s*-",
+    "flags": "",
+    "message": "Valor negativo em campo do grupo IBS/CBS. Devolução e anulação se representam por CST e cClassTrib próprios e por documento referenciado, nunca por valor negativo.",
+    "fix": "Use o cClassTrib de devolução e o grupo de referência do documento",
+    "sev": "warn"
+  }
+]
