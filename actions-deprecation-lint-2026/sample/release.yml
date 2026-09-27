@@ -1,0 +1,27 @@
+name: release
+
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - id: meta
+        run: echo "::set-output name=version::${GITHUB_REF#refs/tags/}"
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist/
+      - uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ steps.meta.outputs.version }}
