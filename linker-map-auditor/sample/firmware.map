@@ -1,0 +1,72 @@
+Archive member included to satisfy reference by file (symbol)
+
+/usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-memcpy-stub.o)
+                              build/Core/Src/main.o (memcpy)
+
+Discarded input sections
+
+ .text          0x00000000        0x0 build/Core/Src/main.o
+ .data          0x00000000        0x0 build/Core/Src/main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+RAM              0x20000000         0x00005000         xrw
+FLASH            0x08000000         0x00010000         xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD build/Core/Src/main.o
+LOAD build/Core/Src/stm32f1xx_it.o
+LOAD build/Drivers/libhal.a
+
+.isr_vector     0x08000000      0x10c
+                0x08000000                . = ALIGN (0x4)
+ *(.isr_vector)
+ .isr_vector    0x08000000      0x10c build/Core/Startup/startup_stm32f103xb.o
+                0x08000000                g_pfnVectors
+                0x0800010c                . = ALIGN (0x4)
+
+.text           0x08000110    0x10620
+                0x08000110                . = ALIGN (0x4)
+ *(.text)
+ .text          0x08000110       0x40 /usr/lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtbegin.o
+ .text.main     0x08000150     0x2a48 build/Core/Src/main.o
+                0x08000150                main
+ .text.HAL_UART_Transmit
+                0x08002b98      0x6f4 build/Drivers/libhal.a(stm32f1xx_hal_uart.o)
+                0x08002b98                HAL_UART_Transmit
+ .text.mbedtls_sha256_update
+                0x0800328c     0x9e10 build/Middlewares/libmbedtls.a(sha256.o)
+ .text.lv_draw_label
+                0x0800d09c     0x3674 build/Middlewares/liblvgl.a(lv_draw_label.o)
+ *fill*         0x08010710       0x10 
+ .text.memcpy   0x08010720       0x10 /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-memcpy-stub.o)
+                0x08010720                memcpy
+
+.rodata         0x08010730      0x3e8
+ .rodata.font_montserrat_14
+                0x08010730      0x3e8 build/Middlewares/liblvgl.a(lv_font_montserrat_14.o)
+
+.data           0x20000000       0x7c load address 0x08010b18
+                0x20000000                _sdata = .
+ .data.SystemCoreClock
+                0x20000000        0x4 build/Core/Src/system_stm32f1xx.o
+                0x20000000                SystemCoreClock
+ .data.uwTickFreq
+                0x20000004       0x78 build/Drivers/libhal.a(stm32f1xx_hal.o)
+
+.bss            0x2000007c     0x1a30
+                0x2000007c                _sbss = .
+ .bss.rx_buffer
+                0x2000007c     0x1000 build/Core/Src/main.o
+ .bss.lv_mem_buf
+                0x2000107c      0xa30 build/Middlewares/liblvgl.a(lv_mem.o)
+
+._user_heap_stack
+                0x20001aac      0x600
+                0x20001aac                . = ALIGN (0x8)
+                0x20001cac                . = (. + 0x200)
+                0x200020ac                . = (. + 0x400)
+OUTPUT(build/firmware.elf elf32-littlearm)
