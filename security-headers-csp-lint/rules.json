@@ -1,0 +1,186 @@
+[
+  {
+    "pattern": "X-XSS-Protection",
+    "sev": "error",
+    "message": "Dead header. Chrome removed the XSS Auditor in 2019, Edge followed, and Firefox never shipped it, so this line changes nothing in any browser you can install today. The value 1; mode=block was itself exploitable for cross-site info leaks, which is why it was removed. Delete it and let Content-Security-Policy do the work.",
+    "flags": "i",
+    "fix": "# delete this line - Content-Security-Policy replaces it"
+  },
+  {
+    "pattern": "Public-Key-Pins",
+    "sev": "error",
+    "message": "HTTP Public Key Pinning is gone. Chrome removed it in 2019 and Firefox followed, so no current browser reads this header and it protects nothing. It was removed because a stale or lost pin bricks your own domain for the whole pin lifetime. Certificate Transparency monitoring plus a CAA record is the live replacement.",
+    "flags": "i",
+    "fix": "# delete - use CAA records and CT monitoring"
+  },
+  {
+    "pattern": "Expect-CT",
+    "sev": "error",
+    "message": "Expect-CT is obsolete and Chrome stopped enforcing it in 2022. Certificate Transparency is now required unconditionally for every publicly trusted certificate, so the header has nothing left to opt into and is ignored wherever it is sent.",
+    "flags": "i",
+    "fix": "# delete - CT is enforced unconditionally now"
+  },
+  {
+    "pattern": "X-(?:Content-Security-Policy|WebKit-CSP)",
+    "sev": "error",
+    "message": "Vendor-prefixed CSP header from the IE10 and old-WebKit era. Nothing released this decade reads it, so every directive on this line is inert - the page has no policy at all while the config looks like it does. The header name is Content-Security-Policy, with no prefix.",
+    "flags": "i",
+    "fix": "Content-Security-Policy: ..."
+  },
+  {
+    "pattern": "X-Frame-Options\\s*[:=]\\s*[\"\\']?\\s*ALLOW-FROM",
+    "sev": "error",
+    "message": "ALLOW-FROM was only ever implemented by IE and old Firefox. Chrome and Safari have never supported it and treat the whole header as invalid, which can leave the page framable by anyone at all - the opposite of what this line intends. CSP frame-ancestors is the specified replacement and it takes a source list.",
+    "flags": "i",
+    "fix": "Content-Security-Policy: frame-ancestors 'self' https://partner.example;"
+  },
+  {
+    "pattern": "Feature-Policy\\s*[:=]",
+    "sev": "error",
+    "message": "Feature-Policy was renamed to Permissions-Policy and Chrome dropped the old name. The syntax changed with it: Feature-Policy wrote geolocation 'none', Permissions-Policy writes geolocation=(). Copying the old header across keeps none of its restrictions, so every feature stays at its permissive default.",
+    "flags": "i",
+    "fix": "Permissions-Policy: geolocation=(), camera=(), microphone=()"
+  },
+  {
+    "pattern": "(Permissions-Policy[^\\n]*?\\b(?:geolocation|camera|microphone|payment|fullscreen|autoplay|usb|midi|display-capture|screen-wake-lock|accelerometer|gyroscope))\\s+[\"\\'](?:none|self)[\"\\']",
+    "sev": "error",
+    "message": "Permissions-Policy is a structured field: you write geolocation=() for nobody and geolocation=(self) for your own origin. The quoted Feature-Policy spelling is a parse error, and a browser that cannot parse a structured header discards the entire header - so every permission listed on this line, not just this one, goes back to its default.",
+    "flags": "i",
+    "fix": "Permissions-Policy: geolocation=(), camera=(self)"
+  },
+  {
+    "pattern": "((?:[a-z]+-src|Content-Security-Policy|frame-ancestors|form-action|base-uri)[^\\n]*?[^\\'\"a-zA-Z0-9_-])(unsafe-inline|unsafe-eval|unsafe-hashes|strict-dynamic|self|none)([^\\'\"a-zA-Z0-9_-]|$)",
+    "sev": "error",
+    "message": "CSP keywords are only keywords inside single quotes. Written bare, self, none, unsafe-inline and strict-dynamic are parsed as host names, so the browser goes looking for a server literally called self and the restriction you meant to set is simply absent. Nothing is logged, the policy still applies, and it applies wrongly.",
+    "fix": "script-src 'self'",
+    "replace": "$1'$2'$3"
+  },
+  {
+    "pattern": "'nonce-[A-Za-z0-9+/=_-]{6,}'",
+    "sev": "error",
+    "message": "A hard-coded nonce is exactly as weak as 'unsafe-inline'. The value must be unpredictable and regenerated for every response; one that sits in a config file or a checked-in page is known to anyone who reads it, so an injected script simply carries the same nonce. Generate it per request, or move to hashes.",
+    "fix": "'nonce-{{ generated per request }}'"
+  },
+  {
+    "pattern": "<meta[^>]*http-equiv=[\"\\']?Content-Security-Policy[^>]*\\b(?:frame-ancestors|sandbox)\\b",
+    "sev": "error",
+    "message": "frame-ancestors and sandbox are discarded when the policy arrives in a meta tag - the specification requires browsers to drop them, because both must apply before the document starts parsing. The rest of the policy still works, so the page looks protected while it stays framable. Send these two as a real HTTP response header.",
+    "flags": "i",
+    "fix": "Content-Security-Policy: frame-ancestors 'none'   (HTTP header, not meta)"
+  },
+  {
+    "pattern": "<meta[^>]*http-equiv=[\"\\']?X-Frame-Options",
+    "sev": "error",
+    "message": "X-Frame-Options is only honoured as an HTTP response header; in a meta tag browsers ignore it outright, so this page is framable. Use a real header, and prefer CSP frame-ancestors, which is the specified successor and the one that covers nested frames.",
+    "flags": "i",
+    "fix": "Content-Security-Policy: frame-ancestors 'none'   (HTTP header)"
+  },
+  {
+    "pattern": "script-src[^;\\n]*[\\s\"\\']data:",
+    "sev": "error",
+    "message": "data: inside script-src is a documented full bypass, not a convenience. An injected script tag pointing at a data: URL inherits the permission and runs, so the policy stops nothing it was written to stop. If one library needs it, isolate that page rather than opening the whole policy.",
+    "flags": "i"
+  },
+  {
+    "pattern": "Strict-Transport-Security[^\\n]*max-age\\s*=\\s*0\\b",
+    "sev": "error",
+    "message": "max-age=0 switches HSTS off and instructs browsers to forget this domain immediately. If it was left in as a placeholder from testing, every returning visitor silently loses HTTPS enforcement and becomes downgradeable again.",
+    "flags": "i",
+    "fix": "Strict-Transport-Security: max-age=31536000; includeSubDomains"
+  },
+  {
+    "pattern": "Strict-Transport-Security(?![^\\n]*includeSubDomains)[^\\n]*preload",
+    "sev": "error",
+    "message": "The preload list requires all three of max-age at least 31536000, includeSubDomains, and preload. Without includeSubDomains the submission is refused, or an existing entry is removed at the next check - and you keep shipping the token believing you are preloaded.",
+    "flags": "i",
+    "fix": "Strict-Transport-Security: max-age=31536000; includeSubDomains; preload"
+  },
+  {
+    "pattern": "Strict-Transport-Security(?=[^\\n]*preload)[^\\n]*max-age\\s*=\\s*\\d{1,7}(?!\\d)",
+    "sev": "error",
+    "message": "A preload submission needs max-age of at least 31536000 seconds, one year. This value is below that, so hstspreload.org refuses the domain or drops it at the next check while the header keeps claiming preload.",
+    "flags": "i",
+    "fix": "max-age=31536000"
+  },
+  {
+    "pattern": "(X-Content-Type-Options\\s*[:=]\\s*[\"\\']?)(?!nosniff)([A-Za-z][\\w-]*)",
+    "sev": "error",
+    "message": "nosniff is the only value this header defines; anything else leaves MIME sniffing switched on. That matters most where users upload files: a document served with the wrong Content-Type can still be sniffed into script and executed on your origin.",
+    "flags": "i",
+    "fix": "X-Content-Type-Options: nosniff",
+    "replace": "$1nosniff"
+  },
+  {
+    "pattern": "'strict-dynamic'",
+    "sev": "warn",
+    "message": "With 'strict-dynamic' a supporting browser ignores every host allowlist in this same directive, and 'self' and 'unsafe-inline' with them - trust comes only from the nonce or hash. So any domain list kept here is dead weight for modern browsers and survives only as a fallback for CSP1-era ones. Confirm a nonce or hash is actually present, or nothing loads."
+  },
+  {
+    "pattern": "(?:'(?:nonce-|sha(?:256|384|512)-)[^;\\n]*'unsafe-inline'|'unsafe-inline'[^;\\n]*'(?:nonce-|sha(?:256|384|512)-))",
+    "sev": "warn",
+    "message": "'unsafe-inline' is ignored by every CSP2 and later browser when a nonce or hash appears in the same directive; it only takes effect where neither is understood. Keeping it as a deliberate fallback is fine, but if it was added to make something work today then the real cause is elsewhere and this policy is weaker than it reads."
+  },
+  {
+    "pattern": "script-src[^;\\n]*[\\s\"\\'](?:\\*|https:)(?=[\\s;\"\\']|$)",
+    "sev": "warn",
+    "message": "script-src * or https: permits script from any host on the web, which is not a meaningful restriction - one uploadable or open-redirect host anywhere is enough to defeat it. Host allowlists were found bypassable on the large majority of real policies; nonce or hash based policies with 'strict-dynamic' are the recommended shape.",
+    "flags": "i"
+  },
+  {
+    "pattern": "block-all-mixed-content",
+    "sev": "warn",
+    "message": "Obsolete directive, removed from the specification. Browsers now upgrade or block mixed content unconditionally, so this line does nothing. It is harmless in itself, but it hides the fact that nothing here is actually controlling mixed content.",
+    "flags": "i"
+  },
+  {
+    "pattern": "prefetch-src",
+    "sev": "warn",
+    "message": "prefetch-src was removed from CSP and dropped by Chrome; no shipping browser enforces it. Prefetches fall under default-src instead, so if you meant to restrict them, set default-src.",
+    "flags": "i"
+  },
+  {
+    "pattern": "plugin-types",
+    "sev": "warn",
+    "message": "plugin-types was removed from CSP Level 3, and from Chrome along with plugin support itself. It restricts nothing today. object-src 'none' is the directive that still matters for embedded content.",
+    "flags": "i"
+  },
+  {
+    "pattern": "(?:Content-Security-Policy|-src)[^\\n]*[;\\s]referrer\\s+(?:no-referrer|origin|unsafe-url|none|default|same-origin)",
+    "sev": "warn",
+    "message": "referrer was an experimental CSP1-era directive and was removed; it is not part of CSP and browsers ignore it inside this header. Referrer control has its own header, Referrer-Policy, and the values are not spelled the same.",
+    "flags": "i",
+    "fix": "Referrer-Policy: strict-origin-when-cross-origin"
+  },
+  {
+    "pattern": "report-uri",
+    "sev": "warn",
+    "message": "report-uri is deprecated, and a browser that supports report-to ignores report-uri entirely - so violation reports quietly stop arriving while the dashboard still looks alive. During a migration keep both: report-uri for older browsers, report-to plus a Reporting-Endpoints header for current ones.",
+    "flags": "i",
+    "fix": "report-to csp-endpoint"
+  },
+  {
+    "pattern": "[;\\s]report-to\\s+[A-Za-z]",
+    "sev": "info",
+    "message": "report-to names a reporting group, not a URL. That group has to be defined by a Reporting-Endpoints header on the same response; without it nothing is ever sent, and the policy looks monitored when it is not. Check that Reporting-Endpoints is set alongside this header.",
+    "flags": "i",
+    "fix": "Reporting-Endpoints: csp-endpoint=\"https://example.com/csp-reports\""
+  },
+  {
+    "pattern": "Content-Security-Policy-Report-Only",
+    "sev": "info",
+    "message": "Report-Only enforces nothing - it records violations and lets every one of them through. That is the right way to trial a policy, but it is not protection, and a site that only ever ships this header has no CSP in force.",
+    "flags": "i"
+  },
+  {
+    "pattern": "^(?:(?![^\\n]*base-uri)|(?![^\\n]*form-action))[^\\n]*default-src",
+    "sev": "info",
+    "message": "default-src does not cover base-uri, form-action, frame-ancestors, sandbox or the reporting directives - those fall back to nothing, not to default-src. This line sets default-src but not both base-uri and form-action, so unless they appear elsewhere in the policy, an injected base tag or a rewritten form action still exfiltrates under an otherwise strict default-src.",
+    "flags": "i",
+    "fix": "base-uri 'self'; form-action 'self';"
+  },
+  {
+    "pattern": "'unsafe-eval'",
+    "sev": "info",
+    "message": "'unsafe-eval' re-enables eval, new Function and string timers, which is a large part of what CSP exists to stop. It is usually dragged in by a single dependency rather than your own code, so it is worth finding which one - most current build setups no longer need it."
+  }
+]
