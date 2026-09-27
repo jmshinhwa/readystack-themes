@@ -2,7 +2,10 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
-const S = {"run": "Auditando o XML contra a NT 2025.002…", "done": "Auditoria concluída — veja o painel Auditor IBS/CBS NF-e.", "nothing_found": "Nenhuma ocorrência: o grupo IBS/CBS deste arquivo passou nas 11 regras da NT 2025.002.", "need_key": "Versão completa: audita todos os XMLs do workspace de uma vez, exporta o laudo (CSV/JSON/HTML) e devolve saída para o CI. $29 uma vez · uma chave de licença por pessoa ou assento de equipe · reembolso total em 7 dias. Assinaturas de apoio à Reforma Tributária partem de R$ 147/mês.", "key_ok": "Licença validada. Varredura do workspace, laudo em arquivo e saída de CI liberados.", "key_bad": "Essa chave não foi validada. Confira se copiou a chave inteira, sem espaços.", "buy": "Obter a versão completa — $29", "enter_key": "Inserir chave de licença", "paste": "Cole aqui o XML da sua NF-e ou NFC-e", "check": "Auditar o XML"};
+const GLOB = '**/*.xml';
+const PREFIX = 'auditor-ibs-cbs-nfe';
+const ENGINE = require('./engine.js');
+const S = {"run": "Auditando o XML contra a NT 2025.002…", "done": "Auditoria concluída — veja o painel Auditor IBS/CBS NF-e.", "nothing_found": "Nenhuma ocorrência: o grupo IBS/CBS deste arquivo passou nas 11 regras da NT 2025.002.", "need_key": "Versão completa: audita todos os XMLs do workspace de uma vez, exporta o laudo (CSV/JSON/HTML) e devolve saída para o CI. $29 uma vez · uma chave de licença por pessoa ou assento de equipe. Assinaturas de apoio à Reforma Tributária partem de R$ 147/mês.", "key_ok": "Licença validada. Varredura do workspace, laudo em arquivo e saída de CI liberados.", "key_bad": "Essa chave não foi validada. Confira se copiou a chave inteira, sem espaços.", "buy": "Obter a versão completa — $29", "enter_key": "Inserir chave de licença", "paste": "Cole aqui o XML da sua NF-e ou NFC-e", "check": "Auditar o XML"};
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 
 function out() {
@@ -42,24 +45,11 @@ function report(rows) {
 }
 
 // ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질).
-const RULES = [{"pattern": "<g?IBSCBS\\s*/>|<g?IBSCBS>\\s*</g?IBSCBS>", "flags": "i", "message": "Grupo IBS/CBS vazio. Desde o Ato Técnico Conjunto CGIBS/RFB nº 1 (31/07/2026) a SEFAZ autoriza o documento assim mesmo, mas a obrigação de informar segue vigente (Ato Conjunto RFB/CGIBS nº 4, 30/07/2026). Preencha CST, cClassTrib e os grupos gIBSUF, gIBSMun e gCBS.", "fix": "<gIBSCBS><CST>000</CST><cClassTrib>000001</cClassTrib>...</gIBSCBS>", "sev": "error"}, {"pattern": "<pIBSUF>(?!0*\\.10*<)[^<]*</pIBSUF>", "flags": "", "message": "Alíquota de IBS estadual fora do previsto para 2026. Em 2026 pIBSUF deve ser 0,1% (alíquota-teste da LC 214/2025). Benefício se declara no grupo de redução (gRed), nunca zerando a alíquota-base.", "fix": "<pIBSUF>0.10</pIBSUF>", "sev": "error"}, {"pattern": "<pCBS>(?!0*\\.90*<)[^<]*</pCBS>", "flags": "", "message": "Alíquota de CBS fora do previsto para 2026. Em 2026 pCBS deve ser 0,9% (alíquota-teste da LC 214/2025). Redução vai no grupo gRed, não na alíquota-base.", "fix": "<pCBS>0.90</pCBS>", "sev": "error"}, {"pattern": "<pIBSMun>(?!0*\\.?0*<)[^<]*</pIBSMun>", "flags": "", "message": "Alíquota de IBS municipal diferente de zero em 2026. O 0,1% de IBS cabe integralmente à parcela estadual neste ano (art. 343 da LC nº 214/2025); a parcela municipal é zero, mas a tag deve continuar presente e preenchida.", "fix": "<pIBSMun>0.00</pIBSMun>", "sev": "error"}, {"pattern": "<cClassTrib>(?!\\d{6}</)[^<]*</cClassTrib>", "flags": "", "message": "cClassTrib fora do formato. O Código de Classificação Tributária da NT 2025.002 tem exatamente 6 dígitos numéricos, retirados da tabela do Informe Técnico RT 2025.002.", "fix": "<cClassTrib>000001</cClassTrib>", "sev": "error"}, {"pattern": "<cClassTrib>0{6}</cClassTrib>", "flags": "", "message": "cClassTrib 000000 é um valor de rascunho, não existe na tabela oficial — ela começa em 000001. Combinado com CST incompatível, este é o caso da Rejeição 1024 quando as validações voltarem.", "fix": "<cClassTrib>000001</cClassTrib>", "sev": "error"}, {"pattern": "<(?:vBC|pIBSUF|pIBSMun|pCBS|vIBSUF|vIBSMun|vCBS|vIBS|vBCIBSCBS)>[^<]*,[^<]*</", "flags": "", "message": "Vírgula decimal em campo numérico. O XML da NF-e usa ponto como separador decimal; vírgula quebra o schema antes mesmo das regras de IBS/CBS.", "fix": "Troque a vírgula por ponto: 1500.00", "sev": "error"}, {"pattern": "<(?:vBC|vIBSUF|vIBSMun|vCBS|vIBS|vBCIBSCBS)>\\d+\\.\\d{3,}</", "flags": "", "message": "Campo de valor com mais de 2 casas decimais. Os campos monetários do grupo IBS/CBS são gravados com 2 decimais; arredonde antes de serializar.", "fix": "Arredonde para 2 casas: 1500.00", "sev": "warn"}, {"pattern": "<(?:CST|cClassTrib|pIBSUF|pIBSMun|pCBS|vBC)>[ \\t]+[^<]*</", "flags": "", "message": "Espaço em branco dentro de campo fiscal. O leiaute da NF-e não admite espaços ou indentação no conteúdo das tags; remova o preenchimento.", "fix": "<CST>000</CST>", "sev": "warn"}, {"pattern": "</gIBSUF>\\s*(?:<gCBS>|</gIBS>|</g?IBSCBS>)", "flags": "i", "message": "Grupo gIBSMun ausente logo após gIBSUF. Omitir a tag municipal porque a alíquota é zero em 2026 é o erro estrutural mais comum: o grupo é obrigatório mesmo com valor zero.", "fix": "<gIBSMun><pIBSMun>0.00</pIBSMun><vIBSMun>0.00</vIBSMun></gIBSMun>", "sev": "error"}, {"pattern": "<(?:vBC|vIBSUF|vIBSMun|vCBS|vIBS|vBCIBSCBS)>\\s*-", "flags": "", "message": "Valor negativo em campo do grupo IBS/CBS. Devolução e anulação se representam por CST e cClassTrib próprios e por documento referenciado, nunca por valor negativo.", "fix": "Use o cClassTrib de devolução e o grupo de referência do documento", "sev": "warn"}];
+const RULES = ENGINE.RULES;   // s165 — 규칙은 rules.json · 두뇌는 engine.js
 function scan(text, fileName) {
-  const lines = String(text).split(/\r?\n/);
-  const cfg = vscode.workspace.getConfiguration('auditor-ibs-cbs-nfe');
-  const extra = cfg.get('extraRules');
-  const feed = (globalThis.__yjFeed && Array.isArray(globalThis.__yjFeed.rules)) ? globalThis.__yjFeed.rules : [];
-  const rules = RULES.concat(Array.isArray(extra) ? extra : [], feed);
-  const hits = [];
-  for (let i = 0; i < lines.length; i++) {
-    for (const r of rules) {
-      let re;
-      try { re = new RegExp(r.pattern, r.flags || ''); } catch (e) { continue; }
-      // ★s126 — ★심각도를 실어 보낸다. ⛔없으면 min_severity 가 ★전부를 지운다 (내가 만들 뻔한 거짓말)
-      if (re.test(lines[i])) hits.push({ line: i + 1, msg: r.message, fix: r.fix || null,
-                                         sev: r.sev || 'warn' });
-    }
-  }
-  return hits;
+  const extra = vscode.workspace.getConfiguration('auditor-ibs-cbs-nfe').get('extraRules');
+  return ENGINE.engine.check(text, { today: new Date().toISOString().slice(0, 10), path: fileName, extra: extra }).findings
+    .map(function (f) { return { line: f.line, msg: f.msg, fix: f.fix, sev: f.sev }; });
 }
 
 const SNIPPETS = {};
@@ -91,10 +81,7 @@ async function listRules() {
 }
 
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
-//   ★역방향 체험 — 첫 스윙부터 7일은 ★키 없이 ★전부 준다 (⛔줄이지 않는다). 그 뒤에 키를 묻는다.
-const TRIAL_MS = 7 * 24 * 3600 * 1000;
-const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
-const NEED_KEY = S.need_key;   // ⛔원문 — 체험 요약을 앞에 붙일 때 ★여기서 다시 짓는다 (누적 금지)
+const NEED_KEY = S.need_key;   // ⛔원문 — 지난 검사 요약을 앞에 붙일 때 ★여기서 다시 짓는다 (누적 금지)
 
 // 통과하면 { inTrial } 을, 막히면 false 를 낸다.
 async function paidGate(ctx) {
@@ -105,7 +92,7 @@ async function paidGate(ctx) {
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
-    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found '
+    S.need_key = (last && last.files ? ('Your last sweep covered ' + last.files + ' files and found '
       + last.findings + ' findings. ') : '') + NEED_KEY;
     if (!(await lic.ensure(vscode, ctx, S))) return false;
   }
@@ -132,7 +119,7 @@ async function scanWorkspace(ctx) {
   await ctx.globalState.update('lastSweep', {
     files: rows.length, findings: n, at: new Date().toISOString().slice(0, 10)
   });
-  vscode.window.showInformationMessage((n ? S.done : S.nothing_found) + (gate.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage((n ? S.done : S.nothing_found));
 }
 
 // ★유료 — ★CSV · JSON · HTML ★셋 다 쓴다.
@@ -167,7 +154,7 @@ async function exportReport(ctx) {
   const body = pick === 'CSV' ? csv : (pick === 'JSON' ? JSON.stringify(flat, null, 2) : html);
   const uri = vscode.Uri.joinPath(ws[0].uri, 'auditor-ibs-cbs-nfe-report.' + pick.toLowerCase());
   await vscode.workspace.fs.writeFile(uri, Buffer.from(body, 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath + (gate.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage(S.done + ' \u2192 ' + uri.fsPath);
 }
 
 async function ciJson(ctx) {
@@ -179,7 +166,7 @@ async function ciJson(ctx) {
   if (!ws || !ws.length) { vscode.window.showWarningMessage(S.nothing_found); return; }
   const uri = vscode.Uri.joinPath(ws[0].uri, 'auditor-ibs-cbs-nfe-report.json');
   await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify({ hits: hits }, null, 2), 'utf8'));
-  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath + (gate.inTrial ? TRIAL_NOTE : ''));
+  vscode.window.showInformationMessage(S.done + ' → ' + uri.fsPath);
 }
 
 function activate(ctx) {
@@ -192,6 +179,11 @@ function activate(ctx) {
   reg('auditor-ibs-cbs-nfe.workspace_scan', function () { return scanWorkspace(ctx); });
   reg('auditor-ibs-cbs-nfe.export_report', function () { return exportReport(ctx); });
   reg('auditor-ibs-cbs-nfe.ci_json', function () { return ciJson(ctx); });
+  // s165 — auto.js 가 부르는 이름(PREFIX.checkFile / PREFIX.checkWorkspace) · package.json 목록에는 없다
+  reg(PREFIX + '.checkFile', runCurrent);
+  reg(PREFIX + '.checkWorkspace', function () { return scanWorkspace(ctx); });
+  // s165 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js)
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: 'NF-e XML Lint (BR) - IBS/CBS NT 2025.002 Reforma Tributária', slug: 'auditor-ibs-cbs-nfe', price: 29 }); } catch (e) {}
   // ★설정을 읽는다 — show_on_start. ⛔전에는 안 읽어서 설정이 거짓말이었다 (s126)
   if (vscode.workspace.getConfiguration('auditor-ibs-cbs-nfe').get('show_on_start') === true) {
     if (typeof runCurrent === 'function') { try { runCurrent(ctx); } catch (e) { /* 열린 파일이 없으면 조용히 */ } }
