@@ -2,6 +2,9 @@
 const vscode = require('vscode');
 const path = require('path');
 const lic = require('./license.js');
+const GLOB = '**/*.{py,js,ts,jsx,tsx,mjs,cjs,go,java,rb,php,cs,rs,kt,swift,sh,ipynb,json,yaml,yml,toml,env}';
+const PREFIX = 'ai-model-retirement-lint';
+const ENGINE = require('./engine.js');
 const S = {"run": "Checking model IDs", "done": "Model IDs checked.", "nothing_found": "No retired or expiring model IDs in this file.", "paste": "Paste the file that pins your model IDs", "check": "Check this file", "need_key": "Full version: scans every file in the repository, fails the build in CI, and applies the vendor's replacement for you.", "buy": "Get the full version - $29", "key_ok": "Licence accepted.", "key_bad": "That key did not validate.", "enter_key": "Enter licence key"};
 const PAID = ["workspace_scan", "ci_json", "quick_fix"];
 
@@ -42,24 +45,16 @@ function report(rows) {
 }
 
 // ★한 파일을 훑어 ★줄번호와 메시지를 낸다. ⛔무료·유료가 ★같은 함수를 쓴다 (같은 품질).
-const RULES = [{"pattern": "claude-3-opus-20240229", "flags": "i", "message": "RETIRED 2026-01-05 on the Claude API - this request fails now.", "fix": "claude-opus-4-8", "sev": "error"}, {"pattern": "claude-3-5-sonnet-2024(0620|1022)", "flags": "i", "message": "RETIRED 2025-10-28 on the Claude API - this request fails now.", "fix": "claude-sonnet-4-6", "sev": "error"}, {"pattern": "claude-3-7-sonnet-20250219", "flags": "i", "message": "RETIRED 2026-02-19 on the Claude API - this request fails now.", "fix": "claude-sonnet-4-6", "sev": "error"}, {"pattern": "claude-3-5-haiku-20241022", "flags": "i", "message": "RETIRED 2026-02-19 on the Claude API - this request fails now.", "fix": "claude-haiku-4-5-20251001", "sev": "error"}, {"pattern": "claude-3-haiku-20240307", "flags": "i", "message": "RETIRED 2026-04-20 on the Claude API - this request fails now.", "fix": "claude-haiku-4-5-20251001", "sev": "error"}, {"pattern": "claude-3-sonnet-20240229", "flags": "i", "message": "RETIRED 2025-07-21 on the Claude API - this request fails now.", "fix": "claude-sonnet-4-6", "sev": "error"}, {"pattern": "claude-sonnet-4-20250514", "flags": "i", "message": "RETIRED 2026-06-15 on the Claude API - this request fails now.", "fix": "claude-sonnet-4-6", "sev": "error"}, {"pattern": "claude-opus-4-20250514", "flags": "i", "message": "RETIRED 2026-06-15 on the Claude API - this request fails now.", "fix": "claude-opus-4-8", "sev": "error"}, {"pattern": "claude-opus-4-1-20250805", "flags": "i", "message": "RETIRED 2026-08-05 on the Claude API - this request fails now.", "fix": "claude-opus-4-8", "sev": "error"}, {"pattern": "claude-2\\.[01]\\b", "flags": "i", "message": "RETIRED 2025-07-21 on the Claude API - this request fails now.", "fix": "claude-opus-4-8", "sev": "error"}, {"pattern": "claude-instant-1\\.[0-2]|claude-1\\.[0-3]\\b", "flags": "i", "message": "RETIRED 2024-11-06 on the Claude API - this request fails now.", "fix": "claude-haiku-4-5-20251001", "sev": "error"}, {"pattern": "gpt-4-32k", "flags": "i", "message": "RETIRED 2025-06-06 on the OpenAI API - this request fails now.", "fix": "gpt-5.6-sol", "sev": "error"}, {"pattern": "gemini-2\\.0-flash(-lite)?(-001)?", "flags": "i", "message": "RETIRED 2026-06-01 on the Gemini API - this request fails now.", "fix": "gemini-2.5-flash", "sev": "error"}, {"pattern": "whisper-1\\b", "flags": "i", "message": "RETIRED 2026-08-26 on the OpenAI API - this request fails now.", "fix": "gpt-transcribe", "sev": "error"}, {"pattern": "gpt-4o(-mini)?-transcribe(-diarize)?", "flags": "i", "message": "RETIRED 2026-08-26 on the OpenAI API - this request fails now.", "fix": "gpt-transcribe", "sev": "error"}, {"pattern": "beta\\.assistants|/v1/assistants", "flags": "i", "message": "Assistants API RETIRED 2026-08-26 - move to the Responses API.", "fix": "client.responses.create", "sev": "error"}, {"pattern": "\\bsora-2(-pro)?(-2025-(10-06|12-08))?\\b", "flags": "i", "message": "Shuts down 2026-09-24 on the OpenAI API (Videos API sunsets the same day).", "fix": "", "sev": "warn"}, {"pattern": "gpt-3\\.5-turbo-instruct|babbage-002|davinci-002|gpt-3\\.5-turbo-1106", "flags": "i", "message": "Shuts down 2026-09-28 on the OpenAI API.", "fix": "gpt-5.6-terra", "sev": "warn"}, {"pattern": "gemini-2\\.5-(pro|flash)(-lite)?", "flags": "i", "message": "Shuts down 2026-10-16 on the Gemini API.", "fix": "", "sev": "warn"}, {"pattern": "gpt-3\\.5-turbo-0125", "flags": "i", "message": "Shuts down 2026-10-23 on the OpenAI API.", "fix": "gpt-5.6-terra", "sev": "warn"}, {"pattern": "gpt-4-0613|gpt-4-1106-preview|gpt-4-turbo", "flags": "i", "message": "Shuts down 2026-10-23 on the OpenAI API.", "fix": "gpt-5.6-sol", "sev": "warn"}, {"pattern": "gpt-4\\.1-nano", "flags": "i", "message": "Shuts down 2026-10-23 on the OpenAI API.", "fix": "gpt-5.6-luna", "sev": "warn"}, {"pattern": "gpt-4o-2024-05-13", "flags": "i", "message": "Shuts down 2026-10-23 on the OpenAI API; Azure auto-upgrades this version 2026-10-01.", "fix": "gpt-5.6-sol", "sev": "warn"}, {"pattern": "gpt-image-1(?![-.\\d])", "flags": "i", "message": "Shuts down 2026-10-23 on the OpenAI API.", "fix": "gpt-image-2", "sev": "warn"}, {"pattern": "o1-2024-12-17|o1-pro-2025-03-19", "flags": "i", "message": "Shuts down 2026-10-23 on the OpenAI API.", "fix": "gpt-5.6-sol", "sev": "warn"}, {"pattern": "o3-mini-2025-01-31|o4-mini-2025-04-16", "flags": "i", "message": "Shuts down 2026-10-23 on the OpenAI API.", "fix": "gpt-5.6-terra", "sev": "warn"}, {"pattern": "gpt-image-1-mini|gpt-image-1\\.5|chatgpt-image-latest", "flags": "i", "message": "Shuts down 2026-12-01 on the OpenAI API.", "fix": "gpt-image-2", "sev": "warn"}, {"pattern": "gpt-5(-mini|-nano)?-2025-08-07|gpt-5-pro-2025-10-06", "flags": "i", "message": "Shuts down 2026-12-11 on the OpenAI API.", "fix": "gpt-5.6-sol", "sev": "warn"}, {"pattern": "o3-2025-04-16|o3-pro-2025-06-10", "flags": "i", "message": "Shuts down 2026-12-11 on the OpenAI API.", "fix": "gpt-5.6-sol", "sev": "warn"}, {"pattern": "gpt-(4o-)?(mini-)?(realtime|audio)(-mini)?\\b", "flags": "i", "message": "Shuts down 2027-01-20 on the OpenAI API.", "fix": "gpt-realtime-2.1 / gpt-audio-1.5", "sev": "warn"}, {"pattern": "claude-sonnet-4-5-20250929", "flags": "i", "message": "Retires no sooner than 2026-09-29; Anthropic gives 60 days notice.", "fix": "claude-sonnet-5", "sev": "info"}, {"pattern": "claude-haiku-4-5-20251001", "flags": "i", "message": "Retires no sooner than 2026-10-15; Anthropic gives 60 days notice.", "fix": "", "sev": "info"}, {"pattern": "claude-opus-4-5-20251101", "flags": "i", "message": "Retires no sooner than 2026-11-24; Anthropic gives 60 days notice.", "fix": "claude-opus-5", "sev": "info"}];
+const RULES = ENGINE.RULES;
 function scan(text, fileName) {
-  const lines = String(text).split(/\r?\n/);
-  const cfg = vscode.workspace.getConfiguration('ai-model-retirement-lint');
+  const cfg = vscode.workspace.getConfiguration(PREFIX);
   const extra = cfg.get('extraRules');
-  const feed = (globalThis.__yjFeed && Array.isArray(globalThis.__yjFeed.rules)) ? globalThis.__yjFeed.rules : [];
-  const rules = RULES.concat(Array.isArray(extra) ? extra : [], feed);
-  const hits = [];
-  for (let i = 0; i < lines.length; i++) {
-    for (const r of rules) {
-      let re;
-      try { re = new RegExp(r.pattern, r.flags || ''); } catch (e) { continue; }
-      // ★s126 — ★심각도를 실어 보낸다. ⛔없으면 min_severity 가 ★전부를 지운다 (내가 만들 뻔한 거짓말)
-      if (re.test(lines[i])) hits.push({ line: i + 1, msg: r.message, fix: r.fix || null,
-                                         sev: r.sev || 'warn' });
-    }
-  }
-  return hits;
+  const today = new Date().toISOString().slice(0, 10);
+  // ★두뇌는 ./engine.js (rules.json + extraRules + 키 고객 규칙 피드) — 무료·유료·auto.js 가 같은 판정을 쓴다
+  const res = ENGINE.engine.check(text, { today: today, path: fileName, extra: Array.isArray(extra) ? extra : [] });
+  return (res.findings || []).map(function (f) {
+    return { line: f.line, msg: f.msg, fix: f.fix || null, sev: f.sev || 'warn', check: f.check };
+  });
 }
 
 const SNIPPETS = {};
@@ -79,9 +74,7 @@ async function showReport() { out().show(true); }
 // ★유료 — ★여기서 ★키를 묻는다. ⛔무료 명령은 이 문을 지나지 않는다.
 async function paidGate(ctx) { return await lic.ensure(vscode, ctx, S); }
 
-// ★s144 — ★역방향 체험(유료 맛보기): ★첫 스윕부터 7일간 ★작업공간 전체 스윕과 보고서를 ★키 없이 ★줄이지 않고 그대로 준다.
-//   [검색 2026-09-12] 무료→유료 2~4% ↔ 역방향 체험 8~12% (개발자 도구 체험 중앙값 24%).
-//   ⛔손님이 돈 낼지 정하는 순간은 ★자기 폴더의 숫자를 본 뒤다 — 그래서 그때 묻는다 (지난 스윕의 숫자를 문구에 싣는다).
+// ★유료 문턱 — ★키를 묻는 순간에 ★손님 자신의 숫자(지난 스윕의 파일·건수)를 문구에 싣는다.
 //   ⛔무료 경로(열린 파일 검사)는 어떤 제한도 두지 않는다.
 const NEED_KEY = S.need_key;
 function today() { return new Date().toISOString().slice(0, 10); }
@@ -89,16 +82,16 @@ async function sweepGate(ctx) {
   const st = ctx.globalState;
   const hasKey = !!st.get('licenseKey');
   let until = Number(st.get('sweepTrialUntil') || 0);
-  /* s158: no new free trial is opened (trials already started are honoured) */
+  /* s158: no new window is opened (ones already started are honoured) */
   const inTrial = !hasKey && Date.now() < until;
   if (!inTrial) {
     const last = st.get('lastSweep');
-    S.need_key = (last && last.files ? ('Your trial sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
+    S.need_key = (last && last.files ? ('Your last sweep covered ' + last.files + ' files and found ' + last.findings + ' findings. ') : '') + NEED_KEY;
     if (!(await paidGate(ctx))) return null;
   }
   return { inTrial: inTrial, until: until };
 }
-const TRIAL_NOTE = ' The full sweep is free for 7 days from your first sweep.';
+const TRIAL_NOTE = '';
 
 async function scanWorkspace(ctx) {
   const trial = await sweepGate(ctx);
@@ -140,7 +133,7 @@ async function quickFix(ctx) {
   const hits = scan(ed.document.getText(), ed.document.fileName).filter(function (h) { return h.fix; });
   if (!hits.length) { vscode.window.showInformationMessage(S.nothing_found); return; }
   // ★s134 2026-09-08 — ⛔줄 전체를 h.fix(안내 문구)로 바꾸던 버그를 고쳤다 (손님 파일을 지웠다 · 재방문 일꾼이 잡음).
-  //   ★규칙에 replace 가 있을 때만 ★맞은 부분만 바꾼다. 없으면 안내만 한다 — 유료 기능이 데이터를 파괴하면 환불 폭탄이다.
+  //   ★규칙에 replace 가 있을 때만 ★맞은 부분만 바꾼다. 없으면 안내만 한다 — 유료 기능이 손님 데이터를 망치면 안 된다.
   let applied = 0, manual = 0;
   await ed.edit(function (b) {
     for (const h of hits) {
@@ -166,6 +159,10 @@ function activate(ctx) {
   reg('ai-model-retirement-lint.workspace_scan', function () { return scanWorkspace(ctx); });
   reg('ai-model-retirement-lint.ci_json', function () { return ciJson(ctx); });
   reg('ai-model-retirement-lint.quick_fix', function () { return quickFix(ctx); });
+  // s165 — auto.js 가 부르는 이름(PREFIX.checkFile / PREFIX.checkWorkspace) · package.json 목록에는 없다
+  reg(PREFIX + '.checkFile', runCurrent);
+  reg(PREFIX + '.checkWorkspace', function () { return scanWorkspace(ctx); });
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: 'OpenAI Model Deprecation Lint - retired model IDs in code', slug: 'ai-model-retirement-lint', price: 29 }); } catch (e) {}
   // ★설정을 읽는다 — show_on_start. ⛔전에는 안 읽어서 설정이 거짓말이었다 (s126)
   if (vscode.workspace.getConfiguration('ai-model-retirement-lint').get('show_on_start') === true) {
     if (typeof runCurrent === 'function') { try { runCurrent(ctx); } catch (e) { /* 열린 파일이 없으면 조용히 */ } }
