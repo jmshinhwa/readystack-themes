@@ -1,0 +1,164 @@
+[
+  {
+    "pattern": "\"type\"\\s*:\\s*\"sse\"",
+    "message": "HTTP+SSE transport is Deprecated under the 2026-07-28 feature lifecycle (deprecated since protocol 2025-03-26). Removal is allowed after the 12-month window.",
+    "fix": "\"type\": \"http\"  (Streamable HTTP)",
+    "sev": "error"
+  },
+  {
+    "pattern": "\"transportType\"\\s*:\\s*\"sse\"",
+    "message": "Same deprecated HTTP+SSE transport, written with the SDK-style key.",
+    "fix": "\"transportType\": \"http\"",
+    "sev": "error"
+  },
+  {
+    "pattern": "\"mcpServers\"\\s*:",
+    "message": "Key is mcpServers. Correct for Claude Code .mcp.json and claude_desktop_config.json; VS Code .vscode/mcp.json reads the key servers and shows no server under mcpServers.",
+    "fix": "In .vscode/mcp.json use \"servers\": { ... }",
+    "sev": "info"
+  },
+  {
+    "pattern": "\"-y\"\\s*,\\s*\"(?![^\"]*@\\d)[^\"]+\"",
+    "message": "npx -y with an unpinned package: the agent installs whatever version is published the moment it launches, on every start.",
+    "fix": "Pin it: \"pkg@1.4.2\"",
+    "sev": "warn"
+  },
+  {
+    "pattern": "\"[A-Z0-9_]*(?:KEY|TOKEN|SECRET|PASSWORD|CREDENTIAL)[A-Z0-9_]*\"\\s*:\\s*\"(?!\\$\\{)[^\"]{8,}\"",
+    "message": "Literal credential in the config file. This file is commonly committed; the agent process also inherits it.",
+    "fix": "VS Code: \"inputs\" + \"${input:my-key}\", or \"envFile\". Claude Code: \"${env:MY_KEY}\"",
+    "sev": "error"
+  },
+  {
+    "pattern": "(?:protocolVersion|PROTOCOL_VERSION|MCP-Protocol-Version)\\s*[:=]\\s*[\"\\'](?:2024-11-05|2025-03-26|2025-06-18|2025-11-25)[\"\\']",
+    "message": "Superseded protocol version. The current revision is 2026-07-28, and the version now travels in _meta on every request, not in a handshake.",
+    "fix": "_meta[\"io.modelcontextprotocol/protocolVersion\"] = \"2026-07-28\"",
+    "sev": "warn"
+  },
+  {
+    "pattern": "(?:method|Method)\\s*[:=]\\s*[\"\\']initialize[\"\\']|InitializeRequestSchema",
+    "message": "The initialize handshake was REMOVED in 2026-07-28. MCP is stateless: protocol version and client capabilities ride in _meta on every request.",
+    "fix": "Implement server/discover; read _meta[\"io.modelcontextprotocol/clientCapabilities\"]",
+    "sev": "error"
+  },
+  {
+    "pattern": "[\"\\']notifications/initialized[\"\\']|InitializedNotificationSchema",
+    "message": "notifications/initialized was REMOVED with the handshake in 2026-07-28.",
+    "fix": "Delete it. Nothing replaces it — every request is self-describing.",
+    "sev": "error"
+  },
+  {
+    "pattern": "Mcp-Session-Id",
+    "message": "The Mcp-Session-Id header and protocol-level sessions were REMOVED in 2026-07-28. List endpoints no longer vary per connection.",
+    "fix": "Mint your own handle server-side and pass it as an ordinary tool argument.",
+    "sev": "error"
+  },
+  {
+    "pattern": "Last-Event-ID|lastEventId",
+    "message": "SSE stream resumability and message redelivery were REMOVED in 2026-07-28. A broken stream loses the in-flight request.",
+    "fix": "Re-issue the request with a new request ID.",
+    "sev": "error"
+  },
+  {
+    "pattern": "(?:method|Method)\\s*[:=]\\s*[\"\\']ping[\"\\']|PingRequestSchema",
+    "message": "ping was REMOVED in 2026-07-28.",
+    "fix": "Delete the handler. Use transport-level keepalive if you need liveness.",
+    "sev": "error"
+  },
+  {
+    "pattern": "[\"\\']logging/setLevel[\"\\']|SetLevelRequestSchema",
+    "message": "logging/setLevel was REMOVED in 2026-07-28. Log level is now per-request.",
+    "fix": "_meta[\"io.modelcontextprotocol/logLevel\"] on the request",
+    "sev": "error"
+  },
+  {
+    "pattern": "[\"\\']notifications/roots/list_changed[\"\\']|RootsListChangedNotificationSchema",
+    "message": "notifications/roots/list_changed was REMOVED in 2026-07-28.",
+    "fix": "Pass directories as tool parameters or server configuration.",
+    "sev": "error"
+  },
+  {
+    "pattern": "[\"\\']resources/(?:un)?subscribe[\"\\']|(?:Un)?SubscribeRequestSchema",
+    "message": "resources/subscribe and resources/unsubscribe were REPLACED in 2026-07-28 by a single subscriptions/listen stream.",
+    "fix": "subscriptions/listen, opting in to resourceSubscriptions",
+    "sev": "error"
+  },
+  {
+    "pattern": "[\"\\']tasks/result[\"\\']",
+    "message": "tasks/result was removed when Tasks moved out of core into the io.modelcontextprotocol/tasks extension in 2026-07-28.",
+    "fix": "Poll tasks/get; use tasks/update to send input",
+    "sev": "error"
+  },
+  {
+    "pattern": "[\"\\']tasks/list[\"\\']",
+    "message": "tasks/list was removed in the redesigned Tasks extension (2026-07-28).",
+    "fix": "Track task handles yourself; poll tasks/get",
+    "sev": "error"
+  },
+  {
+    "pattern": "[\"\\']notifications/elicitation/complete[\"\\']",
+    "message": "This notification, introduced in 2025-11-25, was REMOVED in 2026-07-28. Under MRTR the client learns the outcome by retrying the original request.",
+    "fix": "Delete it; encode your correlation id in requestState",
+    "sev": "error"
+  },
+  {
+    "pattern": "elicitationId",
+    "message": "The elicitationId field of URL-mode elicitation was REMOVED in 2026-07-28.",
+    "fix": "Encode your own identifier in requestState",
+    "sev": "error"
+  },
+  {
+    "pattern": "[\"\\']roots/list[\"\\']|ListRootsRequestSchema",
+    "message": "Server-initiated roots/list is replaced by the Multi Round-Trip Requests pattern in 2026-07-28, and Roots itself is Deprecated. The lifecycle policy sets a minimum 12-month window, so removal is no earlier than 2027-07-28.",
+    "fix": "Return InputRequiredResult with inputRequests; or take the path as a tool parameter",
+    "sev": "error"
+  },
+  {
+    "pattern": "[\"\\']sampling/createMessage[\"\\']|CreateMessageRequestSchema",
+    "message": "Server-initiated sampling/createMessage is replaced by MRTR in 2026-07-28, and Sampling is Deprecated. Minimum 12-month window means removal no earlier than 2027-07-28.",
+    "fix": "Return InputRequiredResult, or call the LLM provider API directly",
+    "sev": "error"
+  },
+  {
+    "pattern": "[\"\\']elicitation/create[\"\\']|ElicitRequestSchema",
+    "message": "Server-initiated elicitation/create is replaced by MRTR in 2026-07-28.",
+    "fix": "Return resultType \"input_required\" with inputRequests; read inputResponses on the retry",
+    "sev": "error"
+  },
+  {
+    "pattern": "includeContext\\s*[:=]\\s*[\"\\'](?:thisServer|allServers)[\"\\']",
+    "message": "includeContext values thisServer and allServers are Deprecated as of 2026-07-28 (soft-deprecated since 2025-11-25).",
+    "fix": "Omit the field, or use \"none\"",
+    "sev": "warn"
+  },
+  {
+    "pattern": "-32002",
+    "message": "Resource-not-found changed from -32002 to -32602 (Invalid Params) in 2026-07-28, to align with JSON-RPC.",
+    "fix": "-32602",
+    "sev": "error"
+  },
+  {
+    "pattern": "-3200[134]\\b",
+    "message": "Renumbered in 2026-07-28 by the error-code allocation policy: HeaderMismatch -32001 to -32020, MissingRequiredClientCapability -32003 to -32021, UnsupportedProtocolVersion -32004 to -32022. -32000..-32019 stays implementation-defined.",
+    "fix": "Use the -32020..-32099 MCP range",
+    "sev": "warn"
+  },
+  {
+    "pattern": "SSE(?:Server|Client)Transport",
+    "message": "SDK transport class for the Deprecated HTTP+SSE transport.",
+    "fix": "StreamableHTTPServerTransport / StreamableHTTPClientTransport",
+    "sev": "error"
+  },
+  {
+    "pattern": "registration_endpoint|client_id_issued_at",
+    "message": "OAuth 2.0 Dynamic Client Registration (RFC 7591) is Deprecated as of 2026-07-28 in favour of Client ID Metadata Documents. It stays available only for authorization servers that do not support CIMD.",
+    "fix": "Client ID Metadata Documents; if you keep DCR, send application_type",
+    "sev": "warn"
+  },
+  {
+    "pattern": "[\"\\']notifications/message[\"\\']",
+    "message": "Servers MUST NOT emit notifications/message for a request that did not carry io.modelcontextprotocol/logLevel in _meta (2026-07-28). Logging is also Deprecated.",
+    "fix": "Gate on _meta logLevel; or write to stderr / OpenTelemetry",
+    "sev": "warn"
+  }
+]
