@@ -1,0 +1,57 @@
+{
+  "name": "weiterbildung-foerderquote-lint",
+  "displayName": "Förderquoten-Lint Weiterbildung (SGB III)",
+  "description": "Prüft Kursseiten und Förder-Merkblätter (Markdown) auf veraltete Förderquoten, Größenklassen und Stundengrenzen der Beschäftigtenqualifizierung nach § 82 SGB III, Stand seit 2024-04-01.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "weiterbildung",
+    "sgb iii",
+    "arbeitsagentur",
+    "lehrgangskosten",
+    "azav",
+    "bildungsträger",
+    "förderung",
+    "qualifizierungschancengesetz"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "foerderquoteLint.checkFile",
+        "title": "Förderquoten-Lint Weiterbildung (SGB III): Check this file",
+        "category": "Förderquoten-Lint Weiterbildung (SGB III)"
+      },
+      {
+        "command": "foerderquoteLint.checkWorkspace",
+        "title": "Förderquoten-Lint Weiterbildung (SGB III): Sweep workspace and write report (licence)",
+        "category": "Förderquoten-Lint Weiterbildung (SGB III)"
+      },
+      {
+        "command": "foerderquoteLint.enterKey",
+        "title": "Förderquoten-Lint Weiterbildung (SGB III): Enter licence key",
+        "category": "Förderquoten-Lint Weiterbildung (SGB III)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "weiterbildung-foerderquote-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/weiterbildung-foerderquote-lint",
+  "readystack": {
+    "rulesDate": "2026-09-26"
+  },
+  "icon": "icon.png"
+}
