@@ -1,0 +1,85 @@
+[
+  {
+    "pattern": "class=\"[^\"]*\\b[a-z][a-z0-9]*[A-Z]",
+    "flags": "m",
+    "message": "camelCase class name. BEM names are lower kebab-case: cardTitle becomes card-title."
+  },
+  {
+    "pattern": "class=\"[^\"]*\\b[a-z0-9-]+_(?!_)[a-z0-9-]+",
+    "flags": "m",
+    "message": "The element separator is exactly two underscores: card_title becomes card__title."
+  },
+  {
+    "pattern": "\\b[a-z0-9-]+__[a-z0-9-]+__[a-z0-9-]+",
+    "flags": "m",
+    "message": "BEM has no element of an element. card__body__title becomes card__body-title, or a block of its own."
+  },
+  {
+    "pattern": "\\b[a-z0-9-]+--[a-z0-9-]+__",
+    "flags": "m",
+    "message": "The modifier comes last. card--wide__title becomes card__title with card__title--wide."
+  },
+  {
+    "pattern": "class=\"\\s*[a-z0-9-]+--[a-z0-9-]+\\s*\"",
+    "flags": "m",
+    "message": "A modifier stands alone here. It must ride next to its base class: class=\"card card--wide\"."
+  },
+  {
+    "pattern": "CLASS=",
+    "flags": "m",
+    "message": "Attribute name in capitals. The extractor reads a lower-case class= attribute.",
+    "fix": "class="
+  },
+  {
+    "pattern": "class=\"\\s+",
+    "flags": "m",
+    "message": "Space directly after the opening quote. It becomes an empty selector in the extracted stylesheet.",
+    "fix": "class=\""
+  },
+  {
+    "pattern": "\\bjs_",
+    "flags": "m",
+    "message": "Scripting hook written with an underscore. Use a hyphen: js_toggle becomes js-toggle.",
+    "fix": "js-"
+  },
+  {
+    "pattern": "class=\"[^\"]*\\b([a-z0-9_-]{3,})\\b[^\"]*\\b\\1\\b",
+    "flags": "m",
+    "message": "The same class appears twice in one attribute, so the extracted stylesheet would carry the rule twice."
+  },
+  {
+    "pattern": "class=\"[^\"]*\\b(?:red|blue|green|big|small|left|right|center|bold)\\b",
+    "flags": "i",
+    "message": "Presentational class name. Name the role, not the paint: card__title--red becomes card__title--alert."
+  },
+  {
+    "pattern": "class=\"[^\"]*\\b(?:test|tmp|temp|foo|bar|div1|box1|new|old|copy)\\b",
+    "flags": "i",
+    "message": "Placeholder class name still in the markup. It will land in the stylesheet as a real selector."
+  },
+  {
+    "pattern": "class=\"[^\"]*(?:\\{\\{|\\{%|<\\?|\\$\\{)",
+    "flags": "m",
+    "message": "Class name built by a template expression. The extractor cannot resolve it; write the static block part as a class of its own."
+  },
+  {
+    "pattern": "class=\"[^\"]*(?:\\s+[^\\s\"]+){7}\\s*\"",
+    "flags": "m",
+    "message": "Eight or more classes on one element. The block interface is being replaced by loose utilities."
+  },
+  {
+    "pattern": "\\b[a-z0-9]+(?:-[a-z0-9]+){4,}(?:__|--|\\s|\")",
+    "flags": "m",
+    "message": "Five or more words in one BEM name. Split the block; the name is carrying the whole page path."
+  },
+  {
+    "pattern": "<[a-z][a-z0-9-]*[^>]*\\sstyle=\"",
+    "flags": "i",
+    "message": "Inline style on this element. That declaration never reaches the extracted stylesheet, so the block ends up styled in two places."
+  },
+  {
+    "pattern": "class='[^']*'",
+    "flags": "m",
+    "message": "Class attribute in single quotes. The extractor reads double-quoted attributes."
+  }
+]
