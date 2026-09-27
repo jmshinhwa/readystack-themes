@@ -43,7 +43,7 @@ Quelle: Gesetzestext § 82 SGB III auf gesetze-im-internet.de.
 
 Markdown-Datei öffnen und über die Befehlspalette die Befehle von „Förderquoten-Lint“ aufrufen. Jeder Befund nennt Zeilennummer, Regel-ID und geltenden Wert. Die Engine (`engine.js`, `rules.json`) läuft lokal, ohne Netzwerk.
 
-Die Web-Version mit derselben Engine: https://getreadystack.com/tools/weiterbildung-foerderquote-lint
+Die Web-Version mit derselben Engine: https://getreadystack.com/de/tools/weiterbildung-foerderquote-lint
 
 Vollversion mit Lizenzschlüssel: alle Kursseiten im Workspace in einem Lauf prüfen und den Befund als Markdown-Bericht speichern. Eine Datei zu prüfen bleibt ohne Schlüssel vollständig.
 
