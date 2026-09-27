@@ -1,0 +1,57 @@
+{
+  "name": "bescheid-vorlage-lint-kag",
+  "displayName": "Abgabenbescheid prüfen – Bescheid-Vorlagen Lint",
+  "description": "Abgabenbescheid prüfen, bevor er rausgeht: Rechtsbehelfsbelehrung (§58/§70 VwGO), Bekanntgabe am 4. Tag (§122 AO seit 2025), Säumniszuschlag (§240 AO) und aufschiebende Wirkung in Bescheid-Vorlagen.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "abgabenbescheid prüfen",
+    "rechtsbehelfsbelehrung",
+    "widerspruch frist",
+    "bescheid vorlage",
+    "kommunalabgaben",
+    "kag",
+    "vwgo",
+    "säumniszuschlag"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "bescheidLint.checkFile",
+        "title": "Bescheid-Vorlagen prüfen – Abgabenbescheid Lint (KAG): Check this file",
+        "category": "Bescheid-Vorlagen prüfen – Abgabenbescheid Lint (KAG)"
+      },
+      {
+        "command": "bescheidLint.checkWorkspace",
+        "title": "Bescheid-Vorlagen prüfen – Abgabenbescheid Lint (KAG): Sweep workspace and write report (licence)",
+        "category": "Bescheid-Vorlagen prüfen – Abgabenbescheid Lint (KAG)"
+      },
+      {
+        "command": "bescheidLint.enterKey",
+        "title": "Bescheid-Vorlagen prüfen – Abgabenbescheid Lint (KAG): Enter licence key",
+        "category": "Bescheid-Vorlagen prüfen – Abgabenbescheid Lint (KAG)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "bescheid-vorlage-lint-kag"
+  },
+  "homepage": "https://getreadystack.com/de/tools/bescheid-vorlage-lint-kag",
+  "readystack": {
+    "rulesDate": "2026-09-26"
+  },
+  "icon": "icon.png"
+}
