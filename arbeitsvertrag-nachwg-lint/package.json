@@ -1,0 +1,57 @@
+{
+  "name": "arbeitsvertrag-nachwg-lint",
+  "displayName": "Arbeitsvertrag prüfen – NachwG Lint",
+  "description": "Arbeitsvertrag-Vorlagen prüfen: Pflichtangaben nach §2 NachwG, Auslandseinsatz und EU-Entsendung, Kündigung nur schriftlich (§623 BGB), Klagefrist drei Wochen, Urlaub und Mindestlohn 2026/2027.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "arbeitsvertrag prüfen",
+    "arbeitsvertrag vorlage",
+    "nachweisgesetz",
+    "nachwg",
+    "arbeitsbedingungen checkliste",
+    "entsendung",
+    "mindestlohn 2026",
+    "kündigungsschutzklage frist"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "nachwgLint.checkFile",
+        "title": "Arbeitsvertrag prüfen – Nachweisgesetz Lint (NachwG): Check this file",
+        "category": "Arbeitsvertrag prüfen – Nachweisgesetz Lint (NachwG)"
+      },
+      {
+        "command": "nachwgLint.checkWorkspace",
+        "title": "Arbeitsvertrag prüfen – Nachweisgesetz Lint (NachwG): Sweep workspace and write report (licence)",
+        "category": "Arbeitsvertrag prüfen – Nachweisgesetz Lint (NachwG)"
+      },
+      {
+        "command": "nachwgLint.enterKey",
+        "title": "Arbeitsvertrag prüfen – Nachweisgesetz Lint (NachwG): Enter licence key",
+        "category": "Arbeitsvertrag prüfen – Nachweisgesetz Lint (NachwG)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "arbeitsvertrag-nachwg-lint"
+  },
+  "homepage": "https://getreadystack.com/de/tools/arbeitsvertrag-nachwg-lint",
+  "readystack": {
+    "rulesDate": "2026-09-26"
+  },
+  "icon": "icon.png"
+}
