@@ -1,5 +1,7 @@
 # Angular Upgrade Lint - removed and deprecated APIs
 
+![Angular Upgrade Lint - removed and deprecated APIs — finds the line](https://getreadystack.com/img/promo/angular-removed-api-lint_demo.gif)
+
 ![Angular Removed-API Lint](https://getreadystack.com/img/promo/sku39068_result_card.jpg)
 
 Paste an Angular file — or open one in VS Code — and this tells you which lines use an API that
