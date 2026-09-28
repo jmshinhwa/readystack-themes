@@ -1,5 +1,7 @@
 # Privacy Manifest Lint
 
+![Privacy Manifest Lint - xcprivacy & ITMS-91053 — finds the line](https://getreadystack.com/img/promo/privacy-manifest-lint_demo.gif)
+
 ![Privacy Manifest Lint - xcprivacy & ITMS-91053](https://getreadystack.com/img/promo/sku23939_result_card.jpg)
 
 Checks PrivacyInfo.xcprivacy and your C#, Dart, JS, Swift and Kotlin source for Apple required-reason APIs, and decodes all 17 reason codes back to the category they belong to.
