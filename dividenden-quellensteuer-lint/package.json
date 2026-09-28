@@ -2,7 +2,7 @@
   "name": "dividenden-quellensteuer-lint",
   "displayName": "Dividenden CSV Lint: Quellensteuer über DBA-Satz",
   "description": "Prüft Dividenden-CSVs vom Broker: ausländische Quellensteuer über dem DBA-Satz (nicht anrechenbar, §32d Abs. 5 EStG), fehlendes W-8BEN, Schweizer Erstattungsfrist (Art. 32 VStG).",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
