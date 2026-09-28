@@ -1,5 +1,7 @@
 # ICT Register Lint - DORA register of information (CSV, XLSX)
 
+![ICT Register Lint - DORA register of information (CSV, XLSX) — finds the line](https://getreadystack.com/img/promo/dora-register-lint_demo.gif)
+
 ![DORA Register of Information Lint](https://getreadystack.com/img/promo/sku54671_result_card.jpg)
 
 Open the register CSV your team exports for DORA (Regulation (EU) 2022/2554, Article 28(3)) and press
