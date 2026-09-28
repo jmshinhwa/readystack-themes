@@ -1,0 +1,15 @@
+Conda License Lint: Anaconda defaults channel — Licence
+
+Free scope
+  Flags every Anaconda paid-channel line in the open environment.yml or .condarc and shows the conda-forge replacement, no key needed. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Scans every environment file and .condarc in the workspace at once and exports one licence-audit report you keep for procurement or security review. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
