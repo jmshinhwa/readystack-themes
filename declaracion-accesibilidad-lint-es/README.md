@@ -1,5 +1,7 @@
 # Declaración de Accesibilidad Lint (RD 1112/2018)
 
+![Declaración de Accesibilidad Lint (RD 1112/2018) — finds the line](https://getreadystack.com/img/promo/declaracion-accesibilidad-lint-es_demo.gif)
+
 ![Declaración de Accesibilidad Lint (RD 1112/2018)](https://getreadystack.com/img/promo/sku319525_result_card.jpg)
 
 Revisa el texto de la **declaración de accesibilidad** de una web o app del sector público español contra el **artículo 15 del Real Decreto 1112/2018** y el modelo europeo de la **Decisión de Ejecución (UE) 2018/1523**. Abre `accesibilidad.md` o `declaracion-accesibilidad.html` en VS Code y cada fallo aparece en la línea exacta, con el artículo que lo exige.
