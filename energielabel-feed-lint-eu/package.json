@@ -1,0 +1,57 @@
+{
+  "name": "energielabel-feed-lint-eu",
+  "displayName": "Energielabel Feed Check",
+  "description": "Prüft Produkt-Feeds (CSV) gegen das EU-Energielabel: fehlende Klasse, alte A+++-Skala auf reskalierten Geräten, fehlendes Label oder Produktdatenblatt, Smartphone-Label seit 20.06.2025.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "energielabel",
+    "energy label",
+    "EPREL",
+    "EnVKG",
+    "produktfeed",
+    "google merchant",
+    "onlineshop",
+    "shopware"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "energielabelFeed.checkFile",
+        "title": "Energielabel Feed Check – EU-Energielabel im Shop-Feed: Check this file",
+        "category": "Energielabel Feed Check – EU-Energielabel im Shop-Feed"
+      },
+      {
+        "command": "energielabelFeed.checkWorkspace",
+        "title": "Energielabel Feed Check – EU-Energielabel im Shop-Feed: Sweep workspace and write report (licence)",
+        "category": "Energielabel Feed Check – EU-Energielabel im Shop-Feed"
+      },
+      {
+        "command": "energielabelFeed.enterKey",
+        "title": "Energielabel Feed Check – EU-Energielabel im Shop-Feed: Enter licence key",
+        "category": "Energielabel Feed Check – EU-Energielabel im Shop-Feed"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "energielabel-feed-lint-eu"
+  },
+  "homepage": "https://getreadystack.com/de/tools/energielabel-feed-lint-eu",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  },
+  "icon": "icon.png"
+}
