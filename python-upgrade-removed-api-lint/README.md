@@ -1,5 +1,7 @@
 # Python Upgrade Lint: Removed Stdlib 3.12-3.14
 
+![Python Upgrade Lint: Removed Stdlib 3.12-3.14 — finds the line](https://getreadystack.com/img/promo/python-upgrade-removed-api-lint_demo.gif)
+
 Python 3.10 reaches end of life in October 2026: no more security fixes. The next step is Python 3.12, 3.13 or 3.14, and each of those removed parts of the standard library. A line like `import cgi`, `import imp` or `from distutils.core import setup` runs fine on 3.10 and stops the program with `ModuleNotFoundError` on the new version. Removed methods such as `self.assertEquals(...)` or `ssl.wrap_socket(...)` fail with `AttributeError` at run time instead.
 
 This extension reads the open `.py` file and marks every line that uses something removed in 3.12, 3.13 or 3.14. For each one it shows the line, the version that removed it, the source (PEP 594, PEP 632 or the official What's New page), and the replacement.
