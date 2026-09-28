@@ -1,5 +1,7 @@
 # NuGet License Gate: AutoMapper, MediatR, FluentAssertions, MassTransit
 
+![NuGet License Gate: AutoMapper, MediatR — finds the line](https://getreadystack.com/img/promo/nuget-commercial-license-gate_demo.gif)
+
 ![NuGet License Gate: AutoMapper, MediatR](https://getreadystack.com/img/promo/sku324202_result_card.jpg)
 
 Your .csproj says `AutoMapper 15.1.0`? Since July 2025 that version is RPL-1.5 (release your own source) or a Lucky Penny Software commercial licence, not MIT. NuGet License Gate flags every NuGet line past its licence line, in the file you have open, and names the last open-source version to pin.
