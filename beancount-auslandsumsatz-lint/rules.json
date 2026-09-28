@@ -1,0 +1,12 @@
+[
+ {"id": "fx_ohne_eur", "sev": "error", "title": "Fremdwährung ohne Euro-Kurs", "law": "§ 16 Abs. 6 UStG", "fix": "Kurs an die Buchung hängen, z. B. \"-4800.00 USD @ 0.9192 EUR\" (amtlicher Monatsdurchschnittskurs des BMF) oder \"@@ 4412.16 EUR\"."},
+ {"id": "rc_ohne_ustid", "sev": "error", "title": "Reverse Charge ohne USt-IdNr. des Kunden", "law": "§ 14a Abs. 1 UStG", "fix": "Metadaten ust_id: \"FR...\" an die Transaktion schreiben; ohne die USt-IdNr. des Leistungsempfängers ist die ZM nicht abgebbar."},
+ {"id": "ustid_format", "sev": "error", "title": "USt-IdNr. passt nicht zum Länderformat", "law": "§ 18a Abs. 7 UStG", "fix": "USt-IdNr. aus der Rechnung des Kunden abschreiben und beim BZSt bestätigen lassen; Ländercode + Ziffernzahl muss stimmen (z. B. PL = 10 Ziffern)."},
+ {"id": "gr_statt_el", "sev": "error", "title": "Griechenland mit GR statt EL", "law": "§ 18a Abs. 7 UStG", "fix": "Griechische USt-IdNr. beginnen mit EL, nicht mit GR (EL123456789)."},
+ {"id": "drittland_ustid", "sev": "warning", "title": "Nicht-EU-Kunde als EU-Reverse-Charge gebucht", "law": "§ 18a UStG", "fix": "Auf ein Drittland-Konto umbuchen; Kunden außerhalb der EU (auch GB seit 2021-01-01, CH, NO) gehören nicht in die ZM."},
+ {"id": "de_ustid_rc", "sev": "error", "title": "Deutscher Kunde als Reverse Charge gebucht", "law": "§ 3a Abs. 2 UStG", "fix": "Leistungsort ist Deutschland: deutsche USt berechnen (Sonderfälle nach § 13b Abs. 2 UStG ausgenommen) und auf ein Inlandskonto buchen."},
+ {"id": "rc_mit_ust", "sev": "error", "title": "Reverse Charge mit deutscher USt", "law": "§ 14c Abs. 1 UStG", "fix": "USt-Buchung entfernen und die Rechnung berichtigen; ausgewiesene, nicht geschuldete USt wird trotzdem geschuldet."},
+ {"id": "zm_frist", "sev": "error", "title": "ZM-Frist überschritten", "law": "§ 18a UStG; Bußgeld bis zu 5.000 Euro nach § 26a Abs. 2 Nr. 5 UStG", "fix": "ZM beim BZSt nachreichen und an jede Transaktion zm: \"2026-Q2\" schreiben."},
+ {"id": "zm_quartal", "sev": "warning", "title": "ZM-Vermerk im falschen Quartal", "law": "§ 18a UStG", "fix": "Sonstige Leistungen gehören in die ZM des Quartals, in dem sie ausgeführt wurden; zm-Vermerk auf das Quartal des Buchungsdatums setzen."},
+ {"id": "rechnungsnr_fehlt", "sev": "warning", "title": "Auslandsumsatz ohne Rechnungsnummer", "law": "§ 14 Abs. 4 Nr. 4 UStG", "fix": "Metadaten rechnung: \"2026-015\" ergänzen, damit Buchung, Rechnung und ZM-Zeile zusammenfinden."}
+]
