@@ -1,0 +1,15 @@
+[
+ {"id": "pid_unset", "sev": "error", "title": "MSSQL_PID not set: the container runs Developer edition", "source": "Docker Hub mssql/server: MSSQL_PID (default: Developer)"},
+ {"id": "pid_developer_prod", "sev": "error", "title": "Developer edition in a production file", "source": "Microsoft: Developer editions are licensed for use as a development and test system, not as a production server"},
+ {"id": "pid_evaluation", "sev": "error", "title": "Evaluation edition expires", "source": "Microsoft: an evaluation deployment is available for 180 days"},
+ {"id": "pid_web", "sev": "warning", "title": "Web edition is hosting only", "source": "Microsoft SQL Server 2022 pricing: Web = Hosting only; not in the SQL Server 2025 MSSQL_PID table"},
+ {"id": "pid_enterprise_legacy", "sev": "warning", "title": "Legacy Enterprise (Server + CAL) PID", "source": "Microsoft: Enterprise PID is limited to 20 cores per instance and isn't available for new agreements; choose EnterpriseCore"},
+ {"id": "product_key_committed", "sev": "error", "title": "SQL Server product key committed to the repository", "source": "Microsoft: a product key has the form #####-#####-#####-#####-#####"},
+ {"id": "core_minimum", "sev": "warning", "title": "Fewer than 4 cores still costs 4 core licences", "source": "SQL Server licensing: minimum of four core licences per virtual OSE (VM or container)"},
+ {"id": "no_cpu_limit", "sev": "warning", "title": "Paid edition with no CPU limit", "source": "Microsoft SQL Server 2022 pricing: license all the virtual cores on the virtual OSE"},
+ {"id": "standard_core_cap", "sev": "warning", "title": "Standard edition cannot use these cores", "source": "Microsoft: Standard is limited to lesser of 4 sockets or 32 cores (2025); 24 cores in SQL Server 2022 and earlier"},
+ {"id": "express_core_cap", "sev": "info", "title": "Express edition cannot use these cores", "source": "Microsoft: Express is limited to lesser of 1 socket or 4 cores, 1,410 MB buffer pool, 50 GB database (2025)"},
+ {"id": "eula_missing", "sev": "error", "title": "ACCEPT_EULA missing", "source": "Microsoft: ACCEPT_EULA is a required setting for the SQL Server image"},
+ {"id": "tag_unpinned", "sev": "warning", "title": "Image tag not pinned to a SQL Server version", "source": "Edition limits and MSSQL_PID values differ between SQL Server 2022 and 2025"},
+ {"id": "pid_2025_only", "sev": "warning", "title": "StandardDeveloper / EnterpriseDeveloper on a pre-2025 image", "source": "Microsoft: StandardDeveloper and EnterpriseDeveloper are listed in the SQL Server 2025 MSSQL_PID table only"}
+]
