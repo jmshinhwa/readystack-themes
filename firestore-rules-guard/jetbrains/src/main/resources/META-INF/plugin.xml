@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.firestore-rules-guard</id>
+  <name>Firestore Rules Guard</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Audits firestore.rules and storage.rules for public access, expired test-mode dates and missing owner checks — 13 rules, line by line, before you deploy.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Firestore Rules Guard: Check This File</b>. Each finding appears on its line with the fix. 13 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/firestore-rules-guard</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/firestore-rules-guard">getreadystack.com/tools/firestore-rules-guard</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_firestore_rules_guard.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.firestore-rules-guard" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.firestore-rules-guard.check" class="com.getreadystack.p_firestore_rules_guard.RsCheckAction"
+            text="Firestore Rules Guard: Check This File" description="Run Firestore Rules Guard on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
