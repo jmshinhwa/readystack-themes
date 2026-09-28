@@ -1,0 +1,15 @@
+IoT Data Notice Lint: EU Data Act Art. 3 — Licence
+
+Free scope
+  Check one product notice in the open file against all 13 Article 3(2)-(3) items and 4 quality rules, with line numbers and the fix for each gap. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Check a whole folder of product notices at once and export a dated Data Act evidence report (.csv + .md) per SKU for your files. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
