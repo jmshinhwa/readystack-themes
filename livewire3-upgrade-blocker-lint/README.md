@@ -1,5 +1,7 @@
 # Livewire 3 Upgrade Blocker Lint
 
+![Livewire 3 Upgrade Blocker Lint — finds the line](https://getreadystack.com/img/promo/livewire3-upgrade-blocker-lint_demo.gif)
+
 ![Livewire 3 Upgrade Blocker Lint](https://getreadystack.com/img/promo/sku115367_result_card.jpg)
 
 Livewire 2 code does not fail loudly when you move to Livewire 3. It compiles, the page renders, and
