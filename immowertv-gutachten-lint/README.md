@@ -1,5 +1,7 @@
 # Gutachten-Lint: ImmoWertV 2021 und BewG
 
+![Gutachten-Lint: ImmoWertV 2021 und BewG — finds the line](https://getreadystack.com/img/promo/immowertv-gutachten-lint_demo.gif)
+
 ![Gutachten-Lint: ImmoWertV 2021 und BewG](https://getreadystack.com/img/promo/sku273315_result_card.jpg)
 
 **Für Immobiliensachverständige, Gutachterbüros und Steuerberater in Deutschland:** Die Erweiterung liest Ihren Verkehrswertgutachten-Entwurf (Markdown) und markiert jede Zeile, die noch mit abgelösten Normen oder alten Modellwerten arbeitet. Zu jedem Befund steht die Korrektur und die Fundstelle.
