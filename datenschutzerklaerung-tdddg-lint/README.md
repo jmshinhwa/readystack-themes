@@ -1,5 +1,7 @@
 # Datenschutzerklärung Check – TDDDG, DDG, DPF
 
+![Datenschutzerklärung Check – TDDDG, DDG, DPF — finds the line](https://getreadystack.com/img/promo/datenschutzerklaerung-tdddg-lint_demo.gif)
+
 ![Datenschutzerklärung Check – TDDDG, DDG, DPF](https://getreadystack.com/img/promo/sku303592_result_card.jpg)
 
 **Findet veraltete Gesetzeszitate und fehlende Pflichtangaben in Datenschutzerklärungen – Zeile für Zeile, mit Ersatzformulierung.** 16 rules · 1 file pro Lauf · läuft lokal, ohne Upload.
