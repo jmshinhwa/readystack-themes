@@ -1,5 +1,7 @@
 # Code Coverage Gate - enforce thresholds in CI (lcov, cobertura, jacoco)
 
+![Code Coverage Gate - enforce thresholds in CI (lcov, cobertura, jacoco) — finds the line](https://getreadystack.com/img/promo/coverage-gate-lint_demo.gif)
+
 ![Coverage Gate Lint](https://getreadystack.com/img/promo/sku54267_result_card.jpg)
 
 Your CI prints a coverage percentage. A branch rule says the coverage check must pass. Both are true, and neither one can stop a pull request — because the gate itself is configured to always succeed.
