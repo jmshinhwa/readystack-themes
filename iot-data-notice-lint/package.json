@@ -1,0 +1,57 @@
+{
+  "name": "iot-data-notice-lint",
+  "displayName": "IoT Data Notice Lint: EU Data Act Art. 3",
+  "description": "Checks the pre-contract data notice of a smart or connected device sold in the EU against Data Act Article 3(2)-(3): every item the buyer must be told, plus data-access fees and vague retention.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "data act",
+    "iot",
+    "connected product",
+    "smart device",
+    "compliance",
+    "eu",
+    "product page",
+    "lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "iotDataNotice.checkFile",
+        "title": "IoT Data Notice Lint: EU Data Act Art. 3: Check this file",
+        "category": "IoT Data Notice Lint: EU Data Act Art. 3"
+      },
+      {
+        "command": "iotDataNotice.checkWorkspace",
+        "title": "IoT Data Notice Lint: EU Data Act Art. 3: Sweep workspace and write report (licence)",
+        "category": "IoT Data Notice Lint: EU Data Act Art. 3"
+      },
+      {
+        "command": "iotDataNotice.enterKey",
+        "title": "IoT Data Notice Lint: EU Data Act Art. 3: Enter licence key",
+        "category": "IoT Data Notice Lint: EU Data Act Art. 3"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "iot-data-notice-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/iot-data-notice-lint",
+  "readystack": {
+    "rulesDate": "2026-09-26"
+  },
+  "icon": "icon.png"
+}
