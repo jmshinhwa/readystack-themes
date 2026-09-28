@@ -2,7 +2,7 @@
   "name": "mahnung-vorlagen-check-de",
   "displayName": "Mahnung Vorlagen Check – BGB 288, ZPO 692",
   "description": "Prüft Mahnungs-Vorlagen (.md/.txt/.html/.twig) auf falsche Widerspruchs- und Einspruchsfristen, Verzugszinsen und 40-Euro-Pauschale je Kundentyp und nahende Verjährung – 14 Regeln, mit Zeile.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
