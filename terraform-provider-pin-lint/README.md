@@ -1,5 +1,7 @@
 # Terraform Provider Pin Lint
 
+![Terraform Provider Pin Lint — finds the line](https://getreadystack.com/img/promo/terraform-provider-pin-lint_demo.gif)
+
 ![Terraform Provider Pin Lint](https://getreadystack.com/img/promo/sku88463_result_card.jpg)
 
 Your pipeline runs `terraform init` on an empty runner. Nothing carries over from the last job: every provider and every module is chosen again, from scratch, by whatever the constraint in your `.tf` file happens to allow. A constraint of `>= 4.0` allows the next major. A `required_providers` entry with no `version` allows the newest release published this morning. A `module` block pointing at a git URL with no `?ref=` follows the default branch wherever it went.
