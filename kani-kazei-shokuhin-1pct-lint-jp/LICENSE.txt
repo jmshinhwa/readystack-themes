@@ -1,0 +1,15 @@
+消費税 簡易課税チェック（飲食料品1%特例対応） — Licence
+
+Free scope
+  売上帳CSV 1本の税率・事業区分の誤りを行番号つきで出し、簡易課税の納付税額（特例・75%ルール込み）を概算する is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  ワークスペース内の全CSV（店舗別・月別）を一括検査し、事業区分別・税率別の集計表（申告書付表の入力値）をCSVで書き出す is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
