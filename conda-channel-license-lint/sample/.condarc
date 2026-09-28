@@ -1,0 +1,14 @@
+name: churn-model
+channels:
+  - defaults
+  - anaconda
+  - https://repo.anaconda.com/pkgs/r
+  - pkgs/msys2
+dependencies:
+  - python=3.11
+  - pkgs/main::numpy=1.26
+  - defaults::pandas
+  - scikit-learn
+  - pip
+  - pip:
+      - shap==0.45.0
