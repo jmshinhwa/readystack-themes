@@ -1,5 +1,7 @@
 # PCI DSS 6.4.3 Payment Script Lint
 
+![PCI DSS 6.4.3 Payment Script Lint — finds the line](https://getreadystack.com/img/promo/pci-payment-script-lint_demo.gif)
+
 A linter for the one file an assessor always opens: the page where a customer types a card number.
 
 PCI DSS v4.0.1 requirement **6.4.3** says every script loaded and executed in the consumer's browser on a payment page must be authorised, must have its integrity assured, and must appear in a written inventory with a business justification. Requirement **11.6.1** says a change- and tamper-detection mechanism must alert on unauthorised modification of the payment page's HTTP headers and content, evaluated at least weekly. Both were future-dated best practices until **2025-03-31**. Since that date they are ordinary requirements, and v4.0.1 is the only active version of the standard — v3.2.1 retired 2024-03-31 and v4.0 retired 2024-12-31.
