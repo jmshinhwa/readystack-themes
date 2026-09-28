@@ -1,5 +1,7 @@
 # Antragsfrist-Lint — Förderfristen nach § 31 Abs. 3 VwVfG
 
+![Antragsfrist-Lint: Förderfristen (§ 31 VwVfG) — finds the line](https://getreadystack.com/img/promo/antragsfrist-lint-vwvfg_demo.gif)
+
 ![Antragsfrist-Lint: Förderfristen (§ 31 VwVfG)](https://getreadystack.com/img/promo/sku189191_result_card.jpg)
 
 Prüft Markdown-Seiten von Förderprogrammen auf Fristangaben, die rechtlich
