@@ -1,5 +1,7 @@
 # 派遣契約書チェック — 個別契約・就業条件明示書の記載事項
 
+![派遣契約書チェック — 個別契約・就業条件明示書 — finds the line](https://getreadystack.com/img/promo/haken-keiyaku-kisai-lint-jp_demo.gif)
+
 ![派遣契約書チェック — 個別契約・就業条件明示書](https://getreadystack.com/img/promo/sku211276_result_card.jpg)
 
 労働者派遣の**個別契約書**と**就業条件明示書**の下書き（.md / .txt）を開くと、派遣法26条1項・施行規則22条・34条の記載事項と照らし、**抜けている項目・空欄・古い用語**を行番号つきで「問題」パネルに出します。規則は28個、どれも条文番号と「直し方の例」つきです。
