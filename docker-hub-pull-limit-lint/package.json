@@ -1,0 +1,57 @@
+{
+  "name": "docker-hub-pull-limit-lint",
+  "displayName": "Docker Hub Pull Limit Lint",
+  "description": "Finds Docker Hub pulls in GitHub Actions, docker-compose, GitLab CI, Kubernetes and Dockerfiles that run without login — incl. service containers pulled before your docker/login-action step.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "docker",
+    "docker hub",
+    "rate limit",
+    "toomanyrequests",
+    "github actions",
+    "docker-compose",
+    "ci",
+    "kubernetes"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "dockerHubPullLimit.checkFile",
+        "title": "Docker Hub Pull Limit Lint — CI rate limit guard: Check this file",
+        "category": "Docker Hub Pull Limit Lint — CI rate limit guard"
+      },
+      {
+        "command": "dockerHubPullLimit.checkWorkspace",
+        "title": "Docker Hub Pull Limit Lint — CI rate limit guard: Sweep workspace and write report (licence)",
+        "category": "Docker Hub Pull Limit Lint — CI rate limit guard"
+      },
+      {
+        "command": "dockerHubPullLimit.enterKey",
+        "title": "Docker Hub Pull Limit Lint — CI rate limit guard: Enter licence key",
+        "category": "Docker Hub Pull Limit Lint — CI rate limit guard"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "docker-hub-pull-limit-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/docker-hub-pull-limit-lint",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  },
+  "icon": "icon.png"
+}
