@@ -1,5 +1,7 @@
 # EU Data Residency Lint (Terraform, GDPR Ch. V)
 
+![EU Data Residency Lint (Terraform, GDPR Ch. V) — finds the line](https://getreadystack.com/img/promo/eu-data-residency-lint_demo.gif)
+
 `region = "eu-west-2"` is London. `region = "us-east-1"` is Virginia. `location = "US"` is a Google Cloud multi-region spread across several American data centres. None of those three lines looks wrong in a pull request, and a code assistant will write all of them for you — which is exactly the question a 2026 reviewer is asking: does the code the assistant wrote hold up against the regulation we are audited on?
 
 This extension reads your infrastructure code and resolves every cloud region literal to a country. It then scores that country against GDPR Chapter V:
