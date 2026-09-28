@@ -1,5 +1,7 @@
 # Action Runtime Sunset Lint
 
+![Action Runtime Sunset Lint — finds the line](https://getreadystack.com/img/promo/action-runtime-sunset-lint_demo.gif)
+
 A GitHub Actions step does not warn you when its JavaScript runtime disappears. It fails. The job goes red on the next push — usually the push that was supposed to ship a release — and the log says something about a runtime that no longer exists on the runner image.
 
 GitHub retires the **node20** action runtime on **2026-09-23**. The node16 and node12 runtimes are already gone, and so are several runner images (`ubuntu-20.04`, `macos-12`, `windows-2019`). The v3 artifact backend was switched off on 2025-01-30, so `actions/upload-artifact@v3` and `actions/download-artifact@v3` fail outright rather than degrade. Archived action repositories such as `actions/create-release` will never receive a runtime bump at all: whatever runtime they declare today is the runtime they die with.
