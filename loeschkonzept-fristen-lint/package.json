@@ -2,7 +2,7 @@
   "name": "loeschkonzept-fristen-lint",
   "displayName": "Löschkonzept-Prüfer – Aufbewahrungsfristen 2026",
   "description": "Prüft Löschkonzepte und Löschfristen-Tabellen (Markdown) gegen § 147 AO, § 257 HGB, § 14b UStG, § 41 EStG und Art. 5 DSGVO: Buchungsbelege und Rechnungen 8 statt 10 Jahre seit 2025.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
