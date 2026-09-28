@@ -1,5 +1,7 @@
 # Firmware Release Gate
 
+![Firmware Release Gate for sdkconfig and prj.conf — finds the line](https://getreadystack.com/img/promo/firmware-release-gate_demo.gif)
+
 ![Firmware Release Gate for sdkconfig and prj.conf](https://getreadystack.com/img/promo/sku33021_result_card.jpg)
 
 Finds the build-config lines that ship an ESP-IDF or Zephyr device with secure boot off, a debug port open, unsigned images or plaintext OTA.
