@@ -1,5 +1,7 @@
 # MV3 Manifest Preflight — Chrome Web Store
 
+![MV3 Manifest Preflight - Chrome Web Store — finds the line](https://getreadystack.com/img/promo/mv3-manifest-preflight_demo.gif)
+
 ![MV3 Manifest Preflight - Chrome Web Store](https://getreadystack.com/img/promo/sku68219_result_card.jpg)
 
 Open a `manifest.json` and this extension marks every line that Manifest V3 or the Chrome Web Store upload will refuse, with the replacement written next to it.
