@@ -1,5 +1,7 @@
 # Tailwind v4 Upgrade Blocker Lint
 
+![Tailwind v4 Upgrade Blocker Lint — finds the line](https://getreadystack.com/img/promo/tailwind-v4-upgrade-blocker-lint_demo.gif)
+
 Your AI wrote Tailwind v3. Your build is Tailwind v4. Most of it compiles anyway - that is the problem.
 
 This extension reads the file you have open and reports every construct that Tailwind CSS v4 removed or silently redefined, with the line number and the v4 replacement. It ships **19 rules**. On the bundled 73-line v3 fixture all 19 fire and raise **35 findings**; on the migrated copy of the same file they raise **0**.
