@@ -1,5 +1,7 @@
 # Crypto Export Notice Lint (EAR 742.15)
 
+![Crypto Export Notice Lint (EAR 742.15) — finds the line](https://getreadystack.com/img/promo/crypto-export-notice-lint_demo.gif)
+
 ![Crypto Export Notice Lint (EAR 742.15)](https://getreadystack.com/img/promo/sku164614_result_card.jpg)
 
 Hub: https://getreadystack.com/tools/crypto-export-notice-lint
