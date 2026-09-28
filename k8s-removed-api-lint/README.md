@@ -1,5 +1,7 @@
 # Kubernetes Removed API Lint
 
+![Kubernetes Removed API Lint — finds the line](https://getreadystack.com/img/promo/k8s-removed-api-lint_demo.gif)
+
 ![Kubernetes Removed API Lint](https://getreadystack.com/img/promo/sku53222_result_card.jpg)
 
 Your assistant writes a Deployment. It writes `apiVersion: extensions/v1beta1`, because that is what most of the Kubernetes YAML ever published says. That apiVersion stopped being served in **Kubernetes 1.16**. `kubectl apply` answers `no matches for kind "Deployment" in version "extensions/v1beta1"` — and it answers that only on the cluster that already moved, which is usually the production one, usually mid-rollout.
