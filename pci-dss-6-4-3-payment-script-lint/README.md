@@ -1,5 +1,7 @@
 # PCI DSS 6.4.3 Payment Page Script Lint
 
+![PCI DSS 6.4.3 Payment Page Script Lint — finds the line](https://getreadystack.com/img/promo/pci-dss-6-4-3-payment-script-lint_demo.gif)
+
 ![PCI DSS 6.4.3 Payment Page Script Lint](https://getreadystack.com/img/promo/sku42829_result_card.jpg)
 
 Reads a payment page and reports it against **PCI DSS v4.0.1 Requirements 6.4.3 and 11.6.1** — the two requirements that stopped being "best practice" and became mandatory on **2025-03-31**.
