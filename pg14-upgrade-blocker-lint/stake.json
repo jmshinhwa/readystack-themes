@@ -1,0 +1,44 @@
+{
+ "_why": "s166 2026-09-28 — AWS docs the same day: RDS for PostgreSQL major version 14 reaches end of standard support in February 2027; the RDS for PostgreSQL pricing page: Extended Support $0.100 per vCPU-hr in years 1-2 (US East, Ohio example), $0.200 from year 3. 730 hours a month is AWS's convention. No team_url until the npm package exists.",
+ "vendor": "AWS",
+ "months": 12,
+ "example_heads": 32,
+ "bands": [
+  [
+   1,
+   10000000,
+   73.0
+  ]
+ ],
+ "source": "Amazon RDS for PostgreSQL pricing page, US East (Ohio), Extended Support years 1-2",
+ "source_url": "https://aws.amazon.com/rds/postgresql/pricing/",
+ "measured_at": "2026-09-28",
+ "line": {
+  "en": "RDS for PostgreSQL 14 leaves standard support in February 2027; after that AWS bills Extended Support at $0.100 per vCPU-hour (US East, Ohio; $0.200 from year 3) - {ex} vCPUs pay ${exy} a year.",
+  "de": "RDS for PostgreSQL 14 verlässt im Februar 2027 den Standard-Support; danach berechnet AWS Extended Support mit 0,100 $ pro vCPU-Stunde (US East, Ohio; ab Jahr 3 0,200 $) - {ex} vCPUs zahlen ${exy} pro Jahr.",
+  "ja": "RDS for PostgreSQL 14 は 2027 年 2 月に標準サポートが終わり、その後 AWS は延長サポートを vCPU 1 時間 $0.100 で課金します (米国東部オハイオ · 3 年目から $0.200)。{ex} vCPU で年 ${exy} です。",
+  "es": "RDS for PostgreSQL 14 sale del soporte estándar en febrero de 2027; después AWS cobra el soporte extendido a $0.100 por vCPU y hora (US East, Ohio; $0.200 desde el año 3): {ex} vCPU pagan ${exy} al año.",
+  "pt": "O RDS for PostgreSQL 14 sai do suporte padrão em fevereiro de 2027; depois a AWS cobra o suporte estendido a US$ 0,100 por vCPU-hora (US East, Ohio; US$ 0,200 a partir do ano 3): {ex} vCPUs pagam US${exy} por ano."
+ },
+ "ask": {
+  "en": "How many vCPUs run PostgreSQL 14 on RDS in your company?",
+  "de": "Wie viele vCPUs betreiben in Ihrem Unternehmen PostgreSQL 14 auf RDS?",
+  "ja": "御社で RDS 上の PostgreSQL 14 を動かしている vCPU 数は?",
+  "es": "¿Cuántas vCPU ejecutan PostgreSQL 14 en RDS en su empresa?",
+  "pt": "Quantas vCPUs rodam PostgreSQL 14 no RDS na sua empresa?"
+ },
+ "result": {
+  "en": "{heads} vCPUs x ${rate}/month ($0.100 per vCPU-hour x 730 hours) x 12 = ${year} a year from March 2027 ({src}). The full report sweeps every file in this workspace.",
+  "de": "{heads} vCPUs x ${rate}/Monat (0,100 $ pro vCPU-Stunde x 730 Stunden) x 12 = ${year} pro Jahr ab März 2027 ({src}). Der vollständige Bericht prüft jede Datei in diesem Workspace.",
+  "ja": "{heads} vCPU x ${rate}/月 (vCPU 1 時間 $0.100 x 730 時間) x 12 = 2027 年 3 月から年 ${year} ({src})。完全レポートはこのワークスペースの全ファイルを確認します。",
+  "es": "{heads} vCPU x ${rate}/mes ($0.100 por vCPU y hora x 730 horas) x 12 = ${year} al año desde marzo de 2027 ({src}). El informe completo revisa cada archivo de este espacio de trabajo.",
+  "pt": "{heads} vCPUs x US${rate}/mês (US$ 0,100 por vCPU-hora x 730 horas) x 12 = US${year} por ano a partir de março de 2027 ({src}). O relatório completo verifica cada arquivo deste workspace."
+ },
+ "clean_line": {
+  "en": "A clean file here does not cover every database: each RDS for PostgreSQL 14 instance still running in March 2027 is billed Extended Support at $0.100 per vCPU-hour - {ex} vCPUs pay ${exy} a year.",
+  "de": "Eine saubere Datei deckt nicht jede Datenbank ab: jede RDS-for-PostgreSQL-14-Instanz, die im März 2027 noch läuft, kostet Extended Support mit 0,100 $ pro vCPU-Stunde - {ex} vCPUs zahlen ${exy} pro Jahr.",
+  "ja": "このファイルに問題がなくても全データベースは別です。2027 年 3 月に動いている RDS for PostgreSQL 14 は延長サポートとして vCPU 1 時間 $0.100 で課金され、{ex} vCPU で年 ${exy} です。",
+  "es": "Un archivo limpio aquí no cubre todas las bases de datos: cada instancia RDS for PostgreSQL 14 que siga en marcha en marzo de 2027 paga soporte extendido a $0.100 por vCPU y hora; {ex} vCPU pagan ${exy} al año.",
+  "pt": "Um arquivo limpo aqui não cobre todos os bancos: cada instância RDS for PostgreSQL 14 ainda rodando em março de 2027 paga suporte estendido a US$ 0,100 por vCPU-hora; {ex} vCPUs pagam US${exy} por ano."
+ }
+}
