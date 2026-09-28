@@ -1,5 +1,7 @@
 # Purchase Order Lint (JP) - フリーランス新法 発注書 21ルール
 
+![Purchase Order Lint (JP) - フリーランス新法 発注書 21ルール — finds the line](https://getreadystack.com/img/promo/freelance-act-order-lint-jp_demo.gif)
+
 ![フリーランス新法 発注書チェック](https://getreadystack.com/img/promo/sku111128_result_card.jpg)
 
 業務委託の**発注書・業務委託契約書の Markdown** を開いた状態で 1 コマンド。
