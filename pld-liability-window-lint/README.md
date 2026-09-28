@@ -1,5 +1,7 @@
 # EU Liability Window Lint (PLD 2024/2853)
 
+![EU Liability Window Lint — finds the line](https://getreadystack.com/img/promo/pld-liability-window-lint_demo.gif)
+
 ![EU Liability Window Lint](https://getreadystack.com/img/promo/sku79612_result_card.jpg)
 
 On 9 December 2026, Directive (EU) 2024/2853 applies in every Member State and Directive 85/374/EEC is repealed. Software is a product under Art. 4(1) — standalone, embedded, or a model. This extension reads a `CHANGELOG.md` or release-notes file the way that Directive reads it, and reports the lines that will not hold up.
