@@ -1,5 +1,7 @@
 # Manuscript Lint - journal disclosure statements (COI, funding, AI use)
 
+![Manuscript Lint - journal disclosure statements (COI, funding, AI use) — finds the line](https://getreadystack.com/img/promo/manuscript-disclosure-lint_demo.gif)
+
 ![Manuscript Disclosure Lint](https://getreadystack.com/img/promo/sku64951_result_card.jpg)
 
 A manuscript is rejected before peer review more often for a missing paragraph than for a
