@@ -1,0 +1,58 @@
+{
+  "name": "gensen-choshu-rate-lint-jp",
+  "displayName": "源泉徴収 計算チェック 10.21%・20.42%（令和9年改正対応）",
+  "description": "報酬・料金の源泉徴収を計算するコード(JS/TS/Python)を国税庁の式で検査。10%だけ・20.42%を全額に・102,100円抜け・端数の四捨五入・令和9年の1.1%+防衛1%の前倒しを行番号で指摘。",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "源泉徴収",
+    "源泉徴収 計算",
+    "復興特別所得税",
+    "防衛特別所得税",
+    "10.21%",
+    "報酬",
+    "withholding",
+    "japan",
+    "tax"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "gensenLint.checkFile",
+        "title": "源泉徴収 計算チェック 10.21%・20.42%（令和9年改正対応）: Check this file",
+        "category": "源泉徴収 計算チェック 10.21%・20.42%（令和9年改正対応）"
+      },
+      {
+        "command": "gensenLint.checkWorkspace",
+        "title": "源泉徴収 計算チェック 10.21%・20.42%（令和9年改正対応）: Sweep workspace and write report (licence)",
+        "category": "源泉徴収 計算チェック 10.21%・20.42%（令和9年改正対応）"
+      },
+      {
+        "command": "gensenLint.enterKey",
+        "title": "源泉徴収 計算チェック 10.21%・20.42%（令和9年改正対応）: Enter licence key",
+        "category": "源泉徴収 計算チェック 10.21%・20.42%（令和9年改正対応）"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "gensen-choshu-rate-lint-jp"
+  },
+  "homepage": "https://getreadystack.com/ja/tools/gensen-choshu-rate-lint-jp",
+  "readystack": {
+    "rulesDate": "2026-09-25"
+  },
+  "icon": "icon.png"
+}
