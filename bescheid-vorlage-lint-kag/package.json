@@ -2,7 +2,7 @@
   "name": "bescheid-vorlage-lint-kag",
   "displayName": "Abgabenbescheid prüfen – Bescheid-Vorlagen Lint",
   "description": "Abgabenbescheid prüfen, bevor er rausgeht: Rechtsbehelfsbelehrung (§58/§70 VwGO), Bekanntgabe am 4. Tag (§122 AO seit 2025), Säumniszuschlag (§240 AO) und aufschiebende Wirkung in Bescheid-Vorlagen.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
