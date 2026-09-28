@@ -1,5 +1,7 @@
 # COPPA 2026 Notice Lint
 
+![COPPA 2026 Notice Lint — finds the line](https://getreadystack.com/img/promo/coppa-notice-lint-2026_demo.gif)
+
 ![COPPA 2026 Notice Lint](https://getreadystack.com/img/promo/sku64758_result_card.jpg)
 
 A children's privacy notice is a legal document that lives in a repository as `PRIVACY.md`, as a
