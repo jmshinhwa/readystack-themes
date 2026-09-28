@@ -1,5 +1,7 @@
 # Privacidad Chile: Ley 21.719 Policy Lint
 
+![Privacidad Chile: Ley 21.719 Policy Lint — finds the line](https://getreadystack.com/img/promo/privacidad-chile-21719-lint_demo.gif)
+
 Marca los fallos de la política de privacidad de un sitio chileno frente al deber de información del **art. 14 ter** de la **Ley 21.719**, que rige desde el **2026-12-01**. Pensado para agencias web, freelancers y estudios con portfolio en WordPress o Elementor que publican la política de sus clientes.
 
 Web gratis (el mismo motor, en el navegador): https://getreadystack.com/es/tools/privacidad-chile-21719-lint
