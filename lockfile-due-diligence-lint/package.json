@@ -1,0 +1,57 @@
+{
+  "name": "lockfile-due-diligence-lint",
+  "displayName": "Lockfile Due Diligence",
+  "description": "Flags install scripts, missing or sha1 integrity, http, git and off-registry tarballs in package-lock.json: the third-party component check behind EU CRA Art. 13(5). 8 rules, line numbers.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "package-lock",
+    "supply chain",
+    "due diligence",
+    "npm",
+    "install scripts",
+    "integrity",
+    "cyber resilience act",
+    "sbom"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "lockfileDd.checkFile",
+        "title": "Lockfile Due Diligence: npm install-script lint: Check this file",
+        "category": "Lockfile Due Diligence: npm install-script lint"
+      },
+      {
+        "command": "lockfileDd.checkWorkspace",
+        "title": "Lockfile Due Diligence: npm install-script lint: Sweep workspace and write report (licence)",
+        "category": "Lockfile Due Diligence: npm install-script lint"
+      },
+      {
+        "command": "lockfileDd.enterKey",
+        "title": "Lockfile Due Diligence: npm install-script lint: Enter licence key",
+        "category": "Lockfile Due Diligence: npm install-script lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "lockfile-due-diligence-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/lockfile-due-diligence-lint",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  },
+  "icon": "icon.png"
+}
