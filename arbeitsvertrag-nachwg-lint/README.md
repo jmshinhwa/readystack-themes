@@ -1,5 +1,7 @@
 # Arbeitsvertrag prüfen – NachwG Lint
 
+![Arbeitsvertrag prüfen – NachwG Lint — finds the line](https://getreadystack.com/img/promo/arbeitsvertrag-nachwg-lint_demo.gif)
+
 ![Arbeitsvertrag prüfen – NachwG Lint](https://getreadystack.com/img/promo/sku307943_result_card.jpg)
 
 Prüft Arbeitsvertrag-Vorlagen (.md, .txt, .html) direkt in VS Code gegen die Pflichtangaben des Nachweisgesetzes (§2 NachwG), die Angaben bei Auslandseinsatz und EU-Entsendung, die Schriftform der Kündigung (§623 BGB), den Mindesturlaub (§3 BUrlG) und den Mindestlohn zum Stichtag. Jede Meldung nennt Zeile, Paragraf und einen Korrekturtext.
