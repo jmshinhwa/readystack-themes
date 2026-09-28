@@ -1,5 +1,7 @@
 # VVT-Prüfer — Art. 30 DSGVO
 
+![VVT-Prüfer — Art. 30 DSGVO — finds the line](https://getreadystack.com/img/promo/vvt-pruefer-art-30-dsgvo_demo.gif)
+
 Führen Sie Ihr Verzeichnis von Verarbeitungstätigkeiten als Markdown im Repository? Dann prüft diese Erweiterung es beim Speichern — Zeile für Zeile, gegen die Pflichtangaben aus Art. 30 Abs. 1 lit. a bis g DSGVO.
 
 „Schreibt die KI Verzeichnisse, die die Aufsichtsbehörde akzeptiert?" ist 2026 die Frage, die vor jedem generierten Compliance-Dokument steht. Ein Sprachmodell formuliert einen schönen Absatz über „angemessene Löschfristen"; es zählt nicht nach, ob in Tätigkeit 7 die Empfängerkategorien fehlen. Das ist die Arbeit hier.
