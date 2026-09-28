@@ -1,5 +1,7 @@
 # FHIR API Gate - CMS-0057 prior authorization (Da Vinci)
 
+![FHIR API Gate - CMS-0057 prior authorization (Da Vinci) — finds the line](https://getreadystack.com/img/promo/cms-0057-api-gate_demo.gif)
+
 ![CMS-0057 API Gate](https://getreadystack.com/img/promo/sku77334_result_card.jpg)
 
 **Does the CapabilityStatement your payer FHIR server publishes stand up as evidence for CMS-0057-F?** Open it, and 14 rules answer that question in the editor, line by line, with the days left to 1 January 2027 on the last line.
