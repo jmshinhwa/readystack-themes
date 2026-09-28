@@ -1,0 +1,168 @@
+[
+{
+"id": "AV01",
+"kind": "require",
+"sev": "error",
+"re": "gegenstand",
+"and": "dauer|laufzeit",
+"ref": "Art. 28 Abs. 3 S. 1 DSGVO",
+"msg": "Gegenstand und Dauer der Verarbeitung fehlen. Art. 28 Abs. 3 S. 1 DSGVO verlangt beides im Vertrag."
+},
+{
+"id": "AV02",
+"kind": "require",
+"sev": "error",
+"re": "zweck",
+"ref": "Art. 28 Abs. 3 S. 1 DSGVO",
+"msg": "Art und Zweck der Verarbeitung fehlen (Art. 28 Abs. 3 S. 1 DSGVO)."
+},
+{
+"id": "AV03",
+"kind": "require",
+"sev": "error",
+"re": "art der (personenbezogenen )?daten|datenarten|datenkategorien|kategorien (von |personenbezogener )daten",
+"ref": "Art. 28 Abs. 3 S. 1 DSGVO",
+"msg": "Die Art der personenbezogenen Daten fehlt (Art. 28 Abs. 3 S. 1 DSGVO), z. B. Stammdaten, Kontaktdaten, Nutzungsdaten."
+},
+{
+"id": "AV04",
+"kind": "require",
+"sev": "error",
+"re": "kategorien betroffener|betroffene personen|kreis der betroffenen|betroffenenkategorien",
+"ref": "Art. 28 Abs. 3 S. 1 DSGVO",
+"msg": "Die Kategorien betroffener Personen fehlen (Art. 28 Abs. 3 S. 1 DSGVO), z. B. Kunden, Beschäftigte, Website-Besucher."
+},
+{
+"id": "AV05",
+"kind": "require",
+"sev": "error",
+"re": "weisung",
+"ref": "Art. 28 Abs. 3 lit. a DSGVO",
+"msg": "Keine Weisungsbindung: Der Auftragsverarbeiter darf nur auf dokumentierte Weisung verarbeiten (Art. 28 Abs. 3 lit. a DSGVO)."
+},
+{
+"id": "AV06",
+"kind": "require",
+"sev": "error",
+"re": "vertraulichkeit|verschwiegenheit",
+"ref": "Art. 28 Abs. 3 lit. b DSGVO",
+"msg": "Keine Vertraulichkeitspflicht der befugten Personen (Art. 28 Abs. 3 lit. b DSGVO)."
+},
+{
+"id": "AV07",
+"kind": "require",
+"sev": "error",
+"re": "art\\.? ?32|artikel 32|technische und organisatorische maßnahmen|\\btoms?\\b",
+"ref": "Art. 28 Abs. 3 lit. c DSGVO",
+"msg": "Keine technischen und organisatorischen Maßnahmen nach Art. 32 DSGVO (Art. 28 Abs. 3 lit. c) — TOM als Anlage beifügen."
+},
+{
+"id": "AV08",
+"kind": "require",
+"sev": "error",
+"re": "unterauftragsverarbeiter|weitere[nr]? auftragsverarbeiter|subunternehmer",
+"ref": "Art. 28 Abs. 3 lit. d DSGVO",
+"msg": "Keine Regel zu Unterauftragsverarbeitern (Art. 28 Abs. 3 lit. d i. V. m. Abs. 2 und 4 DSGVO)."
+},
+{
+"id": "AV09",
+"kind": "require",
+"sev": "error",
+"re": "rechte der betroffenen|betroffenenrechte|kapitel iii|art\\.? ?1[5-9]\\b",
+"ref": "Art. 28 Abs. 3 lit. e DSGVO",
+"msg": "Keine Unterstützung bei Betroffenenrechten nach Kapitel III (Art. 28 Abs. 3 lit. e DSGVO), z. B. Auskunft nach Art. 15."
+},
+{
+"id": "AV10",
+"kind": "require",
+"sev": "error",
+"re": "32 bis 36|art\\.? ?33|artikel 33|folgenabschätzung",
+"ref": "Art. 28 Abs. 3 lit. f DSGVO",
+"msg": "Keine Unterstützung bei den Pflichten aus Art. 32 bis 36 DSGVO (Meldung von Verletzungen, Folgenabschätzung) — Art. 28 Abs. 3 lit. f."
+},
+{
+"id": "AV11",
+"kind": "require",
+"sev": "error",
+"re": "löscht|löschung|rückgabe|zurückgibt|herausgabe",
+"ref": "Art. 28 Abs. 3 lit. g DSGVO",
+"msg": "Keine Regel zu Löschung oder Rückgabe nach Vertragsende (Art. 28 Abs. 3 lit. g DSGVO)."
+},
+{
+"id": "AV12",
+"kind": "require",
+"sev": "error",
+"re": "kontrolle|überprüfung|inspektion|audit",
+"ref": "Art. 28 Abs. 3 lit. h DSGVO",
+"msg": "Keine Kontroll- und Nachweisrechte: Überprüfungen einschließlich Inspektionen muss der Auftragsverarbeiter ermöglichen (Art. 28 Abs. 3 lit. h DSGVO)."
+},
+{
+"id": "AV13",
+"kind": "if_without",
+"sev": "error",
+"re": "allgemeine (schriftliche )?genehmigung",
+"unless": "einspruch|widerspruch|widersprechen",
+"ref": "Art. 28 Abs. 2 S. 2 DSGVO",
+"msg": "Allgemeine Genehmigung für Unterauftragsverarbeiter ohne Einspruchsrecht: Bei jeder Änderung muss der Verantwortliche Einspruch erheben können (Art. 28 Abs. 2 S. 2 DSGVO)."
+},
+{
+"id": "AV14",
+"kind": "forbid",
+"sev": "error",
+"re": "(binnen|innerhalb( von)?|spätestens( nach)?)\\s+(48|72|96)\\s*(stunden|std\\.?|h)\\b",
+"and": "meld|informier|benachrichtig|mitteil|unterricht",
+"ref": "Art. 33 Abs. 2 DSGVO",
+"msg": "Meldefrist des Auftragsverarbeiters mit 48/72/96 Stunden: Die 72 Stunden sind die Frist des Verantwortlichen gegenüber der Aufsichtsbehörde (Art. 33 Abs. 1). Der Auftragsverarbeiter meldet unverzüglich (Art. 33 Abs. 2) — z. B. „unverzüglich, spätestens innerhalb von 24 Stunden“."
+},
+{
+"id": "AV15",
+"kind": "forbid",
+"sev": "error",
+"re": "privacy[\\s-]?shield",
+"ref": "EuGH C-311/18 (16.07.2020)",
+"msg": "Privacy Shield ist seit EuGH C-311/18 vom 16.07.2020 ungültig. Für US-Empfänger: EU-US Data Privacy Framework (Angemessenheitsbeschluss vom 10.07.2023) oder Standardvertragsklauseln 2021/914."
+},
+{
+"id": "AV16",
+"kind": "forbid",
+"sev": "error",
+"re": "2010/87|2004/915|2001/497",
+"ref": "Durchführungsbeschluss (EU) 2021/914, Art. 4",
+"msg": "Alte Standardvertragsklauseln (2010/87/EU u. a.): aufgehoben mit Wirkung zum 27.09.2021, Altverträge galten nur bis 27.12.2022. Ersetzen durch Durchführungsbeschluss (EU) 2021/914."
+},
+{
+"id": "AV17",
+"kind": "forbid",
+"sev": "error",
+"re": "§\\s*11\\s*bdsg",
+"ref": "Art. 28 DSGVO",
+"msg": "§ 11 BDSG (alte Fassung) gilt seit dem 25.05.2018 nicht mehr. Grundlage der Auftragsverarbeitung ist Art. 28 DSGVO."
+},
+{
+"id": "AV18",
+"kind": "forbid",
+"sev": "warning",
+"re": "\\bttdsg\\b|\\btmg\\b|telemediengesetz",
+"ref": "TDDDG / DDG (seit 14.05.2024)",
+"msg": "TTDSG und TMG heißen seit dem 14.05.2024 TDDDG bzw. DDG. Verweis aktualisieren."
+},
+{
+"id": "AV19",
+"kind": "forbid",
+"sev": "warning",
+"re": "mündlich",
+"and": "weisung",
+"unless": "dokumentiert|bestätigt|textform|schriftlich",
+"ref": "Art. 28 Abs. 3 lit. a DSGVO",
+"msg": "Mündliche Weisung ohne Dokumentation: Art. 28 Abs. 3 lit. a DSGVO verlangt dokumentierte Weisungen — mündliche Weisungen unverzüglich in Textform bestätigen."
+},
+{
+"id": "AV20",
+"kind": "forbid",
+"sev": "error",
+"re": "ohne (vorherige |gesonderte )?(zustimmung|genehmigung|information|einwilligung)",
+"and": "unterauftrag|subunternehmer|weitere[nr]? auftragsverarbeiter|dienstleister",
+"ref": "Art. 28 Abs. 2 S. 1 DSGVO",
+"msg": "Unterauftragsverarbeiter ohne vorherige Genehmigung: Art. 28 Abs. 2 S. 1 DSGVO verlangt eine vorherige gesonderte oder allgemeine schriftliche Genehmigung."
+}
+]
