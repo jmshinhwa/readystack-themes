@@ -1,5 +1,7 @@
 # Livewire Client Surface Audit
 
+![Livewire Client Surface Audit — finds the line](https://getreadystack.com/img/promo/livewire-client-surface-audit_demo.gif)
+
 ![Livewire Client Surface Audit](https://getreadystack.com/img/promo/sku62908_result_card.jpg)
 
 AI assistants write Livewire components the way they write plain PHP classes: `public` for everything, no `#[Locked]`, no `authorize()`. Livewire does not treat those two keywords the way PHP does. **Every public property on a Livewire component is round-tripped through the browser, and every public method on it can be called from the browser as `$wire.methodName()`.** So `public function deleteInvoice()` is an endpoint, and `public $amountDue` is a form field, whether or not you put them in the template.
