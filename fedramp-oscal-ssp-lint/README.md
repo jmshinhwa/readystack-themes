@@ -1,5 +1,7 @@
 # FedRAMP OSCAL SSP Lint
 
+![FedRAMP OSCAL SSP Lint — finds the line](https://getreadystack.com/img/promo/fedramp-oscal-ssp-lint_demo.gif)
+
 ![FedRAMP OSCAL SSP Lint](https://getreadystack.com/img/promo/sku93333_result_card.jpg)
 
 An OSCAL system security plan is machine-read before a human ever opens it. If the JSON breaks the
@@ -60,7 +62,7 @@ The licensed part is a different axis, scope and hand-off: it sweeps **every** O
 workspace (SSP, component definitions, profiles), resolves uuid references *across* files instead of
 within one, and writes a dated report you can hand to your 3PAO.
 Full version: <https://buy.polar.sh/polar_cl_SxOM1H5OfW5QyRWyTfWSQebO53c3qNWtk5YfG04i69q> — $29 once, one licence key per person or CI seat,
-7-day full refund. Hand-review by a FedRAMP advisory consultant runs $150 to $300 an hour.
+Hand-review by a FedRAMP advisory consultant runs $150 to $300 an hour.
 
 ## Also in the browser
 
