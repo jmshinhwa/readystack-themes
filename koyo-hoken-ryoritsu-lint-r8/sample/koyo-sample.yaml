@@ -1,0 +1,16 @@
+# payroll-config.yaml — 給与計算システム 料率設定 (社内)
+health_insurance:
+  rate: 0.0991
+koyo_hoken:
+  general:
+    employee: 0.0055        # 労働者負担
+    employer: 0.009         # 事業主負担
+    total: 14.5/1000
+  construction:
+    employee: 6.5/1,000
+    total: 17.5/1,000
+  exempt_age: 64            # 64歳以上は免除
+  rounding: "Math.round(wage * employee)"
+  min_weekly_hours: 20      # 週20時間以上で加入
+pension:
+  rate: 0.183
