@@ -1,0 +1,216 @@
+[
+ {
+  "id": "bfsg-a3-a-beschreibung",
+  "regime": "bfsg",
+  "type": "require",
+  "sev": "error",
+  "law": "BFSG Anlage 3 Nr. 1 a",
+  "any": [
+   "allgemeine Beschreibung",
+   "Beschreibung (der|unserer|des) (Dienstleistung|Shops|Angebots|Service)"
+  ],
+  "msg": "Allgemeine Beschreibung der Dienstleistung fehlt",
+  "fix": "## Allgemeine Beschreibung der Dienstleistung – was der Shop anbietet, in einfacher Sprache"
+ },
+ {
+  "id": "bfsg-a3-b-durchfuehrung",
+  "regime": "bfsg",
+  "type": "require",
+  "sev": "error",
+  "law": "BFSG Anlage 3 Nr. 1 b",
+  "any": [
+   "Durchführung der Dienstleistung",
+   "Erläuterungen? zu[mr]? (Nutzung|Durchführung|Ablauf)",
+   "Ablauf (der|des) (Bestellung|Buchung|Kaufs|Dienstleistung)",
+   "Bestellprozess"
+  ],
+  "msg": "Erläuterungen zur Durchführung der Dienstleistung fehlen",
+  "fix": "## Durchführung der Dienstleistung – Ablauf von Suche, Warenkorb, Kasse und Kundenkonto"
+ },
+ {
+  "id": "bfsg-a3-c-anforderungen",
+  "regime": "bfsg",
+  "type": "require",
+  "sev": "error",
+  "law": "BFSG Anlage 3 Nr. 1 c",
+  "any": [
+   "BFSGV",
+   "Barrierefreiheitsstärkungsverordnung",
+   "EN 301 549",
+   "WCAG 2\\.[12]"
+  ],
+  "msg": "Keine Beschreibung, wie die Anforderungen der BFSGV erfüllt werden",
+  "fix": "Die Anforderungen der BFSGV erfüllen wir nach EN 301 549 V3.2.1 (WCAG 2.1 AA)."
+ },
+ {
+  "id": "bfsg-a3-d-behoerde",
+  "regime": "bfsg",
+  "type": "require",
+  "sev": "error",
+  "law": "BFSG Anlage 3 Nr. 1 d",
+  "any": [
+   "Marktüberwachungs(behörde|stelle)",
+   "MLBF"
+  ],
+  "msg": "Zuständige Marktüberwachungsbehörde nicht angegeben",
+  "fix": "Zuständige Marktüberwachungsbehörde: Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und Dienstleistungen (MLBF)"
+ },
+ {
+  "id": "bfsg-falsche-stelle",
+  "regime": "bfsg",
+  "type": "forbid",
+  "sev": "warn",
+  "law": "BFSG Anlage 3 Nr. 1 d",
+  "pattern": "Überwachungsstelle des Bundes|Schlichtungsstelle nach § ?16 BGG",
+  "msg": "Stelle aus BITV 2.0 / BGG genannt – für BFSG-Dienstleistungen ist die Marktüberwachungsbehörde anzugeben",
+  "fix": "Zuständige Marktüberwachungsbehörde: MLBF (statt Stelle für öffentliche Websites)"
+ },
+ {
+  "id": "alt-standard",
+  "regime": "both",
+  "type": "forbid",
+  "sev": "warn",
+  "law": "BFSG § 14 Abs. 3 / BITV 2.0 § 3",
+  "pattern": "WCAG 2\\.0(?!\\.?\\d)|BITV 1\\.0|EN 301 549 V[12]\\.",
+  "msg": "Veralteter Standard zitiert (EN 301 549 V3.2.1 verweist auf WCAG 2.1)",
+  "fix": "EN 301 549 V3.2.1 / WCAG 2.1 Stufe AA"
+ },
+ {
+  "id": "platzhalter",
+  "regime": "both",
+  "type": "forbid",
+  "sev": "error",
+  "law": "BFSG Anlage 3 / BITV 2.0 § 7 Abs. 4",
+  "pattern": "\\[(Datum|Name|Firma|Behörde|E-Mail|Link|URL|Adresse|Stelle)[^\\]]*\\]|XX\\.XX\\.XXXX|TT\\.MM\\.JJJJ|Lorem ipsum|\\bTODO\\b",
+  "msg": "Platzhalter aus der Vorlage steht noch in der Erklärung",
+  "fix": "Platzhalter durch den echten Wert ersetzen (Datum, Stelle, E-Mail-Adresse)"
+ },
+ {
+  "id": "bitv-stand-vereinbarkeit",
+  "regime": "bitv",
+  "type": "require",
+  "sev": "error",
+  "law": "BITV 2.0 § 7 Abs. 3",
+  "any": [
+   "(vollständig|teilweise|nicht)\\s+(mit\\s+[^\\n]{0,160}?)?vereinbar",
+   "(vollständig|teilweise|nicht) barrierefrei"
+  ],
+  "msg": "Stand der Vereinbarkeit (vollständig / teilweise / nicht vereinbar) fehlt",
+  "fix": "Diese Website ist wegen der unten genannten Unvereinbarkeiten teilweise mit § 3 BITV 2.0 vereinbar."
+ },
+ {
+  "id": "bitv-12b-nicht-barrierefrei",
+  "regime": "bitv",
+  "type": "require",
+  "sev": "error",
+  "law": "§ 12b Abs. 2 Nr. 1 a BGG",
+  "any": [
+   "[Nn]icht (vollständig )?barrierefrei(e|en)? (Inhalte|Teile|gestaltet|sind)",
+   "Unvereinbarkeiten:"
+  ],
+  "unless": "(?<!nicht )vollständig\\s+(mit\\s+[^\\n]{0,160}?)?vereinbar",
+  "msg": "Nicht barrierefreie Inhalte werden nicht benannt",
+  "fix": "## Nicht barrierefreie Inhalte – z. B. PDF-Formulare ohne Tags, Videos ohne Untertitel"
+ },
+ {
+  "id": "bitv-12b-gruende",
+  "regime": "bitv",
+  "type": "require",
+  "sev": "error",
+  "law": "§ 12b Abs. 2 Nr. 1 b BGG",
+  "any": [
+   "Gründe?\\b",
+   "Begründung",
+   "unverhältnismäßige Belastung"
+  ],
+  "unless": "(?<!nicht )vollständig\\s+(mit\\s+[^\\n]{0,160}?)?vereinbar",
+  "msg": "Gründe für die nicht barrierefreie Gestaltung fehlen",
+  "fix": "Begründung: unverhältnismäßige Belastung bis zur Neuausschreibung – barrierefreie Alternative: Formular per E-Mail"
+ },
+ {
+  "id": "bitv-12b-feedback",
+  "regime": "bitv",
+  "type": "require",
+  "sev": "error",
+  "law": "§ 12b Abs. 2 Nr. 2 BGG",
+  "any": [
+   "Feedback",
+   "Barrieren? melden",
+   "Kontakt"
+  ],
+  "and": [
+   "mailto:",
+   "[\\w.+-]+@[\\w-]+\\.[a-z]{2,}",
+   "https?://\\S*(kontakt|feedback|barriere)"
+  ],
+  "msg": "Feedback-Mechanismus mit elektronischer Kontaktmöglichkeit fehlt",
+  "fix": "## Feedback und Kontakt – Barrieren melden an barrierefreiheit@amt.example"
+ },
+ {
+  "id": "bitv-12b-schlichtung",
+  "regime": "bitv",
+  "type": "require",
+  "sev": "error",
+  "law": "§ 12b Abs. 2 Nr. 3 a BGG",
+  "any": [
+   "Schlichtungsverfahren",
+   "Schlichtungsstelle"
+  ],
+  "msg": "Hinweis auf das Schlichtungsverfahren nach § 16 BGG fehlt",
+  "fix": "## Schlichtungsverfahren – bei unbefriedigender Antwort können Sie die Schlichtungsstelle nach § 16 BGG anrufen"
+ },
+ {
+  "id": "bitv-12b-schlichtung-link",
+  "regime": "bitv",
+  "type": "require",
+  "sev": "error",
+  "law": "§ 12b Abs. 2 Nr. 3 b BGG",
+  "when": "Schlicht",
+  "any": [
+   "schlichtungsstelle-bgg\\.de",
+   "https?://\\S*schlichtung"
+  ],
+  "msg": "Schlichtungsstelle wird erwähnt, aber nicht verlinkt",
+  "fix": "[Schlichtungsstelle nach dem BGG](https://www.schlichtungsstelle-bgg.de)"
+ },
+ {
+  "id": "bitv-7-5-bewertung",
+  "regime": "bitv",
+  "type": "require",
+  "sev": "error",
+  "law": "BITV 2.0 § 7 Abs. 5",
+  "any": [
+   "Selbstbewertung",
+   "Selbstevaluation",
+   "Bewertung (wurde |erfolgte )?(durch|von)",
+   "(geprüft|getestet) (von|durch)",
+   "BITV-Test",
+   "Prüfbericht",
+   "Bewertungsbericht"
+  ],
+  "msg": "Nicht angegeben, ob die Bewertung selbst oder durch Dritte erfolgte",
+  "fix": "Die Bewertung beruht auf einer Selbstbewertung vom 2. Februar 2026 (Prüfbericht verlinkt)."
+ },
+ {
+  "id": "bitv-datum",
+  "regime": "bitv",
+  "type": "require",
+  "sev": "error",
+  "law": "BITV 2.0 § 7 Abs. 4 / (EU) 2018/1523",
+  "any": [
+   "DATE"
+  ],
+  "msg": "Kein Erstellungs- oder Aktualisierungsdatum",
+  "fix": "Diese Erklärung wurde am 2. Februar 2026 erstellt und zuletzt am 2. Februar 2026 überprüft."
+ },
+ {
+  "id": "bitv-7-6-jaehrlich",
+  "regime": "bitv",
+  "type": "stale",
+  "sev": "error",
+  "law": "BITV 2.0 § 7 Abs. 6",
+  "max_days": 365,
+  "msg": "Letzte Aktualisierung älter als ein Jahr – § 7 Abs. 6 BITV 2.0 verlangt jährliche Aktualisierung",
+  "fix": "Erklärung neu bewerten und das Datum der Überprüfung aktualisieren"
+ }
+]
