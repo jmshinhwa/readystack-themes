@@ -1,5 +1,7 @@
 # Datenschutz-Auskunft Linter (Art. 15 DSGVO)
 
+![Datenschutz-Auskunft Linter (Art. 15 DSGVO) — finds the line](https://getreadystack.com/img/promo/datenschutz-auskunft-lint_demo.gif)
+
 ![Datenschutz-Auskunft Linter (Art. 15 DSGVO)](https://getreadystack.com/img/promo/sku183178_result_card.jpg)
 
 Diese Erweiterung liest ein Auskunftsschreiben im Markdown-Format und meldet, welche
