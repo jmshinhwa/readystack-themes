@@ -6,7 +6,7 @@
 
 > 同梱のサンプル売上帳（パン店・カフェ）では、記載どおりの計算が ¥106,310、誤りを直すと ¥144,940。納付税額が ¥38,630 不足していました。
 
-Web版（同じエンジン・インストール不要）: https://getreadystack.com/tools/kani-kazei-shokuhin-1pct-lint-jp
+Web版（同じエンジン・インストール不要）: https://getreadystack.com/ja/tools/kani-kazei-shokuhin-1pct-lint-jp
 
 ものさし：申告後に不足が見つかると、不足税額に過少申告加算税10%（国税通則法65条）と延滞税が加わります。
 
