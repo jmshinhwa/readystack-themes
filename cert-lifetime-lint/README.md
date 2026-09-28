@@ -1,5 +1,7 @@
 # Cert Lifetime Lint
 
+![Cert Lifetime Lint - TLS validity caps 200/100/47 — finds the line](https://getreadystack.com/img/promo/cert-lifetime-lint_demo.gif)
+
 ![Cert Lifetime Lint - TLS validity caps 200/100/47](https://getreadystack.com/img/promo/sku29533_result_card.jpg)
 
 Finds the renewal settings in your repo that outlive the public TLS cap: 200 days since 15 March 2026, 100 days from 15 March 2027, 47 days from 15 March 2029.
