@@ -1,0 +1,57 @@
+{
+  "name": "dividenden-quellensteuer-lint",
+  "displayName": "Dividenden CSV Lint: Quellensteuer über DBA-Satz",
+  "description": "Prüft Dividenden-CSVs vom Broker: ausländische Quellensteuer über dem DBA-Satz (nicht anrechenbar, §32d Abs. 5 EStG), fehlendes W-8BEN, Schweizer Erstattungsfrist (Art. 32 VStG).",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "dividenden",
+    "quellensteuer",
+    "csv",
+    "dba",
+    "w-8ben",
+    "anlage kap",
+    "steuer",
+    "broker"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "dividendenQst.checkFile",
+        "title": "Dividenden CSV Lint: Quellensteuer über DBA-Satz: Check this file",
+        "category": "Dividenden CSV Lint: Quellensteuer über DBA-Satz"
+      },
+      {
+        "command": "dividendenQst.checkWorkspace",
+        "title": "Dividenden CSV Lint: Quellensteuer über DBA-Satz: Sweep workspace and write report (licence)",
+        "category": "Dividenden CSV Lint: Quellensteuer über DBA-Satz"
+      },
+      {
+        "command": "dividendenQst.enterKey",
+        "title": "Dividenden CSV Lint: Quellensteuer über DBA-Satz: Enter licence key",
+        "category": "Dividenden CSV Lint: Quellensteuer über DBA-Satz"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "dividenden-quellensteuer-lint"
+  },
+  "homepage": "https://getreadystack.com/de/tools/dividenden-quellensteuer-lint",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  },
+  "icon": "icon.png"
+}
