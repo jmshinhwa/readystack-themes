@@ -1,5 +1,7 @@
 # Terraform Cost Lint - cloud cost landmines (Terraform, CloudFormation, K8s)
 
+![Terraform Cost Lint - cloud cost landmines (Terraform, CloudFormation, K8s) — finds the line](https://getreadystack.com/img/promo/cloud-cost-landmine-lint_demo.gif)
+
 ![Cloud Cost Landmine Lint for Terraform, CloudFormation and Kubernetes](https://getreadystack.com/img/promo/sku32637_result_card.jpg)
 
 Names every line in the file you have open that starts a recurring cloud charge, with the published us-east-1 price and the date it changes by itself.
