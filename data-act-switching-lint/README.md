@@ -1,5 +1,7 @@
 # EU Data Act Switching Clause Lint
 
+![EU Data Act Switching Clause Lint — finds the line](https://getreadystack.com/img/promo/data-act-switching-lint_demo.gif)
+
 ![EU Data Act Switching Clause Lint](https://getreadystack.com/img/promo/sku55244_result_card.jpg)
 
 Your exit clause was probably written before Chapter VI of the Data Act applied. Regulation (EU) 2023/2854 has applied
