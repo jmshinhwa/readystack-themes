@@ -1,5 +1,7 @@
 # Protobuf Breaking Change Lint - wire compatibility (.proto)
 
+![Protobuf Breaking Change Lint - wire compatibility (.proto) — finds the line](https://getreadystack.com/img/promo/proto-wire-break-check_demo.gif)
+
 ![Proto Wire Break Check](https://getreadystack.com/img/promo/sku81241_result_card.jpg)
 
 Delete a field from a `.proto`, forget the `reserved` line, and six weeks later someone hands that
