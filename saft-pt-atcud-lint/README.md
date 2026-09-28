@@ -1,5 +1,7 @@
 # SAF-T XML Lint (PT) - ATCUD, QR code, hash, NIF, AT
 
+![SAF-T XML Lint (PT) - ATCUD, QR code, hash, NIF, AT — finds the line](https://getreadystack.com/img/promo/saft-pt-atcud-lint_demo.gif)
+
 ![SAF-T (PT) + ATCUD Lint](https://getreadystack.com/img/promo/sku114950_result_card.jpg)
 
 O ficheiro SAF-T (PT) só é validado depois de chegar à AT. Até lá, o XML que o seu programa de faturação exporta parece bem-formado: abre no editor, não dá erro de schema no olho humano, e só no portal é que devolve um código de erro — um de cada vez, obrigando a corrigir, reexportar o período inteiro e voltar a submeter.
