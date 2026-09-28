@@ -1,5 +1,7 @@
 # Bulk Sender Lint
 
+![Bulk Sender Lint - Gmail, Yahoo, Outlook — finds the line](https://getreadystack.com/img/promo/bulk-sender-lint_demo.gif)
+
 Twenty-one checks over the things Gmail, Yahoo and Microsoft Outlook.com ask of bulk senders,
 run against the files where those things are actually configured: your mailer code, your DNS
 records, your unsubscribe route.
