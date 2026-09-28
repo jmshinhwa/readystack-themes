@@ -1,5 +1,7 @@
 # OpenAI Model Deprecation Lint - retired model IDs in code
 
+![OpenAI Model Deprecation Lint - retired model IDs in code — finds the line](https://getreadystack.com/img/promo/ai-model-retirement-lint_demo.gif)
+
 ![AI Model Retirement Lint](https://getreadystack.com/img/promo/sku29987_result_card.jpg)
 
 **Three of the model IDs in a typical `llm.config.js` already return an error.**
