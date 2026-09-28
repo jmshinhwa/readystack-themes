@@ -1,5 +1,7 @@
 # Dienstanweisung Bewachung: BewachV-Check
 
+![Dienstanweisung Bewachung: BewachV-Check — finds the line](https://getreadystack.com/img/promo/dienstanweisung-bewachung-lint_demo.gif)
+
 ![Dienstanweisung Bewachung: BewachV-Check](https://getreadystack.com/img/promo/sku330906_result_card.jpg)
 
 Zeigt, welche Pflichtinhalte in der Dienstanweisung eines Bewachungsunternehmens fehlen: § 17, 18, 20 BewachV und § 34a Abs. 1a GewO. 12 rules, Zeile und Fix je Befund.
