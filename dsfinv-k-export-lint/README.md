@@ -1,5 +1,7 @@
 # CSV Kassenprüfer — DSFinV-K Export Lint
 
+![CSV Kassenprüfer — DSFinV-K Export Lint — finds the line](https://getreadystack.com/img/promo/dsfinv-k-export-lint_demo.gif)
+
 ![CSV Kassenprüfer — DSFinV-K Export Lint](https://getreadystack.com/img/promo/sku176020_result_card.jpg)
 
 Der Prüfer der Finanzverwaltung liest bei der Kassen-Nachschau nach § 146b AO nicht die Kasse, sondern den Export. Diese Erweiterung liest ihn vorher: Sie öffnen eine CSV aus dem DSFinV-K-Export im Editor, und jede Zeile, die nicht der amtlichen Beschreibung entspricht, wird mit Regel, Schwere und Zeilennummer markiert.
