@@ -1,0 +1,65 @@
+name: Marketplace stats (read-only)
+run-name: stats ${{ inputs.tag }}
+# s167 2026-09-28 — reads each extension's daily Marketplace stats (detail page views · installs) with the same
+# Azure login the publish workflow uses. READ-ONLY: nothing is packaged or published. The VPS dispatches it and
+# downloads the artifact (retention 1 day). Values are not printed to the log.
+on:
+  workflow_dispatch:
+    inputs:
+      names:
+        description: comma-separated extension names (publisher readystack)
+        required: true
+      days:
+        description: how many days back
+        required: false
+        default: '30'
+      tag:
+        description: run label
+        required: false
+        default: 'vps'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    environment: marketplace-publish
+    steps:
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+      - name: Read stats
+        env:
+          NAMES: ${{ inputs.names }}
+          DAYS: ${{ inputs.days }}
+        run: |
+          TOKEN=$(az account get-access-token --resource 499b84ac-1321-427f-aa17-267ca6975798 --query accessToken -o tsv)
+          export TOKEN
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.error
+          tok = os.environ['TOKEN']; days = int(os.environ.get('DAYS') or 30)
+          out = {}
+          for n in [x.strip() for x in os.environ['NAMES'].split(',') if x.strip()]:
+              url = ('https://marketplace.visualstudio.com/_apis/gallery/publishers/readystack/extensions/%s/stats'
+                     '?days=%d&aggregate=daily&api-version=7.1-preview.1' % (n, days))
+              req = urllib.request.Request(url, headers={'Authorization': 'Bearer ' + tok, 'Accept': 'application/json'})
+              try:
+                  d = json.loads(urllib.request.urlopen(req, timeout=30).read())
+                  out[n] = {'ok': True, 'daily': d.get('dailyStats') or [], 'raw_keys': sorted(d.keys())}
+              except urllib.error.HTTPError as e:
+                  out[n] = {'ok': False, 'http': e.code, 'body': e.read()[:200].decode('utf-8', 'replace')}
+              except Exception as e:
+                  out[n] = {'ok': False, 'err': str(e)[:120]}
+          json.dump(out, open('mp_stats.json', 'w'))
+          ok = sum(1 for v in out.values() if v.get('ok'))
+          print('extensions %d · ok %d · failed %d' % (len(out), ok, len(out) - ok))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mp-stats
+          path: mp_stats.json
+          retention-days: 1
