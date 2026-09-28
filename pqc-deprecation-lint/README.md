@@ -1,5 +1,7 @@
 # Crypto Deprecation Lint - RSA/ECC inventory for post-quantum (2030/2035)
 
+![PQC Deprecation Lint — RSA/ECC after 2030 — finds the line](https://getreadystack.com/img/promo/pqc-deprecation-lint_demo.gif)
+
 ![PQC Deprecation Lint — RSA/ECC after 2030](https://getreadystack.com/img/promo/sku51073_result_card.jpg)
 
 For security teams: NIST deprecates RSA and ECC signatures and key exchange after 2030 and disallows them after 2035.
