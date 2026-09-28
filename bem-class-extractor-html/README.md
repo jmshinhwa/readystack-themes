@@ -1,5 +1,7 @@
 # BEM Class Auditor - HTML and SCSS naming
 
+![BEM Class Auditor - HTML and SCSS naming — finds the line](https://getreadystack.com/img/promo/bem-class-extractor-html_demo.gif)
+
 ![BEM Class Auditor for HTML and SCSS](https://getreadystack.com/img/promo/sku9085_result_card.jpg)
 
 **16 BEM naming rules read the HTML file you have open, and 22 markup and SCSS skeletons write the stylesheet shell — the class names get fixed before the pull request comes back for them.**
