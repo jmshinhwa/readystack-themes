@@ -8,6 +8,11 @@ const GRACE_MS = 30 * 24 * 3600 * 1000;   // 검증 성공 뒤 30일은 오프�
 const RECHECK_MS = 7 * 24 * 3600 * 1000;  // 7일마다 다시 묻는다 (환불·해지가 반영되도록)
 
 const ALL_BENEFIT_ID = '22692551-5203-4467-b1a3-e33cdba6589d';   // s149 2026-09-17 — 팀 키(전 린터 한 키 · Polar benefit) · 상품 benefit 다음에 한 번 더 묻는다
+const TEAM_URL = 'https://buy.polar.sh/polar_cl_l6iN1uWt0FwWu7tBsczD0jWpP2vxFM54Wdwqb3KPi1G';   // s160 2026-09-24 — 팀 키 결제($149 once · 전 린터 · CI 포함) · 키 판 셋째 버튼 (비면 버튼 없음)
+// s160 — 팀 버튼 글은 손님의 VS Code 화면 언어로 (우리 5개국어 · 없으면 영어)
+const TEAM_T = { en: 'Team key — $149 once, every linter', de: 'Team-Schlüssel — $149 einmalig, alle Linter', ja: 'チームキー — $149 買い切り・全リンター',
+  es: 'Clave de equipo — $149 pago único, todos los linters', pt: 'Chave de equipe — US$ 149 uma vez, todos os linters' };
+function teamLabel(vscode) { const l = String((vscode && vscode.env && vscode.env.language) || 'en').slice(0, 2).toLowerCase(); return TEAM_T[l] || TEAM_T.en; }
 function validate(key) {
   return validate1(key, BENEFIT_ID).then(function (r) { return (r.ok || r.offline || !/^[0-9a-f-]{36}$/.test(ALL_BENEFIT_ID)) ? r : validate1(key, ALL_BENEFIT_ID); })
     .then(function (r) { return (r.ok || r.offline) ? r : validateHub(key); });   // s153 2026-09-20 — Whop 구독 키: 우리 워커가 Whop 에 묻는다 (키는 워커 비밀)
@@ -110,9 +115,12 @@ async function ensure(vscode, ctx, S) {
     if (!r.offline) { await st.update('licenseKey', undefined); }
   }
   pingPaywall(vscode, key ? 'invalid' : 'no_key');   // s151 — 키 판이 뜨는 순간
-  const pick = await vscode.window.showInformationMessage(
-    S.need_key, S.enter_key || 'Enter licence key', S.buy || 'Get a licence');
-  if (pick === (S.buy || 'Get a licence')) { vscode.env.openExternal(vscode.Uri.parse(BUY_URL)); return false; }
+  // s160 2026-09-24 — ★팀 키를 키 판에 보인다: 옆의 $149 가 $29 를 작게 만들고(기준점) · 회사 카드를 가진 팀장에게 살 이유를 준다 · 셋을 넘기지 않는다(선택 과부하)
+  const TEAM = /^https:\/\//.test(TEAM_URL) ? teamLabel(vscode) : '';
+  const pick = await vscode.window.showInformationMessage.apply(vscode.window,
+    [S.need_key, S.enter_key || 'Enter licence key', S.buy || 'Get a licence'].concat(TEAM ? [TEAM] : []));
+  if (TEAM && pick === TEAM) { _pingWhy(vscode, 'vsix_buy', 'team'); vscode.env.openExternal(vscode.Uri.parse(TEAM_URL)); return false; }
+  if (pick === (S.buy || 'Get a licence')) { _pingWhy(vscode, 'vsix_buy', 'one'); vscode.env.openExternal(vscode.Uri.parse(BUY_URL)); return false; }
   if (pick !== (S.enter_key || 'Enter licence key')) return false;
   const typed = await vscode.window.showInputBox({ prompt: S.need_key, password: false, ignoreFocusOut: true });
   if (!typed) return false;
