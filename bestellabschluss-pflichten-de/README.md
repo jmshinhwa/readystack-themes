@@ -1,5 +1,7 @@
 # Bestellabschluss-Check DE: Button & Pflichten
 
+![Bestellabschluss-Check DE: Button & Pflichten — finds the line](https://getreadystack.com/img/promo/bestellabschluss-pflichten-de_demo.gif)
+
 ![Bestellabschluss-Check DE: Button & Pflichten](https://getreadystack.com/img/promo/sku186594_result_card.jpg)
 
 Schreibt eine KI die Kassenseite eines deutschen Onlineshops, steht auf dem Bestellbutton fast immer
