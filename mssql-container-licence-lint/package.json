@@ -1,0 +1,57 @@
+{
+  "name": "mssql-container-licence-lint",
+  "displayName": "SQL Server Docker Licence Lint (MSSQL_PID)",
+  "description": "Lints docker-compose, Kubernetes YAML and Dockerfiles that run the mssql/server image for SQL Server licence gaps: MSSQL_PID unset or Developer in production, Evaluation, core minimums and caps.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "mssql",
+    "sql server",
+    "docker",
+    "MSSQL_PID",
+    "licence audit",
+    "kubernetes",
+    "docker-compose",
+    "licensing"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "mssqlLicence.checkFile",
+        "title": "SQL Server Docker Licence Lint (MSSQL_PID): Check this file",
+        "category": "SQL Server Docker Licence Lint (MSSQL_PID)"
+      },
+      {
+        "command": "mssqlLicence.checkWorkspace",
+        "title": "SQL Server Docker Licence Lint (MSSQL_PID): Sweep workspace and write report (licence)",
+        "category": "SQL Server Docker Licence Lint (MSSQL_PID)"
+      },
+      {
+        "command": "mssqlLicence.enterKey",
+        "title": "SQL Server Docker Licence Lint (MSSQL_PID): Enter licence key",
+        "category": "SQL Server Docker Licence Lint (MSSQL_PID)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "mssql-container-licence-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/mssql-container-licence-lint",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  },
+  "icon": "icon.png"
+}
