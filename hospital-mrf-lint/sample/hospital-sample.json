@@ -1,0 +1,72 @@
+{
+  "hospital_name": "Riverbend Regional Medical Center",
+  "last_updated_on": "2025-02-14",
+  "version": "1.0",
+  "hospital_location": ["Riverbend Regional Medical Center"],
+  "license_information": {
+    "license_number": "OH-23-0198"
+  },
+  "affirmation": {
+    "affirmation": "To the best of its knowledge and belief, the hospital has included all applicable standard charge information, and the information encoded is true, accurate and complete as of the date indicated.",
+    "confirm_affirmation": "true"
+  },
+  "standard_charge_information": [
+    {
+      "description": "CT scan of abdomen and pelvis with contrast",
+      "code_information": [{ "code": "74178", "type": "CHARGEMASTER" }],
+      "standard_charges": [
+        {
+          "setting": "OP",
+          "gross_charge": "3120.00",
+          "payers_information": [
+            {
+              "payer_name": "Buckeye Health",
+              "plan_name": "PPO Select",
+              "standard_charge_percentage": 42.5,
+              "methodology": "negotiated"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Injection, ondansetron hydrochloride, per 1 mg",
+      "code_information": [],
+      "drug_information": { "unit": "2" },
+      "standard_charges": [
+        {
+          "setting": "both",
+          "gross_charge": 0,
+          "discounted_cash": "N/A",
+          "payers_information": [
+            {
+              "payer_name": "Buckeye Health",
+              "plan_name": "PPO Select",
+              "standard_charge_dollar": 27.40,
+              "methodology": "fee schedule"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Major joint replacement without major complication",
+      "code_information": [{ "code": "470", "type": "MS-DRG" }],
+      "standard_charges": [
+        {
+          "setting": "inpatient",
+          "gross_charge": 58400.00,
+          "discounted_cash": 29200.00,
+          "payers_information": [
+            {
+              "payer_name": "Ohio Valley Trust",
+              "plan_name": "Self-funded EPO",
+              "standard_charge_dollar": "21,850.00",
+              "methodology": "other"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
