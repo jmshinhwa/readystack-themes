@@ -1,5 +1,7 @@
 # HTML Form Accessibility Lint - WCAG 2.2 AA (EAA)
 
+![HTML Form Accessibility Lint - WCAG 2.2 AA (EAA) — finds the line](https://getreadystack.com/img/promo/eaa-form-lint-wcag22_demo.gif)
+
 ![EAA Form Lint: WCAG 2.2 AA for HTML](https://getreadystack.com/img/promo/sku41980_result_card.jpg)
 
 Paste or open an HTML, Vue or Svelte template and this extension names every WCAG 2.2 Level AA
