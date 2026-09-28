@@ -1,5 +1,7 @@
 # RED Cybersecurity DoC Lint (EN 18031)
 
+![RED Cybersecurity DoC Lint (EN 18031) — finds the line](https://getreadystack.com/img/promo/red-doc-en18031-lint_demo.gif)
+
 ![RED Cybersecurity DoC Lint (EN 18031)](https://getreadystack.com/img/promo/sku96629_result_card.jpg)
 
 Your EU declaration of conformity is the one page that market surveillance reads first, and since
