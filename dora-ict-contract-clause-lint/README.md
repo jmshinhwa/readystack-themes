@@ -1,5 +1,7 @@
 # ICT Contract Clause Lint - DORA Article 30
 
+![ICT Contract Clause Lint - DORA Article 30 — finds the line](https://getreadystack.com/img/promo/dora-ict-contract-clause-lint_demo.gif)
+
 ![DORA Art. 30 ICT Contract Clause Lint](https://getreadystack.com/img/promo/sku47005_result_card.jpg)
 
 Your ICT vendor contracts are text files in a repository. This extension reads them like code and tells you which clauses Regulation (EU) 2022/2554 (DORA) requires and your contract does not have.
