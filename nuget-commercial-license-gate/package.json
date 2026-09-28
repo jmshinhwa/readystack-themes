@@ -1,0 +1,58 @@
+{
+  "name": "nuget-commercial-license-gate",
+  "displayName": "NuGet License Gate: AutoMapper, MediatR",
+  "description": "Flags .csproj, Directory.Packages.props and packages.config lines that pull AutoMapper 15+, MediatR 13+, FluentAssertions 8+, MassTransit 9+ or other NuGet versions past their commercial licence line.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "nuget",
+    "license",
+    "csproj",
+    "automapper",
+    "mediatr",
+    "fluentassertions",
+    "masstransit",
+    "licence audit",
+    "dotnet"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "nugetLicenseGate.checkFile",
+        "title": "NuGet License Gate: AutoMapper, MediatR: Check this file",
+        "category": "NuGet License Gate: AutoMapper, MediatR"
+      },
+      {
+        "command": "nugetLicenseGate.checkWorkspace",
+        "title": "NuGet License Gate: AutoMapper, MediatR: Sweep workspace and write report (licence)",
+        "category": "NuGet License Gate: AutoMapper, MediatR"
+      },
+      {
+        "command": "nugetLicenseGate.enterKey",
+        "title": "NuGet License Gate: AutoMapper, MediatR: Enter licence key",
+        "category": "NuGet License Gate: AutoMapper, MediatR"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "nuget-commercial-license-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/nuget-commercial-license-gate",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  },
+  "icon": "icon.png"
+}
