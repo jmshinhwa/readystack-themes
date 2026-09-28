@@ -1,5 +1,7 @@
 # Kündigungsbutton & Widerrufsbutton Check (BGB)
 
+![Kündigungsbutton & Widerrufsbutton Check (BGB) — finds the line](https://getreadystack.com/img/promo/kuendigungsbutton-widerrufsbutton-lint_demo.gif)
+
 ![Kündigungsbutton & Widerrufsbutton Check (BGB)](https://getreadystack.com/img/promo/sku208193_result_card.jpg)
 
 Prüft Shop- und Abo-Templates auf die drei Pflicht-Schaltflächen im BGB – direkt im Editor, Zeile für Zeile:
