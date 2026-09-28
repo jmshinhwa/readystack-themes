@@ -1,5 +1,7 @@
 # Pytest Lint - pytest 8 deprecations and removals
 
+![Pytest Lint - pytest 8 deprecations and removals — finds the line](https://getreadystack.com/img/promo/pytest-deprecation-lint_demo.gif)
+
 ![Pytest Deprecation Lint (pytest 8 removals)](https://getreadystack.com/img/promo/sku72262_result_card.jpg)
 
 Your CI installs `pytest` unpinned. One morning the runner picks up pytest 8, and the suite either
