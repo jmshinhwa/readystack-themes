@@ -1,5 +1,7 @@
 # Ingress NGINX Retirement Lint - migrate to Gateway API
 
+![Ingress NGINX Retirement Lint - migrate to Gateway API — finds the line](https://getreadystack.com/img/promo/ingress-nginx-retirement-lint_demo.gif)
+
 ![Ingress-NGINX Retirement Lint](https://getreadystack.com/img/promo/sku97985_result_card.jpg)
 
 Your cluster's routing rules live in annotations. The controller that read them is gone.
