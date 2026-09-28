@@ -1,5 +1,7 @@
 # E-Invoice Mandate Lint - EU 2026
 
+![E-Invoice Mandate Lint - EU 2026 — finds the line](https://getreadystack.com/img/promo/einvoice-mandate-lint_demo.gif)
+
 ![E-Invoice Mandate Lint - EU 2026](https://getreadystack.com/img/promo/sku40981_result_card.jpg)
 
 Open a UBL 2.1 or UN/CEFACT CII invoice XML file. The linter reads the specification
