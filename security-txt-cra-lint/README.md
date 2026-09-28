@@ -1,5 +1,7 @@
 # security.txt Lint - RFC 9116 and CRA contact point
 
+![security.txt Lint - RFC 9116 and CRA contact point — finds the line](https://getreadystack.com/img/promo/security-txt-cra-lint_demo.gif)
+
 ![security.txt Lint - RFC 9116 + CRA contact point](https://getreadystack.com/img/promo/sku54858_result_card.jpg)
 
 Your `/.well-known/security.txt` is the address a stranger uses to tell you that your product is
