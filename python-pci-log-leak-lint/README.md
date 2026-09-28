@@ -1,5 +1,7 @@
 # Python Log Leak Lint: PCI DSS Card Data
 
+![Python Log Leak Lint: PCI DSS Card Data — finds the line](https://getreadystack.com/img/promo/python-pci-log-leak-lint_demo.gif)
+
 ![Python Log Leak Lint: PCI DSS Card Data](https://getreadystack.com/img/promo/sku239038_result_card.jpg)
 
 Checks every `logger.*`, `logging.*`, `print(...)` and `raise X(...)` statement in a Python file for card numbers, CVV, track data, PINs, passwords and auth headers, and names the PCI DSS v4.0.1 requirement each one breaks.
