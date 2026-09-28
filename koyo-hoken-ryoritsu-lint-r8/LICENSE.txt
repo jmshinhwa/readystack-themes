@@ -1,0 +1,15 @@
+給与計算 雇用保険料率チェッカー 令和8年度 — Licence
+
+Free scope
+  開いている1ファイルを6ルールで検査し、古い料率の行と令和8年度の正しい値をその場で表示 is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  ワークスペース全体の一括検査と、監査用のCSV/Markdown報告書の書き出し(範囲・持ち帰り) is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
