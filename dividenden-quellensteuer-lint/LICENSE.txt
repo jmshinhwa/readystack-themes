@@ -1,0 +1,15 @@
+Dividenden CSV Lint: Quellensteuer über DBA-Satz — Licence
+
+Free scope
+  Eine Broker-CSV prüfen: jede Dividende mit Quellensteuer über dem DBA-Satz, fehlendem W-8BEN oder Schweizer Frist, mit Euro-Betrag je Zeile. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Alle Dividenden-CSVs im Workspace über mehrere Steuerjahre in einem Lauf, plus Report-Export für Steuerberater oder Erstattungsantrag. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
