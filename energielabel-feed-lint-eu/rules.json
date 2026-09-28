@@ -1,0 +1,20 @@
+[
+ {"id": "EL01", "sev": "error", "title": "Energieklasse fehlt", "fix": "Klasse aus dem EPREL-Eintrag des Modells in die Spalte energy_efficiency_class schreiben (A bis G bzw. A+++ bis D).",
+  "scope": [
+   {"id": "kuehl", "label": "Kühl-/Gefriergerät", "re": "kühlschrank|kuehlschrank|gefrierschrank|gefriertruhe|kühl-gefrier|weinkühl|fridge|freezer|refrigerator", "scale": "AG", "since": "2021-03-01"},
+   {"id": "spuel", "label": "Geschirrspüler", "re": "geschirrspül|geschirrspuel|spülmaschine|dishwasher", "scale": "AG", "since": "2021-03-01"},
+   {"id": "wasch", "label": "Waschmaschine/Waschtrockner", "re": "waschmaschine|waschtrockner|washing machine|washer", "scale": "AG", "since": "2021-03-01"},
+   {"id": "trockner", "label": "Wäschetrockner", "re": "wäschetrockner|waeschetrockner|wärmepumpentrockner|kondenstrockner|ablufttrockner|tumble dryer", "scale": "AG", "since": "2025-07-01"},
+   {"id": "display", "label": "Fernseher/Monitor", "re": "fernseher|\\btv\\b|monitor|television", "scale": "AG", "since": "2021-03-01"},
+   {"id": "licht", "label": "Lichtquelle", "re": "leuchtmittel|glühbirne|gluehbirne|led-lampe|led-birne|light source|bulb", "scale": "AG", "since": "2021-09-01"},
+   {"id": "phone", "label": "Smartphone/Tablet", "re": "smartphone|handy|tablet", "scale": "AG", "since": "2025-06-20"},
+   {"id": "klima", "label": "Klimagerät", "re": "klimagerät|klimageraet|klimaanlage|air conditioner", "scale": "PLUS", "since": "2019-01-01"},
+   {"id": "heiz", "label": "Heizgerät/Warmwasserbereiter", "re": "heizkessel|gasbrennwert|wärmepumpe|waermepumpe|warmwasserspeicher|boiler|space heater", "scale": "PLUS", "since": "2019-09-26"}
+  ]},
+ {"id": "EL02", "sev": "error", "title": "Alte A+++-Skala auf reskaliertem Gerät", "fix": "Neue Klasse A bis G aus dem EPREL-Eintrag übernehmen; Plus-Klassen gibt es für diese Gruppe seit dem Stichtag nicht mehr."},
+ {"id": "EL03", "sev": "error", "title": "Keine gültige Energieklasse", "fix": "Nur A bis G (reskalierte Gruppen) oder A+++ bis D (Klima, Heizung) eintragen."},
+ {"id": "EL04", "sev": "error", "title": "Label-Bild fehlt", "fix": "URL des Energielabels (PNG/PDF aus EPREL) in energy_label_url eintragen; der Shop zeigt es neben dem Preis."},
+ {"id": "EL05", "sev": "error", "title": "Produktdatenblatt fehlt", "fix": "Link zum Produktdatenblatt (EPREL) in datasheet_url eintragen."},
+ {"id": "EL06", "sev": "error", "title": "Smartphone/Tablet ohne Energieklasse", "since": "2025-06-20", "fix": "Seit 20.06.2025 (Verordnung (EU) 2023/1669) braucht jedes neu angebotene Smartphone und Tablet Klasse, Label und Datenblatt."},
+ {"id": "EL07", "sev": "warning", "title": "Klasse außerhalb der A+++-bis-D-Skala", "fix": "Klimageräte und Heizgeräte laufen noch auf A+++ bis D; Wert im EPREL-Eintrag nachsehen."}
+]
