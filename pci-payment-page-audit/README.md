@@ -1,5 +1,7 @@
 # PCI Payment Page Script Audit
 
+![PCI Payment Page Script Audit — finds the line](https://getreadystack.com/img/promo/pci-payment-page-audit_demo.gif)
+
 Open the HTML page that takes a card number. This extension reads it and reports every place where the page
 breaks the script-integrity rules of **PCI DSS v4.0.1 — Requirement 6.4.3** (every payment-page script
 authorised, inventoried and integrity-assured) and **Requirement 11.6.1** (a mechanism that detects and alerts
