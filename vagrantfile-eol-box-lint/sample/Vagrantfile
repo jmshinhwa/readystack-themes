@@ -1,0 +1,34 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# Legacy QA lab, last touched in 2022.
+BOXES = [
+  { name: "api",    box: "ubuntu/focal64" },
+]
+
+Vagrant.configure("2") do |config|
+  BOXES.each do |b|
+    config.vm.define b[:name] do |node|
+      node.vm.box = b[:box]
+    end
+  end
+
+  config.vm.define "db" do |db|
+    db.vm.box = "centos/7"
+    db.vm.provision "shell", inline: <<-SHELL
+      sed -i 's|^#baseurl|baseurl|' /etc/yum.repos.d/CentOS-Base.repo
+      curl -s http://mirrorlist.centos.org/?release=7 > /tmp/mirrors
+    SHELL
+  end
+
+  config.vm.define "cache" do |cache|
+    cache.vm.box = "debian/bullseye64"
+  end
+
+  config.vm.define "legacy" do |legacy|
+    legacy.vm.box = "bento/debian-10.13"
+  end
+
+  config.vm.define "bsd" do |bsd|
+    bsd.vm.box = "freebsd/FreeBSD-13.2-RELEASE"
+  end
+end
