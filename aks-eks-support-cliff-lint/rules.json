@@ -1,0 +1,32 @@
+[
+ {"id": "eks-extended-billing", "sev": "error", "title": "EKS version is in extended support and billed at $0.60 per cluster-hour instead of $0.10",
+  "source": "https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html",
+  "price_standard_hour": 0.10, "price_extended_hour": 0.60, "hours_per_month": 730,
+  "eks_calendar": {
+   "1.31": {"std_end": "2025-11-26", "ext_end": "2026-11-26"},
+   "1.32": {"std_end": "2026-03-23", "ext_end": "2027-03-23"},
+   "1.33": {"std_end": "2026-07-29", "ext_end": "2027-07-29"},
+   "1.34": {"std_end": "2026-12-02", "ext_end": "2027-12-02"},
+   "1.35": {"std_end": "2027-03-27", "ext_end": "2028-03-27"},
+   "1.36": {"std_end": "2027-08-02", "ext_end": "2028-08-02"}}},
+ {"id": "eks-forced-upgrade-soon", "sev": "error", "title": "EKS extended support ends within the warning window; AWS then upgrades the control plane with no notice", "window_days": 90},
+ {"id": "eks-past-extended", "sev": "error", "title": "EKS version is past end of extended support; the control plane is auto-upgraded and node groups are left behind"},
+ {"id": "eks-cliff-soon", "sev": "warning", "title": "EKS standard support ends within the warning window (auto-upgrade under STANDARD, 6x fee under EXTENDED)", "window_days": 90},
+ {"id": "aks-lts-needs-premium", "sev": "error", "title": "support_plan AKSLongTermSupport is only available on sku_tier Premium",
+  "source": "https://learn.microsoft.com/en-us/azure/aks/supported-kubernetes-versions",
+  "price_standard_hour": 0.10, "price_premium_hour": 0.60, "hours_per_month": 730,
+  "aks_calendar": {
+   "1.29": {"eol": "2025-03-31", "lts_eol": "2026-04-30"},
+   "1.30": {"eol": "2025-08-22", "lts_eol": "2026-07-31"},
+   "1.31": {"eol": "2025-11-01", "lts_eol": "2026-11-30"},
+   "1.32": {"eol": "2026-03-31", "lts_eol": "2027-03-31"},
+   "1.33": {"eol": "2026-07-31", "lts_eol": "2027-07-31"},
+   "1.34": {"eol": "2026-11-30", "lts_eol": "2027-11-30"},
+   "1.35": {"eol": "2027-03-31", "lts_eol": "2028-03-31"},
+   "1.36": {"eol": "2027-06-30", "lts_eol": "2028-06-30"},
+   "1.37": {"eol": "2027-10-31", "lts_eol": "2028-10-31"}}},
+ {"id": "aks-out-of-support", "sev": "error", "title": "AKS version is past community end of life without LTS: no security patches, no new clusters"},
+ {"id": "aks-lts-ended", "sev": "error", "title": "AKS version is past its LTS end of life"},
+ {"id": "aks-eol-soon", "sev": "warning", "title": "AKS community support ends within the warning window and LTS is not enabled", "window_days": 90},
+ {"id": "aks-premium-unused", "sev": "info", "title": "Premium tier bought for LTS while the version is still in community support"}
+]
