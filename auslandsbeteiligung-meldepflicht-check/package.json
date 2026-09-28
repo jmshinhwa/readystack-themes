@@ -2,7 +2,7 @@
   "name": "auslandsbeteiligung-meldepflicht-check",
   "displayName": "Auslandsbeteiligung Meldepflicht-Check (§ 138 AO)",
   "description": "Prüft Ihr Beteiligungsregister (CSV) auf Mitteilungen nach § 138 Abs. 2 AO: 10 %- und 150.000-€-Schwelle, Drittstaat-Gesellschaft, 14-Monats-Frist, Bußgeld bis 25.000 €.",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -17,7 +17,8 @@
     "mitteilungspflicht",
     "drittstaat",
     "steuerberater",
-    "beteiligungsregister"
+    "beteiligungsregister",
+    "150.000 euro"
   ],
   "main": "./extension.js",
   "activationEvents": [
