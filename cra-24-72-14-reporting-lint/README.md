@@ -1,5 +1,7 @@
 # Vulnerability Report Lint - CRA 24h/72h/14d timeline (Article 14)
 
+![Vulnerability Report Lint - CRA 24h/72h/14d timeline (Article 14) — finds the line](https://getreadystack.com/img/promo/cra-24-72-14-reporting-lint_demo.gif)
+
 ![CRA 24/72/14 Reporting Lint (Article 14)](https://getreadystack.com/img/promo/sku36068_result_card.jpg)
 
 **On 11 September 2026 the EU Cyber Resilience Act's reporting obligation started applying — including to products already on the market.** From that date, a manufacturer who becomes aware of an *actively exploited vulnerability* or a *severe incident* owes three filings on a clock measured in hours: an early warning within **24 hours**, a notification within **72 hours**, and a final report within **14 days** of a corrective measure being available. They go to **ENISA** and to the **CSIRT designated as coordinator** for your main establishment, through the single reporting platform.
