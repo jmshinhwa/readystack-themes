@@ -1,5 +1,7 @@
 # 源泉徴収 計算チェック 10.21%・20.42%（令和9年改正対応）
 
+![源泉徴収 計算チェック 10.21%・20.42%（令和9年改正対応） — finds the line](https://getreadystack.com/img/promo/gensen-choshu-rate-lint-jp_demo.gif)
+
 ![源泉徴収 計算チェック 10.21%・20.42%（令和9年改正対応）](https://getreadystack.com/img/promo/sku319560_result_card.jpg)
 
 報酬・料金の源泉徴収を計算するコード（JavaScript / TypeScript / Python）を、国税庁タックスアンサー No.2795・No.2798 の式で検査する VS Code 拡張です。フリーランスへの支払、講演料、原稿料、弁護士・税理士報酬を払う請求・会計SaaSの開発者向け。
