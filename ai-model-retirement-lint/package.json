@@ -2,7 +2,7 @@
   "name": "ai-model-retirement-lint",
   "displayName": "OpenAI Model Deprecation Lint - retired model IDs in code",
   "description": "Finds the model IDs in your code that vendors have already switched off, or have dated to switch off, with the replacement and the date.",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -16,7 +16,11 @@
     "deprecation",
     "model",
     "llm",
-    "api"
+    "api",
+    "gpt-4o",
+    "openai api",
+    "claude models",
+    "gemini models"
   ],
   "activationEvents": [
     "onStartupFinished"
