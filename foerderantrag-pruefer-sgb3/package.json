@@ -2,7 +2,7 @@
   "name": "foerderantrag-pruefer-sgb3",
   "displayName": "Förderantrag-Prüfer: EGZ, KUG, Weiterbildung",
   "description": "Prüft Förderantrag-Entwürfe an die Arbeitsagentur (Markdown) gegen SGB III: Antrag vor Beginn (§324), Eingliederungszuschuss, Weiterbildung §82, Kurzarbeitergeld-Fristen, Gründungszuschuss.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -18,7 +18,8 @@
     "gründungszuschuss",
     "sgb iii",
     "weiterbildung",
-    "vorlage"
+    "vorlage",
+    "bildungsförderung"
   ],
   "main": "./extension.js",
   "activationEvents": [
