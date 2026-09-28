@@ -1,5 +1,7 @@
 # SOUP List Lint - IEC 62304 dependency inventory (medical software)
 
+![SOUP List Lint - IEC 62304 dependency inventory (medical software) — finds the line](https://getreadystack.com/img/promo/soup-list-lint_demo.gif)
+
 ![SOUP List Lint (IEC 62304)](https://getreadystack.com/img/promo/sku82012_result_card.jpg)
 
 A SOUP list is the register of third-party code inside a medical device: the zlib, the SQLite,
