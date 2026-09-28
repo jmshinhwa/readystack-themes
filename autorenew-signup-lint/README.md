@@ -1,5 +1,7 @@
 # Subscription Signup Lint - auto-renewal law (California ARL)
 
+![Subscription Signup Lint - auto-renewal law (California ARL) — finds the line](https://getreadystack.com/img/promo/autorenew-signup-lint_demo.gif)
+
 ![Auto-Renewal Signup Lint (California ARL)](https://getreadystack.com/img/promo/sku48727_result_card.jpg)
 
 Your subscription signup page is a legal document that happens to be written in HTML. Since
