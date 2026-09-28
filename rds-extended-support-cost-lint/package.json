@@ -1,0 +1,57 @@
+{
+  "name": "rds-extended-support-cost-lint",
+  "displayName": "RDS Extended Support Cost Lint for Terraform",
+  "description": "Flags aws_db_instance and Aurora clusters in Terraform whose MySQL/PostgreSQL major version is past AWS standard support, and prices the per-vCPU-hour Extended Support surcharge per year.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "rds extended support",
+    "terraform",
+    "aws rds",
+    "mysql 8.0 end of support",
+    "postgresql 13",
+    "aurora",
+    "finops",
+    "cost"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "rdsExtendedSupport.checkFile",
+        "title": "RDS Extended Support Cost Lint for Terraform (MySQL, PostgreSQL, Aurora): Check this file",
+        "category": "RDS Extended Support Cost Lint for Terraform (MySQL, PostgreSQL, Aurora)"
+      },
+      {
+        "command": "rdsExtendedSupport.checkWorkspace",
+        "title": "RDS Extended Support Cost Lint for Terraform (MySQL, PostgreSQL, Aurora): Sweep workspace and write report (licence)",
+        "category": "RDS Extended Support Cost Lint for Terraform (MySQL, PostgreSQL, Aurora)"
+      },
+      {
+        "command": "rdsExtendedSupport.enterKey",
+        "title": "RDS Extended Support Cost Lint for Terraform (MySQL, PostgreSQL, Aurora): Enter licence key",
+        "category": "RDS Extended Support Cost Lint for Terraform (MySQL, PostgreSQL, Aurora)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "rds-extended-support-cost-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/rds-extended-support-cost-lint",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  },
+  "icon": "icon.png"
+}
