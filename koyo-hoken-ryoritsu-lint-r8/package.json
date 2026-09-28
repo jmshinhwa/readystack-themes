@@ -2,7 +2,7 @@
   "name": "koyo-hoken-ryoritsu-lint-r8",
   "displayName": "給与計算 雇用保険料率チェッカー 令和8年度",
   "description": "給与計算の設定・ソース(YAML/JSON/CSV/TS/JS/Python)に残った令和7年度以前の雇用保険料率(14.5/1,000・労働者5.5/1,000等)を令和8年度率と照合。履歴テーブルは日付で除外。",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
