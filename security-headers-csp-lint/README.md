@@ -1,5 +1,7 @@
 # Security Headers Lint - CSP, HSTS and dead headers
 
+![Security Headers Lint - CSP, HSTS and dead headers — finds the line](https://getreadystack.com/img/promo/security-headers-csp-lint_demo.gif)
+
 ![Security Headers Lint - CSP and Dead Headers](https://getreadystack.com/img/promo/sku13805_result_card.jpg)
 
 Reads security headers and CSP line by line in your config file and names the lines that silently do nothing: retired headers, keywords missing their quotes, directives the browser throws away.
