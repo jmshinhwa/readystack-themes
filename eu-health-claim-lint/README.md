@@ -1,5 +1,7 @@
 # EU Health Claim Lint — Food & Supplement Pages
 
+![EU Health Claim Lint — Food & Supplement Pages — finds the line](https://getreadystack.com/img/promo/eu-health-claim-lint_demo.gif)
+
 ![EU Health Claim Lint — Food & Supplement Pages](https://getreadystack.com/img/promo/sku131024_result_card.jpg)
 
 Scans the product page you have open — HTML, Markdown or MDX — for nutrition and health
