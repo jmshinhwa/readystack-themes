@@ -1,5 +1,7 @@
 # Cargo.toml Publish Gate - crates.io
 
+![Cargo.toml Publish Gate - crates.io — finds the line](https://getreadystack.com/img/promo/cargo-publish-gate_demo.gif)
+
 ![Cargo.toml Publish Gate - crates.io](https://getreadystack.com/img/promo/sku101948_result_card.jpg)
 
 `cargo publish` is a one-way door. crates.io never deletes a version: once
