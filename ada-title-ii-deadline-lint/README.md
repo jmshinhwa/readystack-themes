@@ -1,5 +1,7 @@
 # Web Accessibility Lint - WCAG 2.1 AA (ADA Title II)
 
+![Web Accessibility Lint - WCAG 2.1 AA (ADA Title II) — finds the line](https://getreadystack.com/img/promo/ada-title-ii-deadline-lint_demo.gif)
+
 ![ADA Title II Deadline Lint (WCAG 2.1 AA)](https://getreadystack.com/img/promo/sku21118_result_card.jpg)
 
 **Every accessibility statement that still promises April 24, 2026 is now wrong.**
