@@ -1,5 +1,7 @@
 # Accesibilidad cognitiva: lint de lectura fácil
 
+![Accesibilidad cognitiva: lint de lectura fácil — finds the line](https://getreadystack.com/img/promo/lectura-facil-lint-es_demo.gif)
+
 ![Accesibilidad cognitiva: lint de lectura fácil](https://getreadystack.com/img/promo/sku306973_result_card.jpg)
 
 **Para equipos de contenido y webs de administraciones públicas en España.** Abre la guía o el formulario de un trámite en Markdown y el lint marca cada fallo de lectura fácil con su línea y cómo arreglarlo. 12 rules · 6 issues on the sample guide · UNE 153101 · RD 707/2026.
