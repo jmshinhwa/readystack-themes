@@ -1,5 +1,7 @@
 # JDK 25 Upgrade Blocker Lint
 
+![JDK 25 Upgrade Blocker Lint — finds the line](https://getreadystack.com/img/promo/jdk25-upgrade-blocker-lint_demo.gif)
+
 ![JDK 25 Upgrade Blocker Lint](https://getreadystack.com/img/promo/sku87365_result_card.jpg)
 
 Reads `.java` files and reports the calls that JDK 21 and JDK 25 removed, disabled, or refuse to run — with the JEP that removed each one and the call that replaces it.
