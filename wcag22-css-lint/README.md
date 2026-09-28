@@ -1,5 +1,7 @@
 # WCAG 2.2 CSS Lint - Focus & Target Size
 
+![WCAG 2.2 CSS Lint - Focus & Target Size — finds the line](https://getreadystack.com/img/promo/wcag22-css-lint_demo.gif)
+
 ![WCAG 2.2 CSS Lint - Focus & Target Size](https://getreadystack.com/img/promo/sku43513_result_card.jpg)
 
 WCAG 2.2 became a W3C Recommendation on 5 October 2023 and added five success criteria on top of WCAG 2.1. Three of them are decided almost entirely in CSS: **2.5.8 Target Size (Minimum)**, **2.4.11 Focus Not Obscured (Minimum)** and **2.4.13 Focus Appearance**. Stylesheet tooling and code assistants built on 2.1-era material do not look for them, so the rules pass review and the criteria fail.
