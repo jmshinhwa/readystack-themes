@@ -1,5 +1,7 @@
 # Ren'Py Release Gate
 
+![Ren'Py Release Gate — finds the line](https://getreadystack.com/img/promo/renpy-release-gate_demo.gif)
+
 ![Ren'Py Release Gate](https://getreadystack.com/img/promo/sku64314_result_card.jpg)
 
 Ren'Py compiles your script, so your script looks fine.
