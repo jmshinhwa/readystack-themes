@@ -4,7 +4,7 @@
 
 Prüft Ihre **Erklärung zur Barrierefreiheit** (Markdown oder HTML) direkt in VS Code auf die Pflichtangaben nach **BFSG Anlage 3 Nr. 1 a bis d** (Onlineshops und andere Dienstleistungen für Verbraucher) und **BITV 2.0 § 7 / § 12b Abs. 2 BGG** (öffentliche Stellen des Bundes). Jede Lücke erscheint im Problems-Fenster mit Zeile, Fundstelle und einer Korrekturzeile zum Einfügen.
 
-Online-Version (gleiche Prüflogik, läuft im Browser): https://getreadystack.com/tools/barrierefreiheitserklaerung-check
+Online-Version (gleiche Prüflogik, läuft im Browser): https://getreadystack.com/de/tools/barrierefreiheitserklaerung-check
 
 ## Warum das zählt
 
