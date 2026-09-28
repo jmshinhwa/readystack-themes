@@ -1,5 +1,7 @@
 # EUDI Wallet Request Lint (OpenID4VP)
 
+![EUDI Wallet Request Lint (OpenID4VP) — finds the line](https://getreadystack.com/img/promo/eudi-rp-request-lint_demo.gif)
+
 ![EUDI Wallet Request Lint (OpenID4VP)](https://getreadystack.com/img/promo/sku161547_result_card.jpg)
 
 Reads an OpenID4VP presentation request — the JSON your service sends to a user's EU Digital Identity Wallet — and reports every place it does not match the relying-party rules that start applying on **2026-12-24**.
