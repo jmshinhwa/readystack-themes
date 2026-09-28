@@ -1,5 +1,7 @@
 # Invoice Lint (JP) - インボイス経過措置 70% · 2026/10 消費税
 
+![Invoice Lint (JP) - インボイス経過措置 70% · 2026/10 消費税 — finds the line](https://getreadystack.com/img/promo/jct-transition-lint-2026_demo.gif)
+
 ![インボイス経過措置リンター 2026（80%→70%）](https://getreadystack.com/img/promo/sku25591_result_card.jpg)
 
 2026年9月30日で80%控除が終わります。10月1日からは50%ではなく70%です（令和8年度税制改正）。請求・仕入コードに残った 0.8 と 0.5、明細ごとの端数処理、T+13桁でない登録番号を、行番号と修正案つきで指摘します。
