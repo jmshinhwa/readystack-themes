@@ -1,0 +1,56 @@
+{
+  "name": "bitnami-image-catalog-gate",
+  "displayName": "Bitnami Image Gate: Compose, Helm, Dockerfile",
+  "description": "Flags Bitnami image lines that broke with the 2025-09-29 catalog change: removed docker.io/bitnami tags, frozen bitnamilegacy images, Helm values pins, allowInsecureImages.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "bitnami",
+    "bitnamilegacy",
+    "docker compose",
+    "helm values",
+    "kubernetes",
+    "dockerfile",
+    "imagepullbackoff"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "bitnamiGate.checkFile",
+        "title": "Bitnami Image Gate: Compose, Helm, Dockerfile: Check this file",
+        "category": "Bitnami Image Gate: Compose, Helm, Dockerfile"
+      },
+      {
+        "command": "bitnamiGate.checkWorkspace",
+        "title": "Bitnami Image Gate: Compose, Helm, Dockerfile: Sweep workspace and write report (licence)",
+        "category": "Bitnami Image Gate: Compose, Helm, Dockerfile"
+      },
+      {
+        "command": "bitnamiGate.enterKey",
+        "title": "Bitnami Image Gate: Compose, Helm, Dockerfile: Enter licence key",
+        "category": "Bitnami Image Gate: Compose, Helm, Dockerfile"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "bitnami-image-catalog-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/bitnami-image-catalog-gate",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  },
+  "icon": "icon.png"
+}
