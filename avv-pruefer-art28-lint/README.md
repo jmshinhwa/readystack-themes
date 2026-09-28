@@ -1,5 +1,7 @@
 # AVV-Prüfer – Auftragsverarbeitungsvertrag Lint
 
+![AVV-Prüfer – Auftragsverarbeitungsvertrag Lint — finds the line](https://getreadystack.com/img/promo/avv-pruefer-art28-lint_demo.gif)
+
 ![AVV-Prüfer – Auftragsverarbeitungsvertrag Lint](https://getreadystack.com/img/promo/sku329109_result_card.jpg)
 
 Prüft Auftragsverarbeitungsverträge (AVV/DPA in Markdown) gegen Art. 28 DSGVO — zeilengenau im Editor. Webseite mit derselben Prüfung: https://getreadystack.com/de/tools/avv-pruefer-art28-lint
