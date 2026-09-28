@@ -1,5 +1,7 @@
 # Email Footer Lint - CAN-SPAM, CASL and GDPR unsubscribe
 
+![Email Footer Lint - CAN-SPAM, CASL and GDPR unsubscribe — finds the line](https://getreadystack.com/img/promo/email-footer-law-lint_demo.gif)
+
 ![Email Footer Law Lint](https://getreadystack.com/img/promo/sku40591_result_card.jpg)
 
 Fourteen checks on the part of an HTML email nobody re-reads: the footer.
