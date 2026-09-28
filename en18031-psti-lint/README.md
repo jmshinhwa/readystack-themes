@@ -1,5 +1,7 @@
 # EN 18031 / PSTI Device Config Lint
 
+![EN 18031 / PSTI Device Config Lint — finds the line](https://getreadystack.com/img/promo/en18031-psti-lint_demo.gif)
+
 ![EN 18031 / PSTI Device Config Lint](https://getreadystack.com/img/promo/sku56722_result_card.jpg)
 
 Since **1 August 2025**, radio and connected devices placed on the EU market have to meet the cybersecurity requirements of **Delegated Regulation (EU) 2022/30** under the Radio Equipment Directive — Article 3(3)(d) network protection, 3(3)(e) personal data and privacy, 3(3)(f) protection from fraud. The harmonised standards cited for those three limbs are **EN 18031-1, EN 18031-2 and EN 18031-3**. In the UK, the **PSTI** regime has been in force since **29 April 2024**: no universal default passwords, a published vulnerability-reporting contact, and a published minimum period for security updates. Enforcement sits with the OPSS, and the penalties in the PSTI Act 2022 reach **10 million pounds or 4% of qualifying worldwide revenue**.
