@@ -1,5 +1,7 @@
 # Aviso Legal ES: leyes derogadas y datos LSSI
 
+![Aviso Legal ES: leyes derogadas y datos LSSI — finds the line](https://getreadystack.com/img/promo/aviso-legal-lssi-lint-es_demo.gif)
+
 ¿El aviso legal que entregas con la web cita la **LOPD 15/1999**? Esa ley está derogada desde el **07/12/2018** (disposición derogatoria única de la LOPDGDD 3/2018), y la **Directiva 95/46/CE** que muchas plantillas siguen nombrando lo está desde el **25/05/2018** (art. 94 del RGPD). Los generadores gratuitos y los asistentes de IA reproducen esas plantillas de 2010 con toda naturalidad: el texto suena legal, y es precisamente por eso que nadie lo vuelve a leer.
 
 Esta extensión abre tus páginas legales (`.md`, `.html`, `.php`, `.txt`) y marca, **con artículo y número de línea**, dos cosas: las normas derogadas que citas y los datos obligatorios del **art. 10 de la Ley 34/2002 (LSSI)** que faltan.
