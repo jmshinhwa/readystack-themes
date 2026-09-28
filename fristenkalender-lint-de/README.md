@@ -1,5 +1,7 @@
 # Fristenkalender Lint: Fristen berechnen nach Bundesland
 
+![Fristenkalender Lint: Fristen berechnen — finds the line](https://getreadystack.com/img/promo/fristenkalender-lint-de_demo.gif)
+
 ![Fristenkalender Lint: Fristen berechnen](https://getreadystack.com/img/promo/sku250631_result_card.jpg)
 
 **Eine Fristenkalender-CSV, 7 Zeilen, 6 falsch berechnete Fristenden** — das ist unser Test-Fixture `dirty.csv`. Diese Erweiterung rechnet jedes notierte Fristende nach §§ 187–193 BGB und § 222 Abs. 2 ZPO neu und zeigt pro Zeile das richtige Datum, den Wochentag und den Grund.
