@@ -1,5 +1,7 @@
 # Green-Claims-Lint: Umweltaussagen nach UWG 2026
 
+![Green-Claims-Lint: Umweltaussagen nach UWG 2026 — finds the line](https://getreadystack.com/img/promo/umweltaussagen-lint-uwg-2026_demo.gif)
+
 ![Green-Claims-Lint: Umweltaussagen nach UWG 2026](https://getreadystack.com/img/promo/sku214993_result_card.jpg)
 
 Ab dem **27. September 2026** sind im deutschen Wettbewerbsrecht neue Verbote für Umweltwerbung anwendbar (Drittes Gesetz zur Änderung des UWG, BGBl. 2026 I Nr. 43, Umsetzung der EU-Richtlinie 2024/825 „EmpCo“). Wörter wie „umweltfreundlich“, „nachhaltig“ oder „klimaneutral“ stehen dann auf der schwarzen Liste im Anhang zu § 3 Abs. 3 UWG – sie sind ohne Abwägung unzulässig. Diese Erweiterung markiert solche Aussagen direkt in Produkttexten, Shop-Templates und JSON-Produktfeeds (`.md`, `.html`, `.json`, `.txt`) und nennt zu jedem Treffer die Anhang-Nummer und eine zulässige Fassung.
