@@ -1,0 +1,10 @@
+id;title;category;energy_efficiency_class;energy_label_url;datasheet_url
+K-100;Kühlschrank CoolLine 300;Haushalt > Kühlschrank;A++;https://shop.example/label/k100.png;https://shop.example/fiche/k100.pdf
+P-200;Smartphone Nova 6;Elektronik > Smartphone;;https://shop.example/label/p200.png;https://shop.example/fiche/p200.pdf
+T-300;Wärmepumpentrockner DryPro 8;Haushalt > Wäschetrockner;A+++;https://shop.example/label/t300.png;https://shop.example/fiche/t300.pdf
+W-400;Waschmaschine Aqua 9;Haushalt > Waschmaschine;B;https://shop.example/label/w400.png;
+F-500;Fernseher Vista 55;TV & Video > Fernseher;G;;https://shop.example/fiche/f500.pdf
+G-600;Geschirrspüler Clean 60;Haushalt > Geschirrspüler;;https://shop.example/label/g600.png;https://shop.example/fiche/g600.pdf
+C-700;Klimagerät Breeze 12;Klima > Klimagerät;A++;https://shop.example/label/c700.png;https://shop.example/fiche/c700.pdf
+L-800;LED-Lampe E27 806 lm;Licht > Leuchtmittel;F;https://shop.example/label/l800.png;https://shop.example/fiche/l800.pdf
+H-900;Haartrockner Style 2000;Pflege > Haartrockner;;;
