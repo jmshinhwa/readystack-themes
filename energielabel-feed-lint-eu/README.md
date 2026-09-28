@@ -1,5 +1,7 @@
 # Energielabel Feed Check – EU-Energielabel im Shop-Feed
 
+![Energielabel Feed Check — finds the line](https://getreadystack.com/img/promo/energielabel-feed-lint-eu_demo.gif)
+
 ![Energielabel Feed Check](https://getreadystack.com/img/promo/sku341521_result_card.jpg)
 
 Prüft Produkt-Feeds (CSV) gegen das EU-Energielabel, Zeile für Zeile, direkt im Problems-Panel von VS Code.
