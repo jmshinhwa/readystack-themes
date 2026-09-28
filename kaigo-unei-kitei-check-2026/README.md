@@ -1,5 +1,7 @@
 # 介護 指定申請 運営規程チェック 2026
 
+![介護 指定申請 運営規程チェック 2026 — finds the line](https://getreadystack.com/img/promo/kaigo-unei-kitei-check-2026_demo.gif)
+
 ![介護 指定申請 運営規程チェック 2026](https://getreadystack.com/img/promo/sku219905_result_card.jpg)
 
 **令和3年版の訪問介護 運営規程サンプルを 2026-09-23 付で検査すると、不備は6件でした。** 虐待防止の号なし・業務継続計画(BCP)なし・ウェブサイト掲載の記載なし・利用者負担「1割」のみ・廃止サービス名「介護予防訪問介護」・最新の施行日 2021-04-01。
