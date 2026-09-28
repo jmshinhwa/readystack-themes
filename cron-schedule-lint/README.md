@@ -1,5 +1,7 @@
 # Crontab Lint - cron expression checker (crontab, K8s CronJob, GitHub Actions)
 
+![Crontab Lint - cron expression checker (crontab, K8s CronJob, GitHub Actions) — finds the line](https://getreadystack.com/img/promo/cron-schedule-lint_demo.gif)
+
 ![Cron Schedule Lint for crontab, Kubernetes CronJob, GitHub Actions, Spring and EventBridge](https://getreadystack.com/img/promo/sku34034_result_card.jpg)
 
 Names every schedule line in the file you have open that fires at the wrong hour, twice, or never at all - and prints the next three times each one really fires, in the zone that actually applies.
