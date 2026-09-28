@@ -1,5 +1,7 @@
 # VSIX Publish Lint
 
+![VSIX Publish Lint — finds the line](https://getreadystack.com/img/promo/vsix-publish-lint_demo.gif)
+
 ![VSIX Publish Lint](https://getreadystack.com/img/promo/sku41398_result_card.jpg)
 
 Reads a VS Code extension `package.json` and reports the manifest problems that stop `vsce package` / `vsce publish`, and the ones that do not stop it but ship a degraded Marketplace listing. Sixteen rules, entirely offline, no network call and no telemetry.
