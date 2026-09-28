@@ -1,5 +1,7 @@
 # CSAF Advisory Lint - security advisory JSON (CRA, VEX)
 
+![CSAF Advisory Lint - security advisory JSON (CRA, VEX) — finds the line](https://getreadystack.com/img/promo/csaf-advisory-check-cra-2026_demo.gif)
+
 ![CSAF Advisory Check for CRA 2026](https://getreadystack.com/img/promo/sku32327_result_card.jpg)
 
 ```
