@@ -1,5 +1,7 @@
 # WordPress GDPR Lint - DSGVO privacy checks for PHP themes and plugins
 
+![WordPress GDPR Lint - DSGVO privacy checks for PHP themes and plugins — finds the line](https://getreadystack.com/img/promo/wordpress-privacy-lint_demo.gif)
+
 ![WordPress Privacy Lint (GDPR / DSGVO)](https://getreadystack.com/img/promo/sku49970_result_card.jpg)
 
 Your plugin's privacy duties are not the site owner's problem. When a WordPress site gets a
