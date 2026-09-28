@@ -1,5 +1,7 @@
 # Linker Map Auditor - FLASH & RAM budget for GNU ld
 
+![Linker Map Auditor - FLASH & RAM budget for GNU ld map files — finds the line](https://getreadystack.com/img/promo/linker-map-auditor_demo.gif)
+
 ![Linker Map Auditor - FLASH & RAM budget for GNU ld map files](https://getreadystack.com/img/promo/sku20171_result_card.jpg)
 
 **`region 'RAM' overflowed by 680 bytes`.** The linker tells you that you lost. It never tells you who took it.
