@@ -1,5 +1,7 @@
 # Model Card Lint - Hugging Face model card and EU GPAI (Art. 53)
 
+![Model Card Lint - Hugging Face model card and EU GPAI (Art. 53) — finds the line](https://getreadystack.com/img/promo/model-card-lint-gpai_demo.gif)
+
 ![Model Card Lint - EU GPAI (AI Act Art. 53)](https://getreadystack.com/img/promo/sku48562_result_card.jpg)
 
 A model card is the only document a downstream deployer, an enterprise procurement reviewer and an EU regulator all read about your model. Most cards on the Hub are still the Hugging Face template with the prose filled in and the obligations left empty.
