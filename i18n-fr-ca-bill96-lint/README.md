@@ -1,5 +1,7 @@
 # i18n fr-CA Lint — Quebec Bill 96
 
+![i18n fr-CA Lint — Quebec Bill 96 — finds the line](https://getreadystack.com/img/promo/i18n-fr-ca-bill96-lint_demo.gif)
+
 ![i18n fr-CA Lint — Quebec Bill 96](https://getreadystack.com/img/promo/sku150649_result_card.jpg)
 
 Your `fr-CA.json` was written in Paris. Quebec reads it.
