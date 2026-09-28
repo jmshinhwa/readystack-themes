@@ -1,5 +1,7 @@
 # LaTeX Submission Lint
 
+![LaTeX Submission Lint: Desk-Reject Check — finds the line](https://getreadystack.com/img/promo/latex-submission-lint_demo.gif)
+
 ![LaTeX Submission Lint: Desk-Reject Check](https://getreadystack.com/img/promo/sku50640_result_card.jpg)
 
 A manuscript that compiles is not a manuscript that is accepted for review. Before an editor
