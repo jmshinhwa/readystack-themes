@@ -1,5 +1,7 @@
 # GitHub Actions Lint - expiring runners, Node versions and deprecated actions
 
+![GitHub Actions Lint - expiring runners, Node versions and deprecated actions — finds the line](https://getreadystack.com/img/promo/actions-expiry-lint_demo.gif)
+
 ![Actions Expiry Lint](https://getreadystack.com/img/promo/sku38744_result_card.jpg)
 
 A GitHub Actions workflow is the one file in a repository that rots without being edited.
