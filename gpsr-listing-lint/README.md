@@ -1,5 +1,7 @@
 # GPSR Listing Lint
 
+![GPSR Listing Lint — finds the line](https://getreadystack.com/img/promo/gpsr-listing-lint_demo.gif)
+
 ![GPSR Listing Lint](https://getreadystack.com/img/promo/sku57790_result_card.jpg)
 
 Article 19 of the EU General Product Safety Regulation (Regulation (EU) 2023/988) says that an offer
