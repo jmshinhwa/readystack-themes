@@ -1,0 +1,10 @@
+[
+ {"id": "LDD001", "check": "install-script", "sev": "warning", "title": "Package runs an install script", "fix": "Read the preinstall/install/postinstall script, then allow-list it or install with --ignore-scripts"},
+ {"id": "LDD002", "check": "missing-integrity", "sev": "error", "title": "Registry tarball has no integrity hash", "fix": "Delete the entry and run npm install so npm records a sha512 integrity"},
+ {"id": "LDD003", "check": "sha1-integrity", "sev": "warning", "title": "Integrity is sha1 only", "fix": "Regenerate the lockfile with npm 7+ so the entry carries sha512"},
+ {"id": "LDD004", "check": "http-resolved", "sev": "error", "title": "Tarball fetched over plain http", "fix": "Point the registry at https:// and regenerate the entry"},
+ {"id": "LDD005", "check": "git-source", "sev": "warning", "title": "Dependency comes from a git URL", "fix": "Publish it to a registry or pin a full 40-character commit and review it"},
+ {"id": "LDD006", "check": "off-registry-tarball", "sev": "warning", "title": "Tarball from a host that is not the npm registry", "fix": "Record who controls the host, or move the package to your registry"},
+ {"id": "LDD007", "check": "lockfile-v1", "sev": "warning", "title": "lockfileVersion 1 hides install scripts", "fix": "Upgrade to lockfileVersion 3 with npm 9+ so hasInstallScript is recorded"},
+ {"id": "LDD008", "check": "floating-range", "sev": "warning", "title": "Direct dependency uses a floating range", "fix": "Replace *, latest, x or an empty range with a real semver range"}
+]
