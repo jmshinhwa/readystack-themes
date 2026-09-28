@@ -1,5 +1,7 @@
 # Belegfelder-Lint für Getränkehandel
 
+![Belegfelder-Lint für Getränkehandel — finds the line](https://getreadystack.com/img/promo/getraenke-beleg-lint-de_demo.gif)
+
 ![Belegfelder-Lint für Getränkehandel](https://getreadystack.com/img/promo/sku178344_result_card.jpg)
 
 Dieses Lint liest die Rechnungs-, Lieferschein- und Begleitdokument-Vorlagen im Repository
