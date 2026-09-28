@@ -1,5 +1,7 @@
 # .NET MAUI iOS Lint - App Store submission gate
 
+![.NET MAUI iOS Lint - App Store submission gate — finds the line](https://getreadystack.com/img/promo/maui-ios-submission-gate_demo.gif)
+
 ![MAUI iOS Submission Gate](https://getreadystack.com/img/promo/sku94625_result_card.jpg)
 
 App Review reads `Platforms/iOS/Info.plist` before it reads any of your C#. In a .NET MAUI solution that file is one of the few things you still edit by hand, and it is where the rejections live.
