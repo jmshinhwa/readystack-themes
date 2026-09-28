@@ -1,5 +1,7 @@
 # GDPR Privacy Notice Lint
 
+![GDPR Privacy Notice Lint — finds the line](https://getreadystack.com/img/promo/gdpr-privacy-notice-lint_demo.gif)
+
 Your repository has a `privacy.md`. An assistant wrote most of it, it reads well, and it is the
 first document a supervisory authority asks for. This extension reads that file the way Articles 13
 and 14 read it: as a list of disclosures that are either present or absent.
