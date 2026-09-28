@@ -2,7 +2,7 @@
   "name": "beancount-auslandsumsatz-lint",
   "displayName": "Beancount/hledger Auslandsumsatz-Check (UStG)",
   "description": "Prüft Beancount- und hledger-Journale mit Auslandskunden: Euro-Umrechnung (§ 16 Abs. 6 UStG), USt-IdNr-Formate, Reverse Charge ohne deutsche USt und ZM-Frist (§ 18a UStG).",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
