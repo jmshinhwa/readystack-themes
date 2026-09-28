@@ -1,5 +1,7 @@
 # Postgres Migration Lint - locks and downtime (ALTER TABLE, CREATE INDEX)
 
+![Postgres Migration Lint - locks and downtime (ALTER TABLE, CREATE INDEX) — finds the line](https://getreadystack.com/img/promo/pg-migration-lock-lint_demo.gif)
+
 ![Postgres Migration Lock Lint](https://getreadystack.com/img/promo/sku68909_result_card.jpg)
 
 Reads the migration you have open and names every statement that takes a lock Postgres will not share — `ACCESS EXCLUSIVE`, `SHARE`, `SHARE ROW EXCLUSIVE` — and prints the rewrite that does the same thing without stopping traffic.
