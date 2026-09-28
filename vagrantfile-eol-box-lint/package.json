@@ -1,0 +1,57 @@
+{
+  "name": "vagrantfile-eol-box-lint",
+  "displayName": "Vagrantfile EOL Box Lint",
+  "description": "Flags Vagrantfile boxes whose OS is past end of support: Debian 11 LTS ended 2026-08-31, CentOS 7 2024-06-30, Ubuntu 20.04 2025-05-31. Each finding shows the line, the date and the days since it passe",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "vagrant",
+    "vagrantfile",
+    "eol",
+    "end of life",
+    "centos 7",
+    "debian 11",
+    "ubuntu 20.04",
+    "devops"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vagrantEolLint.checkFile",
+        "title": "Vagrantfile EOL Box Lint: Check this file",
+        "category": "Vagrantfile EOL Box Lint"
+      },
+      {
+        "command": "vagrantEolLint.checkWorkspace",
+        "title": "Vagrantfile EOL Box Lint: Sweep workspace and write report (licence)",
+        "category": "Vagrantfile EOL Box Lint"
+      },
+      {
+        "command": "vagrantEolLint.enterKey",
+        "title": "Vagrantfile EOL Box Lint: Enter licence key",
+        "category": "Vagrantfile EOL Box Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "vagrantfile-eol-box-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/vagrantfile-eol-box-lint",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  },
+  "icon": "icon.png"
+}
