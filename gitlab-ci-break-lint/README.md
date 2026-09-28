@@ -1,5 +1,7 @@
 # GitLab CI Break Lint
 
+![GitLab CI Break Lint — finds the line](https://getreadystack.com/img/promo/gitlab-ci-break-lint_demo.gif)
+
 ![GitLab CI Break Lint](https://getreadystack.com/img/promo/sku139792_result_card.jpg)
 
 A `.gitlab-ci.yml` that works today can stop working the day your GitLab instance crosses a
