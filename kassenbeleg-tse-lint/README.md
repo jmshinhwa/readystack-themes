@@ -1,5 +1,7 @@
 # Kassenbeleg-Lint — KassenSichV TSE-Pflichtangaben
 
+![Kassenbeleg-Lint — KassenSichV TSE-Pflichtangaben — finds the line](https://getreadystack.com/img/promo/kassenbeleg-tse-lint_demo.gif)
+
 ![Kassenbeleg-Lint — KassenSichV TSE-Pflichtangaben](https://getreadystack.com/img/promo/sku138032_result_card.jpg)
 
 Ein Bon ist eine Textdatei mit Rechtspflichten. Diese Erweiterung liest eine Belegvorlage
