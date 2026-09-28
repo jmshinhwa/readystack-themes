@@ -1,0 +1,56 @@
+{
+  "name": "pg14-upgrade-blocker-lint",
+  "displayName": "PostgreSQL 14 Upgrade Lint (Aurora/RDS 2027)",
+  "description": "Flags SQL and config lines that PostgreSQL 15, 16 or 17 removed or renamed, so an Aurora/RDS PostgreSQL 14 upgrade does not break before standard support ends on 28 February 2027.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "postgresql",
+    "postgresql upgrade",
+    "aurora postgresql",
+    "rds extended support",
+    "pg_upgrade",
+    "sql lint",
+    "migration"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pg14UpgradeLint.checkFile",
+        "title": "PostgreSQL 14 Upgrade Lint (Aurora/RDS 2027): Check this file",
+        "category": "PostgreSQL 14 Upgrade Lint (Aurora/RDS 2027)"
+      },
+      {
+        "command": "pg14UpgradeLint.checkWorkspace",
+        "title": "PostgreSQL 14 Upgrade Lint (Aurora/RDS 2027): Sweep workspace and write report (licence)",
+        "category": "PostgreSQL 14 Upgrade Lint (Aurora/RDS 2027)"
+      },
+      {
+        "command": "pg14UpgradeLint.enterKey",
+        "title": "PostgreSQL 14 Upgrade Lint (Aurora/RDS 2027): Enter licence key",
+        "category": "PostgreSQL 14 Upgrade Lint (Aurora/RDS 2027)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "pg14-upgrade-blocker-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/pg14-upgrade-blocker-lint",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  },
+  "icon": "icon.png"
+}
