@@ -1,0 +1,120 @@
+[
+ {
+  "id": "placeholder-reviewer",
+  "sev": "error",
+  "section": "16 CFR 465.2(a)(1)",
+  "title": "Placeholder reviewer name in a testimonial",
+  "fix": "Use the real customer's name (with consent on file) or remove the quote",
+  "re": "\\b(John|Jane) (Doe|Smith)\\b|\\bYour Name\\b|\\bCustomer Name\\b|\\bHappy Customer\\b|\\bFirstname Lastname\\b",
+  "flags": "i",
+  "ctx": [
+   "testimonial|review|quote"
+  ]
+ },
+ {
+  "id": "stock-avatar",
+  "sev": "error",
+  "section": "16 CFR 465.2(a)(1)",
+  "title": "Random stock face used as the reviewer's photo",
+  "fix": "Use the customer's own photo with permission, or initials",
+  "re": "randomuser\\.me|pravatar\\.cc|thispersondoesnotexist|xsgames\\.co/randomusers|generated\\.photos|uifaces\\.co",
+  "flags": "i"
+ },
+ {
+  "id": "placeholder-quote",
+  "sev": "error",
+  "section": "16 CFR 465.2(a)(3)",
+  "title": "Lorem-ipsum text shipped as a customer quote",
+  "fix": "Replace with the customer's own words, verbatim, from your records",
+  "re": "lorem ipsum|dolor sit amet",
+  "flags": "i",
+  "ctx": [
+   "testimonial|review|quote"
+  ]
+ },
+ {
+  "id": "todo-fake-review",
+  "sev": "error",
+  "section": "16 CFR 465.2(a)",
+  "title": "Code marks these testimonials as made-up or generated",
+  "fix": "Delete them until real reviews exist; keep proof for each one you publish",
+  "re": "\\b(TODO|FIXME|placeholder|dummy|fake|mock|made[- ]up|AI[- ]generated|generated)\\b[^\\n]{0,40}\\b(testimonials?|reviews?)\\b",
+  "flags": "i"
+ },
+ {
+  "id": "hardcoded-aggregate-rating",
+  "sev": "warning",
+  "section": "16 CFR 465.2(b)",
+  "title": "Hard-coded aggregateRating in JSON-LD",
+  "fix": "Compute ratingValue and reviewCount from the reviews actually submitted",
+  "re": "\"ratingValue\"\\s*:\\s*\"?\\d",
+  "flags": "",
+  "ctx": [
+   "\"(reviewCount|ratingCount)\"\\s*:\\s*\"?\\d"
+  ]
+ },
+ {
+  "id": "hardcoded-rated-testimonial",
+  "sev": "warning",
+  "section": "16 CFR 465.2(b)",
+  "title": "Star rating typed into source next to a quote",
+  "fix": "Load ratings from your review store, or keep the signed original for each",
+  "re": "\\b(rating|stars)\\s*[:=]\\s*[\"']?[45](\\.\\d)?\\b",
+  "flags": "i",
+  "ctx": [
+   "\\b(author|name)\\s*[:=]",
+   "\\b(quote|text|body|content)\\s*[:=]"
+  ]
+ },
+ {
+  "id": "verified-badge-static",
+  "sev": "warning",
+  "section": "16 CFR 465.2(a)(2)",
+  "title": "Static 'verified' badge not tied to an order",
+  "fix": "Show the badge only when an order record for that reviewer exists",
+  "re": "Verified (Purchase|Buyer|Customer)|\\bverified\\s*:\\s*true\\b",
+  "flags": "i",
+  "ctx": [
+   "testimonial|review"
+  ]
+ },
+ {
+  "id": "rating-filter-suppression",
+  "sev": "error",
+  "section": "16 CFR 465.7(b)",
+  "title": "Reviews filtered by star rating before display",
+  "fix": "Show all ratings, or filter only on neutral criteria (spam, abuse, off-topic)",
+  "re": "\\.filter\\(\\s*\\(?\\s*(\\w+)\\s*\\)?\\s*=>\\s*\\1\\.(rating|stars|score)\\s*(>=?|===?)\\s*[3-5]|WHERE\\s+\\w*rating\\s*>=?\\s*[3-5]|\\bminRating\\s*[:=]\\s*[3-5]",
+  "flags": "i"
+ },
+ {
+  "id": "sentiment-incentive",
+  "sev": "error",
+  "section": "16 CFR 465.4",
+  "title": "Reward offered for a 5-star or positive review",
+  "fix": "Offer the reward for any honest review, never tied to the rating",
+  "re": "\\b(5|five)[- ]?star\\s+review[^\\n]{0,60}(discount|coupon|% off|free|gift|reward|credit|cashback)|(discount|coupon|% off|free|gift card|reward|credit|cashback)[^\\n]{0,60}\\b((5|five)[- ]?star|positive)\\s+review",
+  "flags": "i"
+ },
+ {
+  "id": "hover-only-disclosure",
+  "sev": "error",
+  "section": "16 CFR 465.1(c)(4)",
+  "title": "Relationship disclosure hidden in a hover tooltip",
+  "fix": "Print the disclosure as visible text right next to the quote",
+  "re": "\\b(title|data-tooltip|data-tip|tooltip)\\s*=\\s*\\{?[\"'][^\"']*(employee|staff|founder|sponsored|paid|free product|gifted|compensated|incentivi[sz]ed|affiliate)",
+  "flags": "i"
+ },
+ {
+  "id": "insider-testimonial",
+  "sev": "warning",
+  "section": "16 CFR 465.5(b)(1)",
+  "title": "Testimonial from your own staff or founder",
+  "fix": "Add a visible disclosure next to the quote, e.g. 'Written by our employee'",
+  "re": "\\b(role|position)\\s*[:=]\\s*[\"'][^\"']*\\b(our (CEO|CTO|COO|founder|team)|employee|team member|intern|staff member)\\b",
+  "flags": "i",
+  "ctx": [
+   "testimonial|review|quote"
+  ]
+ }
+]
