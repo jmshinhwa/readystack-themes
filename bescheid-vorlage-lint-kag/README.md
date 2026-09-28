@@ -1,5 +1,7 @@
 # Bescheid-Vorlagen Lint – Abgabenbescheid prüfen
 
+![Abgabenbescheid prüfen – Bescheid-Vorlagen Lint — finds the line](https://getreadystack.com/img/promo/bescheid-vorlage-lint-kag_demo.gif)
+
 ![Abgabenbescheid prüfen – Bescheid-Vorlagen Lint](https://getreadystack.com/img/promo/sku298741_result_card.jpg)
 
 Prüft Abgabenbescheid-Vorlagen (Grundbesitzabgaben, Gebühren, Beiträge nach dem Kommunalabgabengesetz) direkt in VS Code: Rechtsbehelfsbelehrung, Bekanntgabe, aufschiebende Wirkung und Säumniszuschlag. Jede Meldung nennt Zeile, Paragraf und einen Korrekturtext.
