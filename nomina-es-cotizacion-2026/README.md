@@ -1,5 +1,7 @@
 # Nómina ES: tablas de cotización 2026
 
+![Nómina ES: tablas de cotización 2026 — finds the line](https://getreadystack.com/img/promo/nomina-es-cotizacion-2026_demo.gif)
+
 ![Nómina ES: tablas de cotización 2026](https://getreadystack.com/img/promo/sku190276_result_card.jpg)
 
 Los tipos y topes de cotización a la Seguridad Social **cambian cada 1 de enero**, pero el fichero
