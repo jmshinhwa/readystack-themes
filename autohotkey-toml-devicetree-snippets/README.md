@@ -1,5 +1,7 @@
 # AutoHotkey v2, TOML and DeviceTree Checks
 
+![AutoHotkey v2, TOML and DeviceTree Checks — finds the line](https://getreadystack.com/img/promo/autohotkey-toml-devicetree-snippets_demo.gif)
+
 ![AutoHotkey v2, TOML and DeviceTree checks for VS Code](https://getreadystack.com/img/promo/sku9417_result_card.jpg)
 
 **`status = "enabled"` is not a syntax error. The node just comes up disabled — and you find that out on the bench.**
