@@ -1,5 +1,7 @@
 # CRA Annex II User Docs Lint
 
+![CRA Annex II User Docs Lint — finds the line](https://getreadystack.com/img/promo/cra-annex-ii-docs-lint_demo.gif)
+
 ![CRA Annex II User Docs Lint](https://getreadystack.com/img/promo/sku79782_result_card.jpg)
 
 Annex II of the EU Cyber Resilience Act (Regulation (EU) 2024/2847) lists nine items that must reach the user together with the product: who the manufacturer is, where a vulnerability can be reported, the intended purpose and security environment, the known and foreseeable risks, the internet address of the EU declaration of conformity, **the end date of the support period**, instructions for installing security updates and for secure decommissioning, and how the machine-readable software bill of materials can be accessed.
