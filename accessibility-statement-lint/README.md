@@ -1,5 +1,7 @@
 # Accessibility Statement Checker (EU model, EN 301 549)
 
+![Accessibility Statement Checker (EU model, EN 301 549) — finds the line](https://getreadystack.com/img/promo/accessibility-statement-lint_demo.gif)
+
 ![Accessibility Statement Lint (EU model)](https://getreadystack.com/img/promo/sku85572_result_card.jpg)
 
 An accessibility statement is a public legal document. Under Directive (EU) 2016/2102 every
