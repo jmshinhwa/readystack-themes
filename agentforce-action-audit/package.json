@@ -2,7 +2,7 @@
   "name": "agentforce-action-audit",
   "displayName": "Agentforce Action Audit",
   "description": "One audit pass over Salesforce Agentforce topic metadata: flags deploy blockers and the missing AI-disclosure line before you push an agent live.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -16,7 +16,11 @@
     "genaiplugin",
     "ai-act-article-50",
     "metadata-lint",
-    "sfdx"
+    "sfdx",
+    "salesforce agentforce",
+    "salesforce dx",
+    "einstein copilot",
+    "agentforce actions"
   ],
   "main": "./extension.js",
   "activationEvents": [
