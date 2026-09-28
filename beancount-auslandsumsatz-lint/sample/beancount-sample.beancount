@@ -1,0 +1,49 @@
+; Freiberufliche Softwareentwicklung, Journal 2026 (Beancount)
+option "operating_currency" "EUR"
+
+2026-01-01 open Assets:Bank:Girokonto
+2026-01-01 open Income:Freiberuflich:Drittland
+2026-01-01 open Income:Freiberuflich:EU-ReverseCharge
+2026-01-01 open Income:Freiberuflich:Inland
+2026-01-01 open Liabilities:Umsatzsteuer:19
+
+2026-04-14 * "Acme Inc." "API-Integration April"
+  rechnung: "2026-014"
+  Assets:Bank:Girokonto              4412.16 EUR
+  Income:Freiberuflich:Drittland    -4800.00 USD
+
+2026-05-20 * "Studio Lumiere SARL" "Webentwicklung Relaunch"
+  rechnung: "2026-017"
+  Assets:Bank:Girokonto              6200.00 EUR
+  Income:Freiberuflich:EU-ReverseCharge  -6200.00 EUR
+
+2026-05-28 * "Kowalski Sp. z o.o." "Code-Review"
+  ust_id: "PL123456789"
+  Assets:Bank:Girokonto              3400.00 EUR
+  Income:Freiberuflich:EU-ReverseCharge  -3400.00 EUR
+
+2026-06-10 * "Papadopoulos IKE" "Wartung Q2"
+  ust_id: "GR123456789"
+  rechnung: "2026-019"
+  Assets:Bank:Girokonto              2500.00 EUR
+  Income:Freiberuflich:EU-ReverseCharge  -2500.00 EUR
+
+2026-06-18 * "Brightside Ltd" "Datenmigration"
+  ust_id: "GB123456789"
+  rechnung: "2026-020"
+  Assets:Bank:Girokonto              5100.00 EUR
+  Income:Freiberuflich:EU-ReverseCharge  -5100.00 EUR
+
+2026-06-25 * "Nordwind GmbH" "Schulung"
+  ust_id: "DE123456789"
+  rechnung: "2026-021"
+  Assets:Bank:Girokonto              1800.00 EUR
+  Income:Freiberuflich:EU-ReverseCharge  -1800.00 EUR
+
+2026-07-08 * "Van Dijk BV" "App-Entwicklung Juli"
+  ust_id: "NL123456789B01"
+  rechnung: "2026-022"
+  zm: "2026-Q2"
+  Assets:Bank:Girokonto              7378.00 EUR
+  Income:Freiberuflich:EU-ReverseCharge  -6200.00 EUR
+  Liabilities:Umsatzsteuer:19        -1178.00 EUR
