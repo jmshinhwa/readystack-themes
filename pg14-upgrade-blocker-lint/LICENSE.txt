@@ -1,0 +1,15 @@
+PostgreSQL 14 Upgrade Lint (Aurora/RDS 2027) — Licence
+
+Free scope
+  Lint the open .sql, .conf or .tf file against PostgreSQL 15, 16 and 17 removals, with the fix on every line. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Scan every migration in the workspace at once and export one upgrade-blocker report (Markdown + CSV) to attach to the upgrade ticket. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
