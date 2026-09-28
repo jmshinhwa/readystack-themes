@@ -1,5 +1,7 @@
 # Chatbot Safety Lint - companion AI, minors and crisis prompts
 
+![Chatbot Safety Lint - companion AI, minors and crisis prompts — finds the line](https://getreadystack.com/img/promo/ai-companion-safety-lint_demo.gif)
+
 ![AI Companion Safety Lint](https://getreadystack.com/img/promo/sku83624_result_card.jpg)
 
 Most companion-bot system prompts were written by a model, pasted into a repo, and never read again. Since 2026-01-01 that file is a regulated artifact: California SB 243 (Cal. Bus. & Prof. Code s.22601 et seq.) and New York General Business Law Article 47 both put duties on the operator of a companion chatbot, and the system prompt is where the bot either performs those duties or does not.
