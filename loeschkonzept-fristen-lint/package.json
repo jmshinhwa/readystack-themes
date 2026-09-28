@@ -1,0 +1,57 @@
+{
+  "name": "loeschkonzept-fristen-lint",
+  "displayName": "Löschkonzept-Prüfer – Aufbewahrungsfristen 2026",
+  "description": "Prüft Löschkonzepte und Löschfristen-Tabellen (Markdown) gegen § 147 AO, § 257 HGB, § 14b UStG, § 41 EStG und Art. 5 DSGVO: Buchungsbelege und Rechnungen 8 statt 10 Jahre seit 2025.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "löschkonzept",
+    "löschfristen",
+    "aufbewahrungsfristen",
+    "dsgvo",
+    "gobd",
+    "§ 147 ao",
+    "beg iv",
+    "datenschutz"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "loeschFristen.checkFile",
+        "title": "Löschkonzept-Prüfer – Aufbewahrungsfristen 2026: Check this file",
+        "category": "Löschkonzept-Prüfer – Aufbewahrungsfristen 2026"
+      },
+      {
+        "command": "loeschFristen.checkWorkspace",
+        "title": "Löschkonzept-Prüfer – Aufbewahrungsfristen 2026: Sweep workspace and write report (licence)",
+        "category": "Löschkonzept-Prüfer – Aufbewahrungsfristen 2026"
+      },
+      {
+        "command": "loeschFristen.enterKey",
+        "title": "Löschkonzept-Prüfer – Aufbewahrungsfristen 2026: Enter licence key",
+        "category": "Löschkonzept-Prüfer – Aufbewahrungsfristen 2026"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "loeschkonzept-fristen-lint"
+  },
+  "homepage": "https://getreadystack.com/de/tools/loeschkonzept-fristen-lint",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  },
+  "icon": "icon.png"
+}
