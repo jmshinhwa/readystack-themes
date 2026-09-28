@@ -1,5 +1,7 @@
 # Play Declaration Gap Lint (AndroidManifest)
 
+![Play Declaration Gap Lint (AndroidManifest) — finds the line](https://getreadystack.com/img/promo/play-declaration-gap-lint_demo.gif)
+
 Your AndroidManifest.xml is the file Google Play reads first. Some lines in it do not just
 ask the user for a permission — they open a form in Play Console that a human reviewer will
 read, and one of them throws a SecurityException at runtime on Android 14 before a reviewer
