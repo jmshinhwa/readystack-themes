@@ -2,7 +2,7 @@
   "name": "mv3-manifest-preflight",
   "displayName": "MV3 Manifest Preflight - Chrome Web Store",
   "description": "Checks manifest.json against Manifest V3 and Chrome Web Store upload rules: MV2 leftovers, host patterns in permissions, remote code, field limits.",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -17,7 +17,8 @@
     "chrome web store",
     "mv3",
     "edge add-ons",
-    "browser extension lint"
+    "browser extension lint",
+    "webextension"
   ],
   "main": "./extension.js",
   "activationEvents": [
