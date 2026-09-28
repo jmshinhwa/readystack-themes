@@ -1,5 +1,7 @@
 # Immobilienanzeige GEG 87 Lint
 
+![Immobilienanzeige GEG 87 Lint — finds the line](https://getreadystack.com/img/promo/geg-87-listing-lint_demo.gif)
+
 ![Immobilienanzeige GEG 87 Lint](https://getreadystack.com/img/promo/sku142248_result_card.jpg)
 
 Lints German property-ad HTML for the certificate fields that **§ 87 GModG** (the
