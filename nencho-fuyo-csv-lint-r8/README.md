@@ -1,5 +1,7 @@
 # 年末調整 扶養控除 チェック（令和8年分・62万円）
 
+![年末調整 扶養控除 チェック（令和8年分・62万円） — finds the line](https://getreadystack.com/img/promo/nencho-fuyo-csv-lint-r8_demo.gif)
+
 ![年末調整 扶養控除 チェック（令和8年分・62万円）](https://getreadystack.com/img/promo/sku277662_result_card.jpg)
 
 年末調整の扶養親族CSV（扶養控除等申告書のデータ）を、令和8年分の新しい要件で1行ずつ判定する VS Code 拡張です。CSVを開くと、控除漏れ・過大控除・未回収の書類が行の上に出ます。
