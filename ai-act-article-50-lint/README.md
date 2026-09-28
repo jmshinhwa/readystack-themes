@@ -1,5 +1,7 @@
 # AI Act Article 50 Lint - chatbot and AI-content disclosure in code
 
+![AI Act Article 50 Lint - chatbot and AI-content disclosure in code — finds the line](https://getreadystack.com/img/promo/ai-act-article-50-lint_demo.gif)
+
 ![EU AI Act Article 50 Disclosure Lint](https://getreadystack.com/img/promo/sku39634_result_card.jpg)
 
 Article 50 of Regulation (EU) 2024/1689 has applied since **2 August 2026**. It is the transparency article: if your software talks to a person as an AI, or produces synthetic image, audio, video or text, the person has to be told, and the output has to carry a machine-readable mark. Article 99(4) prices a miss at up to **EUR 15,000,000 or 3% of total worldwide annual turnover**, whichever is higher.
