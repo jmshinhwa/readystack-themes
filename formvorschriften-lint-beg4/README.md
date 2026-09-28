@@ -1,5 +1,7 @@
 # Formular-Check: Schriftform & Textform (BEG IV)
 
+![Formular-Check: Schriftform & Textform (BEG IV) — finds the line](https://getreadystack.com/img/promo/formvorschriften-lint-beg4_demo.gif)
+
 ![Formular-Check: Schriftform & Textform (BEG IV)](https://getreadystack.com/img/promo/sku212591_result_card.jpg)
 
 Findet in deutschen Formular- und Vertragsvorlagen (Markdown, HTML, Text) die Form- und Fristangaben, die seit dem Vierten Bürokratieentlastungsgesetz (BEG IV, in Kraft 2025-01-01, BGBl. 2024 I Nr. 323) oder nach geltendem Recht nicht stimmen — mit Zeile, Paragraf und korrigierter Formulierung.
