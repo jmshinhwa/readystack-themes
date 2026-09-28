@@ -17,6 +17,11 @@ ships. JDK 25 shipped on 2025-09-16, so the JDK 21 free window closed on 2026-09
 that window on 2024-09-19. Java 8 and Java 11 never had a No-Fee window at all: those are Oracle
 Technology Network builds, free for development and test only.
 
+Oracle JDK 17 leaves Premier Support at the end of September 2026. For subscribers Oracle waives the
+Extended Support fee from October 2026 to September 2029 (Oracle Java SE Support Roadmap), so the
+date that costs money is not the end of September: it is the day an Oracle build runs in production
+without a subscription behind it.
+
 That is why a text search does not answer the question. `grep oracle` finds the word. It cannot
 tell you that the same line was free last week and is not free today, and a chatbot whose training
 stopped before September 2026 will still tell you Oracle JDK 21 is free to use in production.
@@ -65,6 +70,24 @@ Full version: the same 9 rules swept over every file in the workspace, plus a da
 file, line, distribution, license basis, free-window date and swap - that you can hand to
 procurement or to an Oracle audit, plus team and commercial use. $29 once.
 https://buy.polar.sh/polar_cl_0qxUalAkf4ad9kwGZmCwgbKANSqawgoJq6rVf2ZeWRh
+
+## For a team: every repository, every pull request
+
+Oracle prices Java SE by every employee, not by every install, so one repository nobody opened is
+enough to put the whole payroll in scope. A clean folder on one laptop does not answer that. The team
+key runs this same gate in CI on each repository and pull request, and fails the job when an
+Oracle-licensed Java line appears:
+
+```yaml
+- uses: jmshinhwa/readystack-action@v1
+  with:
+    tool: oracle-jdk-license-gate
+    license: ${{ secrets.READYSTACK_LICENSE }}
+    comment: 'true'   # one pull-request comment with the findings (needs pull-requests: write)
+```
+
+Team key: $149 once, 5 seats, every ReadyStack linter.
+https://buy.polar.sh/polar_cl_l6iN1uWt0FwWu7tBsczD0jWpP2vxFM54Wdwqb3KPi1G
 
 Hub: https://getreadystack.com/tools/oracle-jdk-license-gate
 
