@@ -1,0 +1,57 @@
+{
+  "name": "resilience-plan-lint",
+  "displayName": "Resilience Plan Lint (CER Directive)",
+  "description": "Checks critical infrastructure risk assessment and resilience plan Markdown against EU CER Directive 2022/2557 Art. 12-15: 24-hour notice, one-month report, 9-month and 4-year cycle, all hazards.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "critical infrastructure risk assessment",
+    "CER Directive",
+    "critical entities resilience",
+    "resilience plan",
+    "risk assessment",
+    "incident notification",
+    "compliance",
+    "markdown lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "resiliencePlanLint.checkFile",
+        "title": "Resilience Plan Lint (CER Directive): Check this file",
+        "category": "Resilience Plan Lint (CER Directive)"
+      },
+      {
+        "command": "resiliencePlanLint.checkWorkspace",
+        "title": "Resilience Plan Lint (CER Directive): Sweep workspace and write report (licence)",
+        "category": "Resilience Plan Lint (CER Directive)"
+      },
+      {
+        "command": "resiliencePlanLint.enterKey",
+        "title": "Resilience Plan Lint (CER Directive): Enter licence key",
+        "category": "Resilience Plan Lint (CER Directive)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "resilience-plan-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/resilience-plan-lint",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  },
+  "icon": "icon.png"
+}
