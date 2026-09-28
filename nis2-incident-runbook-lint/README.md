@@ -1,5 +1,7 @@
 # Incident Response Runbook Lint - NIS2 24h/72h/1-month (Article 23)
 
+![Incident Response Runbook Lint - NIS2 24h/72h/1-month (Article 23) — finds the line](https://getreadystack.com/img/promo/nis2-incident-runbook-lint_demo.gif)
+
 ![NIS2 Incident Runbook Lint (Article 23)](https://getreadystack.com/img/promo/sku46696_result_card.jpg)
 
 **Your runbook names one deadline. NIS2 Article 23 sets three.**
