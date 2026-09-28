@@ -2,7 +2,7 @@
   "name": "ssdf-attestation-workflow-audit",
   "displayName": "SSDF Attestation Audit for GitHub Actions",
   "description": "Audit a GitHub Actions workflow against the four CISA secure software development attestation sections and the NIST SSDF practices behind them.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -17,7 +17,8 @@
     "sp-800-218",
     "github-actions",
     "federal",
-    "supply-chain"
+    "supply-chain",
+    "sp 800-218"
   ],
   "main": "./extension.js",
   "activationEvents": [
