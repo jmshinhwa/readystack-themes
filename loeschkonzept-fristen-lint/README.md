@@ -1,5 +1,7 @@
 # Löschkonzept-Prüfer – Aufbewahrungsfristen 2026
 
+![Löschkonzept-Prüfer – Aufbewahrungsfristen 2026 — finds the line](https://getreadystack.com/img/promo/loeschkonzept-fristen-lint_demo.gif)
+
 ![Löschkonzept-Prüfer – Aufbewahrungsfristen 2026](https://getreadystack.com/img/promo/sku330609_result_card.jpg)
 
 Prüft Löschkonzepte und Löschfristen-Tabellen (Markdown) gegen die Aufbewahrungsfristen 2026 — zeilengenau im Editor. Dieselbe Prüfung im Browser: https://getreadystack.com/de/tools/loeschkonzept-fristen-lint
