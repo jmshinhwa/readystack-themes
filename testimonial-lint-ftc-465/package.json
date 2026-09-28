@@ -1,0 +1,57 @@
+{
+  "name": "testimonial-lint-ftc-465",
+  "displayName": "Testimonial Lint: FTC Fake Review Rule",
+  "description": "Flags fake, placeholder and AI-drafted testimonials, hard-coded star ratings, rating-filtered review lists, 5-star-for-a-discount offers and hover-only disclosures in landing-page code (16 CFR Part 46",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "testimonial",
+    "fake reviews",
+    "ftc",
+    "16 cfr 465",
+    "landing page",
+    "compliance",
+    "reviews",
+    "lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "testimonialLint.checkFile",
+        "title": "Testimonial Lint: FTC Fake Review Rule: Check this file",
+        "category": "Testimonial Lint: FTC Fake Review Rule"
+      },
+      {
+        "command": "testimonialLint.checkWorkspace",
+        "title": "Testimonial Lint: FTC Fake Review Rule: Sweep workspace and write report (licence)",
+        "category": "Testimonial Lint: FTC Fake Review Rule"
+      },
+      {
+        "command": "testimonialLint.enterKey",
+        "title": "Testimonial Lint: FTC Fake Review Rule: Enter licence key",
+        "category": "Testimonial Lint: FTC Fake Review Rule"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "testimonial-lint-ftc-465"
+  },
+  "homepage": "https://getreadystack.com/tools/testimonial-lint-ftc-465",
+  "readystack": {
+    "rulesDate": "2026-09-26"
+  },
+  "icon": "icon.png"
+}
