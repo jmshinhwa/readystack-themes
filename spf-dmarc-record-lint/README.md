@@ -1,5 +1,7 @@
 # SPF & DMARC Record Lint
 
+![SPF & DMARC Record Lint — finds the line](https://getreadystack.com/img/promo/spf-dmarc-record-lint_demo.gif)
+
 ![SPF & DMARC Record Lint](https://getreadystack.com/img/promo/sku66280_result_card.jpg)
 
 **DMARC was rewritten on 21 May 2026.** RFC 9989 and RFC 9990 obsoleted RFC 7489, and the `pct=` tag — the one every staged-rollout guide written before 2026 tells you to use — was removed (RFC 9989 Appendix A.6). A receiver following the current spec ignores it. So the record you published as `p=reject; pct=10` is not a 10% experiment any more: it is a full reject on 100% of your mail, and nothing in your zone file, your `dig` output or a language model trained on the old guides will tell you. You find out from the customer whose invoice bounced.
