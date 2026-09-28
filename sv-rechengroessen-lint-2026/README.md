@@ -1,5 +1,7 @@
 # SV-Rechengrößen 2026 Lint (Lohn-Konfig)
 
+![SV-Rechengrößen 2026 Lint (Lohn-Konfig) — finds the line](https://getreadystack.com/img/promo/sv-rechengroessen-lint-2026_demo.gif)
+
 ![SV-Rechengrößen 2026 Lint (Lohn-Konfig)](https://getreadystack.com/img/promo/sku190337_result_card.jpg)
 
 Prüft Lohn- und HR-Konfigurationsdateien (YAML, JSON, .properties, .env, .ini) auf deutsche
