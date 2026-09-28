@@ -1,5 +1,7 @@
 # NF-e XML Lint (BR) - IBS/CBS NT 2025.002 Reforma Tributária
 
+![NF-e XML Lint (BR) - IBS/CBS NT 2025.002 Reforma Tributária — finds the line](https://getreadystack.com/img/promo/auditor-ibs-cbs-nfe_demo.gif)
+
 ![Auditor IBS/CBS para NF-e — NT 2025.002](https://getreadystack.com/img/promo/sku25994_result_card.jpg)
 
 Você abre o XML, roda `Auditar este XML de NF-e`, e o painel devolve isto:
