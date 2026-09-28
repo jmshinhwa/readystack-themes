@@ -1,5 +1,7 @@
 # Grundsteuer Fristen-Check für Objektlisten
 
+![Grundsteuer Fristen-Check für Objektlisten — finds the line](https://getreadystack.com/img/promo/grundsteuer-anzeige-fristen-check_demo.gif)
+
 ![Grundsteuer Fristen-Check für Objektlisten](https://getreadystack.com/img/promo/sku236605_result_card.jpg)
 
 Prüft eine Objekt-Änderungsliste (CSV) auf **Grundsteuer-Anzeigefristen nach § 228 Abs. 2 BewG**: Jede Änderung der tatsächlichen Verhältnisse (Anbau, Ausbau, Abriss, Nutzungsänderung, Neubau, Teilung) ist bis zum **31. März des Folgejahres** beim Finanzamt anzuzeigen. Für Änderungen aus 2025 lief die Frist am **31.03.2026** ab, für Änderungen aus 2026 läuft sie am **31.03.2027** ab.
