@@ -1,5 +1,7 @@
 # KSeF FA(3) Invoice Lint
 
+![KSeF FA(3) Invoice Lint — finds the line](https://getreadystack.com/img/promo/ksef-fa3-invoice-lint_demo.gif)
+
 ![KSeF FA(3) Invoice Lint](https://getreadystack.com/img/promo/sku68045_result_card.jpg)
 
 Reads a Polish KSeF structured invoice XML and names every line the gateway will reject — with the value the FA(3) schema wants instead. Same engine in the editor and on the free web page: <https://getreadystack.com/tools/ksef-fa3-invoice-lint>
