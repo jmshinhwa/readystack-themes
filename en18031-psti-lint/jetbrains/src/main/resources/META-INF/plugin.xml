@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.en18031-psti-lint</id>
+  <name>EN 18031 / PSTI Device Config Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Line-by-line check of shipped device defaults against RED Art. 3(3)(d)(e)(f), EN 18031-1/-2/-3 and UK PSTI Schedule 1</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>EN 18031 / PSTI Device Config Lint: Check This File</b>. Each finding appears on its line with the fix. 19 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/en18031-psti-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/en18031-psti-lint">getreadystack.com/tools/en18031-psti-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_en18031_psti_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.en18031-psti-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.en18031-psti-lint.check" class="com.getreadystack.p_en18031_psti_lint.RsCheckAction"
+            text="EN 18031 / PSTI Device Config Lint: Check This File" description="Run EN 18031 / PSTI Device Config Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
