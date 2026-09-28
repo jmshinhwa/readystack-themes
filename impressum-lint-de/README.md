@@ -1,5 +1,7 @@
 # Impressum & Shop-Pflichtangaben Lint (DE)
 
+![Impressum & Shop-Pflichtangaben Lint (DE) — finds the line](https://getreadystack.com/img/promo/impressum-lint-de_demo.gif)
+
 Diese Erweiterung liest die Rechtstexte, die in Ihrem Repository liegen — Impressum, Footer,
 Widerrufsbelehrung, Produkt- und Kassenseiten-Templates — und meldet jede Fundstelle, die auf eine
 Norm zeigt, die es so nicht mehr gibt, sowie jede Pflichtangabe, die an dieser Stelle fehlt.
