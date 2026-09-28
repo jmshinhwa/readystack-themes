@@ -1,5 +1,7 @@
 # PCI Payment Page Script Audit
 
+![PCI Payment Page Script Audit — finds the line](https://getreadystack.com/img/promo/pci-payment-page-script-audit_demo.gif)
+
 ![PCI Payment Page Script Audit: requirement 6.4.3 and 11.6.1 on your checkout markup](https://getreadystack.com/img/promo/sku17800_result_card.jpg)
 
 PCI DSS 4.0.1 requirements 6.4.3 and 11.6.1 have been mandatory since 2025-03-31, and the PCI SSC revised FAQ 1331 on 2026-08-04 so a QSA agreement alone no longer marks them not applicable. This reads a checkout page and names every script that has no authorization method, no integrity method and no inventory row.
