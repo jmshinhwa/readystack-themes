@@ -1,5 +1,7 @@
 # Steuer-Lint: Hinzurechnungsbesteuerung AStG 2026
 
+![Steuer-Lint: Hinzurechnungsbesteuerung AStG 2026 — finds the line](https://getreadystack.com/img/promo/steuer-lint-astg-hinzurechnung_demo.gif)
+
 ![Steuer-Lint: Hinzurechnungsbesteuerung AStG 2026](https://getreadystack.com/img/promo/sku245388_result_card.jpg)
 
 **KI-Entwurf: 25 % statt 15 % Niedrigsteuergrenze.** Diese Erweiterung prüft Mandanten-Memos, Gutachtenentwürfe und KI-Entwürfe zur Hinzurechnungsbesteuerung (Markdown und Text) gegen 10 Regeln aus AStG, GewStG und AO und meldet jede veraltete Aussage mit Zeile, Paragraf und dem Tag, seit dem die geltende Fassung gilt.
