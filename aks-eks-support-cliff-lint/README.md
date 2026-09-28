@@ -1,5 +1,7 @@
 # AKS LTS & EKS Extended Support Lint for Terraform
 
+![AKS LTS & EKS Extended Support Lint for Terraform — finds the line](https://getreadystack.com/img/promo/aks-eks-support-cliff-lint_demo.gif)
+
 ![AKS LTS & EKS Extended Support Lint for Terraform](https://getreadystack.com/img/promo/sku326983_result_card.jpg)
 
 Checks `aws_eks_cluster` and `azurerm_kubernetes_cluster` blocks in your `.tf` files against the published EKS and AKS Kubernetes version calendars, and tells you which clusters are already paying the extended-support rate, which ones AWS will upgrade on its own, and which AKS clusters ask for Long Term Support on a tier that does not include it.
