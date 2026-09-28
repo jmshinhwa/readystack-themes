@@ -1,5 +1,7 @@
 # France E-Invoice Reception Lint
 
+![France E-Invoice Reception Lint — finds the line](https://getreadystack.com/img/promo/france-einvoice-reception-lint_demo.gif)
+
 ![France E-Invoice Reception Lint](https://getreadystack.com/img/promo/sku52828_result_card.jpg)
 
 Since **1 September 2026** every business established in France must be able to **receive** an
