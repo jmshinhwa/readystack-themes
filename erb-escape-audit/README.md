@@ -1,5 +1,7 @@
 # ERB Escape Audit — Rails XSS lint
 
+![ERB Escape Audit - Rails XSS lint — finds the line](https://getreadystack.com/img/promo/erb-escape-audit_demo.gif)
+
 ERB escapes `<%= %>` by default. Every cross-site-scripting hole in a Rails view is therefore
 a line where someone *turned the escaping off* — `raw`, `.html_safe`, `<%==` — or a line where
 HTML escaping was never the right escaping: inside `<script>`, inside an `onclick=`, inside an
