@@ -1,5 +1,7 @@
 # Vergabe Schwellenwerte Check 2026
 
+![Vergabe Schwellenwerte Check 2026 — finds the line](https://getreadystack.com/img/promo/vergabe-schwellenwerte-check-2026_demo.gif)
+
 ![Vergabe Schwellenwerte Check 2026](https://getreadystack.com/img/promo/sku278273_result_card.jpg)
 
 Findet veraltete EU-Schwellenwerte in Vergabe-Vorlagen, Dienstanweisungen und Konfigurationsdateien (Markdown, JSON, YAML, Text) und nennt pro Zeile den Wert, der seit 2026-01-01 gilt.
