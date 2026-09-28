@@ -1,5 +1,7 @@
 # targetSdk 36 Deadline Gate (Google Play)
 
+![targetSdk 36 Deadline Gate (Google Play) — finds the line](https://getreadystack.com/img/promo/target-sdk-36-deadline-gate_demo.gif)
+
 ![targetSdk 36 Deadline Gate (Google Play)](https://getreadystack.com/img/promo/sku38186_result_card.jpg)
 
 Reads an `AndroidManifest.xml` and an `app/build.gradle` and tells you what breaks when you
