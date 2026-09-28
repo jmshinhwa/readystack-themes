@@ -1,5 +1,7 @@
 # Canal de Denuncias Lint — Ley 2/2023 (ES)
 
+![Canal de Denuncias Lint — Ley 2/2023 (ES) — finds the line](https://getreadystack.com/img/promo/canal-de-denuncias-lint-es_demo.gif)
+
 ![Canal de Denuncias Lint — Ley 2/2023 (ES)](https://getreadystack.com/img/promo/sku115127_result_card.jpg)
 
 Revisa la **política de tu canal interno de denuncias** escrita en Markdown y te dice, línea a
