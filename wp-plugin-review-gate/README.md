@@ -1,5 +1,7 @@
 # WordPress Plugin Review Gate - wp.org pre-submission check
 
+![WordPress Plugin Review Gate - wp.org pre-submission check — finds the line](https://getreadystack.com/img/promo/wp-plugin-review-gate_demo.gif)
+
 ![WP Plugin Review Gate](https://getreadystack.com/img/promo/sku97552_result_card.jpg)
 
 You wrote a WordPress plugin. The code works. The thing that sends it back from the
