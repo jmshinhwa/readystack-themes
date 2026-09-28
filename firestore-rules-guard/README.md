@@ -1,5 +1,7 @@
 # Firestore Security Rules Lint - open rules and missing auth
 
+![Firestore Security Rules Lint - open rules and missing auth — finds the line](https://getreadystack.com/img/promo/firestore-rules-guard_demo.gif)
+
 ![Firestore Rules Guard](https://getreadystack.com/img/promo/sku63727_result_card.jpg)
 
 Firebase security rules are the only thing between a public API endpoint and your users' documents. They are also the file most often written by a coding assistant and never read again: `firestore.rules` and `storage.rules` are short, they look declarative, and a wrong line fails open instead of failing loudly. Nothing in the Firebase CLI stops `firebase deploy --only firestore:rules` from publishing a ruleset that lets anyone on the internet page your whole `users` collection.
