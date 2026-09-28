@@ -2,7 +2,7 @@
   "name": "mcp-2026-migration-lint",
   "displayName": "MCP Server Lint - 2026 spec migration",
   "description": "The 2026-07-28 revision removed the initialize handshake, sessions, ping and four more RPCs. Your assistant was trained before that and still writes them.",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -17,7 +17,9 @@
     "model-context-protocol",
     "server",
     "migration",
-    "ai"
+    "ai",
+    "model context protocol",
+    "json-rpc"
   ],
   "activationEvents": [
     "onStartupFinished"
