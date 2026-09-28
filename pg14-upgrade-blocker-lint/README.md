@@ -1,5 +1,7 @@
 # PostgreSQL 14 Upgrade Lint (Aurora/RDS 2027)
 
+![PostgreSQL 14 Upgrade Lint (Aurora/RDS 2027) — finds the line](https://getreadystack.com/img/promo/pg14-upgrade-blocker-lint_demo.gif)
+
 ![PostgreSQL 14 Upgrade Lint (Aurora/RDS 2027)](https://getreadystack.com/img/promo/sku325988_result_card.jpg)
 
 Flags every line in your `.sql`, `.conf` and `.tf` files that PostgreSQL 15, 16 or 17 removed or renamed, and prints the fix next to it. Built for teams on **Amazon Aurora PostgreSQL 14** and **RDS for PostgreSQL 14**, whose standard support ends on **28 February 2027**.
