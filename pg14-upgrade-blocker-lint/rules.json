@@ -1,0 +1,23 @@
+[
+{"id":"PG15-START-BACKUP","v":15,"sev":"error","re":"\\bpg_start_backup\\s*\\(","msg":"pg_start_backup() was renamed in PostgreSQL 15 (exclusive backup mode removed)","fix":"call pg_backup_start(label, fast) in the same session as pg_backup_stop()"},
+{"id":"PG15-STOP-BACKUP","v":15,"sev":"error","re":"\\bpg_stop_backup\\s*\\(","msg":"pg_stop_backup() was renamed in PostgreSQL 15","fix":"call pg_backup_stop() in the session that ran pg_backup_start()"},
+{"id":"PG15-BACKUP-START-TIME","v":15,"sev":"error","re":"\\bpg_backup_start_time\\s*\\(","msg":"pg_backup_start_time() was removed in PostgreSQL 15","fix":"drop the call; track the start time in your backup tool"},
+{"id":"PG15-IS-IN-BACKUP","v":15,"sev":"error","re":"\\bpg_is_in_backup\\s*\\(","msg":"pg_is_in_backup() was removed in PostgreSQL 15","fix":"drop the call; only non-exclusive backups exist from 15 on"},
+{"id":"PG15-PLPYTHON2","v":15,"sev":"error","re":"\\bplpython2?u\\b","msg":"plpython2u / plpythonu were removed in PostgreSQL 15 (Python 2 no longer supported)","fix":"port the function to Python 3 and use LANGUAGE plpython3u"},
+{"id":"PG15-STATS-TEMP-DIR","v":15,"sev":"error","re":"\\bstats_temp_directory\\b","msg":"server variable stats_temp_directory was removed in PostgreSQL 15","fix":"delete the setting (statistics now live in shared memory)"},
+{"id":"PG15-DUMP-NO-SYNC-SNAP","v":15,"sev":"warn","re":"--no-synchronized-snapshots\\b","msg":"pg_dump --no-synchronized-snapshots was removed in PostgreSQL 15","fix":"remove the option"},
+{"id":"PG16-FORCE-PARALLEL","v":16,"sev":"error","re":"\\bforce_parallel_mode\\b","msg":"force_parallel_mode was renamed in PostgreSQL 16","fix":"use debug_parallel_query"},
+{"id":"PG16-PROMOTE-TRIGGER","v":16,"sev":"error","re":"\\bpromote_trigger_file\\b","msg":"server variable promote_trigger_file was removed in PostgreSQL 16","fix":"promote with pg_ctl promote or SELECT pg_promote()"},
+{"id":"PG16-VACUUM-DEFER","v":16,"sev":"error","re":"\\bvacuum_defer_cleanup_age\\b","msg":"server variable vacuum_defer_cleanup_age was removed in PostgreSQL 16","fix":"use hot_standby_feedback or a replication slot"},
+{"id":"PG16-LC-VARS","v":16,"sev":"error","re":"(current_setting\\s*\\(\\s*'lc_(collate|ctype)'|\\bSHOW\\s+lc_(collate|ctype)\\b)","msg":"read-only server variables lc_collate and lc_ctype were removed in PostgreSQL 16","fix":"read datcollate / datctype from pg_database"},
+{"id":"PG16-WAL-TILL-END","v":16,"sev":"error","re":"\\bpg_get_wal_(records_info|stats)_till_end_of_wal\\b","msg":"pg_walinspect *_till_end_of_wal() functions were removed in PostgreSQL 16","fix":"call pg_get_wal_records_info() / pg_get_wal_stats() with an end LSN"},
+{"id":"PG16-SELECT-RULE-VIEW","v":16,"sev":"error","re":"\\bCREATE\\s+(OR\\s+REPLACE\\s+)?RULE\\s+\"?_RETURN\"?","msg":"creating views manually with ON SELECT rules was removed in PostgreSQL 16","fix":"use CREATE VIEW"},
+{"id":"PG17-OLD-SNAPSHOT","v":17,"sev":"error","re":"\\bold_snapshot_threshold\\b","msg":"server variable old_snapshot_threshold was removed in PostgreSQL 17","fix":"delete the setting; bound long transactions with idle_in_transaction_session_timeout"},
+{"id":"PG17-DB-USER-NS","v":17,"sev":"error","re":"\\bdb_user_namespace\\b","msg":"db_user_namespace (per-database users) was removed in PostgreSQL 17","fix":"create ordinary roles and restrict them with CONNECT privileges"},
+{"id":"PG17-ADMINPACK","v":17,"sev":"error","re":"\\badminpack\\b","msg":"the adminpack contrib extension was removed in PostgreSQL 17","fix":"DROP EXTENSION adminpack before the upgrade"},
+{"id":"PG17-TRACE-RECOVERY","v":17,"sev":"error","re":"\\btrace_recovery_messages\\b","msg":"server variable trace_recovery_messages was removed in PostgreSQL 17","fix":"delete the setting"},
+{"id":"PG17-PGSS-BLK-TIME","v":17,"sev":"error","re":"\\bblk_(read|write)_time\\b","msg":"pg_stat_statements blk_read_time / blk_write_time were renamed in PostgreSQL 17","fix":"use shared_blk_read_time / shared_blk_write_time"},
+{"id":"PG17-BGWRITER-CHECKPOINT","v":17,"sev":"error","re":"\\b(checkpoints_timed|checkpoints_req|checkpoint_write_time|checkpoint_sync_time|buffers_checkpoint)\\b","msg":"checkpoint columns were removed from pg_stat_bgwriter in PostgreSQL 17","fix":"read them from the new view pg_stat_checkpointer"},
+{"id":"PG17-BUFFERS-BACKEND","v":17,"sev":"error","re":"\\bbuffers_backend(_fsync)?\\b","msg":"buffers_backend / buffers_backend_fsync were removed from pg_stat_bgwriter in PostgreSQL 17","fix":"use pg_stat_io"},
+{"id":"PG17-ICU-LOCALE-COL","v":17,"sev":"error","re":"\\b(colliculocale|daticulocale)\\b","msg":"pg_collation.colliculocale / pg_database.daticulocale were renamed in PostgreSQL 17","fix":"use colllocale / datlocale"}
+]
