@@ -2,7 +2,7 @@
   "name": "gensen-choshu-rate-lint-jp",
   "displayName": "源泉徴収 計算チェック 10.21%・20.42%（令和9年改正対応）",
   "description": "報酬・料金の源泉徴収を計算するコード(JS/TS/Python)を国税庁の式で検査。10%だけ・20.42%を全額に・102,100円抜け・端数の四捨五入・令和9年の1.1%+防衛1%の前倒しを行番号で指摘。",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -52,7 +52,7 @@
   },
   "homepage": "https://getreadystack.com/ja/tools/gensen-choshu-rate-lint-jp",
   "readystack": {
-    "rulesDate": "2026-09-25"
+    "rulesDate": "2026-09-27"
   },
   "icon": "icon.png"
 }
