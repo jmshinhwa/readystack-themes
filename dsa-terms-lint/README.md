@@ -1,5 +1,7 @@
 # Terms of Service Lint - EU Digital Services Act
 
+![Terms of Service Lint - EU Digital Services Act — finds the line](https://getreadystack.com/img/promo/dsa-terms-lint_demo.gif)
+
 ![DSA Terms Lint - EU Digital Services Act](https://getreadystack.com/img/promo/sku111453_result_card.jpg)
 
 Your terms-of-service file is a compliance document now. Since **17 February 2024** the EU Digital
