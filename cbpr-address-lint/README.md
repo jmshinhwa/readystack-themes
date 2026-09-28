@@ -1,5 +1,7 @@
 # CBPR+ Structured Address Lint
 
+![CBPR+ Structured Address Lint — finds the line](https://getreadystack.com/img/promo/cbpr-address-lint_demo.gif)
+
 ![CBPR+ Structured Address Lint](https://getreadystack.com/img/promo/sku142540_result_card.jpg)
 
 **Your AI assistant will happily generate a `pacs.008` with the whole beneficiary address crammed into two `AdrLine` elements. That shape is the one CBPR+ is removing.** This extension reads the postal-address blocks in your ISO 20022 XML and names the ones a correspondent bank has to repair by hand.
