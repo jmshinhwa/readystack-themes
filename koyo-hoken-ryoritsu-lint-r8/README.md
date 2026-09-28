@@ -1,5 +1,7 @@
 # 給与計算 雇用保険料率チェッカー 令和8年度
 
+![給与計算 雇用保険料率チェッカー 令和8年度 — finds the line](https://getreadystack.com/img/promo/koyo-hoken-ryoritsu-lint-r8_demo.gif)
+
 ![給与計算 雇用保険料率チェッカー 令和8年度](https://getreadystack.com/img/promo/sku333260_result_card.jpg)
 
 給与計算の設定ファイルやソースに、令和7年度以前の雇用保険料率が残っていないかを1行ずつ調べる VS Code 拡張です。YAML・JSON・CSV・TypeScript・JavaScript・Python を読みます。
