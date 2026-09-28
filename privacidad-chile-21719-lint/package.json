@@ -1,0 +1,55 @@
+{
+  "name": "privacidad-chile-21719-lint",
+  "displayName": "Privacidad Chile: Ley 21.719 Policy Lint",
+  "description": "Revisa la política de privacidad de un sitio chileno (WordPress, Elementor, portfolio) contra el art. 14 ter de la Ley 21.719, vigente el 2026-12-01: RUT, derechos, Agencia, transferencias.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "privacidad chile",
+    "ley 21719",
+    "politica de privacidad",
+    "proteccion de datos",
+    "wordpress",
+    "chile",
+    "lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "privacidadChile.checkFile",
+        "title": "Privacidad Chile: Ley 21.719 Policy Lint: Check this file",
+        "category": "Privacidad Chile: Ley 21.719 Policy Lint"
+      },
+      {
+        "command": "privacidadChile.checkWorkspace",
+        "title": "Privacidad Chile: Ley 21.719 Policy Lint: Sweep workspace and write report (licence)",
+        "category": "Privacidad Chile: Ley 21.719 Policy Lint"
+      },
+      {
+        "command": "privacidadChile.enterKey",
+        "title": "Privacidad Chile: Ley 21.719 Policy Lint: Enter licence key",
+        "category": "Privacidad Chile: Ley 21.719 Policy Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "privacidad-chile-21719-lint"
+  },
+  "homepage": "https://getreadystack.com/es/tools/privacidad-chile-21719-lint",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  }
+}
