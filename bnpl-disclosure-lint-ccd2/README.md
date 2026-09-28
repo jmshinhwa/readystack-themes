@@ -1,5 +1,7 @@
 # Checkout Disclosure Lint - BNPL and consumer credit (EU CCD2)
 
+![Checkout Disclosure Lint - BNPL and consumer credit (EU CCD2) — finds the line](https://getreadystack.com/img/promo/bnpl-disclosure-lint-ccd2_demo.gif)
+
 ![BNPL Disclosure Lint - EU CCD2 2026](https://getreadystack.com/img/promo/sku102892_result_card.jpg)
 
 AI-written storefront code answers from the directive it was trained on. For consumer credit that is
