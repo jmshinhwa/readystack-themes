@@ -1,5 +1,7 @@
 # WCAG 2.1 AA Audit - HTML template legal baseline (ADA, EN 301 549)
 
+![WCAG 2.1 AA Audit - HTML template legal baseline (ADA, EN 301 549) — finds the line](https://getreadystack.com/img/promo/wcag21-aa-legal-baseline-audit_demo.gif)
+
 ![WCAG 2.1 AA Legal Baseline Audit for templates](https://getreadystack.com/img/promo/sku19839_result_card.jpg)
 
 Audits HTML, JSX, Vue, Twig, Blade, ERB and Razor markup against the 24 WCAG 2.1 Level AA checks that 28 CFR 35.200 and EN 301 549 actually name - not WCAG 2.2.
