@@ -2,7 +2,7 @@
   "name": "barrierefreiheitserklaerung-check",
   "displayName": "Barrierefreiheitserklärung Check (BFSG, BITV)",
   "description": "Prüft Ihre Erklärung zur Barrierefreiheit (Markdown/HTML) auf die Pflichtangaben nach BFSG Anlage 3 und BITV 2.0 § 7 / § 12b BGG – mit Zeilennummer und Korrekturvorschlag.",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,5 +49,8 @@
     "directory": "barrierefreiheitserklaerung-check"
   },
   "homepage": "https://getreadystack.com/de/tools/barrierefreiheitserklaerung-check",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  }
 }
