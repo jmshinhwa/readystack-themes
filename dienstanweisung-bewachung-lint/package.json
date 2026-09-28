@@ -1,0 +1,57 @@
+{
+  "name": "dienstanweisung-bewachung-lint",
+  "displayName": "Dienstanweisung Bewachung: BewachV-Check",
+  "description": "Zeigt, welche Pflichtinhalte in der Dienstanweisung eines Bewachungsunternehmens fehlen: § 17, 18, 20 BewachV und § 34a Abs. 1a GewO. 12 rules, Zeile und Fix je Befund.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "dienstanweisung",
+    "bewachung",
+    "bewachv",
+    "bewacherregister",
+    "34a gewo",
+    "sicherheitsdienst",
+    "wachdienst",
+    "lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "dienstanweisungBw.checkFile",
+        "title": "Dienstanweisung Bewachung: BewachV-Check: Check this file",
+        "category": "Dienstanweisung Bewachung: BewachV-Check"
+      },
+      {
+        "command": "dienstanweisungBw.checkWorkspace",
+        "title": "Dienstanweisung Bewachung: BewachV-Check: Sweep workspace and write report (licence)",
+        "category": "Dienstanweisung Bewachung: BewachV-Check"
+      },
+      {
+        "command": "dienstanweisungBw.enterKey",
+        "title": "Dienstanweisung Bewachung: BewachV-Check: Enter licence key",
+        "category": "Dienstanweisung Bewachung: BewachV-Check"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "dienstanweisung-bewachung-lint"
+  },
+  "homepage": "https://getreadystack.com/de/tools/dienstanweisung-bewachung-lint",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  },
+  "icon": "icon.png"
+}
