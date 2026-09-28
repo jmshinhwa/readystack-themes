@@ -2,7 +2,7 @@
   "name": "rds-extended-support-cost-lint",
   "displayName": "RDS Extended Support Cost Lint for Terraform",
   "description": "Flags aws_db_instance and Aurora clusters in Terraform whose MySQL/PostgreSQL major version is past AWS standard support, and prices the per-vCPU-hour Extended Support surcharge per year.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
