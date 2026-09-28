@@ -1,5 +1,7 @@
 # CNPJ Alfanumérico Lint — validação de CNPJ no código
 
+![CNPJ Alfanumérico Lint — validação de CNPJ no código — finds the line](https://getreadystack.com/img/promo/cnpj-alfanumerico-lint_demo.gif)
+
 ![CNPJ Alfanumérico Lint — validação de CNPJ no código](https://getreadystack.com/img/promo/sku336614_result_card.jpg)
 
 Acha no seu código o CNPJ tratado só como número — regex `\d{14}`, `replace(/\D/g, '')`, `parseInt` no cálculo do DV, tipo `number`, coluna `BIGINT` — antes que ele recuse uma empresa nova.
