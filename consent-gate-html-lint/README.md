@@ -1,5 +1,7 @@
 # Consent Gate HTML Lint (EU/UK ePrivacy)
 
+![Consent Gate HTML Lint (EU/UK ePrivacy) — finds the line](https://getreadystack.com/img/promo/consent-gate-html-lint_demo.gif)
+
 ![Consent Gate HTML Lint (EU/UK ePrivacy)](https://getreadystack.com/img/promo/sku38345_result_card.jpg)
 
 This extension reads an HTML file and reports every `<script>`, `<iframe>` and `<link>` tag that contacts a third party before the visitor has given consent.
