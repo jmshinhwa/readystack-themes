@@ -1,5 +1,7 @@
 # Lit Template Binding Audit
 
+![Lit Template Binding Audit — finds the line](https://getreadystack.com/img/promo/lit-binding-xss-audit_demo.gif)
+
 ![Lit Template Binding Audit](https://getreadystack.com/img/promo/sku99611_result_card.jpg)
 
 lit-html escapes the text you interpolate into a child position. It does not escape everything a
