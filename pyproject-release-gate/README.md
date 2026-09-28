@@ -1,5 +1,7 @@
 # pyproject.toml Release Gate (PEP 639)
 
+![pyproject.toml Release Gate (PEP 639) — finds the line](https://getreadystack.com/img/promo/pyproject-release-gate_demo.gif)
+
 ![pyproject.toml Release Gate (PEP 639)](https://getreadystack.com/img/promo/sku37307_result_card.jpg)
 
 Reads the `pyproject.toml` open in your editor and reports every piece of `[project]` metadata
