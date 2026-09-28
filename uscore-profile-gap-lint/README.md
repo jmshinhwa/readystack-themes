@@ -1,5 +1,7 @@
 # US Core Profile Gap Check (USCDI v3)
 
+![US Core Profile Gap Check (USCDI v3) — finds the line](https://getreadystack.com/img/promo/uscore-profile-gap-lint_demo.gif)
+
 ![US Core Profile Gap Check (USCDI v3)](https://getreadystack.com/img/promo/sku117700_result_card.jpg)
 
 A resource that says `"profile": ["http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient|3.1.1"]` validates cleanly. It is a perfectly valid USCDI v1 resource. The validator has no opinion about whether USCDI v1 is still the floor.
