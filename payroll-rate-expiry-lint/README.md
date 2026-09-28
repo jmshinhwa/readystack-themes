@@ -1,5 +1,7 @@
 # Payroll Rate Expiry Lint
 
+![Payroll Rate Expiry Lint — finds the line](https://getreadystack.com/img/promo/payroll-rate-expiry-lint_demo.gif)
+
 ![Payroll Rate Expiry Lint](https://getreadystack.com/img/promo/sku130737_result_card.jpg)
 
 A payroll rate table is the one file in a payroll system that is wrong by default. Every figure in it —
