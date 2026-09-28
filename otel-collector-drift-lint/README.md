@@ -1,5 +1,7 @@
 # OpenTelemetry Collector Config Lint - drift and deprecated components
 
+![OpenTelemetry Collector Config Lint - drift and deprecated components — finds the line](https://getreadystack.com/img/promo/otel-collector-drift-lint_demo.gif)
+
 ![OTel Collector Drift Lint](https://getreadystack.com/img/promo/sku81005_result_card.jpg)
 
 AI-generated Collector configs and configs written before 2024 share a problem: they are still valid YAML, and the Collector they were written for no longer exists. This extension reads an OpenTelemetry Collector config and reports the parts that the current Collector rejects at startup, and the attribute names that the semantic conventions renamed out from under your processors.
