@@ -1,5 +1,7 @@
 # Dividenden CSV Lint: Quellensteuer über DBA-Satz
 
+![Dividenden CSV Lint: Quellensteuer über DBA-Satz — finds the line](https://getreadystack.com/img/promo/dividenden-quellensteuer-lint_demo.gif)
+
 ![Dividenden CSV Lint: Quellensteuer über DBA-Satz](https://getreadystack.com/img/promo/sku337281_result_card.jpg)
 
 Ausländische Dividenden versteuern: Der Lint liest die Dividenden-CSV deines Brokers und zeigt pro Zeile, wie viel ausländische Quellensteuer über dem DBA-Satz liegt. Dieser Überhang wird auf die deutsche Abgeltungsteuer **nicht angerechnet** (§32d Abs. 5 EStG) — er ist nur im Quellenstaat erstattbar, und in der Schweiz nur bis zum 31.12. des dritten Jahres nach Fälligkeit (Art. 32 Abs. 1 VStG).
