@@ -2,7 +2,7 @@
   "name": "ai-act-article-50-lint",
   "displayName": "AI Act Article 50 Lint - chatbot and AI-content disclosure in code",
   "description": "Lint source for EU AI Act Article 50 gaps: chatbots with no AI disclosure, generated image/audio/video with no machine-readable marking, deepfakes with no label. Article 50 applies 2 August 2026.",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -15,7 +15,9 @@
     "article-50",
     "disclosure",
     "chatbot",
-    "eu"
+    "eu",
+    "artikel 50",
+    "chatbot kennzeichnung"
   ],
   "main": "./extension.js",
   "activationEvents": [
