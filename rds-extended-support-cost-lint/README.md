@@ -1,5 +1,7 @@
 # RDS Extended Support Cost Lint for Terraform
 
+![RDS Extended Support Cost Lint for Terraform — finds the line](https://getreadystack.com/img/promo/rds-extended-support-cost-lint_demo.gif)
+
 ![RDS Extended Support Cost Lint for Terraform](https://getreadystack.com/img/promo/sku323914_result_card.jpg)
 
 **Finds the RDS and Aurora databases in your `.tf` files that AWS is billing for Extended Support right now, and prices the surcharge per year.**
