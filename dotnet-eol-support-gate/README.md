@@ -1,5 +1,7 @@
 # .NET EOL & CRA Support Window Gate
 
+![.NET EOL & CRA Support Window Gate — finds the line](https://getreadystack.com/img/promo/dotnet-eol-support-gate_demo.gif)
+
 Hub: https://getreadystack.com/tools/dotnet-eol-support-gate
 
 Open a `.csproj`, `Directory.Build.props` or `global.json` and this gate dates it. Every target
