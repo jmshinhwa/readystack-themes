@@ -1,5 +1,7 @@
 # SQL Card Data Lint (PCI DSS Req 3)
 
+![SQL Card Data Lint (PCI DSS Req 3) — finds the line](https://getreadystack.com/img/promo/sql-card-data-lint_demo.gif)
+
 ![SQL Card Data Lint (PCI DSS Req 3)](https://getreadystack.com/img/promo/sku55916_result_card.jpg)
 
 Your assistant wrote the migration. It stored the card.
