@@ -1,5 +1,7 @@
 # Webfont License Audit
 
+![Webfont License Audit — finds the line](https://getreadystack.com/img/promo/webfont-license-audit_demo.gif)
+
 A linter for the one question a foundry audit letter actually asks: **which typeface does this stylesheet serve to a browser, and under what licence?**
 
 Point it at a workspace and it reads every `.css`, `.scss` and `.less` file, parses each `@font-face` block, and reports the licence risks it finds with a rule id, a severity and a line number.
