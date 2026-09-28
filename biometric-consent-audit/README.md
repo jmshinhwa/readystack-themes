@@ -1,5 +1,7 @@
 # Biometric Consent Audit
 
+![Biometric Consent Audit (BIPA / CUBI / CO) — finds the line](https://getreadystack.com/img/promo/biometric-consent-audit_demo.gif)
+
 ![Biometric Consent Audit (BIPA / CUBI / CO)](https://getreadystack.com/img/promo/sku175316_result_card.jpg)
 
 Static audit for code that captures a face, a fingerprint, an iris or a voiceprint. It reads one
