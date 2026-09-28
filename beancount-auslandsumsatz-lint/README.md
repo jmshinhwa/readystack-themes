@@ -1,5 +1,7 @@
 # Beancount/hledger Auslandsumsatz-Check (UStG)
 
+![Beancount/hledger Auslandsumsatz-Check (UStG) — finds the line](https://getreadystack.com/img/promo/beancount-auslandsumsatz-lint_demo.gif)
+
 ![Beancount/hledger Auslandsumsatz-Check (UStG)](https://getreadystack.com/img/promo/sku320201_result_card.jpg)
 
 **Stand 2026-09-23, Beispieljournal: 10 Befunde, ZM für Q2 2026 seit 58 Tagen überfällig (Frist 2026-07-27).** Nach der Korrektur: 0 Befunde.
