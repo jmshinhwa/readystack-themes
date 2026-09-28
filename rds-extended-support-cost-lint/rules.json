@@ -1,0 +1,14 @@
+[
+ {"id":"rds-mysql-5.7","engine":"mysql","major":"5.7","label":"RDS for MySQL 5.7","std_end":"2024-02-29","y1":"2024-03-01","y3":"2026-03-01","es_end":"2029-06-30","next":"8.4","rate_y12":0.1,"rate_y3":0.2},
+ {"id":"rds-mysql-8.0","engine":"mysql","major":"8.0","label":"RDS for MySQL 8.0","std_end":"2026-07-31","y1":"2026-08-01","y3":"2028-08-01","es_end":"2029-07-31","next":"8.4","rate_y12":0.1,"rate_y3":0.2},
+ {"id":"rds-postgres-11","engine":"postgres","major":"11","label":"RDS for PostgreSQL 11","std_end":"2024-02-29","y1":"2024-04-01","y3":"2026-04-01","es_end":"2027-03-31","next":"16","rate_y12":0.1,"rate_y3":0.2},
+ {"id":"rds-postgres-12","engine":"postgres","major":"12","label":"RDS for PostgreSQL 12","std_end":"2025-02-28","y1":"2025-03-01","y3":"2027-03-01","es_end":"2028-02-29","next":"16","rate_y12":0.1,"rate_y3":0.2},
+ {"id":"rds-postgres-13","engine":"postgres","major":"13","label":"RDS for PostgreSQL 13","std_end":"2026-02-28","y1":"2026-03-01","y3":"2028-03-01","es_end":"2029-02-28","next":"16","rate_y12":0.1,"rate_y3":0.2},
+ {"id":"rds-postgres-14","engine":"postgres","major":"14","label":"RDS for PostgreSQL 14","std_end":"2027-02-28","y1":"2027-03-01","y3":"2029-03-01","es_end":"2030-02-28","next":"17","rate_y12":0.1,"rate_y3":0.2},
+ {"id":"aurora-mysql-2","engine":"aurora-mysql","major":"5.7","label":"Aurora MySQL version 2 (5.7)","std_end":"2024-10-31","y1":"2024-12-01","y3":"2026-12-01","es_end":"2029-06-30","next":"8.4","rate_y12":0.1,"rate_y3":0.2},
+ {"id":"aurora-mysql-3","engine":"aurora-mysql","major":"8.0","label":"Aurora MySQL version 3 (8.0)","std_end":"2028-04-30","y1":"2028-05-01","y3":"","es_end":"2029-07-31","next":"8.4","rate_y12":0.1,"rate_y3":0.2},
+ {"id":"aurora-postgresql-11","engine":"aurora-postgresql","major":"11","label":"Aurora PostgreSQL 11","std_end":"2024-02-29","y1":"2024-04-01","y3":"2026-04-01","es_end":"2027-03-31","next":"16","rate_y12":0.1,"rate_y3":0.2},
+ {"id":"aurora-postgresql-12","engine":"aurora-postgresql","major":"12","label":"Aurora PostgreSQL 12","std_end":"2025-02-28","y1":"2025-03-01","y3":"2027-03-01","es_end":"2028-02-29","next":"16","rate_y12":0.1,"rate_y3":0.2},
+ {"id":"aurora-postgresql-13","engine":"aurora-postgresql","major":"13","label":"Aurora PostgreSQL 13","std_end":"2026-02-28","y1":"2026-03-01","y3":"2028-03-01","es_end":"2029-02-28","next":"16","rate_y12":0.1,"rate_y3":0.2},
+ {"id":"aurora-postgresql-14","engine":"aurora-postgresql","major":"14","label":"Aurora PostgreSQL 14","std_end":"2027-02-28","y1":"2027-03-01","y3":"2029-03-01","es_end":"2030-02-28","next":"17","rate_y12":0.1,"rate_y3":0.2}
+]
