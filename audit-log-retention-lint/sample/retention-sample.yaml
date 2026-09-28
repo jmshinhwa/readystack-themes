@@ -1,0 +1,50 @@
+# log-retention: pci-dss
+# Grafana Loki (loki-config.yaml)
+limits_config:
+  retention_period: 744h
+  retention_stream:
+    - selector: '{namespace="payments"}'
+      priority: 1
+      period: 168h
+compactor:
+  retention_enabled: true
+---
+# CloudFormation: API audit log group
+Resources:
+  ApiAuditLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /cde/api/audit
+      RetentionInDays: 30
+  AuditLogBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: cde-audit-logs
+      LifecycleConfiguration:
+        Rules:
+          - Id: archive-then-expire
+            Status: Enabled
+            Transitions:
+              - StorageClass: GLACIER
+                TransitionInDays: 30
+            ExpirationInDays: 180
+---
+# kube-apiserver static pod (excerpt)
+spec:
+  containers:
+    - command:
+        - kube-apiserver
+        - --audit-log-path=/var/log/kubernetes/audit.log
+        - --audit-log-maxage=30
+---
+# Elasticsearch ILM policy (YAML via ECK / Kibana API)
+policy:
+  phases:
+    hot:
+      actions:
+        rollover:
+          max_age: 7d
+    delete:
+      min_age: 90d
+      actions:
+        delete: {}
