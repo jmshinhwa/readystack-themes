@@ -1,0 +1,15 @@
+RDS Extended Support Cost Lint for Terraform (MySQL, PostgreSQL, Aurora) — Licence
+
+Free scope
+  Checks the open .tf file: every RDS and Aurora database whose engine version is billed for Extended Support today, with its yearly surcharge and the date it started. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Scans every .tf file in the workspace in one run and exports one Markdown report of every database's surcharge for the budget or upgrade ticket. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
