@@ -1,5 +1,7 @@
 # Impressum-Check DE: Pflichtangaben
 
+![Impressum-Check DE: Pflichtangaben — finds the line](https://getreadystack.com/img/promo/impressum-check-ddg-de_demo.gif)
+
 ![Impressum-Check DE: Pflichtangaben](https://getreadystack.com/img/promo/sku185448_result_card.jpg)
 
 Diese Erweiterung liest eine Impressum-Seite im Editor und meldet, welche Pflichtangabe fehlt, falsch steht oder auf eine Rechtsgrundlage zeigt, die es nicht mehr gibt. Sie arbeitet offline auf der geöffneten Datei; kein Upload, keine Registrierung.
