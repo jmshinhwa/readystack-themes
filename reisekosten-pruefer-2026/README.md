@@ -1,5 +1,7 @@
 # Reisekostenabrechnung Prüfer 2026 (DE)
 
+![Reisekostenabrechnung Prüfer 2026 (DE) — finds the line](https://getreadystack.com/img/promo/reisekosten-pruefer-2026_demo.gif)
+
 ![Reisekostenabrechnung Prüfer 2026 (DE)](https://getreadystack.com/img/promo/sku165180_result_card.jpg)
 
 Diese Erweiterung liest eine als CSV exportierte Reisekostenabrechnung im Editor und prüft jede Zeile gegen das deutsche Reisekostenrecht. Sie läuft offline; die Datei verlässt den Rechner nicht.
