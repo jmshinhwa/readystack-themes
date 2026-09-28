@@ -1,0 +1,44 @@
+{
+ "_why": "s166 2026-09-28 — Anaconda's own pricing page the same day: Business $50 per user per month; users in organisations with 200+ employees/contractors (incl. affiliates) need a paid Business licence. No team_url until the npm package (CI path) exists.",
+ "vendor": "Anaconda",
+ "months": 12,
+ "example_heads": 50,
+ "bands": [
+  [
+   1,
+   1000000,
+   50.0
+  ]
+ ],
+ "source": "Anaconda pricing page",
+ "source_url": "https://www.anaconda.com/pricing",
+ "measured_at": "2026-09-28",
+ "line": {
+  "en": "Anaconda requires a paid Business licence for users in organisations with 200 or more employees or contractors - at $50 per user a month, {ex} users cost ${exy} a year.",
+  "de": "Anaconda verlangt eine kostenpflichtige Business-Lizenz für Nutzer in Organisationen mit 200 oder mehr Beschäftigten oder Auftragnehmern - bei 50 $ pro Nutzer und Monat kosten {ex} Nutzer ${exy} pro Jahr.",
+  "ja": "従業員・委託先が 200 人以上の組織では、Anaconda の利用者ごとに有料の Business ライセンスが必要です。1 人月 $50 で、{ex} 人なら年 ${exy} です。",
+  "es": "Anaconda exige una licencia Business de pago para los usuarios de organizaciones con 200 o más empleados o contratistas: a $50 por usuario al mes, {ex} usuarios cuestan ${exy} al año.",
+  "pt": "A Anaconda exige uma licença Business paga para usuários de organizações com 200 ou mais funcionários ou terceirizados: a US$ 50 por usuário ao mês, {ex} usuários custam US${exy} por ano."
+ },
+ "ask": {
+  "en": "How many people in your company use conda with Anaconda's channels?",
+  "de": "Wie viele Personen in Ihrem Unternehmen nutzen conda mit den Anaconda-Kanälen?",
+  "ja": "御社で Anaconda のチャンネルから conda を使っている人数は?",
+  "es": "¿Cuántas personas de su empresa usan conda con los canales de Anaconda?",
+  "pt": "Quantas pessoas da sua empresa usam conda com os canais da Anaconda?"
+ },
+ "result": {
+  "en": "{heads} users x ${rate}/month x 12 = ${year} a year at Anaconda's Business list price ({src}), if your organisation has 200 or more employees or contractors. The full report sweeps every file in this workspace.",
+  "de": "{heads} Nutzer x ${rate}/Monat x 12 = ${year} pro Jahr zum Business-Listenpreis von Anaconda ({src}), wenn Ihre Organisation 200 oder mehr Beschäftigte oder Auftragnehmer hat. Der vollständige Bericht prüft jede Datei in diesem Workspace.",
+  "ja": "{heads} 人 x ${rate}/月 x 12 = 年 ${year} (Anaconda Business 定価 · {src})。従業員・委託先が 200 人以上の組織の場合です。完全レポートはこのワークスペースの全ファイルを確認します。",
+  "es": "{heads} usuarios x ${rate}/mes x 12 = ${year} al año al precio de lista Business de Anaconda ({src}), si su organización tiene 200 o más empleados o contratistas. El informe completo revisa cada archivo de este espacio de trabajo.",
+  "pt": "{heads} usuários x US${rate}/mês x 12 = US${year} por ano no preço de tabela Business da Anaconda ({src}), se sua organização tiver 200 ou mais funcionários ou terceirizados. O relatório completo verifica cada arquivo deste workspace."
+ },
+ "clean_line": {
+  "en": "A clean file here does not cover the other environments: in an organisation with 200 or more employees or contractors, each user on Anaconda's channels needs a Business licence at $50 a month - {ex} users cost ${exy} a year.",
+  "de": "Eine saubere Datei deckt die anderen Umgebungen nicht ab: in einer Organisation mit 200 oder mehr Beschäftigten oder Auftragnehmern braucht jeder Nutzer der Anaconda-Kanäle eine Business-Lizenz für 50 $ im Monat - {ex} Nutzer kosten ${exy} pro Jahr.",
+  "ja": "このファイルが問題なくても、ほかの環境は別です。従業員・委託先 200 人以上の組織では、Anaconda のチャンネルを使う人ごとに月 $50 の Business ライセンスが必要で、{ex} 人なら年 ${exy} です。",
+  "es": "Un archivo limpio aquí no cubre los demás entornos: en una organización con 200 o más empleados o contratistas, cada usuario de los canales de Anaconda necesita una licencia Business de $50 al mes; {ex} usuarios cuestan ${exy} al año.",
+  "pt": "Um arquivo limpo aqui não cobre os outros ambientes: numa organização com 200 ou mais funcionários ou terceirizados, cada usuário dos canais da Anaconda precisa de uma licença Business de US$ 50 por mês; {ex} usuários custam US${exy} por ano."
+ }
+}
