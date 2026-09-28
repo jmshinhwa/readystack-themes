@@ -1,5 +1,7 @@
 # Marketing Copy Lint - green claims (EU EmpCo)
 
+![Marketing Copy Lint - green claims (EU EmpCo) — finds the line](https://getreadystack.com/img/promo/green-claim-lint-empco_demo.gif)
+
 ![Green Claim Lint - EU EmpCo 2026](https://getreadystack.com/img/promo/sku77945_result_card.jpg)
 
 On 27 September 2026 the national measures transposing **Directive (EU) 2024/825** - the "empowering consumers for the green transition" directive, EmpCo - start to apply across the EU. It amends the Unfair Commercial Practices Directive 2005/29/EC and the Consumer Rights Directive 2011/83/EU, and it moves a set of familiar marketing phrases onto the Annex I blacklist, where no case-by-case assessment and no amount of evidence can save them.
