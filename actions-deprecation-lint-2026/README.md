@@ -1,5 +1,7 @@
 # GitHub Actions Deprecation Lint
 
+![GitHub Actions Deprecation Lint — finds the line](https://getreadystack.com/img/promo/actions-deprecation-lint-2026_demo.gif)
+
 ![GitHub Actions Deprecation Lint: the 2026 runner and action EOL dates](https://getreadystack.com/img/promo/sku17012_result_card.jpg)
 
 Node 20 is removed from GitHub-hosted runners on 2026-09-23 and ubuntu-22.04 deprecation opens 2026-09-17. This checks a workflow file against 25 dated GitHub shutdowns and names the date each line stops running.
