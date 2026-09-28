@@ -1,0 +1,56 @@
+{
+  "name": "beancount-auslandsumsatz-lint",
+  "displayName": "Beancount/hledger Auslandsumsatz-Check (UStG)",
+  "description": "Prüft Beancount- und hledger-Journale mit Auslandskunden: Euro-Umrechnung (§ 16 Abs. 6 UStG), USt-IdNr-Formate, Reverse Charge ohne deutsche USt und ZM-Frist (§ 18a UStG).",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "beancount",
+    "hledger",
+    "ledger",
+    "plain text accounting",
+    "Umsatzsteuer",
+    "Reverse Charge",
+    "Zusammenfassende Meldung",
+    "USt-IdNr",
+    "Freiberufler",
+    "EÜR"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "beancountAusland.checkFile",
+        "title": "Beancount/hledger Auslandsumsatz-Check (UStG): Check this file",
+        "category": "Beancount/hledger Auslandsumsatz-Check (UStG)"
+      },
+      {
+        "command": "beancountAusland.checkWorkspace",
+        "title": "Beancount/hledger Auslandsumsatz-Check (UStG): Sweep workspace and write report (licence)",
+        "category": "Beancount/hledger Auslandsumsatz-Check (UStG)"
+      },
+      {
+        "command": "beancountAusland.enterKey",
+        "title": "Beancount/hledger Auslandsumsatz-Check (UStG): Enter licence key",
+        "category": "Beancount/hledger Auslandsumsatz-Check (UStG)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "beancount-auslandsumsatz-lint"
+  },
+  "homepage": "https://getreadystack.com/de/tools/beancount-auslandsumsatz-lint",
+  "icon": "icon.png"
+}
