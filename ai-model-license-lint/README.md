@@ -1,5 +1,7 @@
 # AI Model License Lint - weights and dataset licenses in your repo
 
+![AI Model License Lint - weights and dataset licenses in your repo — finds the line](https://getreadystack.com/img/promo/ai-model-license-lint_demo.gif)
+
 ![AI Model License Lint](https://getreadystack.com/img/promo/sku67226_result_card.jpg)
 
 Your assistant suggested `meta-llama/Llama-3.2-11B-Vision-Instruct`. It compiled, it
