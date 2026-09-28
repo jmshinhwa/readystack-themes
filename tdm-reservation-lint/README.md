@@ -1,5 +1,7 @@
 # TDM Reservation Lint
 
+![TDM Reservation Lint — finds the line](https://getreadystack.com/img/promo/tdm-reservation-lint_demo.gif)
+
 ![TDM Reservation Lint](https://getreadystack.com/img/promo/sku57144_result_card.jpg)
 
 A text-and-data-mining reservation only binds a crawler that can read it. Article 4(3) of Directive (EU) 2019/790 — transposed in Germany as § 44b UrhG — lets a rightsholder reserve TDM rights on publicly available content, and for online content it requires that reservation to be **machine-readable**. Since 2 August 2025, Article 53(1)(c) of the EU AI Act requires providers of general-purpose AI models to put a copyright policy in place that identifies and respects those reservations. Both sentences have the same hinge: the machine has to be able to parse what you wrote.
