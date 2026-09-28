@@ -1,5 +1,7 @@
 # Steuerlager-Schwund & Frist-Check (Alkohol)
 
+![Steuerlager-Schwund & Frist-Check (Alkohol) — finds the line](https://getreadystack.com/img/promo/steuerlager-schwund-check-de_demo.gif)
+
 Prüft die Lagerakte eines Steuerlagers im Editor: anerkannte Verlustsätze nach § 13 Abs. 2 AlkStV,
 steuerpflichtige Überfehlmenge in Euro nach § 2 Abs. 1 AlkStG und die Anmeldefristen nach § 19 AlkStG.
 
