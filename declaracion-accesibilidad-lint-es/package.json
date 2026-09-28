@@ -1,0 +1,53 @@
+{
+  "name": "declaracion-accesibilidad-lint-es",
+  "displayName": "Declaración de Accesibilidad Lint (RD 1112/2018)",
+  "description": "Revisa la declaración de accesibilidad de una web pública española contra el art. 15 del RD 1112/2018 y el modelo UE 2018/1523: fecha anual, plazo de 20 días hábiles, reclamación y contenido no accesi",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "accesibilidad",
+    "declaración de accesibilidad",
+    "RD 1112/2018",
+    "UNE-EN 301549",
+    "WCAG",
+    "sector público",
+    "lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "declaracionAccesibilidad.checkFile",
+        "title": "Declaración de Accesibilidad Lint (RD 1112/2018): Check this file",
+        "category": "Declaración de Accesibilidad Lint (RD 1112/2018)"
+      },
+      {
+        "command": "declaracionAccesibilidad.checkWorkspace",
+        "title": "Declaración de Accesibilidad Lint (RD 1112/2018): Sweep workspace and write report (licence)",
+        "category": "Declaración de Accesibilidad Lint (RD 1112/2018)"
+      },
+      {
+        "command": "declaracionAccesibilidad.enterKey",
+        "title": "Declaración de Accesibilidad Lint (RD 1112/2018): Enter licence key",
+        "category": "Declaración de Accesibilidad Lint (RD 1112/2018)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "declaracion-accesibilidad-lint-es"
+  },
+  "homepage": "https://getreadystack.com/es/tools/declaracion-accesibilidad-lint-es",
+  "icon": "icon.png"
+}
