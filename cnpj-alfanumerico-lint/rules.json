@@ -1,0 +1,113 @@
+[
+ {
+  "id": "cnpj-regex-so-digitos",
+  "sev": "error",
+  "ctx": 2,
+  "flags": "i",
+  "pattern": "(?:\\\\d|\\[0-9\\])\\{14\\}",
+  "title": "Regex de CNPJ com 14 dígitos",
+  "msg": "Regex aceita só 14 dígitos: um CNPJ alfanumérico (ex. 12ABC34501DE35) é recusado.",
+  "fix": "Use /^[A-Z0-9]{12}\\d{2}$/ depois de normalizar para maiúsculas."
+ },
+ {
+  "id": "cnpj-regex-mascara-digitos",
+  "sev": "error",
+  "ctx": -1,
+  "flags": "i",
+  "pattern": "(?:\\\\d|\\[0-9\\])\\{2\\}.{0,8}(?:\\\\d|\\[0-9\\])\\{3\\}.{0,8}(?:\\\\d|\\[0-9\\])\\{3\\}.{0,10}(?:\\\\d|\\[0-9\\])\\{4\\}.{0,8}(?:\\\\d|\\[0-9\\])\\{2\\}",
+  "title": "Regex da máscara 00.000.000/0000-00 só com dígitos",
+  "msg": "Regex da máscara formatada exige dígitos nas 12 primeiras posições: 12.ABC.345/01DE-35 não passa.",
+  "fix": "Troque as 12 primeiras posições por [A-Z0-9]; só o DV (2 últimas) continua \\d."
+ },
+ {
+  "id": "cnpj-remove-letras",
+  "sev": "error",
+  "ctx": 0,
+  "flags": "i",
+  "pattern": "cnpj\\w*\\s*\\.\\s*replace(All)?\\s*\\(\\s*/(\\\\D|\\[\\^0-9\\]|\\[\\^\\\\d\\])/|re\\.sub\\(\\s*r?[\\'\"](\\\\D|\\[\\^0-9\\]|\\[\\^\\\\d\\])[\\'\"][^)]*cnpj|cnpj\\w*\\s*\\.\\s*(replaceAll|replace)\\(\\s*\"(\\\\\\\\D|\\[\\^0-9\\])\"|Regex\\.Replace\\(\\s*\\w*cnpj\\w*\\s*,\\s*@?\"(\\\\D|\\\\\\\\D|\\[\\^0-9\\])\"",
+  "title": "Limpeza que apaga letras",
+  "msg": "A limpeza remove tudo que não é dígito e apaga as letras do CNPJ alfanumérico (12ABC34501DE35 vira 123450135).",
+  "fix": "Remova só a pontuação: .replace(/[^A-Z0-9]/gi, '').toUpperCase()"
+ },
+ {
+  "id": "cnpj-parse-numero",
+  "sev": "error",
+  "ctx": 0,
+  "flags": "i",
+  "pattern": "\\b(parseInt|parseFloat|Number|BigInt|int|float|Long\\.parseLong|Long\\.valueOf|Integer\\.parseInt|long\\.Parse|Int64\\.Parse|Convert\\.ToInt64|Convert\\.ToDecimal|intval|to_i)\\s*\\(\\s*[\\w.$]*cnpj\\w*\\s*[,)]",
+  "title": "CNPJ convertido para número",
+  "msg": "O CNPJ é convertido para número: com letras vira NaN, exceção ou 0.",
+  "fix": "Guarde e compare o CNPJ como texto de 14 caracteres."
+ },
+ {
+  "id": "cnpj-dv-digito-a-digito",
+  "sev": "error",
+  "ctx": 4,
+  "flags": "i",
+  "pattern": "\\b(parseInt|Number|int|Character\\.getNumericValue|char\\.GetNumericValue|Integer\\.parseInt)\\s*\\(\\s*[\\w.$]+\\s*(\\.charAt\\s*\\(|\\[)|[\\w$]+\\s*(\\.charAt\\s*\\([^)]*\\)|\\[[^\\]]+\\])\\s*-\\s*[\\'\"]0[\\'\"]",
+  "title": "DV calculado dígito a dígito",
+  "msg": "O cálculo do DV converte cada posição com parseInt/int: uma letra vira NaN e o DV sai errado.",
+  "fix": "Use o valor ASCII − 48 de cada caractere (A=17, B=18 …): c.charCodeAt(0) - 48."
+ },
+ {
+  "id": "cnpj-so-digitos-teste",
+  "sev": "error",
+  "ctx": 0,
+  "flags": "i",
+  "pattern": "cnpj\\w*\\s*\\.\\s*(isdigit|isnumeric|isdecimal)\\s*\\(|/\\^\\\\d\\+\\$/\\.test\\(\\s*[\\w.$]*cnpj|isNumeric\\(\\s*[\\w.$]*cnpj|cnpj\\w*\\.All\\(\\s*char\\.IsDigit|ctype_digit\\(\\s*\\$?\\w*cnpj",
+  "title": "Teste 'só dígitos'",
+  "msg": "O teste exige que o CNPJ seja só dígitos: todo CNPJ alfanumérico falha.",
+  "fix": "Teste /^[A-Z0-9]{12}\\d{2}$/ (ou isalnum() nas 12 primeiras posições + isdigit() no DV)."
+ },
+ {
+  "id": "cnpj-tipo-numerico",
+  "sev": "error",
+  "ctx": 0,
+  "flags": "i",
+  "pattern": "cnpj\\w*\\??\\s*:\\s*(number|bigint|int|float|Int|Long|BigInteger|Decimal)\\b|\\b(long|Long|int|Integer|BigInteger|BigDecimal|decimal|ulong|Int64|UInt64)\\??\\s+_?cnpj\\w*\\b",
+  "title": "CNPJ tipado como número",
+  "msg": "O campo CNPJ tem tipo numérico: não cabe letra e zeros à esquerda se perdem.",
+  "fix": "Tipe como string/String (14 caracteres)."
+ },
+ {
+  "id": "cnpj-coluna-numerica",
+  "sev": "error",
+  "ctx": 0,
+  "flags": "i",
+  "pattern": "\\bcnpj\\w*[\\'\"`]?\\s+(BIGINT|NUMERIC|DECIMAL|INTEGER|INT|NUMBER|BigInt|Decimal)\\b|cnpj\\w*\\s*:\\s*\\{?\\s*(type\\s*:\\s*)?(DataTypes|Sequelize)\\.(BIGINT|INTEGER|DECIMAL|NUMBER)|cnpj\\w*\\s*=\\s*(models\\.|db\\.|sa\\.)?(BigIntegerField|IntegerField|DecimalField|BigInteger|Numeric|Integer)\\b",
+  "title": "Coluna numérica no banco",
+  "msg": "A coluna CNPJ é numérica no banco: o INSERT de um CNPJ alfanumérico falha.",
+  "fix": "Migre para CHAR(14)/VARCHAR(14) antes do primeiro cliente novo."
+ },
+ {
+  "id": "cnpj-input-numerico",
+  "sev": "warn",
+  "ctx": 1,
+  "flags": "i",
+  "pattern": "type\\s*=\\s*\\{?[\\'\"]number[\\'\"]|input[Mm]ode\\s*=\\s*\\{?[\\'\"]numeric[\\'\"]|keyboardType\\s*=\\s*\\{?[\\'\"](numeric|number-pad)[\\'\"]|pattern\\s*=\\s*\\{?[\\'\"](\\\\d\\*|\\[0-9\\]\\*|\\\\d\\{14\\})[\\'\"]",
+  "title": "Campo de formulário numérico",
+  "msg": "O campo do formulário abre teclado numérico ou aceita só dígitos: o cliente não consegue digitar a letra.",
+  "fix": "Use inputmode=\"text\" com autocapitalize=\"characters\"."
+ },
+ {
+  "id": "cnpj-mascara-so-digitos",
+  "sev": "error",
+  "ctx": -1,
+  "flags": "",
+  "pattern": "[\\'\"`](99\\.999\\.999/9999-99|00\\.000\\.000/0000-00|##\\.###\\.###/####-##)[\\'\"`]",
+  "title": "Máscara de digitação só com dígitos",
+  "msg": "A máscara 99.999.999/9999-99 (ou 00.000.000/0000-00) só aceita dígitos: a letra é descartada ao digitar.",
+  "fix": "Use um token alfanumérico nas 12 primeiras posições (ex. 'AA.AAA.AAA/AAAA-00' com A = [A-Z0-9])."
+ },
+ {
+  "id": "cnpj-literal-dv-invalido",
+  "sev": "error",
+  "ctx": -1,
+  "flags": "",
+  "type": "dv",
+  "pattern": "\\b[A-Z0-9]{2}\\.[A-Z0-9]{3}\\.[A-Z0-9]{3}/[A-Z0-9]{4}-\\d{2}\\b|[\\'\"`][A-Z0-9]{12}\\d{2}[\\'\"`]",
+  "title": "CNPJ de exemplo com DV errado",
+  "msg": "O CNPJ literal tem dígito verificador errado: o teste ou o seed passa com um CNPJ que a Receita não emite.",
+  "fix": "Recalcule o DV (módulo 11, pesos 2 a 9, letra = ASCII − 48)."
+ }
+]
