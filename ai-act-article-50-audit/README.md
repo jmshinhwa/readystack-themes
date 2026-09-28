@@ -1,5 +1,7 @@
 # AI Act Transparency Audit - Article 50 (chatbots, deepfakes, AI text)
 
+![AI Act Transparency Audit - Article 50 (chatbots, deepfakes, AI text) — finds the line](https://getreadystack.com/img/promo/ai-act-article-50-audit_demo.gif)
+
 ![EU AI Act Article 50 Transparency Audit for Your Codebase](https://getreadystack.com/img/promo/sku17508_result_card.jpg)
 
 Finds the AI call sites, generation code and system prompts that trigger EU AI Act Article 50 disclosure duties - in force since 2 August 2026.
