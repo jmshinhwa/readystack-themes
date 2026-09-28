@@ -1,5 +1,7 @@
 # Oracle JDK License Gate
 
+![Oracle JDK License Gate — finds the line](https://getreadystack.com/img/promo/oracle-jdk-license-gate_demo.gif)
+
 ![Oracle JDK License Gate](https://getreadystack.com/img/promo/sku156180_result_card.jpg)
 
 Oracle's free window for Java 21 closed on **2026-09-16**. If a Dockerfile, a CI workflow or a
