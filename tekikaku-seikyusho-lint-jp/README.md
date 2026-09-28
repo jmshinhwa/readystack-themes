@@ -1,5 +1,7 @@
 # 請求書インボイス チェッカー（適格請求書・端数処理）
 
+![請求書インボイス チェッカー（適格請求書・端数処理） — finds the line](https://getreadystack.com/img/promo/tekikaku-seikyusho-lint-jp_demo.gif)
+
 ![請求書インボイス チェッカー（適格請求書・端数処理）](https://getreadystack.com/img/promo/sku218176_result_card.jpg)
 
 2026年10月1日から、適格請求書でない請求書を受け取った買手の控除は **80% → 70%** に下がります。登録番号が1桁欠けただけの請求書は適格請求書になりません。この拡張は、あなたのシステムが出力する請求書（.md / .html / .txt）を開いた瞬間に、記載事項の欠けと消費税の端数処理の誤りを行番号つきで示します。
