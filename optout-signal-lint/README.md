@@ -1,5 +1,7 @@
 # Opt-Out Signal Lint
 
+![Opt-Out Signal Lint for US State Privacy Laws — finds the line](https://getreadystack.com/img/promo/optout-signal-lint_demo.gif)
+
 ![Opt-Out Signal Lint for US State Privacy Laws](https://getreadystack.com/img/promo/sku33667_result_card.jpg)
 
 Finds the ad and analytics code that keeps firing after a visitor’s browser has already sent Global Privacy Control.
