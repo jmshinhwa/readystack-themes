@@ -1,5 +1,7 @@
 # Förderantrag-Prüfer: EGZ, KUG, Weiterbildung
 
+![Förderantrag-Prüfer: EGZ, KUG, Weiterbildung — finds the line](https://getreadystack.com/img/promo/foerderantrag-pruefer-sgb3_demo.gif)
+
 ![Förderantrag-Prüfer: EGZ, KUG, Weiterbildung](https://getreadystack.com/img/promo/sku223881_result_card.jpg)
 
 Prüft Ihren Förderantrag-Entwurf an die Arbeitsagentur (Markdown), bevor er rausgeht: Antrag vor Beginn, Höchstsätze, Staffeln und Fristen nach SGB III. Jeder Befund steht in der Zeile, in der er entsteht, mit Paragraf und Korrektur.
