@@ -1,5 +1,7 @@
 # Standards Citation Lint - outdated ISO, NIST and RFC references in docs
 
+![Standards Citation Lint - outdated ISO, NIST and RFC references in docs — finds the line](https://getreadystack.com/img/promo/stale-standard-citation-lint_demo.gif)
+
 ![Stale Standard Citation Lint](https://getreadystack.com/img/promo/sku63908_result_card.jpg)
 
 Your security page still says ISO/IEC 27001:2013. That edition stopped being certifiable on 2025-10-31, and the person reading the page is a procurement reviewer, not a friend.
