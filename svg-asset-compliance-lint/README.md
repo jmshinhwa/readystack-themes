@@ -1,5 +1,7 @@
 # SVG Asset Compliance Lint
 
+![SVG Asset Compliance Lint — finds the line](https://getreadystack.com/img/promo/svg-asset-compliance-lint_demo.gif)
+
 ![SVG Asset Compliance Lint](https://getreadystack.com/img/promo/sku62703_result_card.jpg)
 
 An SVG is the one image format that is also source code. It can carry a script element, an
