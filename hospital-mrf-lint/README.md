@@ -1,5 +1,7 @@
 # Hospital Price Transparency MRF Lint
 
+![Hospital Price Transparency MRF Lint — finds the line](https://getreadystack.com/img/promo/hospital-mrf-lint_demo.gif)
+
 ![Hospital Price Transparency MRF Lint](https://getreadystack.com/img/promo/sku95197_result_card.jpg)
 
 Lints a hospital **standard charges machine-readable file** (the CMS JSON template) against
@@ -65,7 +67,7 @@ and every one of the 15 rules reports with a line number. That is the whole chec
 The full version adds the other axis - scale and the paper trail: sweep every hospital location file
 in the workspace in one pass and export one dated evidence report you keep for the file, with the
 finding counts per location and the rule text beside each one. 29 dollars once, one licence key per
-person or CI seat, 7-day full refund.
+person or CI seat.
 
 ## Commands
 
