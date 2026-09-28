@@ -1,5 +1,7 @@
 # License Flip Audit
 
+![License Flip Audit - BUSL/SSPL/AGPL in your deps — finds the line](https://getreadystack.com/img/promo/license-flip-audit_demo.gif)
+
 ![License Flip Audit - BUSL/SSPL/AGPL in your deps](https://getreadystack.com/img/promo/sku22081_result_card.jpg)
 
 Finds the dependencies whose licence changed under you - Terraform 1.6+ BUSL, Redis 7.4+ SSPL, Bitnami's August 2025 move, Elastic 7.11 - and names the exact version where each flip happened.
