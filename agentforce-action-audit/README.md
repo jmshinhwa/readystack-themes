@@ -1,5 +1,7 @@
 # Agentforce Action Audit
 
+![Agentforce Action Audit — finds the line](https://getreadystack.com/img/promo/agentforce-action-audit_demo.gif)
+
 ![Agentforce Action Audit](https://getreadystack.com/img/promo/sku141697_result_card.jpg)
 
 Reads a Salesforce Agentforce topic file — `*.genAiPlugin-meta.xml`, `*.genAiPlannerBundle`, or any agent metadata XML — and reports **13 defects** with line numbers, before `sf project deploy` and before a customer ever talks to the agent.
