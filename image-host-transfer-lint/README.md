@@ -1,5 +1,7 @@
 # Image Host Transfer Lint
 
+![Image Host Transfer Lint — finds the line](https://getreadystack.com/img/promo/image-host-transfer-lint_demo.gif)
+
 ![Image Host Transfer Lint](https://getreadystack.com/img/promo/sku151192_result_card.jpg)
 
 A docs page is not just text. Every `![screenshot](https://...)`, every avatar,
