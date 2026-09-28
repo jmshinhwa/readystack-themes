@@ -1,0 +1,13 @@
+[
+ {"id": "CER-15-INITIAL", "sev": "error", "art": "Art. 15(1)", "title": "Initial incident notice later than 24 hours", "fix": "Notify the competent authority within 24 hours of becoming aware", "max_hours": 24},
+ {"id": "CER-15-REPORT", "sev": "error", "art": "Art. 15(1)", "title": "Detailed incident report later than one month", "fix": "Send the detailed report no later than one month after the initial notice", "max_days": 31},
+ {"id": "CER-15-MISSING", "sev": "error", "art": "Art. 15(1)", "title": "No incident notification procedure in the plan", "fix": "Add the 24-hour initial notice and one-month detailed report steps"},
+ {"id": "CER-12-CYCLE", "sev": "error", "art": "Art. 12(1)", "title": "Risk assessment review cycle longer than four years or missing", "fix": "Re-assess whenever necessary and at least every four years", "max_years": 4},
+ {"id": "CER-12-FIRST", "sev": "error", "art": "Art. 12(1)", "title": "First risk assessment later than nine months after notification", "fix": "Complete the first risk assessment within nine months of the designation notice", "months": 9},
+ {"id": "CER-12-HAZARDS", "sev": "warning", "art": "Art. 12(1)", "title": "Hazard category missing from the all-hazards assessment", "fix": "Assess natural, accidental, public health and antagonistic risks",
+  "categories": [["natural hazards", "natural (hazard|disaster)|flood|storm|earthquake|wildfire|heatwave|drought|climate"], ["accidents", "accident|explosion|equipment failure|industrial"], ["public health emergencies", "public health|pandemic|epidemic|infectious"], ["antagonistic threats (terrorism, sabotage, insider)", "terroris|sabotage|hybrid|insider|attack"]]},
+ {"id": "CER-12-DEPEND", "sev": "warning", "art": "Art. 12(1)", "title": "No cross-sector dependency analysis", "fix": "Record which sectors depend on you and which you depend on", "pattern": "depend|cross-sector|cross-border"},
+ {"id": "CER-13-LIAISON", "sev": "error", "art": "Art. 13(3)", "title": "No liaison officer named as point of contact", "fix": "Name a liaison officer or equivalent as the contact for the authority", "pattern": "liaison officer|point of contact|contact point"},
+ {"id": "CER-13-MEASURES", "sev": "warning", "art": "Art. 13(1)", "title": "Resilience measure area missing from the plan", "fix": "Cover all Art. 13(1) measure areas in the resilience plan",
+  "categories": [["physical protection", "physical protection|fenc|perimeter|access control|barrier"], ["recovery and business continuity", "business continuity|recover|alternative supply"], ["personnel security and background checks", "background check|personnel security|vetting|access rights"], ["staff training and exercises", "training|exercise|drill|awareness"]]}
+]
