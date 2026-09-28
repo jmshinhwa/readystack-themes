@@ -1,5 +1,7 @@
 # Meldestelle-Prüfer (HinSchG)
 
+![Meldestelle-Prüfer (HinSchG) — finds the line](https://getreadystack.com/img/promo/meldestelle-hinschg-lint_demo.gif)
+
 ![Meldestelle-Prüfer (HinSchG)](https://getreadystack.com/img/promo/sku216715_result_card.jpg)
 
 **Findet Mängel auf Ihrer Meldestelle-Seite und in Ihrer Hinweisgeber-Richtlinie – Zeile für Zeile, mit Paragraf und Korrektur.**
