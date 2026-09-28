@@ -1,0 +1,57 @@
+{
+  "name": "audit-log-retention-lint",
+  "displayName": "Audit Log Retention Lint (PCI DSS, CERT-In)",
+  "description": "Flags log-retention values in Loki, CloudWatch, Elasticsearch ILM, S3 lifecycle and Kubernetes audit YAML that are shorter than PCI DSS 10.5.1, CERT-In 2022 or OMB M-21-31 require.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "log retention",
+    "pci dss",
+    "audit log",
+    "loki",
+    "cloudwatch",
+    "cert-in",
+    "kubernetes audit",
+    "elasticsearch ilm"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "auditLogRetention.checkFile",
+        "title": "Audit Log Retention Lint (PCI DSS, CERT-In): Check this file",
+        "category": "Audit Log Retention Lint (PCI DSS, CERT-In)"
+      },
+      {
+        "command": "auditLogRetention.checkWorkspace",
+        "title": "Audit Log Retention Lint (PCI DSS, CERT-In): Sweep workspace and write report (licence)",
+        "category": "Audit Log Retention Lint (PCI DSS, CERT-In)"
+      },
+      {
+        "command": "auditLogRetention.enterKey",
+        "title": "Audit Log Retention Lint (PCI DSS, CERT-In): Enter licence key",
+        "category": "Audit Log Retention Lint (PCI DSS, CERT-In)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "audit-log-retention-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/audit-log-retention-lint",
+  "readystack": {
+    "rulesDate": "2026-09-26"
+  },
+  "icon": "icon.png"
+}
