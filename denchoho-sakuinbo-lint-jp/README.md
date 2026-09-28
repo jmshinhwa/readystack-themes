@@ -1,5 +1,7 @@
 # 電帳法 索引簿リンター (電子取引データ検索要件)
 
+![電帳法 索引簿リンター (電子取引データ検索要件) — finds the line](https://getreadystack.com/img/promo/denchoho-sakuinbo-lint-jp_demo.gif)
+
 ![電帳法 索引簿リンター (電子取引データ検索要件)](https://getreadystack.com/img/promo/sku128975_result_card.jpg)
 
 電子取引データの**索引簿 (CSV)** を、電子帳簿保存法の**検索要件3項目**とファイル名規則で**行ごとに**検査します。日本の個人事業主・小規模法人の経理担当者向け。エディタの中だけで動き、データはどこにも送信されません。
