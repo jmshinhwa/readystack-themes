@@ -1,5 +1,7 @@
 # SQL Server Docker Licence Lint (MSSQL_PID)
 
+![SQL Server Docker Licence Lint (MSSQL_PID) — finds the line](https://getreadystack.com/img/promo/mssql-container-licence-lint_demo.gif)
+
 ![SQL Server Docker Licence Lint (MSSQL_PID)](https://getreadystack.com/img/promo/sku322126_result_card.jpg)
 
 Checks the `mcr.microsoft.com/mssql/server` containers in your docker-compose files, Kubernetes YAML and Dockerfiles for SQL Server licence gaps, and prints the list-price exposure next to each one.
