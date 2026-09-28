@@ -2,7 +2,7 @@
   "name": "otel-collector-drift-lint",
   "displayName": "OpenTelemetry Collector Config Lint - drift and deprecated components",
   "description": "Flags removed Collector components and legacy semantic-convention attribute names in OpenTelemetry Collector YAML before the upgrade drops your pipeline.",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -15,7 +15,10 @@
     "otel",
     "collector",
     "yaml",
-    "observability"
+    "observability",
+    "opentelemetry collector",
+    "otelcol",
+    "otel yaml"
   ],
   "main": "./extension.js",
   "activationEvents": [
