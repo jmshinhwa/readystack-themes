@@ -1,0 +1,103 @@
+[
+ {
+  "id": "DA-01",
+  "kind": "require",
+  "sev": "error",
+  "cite": "Decisión de Ejecución (UE) 2018/1523, anexo (situación de cumplimiento)",
+  "re": "(plenamente|parcialmente|totalmente)\\s+conforme|no\\s+es\\s+conforme|no\\s+conforme",
+  "msg": "Falta la situación de cumplimiento: escribe si el sitio es «plenamente», «parcialmente» o «no» conforme con el RD 1112/2018."
+ },
+ {
+  "id": "DA-02",
+  "kind": "require",
+  "sev": "error",
+  "cite": "art. 15.2.a RD 1112/2018",
+  "re": "contenidos?\\s+no\\s+accesibles?",
+  "unless": "plenamente\\s+conforme",
+  "msg": "Falta el apartado de contenido no accesible: el art. 15.2.a exige explicar qué partes no son accesibles, por qué y qué alternativa accesible se ofrece."
+ },
+ {
+  "id": "DA-03",
+  "kind": "require",
+  "sev": "error",
+  "cite": "art. 15.2.b y arts. 10-12 RD 1112/2018",
+  "re": "(comunicaci[oó]n|comunicaciones|quejas?|informaci[oó]n\\s+accesible)[^\\n]*(https?://|\\]\\(|href=|@[a-z0-9-]+\\.)",
+  "msg": "Falta el enlace al mecanismo de comunicación (quejas y solicitudes de información accesible): el art. 15.2.b exige enlace y descripción."
+ },
+ {
+  "id": "DA-04",
+  "kind": "require",
+  "sev": "error",
+  "cite": "art. 15.2.c y art. 13.3 RD 1112/2018",
+  "re": "reclamaci[oó]n[^\\n]*(https?://|\\]\\(|href=)",
+  "msg": "La reclamación no tiene enlace: el art. 13.3 exige el enlace al sistema de registro donde se presenta la reclamación."
+ },
+ {
+  "id": "DA-05",
+  "kind": "require",
+  "sev": "error",
+  "cite": "art. 13.3 RD 1112/2018",
+  "re": "unidad\\s+responsable\\s+de\\s+(la\\s+)?accesibilidad",
+  "msg": "No se nombra la Unidad responsable de accesibilidad a la que se elevan las reclamaciones (art. 13.3)."
+ },
+ {
+  "id": "DA-06",
+  "kind": "date_age",
+  "sev": "error",
+  "cite": "art. 15.1 RD 1112/2018",
+  "max_days": 365,
+  "ctx": "revis|actualiz|prepar|elabor|fecha",
+  "msg_none": "La declaración no tiene fecha de preparación o de última revisión: sin fecha no se puede probar la actualización anual del art. 15.1.",
+  "msg": "Última fecha de revisión {date}: han pasado {days} días y el art. 15.1 exige actualizarla como mínimo una vez al año."
+ },
+ {
+  "id": "DA-07",
+  "kind": "plazo",
+  "sev": "error",
+  "cite": "art. 12.3 RD 1112/2018",
+  "line": "(solicitud|queja|comunicaci)",
+  "also": "(respond|respuesta|plazo|contest)",
+  "skip": "reclamaci|aclaraci",
+  "ok": "^(20|veinte)\\s+d[ií]as\\s+h[aá]biles",
+  "msg": "Plazo de respuesta «{found}»: el art. 12.3 fija veinte días hábiles para responder a quejas y solicitudes de información accesible.",
+  "ignore": "^(diez|10)\\s+d[ií]as\\s+h[aá]biles"
+ },
+ {
+  "id": "DA-08",
+  "kind": "plazo",
+  "sev": "error",
+  "cite": "art. 13.4 RD 1112/2018",
+  "line": "reclamaci",
+  "also": "(respond|respuesta|plazo|resol|contest)",
+  "skip": "aclaraci",
+  "ok": "^(dos|2)\\s+meses",
+  "msg": "Plazo de la reclamación «{found}»: el art. 13.4 fija un plazo máximo de dos meses para responderla.",
+  "ignore": "^(20|veinte)\\s+d[ií]as\\s+h[aá]biles"
+ },
+ {
+  "id": "DA-09",
+  "kind": "near",
+  "sev": "error",
+  "cite": "RD 1112/2018, preámbulo (carga desproporcionada)",
+  "re": "carga\\s+desproporcionada",
+  "bad": "falta\\s+de\\s+(tiempo|prioridad|conocimientos?)",
+  "span": 2,
+  "msg": "Se alega carga desproporcionada por «{found}»: la falta de prioridad, tiempo o conocimientos no es un motivo legítimo."
+ },
+ {
+  "id": "DA-10",
+  "kind": "forbid",
+  "sev": "warn",
+  "cite": "UNE-EN 301549:2022",
+  "re": "UNE\\s*139803|WCAG\\s*2\\.0|301\\s?549\\s*V?(1\\.|2\\.1\\.2)|301549:2019",
+  "msg": "Norma citada «{found}» superada: la referencia vigente es UNE-EN 301549:2022 (EN 301 549 V3.2.1, que incluye WCAG 2.1 AA)."
+ },
+ {
+  "id": "DA-11",
+  "kind": "require",
+  "sev": "warn",
+  "cite": "Decisión de Ejecución (UE) 2018/1523, anexo (preparación de la declaración)",
+  "re": "autoevaluaci[oó]n|evaluaci[oó]n\\s+(realizada\\s+)?por\\s+(un\\s+|una\\s+)?(tercer|empresa|entidad)|auditor[ií]a\\s+(externa|de\\s+terceros)",
+  "msg": "No consta el método usado para preparar la declaración (autoevaluación o evaluación por un tercero)."
+ }
+]
