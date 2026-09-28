@@ -3,7 +3,43 @@
  "vendor": "Oracle",
  "months": 12,
  "example_heads": 500,
- "bands": [[1, 999, 15.00], [1000, 2999, 12.00], [3000, 9999, 10.50], [10000, 19999, 8.25], [20000, 29999, 6.75], [30000, 39999, 5.70], [40000, 49999, 5.25]],
+ "bands": [
+  [
+   1,
+   999,
+   15.0
+  ],
+  [
+   1000,
+   2999,
+   12.0
+  ],
+  [
+   3000,
+   9999,
+   10.5
+  ],
+  [
+   10000,
+   19999,
+   8.25
+  ],
+  [
+   20000,
+   29999,
+   6.75
+  ],
+  [
+   30000,
+   39999,
+   5.7
+  ],
+  [
+   40000,
+   49999,
+   5.25
+  ]
+ ],
  "source": "Oracle Java SE Universal Subscription Global Price List",
  "source_url": "https://www.oracle.com/a/ocom/docs/corporate/pricing/java-se-subscription-pricelist-5028356.pdf",
  "measured_at": "2026-09-27",
@@ -30,5 +66,14 @@
  },
  "above": {
   "en": "Above 49,999 people Oracle does not publish a list price; it quotes directly. The full report is the evidence to bring to that conversation."
- }
+ },
+ "clean_line": {
+  "en": "Oracle prices Java SE by total headcount, not by install: one Oracle build in any other repository puts the whole payroll in scope - at list price a {ex}-person company pays ${exy} a year.",
+  "de": "Oracle berechnet Java SE nach der gesamten Belegschaft, nicht pro Installation: ein einziger Oracle-Build in einem anderen Repository bringt die ganze Belegschaft in die Rechnung - zum Listenpreis zahlt ein Unternehmen mit {ex} Personen ${exy} pro Jahr.",
+  "ja": "Oracle は Java SE をインストール数ではなく全従業員数で課金します。ほかのどこかのリポジトリに Oracle ビルドが 1 つあれば全従業員が対象です。定価では {ex} 人の会社で年 ${exy} です。",
+  "es": "Oracle cobra Java SE por toda la plantilla, no por instalación: una sola build de Oracle en cualquier otro repositorio pone a toda la plantilla en la cuenta; a precio de lista, una empresa de {ex} personas paga ${exy} al año.",
+  "pt": "A Oracle cobra o Java SE pelo quadro inteiro, não por instalação: uma única build da Oracle em qualquer outro repositório coloca todo o quadro na conta; a preço de tabela, uma empresa de {ex} pessoas paga US${exy} por ano."
+ },
+ "team_url": "https://buy.polar.sh/polar_cl_l6iN1uWt0FwWu7tBsczD0jWpP2vxFM54Wdwqb3KPi1G",
+ "_s166": "clean_line = the company line on a CLEAN result (a clean folder is not the company's safety) · team_url = Polar team key checkout ([measured 2026-09-28] $149 once · every linter · 5 seats). Oracle roadmap re-read 2026-09-28: JDK 17 Premier Support ends Sep 2026, Extended to Sep 2029 with the Extended Support fee waived Oct 2026-Sep 2029 (subscribers) - so the bill risk is unsubscribed Oracle builds, not the 9/30 date itself."
 }
