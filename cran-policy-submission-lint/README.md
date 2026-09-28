@@ -1,5 +1,7 @@
 # CRAN Submission Lint - R package policy check (DESCRIPTION, NAMESPACE, tests)
 
+![CRAN Submission Lint - R package policy check (DESCRIPTION, NAMESPACE, tests) — finds the line](https://getreadystack.com/img/promo/cran-policy-submission-lint_demo.gif)
+
 ![CRAN Policy Submission Lint](https://getreadystack.com/img/promo/sku57570_result_card.jpg)
 
 Reads an R package the way a CRAN volunteer reads it: not "does it compute", but "does it obey the
