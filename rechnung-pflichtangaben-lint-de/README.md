@@ -1,5 +1,7 @@
 # Rechnung Pflichtangaben Lint (§ 14 UStG)
 
+![Rechnung Pflichtangaben Lint (§ 14 UStG) — finds the line](https://getreadystack.com/img/promo/rechnung-pflichtangaben-lint-de_demo.gif)
+
 ![Rechnung Pflichtangaben Lint (§ 14 UStG)](https://getreadystack.com/img/promo/sku119066_result_card.jpg)
 
 Ein Linter für die **PHP-Rechnungstemplates** in WooCommerce- und WordPress-Shops. Er liest die
