@@ -1,5 +1,7 @@
 # Arbeitslosengeld-Check für Aufhebungsverträge
 
+![Arbeitslosengeld-Check für Aufhebungsverträge — finds the line](https://getreadystack.com/img/promo/aufhebungsvertrag-sperrzeit-check_demo.gif)
+
 ![Arbeitslosengeld-Check für Aufhebungsverträge](https://getreadystack.com/img/promo/sku237598_result_card.jpg)
 
 Prüft einen Aufhebungsvertrag (Markdown) vor der Unterschrift auf alles, was das Arbeitslosengeld (ALG) kostet: Sperrzeit nach § 159 SGB III, Kürzung der Anspruchsdauer nach § 148, Ruhen wegen Abfindung nach § 158, Kündigungsfrist nach § 622 BGB, Schriftform nach § 623 BGB und Arbeitsuchendmeldung nach § 38 SGB III. Stand: Gesetzestext September 2026.
