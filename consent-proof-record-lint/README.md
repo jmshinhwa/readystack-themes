@@ -1,5 +1,7 @@
 # Consent Proof Record Lint (GDPR Art.7)
 
+![Consent Proof Record Lint (GDPR Art.7) — finds the line](https://getreadystack.com/img/promo/consent-proof-record-lint_demo.gif)
+
 ![Consent Proof Record Lint (GDPR Art.7)](https://getreadystack.com/img/promo/sku112765_result_card.jpg)
 
 Your cookie banner works. The question a supervisory authority actually asks is the other one:
