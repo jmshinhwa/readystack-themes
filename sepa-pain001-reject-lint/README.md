@@ -1,5 +1,7 @@
 # SEPA pain.001 Reject Lint
 
+![SEPA pain.001 Reject Lint — finds the line](https://getreadystack.com/img/promo/sepa-pain001-reject-lint_demo.gif)
+
 ![SEPA pain.001 Reject Lint](https://getreadystack.com/img/promo/sku96106_result_card.jpg)
 
 A SEPA credit transfer file is accepted or returned before a human reads it. The bank's
