@@ -1,0 +1,57 @@
+{
+  "name": "aks-eks-support-cliff-lint",
+  "displayName": "AKS LTS & EKS Extended Support Lint for Terraform",
+  "description": "Lints Terraform aws_eks_cluster and azurerm_kubernetes_cluster blocks against the 2026 EKS and AKS version calendars: extended-support fees, AKS LTS without Premium tier, forced upgrades.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "aks",
+    "eks",
+    "terraform",
+    "kubernetes version",
+    "aks long term support",
+    "eks extended support",
+    "azure kubernetes service",
+    "premium tier"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "supportCliff.checkFile",
+        "title": "AKS LTS & EKS Extended Support Lint for Terraform: Check this file",
+        "category": "AKS LTS & EKS Extended Support Lint for Terraform"
+      },
+      {
+        "command": "supportCliff.checkWorkspace",
+        "title": "AKS LTS & EKS Extended Support Lint for Terraform: Sweep workspace and write report (licence)",
+        "category": "AKS LTS & EKS Extended Support Lint for Terraform"
+      },
+      {
+        "command": "supportCliff.enterKey",
+        "title": "AKS LTS & EKS Extended Support Lint for Terraform: Enter licence key",
+        "category": "AKS LTS & EKS Extended Support Lint for Terraform"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "aks-eks-support-cliff-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/aks-eks-support-cliff-lint",
+  "readystack": {
+    "rulesDate": "2026-09-27"
+  },
+  "icon": "icon.png"
+}
