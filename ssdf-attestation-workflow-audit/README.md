@@ -1,5 +1,7 @@
 # SSDF Attestation Audit for GitHub Actions
 
+![SSDF Attestation Audit for GitHub Actions — finds the line](https://getreadystack.com/img/promo/ssdf-attestation-workflow-audit_demo.gif)
+
 ![SSDF Attestation Audit for GitHub Actions](https://getreadystack.com/img/promo/sku158108_result_card.jpg)
 
 An AI assistant will happily write you a GitHub Actions workflow that looks professional and still cannot survive the attestation your executive signs. This extension reads the workflow file you have open and marks every line that contradicts the CISA Secure Software Development Attestation Common Form, naming the NIST SSDF (SP 800-218) practice and the form section behind each mark.
