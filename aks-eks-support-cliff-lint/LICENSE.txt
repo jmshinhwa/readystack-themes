@@ -1,0 +1,15 @@
+AKS LTS & EKS Extended Support Lint for Terraform — Licence
+
+Free scope
+  Lint the open .tf file: every EKS and AKS cluster block checked against the dated support calendars, with the extra dollars already billed. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Scan the whole workspace and export a per-cluster CSV of fees, cliff dates and fixes for your platform team and FinOps review. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
