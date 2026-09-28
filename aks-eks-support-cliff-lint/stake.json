@@ -1,0 +1,45 @@
+{
+ "_why": "s166 2026-09-28 — the EKS extended-support bill at the money moment. Prices copied from AWS's EKS pricing page the same day: standard $0.10 per cluster-hour, extended $0.60. 730 hours a month is AWS's own monthly convention. Never estimated.",
+ "vendor": "AWS",
+ "months": 12,
+ "example_heads": 10,
+ "bands": [
+  [
+   1,
+   1000000,
+   438.0
+  ]
+ ],
+ "source": "Amazon EKS pricing page",
+ "source_url": "https://aws.amazon.com/eks/pricing/",
+ "measured_at": "2026-09-28",
+ "line": {
+  "en": "When a cluster's Kubernetes version leaves standard support, EKS bills $0.60 per cluster-hour instead of $0.10 - at that rate {ex} clusters pay ${exy} a year.",
+  "de": "Sobald die Kubernetes-Version eines Clusters den Standard-Support verlässt, berechnet EKS 0,60 $ pro Cluster-Stunde statt 0,10 $ - zu diesem Satz zahlen {ex} Cluster ${exy} pro Jahr.",
+  "ja": "クラスターの Kubernetes バージョンが標準サポートを外れると、EKS は 1 クラスター 1 時間あたり $0.10 ではなく $0.60 を課金します。この料金で {ex} クラスターなら年 ${exy} です。",
+  "es": "Cuando la versión de Kubernetes de un clúster sale del soporte estándar, EKS cobra $0.60 por clúster y hora en lugar de $0.10: a ese precio, {ex} clústeres pagan ${exy} al año.",
+  "pt": "Quando a versão do Kubernetes de um cluster sai do suporte padrão, o EKS cobra US$ 0,60 por cluster-hora em vez de US$ 0,10: nesse preço, {ex} clusters pagam US${exy} por ano."
+ },
+ "ask": {
+  "en": "How many EKS clusters does your company run?",
+  "de": "Wie viele EKS-Cluster betreibt Ihr Unternehmen?",
+  "ja": "御社で稼働している EKS クラスターの数は?",
+  "es": "¿Cuántos clústeres EKS tiene su empresa?",
+  "pt": "Quantos clusters EKS sua empresa roda?"
+ },
+ "result": {
+  "en": "{heads} clusters x ${rate}/month ($0.60 per cluster-hour x 730 hours) x 12 = ${year} a year in extended support ({src}). The full report sweeps every file in this workspace.",
+  "de": "{heads} Cluster x ${rate}/Monat (0,60 $ pro Cluster-Stunde x 730 Stunden) x 12 = ${year} pro Jahr im Extended Support ({src}). Der vollständige Bericht prüft jede Datei in diesem Workspace.",
+  "ja": "{heads} クラスター x ${rate}/月 (1 時間 $0.60 x 730 時間) x 12 = 延長サポートで年 ${year} ({src})。完全レポートはこのワークスペースの全ファイルを確認します。",
+  "es": "{heads} clústeres x ${rate}/mes ($0.60 por clúster y hora x 730 horas) x 12 = ${year} al año en soporte extendido ({src}). El informe completo revisa cada archivo de este espacio de trabajo.",
+  "pt": "{heads} clusters x US${rate}/mês (US$ 0,60 por cluster-hora x 730 horas) x 12 = US${year} por ano em suporte estendido ({src}). O relatório completo verifica cada arquivo deste workspace."
+ },
+ "clean_line": {
+  "en": "One current file does not cover the rest: every EKS cluster left on a version past standard support bills $0.60 per cluster-hour instead of $0.10 - {ex} clusters pay ${exy} a year.",
+  "de": "Eine aktuelle Datei deckt den Rest nicht ab: jeder EKS-Cluster auf einer Version ohne Standard-Support kostet 0,60 $ statt 0,10 $ pro Cluster-Stunde - {ex} Cluster zahlen ${exy} pro Jahr.",
+  "ja": "このファイルが最新でも残りは別です。標準サポートを過ぎたバージョンの EKS クラスターは 1 時間 $0.10 ではなく $0.60 になり、{ex} クラスターで年 ${exy} です。",
+  "es": "Un archivo al día no cubre el resto: cada clúster EKS en una versión fuera del soporte estándar cuesta $0.60 por clúster y hora en lugar de $0.10; {ex} clústeres pagan ${exy} al año.",
+  "pt": "Um arquivo em dia não cobre o resto: cada cluster EKS numa versão fora do suporte padrão custa US$ 0,60 por cluster-hora em vez de US$ 0,10; {ex} clusters pagam US${exy} por ano."
+ },
+ "team_url": "https://buy.polar.sh/polar_cl_l6iN1uWt0FwWu7tBsczD0jWpP2vxFM54Wdwqb3KPi1G"
+}
