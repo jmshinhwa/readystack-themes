@@ -1,5 +1,7 @@
 # Age Verification Lint - UK Online Safety Act age gate
 
+![Age Verification Lint - UK Online Safety Act age gate — finds the line](https://getreadystack.com/img/promo/age-gate-lint_demo.gif)
+
 ![Age Gate Lint — UK Online Safety Act](https://getreadystack.com/img/promo/sku119983_result_card.jpg)
 
 Open an HTML file that carries an age gate. The extension reads the markup and the inline
