@@ -1,5 +1,7 @@
 # Rollout-Doku Lint – Betriebsrat & IT-Einführung
 
+![Rollout-Doku Lint – Betriebsrat & IT-Einführung — finds the line](https://getreadystack.com/img/promo/rollout-doku-betriebsrat-lint_demo.gif)
+
 ![Rollout-Doku Lint – Betriebsrat & IT-Einführung](https://getreadystack.com/img/promo/sku242269_result_card.jpg)
 
 **Betriebsrat Mitbestimmung Check für Systembeschreibungen:** Rollout-Doku Lint prüft die Markdown-Systembeschreibung eines neuen IT-Tools (Anlage zur IT-Rahmenbetriebsvereinbarung) mit 15 Regeln gegen § 87 Abs. 1 Nr. 6, § 90, § 80 Abs. 3 und § 121 BetrVG — bevor sie beim Betriebsrat liegt und bevor das Tool live geht.
