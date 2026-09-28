@@ -1,5 +1,7 @@
 # 消費税 簡易課税チェック（飲食料品1%特例対応）
 
+![消費税 簡易課税チェック（飲食料品1%特例対応） — finds the line](https://getreadystack.com/img/promo/kani-kazei-shokuhin-1pct-lint-jp_demo.gif)
+
 ![消費税 簡易課税チェック（飲食料品1%特例対応）](https://getreadystack.com/img/promo/sku319267_result_card.jpg)
 
 売上帳CSVを開くと、税率（10%・8%・1%）と事業区分（第1〜6種）の誤りを行番号つきで出し、簡易課税の納付税額を概算します。
