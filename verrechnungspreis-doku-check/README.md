@@ -1,5 +1,7 @@
 # Verrechnungspreis Doku Check: Local File & Transaktionsmatrix
 
+![Verrechnungspreis Doku Check: Local File & Transaktionsmatrix — finds the line](https://getreadystack.com/img/promo/verrechnungspreis-doku-check_demo.gif)
+
 Prüft eine Verrechnungspreis-Dokumentation (Local File als Markdown) gegen **16 rules** aus §90 Abs. 3/4 AO und §4 Abs. 1 GAufzV und rechnet die 30-Tage-Vorlagefrist ab Bekanntgabe der Prüfungsanordnung. Zwei Eingaben (2 inputs): der Text der Local File und das heutige Datum.
 
 Beispiel aus der mitgelieferten Muster-Datei (`_fixtures/dirty.md`, Prüfungsanordnung bekanntgegeben 2026-07-01, heute 2026-09-24): **8 findings** — Transaktionsmatrix fehlt, Frist endete am 2026-07-31, seit 55 Tagen überschritten, bei Vorlage heute Zuschlag mindestens 5.500 € (100 € je vollem Tag, bis 1.000.000 €, §162 Abs. 4 AO). Umsatz 142 Mio. Euro ohne Stammdokumentation. Vorlagefrist noch mit 60 Tagen statt 30 Tagen angegeben.
