@@ -1,5 +1,7 @@
 # Payroll Deduction Code Audit 2026
 
+![Payroll Deduction Code Audit 2026 — finds the line](https://getreadystack.com/img/promo/payroll-deduction-code-audit_demo.gif)
+
 "Does the code an AI wrote still obey the rule?" — for payroll integrations the answer lives in one
 small file almost nobody reviews: the **deduction code map**. It is the CSV that tells your payroll
 engine which internal benefit code is pre-tax, which is after-tax, which plan section supports the
