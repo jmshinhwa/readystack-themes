@@ -1,5 +1,7 @@
 # Verfahrensdokumentation Check (GoBD, §147 AO)
 
+![Verfahrensdokumentation Check — finds the line](https://getreadystack.com/img/promo/verfahrensdoku-gobd-check_demo.gif)
+
 ![Verfahrensdokumentation Check](https://getreadystack.com/img/promo/sku178092_result_card.jpg)
 
 Prüft eine Verfahrensdokumentation im Markdown-Format gegen **17 Regeln** aus den
