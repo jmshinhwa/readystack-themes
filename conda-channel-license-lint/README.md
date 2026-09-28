@@ -1,5 +1,7 @@
 # Conda License Lint: Anaconda defaults channel
 
+![Conda License Lint: Anaconda defaults channel — finds the line](https://getreadystack.com/img/promo/conda-channel-license-lint_demo.gif)
+
 ![Conda License Lint: Anaconda defaults channel](https://getreadystack.com/img/promo/sku326549_result_card.jpg)
 
 **Six paid Anaconda channel lines in one environment.yml, found and fixed in the editor.** For Python and data teams at organisations with 200 or more people, every `defaults`, `anaconda`, `repo.anaconda.com` or `pkgs/main::` line in a conda file pulls packages from Anaconda's licensed repository.
