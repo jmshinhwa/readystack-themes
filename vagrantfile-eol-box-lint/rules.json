@@ -1,0 +1,17 @@
+[
+ {"id": "ubuntu-12.04", "kind": "box", "os": "Ubuntu 12.04 LTS (precise)", "re": "precise|ubuntu[-_/]?12\\.?04", "eol": "2017-04-28", "fix": "move to an Ubuntu 24.04 box such as bento/ubuntu-24.04"},
+ {"id": "ubuntu-14.04", "kind": "box", "os": "Ubuntu 14.04 LTS (trusty)", "re": "trusty|ubuntu[-_/]?14\\.?04", "eol": "2019-04-30", "fix": "move to an Ubuntu 24.04 box such as bento/ubuntu-24.04"},
+ {"id": "ubuntu-16.04", "kind": "box", "os": "Ubuntu 16.04 LTS (xenial)", "re": "xenial|ubuntu[-_/]?16\\.?04", "eol": "2021-04-30", "fix": "move to an Ubuntu 24.04 box such as bento/ubuntu-24.04"},
+ {"id": "ubuntu-18.04", "kind": "box", "os": "Ubuntu 18.04 LTS (bionic)", "re": "bionic|ubuntu[-_/]?18\\.?04", "eol": "2023-05-31", "fix": "move to an Ubuntu 24.04 box such as bento/ubuntu-24.04"},
+ {"id": "ubuntu-20.04", "kind": "box", "os": "Ubuntu 20.04 LTS (focal)", "re": "focal|ubuntu[-_/]?20\\.?04", "eol": "2025-05-31", "fix": "move to an Ubuntu 24.04 box such as bento/ubuntu-24.04"},
+ {"id": "debian-8", "kind": "box", "os": "Debian 8 (jessie)", "re": "jessie|debian[-_/]?8(?:[._-]\\d+)*$", "eol": "2020-06-30", "fix": "move to a Debian 12 or 13 box"},
+ {"id": "debian-9", "kind": "box", "os": "Debian 9 (stretch)", "re": "stretch|debian[-_/]?9(?:[._-]\\d+)*$", "eol": "2022-06-30", "fix": "move to a Debian 12 or 13 box"},
+ {"id": "debian-10", "kind": "box", "os": "Debian 10 (buster)", "re": "buster|debian[-_/]?10(?:[._-]\\d+)*$", "eol": "2024-06-30", "fix": "move to a Debian 12 or 13 box"},
+ {"id": "debian-11", "kind": "box", "os": "Debian 11 (bullseye) LTS", "re": "bullseye|debian[-_/]?11(?:[._-]\\d+)*$", "eol": "2026-08-31", "fix": "move to a Debian 12 or 13 box"},
+ {"id": "centos-6", "kind": "box", "os": "CentOS 6", "re": "centos[-_/]?6(?:[._-]\\d+)*$", "eol": "2020-11-30", "fix": "move to almalinux/9 or rockylinux/9"},
+ {"id": "centos-7", "kind": "box", "os": "CentOS 7", "re": "centos[-_/]?7(?:[._-]\\d+)*$", "eol": "2024-06-30", "fix": "move to almalinux/9 or rockylinux/9"},
+ {"id": "centos-8", "kind": "box", "os": "CentOS Linux 8", "re": "centos[-_/]?8(?:[._-]\\d+)*$", "eol": "2021-12-31", "fix": "move to almalinux/9 or rockylinux/9"},
+ {"id": "centos-stream-8", "kind": "box", "os": "CentOS Stream 8", "re": "centos[-_/]?(?:stream[-_]?8|8s)(?:[._-]\\d+)*$", "eol": "2024-05-31", "fix": "move to almalinux/9, rockylinux/9 or a CentOS Stream 9 box"},
+ {"id": "freebsd-13", "kind": "box", "os": "FreeBSD 13", "re": "freebsd[-_/]?13(?:[._-]|$)", "eol": "2026-04-30", "fix": "move to a FreeBSD 14 box"},
+ {"id": "centos-mirrorlist", "kind": "line", "os": "mirrorlist.centos.org", "re": "mirrorlist\\.centos\\.org", "eol": "2024-06-30", "fix": "point yum at vault.centos.org or drop the CentOS box"}
+]
