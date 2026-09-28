@@ -1,5 +1,7 @@
 # Wahlausschreiben Fristen-Check (BetrVG · WO)
 
+![Wahlausschreiben Fristen-Check (BetrVG · WO) — finds the line](https://getreadystack.com/img/promo/wahlausschreiben-fristen-check_demo.gif)
+
 ![Wahlausschreiben Fristen-Check (BetrVG · WO)](https://getreadystack.com/img/promo/sku257499_result_card.jpg)
 
 **Prüft das Wahlausschreiben einer Betriebsratswahl, bevor es aushängt:** Einspruchs- und Vorschlagsfrist, sechs Wochen bis zur Stimmabgabe, Sitzzahl, Mindestsitze des Geschlechts in der Minderheit und Stützunterschriften. Jeder Befund nennt die Zeile, das richtige Datum oder die richtige Zahl und die Fundstelle.
