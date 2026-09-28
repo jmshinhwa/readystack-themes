@@ -1,0 +1,23 @@
+[
+  {"id": "BN01", "sev": "error", "cutoff": "2025-09-29", "title": "Versioned tag removed from docker.io/bitnami",
+   "why": "On 2025-09-29 Bitnami moved every versioned tag out of the public docker.io/bitnami catalog into docker.io/bitnamilegacy. A fresh node, a new CI runner or an evicted cache now fails the pull (ImagePullBackOff / manifest unknown).",
+   "fix": "Pin an image you control: mirror the tag into your own registry, switch to the upstream official image, or license Bitnami Secure Images."},
+  {"id": "BN02", "sev": "error", "title": "Frozen bitnamilegacy image",
+   "why": "docker.io/bitnamilegacy is an archive: Bitnami states it receives no further updates, so every CVE fixed after the move stays open in this image.",
+   "fix": "Treat it as a stopgap only: mirror it into your registry today and schedule the move to a maintained image."},
+  {"id": "BN03", "sev": "error", "cutoff": "2025-09-29", "title": "Helm values pin a removed Bitnami tag",
+   "why": "image.repository points at bitnami/<app> and image.tag is a version number. Since 2025-09-29 that tag no longer exists under docker.io/bitnami, so the next rollout or node replacement cannot start the pod.",
+   "fix": "Override image.registry/image.repository with your mirror (or the upstream image) and keep the pinned tag there."},
+  {"id": "BN04", "sev": "warning", "title": "Bitnami free tier is latest-only",
+   "why": "After the change the free docker.io/bitnami images are published for development on the latest tag only. An unpinned or :latest reference in production changes under you with no version pin available.",
+   "fix": "Pin a version in a registry you control, or use a subscription that gives versioned tags."},
+  {"id": "BN05", "sev": "warning", "title": "allowInsecureImages switched on",
+   "why": "Bitnami charts refuse a non-default image unless global.security.allowInsecureImages is true. Teams flip it to point at bitnamilegacy, which also disables the chart's image verification.",
+   "fix": "Keep the flag only while the override points at your own verified mirror, and note the image it covers."},
+  {"id": "BN06", "sev": "warning", "title": "Digest pin on the old public catalog",
+   "why": "A digest pin on docker.io/bitnami/<app> was taken from the pre-2025-09-29 catalog. The content moved to bitnamilegacy, so the digest may no longer resolve under the bitnami path.",
+   "fix": "Re-resolve the digest from your own mirror and pin that registry path instead."},
+  {"id": "BN07", "sev": "info", "title": "Bitnami chart source",
+   "why": "This file pulls a chart from the Bitnami chart repository. Its default image values point at docker.io/bitnami, so every image the chart starts needs an override review.",
+   "fix": "List each image.repository the chart sets and override the ones that point at docker.io/bitnami."}
+]
