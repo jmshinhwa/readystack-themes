@@ -1,5 +1,7 @@
 # EPUB Accessibility Metadata Lint (EAA)
 
+![EPUB Accessibility Metadata Lint (EAA) — finds the line](https://getreadystack.com/img/promo/epub-a11y-metadata-lint_demo.gif)
+
 ![EPUB Accessibility Metadata Lint (EAA)](https://getreadystack.com/img/promo/sku101717_result_card.jpg)
 
 Open an EPUB package file (`.opf`) and this extension reads the accessibility
