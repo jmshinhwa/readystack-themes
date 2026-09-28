@@ -1,5 +1,7 @@
 # PII-in-Logs Lint
 
+![PII-in-Logs Lint (console.log(req.body)) — finds the line](https://getreadystack.com/img/promo/log-pii-telemetry-lint_demo.gif)
+
 ![PII-in-Logs Lint (console.log(req.body))](https://getreadystack.com/img/promo/sku53832_result_card.jpg)
 
 Finds the lines in a Node or TypeScript service that put **personal data into a log, a crash report or an analytics call** — and names the line, the rule and the one-line fix.
