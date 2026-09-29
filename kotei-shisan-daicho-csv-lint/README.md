@@ -1,5 +1,7 @@
 # 固定資産台帳 CSV Lint — 少額減価償却資産 40万円・300万円枠
 
+![固定資産台帳 CSV Lint — 少額減価償却資産 40万円・300万円枠 — finds the line](https://getreadystack.com/img/promo/kotei-shisan-daicho-csv-lint_demo.gif)
+
 ![固定資産台帳 CSV Lint — 少額減価償却資産 40万円・300万円枠](https://getreadystack.com/img/promo/sku372265_result_card.jpg)
 
 会計ソフトから書き出した **固定資産台帳 CSV** を開くと、少額減価償却資産の特例（租税特別措置法28条の2・67条の5）と法人税法施行令133条・133条の2に照らして、行ごとの誤りを「問題」パネルに行番号つきで出します。
@@ -52,7 +54,7 @@
 
 無料：CSV を1本ずつ開いて全10項目の結果を全部見られます。キーは要りません。
 
-有料：フォルダ内の全台帳 CSV を一括検査し、別表十六（七）の明細（資産名・取得日・取得価額・合計額）を CSV で書き出します。ライセンスキーで有効化します（[フル版を入手 — $29 once](https://buy.polar.sh/polar_cl_dSdT1teSnpazMGWoYQuvwoCxzEsEOUHekRKPo1rIVmG)）。
+有料：フォルダ内の全台帳 CSV を一括検査し、別表十六（七）の明細（資産名・取得日・取得価額・合計額）を CSV で書き出します。ライセンスキーで有効化します（[フル版を入手 — $29 once](https://getreadystack.com/api/buy/cl/polar_cl_dSdT1teSnpazMGWoYQuvwoCxzEsEOUHekRKPo1rIVmG)）。
 
 ## 注意
 
