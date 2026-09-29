@@ -1,0 +1,172 @@
+[
+ {
+  "id": "vault-bsl-image",
+  "sev": "error",
+  "kind": "vault_image",
+  "when": "bsl",
+  "msg": "HashiCorp Vault image under the Business Source License: the Vault LICENSE covers 'Vault Version 1.15.0 or later' (Licensor: IBM). OpenBao's in-place guide was tested only from Vault 1.14.1 and gives no storage-compatibility guarantee for newer Vault.",
+  "fix": "Use quay.io/openbao/openbao:<2.x tag>; a Vault 1.15+ data store needs a fresh OpenBao cluster, not an in-place swap."
+ },
+ {
+  "id": "vault-pre-1141-image",
+  "sev": "warn",
+  "kind": "vault_image",
+  "when": "old",
+  "msg": "Vault older than 1.14.1: OpenBao's in-place migration guide says to upgrade to v1.14.1 first.",
+  "fix": "Pin hashicorp/vault:1.14.1, upgrade, then swap to quay.io/openbao/openbao."
+ },
+ {
+  "id": "helm-hashicorp-chart",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "helm\\.releases\\.hashicorp\\.com"
+   },
+   {
+    "re": "\\bhelm\\s+(?:install|upgrade)\\b.*\\shashicorp\\/vault\\b"
+   },
+   {
+    "re": "^\\s*chart:\\s*[\"']?hashicorp\\/vault\\b"
+   }
+  ],
+  "msg": "HashiCorp Helm repo or hashicorp/vault chart: it deploys the BSL-licensed Vault server.",
+  "fix": "helm repo add openbao https://openbao.github.io/openbao-helm then helm install openbao openbao/openbao."
+ },
+ {
+  "id": "hashicorp-package-repo",
+  "sev": "warn",
+  "pats": [
+   {
+    "re": "\\b(?:apt|rpm)\\.releases\\.hashicorp\\.com\\b"
+   },
+   {
+    "re": "\\b(?:apt|apt-get|yum|dnf)\\s+install\\b.*\\svault\\b"
+   }
+  ],
+  "msg": "Installs Vault from HashiCorp's package repository, which ships the current BSL-licensed releases.",
+  "fix": "Install OpenBao from https://github.com/openbao/openbao/releases (checksums.txt is signed)."
+ },
+ {
+  "id": "storage-not-in-openbao",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "^\\s*(?:ha_)?storage\\s+\"(consul|s3|dynamodb|etcd|gcs|mysql|zookeeper|azure|cassandra|cockroachdb|couchdb|spanner|swift|manta|oci|foundationdb|file)\""
+   }
+  ],
+  "msg": "Storage backend not in OpenBao: the OpenBao 2.7.0 server registers raft, postgresql, pebbledb and inmem only; file storage was removed in 2.7.0 (September 23, 2026).",
+  "fix": "Move to storage \"raft\" (or postgresql) with bao operator migrate before the swap."
+ },
+ {
+  "id": "seal-plugin-since-2-7",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "^\\s*seal\\s+\"(awskms|azurekeyvault|gcpckms|alicloudkms|ocikms|pkcs11)\""
+   }
+  ],
+  "msg": "Auto-unseal seal that is no longer built in: since OpenBao 2.7.0 (September 23, 2026) the pkcs11, alicloudkms, awskms, azurekeyvault, gcpckms and ocikms seals must be installed as external plugins.",
+  "fix": "Install the matching seal plugin from github.com/openbao/openbao-plugins before starting 2.7.0."
+ },
+ {
+  "id": "auth-not-builtin",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "\\bauth\\s+enable\\s+(?:-\\S+\\s+)*(aws|azure|gcp|github|okta|ldap|radius|kerberos|alicloud|cf|oci)\\b"
+   },
+   {
+    "re": "^\\s*type\\s*=\\s*\"(aws|azure|gcp|github|okta|ldap|radius|kerberos|alicloud|cf|oci)\"",
+    "near": "resource\\s+\"vault_auth_backend\"",
+    "within": 6
+   }
+  ],
+  "msg": "Auth method OpenBao does not ship built in: the OpenBao registry lists approle, cert, jwt, kubernetes, oidc and userpass; kerberos, ldap and radius left the binary in 2.7.0. The mount is skipped at startup and serves no paths.",
+  "fix": "Install the plugin from openbao-plugins, or move logins to jwt/oidc, kubernetes or cert."
+ },
+ {
+  "id": "secrets-not-builtin",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "\\bsecrets\\s+enable\\s+(?:-\\S+\\s+)*(aws|azure|gcp|gcpkms|consul|nomad|terraform|ldap|ad|openldap|mongodbatlas|alicloud|kmip|transform|keymgmt)\\b"
+   },
+   {
+    "re": "^\\s*type\\s*=\\s*\"(aws|azure|gcp|gcpkms|consul|nomad|terraform|ldap|ad|openldap|mongodbatlas|alicloud|kmip|transform|keymgmt)\"",
+    "near": "resource\\s+\"vault_mount\"",
+    "within": 6
+   }
+  ],
+  "msg": "Secrets engine OpenBao does not ship built in (the registry lists kubernetes, kv, pki, rabbitmq, ssh, totp and transit). OpenBao's guide: the mount is skipped at startup and reads return 'No value found'.",
+  "fix": "Install the plugin from openbao-plugins or re-home these secrets before the swap."
+ },
+ {
+  "id": "db-plugin-not-builtin",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "\\b(mssql|oracle|mongodb|mongodbatlas|elasticsearch|hana|snowflake|redshift|couchbase)-database-plugin\\b"
+   }
+  ],
+  "msg": "Database plugin not built into OpenBao: the built-in list is mysql (4 variants), cassandra, influxdb, postgresql, redis and valkey.",
+  "fix": "Register an external plugin for this database, or issue these credentials another way."
+ },
+ {
+  "id": "vault-env-prefix",
+  "sev": "warn",
+  "pats": [
+   {
+    "re": "\\bVAULT_(ADDR|TOKEN|NAMESPACE|CACERT|CAPATH|CLIENT_CERT|CLIENT_KEY|SKIP_VERIFY|AGENT_ADDR)\\b"
+   }
+  ],
+  "msg": "VAULT_* variable: the bao CLI and OpenBao's api/client.go read BAO_ADDR, BAO_TOKEN, BAO_NAMESPACE and the other BAO_* names.",
+  "fix": "Rename to the BAO_ equivalent (VAULT_ADDR becomes BAO_ADDR)."
+ },
+ {
+  "id": "vault-cli-binary",
+  "sev": "warn",
+  "pats": [
+   {
+    "re": "(?:^|[\\s;&|(`])vault\\s+(login|kv|read|write|list|delete|secrets|auth|operator|token|policy|server|agent|proxy|status|lease|audit|plugin|namespace)\\b"
+   }
+  ],
+  "msg": "Calls the vault binary: OpenBao's command is bao (bao operator migrate, bao plugin prune, bao namespace ...).",
+  "fix": "Replace vault with bao on this line."
+ },
+ {
+  "id": "token-prefix-hvs",
+  "sev": "warn",
+  "pats": [
+   {
+    "re": "\\bhv[sbr]\\\\?\\."
+   }
+  ],
+  "msg": "Checks for Vault's hvs./hvb./hvr. token prefix: OpenBao issues new tokens as s./b./r.<random>, so this check rejects every token issued after the swap.",
+  "fix": "Accept both forms, e.g. ^(hv)?[sbr]\\. , or stop parsing the token format."
+ },
+ {
+  "id": "disable-mlock",
+  "sev": "info",
+  "pats": [
+   {
+    "re": "^\\s*disable_mlock\\s*="
+   }
+  ],
+  "msg": "disable_mlock: OpenBao does not use mlock since 2.0.0 and its migration guide says to remove this line.",
+  "fix": "Delete the disable_mlock line from the server config."
+ },
+ {
+  "id": "enterprise-licence",
+  "sev": "warn",
+  "pats": [
+   {
+    "re": "^\\s*license_path\\s*="
+   },
+   {
+    "re": "\\bVAULT_LICENSE(?:_PATH)?\\b"
+   }
+  ],
+  "msg": "Vault Enterprise licence setting: OpenBao's migration guide covers Vault Community Edition only, not Vault Enterprise.",
+  "fix": "List the Enterprise features this cluster uses (namespaces, replication, HSM) and test each on OpenBao before cutover."
+ }
+]
