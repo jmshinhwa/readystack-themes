@@ -41,7 +41,7 @@ No item limit, no watermark, no trial window.
 The paid licence adds a different job: scanning **every** SOUP list in the workspace at once —
 one device family, several repositories — and exporting the result as a dated evidence record in
 Markdown and CSV that you file with the technical documentation and hand to the auditor.
-One key: <https://buy.polar.sh/polar_cl_LO01ePekkWKRaFbmyA8ZMKGiM4Oh215UEuHrO0mzlpP>
+One key: <https://getreadystack.com/api/buy/cl/polar_cl_LO01ePekkWKRaFbmyA8ZMKGiM4Oh215UEuHrO0mzlpP>
 
 ## Yardstick
 
