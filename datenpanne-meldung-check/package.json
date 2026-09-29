@@ -1,0 +1,56 @@
+{
+  "name": "datenpanne-meldung-check",
+  "displayName": "Datenpanne Meldung Check – 72 h, Art. 33/34 DSGVO",
+  "description": "Prüft Datenpannen-Protokolle (Markdown) auf die 72-Stunden-Meldefrist ab Kenntnis, die Pflichtangaben nach Art. 33 Abs. 3 DSGVO und die Benachrichtigung Betroffener nach Art. 34 – mit Zeile und Fix.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "datenpanne",
+    "dsgvo",
+    "art 33",
+    "72 stunden",
+    "datenschutzbeauftragter",
+    "gdpr breach",
+    "meldung aufsichtsbehoerde"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "datenpanne.checkFile",
+        "title": "Datenpanne Meldung Check – 72 h, Art. 33/34 DSGVO: Check this file",
+        "category": "Datenpanne Meldung Check – 72 h, Art. 33/34 DSGVO"
+      },
+      {
+        "command": "datenpanne.checkWorkspace",
+        "title": "Datenpanne Meldung Check – 72 h, Art. 33/34 DSGVO: Sweep workspace and write report (licence)",
+        "category": "Datenpanne Meldung Check – 72 h, Art. 33/34 DSGVO"
+      },
+      {
+        "command": "datenpanne.enterKey",
+        "title": "Datenpanne Meldung Check – 72 h, Art. 33/34 DSGVO: Enter licence key",
+        "category": "Datenpanne Meldung Check – 72 h, Art. 33/34 DSGVO"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "datenpanne-meldung-check"
+  },
+  "homepage": "https://getreadystack.com/de/tools/datenpanne-meldung-check",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
