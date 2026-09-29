@@ -55,7 +55,7 @@ Result: `pid_unset` on line 3, with an 8-core production container with MSSQL_PI
 
 Free, no key: Every finding and the per-container list-price exposure for the open file, in the editor and in the free web page, with no key.
 
-Full version: Workspace sweep: every compose, Kubernetes and Dockerfile in the workspace checked at once, with a written Markdown report of each SQL Server container finding and its list-price exposure, ready to hand to a licence auditor. One licence key per person or team seat, $29 once: https://buy.polar.sh/polar_cl_DzCbdny3aDGMKFdMkOdguhRSGbgiNeZeNnCSh0b7UhV
+Full version: Workspace sweep: every compose, Kubernetes and Dockerfile in the workspace checked at once, with a written Markdown report of each SQL Server container finding and its list-price exposure, ready to hand to a licence auditor. One licence key per person or team seat, $29 once: https://getreadystack.com/api/buy/cl/polar_cl_DzCbdny3aDGMKFdMkOdguhRSGbgiNeZeNnCSh0b7UhV
 
 ## Limits
 
