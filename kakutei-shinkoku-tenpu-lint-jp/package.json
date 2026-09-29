@@ -1,0 +1,59 @@
+{
+  "name": "kakutei-shinkoku-tenpu-lint-jp",
+  "displayName": "確定申告 添付書類チェッカー（準備メモ・控除証明書）",
+  "description": "確定申告の準備メモ（.md/.txt）を所得税法120条・施行令262条と国税庁の添付ルールで検査。控除証明書の不足、医療費控除の明細書、不要な源泉徴収票、郵送時の本人確認書類、青色65万円の要件を行番号つきで指摘。",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "確定申告",
+    "添付書類",
+    "控除証明書",
+    "医療費控除",
+    "ふるさと納税",
+    "青色申告",
+    "e-Tax",
+    "japan",
+    "tax",
+    "lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "shinkokuTenpu.checkFile",
+        "title": "確定申告 添付書類チェッカー（準備メモ・控除証明書）: Check this file",
+        "category": "確定申告 添付書類チェッカー（準備メモ・控除証明書）"
+      },
+      {
+        "command": "shinkokuTenpu.checkWorkspace",
+        "title": "確定申告 添付書類チェッカー（準備メモ・控除証明書）: Sweep workspace and write report (licence)",
+        "category": "確定申告 添付書類チェッカー（準備メモ・控除証明書）"
+      },
+      {
+        "command": "shinkokuTenpu.enterKey",
+        "title": "確定申告 添付書類チェッカー（準備メモ・控除証明書）: Enter licence key",
+        "category": "確定申告 添付書類チェッカー（準備メモ・控除証明書）"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "kakutei-shinkoku-tenpu-lint-jp"
+  },
+  "homepage": "https://getreadystack.com/ja/tools/kakutei-shinkoku-tenpu-lint-jp",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
