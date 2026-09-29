@@ -50,7 +50,7 @@ $29 once, one licence key per person or team seat.
 
 Yardstick: a US FHIR consultant averages **$49.72/hour**, with most between $24.28 and $62.50 (ZipRecruiter, 31 July 2026); reading a real resource set by hand is an afternoon.
 
-[Full version](https://buy.polar.sh/polar_cl_hiGlxcgqsijQYOSCbWd96m5roAeXS4jd5pGkt0elCAc)
+[Full version](https://getreadystack.com/api/buy/cl/polar_cl_hiGlxcgqsijQYOSCbWd96m5roAeXS4jd5pGkt0elCAc)
 
 ## More tools
 
