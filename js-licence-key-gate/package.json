@@ -1,0 +1,57 @@
+{
+  "name": "js-licence-key-gate",
+  "displayName": "JS Licence Key Gate: GPL & Eval Keys",
+  "description": "Flags GPL and evaluation licence keys and missing commercial keys for Handsontable, TinyMCE, CKEditor 5, FullCalendar, AG Grid, MUI X and Syncfusion in closed-source JS/TS code.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "license key",
+    "handsontable",
+    "tinymce",
+    "ckeditor",
+    "ag-grid",
+    "gpl",
+    "licence audit",
+    "mui x"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "jsLicenceKeyGate.checkFile",
+        "title": "JS Licence Key Gate: GPL & Eval Keys: Check this file",
+        "category": "JS Licence Key Gate: GPL & Eval Keys"
+      },
+      {
+        "command": "jsLicenceKeyGate.checkWorkspace",
+        "title": "JS Licence Key Gate: GPL & Eval Keys: Sweep workspace and write report (licence)",
+        "category": "JS Licence Key Gate: GPL & Eval Keys"
+      },
+      {
+        "command": "jsLicenceKeyGate.enterKey",
+        "title": "JS Licence Key Gate: GPL & Eval Keys: Enter licence key",
+        "category": "JS Licence Key Gate: GPL & Eval Keys"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "js-licence-key-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/js-licence-key-gate",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
