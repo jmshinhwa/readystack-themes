@@ -54,7 +54,7 @@ The cut is **scale**, not features held back:
 
 One payment, one machine, no subscription.
 
-**[Get a licence — $29](https://buy.polar.sh/polar_cl_HaD7JBRbjXRom3teYfngHxChxktOPKNtnKb6H0Vp7Cp)** · paste the key when the editor asks for it.
+**[Get a licence — $29](https://getreadystack.com/api/buy/cl/polar_cl_HaD7JBRbjXRom3teYfngHxChxktOPKNtnKb6H0Vp7Cp)** · paste the key when the editor asks for it.
 
 ### What it replaces
 
