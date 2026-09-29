@@ -51,7 +51,7 @@ Yardstick: a contract CI/DevOps engineer bills about $150/hour, and reading ever
 
 The paid tier is $29 once, one licence key per person or CI seat.
 
-[Full version — workspace sweep and dated report](https://buy.polar.sh/polar_cl_aNRhjxJUQvfo4XkkVInz22Vk3dZYMt8tpZyj14a3Wmz)
+[Full version — workspace sweep and dated report](https://getreadystack.com/api/buy/cl/polar_cl_aNRhjxJUQvfo4XkkVInz22Vk3dZYMt8tpZyj14a3Wmz)
 
 More tools: https://getreadystack.com/tools/coverage-gate-lint
 
