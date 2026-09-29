@@ -46,7 +46,7 @@ workspace and writes a dated `bulkSender-report.md` you keep — the evidence ar
 deliverability review or a client handover. $29 once, one licence key per person or team seat,
 Yardstick: a deliverability consultant bills $150–$250 an hour.
 
-Licence key: https://buy.polar.sh/polar_cl_wVUwTqi8qqkeHlhoZHE3VCSgjwBGHxsQL9rYt24DtQP
+Licence key: https://getreadystack.com/api/buy/cl/polar_cl_wVUwTqi8qqkeHlhoZHE3VCSgjwBGHxsQL9rYt24DtQP
 
 ## Measured on the bundled fixtures
 
