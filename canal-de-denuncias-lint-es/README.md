@@ -48,7 +48,7 @@ hallazgo en su línea y con su artículo. La versión completa trabaja en otro e
 que te llevas—: revisa de una vez todos los documentos de política del espacio de trabajo y
 escribe un informe fechado que guardas y entregas al auditor.
 
-Versión completa: <https://buy.polar.sh/polar_cl_fZrQG7uhuskOPgS9ehe9WtzEYhgvYwc7wmHCT0UgLaX> — $29 una vez, una clave de licencia por
+Versión completa: <https://getreadystack.com/api/buy/cl/polar_cl_fZrQG7uhuskOPgS9ehe9WtzEYhgvYwc7wmHCT0UgLaX> — $29 una vez, una clave de licencia por
 persona o puesto de equipo, devolución íntegra en 7 días.
 
 Jalón de medida: implantar el canal con una consultoría de compliance cuesta entre 1.500 € y
