@@ -55,7 +55,7 @@ a different axis — scope and a document you keep: `EPUB A11y: Sweep this
 folder` walks every `.opf` in the workspace in one run and writes a dated
 pass/fail report per title, the thing a distributor or a retailer asks you for.
 
-Full version (folder sweep and the dated report): https://buy.polar.sh/polar_cl_oPMAjVdCsJ3pQdXfabWNj50DOpyh2wFYTMd6w11o7Aj
+Full version (folder sweep and the dated report): https://getreadystack.com/api/buy/cl/polar_cl_oPMAjVdCsJ3pQdXfabWNj50DOpyh2wFYTMd6w11o7Aj
 
 ## Yardstick
 
