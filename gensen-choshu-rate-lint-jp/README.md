@@ -42,7 +42,7 @@ Web版（同じエンジン・インストール不要）: https://getreadystack
 ## 無料と有料
 
 - 無料: 開いているファイル1本の源泉徴収コードを9規則で検査し、行番号と正しい式を表示（キー不要）。VS Codeでも無料Web版でも同じエンジン。
-- 有料: ワークスペース全体の一括検査と、指摘をCSV（ファイル・行・規則・正しい式）で書き出す機能。[ライセンスキーを入手](https://buy.polar.sh/polar_cl_UH2CRiypPPkcPejkfUNZR65hpndrTdxD7MuJo3SRpM1) — $29 once, one licence key per person or team seat.
+- 有料: ワークスペース全体の一括検査と、指摘をCSV（ファイル・行・規則・正しい式）で書き出す機能。[ライセンスキーを入手](https://getreadystack.com/api/buy/cl/polar_cl_UH2CRiypPPkcPejkfUNZR65hpndrTdxD7MuJo3SRpM1) — $29 once, one licence key per person or team seat.
 
 ## 出典
 
