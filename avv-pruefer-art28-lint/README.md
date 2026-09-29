@@ -47,7 +47,7 @@ Verstöße gegen die Pflichten aus Art. 28 DSGVO: bis zu €10.000.000 Bußgeld 
 
 ## Kostenlos und Vollversion
 
-Jede offene Datei mit allen 20 Regeln prüfen ist kostenlos, ohne Key. Vollversion ($29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz): Ordner-Prüfbericht über alle AVVs eines Workspace als Datei — [Vollversion holen](https://buy.polar.sh/polar_cl_cYpVpS6jjZp31zTqRM7YVPVThY6GL8OSLFVpR2WVrzA)
+Jede offene Datei mit allen 20 Regeln prüfen ist kostenlos, ohne Key. Vollversion ($29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz): Ordner-Prüfbericht über alle AVVs eines Workspace als Datei — [Vollversion holen](https://getreadystack.com/api/buy/cl/polar_cl_cYpVpS6jjZp31zTqRM7YVPVThY6GL8OSLFVpR2WVrzA)
 
 ## Maßstab
 
