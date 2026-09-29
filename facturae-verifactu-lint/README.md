@@ -30,7 +30,7 @@ Gratis, sin clave y sin limite de usos: **la factura abierta en el editor, con l
 
 La parte de pago esta en otro eje: **barrer todo el espacio de trabajo** — la carpeta entera de un cliente, un mes completo de facturas — y **escribir un informe fechado** en un fichero que te llevas y puedes adjuntar a un expediente. $29 una vez, una clave por persona o puesto de CI, 7 dias de reembolso integro. Referencia: una hora de gestoria en Espana se factura habitualmente entre 40 y 60 EUR.
 
-Clave: <https://buy.polar.sh/polar_cl_OsiUcPT9Hbx1kJ35oWK3KjwcKxIRMfjV7HP581OIf8N>
+Clave: <https://getreadystack.com/api/buy/cl/polar_cl_OsiUcPT9Hbx1kJ35oWK3KjwcKxIRMfjV7HP581OIf8N>
 
 ## La misma comprobacion en el navegador
 
