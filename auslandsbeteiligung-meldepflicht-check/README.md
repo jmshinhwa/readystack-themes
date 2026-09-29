@@ -56,6 +56,6 @@ Datei `*beteiligung*.csv` öffnen – Befunde erscheinen im Problems-Panel. Befe
 
 ## Vollversion
 
-Vollversion: alle Register im Workspace prüfen und einen Bericht mit Frist, Rechtsgrund und Status für die Steuerakte schreiben. $39 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz: https://buy.polar.sh/polar_cl_8JI95U8rbDCUA7ICnp4TnHvZiEgAlSlU1SW8O0S5lT3
+Vollversion: alle Register im Workspace prüfen und einen Bericht mit Frist, Rechtsgrund und Status für die Steuerakte schreiben. $39 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz: https://getreadystack.com/api/buy/cl/polar_cl_8JI95U8rbDCUA7ICnp4TnHvZiEgAlSlU1SW8O0S5lT3
 
 Keine Steuerberatung. Der Check ersetzt nicht die Prüfung im Einzelfall, insbesondere nicht die Einordnung ausländischer Rechtsformen.
