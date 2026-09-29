@@ -1,12 +1,10 @@
 # Mahnung Vorlagen Check – BGB 288, ZPO 692
 
-![Mahnung Vorlagen Check – BGB 288, ZPO 692 — finds the line](https://getreadystack.com/img/promo/mahnung-vorlagen-check-de_demo.gif)
-
 ![Mahnung Vorlagen Check – BGB 288, ZPO 692](https://getreadystack.com/img/promo/sku331854_result_card.jpg)
 
 Prüft Mahnungs-Vorlagen (.md, .txt, .html, .twig) auf falsche Fristen, falsche Verzugszinsen, eine unzulässige 40-Euro-Pauschale und nahende Verjährung – jede Stelle mit Zeile und Korrektur. 14 Regeln, läuft lokal, kein Upload.
 
-Web-Version und Rechtsgrundlagen: https://getreadystack.com/de/tools/mahnung-vorlagen-check-de
+Web-Version und Rechtsgrundlagen: https://getreadystack.com/tools/mahnung-vorlagen-check-de
 
 **Gemessen an unserer Testdatei** (letzte Mahnung an eine Verbraucherin, Rechnung vom 14.03.2023 über 1.180,00 €, geprüft am 27.09.2026): **6 Fehler**. Saubere Vergleichsdatei: 0 Fehler.
 
