@@ -35,7 +35,7 @@ MAX_VALIDITY_DAYS = 398
 - **Dated evidence report** — Writes a CSV, JSON or HTML report you can hand to a change board or attach to a ticket.
 - **CI output** — JSON on stdout so a pipeline can fail the build before an over-cap certificate reaches production.
 
-[**Get the full version — $29**](https://buy.polar.sh/polar_cl_WKA2GllrJspsrScNLUGtqn4DgnIEsTN1FpAtT42RfQY) - $29 once, one licence key per person or team seat.
+[**Get the full version — $29**](https://getreadystack.com/api/buy/cl/polar_cl_WKA2GllrJspsrScNLUGtqn4DgnIEsTN1FpAtT42RfQY) - $29 once, one licence key per person or team seat.
 
 
 ## Install
