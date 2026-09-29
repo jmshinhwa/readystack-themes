@@ -26,7 +26,7 @@ Every finding carries a severity, the line in `firebase.json` it came from, what
 
 Free, no key: audit the `firebase.json` you have open, in the editor or on the web page, and see the full list of findings — nothing is hidden, truncated or watermarked.
 
-Paid ($29 once): audit every `firebase.json` across a monorepo in a single run, and export the findings as Markdown or JSON to commit, attach to a release, or hand to a client. One licence key per person or team seat, 7-day full refund.
+Paid ($29 once): audit every `firebase.json` across a monorepo in a single run, and export the findings as Markdown or JSON to commit, attach to a release, or hand to a client. One licence key per person or team seat.
 
 A freelance web-security reviewer bills around $150 an hour.
 
