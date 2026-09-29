@@ -46,7 +46,7 @@ That last one stopped being a style question on **2026-08-02**, the date EU AI A
 
 Free: the file you have open, all 13 checks, every finding with its line number. That audit finishes on its own — nothing is hidden, blurred, timed or counted down.
 
-Full version: sweeps every agent metadata file in the workspace in one run and exports a dated `AGENTFORCE-AUDIT.md` you can attach to a change request — https://buy.polar.sh/polar_cl_cItF01AndFQi4JGgKXw93gpuOPFIXq4LLR70d42siAL
+Full version: sweeps every agent metadata file in the workspace in one run and exports a dated `AGENTFORCE-AUDIT.md` you can attach to a change request — https://getreadystack.com/api/buy/cl/polar_cl_cItF01AndFQi4JGgKXw93gpuOPFIXq4LLR70d42siAL
 
 Yardstick: a Salesforce partner bills metadata review at about $150 an hour, and one topic file takes roughly 20 minutes to read by hand.
 
