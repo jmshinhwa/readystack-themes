@@ -36,7 +36,7 @@ The full version adds a different axis: it sweeps **every** workflow and composi
 
 Yardstick: a DevOps contractor doing the same audit and migration by hand bills **$30 to $150 an hour** on the open freelance market.
 
-Full version: https://buy.polar.sh/polar_cl_jT1WSh3ks3YVOX7etB8r9YixHfNivbgp7pfOh3eXlj8
+Full version: https://getreadystack.com/api/buy/cl/polar_cl_jT1WSh3ks3YVOX7etB8r9YixHfNivbgp7pfOh3eXlj8
 
 ## Why a chat assistant is not enough here
 
