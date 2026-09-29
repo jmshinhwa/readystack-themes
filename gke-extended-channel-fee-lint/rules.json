@@ -1,0 +1,86 @@
+[
+ {
+  "id": "gke-extended-fee-active",
+  "sev": "error",
+  "msg": "Cluster \"{name}\" is on the Extended channel with GKE {minor}, which left standard support on {eos}. Since then Google bills the extended period cluster management fee: $0.50 per cluster per hour on top of the $0.10 cluster management fee ($0.60 in total). The full extended period for {minor} ({eos} to {eoe}, {pdays} days) is {pfee} per cluster; from {today} to {eoe} it is {rfee}.",
+  "fix": "Upgrade min_master_version to a minor still in standard support (for example {next}); every hour left on {minor} adds $0.50, or {rfee} if the cluster stays until {eoe}."
+ },
+ {
+  "id": "gke-extended-fee-soon",
+  "sev": "warn",
+  "msg": "Cluster \"{name}\" is on the Extended channel with GKE {minor}. Standard support ends on {eos} ({days} days after {today}); from that day Google adds $0.50 per cluster per hour ($0.60 in total). The full extended period for {minor} ({eos} to {eoe}, {pdays} days) is {pfee} per cluster.",
+  "fix": "Plan the minor upgrade before {eos}, or record the {pfee} per cluster in the budget."
+ },
+ {
+  "id": "gke-forced-upgrade-near",
+  "sev": "error",
+  "msg": "Cluster \"{name}\" runs GKE {minor}, whose extended support ends on {eoe} ({days} days after {today}). Around 2 months before that date GKE begins upgrading Extended channel clusters to the next minor, and at the end of extended support it upgrades every cluster still on {minor} regardless of blocking issues. Maintenance exclusions can't be set past that date.",
+  "fix": "Test and run the upgrade to {next} yourself before {eoe}, so it happens in your maintenance window, not Google's."
+ },
+ {
+  "id": "gke-version-past-extended",
+  "sev": "error",
+  "msg": "Resource \"{name}\" pins GKE {minor}. {minor} is past the end of extended support ({eoe}) on the GKE release schedule; GKE upgrades clusters still running an unsupported minor regardless of blocking issues, so this pin no longer describes the live cluster.",
+  "fix": "Set the version to a supported minor (for example {next}) and review deprecated APIs before apply."
+ },
+ {
+  "id": "gke-past-standard-not-extended",
+  "sev": "warn",
+  "msg": "Cluster \"{name}\" pins GKE {minor} on the {channel} channel. {minor} left standard support on {eos}; only the Extended channel keeps a minor past end of standard support, so on {channel} GKE auto-upgrades this cluster.",
+  "fix": "Upgrade to {next}, or move to channel = \"EXTENDED\" knowing it costs $0.50 per cluster per hour after end of standard support."
+ },
+ {
+  "id": "gke-no-channel-deprecated",
+  "sev": "warn",
+  "msg": "Cluster \"{name}\" sets release_channel to UNSPECIFIED (\"No channel\"). GKE lists this configuration option as deprecated and says it will be removed on June 14, 2027.",
+  "fix": "Enroll the cluster in REGULAR, STABLE or EXTENDED before June 14, 2027."
+ },
+ {
+  "id": "gke-extended-autopilot",
+  "sev": "error",
+  "msg": "Cluster \"{name}\" sets enable_autopilot = true with channel = \"EXTENDED\". GKE's limitations list says Autopilot cluster mode can't be enrolled in the Extended channel.",
+  "fix": "Use REGULAR or STABLE for Autopilot, or a Standard cluster for long-term support."
+ },
+ {
+  "id": "gke-extended-alpha",
+  "sev": "error",
+  "msg": "Cluster \"{name}\" sets enable_kubernetes_alpha = true with channel = \"EXTENDED\". Alpha clusters can't be enrolled in the Extended channel.",
+  "fix": "Remove enable_kubernetes_alpha, or put the alpha cluster on the RAPID channel."
+ },
+ {
+  "id": "gke-extended-beta-apis",
+  "sev": "error",
+  "msg": "Cluster \"{name}\" has an enable_k8s_beta_apis block with channel = \"EXTENDED\". Clusters with explicitly-enabled Kubernetes beta APIs can't be enrolled in the Extended channel.",
+  "fix": "Remove enable_k8s_beta_apis before enrolling in EXTENDED, or keep the cluster on REGULAR."
+ },
+ {
+  "id": "gke-extended-config-connector",
+  "sev": "error",
+  "msg": "Cluster \"{name}\" enables config_connector_config with channel = \"EXTENDED\". Config Connector is on GKE's list of features that can't be used in the Extended channel.",
+  "fix": "Run Config Connector on a cluster in REGULAR or STABLE, or disable it here."
+ },
+ {
+  "id": "gke-extended-windows-pool",
+  "sev": "error",
+  "msg": "Node pool \"{name}\" uses image_type {image} on cluster \"{cluster}\", which is on channel = \"EXTENDED\". Windows Server node pools can't be used in the Extended channel.",
+  "fix": "Move Windows workloads to a cluster on REGULAR or STABLE."
+ },
+ {
+  "id": "gke-exclusion-past-extended",
+  "sev": "warn",
+  "msg": "Cluster \"{name}\" has a maintenance_exclusion ending {end}, after the end of extended support for GKE {minor} ({eoe}). GKE says you can't configure maintenance exclusions past that date, except as a temporary emergency measure.",
+  "fix": "End the exclusion on or before {eoe} and schedule the minor upgrade inside it."
+ },
+ {
+  "id": "gke-nodepool-past-standard",
+  "sev": "warn",
+  "msg": "Node pool \"{name}\" pins version {minor}, which left standard support on {eos} (extended support ends {eoe}).",
+  "fix": "Upgrade the node pool with its control plane to {next}."
+ },
+ {
+  "id": "gke-extended-unpinned",
+  "sev": "info",
+  "msg": "Cluster \"{name}\" is on channel = \"EXTENDED\" without a min_master_version this file can resolve. The fee depends on the live minor: $0.50 per cluster per hour once that minor passes end of standard support.",
+  "fix": "Pin min_master_version (or a google_container_engine_versions version_prefix) so the fee date is visible in review."
+ }
+]
