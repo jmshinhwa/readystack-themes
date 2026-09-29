@@ -1,0 +1,57 @@
+{
+  "name": "kokuho-dasshutsu-kigen-lint-jp",
+  "displayName": "国民健康保険 脱退 手続き lint — 入退社チェックリスト期限",
+  "description": "入退社チェックリスト(Markdown/YAML)の社会保険の届出期限を法令どおりに検査。国保 脱退14日・健保 資格取得届5日・任意継続20日・雇用保険 翌月10日/10日の書き間違いを行単位で指摘。",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "国民健康保険",
+    "国保 脱退",
+    "入退社 手続き",
+    "任意継続",
+    "社会保険 届出 期限",
+    "雇用保険",
+    "HR",
+    "onboarding"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "kokuhoKigen.checkFile",
+        "title": "国民健康保険 脱退 手続き lint — 入退社チェックリスト期限: Check this file",
+        "category": "国民健康保険 脱退 手続き lint — 入退社チェックリスト期限"
+      },
+      {
+        "command": "kokuhoKigen.checkWorkspace",
+        "title": "国民健康保険 脱退 手続き lint — 入退社チェックリスト期限: Sweep workspace and write report (licence)",
+        "category": "国民健康保険 脱退 手続き lint — 入退社チェックリスト期限"
+      },
+      {
+        "command": "kokuhoKigen.enterKey",
+        "title": "国民健康保険 脱退 手続き lint — 入退社チェックリスト期限: Enter licence key",
+        "category": "国民健康保険 脱退 手続き lint — 入退社チェックリスト期限"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "kokuho-dasshutsu-kigen-lint-jp"
+  },
+  "homepage": "https://getreadystack.com/ja/tools/kokuho-dasshutsu-kigen-lint-jp",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
