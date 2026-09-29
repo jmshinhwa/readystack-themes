@@ -38,7 +38,7 @@ spec:
 - **Take the findings away as CSV, JSON or HTML** — Writes the report into the workspace so it can go to a ticket or an auditor.
 - **CI JSON a pipeline can fail on** — Writes machine-readable findings so a pull request is blocked before merge.
 
-[**Get the full version - $29**](https://buy.polar.sh/polar_cl_SnmEdHDa8OjzORnIjOry1XW7LZozu9qDBYIIc1eBSB5) - $29 once, one licence key per person or team seat.
+[**Get the full version - $29**](https://getreadystack.com/api/buy/cl/polar_cl_SnmEdHDa8OjzORnIjOry1XW7LZozu9qDBYIIc1eBSB5) - $29 once, one licence key per person or team seat.
 
 Full workspace sweep and report: licence key.
 
