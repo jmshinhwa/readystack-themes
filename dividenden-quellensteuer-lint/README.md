@@ -51,7 +51,7 @@ Dasselbe Prüfwerk läuft kostenlos im Browser: https://getreadystack.com/de/too
 
 ## Vollversion
 
-Vollversion: alle Dividenden-CSVs im Workspace über mehrere Steuerjahre in einem Lauf, plus Report-Export für Steuerberater oder Erstattungsantrag — einmalig $29, ein Lizenzschlüssel pro Person: https://buy.polar.sh/polar_cl_7GkKs3zJ9Oz0rQXJbBeEXpfhu3g0WASHNagMQ1kGrvz
+Vollversion: alle Dividenden-CSVs im Workspace über mehrere Steuerjahre in einem Lauf, plus Report-Export für Steuerberater oder Erstattungsantrag — einmalig $29, ein Lizenzschlüssel pro Person: https://getreadystack.com/api/buy/cl/polar_cl_7GkKs3zJ9Oz0rQXJbBeEXpfhu3g0WASHNagMQ1kGrvz
 
 ## Maßstab
 
