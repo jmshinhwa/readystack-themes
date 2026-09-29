@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.age-gate-lint</id>
+  <name>Age Gate Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>8 rules for Ofcom's highly effective age assurance duty, in force since 25 July 2025, where the penalty ceiling is £18m (£18 million) or 10% of qualifying worldwide revenue. One sample vape storefront page returned 13 findings, 10 of them high severity.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Age Gate Lint: Check This File</b>. Each finding appears on its line with the fix. 8 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/age-gate-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/age-gate-lint">getreadystack.com/tools/age-gate-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_age_gate_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.age-gate-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.age-gate-lint.check" class="com.getreadystack.p_age_gate_lint.RsCheckAction"
+            text="Age Gate Lint: Check This File" description="Run Age Gate Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
