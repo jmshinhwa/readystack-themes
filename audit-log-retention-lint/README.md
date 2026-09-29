@@ -48,7 +48,7 @@ The sample file `_fixtures/dirty.yaml` (Loki, CloudFormation, S3, kube-apiserver
 
 Free, no key: every finding in the open file, in the Problems panel, with the clause and the value that passes. The same engine runs in the browser at the tool page.
 
-With a licence key: the workspace sweep, which walks every YAML file in the folder and writes one Markdown evidence table (file, line, value, minimum, clause) you can hand to a QSA or an auditor. [Licence key](https://buy.polar.sh/polar_cl_73892EssmeKJZXapgXXgmOIMw47IdPQLP1lWX0gxfLm) · $29 once · one licence key per person or team seat.
+With a licence key: the workspace sweep, which walks every YAML file in the folder and writes one Markdown evidence table (file, line, value, minimum, clause) you can hand to a QSA or an auditor. [Licence key](https://getreadystack.com/api/buy/cl/polar_cl_73892EssmeKJZXapgXXgmOIMw47IdPQLP1lWX0gxfLm) · $29 once · one licence key per person or team seat.
 
 Yardstick: one hour of a lawyer with 15 years' experience is $851 on the DOJ Fitzpatrick Matrix (billing year 2026).
 
