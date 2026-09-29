@@ -78,7 +78,7 @@ A freelance embedded engineer averages $103/hr (contractrates.fyi, 2026); this i
 
 Full workspace sweep and report: licence key.
 
-[Get the full version - $29](https://buy.polar.sh/polar_cl_2x41azB4vGEeUd5HdFkPGOiAorn6HYGk0WDro17qEb0)
+[Get the full version - $29](https://getreadystack.com/api/buy/cl/polar_cl_2x41azB4vGEeUd5HdFkPGOiAorn6HYGk0WDro17qEb0)
 
 ## Settings
 
