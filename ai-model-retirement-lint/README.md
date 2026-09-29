@@ -62,7 +62,7 @@ A different job, not a bigger portion of the same one:
 | Fail a CI build on a dead ID | - | yes |
 | Rewrite the ID to the vendor's replacement | - | yes |
 
-[**Get the full version - $29**](https://buy.polar.sh/polar_cl_EOiE7ckv1WZujsc6UOfnGhc0lxBYyaPS8uZLl2Fo9Ap)
+[**Get the full version - $29**](https://getreadystack.com/api/buy/cl/polar_cl_EOiE7ckv1WZujsc6UOfnGhc0lxBYyaPS8uZLl2Fo9Ap)
 
 Full workspace sweep and report: licence key.
 
