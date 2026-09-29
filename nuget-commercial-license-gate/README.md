@@ -56,6 +56,6 @@ A 15-year litigator bills $851/hour on the DOJ Fitzpatrick Matrix for billing ye
 
 ## Free and full version
 
-Free, no key: the open file, every flag, the licence and the pin. The full version sweeps every project file in the workspace at once and writes a Markdown licence report (package, version, licence, last open-source pin): https://buy.polar.sh/polar_cl_0EoTgOC5ad7T6P8ypXA6zD3NRFoYxlQfCOf1J3JpwzG — $29 once, one licence key per person or team seat.
+Free, no key: the open file, every flag, the licence and the pin. The full version sweeps every project file in the workspace at once and writes a Markdown licence report (package, version, licence, last open-source pin): https://getreadystack.com/api/buy/cl/polar_cl_0EoTgOC5ad7T6P8ypXA6zD3NRFoYxlQfCOf1J3JpwzG — $29 once, one licence key per person or team seat.
 
 This is a lint, not legal advice. Read the licence text of each flagged package, or ask your lawyer, before you decide to pin, pay or replace.
