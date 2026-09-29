@@ -1,0 +1,15 @@
+Datenpanne Meldung Check – 72 h, Art. 33/34 DSGVO — Licence
+
+Free scope
+  Ein Datenpannen-Protokoll prüfen: 72-Stunden-Frist ab Kenntnis, 13 Pflicht-Checks aus Art. 33 und 34 DSGVO, jeder Fund mit Zeile und Fix. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Ganzer Ordner auf einmal: alle Pannen-Protokolle prüfen und die Fristen-Übersicht als CSV für die Dokumentation nach Art. 33 Abs. 5 DSGVO exportieren. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
