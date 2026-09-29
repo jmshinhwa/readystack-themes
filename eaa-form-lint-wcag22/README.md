@@ -60,7 +60,7 @@ That is the whole job for one file, with no key.
 `EAA Form Lint: Audit the whole workspace` scans every template at once and writes a dated
 evidence file you keep — one row per finding, per file, mapped to its WCAG 2.2 criterion. It is
 what you attach to an accessibility statement or hand to a client who asks what you checked and
-when. A licence key unlocks it: https://buy.polar.sh/polar_cl_O5AMXCnn3ZETWE939bA4zjzmM0KqLt9Yp76Xm2x1Pa1
+when. A licence key unlocks it: https://getreadystack.com/api/buy/cl/polar_cl_O5AMXCnn3ZETWE939bA4zjzmM0KqLt9Yp76Xm2x1Pa1
 
 Full workspace sweep and report: licence key.
 
