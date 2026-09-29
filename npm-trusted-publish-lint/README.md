@@ -44,7 +44,7 @@ so a job that pins `npm@10` falls back to token auth.
 Free finishes the job: every rule, every line, every file you open, no key and no account. The paid
 layer changes what you take away rather than what you are allowed to see — it exports the finished
 audit as a dated Markdown or CSV file for every workflow in the repository in one pass, which is the
-artefact a reviewer or a client asks for. $29 once. <https://buy.polar.sh/polar_cl_r0AsPdmaipunFUfn7RJOfQAdEdFXC397cXwZu01Rmw7>
+artefact a reviewer or a client asks for. $29 once. <https://getreadystack.com/api/buy/cl/polar_cl_r0AsPdmaipunFUfn7RJOfQAdEdFXC397cXwZu01Rmw7>
 
 ## Yardstick
 
