@@ -46,7 +46,7 @@ The **paid layer sits on a different axis — ownership**: a dated CBPR+ address
 
 Yardstick: a correspondent bank charges **$15 to $40 to repair one payment by hand**, and an average rejected or repaired payment is reported at around **$12**. This reads the message before you send it.
 
-- Get the full version: https://buy.polar.sh/polar_cl_hvlxO2MoABOcEHmAOJCtxxdriZukvoDX08sKM2VvzGU
+- Get the full version: https://getreadystack.com/api/buy/cl/polar_cl_hvlxO2MoABOcEHmAOJCtxxdriZukvoDX08sKM2VvzGU
 - Hub page: https://getreadystack.com/tools/cbpr-address-lint
 
 ## Commands
