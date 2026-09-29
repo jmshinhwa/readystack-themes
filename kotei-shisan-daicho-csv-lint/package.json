@@ -1,0 +1,56 @@
+{
+  "name": "kotei-shisan-daicho-csv-lint",
+  "displayName": "固定資産台帳 CSV Lint — 少額減価償却資産 40万円・300万円枠",
+  "description": "固定資産台帳CSVを少額減価償却資産の特例(措法28条の2・67条の5)で検査。取得日2026-04-01で上限30万→40万円、年300万円枠、一括償却20万円、10万円未満、従業員数400人要件を行番号つきで指摘。",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "固定資産台帳",
+    "少額減価償却資産",
+    "CSV",
+    "法人税",
+    "別表十六(七)",
+    "一括償却資産",
+    "japan tax"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "shogakuLint.checkFile",
+        "title": "固定資産台帳 CSV Lint — 少額減価償却資産 40万円・300万円枠: Check this file",
+        "category": "固定資産台帳 CSV Lint — 少額減価償却資産 40万円・300万円枠"
+      },
+      {
+        "command": "shogakuLint.checkWorkspace",
+        "title": "固定資産台帳 CSV Lint — 少額減価償却資産 40万円・300万円枠: Sweep workspace and write report (licence)",
+        "category": "固定資産台帳 CSV Lint — 少額減価償却資産 40万円・300万円枠"
+      },
+      {
+        "command": "shogakuLint.enterKey",
+        "title": "固定資産台帳 CSV Lint — 少額減価償却資産 40万円・300万円枠: Enter licence key",
+        "category": "固定資産台帳 CSV Lint — 少額減価償却資産 40万円・300万円枠"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "kotei-shisan-daicho-csv-lint"
+  },
+  "homepage": "https://getreadystack.com/ja/tools/kotei-shisan-daicho-csv-lint",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
