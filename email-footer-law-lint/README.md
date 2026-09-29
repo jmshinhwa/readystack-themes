@@ -54,7 +54,7 @@ byte for byte, with nothing uploaded.
 
 Paid: **sweep every template in the workspace and write one dated audit report file** —
 every file, every finding, every citation, in one Markdown artefact you can hand to a client
-or to counsel. That is the licensed command. Licence: https://buy.polar.sh/polar_cl_UpcPQkomm2d1N52PaYHHfPjdB89okIRPLaTa70CzAj0
+or to counsel. That is the licensed command. Licence: https://getreadystack.com/api/buy/cl/polar_cl_UpcPQkomm2d1N52PaYHHfPjdB89okIRPLaTa70CzAj0
 
 Full workspace sweep and report: licence key.
 
