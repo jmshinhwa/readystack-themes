@@ -1,5 +1,7 @@
 # Spirituosen-Lint: Mindestalkohol & Alkoholsteuer
 
+![Spirituosen-Lint: Mindestalkohol & Alkoholsteuer — finds the line](https://getreadystack.com/img/promo/spirituosen-shop-lint_demo.gif)
+
 ![Spirituosen-Lint: Mindestalkohol & Alkoholsteuer](https://getreadystack.com/img/promo/sku363502_result_card.jpg)
 
 **Für Shop-Entwickler von Brennereien und Spirituosenhändlern in Deutschland:** Die Erweiterung liest die Produkt-CSV (Shopware-, Shopify- oder WooCommerce-Export) und markiert jede Zeile, deren Verkehrsbezeichnung, Flaschengröße, Alkoholangabe oder Alkoholsteuer nicht zum Recht passt — direkt im Editor, mit Zeilennummer und Rechtsgrundlage.
