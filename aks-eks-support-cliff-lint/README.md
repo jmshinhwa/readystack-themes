@@ -1,5 +1,7 @@
 # AKS LTS & EKS Extended Support Lint for Terraform
 
+![AKS LTS & EKS Extended Support Lint for Terraform — finds the line](https://getreadystack.com/img/promo/aks-eks-support-cliff-lint_demo.gif)
+
 ![AKS LTS & EKS Extended Support Lint for Terraform](https://getreadystack.com/img/promo/sku326983_result_card.jpg)
 
 Checks `aws_eks_cluster` and `azurerm_kubernetes_cluster` blocks in your `.tf` files against the published EKS and AKS Kubernetes version calendars, and tells you which clusters are already paying the extended-support rate, which ones AWS will upgrade on its own, and which AKS clusters ask for Long Term Support on a tier that does not include it.
@@ -46,7 +48,7 @@ AKS (community end of life / LTS end of life): 1.29 2025-03-31 / 2026-04-30 · 1
 
 ## Free and full version
 
-Free: lint the open `.tf` file, all 9 rules, every message, no key. Full version: scan the whole workspace and export a per-cluster CSV of fees, cliff dates and fixes for a platform or FinOps review — [get the full version](https://buy.polar.sh/polar_cl_h4hStvanMbFQkOvKD4EQ6BWS54rfLlOpDYCBB0UJnAI).
+Free: lint the open `.tf` file, all 9 rules, every message, no key. Full version: scan the whole workspace and export a per-cluster CSV of fees, cliff dates and fixes for a platform or FinOps review — [get the full version](https://getreadystack.com/api/buy/cl/polar_cl_h4hStvanMbFQkOvKD4EQ6BWS54rfLlOpDYCBB0UJnAI).
 
 ## Commands
 
