@@ -50,7 +50,7 @@ koyo_hoken:
 - ファイルを開くと自動で検査し、問題の行に波線と説明が出ます。
 - コマンドパレット: 「koyoRyoritsu」で始まるコマンドから、開いているファイルを検査できます。
 - 無料で、開いている1ファイルに6ルールすべてを適用し、正しい令和8年度の値まで表示します。
-- ワークスペース全体の一括検査と監査用 CSV/Markdown 報告書の書き出しはライセンスキーで使えます: https://buy.polar.sh/polar_cl_H21NzxFebYKqtlsCmGjXAtBaOkc6bP6Lix19i3KELMV
+- ワークスペース全体の一括検査と監査用 CSV/Markdown 報告書の書き出しはライセンスキーで使えます: https://getreadystack.com/api/buy/cl/polar_cl_H21NzxFebYKqtlsCmGjXAtBaOkc6bP6Lix19i3KELMV
 
 ## 目安
 
