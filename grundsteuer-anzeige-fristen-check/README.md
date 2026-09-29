@@ -49,4 +49,4 @@ Die mitgelieferte Beispielliste mit sechs Objekten ergibt sieben Befunde, darunt
 
 ## Vollversion
 
-Prüfbericht als Datei für die Akte exportieren und ganze Bestände in einem Lauf dokumentieren: [Vollversion](https://buy.polar.sh/polar_cl_viWtkgRdhf2KL72cK2dwQCKIarBhVp4klmrfd455YEp)
+Prüfbericht als Datei für die Akte exportieren und ganze Bestände in einem Lauf dokumentieren: [Vollversion](https://getreadystack.com/api/buy/cl/polar_cl_viWtkgRdhf2KL72cK2dwQCKIarBhVp4klmrfd455YEp)
