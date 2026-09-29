@@ -2,7 +2,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hardcoded Connection String Audit for Azure IoT Hub (azure-iot-toolkit) + 7 More VS Code Stacks — 26 rules, 32 snippets</title>
 <meta name="description" content="26 rules and 32 safe-replacement snippets across 8 VS Code stacks. Hosted secret scanning is published at $19 per active committer per month (GitHub Secret Protection pricing page); this is a one-time $29, runs on your machine, and sends nothing anywhere.">
-<script defer data-auto-init src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@latest/dist/embed.global.js"></script>
 <style>
 :root{color-scheme:light dark}
 body{margin:0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -45,8 +44,8 @@ a.buy:hover{background:#1a43bd}
 <li><b>Scale</b> — the same 26 rules across every file in the workspace, not the one file you have open.</li>
 <li><b>Handover</b> — the findings written out as a CSV, JSON or HTML file you keep in the repo and hand to a reviewer.</li>
 </ul>
-<p class="anchor">GitHub Secret Protection is published at <b>$19 per active committer per month</b>, billed for as long as the team keeps committing. This is <b>$29 once</b>, runs on your machine, and sends nothing anywhere. Full refund within 7 days.</p>
-<a class="buy" href="https://readystack.example/buy" data-polar-checkout data-polar-checkout-theme="light">Get the full version — $29 once</a>
+<p class="anchor">GitHub Secret Protection is published at <b>$19 per active committer per month</b>, billed for as long as the team keeps committing. This is <b>$29 once</b>, runs on your machine, and sends nothing anywhere.</p>
+<a class="buy" href="https://readystack.example/buy">Get the full version — $29 once</a>
 </div>
 </div>
 <script>
@@ -64,6 +63,6 @@ document.getElementById('go').onclick=function(){
  var s='<table><tr><th>Line</th><th>Finding</th></tr>';
  for(var i=0;i<h.length;i++){s+='<tr><td class="n">'+h[i].line+'</td><td>'+
    String(h[i].msg).replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</td></tr>'}
- o.innerHTML=s+'</table>'+'<div class="afterhit"><p><b>'+h.length+'</b> in this one file. A repository is not one file.</p>'+'<a class="buy" href="https://readystack.example/buy" data-polar-checkout data-polar-checkout-theme="light">Audit every file and export the findings \u2014 $29 once</a></div>'};
+ o.innerHTML=s+'</table>'+'<div class="afterhit"><p><b>'+h.length+'</b> in this one file. A repository is not one file.</p>'+'<a class="buy" href="https://readystack.example/buy">Audit every file and export the findings \u2014 $29 once</a></div>'};
 </script>
 </html>
