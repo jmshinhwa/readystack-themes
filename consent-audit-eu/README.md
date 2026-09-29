@@ -19,7 +19,7 @@ Finds the analytics, pixels, fonts and embeds that fire before your cookie banne
 
 $29 once, one licence key per person or team seat. Consent scanners are billed per domain every month (CookieYes $10-$55 per domain per month; Cookiebot near EUR 30 since it doubled its base price in August 2025) and only see the page once it is already live.
 
-[Get the full version - $29](https://buy.polar.sh/polar_cl_GLS2NunfF1vyIe7l2lyyErVSUzDSWPxuCzqQg13lMym)
+[Get the full version - $29](https://getreadystack.com/api/buy/cl/polar_cl_GLS2NunfF1vyIe7l2lyyErVSUzDSWPxuCzqQg13lMym)
 
 ## Install
 
