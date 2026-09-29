@@ -1,14 +1,12 @@
 # Dienstanweisung Bewachung: BewachV-Check
 
-![Dienstanweisung Bewachung: BewachV-Check — finds the line](https://getreadystack.com/img/promo/dienstanweisung-bewachung-lint_demo.gif)
-
 ![Dienstanweisung Bewachung: BewachV-Check](https://getreadystack.com/img/promo/sku330906_result_card.jpg)
 
 Zeigt, welche Pflichtinhalte in der Dienstanweisung eines Bewachungsunternehmens fehlen: § 17, 18, 20 BewachV und § 34a Abs. 1a GewO. 12 rules, Zeile und Fix je Befund.
 
 **Gemessen an der Beispiel-Dienstanweisung (Einlassdienst Diskothek): Dienstanweisung Bewachung: 6 Pflichtinhalte fehlen · 12 rules · 1 file.** Keine Zustimmung des Gewerbetreibenden für Waffen (Zeile 19), Anzeige nach Waffengebrauch ohne Polizeidienststelle (Zeile 21), keine Empfangsbescheinigung (Zeile 26), kein Namensschild beim Einlass (Zeile 1), keine Bewacherregister-ID im Dienstausweis (Zeile 15), keine Verschwiegenheitsverpflichtung (Zeile 1). Bereinigte Fassung: 0 Befunde.
 
-Web-Version und Anleitung: https://getreadystack.com/de/tools/dienstanweisung-bewachung-lint
+Web-Version und Anleitung: https://getreadystack.com/tools/dienstanweisung-bewachung-lint
 
 ## Für wen
 Bewachungsunternehmer mit Erlaubnis nach § 34a GewO, Objektleiter und Qualitätsbeauftragte von Sicherheitsdiensten, die ihre Dienstanweisungen als Markdown- oder Textdatei pflegen: Objektschutz, Einlassdienst, Citystreife, Werttransport, Veranstaltungen.
