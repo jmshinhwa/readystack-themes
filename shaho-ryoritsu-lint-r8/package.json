@@ -1,0 +1,57 @@
+{
+  "name": "shaho-ryoritsu-lint-r8",
+  "displayName": "給与計算 健康保険料率・支援金チェッカー 令和8年度",
+  "description": "給与計算の設定・ソース(YAML/JSON/CSV/TS/JS/Python)に残った令和7年度の協会けんぽ健康保険料率(47都道府県)・介護保険料率1.59%と、令和8年4月分からの子ども・子育て支援金0.23%の未設定を検出。",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "給与計算",
+    "健康保険料率",
+    "子ども・子育て支援金",
+    "協会けんぽ",
+    "介護保険料率",
+    "令和8年度",
+    "payroll",
+    "japan"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "shahoRyoritsu.checkFile",
+        "title": "給与計算 健康保険料率・支援金チェッカー 令和8年度: Check this file",
+        "category": "給与計算 健康保険料率・支援金チェッカー 令和8年度"
+      },
+      {
+        "command": "shahoRyoritsu.checkWorkspace",
+        "title": "給与計算 健康保険料率・支援金チェッカー 令和8年度: Sweep workspace and write report (licence)",
+        "category": "給与計算 健康保険料率・支援金チェッカー 令和8年度"
+      },
+      {
+        "command": "shahoRyoritsu.enterKey",
+        "title": "給与計算 健康保険料率・支援金チェッカー 令和8年度: Enter licence key",
+        "category": "給与計算 健康保険料率・支援金チェッカー 令和8年度"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "shaho-ryoritsu-lint-r8"
+  },
+  "homepage": "https://getreadystack.com/ja/tools/shaho-ryoritsu-lint-r8",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
