@@ -2,7 +2,7 @@
   "name": "cnpj-alfanumerico-lint",
   "displayName": "CNPJ Alfanumérico Lint — validação de CNPJ no código",
   "description": "Acha no código o CNPJ tratado só como número: regex \\d{14}, replace(/\\D/g), parseInt no DV, coluna BIGINT. CNPJ alfanumérico (IN RFB nº 2.229/2024) desde julho de 2026.",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -48,7 +48,7 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "cnpj-alfanumerico-lint"
   },
-  "homepage": "https://getreadystack.com/pt/tools/cnpj-alfanumerico-lint",
+  "homepage": "https://getreadystack.com/tools/cnpj-alfanumerico-lint",
   "readystack": {
     "rulesDate": "2026-09-27"
   },
