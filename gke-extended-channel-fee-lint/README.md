@@ -45,7 +45,7 @@ Release schedule used (end of standard support → end of extended support): 1.3
 8. **gke-extended-alpha** (error) — Cluster "<name>" sets enable_kubernetes_alpha = true with channel = "EXTENDED".
 9. **gke-extended-beta-apis** (error) — Cluster "<name>" has an enable_k8s_beta_apis block with channel = "EXTENDED".
 10. **gke-extended-config-connector** (error) — Cluster "<name>" enables config_connector_config with channel = "EXTENDED".
-11. **gke-extended-windows-pool** (error) — Node pool "<name>" uses image_type <image> on cluster "<cluster>", which is on channel = "EXTENDED".
+11. **gke-extended-windows-pool** (error) — Node pool "<name>" uses image_type &lt;image&gt; on cluster "<cluster>", which is on channel = "EXTENDED".
 12. **gke-exclusion-past-extended** (warn) — Cluster "<name>" has a maintenance_exclusion ending <date>, after the end of extended support for GKE <minor> (<end of extended support>).
 13. **gke-nodepool-past-standard** (warn) — Node pool "<name>" pins version <minor>, which left standard support on <end of standard support> (extended support ends <end of extended support>)..
 14. **gke-extended-unpinned** (info) — Cluster "<name>" is on channel = "EXTENDED" without a min_master_version this file can resolve.
