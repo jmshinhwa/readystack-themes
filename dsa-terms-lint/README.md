@@ -53,7 +53,7 @@ nothing held back and nothing watermarked. That job finishes on its own.
 
 Full version: scan every legal page and every language version in the workspace in one pass, and
 export a dated gap report with article citations that you can hand to counsel.
-<https://buy.polar.sh/polar_cl_cvvpOHUl0trDgV1H4FITDdGO0eTfT4jX9Olem3MhKMp>
+<https://getreadystack.com/api/buy/cl/polar_cl_cvvpOHUl0trDgV1H4FITDdGO0eTfT4jX9Olem3MhKMp>
 
 Yardstick: EU technology counsel bills roughly $250–$500 an hour to read the same six pages.
 
