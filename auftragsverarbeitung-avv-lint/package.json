@@ -1,0 +1,57 @@
+{
+  "name": "auftragsverarbeitung-avv-lint",
+  "displayName": "Auftragsverarbeitung Lint – AVV nach Art. 28 DSGVO",
+  "description": "Prüft AVV-/DPA-Texte (Markdown) auf 13 Pflichtpunkte aus Art. 28 Abs. 3 DSGVO und 4 veraltete Transfer-Grundlagen (Privacy Shield, SCC 2010, Safe Harbor, § 11 BDSG a.F.) – mit Zeile je Lücke.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "avv",
+    "auftragsverarbeitung",
+    "dsgvo",
+    "art 28",
+    "dpa",
+    "datenschutz",
+    "gdpr",
+    "privacy shield"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "avvLint.checkFile",
+        "title": "Auftragsverarbeitung Lint – AVV nach Art. 28 DSGVO: Check this file",
+        "category": "Auftragsverarbeitung Lint – AVV nach Art. 28 DSGVO"
+      },
+      {
+        "command": "avvLint.checkWorkspace",
+        "title": "Auftragsverarbeitung Lint – AVV nach Art. 28 DSGVO: Sweep workspace and write report (licence)",
+        "category": "Auftragsverarbeitung Lint – AVV nach Art. 28 DSGVO"
+      },
+      {
+        "command": "avvLint.enterKey",
+        "title": "Auftragsverarbeitung Lint – AVV nach Art. 28 DSGVO: Enter licence key",
+        "category": "Auftragsverarbeitung Lint – AVV nach Art. 28 DSGVO"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "auftragsverarbeitung-avv-lint"
+  },
+  "homepage": "https://getreadystack.com/de/tools/auftragsverarbeitung-avv-lint",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
