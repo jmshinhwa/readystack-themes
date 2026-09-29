@@ -65,7 +65,7 @@ Template ist die Arbeit damit erledigt.
 
 **Rechnung-Lint: Sweep workspace and write report** läuft über alle PHP-Templates im Projekt und
 legt einen datierten Prüfbericht als Datei ab — der Nachweis, den Sie der Steuerkanzlei oder dem
-Prüfer zeigen. Das ist der bezahlte Teil: <https://buy.polar.sh/polar_cl_nMZKqKc9hEPjEMnLnQc3TlRqvBfIw1CONRJxu4LGBGp>
+Prüfer zeigen. Das ist der bezahlte Teil: <https://getreadystack.com/api/buy/cl/polar_cl_nMZKqKc9hEPjEMnLnQc3TlRqvBfIw1CONRJxu4LGBGp>
 
 ## Maßstab
 
