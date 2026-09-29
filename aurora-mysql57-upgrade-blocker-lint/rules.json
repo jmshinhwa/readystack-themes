@@ -1,0 +1,198 @@
+[
+ {
+  "id": "aurora-v2-engine-version",
+  "sev": "error",
+  "re": "5\\.7\\.mysql_aurora\\.2\\.[0-9.]+",
+  "msg": "Aurora MySQL version 2 (MySQL 5.7): standard support ended 31 Oct 2024, RDS Extended Support year 1 pricing since 1 Dec 2024, year 3 pricing from 1 Dec 2026.",
+  "fix": "Upgrade to 8.0.mysql_aurora.3.x (Aurora MySQL version 3, standard support to 30 Apr 2028)."
+ },
+ {
+  "id": "aurora-v2-parameter-family",
+  "sev": "error",
+  "re": "aurora-mysql5\\.7",
+  "msg": "Parameter group family aurora-mysql5.7 only exists for Aurora MySQL version 2.",
+  "fix": "Create an aurora-mysql8.0 parameter group and re-apply only the parameters that still exist in 8.0."
+ },
+ {
+  "id": "query-cache-variable",
+  "sev": "error",
+  "re": "\\bquery_cache_(?:type|size|limit|min_res_unit|wlock_invalidate)\\b",
+  "msg": "The query cache was removed in MySQL 8.0; this system variable no longer exists.",
+  "fix": "Delete the setting; cache results in the application or a proxy instead."
+ },
+ {
+  "id": "sql-cache-modifier",
+  "sev": "error",
+  "re": "\\bSQL_CACHE\\b",
+  "msg": "The SQL_CACHE SELECT modifier was removed with the query cache in MySQL 8.0.",
+  "fix": "Drop SQL_CACHE from the SELECT."
+ },
+ {
+  "id": "query-cache-statement",
+  "sev": "error",
+  "re": "\\b(?:FLUSH|RESET)\\s+QUERY\\s+CACHE\\b",
+  "msg": "FLUSH QUERY CACHE and RESET QUERY CACHE were removed in MySQL 8.0.",
+  "fix": "Remove the statement."
+ },
+ {
+  "id": "qcache-status",
+  "sev": "warn",
+  "re": "\\bQcache_[a-z_]+\\b",
+  "msg": "Qcache_* status variables were removed in MySQL 8.0; monitoring that reads them returns nothing.",
+  "fix": "Remove the metric from dashboards and alarms."
+ },
+ {
+  "id": "password-function",
+  "sev": "error",
+  "re": "\\bPASSWORD\\s*\\(",
+  "msg": "The PASSWORD() function was removed in MySQL 8.0 (so SET PASSWORD = PASSWORD('x') fails).",
+  "fix": "Use ALTER USER 'u'@'h' IDENTIFIED BY 'x'."
+ },
+ {
+  "id": "identified-by-password",
+  "sev": "error",
+  "re": "\\bIDENTIFIED\\s+BY\\s+PASSWORD\\b",
+  "msg": "IDENTIFIED BY PASSWORD 'hash' syntax was removed in MySQL 8.0.",
+  "fix": "Use IDENTIFIED WITH mysql_native_password AS 'hash' in CREATE USER or ALTER USER."
+ },
+ {
+  "id": "grant-creates-user",
+  "sev": "error",
+  "re": "\\bGRANT\\b[^;]*?\\bIDENTIFIED\\s+BY\\b",
+  "msg": "Using GRANT to create users or set passwords was removed in MySQL 8.0.",
+  "fix": "CREATE USER first, then GRANT privileges only."
+ },
+ {
+  "id": "no-auto-create-user",
+  "sev": "error",
+  "re": "\\bNO_AUTO_CREATE_USER\\b",
+  "msg": "NO_AUTO_CREATE_USER was removed from sql_mode in MySQL 8.0; an options file that sets it stops mysqld from starting.",
+  "fix": "Remove NO_AUTO_CREATE_USER from sql_mode."
+ },
+ {
+  "id": "removed-sql-mode",
+  "sev": "error",
+  "re": "sql_mode[^\\n]*?\\b(?:DB2|MAXDB|MSSQL|MYSQL323|MYSQL40|ORACLE|POSTGRESQL|NO_FIELD_OPTIONS|NO_KEY_OPTIONS|NO_TABLE_OPTIONS)\\b",
+  "msg": "This compatibility SQL mode was removed in MySQL 8.0 and can no longer be assigned to sql_mode.",
+  "fix": "Remove the mode from sql_mode."
+ },
+ {
+  "id": "old-passwords",
+  "sev": "error",
+  "re": "\\bold_passwords\\b",
+  "msg": "The old_passwords system variable was removed in MySQL 8.0.",
+  "fix": "Remove the setting."
+ },
+ {
+  "id": "tx-isolation",
+  "sev": "error",
+  "re": "\\btx_(?:isolation|read_only)\\b",
+  "msg": "tx_isolation and tx_read_only were removed in MySQL 8.0.",
+  "fix": "Use transaction_isolation / transaction_read_only."
+ },
+ {
+  "id": "log-warnings",
+  "sev": "error",
+  "re": "\\blog[_-]warnings\\b",
+  "msg": "log_warnings / --log-warnings were removed in MySQL 8.0.",
+  "fix": "Use log_error_verbosity."
+ },
+ {
+  "id": "innodb-locks-unsafe",
+  "sev": "error",
+  "re": "\\binnodb_locks_unsafe_for_binlog\\b",
+  "msg": "innodb_locks_unsafe_for_binlog was removed in MySQL 8.0.",
+  "fix": "Use the READ COMMITTED isolation level."
+ },
+ {
+  "id": "removed-server-variable",
+  "sev": "error",
+  "re": "\\b(?:sync_frm|secure_auth|multi_range_count|metadata_locks_cache_size|metadata_locks_hash_instances|max_tmp_tables|ignore_db_dirs|ignore-db-dir|temp-pool|ignore_builtin_innodb|log_builtin_as_identified_by_password|have_crypt|des[-_]key[-_]file)\\b",
+  "msg": "This server variable or option was removed in MySQL 8.0.",
+  "fix": "Delete the line from the parameter group or my.cnf."
+ },
+ {
+  "id": "global-sql-log-bin",
+  "sev": "error",
+  "re": "(?:@@GLOBAL\\.sql_log_bin|SET\\s+GLOBAL\\s+sql_log_bin)\\b",
+  "msg": "sql_log_bin lost its global scope in MySQL 8.0.",
+  "fix": "Set it per session: SET SESSION sql_log_bin = 0."
+ },
+ {
+  "id": "group-by-asc-desc",
+  "sev": "error",
+  "re": "\\bGROUP\\s+BY\\s+[`\\w.]+\\s+(?:ASC|DESC)\\b",
+  "msg": "ASC/DESC on GROUP BY was removed in MySQL 8.0 and GROUP BY no longer sorts.",
+  "fix": "Add an explicit ORDER BY."
+ },
+ {
+  "id": "explain-extended",
+  "sev": "error",
+  "re": "\\bEXPLAIN\\s+(?:EXTENDED|PARTITIONS)\\b",
+  "msg": "EXPLAIN EXTENDED and EXPLAIN PARTITIONS were removed in MySQL 8.0.",
+  "fix": "Use plain EXPLAIN."
+ },
+ {
+  "id": "removed-crypto-function",
+  "sev": "error",
+  "re": "\\b(?:ENCODE|DECODE|ENCRYPT|DES_ENCRYPT|DES_DECRYPT)\\s*\\(",
+  "msg": "ENCODE(), DECODE(), ENCRYPT(), DES_ENCRYPT() and DES_DECRYPT() were removed in MySQL 8.0.",
+  "fix": "Use SHA2() for one-way hashing or AES_ENCRYPT()/AES_DECRYPT()."
+ },
+ {
+  "id": "old-spatial-name",
+  "sev": "error",
+  "re": "\\b(?:GeomFromText|GeometryFromText|GeomFromWKB|PointFromText|LineFromText|PolyFromText|PolygonFromText|MPointFromText|MPolyFromText|AsText|AsWKT|AsBinary|AsWKB|GLength|Centroid|Envelope|ConvexHull|NumPoints|StartPoint|EndPoint|GeometryType)\\s*\\(",
+  "msg": "Spatial functions without the ST_ prefix were removed in MySQL 8.0.",
+  "fix": "Use the ST_ name (ST_GeomFromText, ST_AsText, ST_Length ...)."
+ },
+ {
+  "id": "backslash-n-null",
+  "sev": "warn",
+  "re": "[(,=]\\s*\\\\N\\b",
+  "msg": "The SQL parser no longer treats \\N as NULL in statements in MySQL 8.0 (LOAD DATA files are unaffected).",
+  "fix": "Write NULL."
+ },
+ {
+  "id": "procedure-analyse",
+  "sev": "error",
+  "re": "\\bPROCEDURE\\s+ANALYSE\\b",
+  "msg": "PROCEDURE ANALYSE() was removed in MySQL 8.0.",
+  "fix": "Remove it; inspect column stats with INFORMATION_SCHEMA or the sys schema."
+ },
+ {
+  "id": "innodb-sys-view",
+  "sev": "error",
+  "re": "\\bINNODB_SYS_(?:COLUMNS|DATAFILES|FIELDS|FOREIGN_COLS|FOREIGN|INDEXES|TABLESTATS|TABLESPACES|TABLES|VIRTUAL)\\b",
+  "msg": "INFORMATION_SCHEMA.INNODB_SYS_* views were renamed in MySQL 8.0.3.",
+  "fix": "Drop the SYS_ part: INNODB_TABLES, INNODB_COLUMNS, INNODB_INDEXES ..."
+ },
+ {
+  "id": "client-ssl-option",
+  "sev": "error",
+  "re": "(?:--ssl-verify-server-cert\\b|\\bssl-verify-server-cert\\b|--ssl=[01]\\b|--skip-ssl\\b|--enable-ssl\\b|--disable-ssl\\b)",
+  "msg": "The client-side --ssl and --ssl-verify-server-cert options were removed in MySQL 8.0.",
+  "fix": "Use --ssl-mode=REQUIRED, DISABLED or VERIFY_IDENTITY."
+ },
+ {
+  "id": "mysql-install-db",
+  "sev": "error",
+  "re": "\\bmysql_install_db\\b",
+  "msg": "mysql_install_db was removed from MySQL 8.0.",
+  "fix": "Use mysqld --initialize."
+ },
+ {
+  "id": "partitioned-non-innodb",
+  "sev": "error",
+  "re": "\\bENGINE\\s*=\\s*MyISAM\\b[^;]*?\\bPARTITION\\s+BY\\b",
+  "msg": "Partitioned tables must use a native partitioning engine in MySQL 8.0; a partitioned MyISAM table cannot be upgraded.",
+  "fix": "ALTER TABLE ... ENGINE=INNODB or REMOVE PARTITIONING before the upgrade."
+ },
+ {
+  "id": "new-reserved-word",
+  "sev": "error",
+  "re": "(?:^[ \\t]*|\\bAS[ \\t]+)(?:RANK|GROUPS|SYSTEM|WINDOW|LEAD|LAG|OVER|RECURSIVE|LATERAL|EMPTY|GROUPING|ROW_NUMBER|CUME_DIST|DENSE_RANK|PERCENT_RANK|NTILE|NTH_VALUE|FIRST_VALUE|LAST_VALUE|JSON_TABLE|INTERSECT|OF)\\b(?=[ \\t]*(?:,|\\n|$|INT|BIGINT|TINYINT|SMALLINT|VARCHAR|CHAR|TEXT|DATE|DATETIME|TIMESTAMP|DECIMAL|DOUBLE|FLOAT|BOOLEAN|ENUM|JSON|FROM))",
+  "msg": "Unquoted identifier is a reserved word added in MySQL 8.0; the statement fails to parse.",
+  "fix": "Quote it with backticks (`rank`) or rename it."
+ }
+]
