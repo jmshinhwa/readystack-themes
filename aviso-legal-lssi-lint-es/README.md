@@ -44,7 +44,7 @@ Revisar el archivo abierto es gratuito y termina el trabajo: ves los 17 controle
 
 La parte de pago cambia de eje, no de profundidad: **revisar de una vez todas las páginas del proyecto** y **exportar el informe** (Markdown/CSV) con artículo y línea para el expediente del cliente, con uso comercial y de equipo. **$29** una vez, una clave por persona o puesto de equipo, devolución íntegra en 7 días.
 
-Enlace de la versión completa: https://buy.polar.sh/polar_cl_K6TixpF3i1BJP3xqX0Fpf1AgISxxQr8BOj04s0HtxJ0
+Enlace de la versión completa: https://getreadystack.com/api/buy/cl/polar_cl_K6TixpF3i1BJP3xqX0Fpf1AgISxxQr8BOj04s0HtxJ0
 
 ## Por qué no basta lo gratuito que ya tienes
 
