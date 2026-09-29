@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.maui-ios-submission-gate</id>
+  <name>MAUI iOS Submission Gate</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Reads a .NET MAUI app's iOS Info.plist and Entitlements.plist and names every App Store Review 5.1.1(i) purpose-string rejection and export-compliance defect before the build is uploaded.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>MAUI iOS Submission Gate: Check This File</b>. Each finding appears on its line with the fix. 16 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/maui-ios-submission-gate</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/maui-ios-submission-gate">getreadystack.com/tools/maui-ios-submission-gate</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_maui_ios_submission_gate.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.maui-ios-submission-gate" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.maui-ios-submission-gate.check" class="com.getreadystack.p_maui_ios_submission_gate.RsCheckAction"
+            text="MAUI iOS Submission Gate: Check This File" description="Run MAUI iOS Submission Gate on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
