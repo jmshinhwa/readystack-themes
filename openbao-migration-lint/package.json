@@ -1,0 +1,58 @@
+{
+  "name": "openbao-migration-lint",
+  "displayName": "OpenBao Migration Lint — HashiCorp Vault",
+  "description": "OpenBao migration check for HashiCorp Vault files: flags BSL Vault 1.15+ images, Helm charts, storage backends, seals and plugins OpenBao 2.7 does not build in, with the OpenBao fix.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "openbao",
+    "hashicorp vault",
+    "vault",
+    "bsl",
+    "licence",
+    "migration",
+    "terraform",
+    "helm",
+    "secrets"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "openbaoMigrationLint.checkFile",
+        "title": "OpenBao Migration Lint — HashiCorp Vault: Check this file",
+        "category": "OpenBao Migration Lint — HashiCorp Vault"
+      },
+      {
+        "command": "openbaoMigrationLint.checkWorkspace",
+        "title": "OpenBao Migration Lint — HashiCorp Vault: Sweep workspace and write report (licence)",
+        "category": "OpenBao Migration Lint — HashiCorp Vault"
+      },
+      {
+        "command": "openbaoMigrationLint.enterKey",
+        "title": "OpenBao Migration Lint — HashiCorp Vault: Enter licence key",
+        "category": "OpenBao Migration Lint — HashiCorp Vault"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "openbao-migration-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/openbao-migration-lint",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
