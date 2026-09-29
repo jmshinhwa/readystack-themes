@@ -34,7 +34,7 @@ Free, no key: lint the file in front of you — every rule, line numbers, and th
 
 Full (`$29` once, one licence key per person or CI seat): sweep the whole workspace and write a dated evidence report, Markdown and CSV, that you can hand to counsel or fail a build on. A privacy attorney reading the same repository by hand bills $400–$600 an hour.
 
-Key: https://buy.polar.sh/polar_cl_vKksAjW9Bi3k8yFOtHV0BWFyP0dGt5w8qsiIU2Q8Bxq
+Key: https://getreadystack.com/api/buy/cl/polar_cl_vKksAjW9Bi3k8yFOtHV0BWFyP0dGt5w8qsiIU2Q8Bxq
 
 Browser version of the same engine, no install: https://getreadystack.com/tools/ai-disclosure-lint-sb942
 
