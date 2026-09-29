@@ -60,4 +60,4 @@ Das Tagesseminar „DSGVO-konforme Löschkonzepte nach DIN 66398 in der Praxis�
 
 Kein Rechtsrat. Branchenspezifische Fristen (z. B. Geldwäschegesetz, Patientenakten, Sozialversicherung) prüft der Lint nicht.
 
-Web-Version und Updates: https://getreadystack.com/tools/loeschkonzept-fristen-lint
+Web-Version und Updates: https://getreadystack.com/de/tools/loeschkonzept-fristen-lint
