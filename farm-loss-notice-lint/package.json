@@ -1,0 +1,57 @@
+{
+  "name": "farm-loss-notice-lint",
+  "displayName": "Farm Loss Notice Lint: Crop Insurance Deadlines",
+  "description": "Checks crop insurance loss logs (Markdown) against the 7 CFR 457.8 section 14 deadlines: 72-hour notice of damage, 15 days after the insurance period ends, written confirmation, 60-day claim.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "crop insurance claim form",
+    "crop insurance",
+    "notice of loss",
+    "7 CFR 457.8",
+    "farm",
+    "agriculture",
+    "claim deadline",
+    "prevented planting"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "farmLoss.checkFile",
+        "title": "Farm Loss Notice Lint: Crop Insurance Deadlines: Check this file",
+        "category": "Farm Loss Notice Lint: Crop Insurance Deadlines"
+      },
+      {
+        "command": "farmLoss.checkWorkspace",
+        "title": "Farm Loss Notice Lint: Crop Insurance Deadlines: Sweep workspace and write report (licence)",
+        "category": "Farm Loss Notice Lint: Crop Insurance Deadlines"
+      },
+      {
+        "command": "farmLoss.enterKey",
+        "title": "Farm Loss Notice Lint: Crop Insurance Deadlines: Enter licence key",
+        "category": "Farm Loss Notice Lint: Crop Insurance Deadlines"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "farm-loss-notice-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/farm-loss-notice-lint",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
