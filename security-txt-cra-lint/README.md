@@ -48,7 +48,7 @@ The full version scans **every** `security.txt` in the workspace in one pass and
 report you keep for the audit file. Reviewing a disclosure policy with a security consultant starts
 around **$150 an hour**; this reads the file in under a second.
 
-Full version: [workspace sweep + dated JSON report](https://buy.polar.sh/polar_cl_ix6VvnndFPQPoppGXnx8ybXWfh7W2eldbZaTM2Zh2br) - $29 once, one licence key
+Full version: [workspace sweep + dated JSON report](https://getreadystack.com/api/buy/cl/polar_cl_ix6VvnndFPQPoppGXnx8ybXWfh7W2eldbZaTM2Zh2br) - $29 once, one licence key
 per person or team seat.
 
 ## Why not a chatbot
