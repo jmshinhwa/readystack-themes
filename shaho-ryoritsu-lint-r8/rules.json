@@ -1,0 +1,16 @@
+[
+ {"id": "health-rate-r7-stale", "sev": "error", "kind": "health", "title": "協会けんぽ 健康保険料率が令和7年度の値のまま", "basis": "協会けんぽ 令和8年3月分(4月納付分)からの保険料額表"},
+ {"id": "health-rate-mismatch", "sev": "error", "kind": "health", "title": "健康保険料率がその都道府県の令和8年度の値と違う", "basis": "協会けんぽ 令和8年3月分からの都道府県単位保険料率"},
+ {"id": "health-rate-no-pref", "sev": "warning", "kind": "health", "title": "健康保険料率の都道府県が特定できず、令和7年度の値にだけ一致する", "basis": "協会けんぽ 都道府県単位保険料率 (47支部)"},
+ {"id": "health-kaigo-combined-stale", "sev": "error", "kind": "combined", "title": "介護保険第2号被保険者の合計料率(健康保険+介護)が令和8年度の値と違う", "basis": "協会けんぽ 令和8年3月分からの保険料額表 (介護該当の欄)"},
+ {"id": "kaigo-rate", "sev": "error", "kind": "kaigo", "title": "介護保険料率が令和8年度の1.62%ではない", "basis": "協会けんぽ 介護保険料率 令和8年3月分〜 1.62%"},
+ {"id": "shienkin-missing", "sev": "error", "kind": "file", "title": "健康保険料率はあるのに子ども・子育て支援金率(0.23%)の設定がない", "basis": "子ども・子育て支援金 令和8年4月分(5月納付分)〜 0.23%"},
+ {"id": "shienkin-rate", "sev": "error", "kind": "shienkin", "title": "子ども・子育て支援金率が0.23%(折半0.115%)ではない", "basis": "協会けんぽ 保険料額表 子ども・子育て支援金率 0.23%"},
+ {"id": "shienkin-kyoshutsu-mixup", "sev": "error", "kind": "shienkin", "title": "支援金(0.23%・労使折半)と拠出金(0.36%・事業主のみ)の取り違え", "basis": "子ども・子育て拠出金率 0.36% (令和2年4月分〜・被保険者負担なし)"},
+ {"id": "shienkin-start-month", "sev": "error", "kind": "shienkin", "title": "子ども・子育て支援金の適用開始が令和8年4月分より前", "basis": "子ども・子育て支援金 令和8年4月分(5月納付分)から納付"},
+ {"id": "shienkin-employee-full", "sev": "warning", "kind": "shienkin", "title": "被保険者負担の支援金率に全額0.23%を設定している(折半は0.115%)", "basis": "子ども・子育て支援金は労使折半"},
+ {"id": "pension-rate", "sev": "error", "kind": "pension", "title": "厚生年金保険料率が18.3%(折半9.15%)ではない", "basis": "厚生年金保険料率 平成29年9月分〜 18.3%"},
+ {"id": "kyoshutsu-rate", "sev": "error", "kind": "kyoshutsu", "title": "子ども・子育て拠出金率が0.36%ではない", "basis": "子ども・子育て拠出金率 令和2年4月分〜 0.36%"},
+ {"id": "health-cap", "sev": "warning", "kind": "healthcap", "title": "健康保険の標準報酬月額の上限が¥1,390,000(第50級)ではない", "basis": "健康保険 標準報酬月額 第50級 ¥1,390,000"},
+ {"id": "pension-cap", "sev": "warning", "kind": "pensioncap", "title": "厚生年金の標準報酬月額の上限が¥650,000(第32級)ではない", "basis": "厚生年金保険 標準報酬月額 第32級 ¥650,000"}
+]
