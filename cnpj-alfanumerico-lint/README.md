@@ -1,12 +1,14 @@
 # CNPJ Alfanumérico Lint — validação de CNPJ no código
 
+![CNPJ Alfanumérico Lint — validação de CNPJ no código — finds the line](https://getreadystack.com/img/promo/cnpj-alfanumerico-lint_demo.gif)
+
 ![CNPJ Alfanumérico Lint — validação de CNPJ no código](https://getreadystack.com/img/promo/sku336614_result_card.jpg)
 
 Acha no seu código o CNPJ tratado só como número — regex `\d{14}`, `replace(/\D/g, '')`, `parseInt` no cálculo do DV, tipo `number`, coluna `BIGINT` — antes que ele recuse uma empresa nova.
 
 A Receita Federal atribui CNPJ alfanumérico **a partir de julho de 2026**, exclusivamente a novas inscrições (IN RFB nº 2.229/2024). Os CNPJs já existentes não mudam. O formato novo tem 14 caracteres: as 12 primeiras posições (raiz + ordem) aceitam letras e números, e as 2 últimas (DV) continuam numéricas. Exemplo oficial: `12.ABC.345/01DE-35`.
 
-Ferramenta no navegador, mesmo motor: https://getreadystack.com/tools/cnpj-alfanumerico-lint
+Ferramenta no navegador, mesmo motor: https://getreadystack.com/pt/tools/cnpj-alfanumerico-lint
 
 ## O que ele acha
 
@@ -61,7 +63,7 @@ Régua: o motor recalcula o exemplo oficial da Receita `12.ABC.345/01DE-35` e ch
 ## Grátis e versão completa
 
 - Grátis: verifica o arquivo aberto (ou o código colado no navegador) com as 11 regras e mostra cada linha que recusa um CNPJ alfanumérico, com a correção.
-- Versão completa ($29, pagamento único): varre o workspace inteiro de uma vez e exporta um relatório Markdown por arquivo para anexar ao PR ou à auditoria de migração. [Versão completa — varredura do workspace + relatório](https://buy.polar.sh/polar_cl_t3hBAj7L4CQX2J1igNBb92DPpaz6qbT0aY13a1ZalxQ)
+- Versão completa ($29, pagamento único): varre o workspace inteiro de uma vez e exporta um relatório Markdown por arquivo para anexar ao PR ou à auditoria de migração. [Versão completa — varredura do workspace + relatório](https://getreadystack.com/api/buy/cl/polar_cl_t3hBAj7L4CQX2J1igNBb92DPpaz6qbT0aY13a1ZalxQ)
 
 Uma chave de licença por pessoa ou assento de equipe. Sem assinatura.
 
