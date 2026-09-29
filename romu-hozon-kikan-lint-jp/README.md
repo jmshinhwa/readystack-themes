@@ -53,7 +53,7 @@
 ## 無料と有料
 
 - 無料: 開いている保存期間表1枚の検査。キーは不要で、結果に制限はありません。
-- 有料（一度の支払い・個人またはチーム1席につきライセンスキー1つ）: ワークスペース内の規程・CSVを一括検査し、条文根拠と罰則つきの監査用レポートをMarkdown/CSVで書き出します。 [フル版を入手](https://buy.polar.sh/polar_cl_mp6bP7Gyw9i49qH5jlbJODra5FcgmdOi3T4eh0lWeGK)
+- 有料（一度の支払い・個人またはチーム1席につきライセンスキー1つ）: ワークスペース内の規程・CSVを一括検査し、条文根拠と罰則つきの監査用レポートをMarkdown/CSVで書き出します。 [フル版を入手](https://getreadystack.com/api/buy/cl/polar_cl_mp6bP7Gyw9i49qH5jlbJODra5FcgmdOi3T4eh0lWeGK)
 
 ## 目安
 
