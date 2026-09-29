@@ -62,7 +62,7 @@ That is a finished job — you can upgrade a file with it and never pay anything
 Paid ($29 once, one key per person or team seat):
 **Sweep workspace and write report** walks every `.ts`, `.html` and `.json` outside `node_modules`,
 and writes a dated `angularRemovedApi-report.md` into your workspace root — a file you own, can
-commit, and can hand to a client or an auditor. Licence: https://buy.polar.sh/polar_cl_2wSKxziqGHTfu7JassC9u93PIE4YL8ThOikL64MVZVc
+commit, and can hand to a client or an auditor. Licence: https://getreadystack.com/api/buy/cl/polar_cl_2wSKxziqGHTfu7JassC9u93PIE4YL8ThOikL64MVZVc
 
 Yardstick: a freelance Angular upgrade consultant bills $80–$150/hour to read the same files by hand.
 
