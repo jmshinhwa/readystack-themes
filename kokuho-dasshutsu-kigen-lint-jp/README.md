@@ -1,5 +1,7 @@
 # 国民健康保険 脱退 手続き lint — 入退社チェックリスト期限
 
+![国民健康保険 脱退 手続き lint — 入退社チェックリスト期限 — finds the line](https://getreadystack.com/img/promo/kokuho-dasshutsu-kigen-lint-jp_demo.gif)
+
 ![国民健康保険 脱退 手続き lint — 入退社チェックリスト期限](https://getreadystack.com/img/promo/sku366268_result_card.jpg)
 
 入退社チェックリストに「国保は自動で脱退」「資格取得届は10日以内」と書いてあったら、社員も担当者も期限を逃します。この拡張は、Markdown・YAML・テキストの手順書を1行ずつ読み、社会保険の届出期限を条文の日数と照合して、行番号・根拠条文・直し方を出します。
@@ -54,7 +56,7 @@
 3. 問題パネルに行番号・根拠条文・直し方が出ます
 
 無料: 開いている1ファイルの結果はすべて表示します。答えは隠しません。
-有料 $29(1回払い・ライセンスキー1つ): ワークスペース内の全チェックリストを一括スキャンし、条文つきレポートを書き出します → https://buy.polar.sh/polar_cl_zId6Tof3m4bG1iGnTZDf62t1O4ZdymiLi0hFX4DtHjp
+有料 $29(1回払い・ライセンスキー1つ): ワークスペース内の全チェックリストを一括スキャンし、条文つきレポートを書き出します → https://getreadystack.com/api/buy/cl/polar_cl_zId6Tof3m4bG1iGnTZDf62t1O4ZdymiLi0hFX4DtHjp
 
 ## 物差し
 
