@@ -49,6 +49,6 @@ Lines inside `--` comments and `#` config comments are skipped, so a note like `
 
 Free, with no key: the open file, every rule, every fix, in VS Code and on the web page.
 
-Paid ($29 once, one licence key per person or team seat): scan every migration in the workspace at once and export one upgrade-blocker report (Markdown + CSV) to attach to the upgrade ticket. [Get the full version](https://buy.polar.sh/polar_cl_s5avrba8KowKm6k2clM21lHLbLMEFg3UCrkFv41dVza)
+Paid ($29 once, one licence key per person or team seat): scan every migration in the workspace at once and export one upgrade-blocker report (Markdown + CSV) to attach to the upgrade ticket. [Get the full version](https://getreadystack.com/api/buy/cl/polar_cl_s5avrba8KowKm6k2clM21lHLbLMEFg3UCrkFv41dVza)
 
 The rules run on your machine. Nothing in your files is uploaded; only a licence key is sent to the licence server when you enter one.
