@@ -33,7 +33,7 @@ That is the whole check, not a sample of it. The free tier is the same `scan()` 
 - **Export the findings as a report** — writes CSV, JSON or HTML into the workspace folder
 - **Apply the suggested fix** — where a rule carries a machine-safe replacement, it rewrites just the matched text; everything else is counted and left for you to edit by hand
 
-$29 once, refundable for 7 days → **https://buy.polar.sh/polar_cl_rvApWbLcqMhAIqiOEhiXEf2qoShcoNxkA0AXm2wPzPw**
+$29 once → **https://getreadystack.com/api/buy/cl/polar_cl_rvApWbLcqMhAIqiOEhiXEf2qoShcoNxkA0AXm2wPzPw**
 
 A freelance senior software engineer averaged $101/hr in 2026 (contractrates.fyi, 584 verified rate submissions). This is about seventeen minutes of that.
 
