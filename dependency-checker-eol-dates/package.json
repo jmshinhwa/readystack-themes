@@ -1,0 +1,58 @@
+{
+  "name": "dependency-checker-eol-dates",
+  "displayName": "Dependency Checker — EOL Dates",
+  "description": "Dependency checker for package.json, composer.json and requirements.txt: flags Angular, Express 4, ESLint 8, Vue 2, Laravel and Django versions past or near their published end-of-support date.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "dependency checker",
+    "end of life",
+    "eol",
+    "package.json",
+    "outdated dependencies",
+    "requirements.txt",
+    "composer",
+    "angular",
+    "express"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "depEolCheck.checkFile",
+        "title": "Dependency Checker — EOL Dates: Check this file",
+        "category": "Dependency Checker — EOL Dates"
+      },
+      {
+        "command": "depEolCheck.checkWorkspace",
+        "title": "Dependency Checker — EOL Dates: Sweep workspace and write report (licence)",
+        "category": "Dependency Checker — EOL Dates"
+      },
+      {
+        "command": "depEolCheck.enterKey",
+        "title": "Dependency Checker — EOL Dates: Enter licence key",
+        "category": "Dependency Checker — EOL Dates"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "dependency-checker-eol-dates"
+  },
+  "homepage": "https://getreadystack.com/tools/dependency-checker-eol-dates",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
