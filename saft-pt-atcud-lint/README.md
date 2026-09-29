@@ -41,7 +41,7 @@ Nos ficheiros de exemplo incluídos: `_fixtures/dirty.xml`, com 187 linhas e 3 d
 
 Grátis, sem limite de utilizações e sem marca de água: o ficheiro aberto é analisado por inteiro, com as 14 verificações e todos os achados.
 
-Versão completa (chave de licença, $29, uma vez): a mesma análise em toda a pasta de exportações de uma vez e um relatório CSV/JSON por ficheiro, para o contabilista arquivar como prova de validação — https://buy.polar.sh/polar_cl_7CPHXouwL4TOLFSh30h3VBqFBoIpKPBtY3n9I1d5I7p
+Versão completa (chave de licença, $29, uma vez): a mesma análise em toda a pasta de exportações de uma vez e um relatório CSV/JSON por ficheiro, para o contabilista arquivar como prova de validação — https://getreadystack.com/api/buy/cl/polar_cl_7CPHXouwL4TOLFSh30h3VBqFBoIpKPBtY3n9I1d5I7p
 
 ## Medida de comparação
 
