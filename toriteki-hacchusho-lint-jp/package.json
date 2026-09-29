@@ -1,0 +1,57 @@
+{
+  "name": "toriteki-hacchusho-lint-jp",
+  "displayName": "発注書チェッカー 取適法2026（旧下請法）",
+  "description": "発注書・取引基本契約書のテンプレを2026年1月1日施行の中小受託取引適正化法（旧下請法）で検査。手形払い・60日超の支払サイト・振込手数料の差引・第4条の明示漏れを行ごとに指摘します。",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "取適法",
+    "下請法",
+    "発注書",
+    "支払条件",
+    "手形",
+    "中小受託取引適正化法",
+    "契約書",
+    "lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "toritekiLint.checkFile",
+        "title": "発注書チェッカー 取適法2026（旧下請法）: Check this file",
+        "category": "発注書チェッカー 取適法2026（旧下請法）"
+      },
+      {
+        "command": "toritekiLint.checkWorkspace",
+        "title": "発注書チェッカー 取適法2026（旧下請法）: Sweep workspace and write report (licence)",
+        "category": "発注書チェッカー 取適法2026（旧下請法）"
+      },
+      {
+        "command": "toritekiLint.enterKey",
+        "title": "発注書チェッカー 取適法2026（旧下請法）: Enter licence key",
+        "category": "発注書チェッカー 取適法2026（旧下請法）"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "toriteki-hacchusho-lint-jp"
+  },
+  "homepage": "https://getreadystack.com/ja/tools/toriteki-hacchusho-lint-jp",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
