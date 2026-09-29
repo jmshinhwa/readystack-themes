@@ -22,11 +22,11 @@ Yardstick: an online CER Directive trained-professional course costs $297. It te
 | CER-12-HAZARDS | Art. 12(1) | Natural hazards, accidents, public health emergencies and antagonistic threats (terrorism, sabotage, insider) |
 | CER-12-DEPEND | Art. 12(1) | Which sectors depend on you, and which you depend on |
 | CER-13-LIAISON | Art. 13(3) | A named liaison officer or equivalent as point of contact |
-| CER-13-MEASURES | Art. 13(1) | Physical protection, recovery and business continuity, personnel security and background checks, staff training and exercises |
+| CER-13-MEASURES | Art. 13(1)(a)-(f) | All six measure areas: (a) prevention with disaster risk reduction and climate adaptation, (b) physical protection, (c) crisis management procedures and alert routines, (d) recovery and business continuity, (e) personnel security and background checks, (f) training and exercises |
 
 ## Worked example (the sample plan in `_fixtures/dirty.md`)
 
-The sample is a water utility plan notified on 2026-08-14. The lint returns six findings (five errors, one warning):
+The sample is a water utility plan notified on 2026-08-14. Its hazard register lists summer drought and heatwave stress on reservoirs. The lint returns eight findings (five errors, three warnings):
 
 | Plan says | CER requires |
 |---|---|
@@ -36,6 +36,12 @@ The sample is a water utility plan notified on 2026-08-14. The lint returns six 
 | First assessment 2027-06-30 | Due 2027-05-14 (nine months) |
 | No public health hazard | All hazards (Art. 12) |
 | No liaison officer | Named contact (Art. 13) |
+| Drought listed, no adaptation measure | Art. 13(1)(a) prevention and climate adaptation |
+| No crisis procedure or alert routine | Art. 13(1)(c) |
+
+## Drought and flood hazards need a matching measure
+
+Art. 13(1)(a) asks for measures to prevent incidents, "duly considering disaster risk reduction and climate adaptation measures". A plan that names drought in its hazard register but has no drought contingency or climate adaptation measure leaves point (a) empty. Water utilities copying a drought contingency plan template often keep it in a separate file, so the resilience plan never points to it. Art. 13(2) lets the plan reference documents you already keep, so one line that names the drought plan fills the gap. Rules updated 2026-09-28 against the Art. 13(1) text of Directive (EU) 2022/2557.
 
 ## Why NIS2 templates get this wrong
 
@@ -47,9 +53,9 @@ If the plan states the designation notice date ("Designation notified: 2026-08-1
 
 ## Usage
 
-Open a `.md` plan and run **Resilience Plan Lint: Check current file** from the Command Palette. Findings appear in the Problems panel. The free check covers one file at a time and has no limit on runs.
+Open a `.md` plan and run **Resilience Plan Lint (CER Directive): Check this file** from the Command Palette. Findings appear in the Problems panel. The free check covers one file at a time and has no limit on runs.
 
-Full version: scan every plan in the workspace at once and export a dated gap report for the auditor file — [one licence key](https://buy.polar.sh/polar_cl_roT2BUBnJjC4ZxUPjFykawCuTQbNsbn1GgRWi03ruw0).
+Full version: scan every plan in the workspace at once and export a dated gap report for the auditor file — [one licence key, $29 once](https://getreadystack.com/api/buy/cl/polar_cl_roT2BUBnJjC4ZxUPjFykawCuTQbNsbn1GgRWi03ruw0).
 
 ## Limits
 
