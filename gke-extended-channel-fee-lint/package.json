@@ -1,0 +1,57 @@
+{
+  "name": "gke-extended-channel-fee-lint",
+  "displayName": "GKE Extended Channel Fee Lint — Terraform",
+  "description": "GKE Extended channel fee check for Terraform: flags google_container_cluster versions billed $0.50 per cluster-hour past end of standard support, forced-upgrade dates and Extended channel blockers.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "gke",
+    "google kubernetes engine",
+    "extended channel",
+    "terraform",
+    "kubernetes version",
+    "release channel",
+    "finops",
+    "google_container_cluster"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "gkeExtendedFeeLint.checkFile",
+        "title": "GKE Extended Channel Fee Lint — Terraform: Check this file",
+        "category": "GKE Extended Channel Fee Lint — Terraform"
+      },
+      {
+        "command": "gkeExtendedFeeLint.checkWorkspace",
+        "title": "GKE Extended Channel Fee Lint — Terraform: Sweep workspace and write report (licence)",
+        "category": "GKE Extended Channel Fee Lint — Terraform"
+      },
+      {
+        "command": "gkeExtendedFeeLint.enterKey",
+        "title": "GKE Extended Channel Fee Lint — Terraform: Enter licence key",
+        "category": "GKE Extended Channel Fee Lint — Terraform"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "gke-extended-channel-fee-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/gke-extended-channel-fee-lint",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
