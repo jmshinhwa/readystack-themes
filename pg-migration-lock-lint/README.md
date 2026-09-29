@@ -31,7 +31,7 @@ Target: PostgreSQL 12 through 17. PostgreSQL 14 receives its last minor release 
 
 Open a migration file and run **Postgres Migration Lock Lint: Check this file** from the command palette. Findings appear in the Problems panel, on the line that carries the lock.
 
-Free tier: the file you have open, all 36 rules, full messages. Full version ($29 once): every migration in the workspace in one pass, plus the review exported as Markdown or JSON to attach to the change ticket, and an exit-code gate for CI — https://buy.polar.sh/polar_cl_zaJ9pwhlczNQZUXiIKP3wGCzfzxe2LYQ6mMD02xD1j5
+Free tier: the file you have open, all 36 rules, full messages. Full version ($29 once): every migration in the workspace in one pass, plus the review exported as Markdown or JSON to attach to the change ticket, and an exit-code gate for CI — https://getreadystack.com/api/buy/cl/polar_cl_zaJ9pwhlczNQZUXiIKP3wGCzfzxe2LYQ6mMD02xD1j5
 
 The same 36 rules run in the browser, on text you paste, with nothing uploaded: https://getreadystack.com/tools/pg-migration-lock-lint
 
