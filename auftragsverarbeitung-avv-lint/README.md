@@ -1,5 +1,7 @@
 # Auftragsverarbeitung Lint – AVV nach Art. 28 DSGVO prüfen
 
+![Auftragsverarbeitung Lint – AVV nach Art. 28 DSGVO — finds the line](https://getreadystack.com/img/promo/auftragsverarbeitung-avv-lint_demo.gif)
+
 ![Auftragsverarbeitung Lint – AVV nach Art. 28 DSGVO](https://getreadystack.com/img/promo/sku360983_result_card.jpg)
 
 **17 rules** für Ihren AVV (Auftragsverarbeitungsvertrag, englisch DPA) als Markdown-Datei: **13 Pflichtpunkte** aus Art. 28 Abs. 3 DSGVO und **4 veraltete Transfer-Grundlagen** (Privacy Shield, Safe Harbor, Standardvertragsklauseln 2010/87/EU, § 11 BDSG a.F.). Jede Lücke erscheint mit Zeilennummer, Fundstelle und Korrekturtext direkt im Editor.
