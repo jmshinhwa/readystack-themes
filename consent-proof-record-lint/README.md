@@ -64,7 +64,7 @@ the workspace in one pass and writes a dated evidence report you keep and hand t
 Article 83(5) puts Article 7 consent breaches in the top fine tier: up to €20 million or 4% of worldwide
 annual turnover. Article 12(3) gives you one month to answer a data subject's request.
 A GDPR consultant reviewing a consent log bills $150 to $250 an hour.
-Details: <https://buy.polar.sh/polar_cl_mSv5XPtyBLW8GXFQGDEDDv9sgkuuOvkN3MOH02P3VUY>
+Details: <https://getreadystack.com/api/buy/cl/polar_cl_mSv5XPtyBLW8GXFQGDEDDv9sgkuuOvkN3MOH02P3VUY>
 
 ## More tools
 
