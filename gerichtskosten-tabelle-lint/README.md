@@ -1,5 +1,7 @@
 # Kostentabellen-Lint: GKG & RVG 2025 für Mahn-Software
 
+![Kostentabellen-Lint: GKG & RVG 2025 für Mahn-Software — finds the line](https://getreadystack.com/img/promo/gerichtskosten-tabelle-lint_demo.gif)
+
 ![Kostentabellen-Lint: GKG & RVG 2025 für Mahn-Software](https://getreadystack.com/img/promo/sku360399_result_card.jpg)
 
 Findet in Quellcode und Konfiguration von Inkasso-, Mahn- und Kanzleisoftware die Gebührenwerte, die seit dem **1.6.2025** nicht mehr gelten: GKG-Tabelle (Anlage 2 zu § 34 GKG), RVG-Tabelle (Anlage 2 zu § 13 RVG), die Mahnbescheid-Mindestgebühr nach **Nr. 1100 KV GKG (38,00 € statt 36,00 €)** und einen falschen Gebührenfaktor für den Mahnbescheid.
@@ -58,6 +60,6 @@ Eine anwaltliche 1,0-Gebühr nach VV 3305 RVG für einen Mahnantrag über 5.000 
 
 ## Vollversion
 
-Vollversion ($29 einmal, ein Lizenzschlüssel pro Person oder Team-Platz): ganzer Workspace auf einmal, CSV-Bericht für das Audit, fertige 2025-Tabellen als JSON/TS/PHP. [Vollversion holen](https://buy.polar.sh/polar_cl_bDI4iUva3CinihoGSPIwtLaN7lolz9vP3HvmI2KzGRh)
+Vollversion ($29 einmal, ein Lizenzschlüssel pro Person oder Team-Platz): ganzer Workspace auf einmal, CSV-Bericht für das Audit, fertige 2025-Tabellen als JSON/TS/PHP. [Vollversion holen](https://getreadystack.com/api/buy/cl/polar_cl_bDI4iUva3CinihoGSPIwtLaN7lolz9vP3HvmI2KzGRh)
 
 Quellen: Anlage 2 GKG und Anlage 2 RVG in der Fassung BGBl. 2025 I Nr. 109 (gesetze-im-internet.de); Nr. 1100 KV GKG.
