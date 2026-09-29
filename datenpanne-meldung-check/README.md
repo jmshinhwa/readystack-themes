@@ -1,5 +1,7 @@
 # Datenpanne Meldung Check – 72 h, Art. 33/34 DSGVO
 
+![Datenpanne Meldung Check – 72 h, Art. 33/34 DSGVO — finds the line](https://getreadystack.com/img/promo/datenpanne-meldung-check_demo.gif)
+
 ![Datenpanne Meldung Check – 72 h, Art. 33/34 DSGVO](https://getreadystack.com/img/promo/sku367591_result_card.jpg)
 
 **Ihr Datenpannen-Protokoll in einer Sekunde gegen die 72-Stunden-Frist und die Pflichtangaben der DSGVO geprüft – lokal, ohne Upload.**
