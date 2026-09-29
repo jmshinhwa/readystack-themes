@@ -1,14 +1,12 @@
 # CNPJ Alfanumérico Lint — validação de CNPJ no código
 
-![CNPJ Alfanumérico Lint — validação de CNPJ no código — finds the line](https://getreadystack.com/img/promo/cnpj-alfanumerico-lint_demo.gif)
-
 ![CNPJ Alfanumérico Lint — validação de CNPJ no código](https://getreadystack.com/img/promo/sku336614_result_card.jpg)
 
 Acha no seu código o CNPJ tratado só como número — regex `\d{14}`, `replace(/\D/g, '')`, `parseInt` no cálculo do DV, tipo `number`, coluna `BIGINT` — antes que ele recuse uma empresa nova.
 
 A Receita Federal atribui CNPJ alfanumérico **a partir de julho de 2026**, exclusivamente a novas inscrições (IN RFB nº 2.229/2024). Os CNPJs já existentes não mudam. O formato novo tem 14 caracteres: as 12 primeiras posições (raiz + ordem) aceitam letras e números, e as 2 últimas (DV) continuam numéricas. Exemplo oficial: `12.ABC.345/01DE-35`.
 
-Ferramenta no navegador, mesmo motor: https://getreadystack.com/pt/tools/cnpj-alfanumerico-lint
+Ferramenta no navegador, mesmo motor: https://getreadystack.com/tools/cnpj-alfanumerico-lint
 
 ## O que ele acha
 
