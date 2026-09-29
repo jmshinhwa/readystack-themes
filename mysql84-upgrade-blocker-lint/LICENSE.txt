@@ -1,0 +1,15 @@
+MySQL 8.4 Upgrade Lint (RDS MySQL 8.0) — Licence
+
+Free scope
+  Lint the open .sql, .cnf or .tf file against the MySQL 8.4 removals, with the line number and the fix on every finding. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Scan every migration, my.cnf and parameter group in the workspace at once and export one upgrade-blocker report (Markdown + CSV) for the upgrade ticket. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
