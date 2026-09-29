@@ -1,0 +1,15 @@
+Aurora MySQL 5.7 to 8.0 Upgrade Blocker Lint — Licence
+
+Free scope
+  Checks the open .sql, .cnf or .tf file against all 28 MySQL 8.0 removal rules and shows every blocking line with its 8.0 replacement, free in the editor and in the browser. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Scans the whole workspace (every migration, parameter group and Terraform module) in one run and exports a dated Markdown upgrade report you can attach to the change ticket. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
