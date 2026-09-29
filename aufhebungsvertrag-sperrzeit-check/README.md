@@ -49,4 +49,4 @@ Der Check liest diese Zeilen (Datum TT.MM.JJJJ, Betrag mit €): `Beschäftigt s
 
 Datei öffnen – Befunde erscheinen im Problems-Panel. Befehlspalette: „Aufhebungsvertrag“.
 
-Vollversion (Prüfprotokoll-Export mit allen Rechenschritten, Workspace-Scan aller Vertragsentwürfe): https://buy.polar.sh/polar_cl_EmLyrHp9cLvnZL1P7pFYbCGL84Sf98KnMiGBX15eqV0 – $29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz.
+Vollversion (Prüfprotokoll-Export mit allen Rechenschritten, Workspace-Scan aller Vertragsentwürfe): https://getreadystack.com/api/buy/cl/polar_cl_EmLyrHp9cLvnZL1P7pFYbCGL84Sf98KnMiGBX15eqV0 – $29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz.
