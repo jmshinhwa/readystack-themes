@@ -33,7 +33,7 @@ Two things, and they are the two you cannot reasonably do by hand:
 
 Everything above stays free. The licence adds **scope and repetition**, nothing else.
 
-[Get a licence](https://buy.polar.sh/polar_cl_uobf0e1SXkBfCizSA6fpj4XMwWyXUKrY35d1P2SmCPE)
+[Get a licence](https://getreadystack.com/api/buy/cl/polar_cl_uobf0e1SXkBfCizSA6fpj4XMwWyXUKrY35d1P2SmCPE)
 
 ## Try it without installing anything
 
