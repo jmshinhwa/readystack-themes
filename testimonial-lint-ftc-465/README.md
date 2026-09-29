@@ -42,7 +42,7 @@ The same engine runs in the browser at https://getreadystack.com/tools/testimoni
 
 ## Free and licensed
 
-Free, with no key: all 11 checks on the open file, every finding shown. Licensed: **Sweep workspace and write report** scans every matching file at once and writes a Markdown evidence report (file, line, section, fix) that you can hand to a lawyer or a client. $29 once, one licence key per person or team seat: [workspace sweep + evidence report](https://buy.polar.sh/polar_cl_PkYzWwsUX6ZktOMwUx6r9kzjgB9cqUmnzw40q2UCiVW).
+Free, with no key: all 11 checks on the open file, every finding shown. Licensed: **Sweep workspace and write report** scans every matching file at once and writes a Markdown evidence report (file, line, section, fix) that you can hand to a lawyer or a client. $29 once, one licence key per person or team seat: [workspace sweep + evidence report](https://getreadystack.com/api/buy/cl/polar_cl_PkYzWwsUX6ZktOMwUx6r9kzjgB9cqUmnzw40q2UCiVW).
 
 ## Yardstick
 
