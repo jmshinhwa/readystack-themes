@@ -1,11 +1,11 @@
-Löschkonzept-Prüfer – Aufbewahrungsfristen 2026 — Licence
+Aufbewahrungsfristen-Lint für Löschkonzepte (BEG IV) — Licence
 
 Free scope
-  Prüft jedes offene Löschkonzept (.md) mit allen 16 Regeln und zeigt die Befunde zeilengenau im Editor und im Browser — ohne Key. is free for any use, personal or commercial, for as long as you keep the
+  Prüft das offene Löschkonzept gegen alle 10 rules und zeigt jede falsche Aufbewahrungsfrist mit Zeile, Rechtsgrundlage und korrekter Frist — ohne Schlüssel, offline. is free for any use, personal or commercial, for as long as you keep the
   extension installed, and the online check at the product page is free without registration.
 
 Paid scope
-  Ordner-Prüfbericht über alle Löschkonzepte und Löschfristen-Tabellen eines Workspace als Datei, als Nachweis nach Art. 5 Abs. 2 DSGVO für Audit und Datenschutzbeauftragte. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  Löschkalender-Export: pro Datenkategorie und Jahrgang das konkrete Löschdatum als CSV, plus Scan aller Löschkonzepte im Workspace in einem Bericht. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
   cached locally for 30 days so it keeps working offline.
 
 Redistribution
