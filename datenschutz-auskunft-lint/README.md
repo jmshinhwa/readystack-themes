@@ -58,7 +58,7 @@ Artikel, Grund und Zeilennummer, ohne Wasserzeichen und ohne Zähler.
 
 Kostenpflichtig ist eine andere Achse, nämlich Umfang und Mitnahme: der ganze Ordner auf
 einmal und ein datierter Nachweis-Bericht für die Akte.
-Lizenz: https://buy.polar.sh/polar_cl_L1T6oCyVJvmCPSj0Gs7SN6KRhS2VcgbkcA1KQ1oguQG
+Lizenz: https://getreadystack.com/api/buy/cl/polar_cl_L1T6oCyVJvmCPSj0Gs7SN6KRhS2VcgbkcA1KQ1oguQG
 
 ## Maßstab
 
