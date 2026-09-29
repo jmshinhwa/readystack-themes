@@ -22,7 +22,7 @@ Finds the third-party scripts, missing SRI hashes and CSP holes on your checkout
 
 $29 once - one licence key per person or team seat. Vendor script-monitoring
 tools for these same two requirements run $99-$999 per month.
-[Get the full version](https://buy.polar.sh/polar_cl_nBmXM2HwLUh5BD7yp7KsyvTpkpyGWebhEowU21LBIbE)
+[Get the full version](https://getreadystack.com/api/buy/cl/polar_cl_nBmXM2HwLUh5BD7yp7KsyvTpkpyGWebhEowU21LBIbE)
 
 ## Install
 
