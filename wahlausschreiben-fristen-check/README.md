@@ -69,6 +69,6 @@ Stimmabgabe: 19.01.2027 ...
 ## Befehle
 
 - **Wahlausschreiben prüfen** – prüft die offene Datei, Befunde erscheinen unter „Probleme“.
-- Vollversion: Alle Wahlausschreiben im Ordner auf einmal prüfen und Prüfbericht mit Paragraf je Befund als Datei für die Wahlakte exportieren. [Vollversion](https://buy.polar.sh/polar_cl_4SEro9hA8nfEdiXqenQRjTT3DTqjHtqdlCfpw4OP17i) · $29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz.
+- Vollversion: Alle Wahlausschreiben im Ordner auf einmal prüfen und Prüfbericht mit Paragraf je Befund als Datei für die Wahlakte exportieren. [Vollversion](https://getreadystack.com/api/buy/cl/polar_cl_4SEro9hA8nfEdiXqenQRjTT3DTqjHtqdlCfpw4OP17i) · $29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz.
 
 Die freie Prüfung braucht keinen Schlüssel und kein Konto; der Text verlässt den Rechner nicht.
