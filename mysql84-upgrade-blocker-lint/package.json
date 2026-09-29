@@ -1,0 +1,57 @@
+{
+  "name": "mysql84-upgrade-blocker-lint",
+  "displayName": "MySQL 8.4 Upgrade Lint (RDS MySQL 8.0)",
+  "description": "Flags SQL, my.cnf and parameter-group lines that MySQL 8.4 removed (SHOW SLAVE STATUS, CHANGE MASTER TO, default_authentication_plugin) so an RDS MySQL 8.0 upgrade does not break.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "mysql",
+    "mysql 8.4",
+    "mysql upgrade",
+    "rds mysql",
+    "rds extended support",
+    "sql lint",
+    "replication",
+    "migration"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "mysql84UpgradeLint.checkFile",
+        "title": "MySQL 8.4 Upgrade Lint (RDS MySQL 8.0): Check this file",
+        "category": "MySQL 8.4 Upgrade Lint (RDS MySQL 8.0)"
+      },
+      {
+        "command": "mysql84UpgradeLint.checkWorkspace",
+        "title": "MySQL 8.4 Upgrade Lint (RDS MySQL 8.0): Sweep workspace and write report (licence)",
+        "category": "MySQL 8.4 Upgrade Lint (RDS MySQL 8.0)"
+      },
+      {
+        "command": "mysql84UpgradeLint.enterKey",
+        "title": "MySQL 8.4 Upgrade Lint (RDS MySQL 8.0): Enter licence key",
+        "category": "MySQL 8.4 Upgrade Lint (RDS MySQL 8.0)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "mysql84-upgrade-blocker-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/mysql84-upgrade-blocker-lint",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
