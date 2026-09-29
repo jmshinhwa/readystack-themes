@@ -55,7 +55,7 @@ Markdown-Datei öffnen — die Befunde erscheinen im Problems-Panel, zeilengenau
 
 ## Kostenlos und Vollversion
 
-Kostenlos: jede offene Systembeschreibung mit allen 15 Regeln, ohne Key. Vollversion ($29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz): Workspace-Prüfbericht über alle Systembeschreibungen als Datei, als Anlage für die Unterrichtung des Betriebsrats — [Vollversion](https://buy.polar.sh/polar_cl_utqay8UfgX9jPpOHCwY0fnE0JzNYfGbQiWTRw3Y7hTR).
+Kostenlos: jede offene Systembeschreibung mit allen 15 Regeln, ohne Key. Vollversion ($29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz): Workspace-Prüfbericht über alle Systembeschreibungen als Datei, als Anlage für die Unterrichtung des Betriebsrats — [Vollversion](https://getreadystack.com/api/buy/cl/polar_cl_utqay8UfgX9jPpOHCwY0fnE0JzNYfGbQiWTRw3Y7hTR).
 
 Zum Vergleich: Anwalt nach RVG: 1,3 Geschäftsgebühr (Nr. 2300 VV) bei €5.000 Gegenstandswert = €480,85 netto.
 
