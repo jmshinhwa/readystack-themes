@@ -1,0 +1,21 @@
+[
+  {"id": "gkg-tabelle-2021", "sev": "error", "title": "GKG-Tabellenzeile mit Wert von 2021",
+   "why": "Anlage 2 zu § 34 GKG gilt seit 1.6.2025 in neuer Fassung (KostRÄG 2025, BGBl. 2025 I Nr. 109). Jede Gerichtsgebühr, auch die 0,5-Gebühr für den Mahnbescheid (KV 1100), wird aus dieser Tabelle gerechnet.",
+   "fix": "Wert durch den Tabellenwert ab 1.6.2025 ersetzen.",
+   "old": {"500": 38, "1000": 58, "1500": 78, "2000": 98, "3000": 119, "4000": 140, "5000": 161, "6000": 182, "7000": 203, "8000": 224, "9000": 245, "10000": 266, "13000": 295, "16000": 324, "19000": 353, "22000": 382, "25000": 411, "30000": 449, "35000": 487, "40000": 525, "45000": 563, "50000": 601},
+   "new": {"500": 40, "1000": 61, "1500": 82, "2000": 103, "3000": 125.5, "4000": 148, "5000": 170.5, "6000": 193, "7000": 215.5, "8000": 238, "9000": 260.5, "10000": 283, "13000": 313.5, "16000": 344, "19000": 374.5, "22000": 405, "25000": 435.5, "30000": 476, "35000": 516.5, "40000": 557, "45000": 597.5, "50000": 638}},
+  {"id": "rvg-tabelle-2021", "sev": "error", "title": "RVG-Tabellenzeile mit Wert von 2021",
+   "why": "Anlage 2 zu § 13 RVG gilt seit 1.6.2025 in neuer Fassung. Die 1,0-Verfahrensgebühr für den Mahnantrag (VV 3305) wird aus dieser Tabelle gerechnet; mit dem alten Wert wird zu wenig geltend gemacht.",
+   "fix": "Wert durch den Tabellenwert ab 1.6.2025 ersetzen.",
+   "old": {"500": 49, "1000": 88, "1500": 127, "2000": 166, "3000": 222, "4000": 278, "5000": 334, "6000": 390, "7000": 446, "8000": 502, "9000": 558, "10000": 614, "13000": 666, "16000": 718, "19000": 770, "22000": 822, "25000": 874, "30000": 955, "35000": 1036, "40000": 1117, "45000": 1198, "50000": 1279},
+   "new": {"500": 51.5, "1000": 93, "1500": 134.5, "2000": 176, "3000": 235.5, "4000": 295, "5000": 354.5, "6000": 414, "7000": 473.5, "8000": 533, "9000": 592.5, "10000": 652, "13000": 707, "16000": 762, "19000": 817, "22000": 872, "25000": 927, "30000": 1013, "35000": 1099, "40000": 1185, "45000": 1271, "50000": 1357}},
+  {"id": "kv1100-mindestgebuehr-36", "sev": "error", "title": "Mahnbescheid-Mindestgebühr 36 € statt 38 €",
+   "why": "Nr. 1100 KV GKG: 0,5-Gebühr, mindestens 38,00 € seit 1.6.2025 (vorher 36,00 €). Betrifft jede Forderung bis 1.000 €.",
+   "fix": "Mindestgebühr auf 38 setzen.", "old_min": 36, "new_min": 38},
+  {"id": "kv1100-faktor", "sev": "error", "title": "Gerichtsgebühr Mahnverfahren nicht 0,5",
+   "why": "Nr. 1100 KV GKG erhebt für den Mahnbescheid eine 0,5-Gebühr. Der Faktor 1,0 gehört zur Anwaltsgebühr VV 3305 RVG, 3,0 zur Klage (KV 1210).",
+   "fix": "Faktor der Gerichtsgebühr auf 0.5 setzen.", "factor": 0.5},
+  {"id": "tabelle-stand-vor-2025", "sev": "warning", "title": "Tabellen-Stand vor dem 1.6.2025",
+   "why": "Kommentar oder Konfiguration nennt als Stand/Gültigkeit einer GKG- oder RVG-Tabelle ein Datum oder Gesetz vor dem KostRÄG 2025 (in Kraft 1.6.2025).",
+   "fix": "Tabelle prüfen und Stand auf 2025-06-01 (KostRÄG 2025) setzen.", "cutoff": "2025-06-01"}
+]
