@@ -70,9 +70,9 @@ install and no sign-up. Nothing is uploaded.
 - **Machine-readable CI report** — Writes a JSON findings file that a CI job can read and fail the build on.
 - **Your own extra rules** — Opens the settings for the extra-rules list, which is scanned alongside the 26 that ship inside.
 
-[**$29 once — the whole workspace, every save, and CI**](https://buy.polar.sh/polar_cl_RhVooLdndU0D3yxlYr8NvuZKIfGnejLcXJO7k2wKgnO)
+[**$29 once — the whole workspace, every save, and CI**](https://getreadystack.com/api/buy/cl/polar_cl_RhVooLdndU0D3yxlYr8NvuZKIfGnejLcXJO7k2wKgnO)
 
-Seven-day full refund. The free file checks stay open whether you buy or not.
+The free file checks stay open whether you buy or not.
 
 Yardstick: an independent senior compliance consultant bills $150 to $300 an hour, and a CPA
 charges $200 to $450 an hour for business tax work — one review hour costs more than the licence.
