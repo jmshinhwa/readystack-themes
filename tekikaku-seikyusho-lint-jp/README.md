@@ -67,7 +67,7 @@ HTML の請求書はタグを外して表として読みます。金額は「¥1
 ## 無料とフル版
 
 無料: 開いている請求書1枚を検査し、13 rules の結果を全部表示します。
-フル版（$29・一度の支払い）: ワークスペース内の請求書を一括検査し、根拠条文つきレポート（Markdown/CSV）を書き出します → https://buy.polar.sh/polar_cl_zMDkwoQWoIdNbdi3XE66xMKuct2Z8ClNWyeNg44Tiaf
+フル版（$29・一度の支払い）: ワークスペース内の請求書を一括検査し、根拠条文つきレポート（Markdown/CSV）を書き出します → https://getreadystack.com/api/buy/cl/polar_cl_zMDkwoQWoIdNbdi3XE66xMKuct2Z8ClNWyeNg44Tiaf
 
 ## 目安
 
