@@ -2,7 +2,7 @@
   "name": "audit-log-retention-lint",
   "displayName": "Audit Log Retention Lint (PCI DSS, CERT-In)",
   "description": "Flags log-retention values in Loki, CloudWatch, Elasticsearch ILM, S3 lifecycle and Kubernetes audit YAML that are shorter than PCI DSS 10.5.1, CERT-In 2022 or OMB M-21-31 require.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
