@@ -67,7 +67,7 @@ commercial use. A QSA-led gap analysis of your data stores is commonly quoted as
 engagement; this reads the same migrations in the editor for $29 once, one licence key per
 person or team seat.
 
-Get a licence: https://buy.polar.sh/polar_cl_HL23mfuzaP3RMTfsQGzbUYmVSiTyJBd8Czg9B1TIuJT
+Get a licence: https://getreadystack.com/api/buy/cl/polar_cl_HL23mfuzaP3RMTfsQGzbUYmVSiTyJBd8Czg9B1TIuJT
 
 ## Commands
 
