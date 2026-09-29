@@ -1,0 +1,15 @@
+国民健康保険 脱退 手続き lint — 入退社チェックリスト期限 — Licence
+
+Free scope
+  開いているチェックリスト1ファイルの届出期限ミスを行番号つきで全部表示する is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  ワークスペース内の全チェックリストを一括スキャンし、条文つきレポートを書き出す(範囲と持ち出し) is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
