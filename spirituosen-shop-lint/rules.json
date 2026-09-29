@@ -1,0 +1,472 @@
+[
+ {
+  "id": "min_abv_eierlikoer",
+  "kind": "min_abv",
+  "cat": "eierlikoer",
+  "label": "Eierlikör",
+  "min": 14,
+  "parts": [
+   "eierlikör",
+   "eierlikoer"
+  ],
+  "words": [
+   "egg liqueur"
+  ],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Eierlikör)"
+ },
+ {
+  "id": "min_abv_creme_de_cassis",
+  "kind": "min_abv",
+  "cat": "creme_de_cassis",
+  "label": "Crème de Cassis",
+  "min": 15,
+  "parts": [
+   "crème de cassis",
+   "creme de cassis"
+  ],
+  "words": [],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Crème de Cassis)"
+ },
+ {
+  "id": "min_abv_creme_de",
+  "kind": "min_abv",
+  "cat": "creme_de",
+  "label": "Crème de …",
+  "min": 15,
+  "parts": [
+   "crème de ",
+   "creme de "
+  ],
+  "words": [],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Crème de …)"
+ },
+ {
+  "id": "min_abv_sambuca",
+  "kind": "min_abv",
+  "cat": "sambuca",
+  "label": "Sambuca",
+  "min": 38,
+  "parts": [],
+  "words": [
+   "sambuca"
+  ],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Sambuca)"
+ },
+ {
+  "id": "min_abv_sloe_gin",
+  "kind": "min_abv",
+  "cat": "sloe_gin",
+  "label": "Sloe Gin",
+  "min": 25,
+  "parts": [],
+  "words": [
+   "sloe gin"
+  ],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Sloe Gin)"
+ },
+ {
+  "id": "min_abv_likoer",
+  "kind": "min_abv",
+  "cat": "likoer",
+  "label": "Likör",
+  "min": 15,
+  "parts": [
+   "likör",
+   "likoer",
+   "liqueur"
+  ],
+  "words": [],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Likör)"
+ },
+ {
+  "id": "min_abv_bitter",
+  "kind": "min_abv",
+  "cat": "bitter",
+  "label": "Bitter",
+  "min": 15,
+  "parts": [
+   "bitter"
+  ],
+  "words": [],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Bitter)"
+ },
+ {
+  "id": "min_abv_london_gin",
+  "kind": "min_abv",
+  "cat": "london_gin",
+  "label": "London Gin",
+  "min": 37.5,
+  "parts": [],
+  "words": [
+   "london gin",
+   "london dry gin"
+  ],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (London Gin)"
+ },
+ {
+  "id": "min_abv_gin",
+  "kind": "min_abv",
+  "cat": "gin",
+  "label": "Gin",
+  "min": 37.5,
+  "parts": [],
+  "words": [
+   "gin"
+  ],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Gin)"
+ },
+ {
+  "id": "min_abv_wacholder",
+  "kind": "min_abv",
+  "cat": "wacholder",
+  "label": "Spirituose mit Wacholder",
+  "min": 30,
+  "parts": [
+   "wacholder"
+  ],
+  "words": [],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Spirituose mit Wacholder)"
+ },
+ {
+  "id": "min_abv_vodka",
+  "kind": "min_abv",
+  "cat": "vodka",
+  "label": "Wodka",
+  "min": 37.5,
+  "parts": [],
+  "words": [
+   "vodka",
+   "wodka"
+  ],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Wodka)"
+ },
+ {
+  "id": "min_abv_whisky",
+  "kind": "min_abv",
+  "cat": "whisky",
+  "label": "Whisky",
+  "min": 40,
+  "parts": [],
+  "words": [
+   "whisky",
+   "whiskey"
+  ],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Whisky)"
+ },
+ {
+  "id": "min_abv_rum",
+  "kind": "min_abv",
+  "cat": "rum",
+  "label": "Rum",
+  "min": 37.5,
+  "parts": [],
+  "words": [
+   "rum"
+  ],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Rum)"
+ },
+ {
+  "id": "min_abv_hefebrand",
+  "kind": "min_abv",
+  "cat": "hefebrand",
+  "label": "Hefebrand",
+  "min": 38,
+  "parts": [
+   "hefebrand"
+  ],
+  "words": [],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Hefebrand)"
+ },
+ {
+  "id": "min_abv_tresterbrand",
+  "kind": "min_abv",
+  "cat": "tresterbrand",
+  "label": "Tresterbrand",
+  "min": 37.5,
+  "parts": [
+   "tresterbrand",
+   "grappa"
+  ],
+  "words": [],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Tresterbrand)"
+ },
+ {
+  "id": "min_abv_weinbrand",
+  "kind": "min_abv",
+  "cat": "weinbrand",
+  "label": "Brandy / Weinbrand",
+  "min": 36,
+  "parts": [
+   "weinbrand"
+  ],
+  "words": [
+   "brandy"
+  ],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Brandy / Weinbrand)"
+ },
+ {
+  "id": "min_abv_korn",
+  "kind": "min_abv",
+  "cat": "korn",
+  "label": "Korn",
+  "min": 32,
+  "parts": [],
+  "words": [
+   "korn"
+  ],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Korn)"
+ },
+ {
+  "id": "min_abv_obstbrand",
+  "kind": "min_abv",
+  "cat": "obstbrand",
+  "label": "Obstbrand",
+  "min": 37.5,
+  "parts": [
+   "obstbrand",
+   "obstler",
+   "kirschwasser",
+   "zwetschgenwasser"
+  ],
+  "words": [],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Obstbrand)"
+ },
+ {
+  "id": "min_abv_geist",
+  "kind": "min_abv",
+  "cat": "geist",
+  "label": "Geist",
+  "min": 37.5,
+  "parts": [
+   "geist"
+  ],
+  "words": [],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Geist)"
+ },
+ {
+  "id": "min_abv_kuemmel",
+  "kind": "min_abv",
+  "cat": "kuemmel",
+  "label": "Kümmel",
+  "min": 30,
+  "parts": [
+   "kümmel",
+   "kuemmel"
+  ],
+  "words": [],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Kümmel)"
+ },
+ {
+  "id": "min_abv_aquavit",
+  "kind": "min_abv",
+  "cat": "aquavit",
+  "label": "Aquavit",
+  "min": 37.5,
+  "parts": [],
+  "words": [
+   "aquavit",
+   "akvavit"
+  ],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Aquavit)"
+ },
+ {
+  "id": "min_abv_pastis",
+  "kind": "min_abv",
+  "cat": "pastis",
+  "label": "Pastis",
+  "min": 40,
+  "parts": [],
+  "words": [
+   "pastis"
+  ],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Pastis)"
+ },
+ {
+  "id": "min_abv_enzian",
+  "kind": "min_abv",
+  "cat": "enzian",
+  "label": "Enzian",
+  "min": 37.5,
+  "parts": [
+   "enzian"
+  ],
+  "words": [],
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I (Enzian)"
+ },
+ {
+  "id": "min_sugar_eierlikoer",
+  "kind": "min_sugar",
+  "cat": "eierlikoer",
+  "limit": 150,
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I"
+ },
+ {
+  "id": "min_sugar_creme_de_cassis",
+  "kind": "min_sugar",
+  "cat": "creme_de_cassis",
+  "limit": 400,
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I"
+ },
+ {
+  "id": "min_sugar_creme_de",
+  "kind": "min_sugar",
+  "cat": "creme_de",
+  "limit": 250,
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I"
+ },
+ {
+  "id": "min_sugar_sambuca",
+  "kind": "min_sugar",
+  "cat": "sambuca",
+  "limit": 350,
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I"
+ },
+ {
+  "id": "min_sugar_likoer",
+  "kind": "min_sugar",
+  "cat": "likoer",
+  "limit": 100,
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I",
+  "name_skip": "kirsch|enzian"
+ },
+ {
+  "id": "max_sugar_london_gin",
+  "kind": "max_sugar",
+  "cat": "london_gin",
+  "limit": 0.1,
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I"
+ },
+ {
+  "id": "max_sugar_gin_dry",
+  "kind": "max_sugar",
+  "cat": "gin",
+  "limit": 0.1,
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I",
+  "name_has": "dry"
+ },
+ {
+  "id": "max_sugar_whisky",
+  "kind": "max_sugar",
+  "cat": "whisky",
+  "limit": 0,
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I"
+ },
+ {
+  "id": "max_sugar_rum",
+  "kind": "max_sugar",
+  "cat": "rum",
+  "limit": 20,
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I"
+ },
+ {
+  "id": "max_sugar_vodka",
+  "kind": "max_sugar",
+  "cat": "vodka",
+  "limit": 8,
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I"
+ },
+ {
+  "id": "max_sugar_weinbrand",
+  "kind": "max_sugar",
+  "cat": "weinbrand",
+  "limit": 35,
+  "sev": "error",
+  "ref": "VO (EU) 2019/787 Anhang I"
+ },
+ {
+  "id": "abv_missing",
+  "kind": "abv_missing",
+  "sev": "error",
+  "ref": "LMIV Art. 9 Abs. 1 Buchst. k",
+  "msg": "Alkoholgehalt fehlt — bei mehr als 1,2 % vol Pflichtangabe."
+ },
+ {
+  "id": "abv_decimals",
+  "kind": "abv_decimals",
+  "sev": "warning",
+  "ref": "LMIV Anhang XII",
+  "msg": "Alkoholgehalt mit höchstens einer Dezimalstelle angeben."
+ },
+ {
+  "id": "abv_unit",
+  "kind": "abv_unit",
+  "sev": "warning",
+  "ref": "LMIV Anhang XII",
+  "msg": "Einheit muss \"% vol\" lauten (nicht ABV, proof oder nur %)."
+ },
+ {
+  "id": "bottle_size",
+  "kind": "bottle_size",
+  "sev": "error",
+  "ref": "RL 2007/45/EG Anhang",
+  "allowed_ml": [
+   100,
+   200,
+   350,
+   500,
+   700,
+   1000,
+   1500,
+   1750,
+   2000
+  ]
+ },
+ {
+  "id": "alkopop_tax",
+  "kind": "alkopop",
+  "sev": "warning",
+  "ref": "AlkopopStG § 2 · JuSchG § 9 Abs. 4",
+  "eur_per_l_a": 55.5,
+  "base_words": [
+   "gin",
+   "rum",
+   "vodka",
+   "wodka",
+   "whisky",
+   "whiskey",
+   "korn",
+   "tequila",
+   "likör"
+  ]
+ },
+ {
+  "id": "alkoholsteuer_betrag",
+  "kind": "tax_amount",
+  "sev": "error",
+  "ref": "AlkStG § 2",
+  "eur_per_l_a": 13.03
+ }
+]
