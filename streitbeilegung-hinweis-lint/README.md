@@ -47,6 +47,6 @@ Rechtstext-Abos für Shops (z. B. IT-Recht Kanzlei, Basispaket) kosten ab 9,90 �
 
 ## Vollversion
 
-Workspace-Scan aller Shop- und Theme-Dateien auf einmal plus Prüfbericht als Markdown-Export für Mandanten – $29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz: https://buy.polar.sh/polar_cl_e8Qb9idojU90cbyA5zq0zEDev1Nm3bSKAsdth3PnbVO
+Workspace-Scan aller Shop- und Theme-Dateien auf einmal plus Prüfbericht als Markdown-Export für Mandanten – $29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz: https://getreadystack.com/api/buy/cl/polar_cl_e8Qb9idojU90cbyA5zq0zEDev1Nm3bSKAsdth3PnbVO
 
 Hinweis: Das Tool ersetzt keine Rechtsberatung; es zeigt Textstellen und ihre Rechtsgrundlage.
