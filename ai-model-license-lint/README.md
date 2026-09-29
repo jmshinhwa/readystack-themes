@@ -60,7 +60,7 @@ different job — it exports the evidence: a generated NOTICE / attribution file
 dated per-model obligation report for the whole workspace, in the form procurement and
 counsel ask for, plus a CI exit code so a new model identifier cannot land unreviewed.
 $29 once, one licence key per person or team seat:
-https://buy.polar.sh/polar_cl_n48nKSGuBUvKyot5tlEi3ACu4uVv6EJrVAOvB2JgLDv
+https://getreadystack.com/api/buy/cl/polar_cl_n48nKSGuBUvKyot5tlEi3ACu4uVv6EJrVAOvB2JgLDv
 
 ## Yardstick
 
