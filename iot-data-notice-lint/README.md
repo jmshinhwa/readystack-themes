@@ -43,7 +43,7 @@ The sample thermostat notice in `_fixtures/dirty.md` returns 6 findings: 4 of th
 A lawyer billed at the DOJ Fitzpatrick Matrix rate for 15 years of practice costs $851/hour (billing year 2026).
 
 ## Free and full version
-Free: one open file, all 17 rules, line numbers and a fix for each gap, no key. Full version ($29 once, one licence key per person or team seat): sweep a whole workspace of product notices and write one dated Data Act evidence report. [Licence key](https://buy.polar.sh/polar_cl_DxvsrxKs95Kdnm3qJUyVwQ93Ie7YzTgVfCaNu12sXW0)
+Free: one open file, all 17 rules, line numbers and a fix for each gap, no key. Full version ($29 once, one licence key per person or team seat): sweep a whole workspace of product notices and write one dated Data Act evidence report. [Licence key](https://getreadystack.com/api/buy/cl/polar_cl_DxvsrxKs95Kdnm3qJUyVwQ93Ie7YzTgVfCaNu12sXW0)
 
 ## Commands
 - `IoT Data Notice Lint: EU Data Act Art. 3: Check this file`: free. The check also runs when a Markdown file that mentions "product data", "connected product" or "Data Act" is opened or saved.
