@@ -47,7 +47,7 @@ is in the ones you did not open.
 An open-source licence audit runs 40–160 hours and thousands to tens of thousands of dollars per
 program; commercial SCA licence-compliance subscriptions start around $1,500/year.
 
-→ **[Get the full version — $29](https://buy.polar.sh/polar_cl_2aVJUYKnFr7h6WfPcOmXd27R9KXw2jEpdVXJc4G6fJk)**
+→ **[Get the full version — $29](https://getreadystack.com/api/buy/cl/polar_cl_2aVJUYKnFr7h6WfPcOmXd27R9KXw2jEpdVXJc4G6fJk)**
 
 ## Install
 
