@@ -34,7 +34,7 @@ A chat answer lists removed modules from memory. It does not go through your fil
 
 ## Free and paid
 
-Free: check the open `.py` file against all 43 rules, in VS Code or on the web page, with no key. Paid: sweep the whole workspace in one pass and write a Markdown upgrade report for each target version to attach to the migration ticket. That part asks for a licence key ($29 once, one key per person or team seat): [licence key](https://buy.polar.sh/polar_cl_2Izy69ZyqcJdKkYcQRlrKODleXMjHPRFCgWjE3eTaR6).
+Free: check the open `.py` file against all 43 rules, in VS Code or on the web page, with no key. Paid: sweep the whole workspace in one pass and write a Markdown upgrade report for each target version to attach to the migration ticket. That part asks for a licence key ($29 once, one key per person or team seat): [licence key](https://getreadystack.com/api/buy/cl/polar_cl_2Izy69ZyqcJdKkYcQRlrKODleXMjHPRFCgWjE3eTaR6).
 
 What the manual alternative costs: By hand, this is developer hours at the US median software developer wage of $63.98 an hour (BLS, May 2024).
 
