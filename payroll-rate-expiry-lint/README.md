@@ -43,7 +43,7 @@ a table, get the same findings from the same `ext/engine.js` and the same `ext/r
 The full version writes the audit out: a dated report and a per-country renewal calendar for the whole
 workspace, for team and commercial use, so next year's reset is on a calendar instead of in someone's
 memory. One licence key per person or team seat, activated in the editor:
-https://buy.polar.sh/polar_cl_Tdqu9vdxrn87T5MbFarHA1yN9HyELld2UyIeh3uK2Xp
+https://getreadystack.com/api/buy/cl/polar_cl_Tdqu9vdxrn87T5MbFarHA1yN9HyELld2UyIeh3uK2Xp
 
 **The yardstick:** one hour of outside payroll-tax advice costs more than the full version does once.
 
