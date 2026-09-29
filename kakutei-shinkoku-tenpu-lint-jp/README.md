@@ -1,5 +1,7 @@
 # 確定申告 添付書類チェッカー（準備メモ・控除証明書）
 
+![確定申告 添付書類チェッカー（準備メモ・控除証明書） — finds the line](https://getreadystack.com/img/promo/kakutei-shinkoku-tenpu-lint-jp_demo.gif)
+
 ![確定申告 添付書類チェッカー（準備メモ・控除証明書）](https://getreadystack.com/img/promo/sku369724_result_card.jpg)
 
 確定申告の準備メモ（Markdown / テキスト）を開くと、控除ごとに必要な添付書類が揃っているか、不要な書類を添付しようとしていないかを、行番号つきで問題パネルに表示する VS Code 拡張です。17 rules。ハブ: https://getreadystack.com/ja/tools/kakutei-shinkoku-tenpu-lint-jp
@@ -57,7 +59,7 @@
 
 無料版は、開いた確定申告メモ1枚を全規則で検査し、結果を全部表示します。回数制限はありません。
 
-フル版（$29・一度の支払い）: ワークスペース内の複数年分・家族分の申告メモを一括検査し、根拠条文と保存期限つきの添付書類リスト（Markdown/CSV）を書き出します。 https://buy.polar.sh/polar_cl_ZxNi62vnbqWqmQJxHRBd3VNSQiQMxcnKmUcH21mI3bV
+フル版（$29・一度の支払い）: ワークスペース内の複数年分・家族分の申告メモを一括検査し、根拠条文と保存期限つきの添付書類リスト（Markdown/CSV）を書き出します。 https://getreadystack.com/api/buy/cl/polar_cl_ZxNi62vnbqWqmQJxHRBd3VNSQiQMxcnKmUcH21mI3bV
 
 ## 注意
 
