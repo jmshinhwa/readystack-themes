@@ -49,7 +49,7 @@ El análisis es local: el texto no sale de tu equipo.
 
 ## Versión completa
 
-La revisión del archivo abierto es gratuita y completa. La versión completa revisa de una vez todas las declaraciones del espacio de trabajo (varias webs o sedes) y exporta un informe por sitio: [versión completa](https://buy.polar.sh/polar_cl_EErHjpDSgGIXOui02UUkO27zK4QJy8aPvGJQJ0So0bH).
+La revisión del archivo abierto es gratuita y completa. La versión completa revisa de una vez todas las declaraciones del espacio de trabajo (varias webs o sedes) y exporta un informe por sitio: [versión completa](https://getreadystack.com/api/buy/cl/polar_cl_EErHjpDSgGIXOui02UUkO27zK4QJy8aPvGJQJ0So0bH).
 
 ## Referencia de coste
 
