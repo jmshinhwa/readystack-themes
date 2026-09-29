@@ -49,7 +49,7 @@ Die mitgelieferte Muster-Vorlage Grundbesitzabgaben 2027 (`_fixtures/dirty.md`) 
 
 ## Kostenlos und Vollversion
 
-Kostenlos: eine Vorlage prüfen, alle 10 Checks, ohne Anmeldung. Vollversion: alle Bescheid-Vorlagen des Workspace in einem Lauf prüfen und den Prüfbericht als Datei für die Akte exportieren – [Vollversion](https://buy.polar.sh/polar_cl_eEpIwBvT0supsvrXX6qpFUt72aCExhobroZFI2NR3Um).
+Kostenlos: eine Vorlage prüfen, alle 10 Checks, ohne Anmeldung. Vollversion: alle Bescheid-Vorlagen des Workspace in einem Lauf prüfen und den Prüfbericht als Datei für die Akte exportieren – [Vollversion](https://getreadystack.com/api/buy/cl/polar_cl_eEpIwBvT0supsvrXX6qpFUt72aCExhobroZFI2NR3Um).
 
 ## Maßstab
 
