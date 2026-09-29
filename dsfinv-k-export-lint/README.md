@@ -53,7 +53,7 @@ Eine Steuerberatungskanzlei rechnet die Durchsicht eines Kassenexports nach § 1
 
 ## Umfang
 
-Ohne Lizenzschlüssel wird die im Editor geöffnete CSV vollständig gegen alle 19 Regeln geprüft — das ist die ganze Datei, nicht ein Ausschnitt. Der Lizenzschlüssel schaltet den anderen Umfang frei: den kompletten Exportordner in einem Lauf, alle 20 DSFinV-K-Tabellen zusammen samt Kreuzprüfung gegen die `index.xml`, und den Prüfbericht als Datei. → [Vollversion](https://buy.polar.sh/polar_cl_6xgUWpQ6iaKfxXsoisZTLdijmkHV4QNSr4Jh70yIPHM)
+Ohne Lizenzschlüssel wird die im Editor geöffnete CSV vollständig gegen alle 19 Regeln geprüft — das ist die ganze Datei, nicht ein Ausschnitt. Der Lizenzschlüssel schaltet den anderen Umfang frei: den kompletten Exportordner in einem Lauf, alle 20 DSFinV-K-Tabellen zusammen samt Kreuzprüfung gegen die `index.xml`, und den Prüfbericht als Datei. → [Vollversion](https://getreadystack.com/api/buy/cl/polar_cl_6xgUWpQ6iaKfxXsoisZTLdijmkHV4QNSr4Jh70yIPHM)
 
 ## Auch im Browser
 
