@@ -92,19 +92,8 @@ function globExts(glob) {   // the file dialog filter
   m = g.match(/\.([a-z0-9]+)$/i); if (m) return [m[1]];
   return [];
 }
-function sampleOf(h) {   // s168 — dot samples (.condarc · .github/workflows/*.yml) were skipped, so the "Show me on a sample" button never appeared
-  var JUNK = { '.DS_Store': 1, '.gitkeep': 1, '.keep': 1 };
-  function pick(dir, depth) {
-    var all = fs.readdirSync(dir).filter(function (x) { return !JUNK[x]; }).sort();
-    var files = all.filter(function (x) { try { return fs.statSync(path.join(dir, x)).isFile(); } catch (e) { return false; } });
-    var plain = files.filter(function (x) { return x.charAt(0) !== '.'; });
-    if (plain.length) return path.join(dir, plain[0]);
-    if (files.length) return path.join(dir, files[0]);
-    if (depth > 3) return null;
-    for (var i = 0; i < all.length; i++) { var q = path.join(dir, all[i]); try { if (fs.statSync(q).isDirectory()) { var r = pick(q, depth + 1); if (r) return r; } } catch (e) { } }
-    return null;
-  }
-  try { return pick(path.join(h.extDir || __dirname, 'sample'), 0); } catch (e) { return null; }
+function sampleOf(h) {
+  try { var d = path.join(h.extDir || __dirname, 'sample'); var f = fs.readdirSync(d).filter(function (x) { return x.charAt(0) !== '.'; }).sort(); return f.length ? path.join(d, f[0]) : null; } catch (e) { return null; }
 }
 function fillW(x, h, o) {
   o = o || {};
@@ -385,48 +374,6 @@ function start(ctx, o) {
 //   vendor's price list · never estimated). No stake.json = the old message, unchanged. [measured] Oracle JDK License Gate held
 //   1/3 of all our VS Code installs with zero promotion while its paywall said only "N issues · $29" — the fear is the payroll bill.
 var STAKE_T = { en: 'Estimate for my company', de: 'Für mein Unternehmen berechnen', ja: '自社の金額を試算', es: 'Calcular para mi empresa', pt: 'Calcular para minha empresa' };
-// s166 2026-09-28 — THE COMPANY SHAPE: the one who pays is the company, and the vendor bills the whole payroll when ONE build
-//   anywhere needs a licence, so a clean folder is not the company's safety. [measured 9/28] Oracle 149 installs · the stake line
-//   only showed on DIRTY folders · estimate clicks 0. Now: a product whose stake.json carries clean_line + team_url says the
-//   company line on the CLEAN result too, and the estimate result offers the team key (CI on every repo) next to the payer's
-//   own number. Team key facts are Polar's product ([measured] $149 once · every linter · 5 seats) — never more than that.
-var STAKE_TEAM_T = {
-  en: ['CI gate for every repo - team key $149', 'One team key ($149 once, 5 seats) runs this check in GitHub Actions on every repository and pull request, and unlocks every ReadyStack linter.'],
-  de: ['CI-Prüfung für jedes Repo - Team-Schlüssel $149', 'Ein Team-Schlüssel ($149 einmalig, 5 Plätze) führt diese Prüfung in GitHub Actions für jedes Repository und jeden Pull Request aus und schaltet alle ReadyStack-Linter frei.'],
-  ja: ['全リポジトリの CI チェック - チームキー $149', 'チームキー 1 つ（$149 買い切り・5 席）で、このチェックを GitHub Actions で全リポジトリ・全プルリクエストに実行でき、ReadyStack の全リンターが使えます。'],
-  es: ['Control en CI para cada repo - clave de equipo $149', 'Una clave de equipo ($149 pago único, 5 puestos) ejecuta esta revisión en GitHub Actions en cada repositorio y pull request, y desbloquea todos los linters de ReadyStack.'],
-  pt: ['Verificação em CI para cada repo - chave de equipe US$ 149', 'Uma chave de equipe (US$ 149, pagamento único, 5 lugares) roda esta verificação no GitHub Actions em todo repositório e pull request, e libera todos os linters da ReadyStack.']
-};
-// s168 2026-09-28 — THE CHAMPION NOTE. The one who installs is a developer; the one who pays $149 is a manager.
-//   [measured 9 days] pay-screen reach VS Code 4 · MCP 4 — people used the free check and stopped. A developer does not spend
-//   company money alone; they forward a reason. ⇒ one button writes a dated, factual note to paste into Slack / email / the ticket:
-//   their own count · the vendor line from stake.json (vendor's own price list) · their estimate if they gave headcount · the free
-//   fix · the team key. ⛔No invented number: every figure comes from their files, stake.json or their own input.
-var NOTE_T = {
-  en: ['Copy a note for my manager', '{title} - check result for the team ({day})', '{n} flagged line(s) in {files} file(s) of this workspace, checked against {rules} rules.', 'This workspace: 0 flagged lines in {files} file(s), checked against {rules} rules.', 'Each flagged line comes with its free replacement, shown in the editor.', 'Team key: $149 once, 5 seats - runs this check in CI on every repository and pull request: {url}', 'Copied. The note is also open in a new tab - paste it into Slack, email or the ticket.', 'Source'],
-  de: ['Notiz für meine Führungskraft kopieren', '{title} - Prüfergebnis für das Team ({day})', '{n} markierte Zeile(n) in {files} Datei(en) dieses Workspace, geprüft gegen {rules} Regeln.', 'Dieser Workspace: 0 markierte Zeilen in {files} Datei(en), geprüft gegen {rules} Regeln.', 'Zu jeder markierten Zeile zeigt der Editor den kostenlosen Ersatz.', 'Team-Schlüssel: $149 einmalig, 5 Plätze - führt diese Prüfung in der CI für jedes Repository und jeden Pull Request aus: {url}', 'Kopiert. Die Notiz ist auch in einem neuen Tab geöffnet - in Slack, E-Mail oder Ticket einfügen.', 'Quelle'],
-  ja: ['上長向けメモをコピー', '{title} - チーム向けチェック結果 ({day})', 'このワークスペースの {files} ファイルで {n} 行を検出（{rules} ルールで確認）。', 'このワークスペース: {files} ファイルで検出 0 行（{rules} ルールで確認）。', '検出した各行には無料の置き換えがエディタに表示されます。', 'チームキー: $149 買い切り・5 席 - このチェックを全リポジトリ・全プルリクエストの CI で実行: {url}', 'コピーしました。メモは新しいタブにも開いています - Slack・メール・チケットに貼り付けてください。', '出典'],
-  es: ['Copiar una nota para mi responsable', '{title} - resultado de la revisión para el equipo ({day})', '{n} línea(s) marcada(s) en {files} archivo(s) de este espacio de trabajo, revisado con {rules} reglas.', 'Este espacio de trabajo: 0 líneas marcadas en {files} archivo(s), revisado con {rules} reglas.', 'Cada línea marcada trae su reemplazo gratuito, visible en el editor.', 'Clave de equipo: $149 una vez, 5 puestos - ejecuta esta revisión en CI en cada repositorio y pull request: {url}', 'Copiado. La nota también está abierta en una pestaña nueva - pégala en Slack, correo o el ticket.', 'Fuente'],
-  pt: ['Copiar uma nota para meu gestor', '{title} - resultado da verificação para a equipe ({day})', '{n} linha(s) marcada(s) em {files} arquivo(s) deste workspace, verificado com {rules} regras.', 'Este workspace: 0 linhas marcadas em {files} arquivo(s), verificado com {rules} regras.', 'Cada linha marcada vem com a substituição gratuita, mostrada no editor.', 'Chave de equipe: $149 uma vez, 5 lugares - roda esta verificação no CI em cada repositório e pull request: {url}', 'Copiado. A nota também está aberta em uma nova aba - cole no Slack, e-mail ou no ticket.', 'Fonte']
-};
-function noteText(h, SK, info) {
-  var T = NOTE_T[lang(h.vscode)] || NOTE_T.en, i = info || {}, f = function (x) { return String(x).replace('{title}', h.title || '').replace('{day}', i.day || new Date().toISOString().slice(0, 10)).replace('{n}', i.total || 0).replace('{files}', i.files || 0).replace('{rules}', h.R || '').replace('{url}', (SK.team && SK.team.url) || ''); };
-  var L = ['**' + f(T[1]) + '**', '', '- ' + f(i.total ? T[2] : T[3])];
-  var est = i.estimate ? ((String(i.estimate).match(/^[\s\S]*?[.。](?=\s|$)/) || [String(i.estimate)])[0]) : '';   // s168 — the payer's number only (no sales sentence in a note to the manager)
-  if (est) L.push('- ' + est); else L.push('- ' + (i.total ? SK.line : (SK.clean || SK.line)));   // their own number replaces the 500-person example
-  if (SK.s && SK.s.source) L.push('- ' + T[7] + ': ' + SK.s.source + (SK.s.source_url ? ' (' + SK.s.source_url + ')' : ''));
-  if (i.total) L.push('- ' + T[4]);
-  if (SK.team) L.push('- ' + f(T[5]));
-  return L.join('\n') + '\n';
-}
-async function noteFlow(h, SK, info) {
-  var vscode = h.vscode, txt = noteText(h, SK, info), T = NOTE_T[lang(vscode)] || NOTE_T.en;
-  send(vscode, h.slug || h.PREFIX, { t: 'use', slug: h.slug || h.PREFIX, src: 'vsix', why: 'stake_note', path: '/use/vsix/' + (h.slug || h.PREFIX) });
-  try { await vscode.env.clipboard.writeText(txt); } catch (e) { }
-  try { var d = await vscode.workspace.openTextDocument({ content: txt, language: 'markdown' }); await vscode.window.showTextDocument(d); } catch (e) { }
-  try { vscode.window.showInformationMessage(T[6]); } catch (e) { }
-  return txt;
-}
 var _stake;
 function money(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
 function stakeOf(h) {
@@ -436,13 +383,11 @@ function stakeOf(h) {
     var L = lang(h.vscode), ex = Number(s.example_heads || 500), r = rateOf(s, ex); if (!r) return null;
     var pick = function (o) { return o ? (o[L] || o.en || '') : ''; };
     var line = pick(s.line).replace('{ex}', money(ex)).replace('{exy}', money(ex * r * Number(s.months || 12)));
-    var clean = pick(s.clean_line).replace('{ex}', money(ex)).replace('{exy}', money(ex * r * Number(s.months || 12)));   // s166
-    var TT = STAKE_TEAM_T[L] || STAKE_TEAM_T.en, team = /^https:\/\//.test(String(s.team_url || '')) ? { url: s.team_url, label: TT[0], pitch: TT[1] } : null;   // s166
-    return { s: s, line: line, btn: STAKE_T[L] || STAKE_T.en, ask: pick(s.ask), result: pick(s.result), above: pick(s.above), clean: clean, team: team, note: (NOTE_T[L] || NOTE_T.en)[0] };   // s168 note
+    return { s: s, line: line, btn: STAKE_T[L] || STAKE_T.en, ask: pick(s.ask), result: pick(s.result), above: pick(s.above) };
   } catch (e) { return null; }
 }
 function rateOf(s, n) { for (var i = 0; i < s.bands.length; i++) { var b = s.bands[i]; if (n >= b[0] && n <= b[1]) return Number(b[2]); } return null; }
-async function stakeEstimate(h, SK, label, info) {
+async function stakeEstimate(h, SK, label) {
   var vscode = h.vscode;
   var v = await vscode.window.showInputBox({ prompt: SK.ask, placeHolder: '500', validateInput: function (x) { return /^\s*[\d,.\s]+\s*$/.test(String(x || '')) ? null : '123'; } });
   var n = parseInt(String(v || '').replace(/[^\d]/g, ''), 10); if (!n || n < 1) return null;
@@ -450,14 +395,7 @@ async function stakeEstimate(h, SK, label, info) {
   var r = rateOf(SK.s, n), msg;
   if (!r) msg = SK.above || SK.line;
   else msg = SK.result.replace('{heads}', money(n)).replace('{rate}', r.toFixed(2)).replace('{year}', money(n * r * Number(SK.s.months || 12))).replace('{src}', SK.s.source || '');
-  var estLine = msg;   // s168 — the payer's own number goes into the manager note
-  if (SK.team) msg = msg + ' ' + SK.team.pitch;   // s166 — the team key next to the payer's own number
-  var pk = SK.team ? await vscode.window.showInformationMessage(msg, SK.team.label, SK.note, label) : await vscode.window.showInformationMessage(msg, SK.note, label);
-  if (pk === SK.note) { await noteFlow(h, SK, Object.assign({}, info || {}, { estimate: estLine })); pk = undefined; }   // s168 — handled here, so the caller does not write a second note without the estimate
-  if (SK.team && pk === SK.team.label) {
-    send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix_buy', why: 'stake_team', path: '/paywall/vsix_buy/' + (h.slug || h.PREFIX) });
-    await vscode.env.openExternal(vscode.Uri.parse(SK.team.url));
-  }
+  var pk = await vscode.window.showInformationMessage(msg, label);
   return { n: n, rate: r, msg: msg, pick: pk };
 }
 async function hint(ctx, h) {
@@ -475,11 +413,7 @@ async function hint(ctx, h) {
       ping(vscode, h.slug || h.PREFIX, 'clear');
       var B = tr(BADGE_T, vscode), md = null;   // s163 — ONE badge action, only on a clean result
       _toastAt = Date.now(); reviewTick(ctx, h, 'clean', h.today || day);
-      var SKc = stakeOf(h), estc = null;   // s166 — a clean folder is not the company's safety: say the company line on the clean result too
-      var pk = (SKc && SKc.clean) ? await vscode.window.showInformationMessage(W.msg + ' ' + SKc.clean, SKc.btn, SKc.note, lbl, B[0], "Don't show again")
-        : await vscode.window.showInformationMessage(W.msg, lbl, B[0], "Don't show again");
-      if (SKc && SKc.clean && pk === SKc.btn) { estc = await stakeEstimate(h, SKc, lbl, { total: 0, files: clean, day: day }); pk = estc ? estc.pick : undefined; }
-      if (SKc && SKc.clean && pk === SKc.note) { await noteFlow(h, SKc, { total: 0, files: clean, day: day }); pk = undefined; }   // s168
+      var pk = await vscode.window.showInformationMessage(W.msg, lbl, B[0], "Don't show again");
       var rep = null;
       if (pk === lbl) rep = await clearReport(ctx, h, false);   // s163b — sells (key panel) or delivers (dated record)
       else if (pk === B[0]) md = await copyBadge(vscode, h, h.today || day);
@@ -492,9 +426,8 @@ async function hint(ctx, h) {
     _toastAt = Date.now();
     var SK = stakeOf(h), est = null;   // s165 — the stake line + one estimate button, only when the product ships stake.json
     if (SK) msg = msg + ' ' + SK.line;
-    var pick = SK ? await vscode.window.showInformationMessage(msg, SK.btn, SK.note, label, "Don't show again") : await vscode.window.showInformationMessage(msg, label, "Don't show again");
-    if (SK && pick === SK.btn) { est = await stakeEstimate(h, SK, label, { total: total, files: files, day: day }); pick = est ? est.pick : undefined; }
-    if (SK && pick === SK.note) { await noteFlow(h, SK, { total: total, files: files, day: day }); pick = undefined; }   // s168
+    var pick = SK ? await vscode.window.showInformationMessage(msg, SK.btn, label, "Don't show again") : await vscode.window.showInformationMessage(msg, label, "Don't show again");
+    if (SK && pick === SK.btn) { est = await stakeEstimate(h, SK, label); pick = est ? est.pick : undefined; }
     if (pick === label) await vscode.commands.executeCommand(h.PREFIX + '.checkWorkspace');
     else if (pick === "Don't show again") await st.update(h.PREFIX + '.noHint', true);
     return { files: files, total: total, label: label, msg: msg, stake: SK ? SK.line : null, estimate: est };
@@ -503,4 +436,4 @@ async function hint(ctx, h) {
 module.exports = { start: start, relevant: relevant, tokens: tokens, isBroad: isBroad, clearWords: clearWords,
   sweptClean: sweptClean, badgeTopic: badgeTopic, badgeMarkdown: badgeMarkdown, reviewUrl: reviewUrl, reviewTick: reviewTick, clearReport: clearReport, scan: scan,   // s163
   welcome: welcome, kindOf: kindOf, globExts: globExts, sampleOf: sampleOf,   // s164
-  stakeOf: stakeOf, rateOf: rateOf, noteText: noteText };   // s165 · s168 noteText
+  stakeOf: stakeOf, rateOf: rateOf };   // s165
