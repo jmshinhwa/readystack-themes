@@ -53,7 +53,7 @@ Free: linting the file you have open, end to end — every finding, every fix, n
 
 Paid ($29 once): sweeping every test file, `conftest.py` and config file in the workspace in one
 pass, and exporting the dated findings as Markdown or JSON you keep — the artefact you paste into a
-CI job or a migration ticket. Get a key: https://buy.polar.sh/polar_cl_OR0dShZDbbiVxsy2XNVTaEV9nNVJY9nD92Tgf3TsG1F
+CI job or a migration ticket. Get a key: https://getreadystack.com/api/buy/cl/polar_cl_OR0dShZDbbiVxsy2XNVTaEV9nNVJY9nD92Tgf3TsG1F
 
 Yardstick: a contract Python engineer reading the same suite by hand bills roughly $80–$120 an hour
 in the US market, and the migration notes they would produce are what the export writes for you.
