@@ -1,0 +1,57 @@
+{
+  "name": "pekko-migration-gate",
+  "displayName": "Pekko Migration Gate — Akka BSL licence check",
+  "description": "Pekko migration check for build.sbt, pom.xml, build.gradle and application.conf: flags Akka jars still under BSL 1.1 on a given date, akka.* config, akka:// seeds and ports Pekko ignores.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "pekko",
+    "apache pekko",
+    "akka",
+    "akka license",
+    "akka bsl",
+    "pekko migration",
+    "scala",
+    "sbt"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pekkoGate.checkFile",
+        "title": "Pekko Migration Gate — Akka BSL licence check: Check this file",
+        "category": "Pekko Migration Gate — Akka BSL licence check"
+      },
+      {
+        "command": "pekkoGate.checkWorkspace",
+        "title": "Pekko Migration Gate — Akka BSL licence check: Sweep workspace and write report (licence)",
+        "category": "Pekko Migration Gate — Akka BSL licence check"
+      },
+      {
+        "command": "pekkoGate.enterKey",
+        "title": "Pekko Migration Gate — Akka BSL licence check: Enter licence key",
+        "category": "Pekko Migration Gate — Akka BSL licence check"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "pekko-migration-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/pekko-migration-gate",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
