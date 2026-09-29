@@ -58,7 +58,7 @@ Comment lines starting with `#` are skipped. Nothing leaves your machine; the ch
 
 Free: scan the open Dockerfile, Compose or Helm values file and see every broken Bitnami line with its fix, no key needed.
 
-Full version: scan every file in the workspace at once and export one Markdown migration report (file, line, image, replacement). $39 once, one licence key per person or team seat. [Get the full version](https://buy.polar.sh/polar_cl_FqAtCAEM5VWUyQWBiwGyJjkmmRDq7gGad7pln3lLDJl)
+Full version: scan every file in the workspace at once and export one Markdown migration report (file, line, image, replacement). $39 once, one licence key per person or team seat. [Get the full version](https://getreadystack.com/api/buy/cl/polar_cl_FqAtCAEM5VWUyQWBiwGyJjkmmRDq7gGad7pln3lLDJl)
 
 ## Sources
 
