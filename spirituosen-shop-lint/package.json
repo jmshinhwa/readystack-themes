@@ -1,0 +1,57 @@
+{
+  "name": "spirituosen-shop-lint",
+  "displayName": "Spirituosen-Lint: Mindestalkohol & Alkoholsteuer",
+  "description": "Prüft Produkt-CSV von Spirituosen-Shops: Mindestalkohol und Zucker je Kategorie (VO (EU) 2019/787), Flaschengrößen (RL 2007/45/EG), % vol, Alkopopsteuer und Alkoholsteuer je Flasche.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "spirituosen",
+    "alkoholsteuer",
+    "alkopopsteuer",
+    "lmiv",
+    "shopware",
+    "produktdaten",
+    "csv",
+    "gin"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "spirituosenLint.checkFile",
+        "title": "Spirituosen-Lint: Mindestalkohol & Alkoholsteuer: Check this file",
+        "category": "Spirituosen-Lint: Mindestalkohol & Alkoholsteuer"
+      },
+      {
+        "command": "spirituosenLint.checkWorkspace",
+        "title": "Spirituosen-Lint: Mindestalkohol & Alkoholsteuer: Sweep workspace and write report (licence)",
+        "category": "Spirituosen-Lint: Mindestalkohol & Alkoholsteuer"
+      },
+      {
+        "command": "spirituosenLint.enterKey",
+        "title": "Spirituosen-Lint: Mindestalkohol & Alkoholsteuer: Enter licence key",
+        "category": "Spirituosen-Lint: Mindestalkohol & Alkoholsteuer"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "spirituosen-shop-lint"
+  },
+  "homepage": "https://getreadystack.com/de/tools/spirituosen-shop-lint",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
