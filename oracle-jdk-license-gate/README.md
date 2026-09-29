@@ -71,7 +71,7 @@ Free: the file you have open, all 9 rules, every finding with its swap. That job
 Full version: the same 9 rules swept over every file in the workspace, plus a dated evidence pack -
 file, line, distribution, license basis, free-window date and swap - that you can hand to
 procurement or to an Oracle audit, plus team and commercial use. $29 once.
-https://buy.polar.sh/polar_cl_0qxUalAkf4ad9kwGZmCwgbKANSqawgoJq6rVf2ZeWRh
+https://getreadystack.com/api/buy/cl/polar_cl_0qxUalAkf4ad9kwGZmCwgbKANSqawgoJq6rVf2ZeWRh
 
 ## For a team: every repository, every pull request
 
@@ -89,7 +89,7 @@ Oracle-licensed Java line appears:
 ```
 
 Team key: $149 once, 5 seats, every ReadyStack linter.
-https://buy.polar.sh/polar_cl_l6iN1uWt0FwWu7tBsczD0jWpP2vxFM54Wdwqb3KPi1G
+https://getreadystack.com/api/buy/cl/polar_cl_l6iN1uWt0FwWu7tBsczD0jWpP2vxFM54Wdwqb3KPi1G
 
 Hub: https://getreadystack.com/tools/oracle-jdk-license-gate
 
