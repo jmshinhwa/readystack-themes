@@ -52,7 +52,7 @@ and the same 18 clauses in the browser at
 Paid ($29 once, one key per person or CI seat): sweeping every `.md`, `.mdx`,
 `.html` and `.txt` in the workspace — app notice, web notice, school notice, the translated
 copies — and writing `coppaNotice-report.md`, a dated file you keep, hand to counsel, or commit. Licence:
-<https://buy.polar.sh/polar_cl_wQKx0P8uMksFUK1UmWN0Eq0cVxQNxuPlCLzaw3eXDlW>
+<https://getreadystack.com/api/buy/cl/polar_cl_wQKx0P8uMksFUK1UmWN0Eq0cVxQNxuPlCLzaw3eXDlW>
 
 For scale: outside privacy counsel reviewing one children's notice bills 6–10 hours at $350–$550
 an hour.
