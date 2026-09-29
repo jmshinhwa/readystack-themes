@@ -52,7 +52,7 @@ Eine Ausnahme kennt § 36 Abs. 3 VSBG: Wer am 31. Dezember des Vorjahres zehn od
 ## Frei und erweitert
 
 Frei: die im Editor geöffnete Impressum-Datei, vollständig, mit Zeilennummern.
-Erweitert (Lizenzschlüssel): alle Impressum-Dateien eines Workspace in einem Durchlauf plus CSV-Export des Befundes für die Akte. Schlüssel: https://buy.polar.sh/polar_cl_s6zfYCCfWl8ARCXpcK9KeQEBq8ewxMClTx9uU2cCOiT
+Erweitert (Lizenzschlüssel): alle Impressum-Dateien eines Workspace in einem Durchlauf plus CSV-Export des Befundes für die Akte. Schlüssel: https://getreadystack.com/api/buy/cl/polar_cl_s6zfYCCfWl8ARCXpcK9KeQEBq8ewxMClTx9uU2cCOiT
 
 ## Grenzen
 
