@@ -45,7 +45,7 @@ Zum Vergleich: Abmahnung nach RVG: 1.225,10 € netto bei 25.000 € Gegenstands
 2. Befehlspalette → „Check this file“. Die Fundstellen erscheinen als Diagnosen mit Zeile und Paragraf.
 3. Gratis und ohne Schlüssel: jede geöffnete Datei gegen alle 16 Regeln.
 
-Vollversion (einmaliger Lizenzschlüssel): den ganzen Workspace auf einmal prüfen und einen datierten Prüfbericht mit Paragraf je Fundstelle exportieren – [Lizenzschlüssel holen](https://buy.polar.sh/polar_cl_gJYUBlVfPxyTv3iMWKy68W7IuyvuUHUEaTC292iB3Uw).
+Vollversion (einmaliger Lizenzschlüssel): den ganzen Workspace auf einmal prüfen und einen datierten Prüfbericht mit Paragraf je Fundstelle exportieren – [Lizenzschlüssel holen](https://getreadystack.com/api/buy/cl/polar_cl_gJYUBlVfPxyTv3iMWKy68W7IuyvuUHUEaTC292iB3Uw).
 
 ## Grenzen
 
