@@ -1,0 +1,15 @@
+Spirituosen Shop-Lint – Mindestalkohol & Alkoholsteuer — Licence
+
+Free scope
+  Die offene Produkt-CSV wird komplett geprüft: alle Regeln, jede Zeile, Befund mit Zeilennummer und Rechtsgrundlage — ohne Konto. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Alle CSV-Dateien des Workspace in einem Lauf plus Prüfbericht als Datei (Zeile, Regel, Soll/Ist, Alkoholsteuer je Artikel) zum Weitergeben an Kunde oder Brennerei. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
