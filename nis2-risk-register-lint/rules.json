@@ -1,0 +1,18 @@
+[
+ {"id": "measure-a", "sev": "error", "title": "No risk mapped to Art. 21(2)(a) risk analysis and information system security policies", "ref": "NIS2 (EU) 2022/2555 Art. 21(2)(a)"},
+ {"id": "measure-b", "sev": "error", "title": "No risk mapped to Art. 21(2)(b) incident handling", "ref": "NIS2 (EU) 2022/2555 Art. 21(2)(b)"},
+ {"id": "measure-c", "sev": "error", "title": "No risk mapped to Art. 21(2)(c) business continuity, backup management, disaster recovery and crisis management", "ref": "NIS2 (EU) 2022/2555 Art. 21(2)(c)"},
+ {"id": "measure-d", "sev": "error", "title": "No risk mapped to Art. 21(2)(d) supply chain security", "ref": "NIS2 (EU) 2022/2555 Art. 21(2)(d)"},
+ {"id": "measure-e", "sev": "error", "title": "No risk mapped to Art. 21(2)(e) acquisition, development and maintenance, including vulnerability handling and disclosure", "ref": "NIS2 (EU) 2022/2555 Art. 21(2)(e)"},
+ {"id": "measure-f", "sev": "error", "title": "No risk mapped to Art. 21(2)(f) assessing the effectiveness of risk-management measures", "ref": "NIS2 (EU) 2022/2555 Art. 21(2)(f)"},
+ {"id": "measure-g", "sev": "error", "title": "No risk mapped to Art. 21(2)(g) basic cyber hygiene and cybersecurity training", "ref": "NIS2 (EU) 2022/2555 Art. 21(2)(g)"},
+ {"id": "measure-h", "sev": "error", "title": "No risk mapped to Art. 21(2)(h) cryptography and encryption", "ref": "NIS2 (EU) 2022/2555 Art. 21(2)(h)"},
+ {"id": "measure-i", "sev": "error", "title": "No risk mapped to Art. 21(2)(i) human resources security, access control and asset management", "ref": "NIS2 (EU) 2022/2555 Art. 21(2)(i)"},
+ {"id": "measure-j", "sev": "error", "title": "No risk mapped to Art. 21(2)(j) multi-factor authentication and secured communications", "ref": "NIS2 (EU) 2022/2555 Art. 21(2)(j)"},
+ {"id": "owner-missing", "sev": "error", "title": "Risk has no named owner", "ref": "ISO/IEC 27001 cl. 6.1.2 c) 2) risk owners"},
+ {"id": "score-invalid", "sev": "error", "title": "Likelihood or impact is not a 1-5 score", "ref": "ISO/IEC 27001 cl. 6.1.2 d) likelihood and consequences"},
+ {"id": "treatment-invalid", "sev": "error", "title": "Treatment is not mitigate, accept, transfer or avoid", "ref": "ISO/IEC 27001 cl. 6.1.3 a) treatment options"},
+ {"id": "review-date", "sev": "error", "title": "Last review is not a valid past date (YYYY-MM-DD)", "ref": "ISO/IEC 27001 cl. 8.2 planned intervals"},
+ {"id": "review-stale", "sev": "warning", "title": "Risk review older than 12 months", "ref": "ISO/IEC 27001 cl. 8.2 planned intervals; 365-day cycle"},
+ {"id": "high-risk-accepted", "sev": "warning", "title": "High risk (score 15 or more) accepted without mitigation", "ref": "ISO/IEC 27001 cl. 6.1.3 f) owner approval of residual risk; NIS2 Art. 21(1) measures appropriate to the risk"}
+]
