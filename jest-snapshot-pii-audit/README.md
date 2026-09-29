@@ -33,7 +33,7 @@ Secret scanners match credential shapes. `"firstName": "Anna"` beside `"dateOfBi
 
 Free, no key required: scan the `.snap` file you have open and get every finding with its rule, article and line number. That finishes that file.
 
-The licensed version does a different job — one pass across every `.snap` in the repository, written out as a dated evidence file for a DPO or auditor: <https://buy.polar.sh/polar_cl_y4LAdYzCMCP3Q2C9fJwDLRnlRT3tcPnMekwHv0Dfyxw>
+The licensed version does a different job — one pass across every `.snap` in the repository, written out as a dated evidence file for a DPO or auditor: <https://getreadystack.com/api/buy/cl/polar_cl_y4LAdYzCMCP3Q2C9fJwDLRnlRT3tcPnMekwHv0Dfyxw>
 
 For scale: a freelance privacy consultant reading one repository by hand bills $80-150 an hour.
 
