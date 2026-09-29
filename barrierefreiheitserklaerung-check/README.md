@@ -47,7 +47,7 @@ Die Beispiel-Erklärung eines Teeshops (`Stand: [Datum]`, „orientiert sich an 
 
 ## Vollversion
 
-Alle Erklärungen im Workspace auf einmal prüfen und einen Prüfbericht mit Fundstellen als Datei exportieren – für Agenturen mit mehreren Kunden-Websites. $29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz: https://buy.polar.sh/polar_cl_myfdxREGxjoxoH0ISSufXMIE8hj3KYQmGVhZ63hu5W4
+Alle Erklärungen im Workspace auf einmal prüfen und einen Prüfbericht mit Fundstellen als Datei exportieren – für Agenturen mit mehreren Kunden-Websites. $29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz: https://getreadystack.com/api/buy/cl/polar_cl_myfdxREGxjoxoH0ISSufXMIE8hj3KYQmGVhZ63hu5W4
 
 ## Grenzen
 
