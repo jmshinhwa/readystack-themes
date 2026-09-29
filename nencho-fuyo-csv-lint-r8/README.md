@@ -71,4 +71,4 @@
 
 ## 有料版
 
-無料版は開いたCSVを全行チェックして、結果を画面に出すところまでです。有料版では、チェック結果を従業員ごとの修正一覧レポートとして書き出し、年末調整の確認記録として保存できます。$29、1回払い。ライセンスキーは1人またはチーム1席に1つです。詳細：https://buy.polar.sh/polar_cl_QYWqS9lHXsKzdj2d8EtKinHzfk0YQHF5Xxzw311jfI1
+無料版は開いたCSVを全行チェックして、結果を画面に出すところまでです。有料版では、チェック結果を従業員ごとの修正一覧レポートとして書き出し、年末調整の確認記録として保存できます。$29、1回払い。ライセンスキーは1人またはチーム1席に1つです。詳細：https://getreadystack.com/api/buy/cl/polar_cl_QYWqS9lHXsKzdj2d8EtKinHzfk0YQHF5Xxzw311jfI1
