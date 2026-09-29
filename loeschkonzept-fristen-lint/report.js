@@ -17,6 +17,6 @@ function toHtml(res) {
   const rows = f.map(function (x) { return '<tr><td class="sev ' + escapeHtml(String(x.sev || 'error')) + '">' + escapeHtml(String(x.sev || 'error')) + '</td><td>' + (x.line ? 'L' + escapeHtml(x.line) : '') + '</td><td><code>' + escapeHtml(x.check || x.id || '') + '</code></td><td>' + escapeHtml(x.msg || x.message || '') + '</td></tr>'; }).join('');
   return '<p class="sum">' + escapeHtml(summaryLine(res)) + '</p><table><thead><tr><th>Level</th><th>Line</th><th>Check</th><th>What</th></tr></thead><tbody>' + rows + '</tbody></table>';
 }
-var LFREPORT = { escapeHtml: escapeHtml, summaryLine: summaryLine, toText: toText, toHtml: toHtml };
-if (typeof module !== 'undefined' && module.exports) module.exports = LFREPORT;
-else window.LFREPORT = LFREPORT;
+var LKREPORT = { escapeHtml: escapeHtml, summaryLine: summaryLine, toText: toText, toHtml: toHtml };
+if (typeof module !== 'undefined' && module.exports) module.exports = LKREPORT;
+else window.LKREPORT = LKREPORT;
