@@ -39,7 +39,7 @@ Comments are stripped before matching, so a JEP number quoted in a javadoc is no
 
 Free, no key: all 18 rules on the file you have open, with no cap. The reading job finishes there.
 
-Paid: the workspace sweep — it reads every .java file in the repository and writes one dated Markdown migration report with each file, blocker, JEP and replacement. The sweep is free for its first seven days; after that a key covers it, with commercial and CI-seat use. https://buy.polar.sh/polar_cl_YK2CXL7Hd4TEoxQ76oOVQpVAsrLK9zUpcK7oV2MKwJs
+Paid: the workspace sweep — it reads every .java file in the repository and writes one dated Markdown migration report with each file, blocker, JEP and replacement. The sweep is free for its first seven days; after that a key covers it, with commercial and CI-seat use. https://getreadystack.com/api/buy/cl/polar_cl_YK2CXL7Hd4TEoxQ76oOVQpVAsrLK9zUpcK7oV2MKwJs
 
 Yardstick: a Java migration consultant bills $120–$200 an hour, and a two-day audit of one repository runs past $2,000.
 
