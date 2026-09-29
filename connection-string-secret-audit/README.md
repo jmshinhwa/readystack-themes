@@ -42,7 +42,7 @@ at your cursor. Buy this for the workspace audit and the export, not for that co
 
 **$19 per active committer per month** is what the hosted equivalent is published at, billed for as
 long as your team keeps committing. This is **$29 once**, per developer, and it runs locally.
-Get it: <https://buy.polar.sh/polar_cl_1tgGYRxH9pxpXj2qrSYA5SmeCbtVqYcXEKLoD4CR3y7>
+Get it: <https://getreadystack.com/api/buy/cl/polar_cl_1tgGYRxH9pxpXj2qrSYA5SmeCbtVqYcXEKLoD4CR3y7>
 
 ## Install
 
