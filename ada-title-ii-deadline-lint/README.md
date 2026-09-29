@@ -69,7 +69,7 @@ and a VPAT/ACR write-up at about $350.
 
 Full workspace sweep and report: licence key.
 
-[Get the full version - $29](https://buy.polar.sh/polar_cl_wzKKiGELabjwZgIKC7wl7uINCXdVkTvVTPu2e20gq4d)
+[Get the full version - $29](https://getreadystack.com/api/buy/cl/polar_cl_wzKKiGELabjwZgIKC7wl7uINCXdVkTvVTPu2e20gq4d)
 
 ## What it does not do
 
