@@ -48,7 +48,7 @@ Six findings on the sample; 0 on the corrected version.
 
 Open a `.yml`, `.yaml` or `Dockerfile` and run **Docker Hub Pull Limit Lint — CI rate limit guard: Check this file** from the Command Palette. Findings appear in the Problems panel with the line and the fix.
 
-Free: lint the open file with all 10 rules. Licence: scan the whole workspace in one run and export a Markdown pull inventory report. [Get the full version](https://buy.polar.sh/polar_cl_xEh5IeTeNYGk8do3WVOUYZxBSCx2BseojEiBQ38O9Ky): $29 once, one licence key per person or team seat.
+Free: lint the open file with all 10 rules. Licence: scan the whole workspace in one run and export a Markdown pull inventory report. [Get the full version](https://getreadystack.com/api/buy/cl/polar_cl_xEh5IeTeNYGk8do3WVOUYZxBSCx2BseojEiBQ38O9Ky): $29 once, one licence key per person or team seat.
 
 Yardstick: Docker Pro is $9 per user per month billed yearly ($108 a year), and it only lifts the limit for pulls that log in.
 
