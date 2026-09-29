@@ -48,7 +48,7 @@ charges roughly $400-$600 an hour for a pre-launch review of biometric code.
 
 Free, no key: audit the file you have open, with every finding and subsection.
 Full version: scan the whole workspace and export a dated evidence report (Markdown + CSV) per file
-and per statute subsection - <https://buy.polar.sh/polar_cl_ymzWuO9GRzRMb8YULAoIhzs4TnxmfVlQxtxEI0ax9oq>
+and per statute subsection - <https://getreadystack.com/api/buy/cl/polar_cl_ymzWuO9GRzRMb8YULAoIhzs4TnxmfVlQxtxEI0ax9oq>
 
 Hub page: <https://getreadystack.com/tools/biometric-consent-audit>
 
