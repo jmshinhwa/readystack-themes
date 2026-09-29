@@ -57,7 +57,7 @@ The 11-line sample image in `_fixtures/dirty.hex` produces **10 findings, 6 of t
 
 Auditing **one image** is free and complete — all 17 checks, no key, nothing truncated, in the editor or in the browser. The licence covers a different job: auditing **every image in a build output folder** in one pass and exporting a dated Markdown audit report you keep as release evidence. Since 11 September 2026 the EU Cyber Resilience Act's reporting obligations for products with digital elements are in force, and a dated, per-image audit record is the kind of thing a technical documentation file is made of.
 
-$29 once, one licence key per person or CI seat — and the first workspace sweep runs free for seven days, whole, so you see the report before you pay. [Get the full version](https://buy.polar.sh/polar_cl_AkmNU5yLwVJBdRMHSvuTCQI90j52v56xJsHZH4OTDjV)
+$29 once, one licence key per person or CI seat — and the first workspace sweep runs free for seven days, whole, so you see the report before you pay. [Get the full version](https://getreadystack.com/api/buy/cl/polar_cl_AkmNU5yLwVJBdRMHSvuTCQI90j52v56xJsHZH4OTDjV)
 
 **Yardstick:** freelance embedded software engineers average **$104 an hour** and firmware consultants **$105** (contractrates.fyi, crowdsourced rates, June 2026). One hour of one of them re-reading one image costs more than this licence.
 
