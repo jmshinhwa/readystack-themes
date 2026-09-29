@@ -47,7 +47,7 @@ On 2022-01-20 the Landgericht München I decided case 3 O 17493/20: a website th
 
 Free, with no key: the scan above, across the whole workspace, every finding with its line number. That job finishes on its own.
 
-Full version: export the whole finding list as a dated `FONT-LICENSE-AUDIT.md` plus a CSV evidence pack — the artefact you keep, hand to a foundry auditor, or file with your own legal team. https://buy.polar.sh/polar_cl_swHA4hMj6MekPR1NJiBDnHzv3WHxuyGOWy04M1oYI2K
+Full version: export the whole finding list as a dated `FONT-LICENSE-AUDIT.md` plus a CSV evidence pack — the artefact you keep, hand to a foundry auditor, or file with your own legal team. https://getreadystack.com/api/buy/cl/polar_cl_swHA4hMj6MekPR1NJiBDnHzv3WHxuyGOWy04M1oYI2K
 
 ## Command
 
