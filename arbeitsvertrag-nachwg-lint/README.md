@@ -48,7 +48,7 @@ Vorlage öffnen, Befehl „Arbeitsvertrag prüfen“ ausführen. Die Meldungen e
 ## Kostenlos und Vollversion
 
 Kostenlos: eine Vorlage prüfen, alle 14 Checks, ohne Anmeldung.
-Vollversion ($29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz): alle Vertragsvorlagen des Workspace in einem Lauf prüfen und den Prüfbericht als Datei exportieren – [Vollversion](https://buy.polar.sh/polar_cl_IhWOfBlAPx0TZH26gpai1VFhLyRLEPvOEe9tO4BVOBg).
+Vollversion ($29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz): alle Vertragsvorlagen des Workspace in einem Lauf prüfen und den Prüfbericht als Datei exportieren – [Vollversion](https://getreadystack.com/api/buy/cl/polar_cl_IhWOfBlAPx0TZH26gpai1VFhLyRLEPvOEe9tO4BVOBg).
 
 Maßstab: Anwaltliche Erstberatung kostet Verbraucher bis zu 190 € zzgl. USt (§34 Abs. 1 RVG); für Arbeitgeber gilt diese Kappung nicht.
 
