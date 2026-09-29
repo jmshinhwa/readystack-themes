@@ -48,4 +48,4 @@ Die Prüfung ist eine Wortmuster-Prüfung, keine Rechtsberatung. Ob eine Spezifi
 
 ## Vollversion
 
-Die offene Datei wird ohne Schlüssel vollständig geprüft. Den ganzen Workspace auf einmal prüfen und alle Treffer als CSV (Datei, Zeile, Anhang-Nummer) für die Rechtsprüfung exportieren: $29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz – https://buy.polar.sh/polar_cl_lH315waELkLkSZWOv1OkxCZIYMib44YdKos5w3goOW7
+Die offene Datei wird ohne Schlüssel vollständig geprüft. Den ganzen Workspace auf einmal prüfen und alle Treffer als CSV (Datei, Zeile, Anhang-Nummer) für die Rechtsprüfung exportieren: $29 einmalig, ein Lizenzschlüssel pro Person oder Team-Platz – https://getreadystack.com/api/buy/cl/polar_cl_lH315waELkLkSZWOv1OkxCZIYMib44YdKos5w3goOW7
