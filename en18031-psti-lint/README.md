@@ -34,7 +34,7 @@ Most of that verdict is decided by files you already have in the repository: the
 ## Commands
 
 - **EN 18031 / PSTI: Check This File** — lints the file in the active editor and lists every finding with its line and clause.
-- **EN 18031 / PSTI: Scan Workspace and Export Evidence Pack** — walks every matching config in the workspace and writes a dated report (Markdown + CSV) mapping each finding to its article and clause, for your own file and for the test lab. This one asks for a licence key: <https://buy.polar.sh/polar_cl_emwwfBdWf6ejmN3mkS2he4RXewtmFcnVjaJqB4T0s7P>
+- **EN 18031 / PSTI: Scan Workspace and Export Evidence Pack** — walks every matching config in the workspace and writes a dated report (Markdown + CSV) mapping each finding to its article and clause, for your own file and for the test lab. This one asks for a licence key: <https://getreadystack.com/api/buy/cl/polar_cl_emwwfBdWf6ejmN3mkS2he4RXewtmFcnVjaJqB4T0s7P>
 
 ## Scope
 
