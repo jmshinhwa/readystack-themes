@@ -59,7 +59,7 @@ Eine .csv-Datei öffnen oder speichern – die Fundstellen erscheinen im Problem
 
 Kostenlos: ein ganzer Feed mit allen sieben Checks, ohne Konto, ohne Limit, in VS Code und in der Web-Version.
 
-Vollversion (Lizenzschlüssel): Bericht als Datei für Händler und Agentur exportieren und alle Feeds eines Projektordners in einem Lauf prüfen. [Vollversion](https://buy.polar.sh/polar_cl_IoyEvSEqdORuNlNTskd5DO8U8TzwXLfrjWtAZ2wkFhJ)
+Vollversion (Lizenzschlüssel): Bericht als Datei für Händler und Agentur exportieren und alle Feeds eines Projektordners in einem Lauf prüfen. [Vollversion](https://getreadystack.com/api/buy/cl/polar_cl_IoyEvSEqdORuNlNTskd5DO8U8TzwXLfrjWtAZ2wkFhJ)
 
 ## Grenzen
 
