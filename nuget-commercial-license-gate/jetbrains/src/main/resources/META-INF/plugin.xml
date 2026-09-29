@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.nuget-commercial-license-gate</id>
+  <name>NuGet License Gate</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Flags AutoMapper 15+, MediatR 13+, FluentAssertions 8+, MassTransit 9+ and other NuGet versions past their licence line, with the pin</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>NuGet License Gate: Check This File</b>. Each finding appears on its line with the fix. 10 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/nuget-commercial-license-gate</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/nuget-commercial-license-gate">getreadystack.com/tools/nuget-commercial-license-gate</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_nuget_commercial_license_gate.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.nuget-commercial-license-gate" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.nuget-commercial-license-gate.check" class="com.getreadystack.p_nuget_commercial_license_gate.RsCheckAction"
+            text="NuGet License Gate: Check This File" description="Run NuGet License Gate on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
