@@ -53,7 +53,7 @@ Free, with no key: open one contract, run **DORA: Lint ICT contract**, and every
 
 Full version — the next job, a different axis: one pass over **every** contract in the repository, and an exported per-vendor, per-clause evidence table you keep for the register of information and the Q4 file. $29 once, one licence key per person or team seat.
 
-[Full version](https://buy.polar.sh/polar_cl_PyS5jRrYO7Qg2eYCctURo3heBw7Z5sPLx4UrE49Ms6L) · Hub: https://getreadystack.com/tools/dora-ict-contract-clause-lint
+[Full version](https://getreadystack.com/api/buy/cl/polar_cl_PyS5jRrYO7Qg2eYCctURo3heBw7Z5sPLx4UrE49Ms6L) · Hub: https://getreadystack.com/tools/dora-ict-contract-clause-lint
 
 ## Not legal advice
 
