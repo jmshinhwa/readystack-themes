@@ -64,7 +64,7 @@ The paid part is a different axis — **scope and ownership**. The workspace swe
 file at once and writes a dated report *file* you keep: the artifact you paste into a customer
 security questionnaire, attach to a migration ticket, or diff next quarter. $29 once, one licence
 key per person or CI seat.
-[Get the full version](https://buy.polar.sh/polar_cl_Q0a5F9WB3Ub2fTRsFv8TePDwMQjmT1GtVgVGl3H6oee)
+[Get the full version](https://getreadystack.com/api/buy/cl/polar_cl_Q0a5F9WB3Ub2fTRsFv8TePDwMQjmT1GtVgVGl3H6oee)
 
 **Yardstick:** a security consultant doing the same cryptographic inventory by hand bills
 $150–$250 an hour, and the first pass over one repository is a day.
