@@ -1,0 +1,57 @@
+{
+  "name": "nis2-risk-register-lint",
+  "displayName": "Risk Register Lint — NIS2 Art. 21(2)",
+  "description": "Lints Markdown risk registers: all ten NIS2 Article 21(2) measures (a)-(j) covered, and every risk row has an owner, a 1-5 score, a treatment and a review inside 12 months.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "nis2",
+    "risk register",
+    "risk assessment",
+    "critical infrastructure",
+    "article 21",
+    "iso 27001",
+    "compliance",
+    "lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "nis2RiskRegister.checkFile",
+        "title": "Risk Register Lint — NIS2 Art. 21(2): Check this file",
+        "category": "Risk Register Lint — NIS2 Art. 21(2)"
+      },
+      {
+        "command": "nis2RiskRegister.checkWorkspace",
+        "title": "Risk Register Lint — NIS2 Art. 21(2): Sweep workspace and write report (licence)",
+        "category": "Risk Register Lint — NIS2 Art. 21(2)"
+      },
+      {
+        "command": "nis2RiskRegister.enterKey",
+        "title": "Risk Register Lint — NIS2 Art. 21(2): Enter licence key",
+        "category": "Risk Register Lint — NIS2 Art. 21(2)"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "nis2-risk-register-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/nis2-risk-register-lint",
+  "readystack": {
+    "rulesDate": "2026-09-28"
+  },
+  "icon": "icon.png"
+}
