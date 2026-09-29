@@ -61,7 +61,7 @@ The free tier is complete on its own: every deduction code in the open map is au
 twelve rules and each broken line is named with its line number.
 
 Full version: audits every deduction map in the workspace at once and writes a dated exposure
-report you keep as the payroll audit trail — <https://buy.polar.sh/polar_cl_nAgRlEvSuB50Wdx5AxIH3jJ7eqwgOTIAwUFRk26gtYC>
+report you keep as the payroll audit trail — <https://getreadystack.com/api/buy/cl/polar_cl_nAgRlEvSuB50Wdx5AxIH3jJ7eqwgOTIAwUFRk26gtYC>
 
 ## Also on the hub
 
