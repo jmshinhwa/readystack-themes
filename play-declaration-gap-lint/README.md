@@ -56,7 +56,7 @@ the workspace has (app module, library modules, merged manifests from SDKs) and 
 you keep in the repository and hand to whoever fills in Play Console. The full sweep runs
 free for seven days from the first time you use it. After that it asks for a licence key:
 $29 once, one licence key per person or CI seat.
-Key link: https://buy.polar.sh/polar_cl_9pjxdAKOI372jyFZtBN3s5u8ajfGhvBhh1rwf3TGsGE
+Key link: https://getreadystack.com/api/buy/cl/polar_cl_9pjxdAKOI372jyFZtBN3s5u8ajfGhvBhh1rwf3TGsGE
 
 Yardstick: a freelance Android release engineer bills $60-$120 an hour, and reading a large
 app's manifests against every current Play declaration is most of a day.
