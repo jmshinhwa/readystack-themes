@@ -7,13 +7,13 @@ const ENGINE = require('./engine.js');
 const REPORT = require('./report.js');
 
 const S = {
-  title: 'Löschkonzept-Prüfer – Aufbewahrungsfristen 2026',
-  need_key: 'Full version: Ordner-Prüfbericht über alle Löschkonzepte und Löschfristen-Tabellen eines Workspace als Datei, als Nachweis nach Art. 5 Abs. 2 DSGVO. $29 once · one licence key per person or team seat. Steuerberater nach § 13 StBVV: Zeitgebühr €16,50 bis €41 je angefangene Viertelstunde. Lizenzschlüssel eingeben oder Vollversion holen.',
-  enter_key: 'Enter licence key', buy: 'Get the full version — $29',
+  title: 'Aufbewahrungsfristen-Lint für Löschkonzepte (BEG IV)',
+  need_key: 'The workspace sweep and the written report are the paid part of Aufbewahrungsfristen-Lint für Löschkonzepte (BEG IV). Enter your licence key, or get one.',
+  enter_key: 'Enter licence key', buy: 'Get a licence',
   key_ok: 'Licence accepted. Thank you.', key_bad: 'That key did not validate. Check for typos, or get a licence.',
   clean: 'Clean against all ' + (ENGINE.RULE_COUNT || (ENGINE.RULES || []).length) + ' checks.'
 };
-const PREFIX = 'loeschFristen';
+const PREFIX = 'loeschkonzeptFristen';
 const GLOB = '**/*.md';
 let channel = null, diags = null;
 function out() { if (!channel) channel = vscode.window.createOutputChannel(S.title); return channel; }
