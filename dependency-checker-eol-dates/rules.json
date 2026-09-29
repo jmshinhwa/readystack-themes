@@ -1,0 +1,21 @@
+[
+ {"id":"angularjs-eol","eco":"npm","pkg":"angular","min":"0.0","max":"1.999","eol":"2021-12-31","warn_days":120,"what":"AngularJS 1.x","fix":"migrate to @angular/core ^21","src":"angularjs.org (end of long-term support 2021-12-31)"},
+ {"id":"angular-16-eol","eco":"npm","pkg":"@angular/core","min":"2.0","max":"16.999","eol":"2024-11-08","warn_days":120,"what":"Angular 16 or older","fix":"^21","src":"angular.dev/reference/releases"},
+ {"id":"angular-17-eol","eco":"npm","pkg":"@angular/core","min":"17.0","max":"17.999","eol":"2025-05-15","warn_days":120,"what":"Angular 17","fix":"^21","src":"angular.dev/reference/releases"},
+ {"id":"angular-18-eol","eco":"npm","pkg":"@angular/core","min":"18.0","max":"18.999","eol":"2025-11-21","warn_days":120,"what":"Angular 18","fix":"^21","src":"angular.dev/reference/releases"},
+ {"id":"angular-19-eol","eco":"npm","pkg":"@angular/core","min":"19.0","max":"19.999","eol":"2026-05-19","warn_days":120,"what":"Angular 19","fix":"^21","src":"angular.dev/reference/releases"},
+ {"id":"angular-20-eol","eco":"npm","pkg":"@angular/core","min":"20.0","max":"20.999","eol":"2026-11-21","warn_days":120,"what":"Angular 20 LTS","fix":"^21","src":"angular.dev/reference/releases (LTS ends November 2026)"},
+ {"id":"vue-2-eol","eco":"npm","pkg":"vue","min":"0.0","max":"2.999","eol":"2023-12-31","warn_days":120,"what":"Vue 2","fix":"^3.5","src":"v2.vuejs.org/eol"},
+ {"id":"nuxt-2-eol","eco":"npm","pkg":"nuxt","min":"0.0","max":"2.999","eol":"2024-06-30","warn_days":120,"what":"Nuxt 2","fix":"^4","src":"nuxt.com (Nuxt 2 end of life 2024-06-30)"},
+ {"id":"bootstrap-4-eol","eco":"npm","pkg":"bootstrap","min":"0.0","max":"4.999","eol":"2023-01-01","warn_days":120,"what":"Bootstrap 4 or older","fix":"^5.3","src":"getbootstrap.com release schedule"},
+ {"id":"express-4-eol","eco":"npm","pkg":"express","min":"4.0","max":"4.999","eol":"2026-10-01","warn_days":120,"what":"Express 4 (maintenance)","label":"2026-10-01 (target, no sooner than)","fix":"^5.1","src":"expressjs.com/en/support"},
+ {"id":"eslint-8-eol","eco":"npm","pkg":"eslint","min":"0.0","max":"8.999","eol":"2024-10-05","warn_days":120,"what":"ESLint 8 or older","fix":"^9 (flat config)","src":"eslint.org/version-support"},
+ {"id":"request-deprecated","eco":"npm","pkg":"request","min":"0.0","max":"999.0","eol":"2020-02-11","warn_days":120,"what":"request (deprecated package)","fix":"native fetch or undici","src":"github.com/request/request#deprecated"},
+ {"id":"react-scripts-deprecated","eco":"npm","pkg":"react-scripts","min":"0.0","max":"999.0","eol":"2025-02-14","warn_days":120,"what":"Create React App (react-scripts)","fix":"Vite or a React framework","src":"react.dev/blog/2025/02/14/sunsetting-create-react-app"},
+ {"id":"django-3-eol","eco":"pypi","pkg":"django","min":"0.0","max":"3.999","eol":"2024-04-01","warn_days":120,"what":"Django 3.2 or older","label":"April 2024","fix":"Django 5.2 LTS","src":"djangoproject.com/download (supported versions)"},
+ {"id":"django-4-eol","eco":"pypi","pkg":"django","min":"4.0","max":"4.999","eol":"2026-04-01","warn_days":120,"what":"Django 4.x (4.2 LTS)","label":"April 2026","fix":"Django 5.2 LTS","src":"djangoproject.com/download (supported versions)"},
+ {"id":"django-51-eol","eco":"pypi","pkg":"django","min":"5.0","max":"5.1","eol":"2025-12-01","warn_days":120,"what":"Django 5.0 / 5.1","label":"December 2025","fix":"Django 5.2 LTS","src":"djangoproject.com/download (supported versions)"},
+ {"id":"laravel-9-eol","eco":"composer","pkg":"laravel/framework","min":"0.0","max":"9.999","eol":"2024-02-06","warn_days":120,"what":"Laravel 9 or older","fix":"^12","src":"laravel.com/docs/releases (support policy)"},
+ {"id":"laravel-10-eol","eco":"composer","pkg":"laravel/framework","min":"10.0","max":"10.999","eol":"2025-02-04","warn_days":120,"what":"Laravel 10","fix":"^12","src":"laravel.com/docs/releases (support policy)"},
+ {"id":"laravel-11-eol","eco":"composer","pkg":"laravel/framework","min":"11.0","max":"11.999","eol":"2026-03-12","warn_days":120,"what":"Laravel 11","fix":"^12","src":"laravel.com/docs/releases (support policy)"}
+]
