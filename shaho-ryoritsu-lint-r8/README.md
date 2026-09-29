@@ -1,5 +1,7 @@
 # 給与計算 健康保険料率・支援金チェッカー 令和8年度
 
+![給与計算 健康保険料率・支援金チェッカー 令和8年度 — finds the line](https://getreadystack.com/img/promo/shaho-ryoritsu-lint-r8_demo.gif)
+
 ![給与計算 健康保険料率・支援金チェッカー 令和8年度](https://getreadystack.com/img/promo/sku362814_result_card.jpg)
 
 健康保険料率 令和8年度の値と子ども・子育て支援金 0.23% を、給与計算の設定ファイルとソースの中で1行ずつ照合する VS Code 拡張です。YAML・JSON・CSV・TS・JS・Python を開くと、令和7年度の料率が残っている行に波線が付き、その都道府県の令和8年度の値が横に出ます。
@@ -49,7 +51,7 @@
 
 無料: 開いている1ファイルを全14ルールで検査し、正しい値をその場で表示します。これだけで1つの設定ファイルの見直しは完了します。
 
-有料 ($29、1回払い、1人または1チーム席に1キー): ワークスペース全体の一括検査と、監査用の CSV/Markdown 報告書の書き出し。 [フル版を入手](https://buy.polar.sh/polar_cl_qkypDl59PAacSrPrJrCO9juLMt407oeOQ25rg34RUzP)
+有料 ($29、1回払い、1人または1チーム席に1キー): ワークスペース全体の一括検査と、監査用の CSV/Markdown 報告書の書き出し。 [フル版を入手](https://getreadystack.com/api/buy/cl/polar_cl_qkypDl59PAacSrPrJrCO9juLMt407oeOQ25rg34RUzP)
 
 比較の目安: 給与計算の外部委託は従業員30〜100名で月¥50,000〜¥150,000 が相場。
 
