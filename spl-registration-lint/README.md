@@ -56,7 +56,7 @@ blocking error with its line number. That finishes one file.
 
 Full version - $29 once: sweep every `.xml` file in the submission folder in one pass and export
 a dated readiness report you keep with the submission record. One licence key per person or CI
-seat. Get the full version: https://buy.polar.sh/polar_cl_5DGxPviszTwjOqxMnoZEuBHdaWberjjix1mAZ1mQljU
+seat. Get the full version: https://getreadystack.com/api/buy/cl/polar_cl_5DGxPviszTwjOqxMnoZEuBHdaWberjjix1mAZ1mQljU
 
 Yardstick: a regulatory-affairs consultant bills $100-$200 per hour, and a rejected gateway
 submission costs a re-check and a resubmission cycle inside a window that closes on December 31.
