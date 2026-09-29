@@ -1,0 +1,15 @@
+[
+ {"id":"kokuho-dasshutsu-14","sev":"error","topic":"kokuho_dasshutsu","days":14,"what":"国保の脱退(資格喪失届)","law":"国民健康保険法施行規則 第13条","fix":"「会社の健康保険に入った日から14日以内に、住所地の市町村へ国保の資格喪失届」"},
+ {"id":"kokuho-kanyu-14","sev":"error","topic":"kokuho_kanyu","days":14,"what":"国保への加入(資格取得届)","law":"国民健康保険法施行規則 第3条","fix":"「退職日の翌日(資格喪失日)から14日以内に市町村へ国保の資格取得届」"},
+ {"id":"kokuho-auto-dasshutsu","sev":"error","topic":"kokuho_auto","what":"国保は自動で脱退しない","law":"国民健康保険法 第9条 · 同施行規則 第13条","fix":"「国保は自動では抜けない。世帯主が14日以内に市町村へ届け出る」"},
+ {"id":"shaho-shutoku-5","sev":"error","topic":"shaho_shutoku","days":5,"what":"健康保険・厚生年金の資格取得届","law":"健康保険法施行規則 第24条 · 厚生年金保険法施行規則 第15条","fix":"「入社日(資格取得日)から5日以内に資格取得届」"},
+ {"id":"shaho-soshitsu-5","sev":"error","topic":"shaho_soshitsu","days":5,"what":"健康保険・厚生年金の資格喪失届","law":"健康保険法施行規則 第29条 · 厚生年金保険法施行規則 第22条","fix":"「資格喪失日から5日以内に資格喪失届」"},
+ {"id":"fuyo-5","sev":"error","topic":"fuyo","days":5,"what":"被扶養者(異動)届","law":"健康保険法施行規則 第38条","fix":"「扶養に入れる事実から5日以内に、事業主経由で被扶養者届」"},
+ {"id":"nini-keizoku-20","sev":"error","topic":"nini","days":20,"what":"任意継続の申出","law":"健康保険法 第37条","fix":"「資格喪失日から20日以内に任意継続の申出」"},
+ {"id":"koyo-shutoku-yokugetsu10","sev":"error","topic":"koyo_shutoku","what":"雇用保険の資格取得届","law":"雇用保険法施行規則 第6条","fix":"「雇入れ日の属する月の翌月10日までに資格取得届」"},
+ {"id":"koyo-soshitsu-10","sev":"error","topic":"koyo_soshitsu","days":10,"what":"雇用保険の資格喪失届","law":"雇用保険法施行規則 第7条","fix":"「離職日の翌日から起算して10日以内に資格喪失届」"},
+ {"id":"eigyobi","sev":"warning","topic":"*","what":"営業日で数えた期限","law":"各施行規則は「〇日以内」— 営業日の定めはない","fix":"「営業日」を外し、暦日で数える"},
+ {"id":"hokensho-hakko","sev":"warning","topic":"hokensho","what":"「保険証の発行」を待つ案内","law":"国民健康保険法施行規則 第11条ほか(現行様式は「資格確認書」)","fix":"「マイナ保険証で受診。持っていない人には資格確認書が交付される」"},
+ {"id":"taishoku-kokuho-annai","sev":"warning","topic":"missing_kokuho","what":"退職者向けに国保加入14日の案内がない","law":"国民健康保険法施行規則 第3条","fix":"退職チェックリストに「国保へ切り替える場合は14日以内に市町村へ」を追加"},
+ {"id":"taishoku-nini-annai","sev":"warning","topic":"missing_nini","what":"退職者向けに任意継続20日の案内がない","law":"健康保険法 第37条","fix":"退職チェックリストに「任意継続は資格喪失日から20日以内に申出」を追加"}
+]
