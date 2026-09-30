@@ -1,0 +1,57 @@
+{
+  "name": "gitlab-ci-migration-check",
+  "displayName": "GitLab CI/CD Migration Check for GitHub Actions",
+  "description": "GitLab CI/CD migration check: flags every line of a GitHub Actions workflow that GitLab cannot run as-is (Marketplace actions, pull_request_target, matrix exclude) or that needs GitLab Premium.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "gitlab ci/cd",
+    "gitlab ci migration",
+    "github actions to gitlab",
+    "github actions",
+    "gitlab-ci.yml",
+    "ci migration",
+    "workflow linter",
+    "devops"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "gitlabCiMigrationCheck.checkFile",
+        "title": "GitLab CI/CD Migration Check for GitHub Actions: Check this file",
+        "category": "GitLab CI/CD Migration Check for GitHub Actions"
+      },
+      {
+        "command": "gitlabCiMigrationCheck.checkWorkspace",
+        "title": "GitLab CI/CD Migration Check for GitHub Actions: Sweep workspace and write report (licence)",
+        "category": "GitLab CI/CD Migration Check for GitHub Actions"
+      },
+      {
+        "command": "gitlabCiMigrationCheck.enterKey",
+        "title": "GitLab CI/CD Migration Check for GitHub Actions: Enter licence key",
+        "category": "GitLab CI/CD Migration Check for GitHub Actions"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "gitlab-ci-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/gitlab-ci-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
