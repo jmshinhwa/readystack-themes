@@ -59,7 +59,7 @@ Ohne Schlüssel prüft die Erweiterung die geöffnete Lagerakte vollständig, mi
 Eurobetrag. Die Vollversion prüft alle Lagerakten des Ordners in einem Lauf und schreibt den Prüfbericht
 als Markdown oder CSV fürs Belegheft nach § 10 AlkStV heraus:
 [Vollversion, $29 einmalig](https://getreadystack.com/api/buy/cl/polar_cl_OqVgcTqJaaL6sNfNeKVVBkq2L21S7vaeNhqK01ov10k) — eine Lizenz je Person oder Team-Sitz,
-7 Tage volle Rückerstattung.
+
 
 Maßstab: Ein Steuerberater rechnet dieselbe Stunde nach § 13 StBVV mit einer Zeitgebühr von
 16,50 bis 41 Euro je angefangene Viertelstunde ab.
