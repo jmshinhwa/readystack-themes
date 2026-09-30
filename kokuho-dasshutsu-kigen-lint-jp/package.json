@@ -2,7 +2,7 @@
   "name": "kokuho-dasshutsu-kigen-lint-jp",
   "displayName": "国民健康保険 脱退 手続き lint — 入退社チェックリスト期限",
   "description": "入退社チェックリスト(Markdown/YAML)の社会保険の届出期限を法令どおりに検査。国保 脱退14日・健保 資格取得届5日・任意継続20日・雇用保険 翌月10日/10日の書き間違いを行単位で指摘。",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,7 +49,7 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "kokuho-dasshutsu-kigen-lint-jp"
   },
-  "homepage": "https://getreadystack.com/ja/tools/kokuho-dasshutsu-kigen-lint-jp",
+  "homepage": "https://getreadystack.com/tools/kokuho-dasshutsu-kigen-lint-jp",
   "readystack": {
     "rulesDate": "2026-09-28"
   },
