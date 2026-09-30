@@ -1,5 +1,11 @@
 # Oracle JDK License Gate
 
+**Moving to Temurin, Corretto or another free OpenJDK build?** Run `Oracle JDK License Gate: Show the Java map`.
+It reads your workspace and shows on one page: every place that chooses a Java build (GitHub Actions, Docker base
+images, Gradle and Maven toolchains, SDKMAN, asdf, dev containers), which of those pull an Oracle-licensed build
+on today's date, which JDK this machine runs (quoted from the JDK's own `release` file), and the free line for
+each place. The map is free and nothing leaves your machine.
+
 ![Oracle JDK License Gate — finds the line](https://getreadystack.com/img/promo/oracle-jdk-license-gate_demo.gif)
 
 ![Oracle JDK License Gate](https://getreadystack.com/img/promo/sku156180_result_card.jpg)
@@ -34,7 +40,7 @@ Oracle Java SE Universal Subscription is list-priced at $15 per employee per mon
 employee in the company, not every Java install. 250 employees x $15 per employee per month x
 12 months = $45,000 a year. The unit is the payroll, not the container.
 
-## The 9 rules
+## The 18 rules
 
 | Rule | What it catches |
 | --- | --- |
@@ -47,9 +53,27 @@ employee in the company, not every Java install. 250 employees x $15 per employe
 | `oracle_linux_jdk_pkg` | `yum` / `dnf` / `microdnf` installing an Oracle `jdk-NN` rpm |
 | `oracle_java_installer_ppa` | a third-party installer package that downloads the Oracle JDK for you |
 | `oracle_license_env_accept` | a build variable that accepts the Oracle license on your behalf |
+| `oracle_setup_java_action` | `oracle-actions/setup-java` without `website: jdk.java.net` (it downloads from oracle.com by default) |
+| `sdkmanrc_oracle_vendor` | a `.sdkmanrc` that pins `java=...-oracle` or `-graal` |
+| `asdf_oracle_vendor` | a `.tool-versions` line `java oracle-...` (asdf / mise) |
+| `gradle_toolchain_oracle` | `JvmVendorSpec.ORACLE` in a Gradle toolchain |
+| `maven_toolchain_oracle` | `<vendor>oracle</vendor>` in a Maven toolchain requirement |
+| `devcontainer_oracle_distro` | `"jdkDistro": "oracle"` in a dev container Java feature |
+| `brew_oracle_jdk` | `brew install oracle-jdk` or a Brewfile `cask "oracle-jdk"` |
+| `winget_oracle_jdk` | `winget install Oracle.JDK.NN` |
+| `choco_oracle_jdk` | `choco install oraclejdk` / `oracleNNjdk` |
 
 Each finding carries the drop-in swap: `temurin`, `graalvm-community`, `eclipse-temurin:21-jdk`,
 an Adoptium API URL, or an OpenJDK rpm.
+
+## The Java map (free)
+
+The map lists, for the whole workspace: the Oracle-licensed pulls with file and line, every place a Java vendor is
+named (so you can see `temurin` in CI next to `oracle` in the dev container), lines that are not a license matter
+but are worth changing (the deprecated `openjdk` Docker image, the `adopt` distribution that setup-java removed),
+and the JDK behind `JAVA_HOME` and the Java runtimes configured in VS Code. For a JDK it only quotes the
+`IMPLEMENTOR` and `JAVA_VERSION` lines of that JDK's `release` file. It reads files on your machine and sends
+nothing.
 
 ## Measured on the bundled sample
 
