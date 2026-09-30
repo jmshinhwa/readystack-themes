@@ -1,0 +1,59 @@
+{
+  "name": "vscodium-extension-licence-lint",
+  "displayName": "VSCodium Migration Lint: Microsoft-only Extensions",
+  "description": "VSCodium migration check: flags extensions in .vscode/extensions.json and devcontainer.json that Microsoft licenses for VS Code only or that Open VSX lacks, with the open replacement ID",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "vscodium",
+    "vscodium migration",
+    "open vsx",
+    "pylance alternative",
+    "remote ssh vscodium",
+    "microsoft extension licence",
+    "basedpyright",
+    "clangd",
+    "zed",
+    "cursor"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscodiumLint.checkFile",
+        "title": "VSCodium Migration Lint: Microsoft-only Extensions: Check this file",
+        "category": "VSCodium Migration Lint: Microsoft-only Extensions"
+      },
+      {
+        "command": "vscodiumLint.checkWorkspace",
+        "title": "VSCodium Migration Lint: Microsoft-only Extensions: Sweep workspace and write report (licence)",
+        "category": "VSCodium Migration Lint: Microsoft-only Extensions"
+      },
+      {
+        "command": "vscodiumLint.enterKey",
+        "title": "VSCodium Migration Lint: Microsoft-only Extensions: Enter licence key",
+        "category": "VSCodium Migration Lint: Microsoft-only Extensions"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "vscodium-extension-licence-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/vscodium-extension-licence-lint",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
