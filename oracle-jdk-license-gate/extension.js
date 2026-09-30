@@ -14,7 +14,7 @@ const S = {
   clean: 'Clean against all ' + (ENGINE.RULE_COUNT || (ENGINE.RULES || []).length) + ' checks.'
 };
 const PREFIX = 'oracleJdkLicenseGate';
-const GLOB = '**/{Dockerfile,Dockerfile.*,*.yml,*.yaml,*.sh,*.sdkmanrc}';
+const GLOB = '**/{Dockerfile,Dockerfile.*,*.yml,*.yaml,*.sh,*.sdkmanrc,.sdkmanrc,.tool-versions,*.gradle,*.gradle.kts,toolchains.xml,pom.xml,devcontainer.json,Brewfile,*.ps1,Jenkinsfile}';   // s173 — the places a Java project pins its vendor
 let channel = null, diags = null;
 function out() { if (!channel) channel = vscode.window.createOutputChannel(S.title); return channel; }
 function today() { return new Date().toISOString().slice(0, 10); }
@@ -87,6 +87,8 @@ function activate(ctx) {
   );
   // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
   try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'oracle-jdk-license-gate', price: 29 }); } catch (e) {}
+  // s173 — the Java map: what people who searched "temurin" came for (which Java each place pulls + the free line) · free · local · once
+  try { require('./javamap.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, PREFIX: PREFIX, title: S.title }); } catch (e) {}
 }
 function deactivate() { if (channel) channel.dispose(); if (diags) diags.dispose(); }
 module.exports = { activate: activate, deactivate: deactivate, checkFile: checkFile, S: S };
