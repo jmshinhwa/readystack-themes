@@ -1,0 +1,58 @@
+{
+  "name": "yosys-migration-check",
+  "displayName": "Yosys Migration Check - Vivado-only blockers",
+  "description": "Yosys migration check for Verilog/SystemVerilog: flags Vivado-only XPM macros, IP-core instances, encrypted IP, ILA/VIO debug cores and glbl references before you leave a Vivado licence.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "yosys",
+    "vivado",
+    "fpga",
+    "verilog",
+    "systemverilog",
+    "nextpnr",
+    "migration",
+    "xilinx",
+    "open source synthesis"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "yosysMigrationCheck.checkFile",
+        "title": "Yosys Migration Check - Vivado-only blockers: Check this file",
+        "category": "Yosys Migration Check - Vivado-only blockers"
+      },
+      {
+        "command": "yosysMigrationCheck.checkWorkspace",
+        "title": "Yosys Migration Check - Vivado-only blockers: Sweep workspace and write report (licence)",
+        "category": "Yosys Migration Check - Vivado-only blockers"
+      },
+      {
+        "command": "yosysMigrationCheck.enterKey",
+        "title": "Yosys Migration Check - Vivado-only blockers: Enter licence key",
+        "category": "Yosys Migration Check - Vivado-only blockers"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "yosys-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/yosys-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
