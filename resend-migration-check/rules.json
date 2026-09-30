@@ -1,0 +1,126 @@
+[
+ {
+  "id": "sg-import-node",
+  "sev": "error",
+  "re": "require\\(\\s*['\"]@sendgrid/|from\\s+['\"]@sendgrid/",
+  "msg": "@sendgrid/* package. Resend: npm i resend, then import { Resend } from 'resend'.",
+  "gate": "sendgrid|sgMail|X-Twilio-Email|EventWebhook"
+ },
+ {
+  "id": "sg-import-python",
+  "sev": "error",
+  "re": "^\\s*(from\\s+sendgrid(\\.[\\w.]+)?\\s+import|import\\s+sendgrid)\\b",
+  "msg": "sendgrid Python package. Resend: pip install resend, import resend, set resend.api_key."
+ },
+ {
+  "id": "sg-set-api-key",
+  "sev": "error",
+  "re": "\\.setApiKey\\s*\\(|SendGridAPIClient\\s*\\(",
+  "msg": "SendGrid client setup. Resend: const resend = new Resend(process.env.RESEND_API_KEY)."
+ },
+ {
+  "id": "sg-env-key",
+  "sev": "error",
+  "re": "SENDGRID_API_KEY",
+  "msg": "SENDGRID_API_KEY holds an SG. key that Resend rejects. Resend: RESEND_API_KEY with a re_ key."
+ },
+ {
+  "id": "sg-raw-endpoint",
+  "sev": "error",
+  "re": "api\\.sendgrid\\.com/v3/mail/send",
+  "msg": "Raw SendGrid v3 endpoint. Resend: POST https://api.resend.com/emails with a flat {from, to, subject, html} body."
+ },
+ {
+  "id": "sg-send-multiple",
+  "sev": "error",
+  "re": "\\.sendMultiple\\s*\\(",
+  "msg": "sendMultiple does not exist on Resend. Resend: resend.batch.send([...]) with up to 100 emails per call."
+ },
+ {
+  "id": "sg-personalizations",
+  "sev": "error",
+  "re": "\\bpersonalizations\\b|\\bPersonalization\\s*\\(",
+  "msg": "personalizations has no Resend field. Resend: one email object per recipient in resend.batch.send (up to 100 per call, up to 50 addresses in to)."
+ },
+ {
+  "id": "sg-dynamic-template",
+  "sev": "error",
+  "re": "\\btemplate_?[iI]d\\b|['\"]d-[0-9a-f]{32}['\"]",
+  "msg": "SendGrid dynamic template id (d-...) exists only in your SendGrid account. Resend: rebuild the template on Resend or send rendered html/react."
+ },
+ {
+  "id": "sg-template-data",
+  "sev": "warn",
+  "re": "dynamicTemplateData|dynamic_template_data",
+  "msg": "Handlebars template data for a SendGrid template. Resend: render the values into html (or react) before resend.emails.send."
+ },
+ {
+  "id": "sg-send-at",
+  "sev": "error",
+  "re": "\\bsendAt\\b|\\bsend_at\\b",
+  "msg": "sendAt (Unix seconds) is SendGrid-only. Resend reads scheduledAt, an ISO 8601 string, not sendAt."
+ },
+ {
+  "id": "sg-send-at-past",
+  "type": "ts_past",
+  "sev": "warn",
+  "re": "\\b(?:sendAt|send_at)\\b\\s*[:=]\\s*(\\d{10})\\b",
+  "msg": "Hard-coded send time {ts} is already before {today}. Build scheduledAt from the send moment as an ISO 8601 string."
+ },
+ {
+  "id": "sg-categories",
+  "sev": "warn",
+  "re": "\\bcategories\\s*[:=]|\\bcustomArgs\\b|\\bcustom_args\\b|\\bCategory\\s*\\(",
+  "msg": "categories / customArgs are SendGrid-only. Resend: tags: [{ name, value }] (ASCII letters, numbers, _ and -)."
+ },
+ {
+  "id": "sg-asm",
+  "sev": "error",
+  "re": "\\basm\\s*[:=]|\\bAsm\\s*\\(|\\bgroupId\\b|\\bgroup_id\\b",
+  "msg": "Unsubscribe group (asm) has no field in resend.emails.send; the group is dropped. Keep your own suppression list before sending."
+ },
+ {
+  "id": "sg-tracking",
+  "sev": "warn",
+  "re": "trackingSettings|tracking_settings|TrackingSettings",
+  "msg": "Per-message tracking settings. Resend: open and click tracking are switched per domain, not per email; this block is dropped."
+ },
+ {
+  "id": "sg-sandbox",
+  "sev": "error",
+  "re": "sandboxMode|sandbox_mode|SandBoxMode",
+  "msg": "sandboxMode has no Resend field, so the email is really sent. Resend: send tests to delivered@resend.dev instead."
+ },
+ {
+  "id": "sg-ip-pool",
+  "sev": "warn",
+  "re": "ipPoolName|ip_pool_name",
+  "msg": "ipPoolName has no field in resend.emails.send; the pool choice is dropped."
+ },
+ {
+  "id": "sg-webhook-signature",
+  "sev": "error",
+  "re": "X-Twilio-Email-Event-Webhook-(Signature|Timestamp)|\\bEventWebhook\\b|verifySignature",
+  "msg": "SendGrid Event Webhook signature check. Resend signs webhooks with Svix: verify svix-id, svix-timestamp and svix-signature headers."
+ },
+ {
+  "id": "sg-webhook-event",
+  "type": "event_map",
+  "sev": "error",
+  "re": "(===?|\\bcase|\\bin)\\s*\\(?\\s*['\"](processed|dropped|delivered|deferred|bounce|open|click|spamreport|unsubscribe|group_unsubscribe|group_resubscribe)['\"]",
+  "msg": "SendGrid event '{ev}' never arrives from Resend: the field is type, not event. Resend: {to}.",
+  "map": {
+   "processed": "type === 'email.sent'",
+   "delivered": "type === 'email.delivered'",
+   "deferred": "type === 'email.delivery_delayed'",
+   "bounce": "type === 'email.bounced'",
+   "open": "type === 'email.opened'",
+   "click": "type === 'email.clicked'",
+   "spamreport": "type === 'email.complained'",
+   "dropped": "no email.* event with this name; handle email.bounced",
+   "unsubscribe": "no email.* event with this name; keep your own unsubscribe list",
+   "group_unsubscribe": "no email.* event with this name; keep your own unsubscribe list",
+   "group_resubscribe": "no email.* event with this name; keep your own unsubscribe list"
+  }
+ }
+]
