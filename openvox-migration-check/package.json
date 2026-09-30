@@ -1,0 +1,58 @@
+{
+  "name": "openvox-migration-check",
+  "displayName": "OpenVox Migration Check for Puppet",
+  "description": "Flags Puppet package names, yum/apt.puppetlabs.com repos, puppet8-release, Docker images and gems that must change when you move a fleet from Puppet to OpenVox, with the exact OpenVox replacement.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "openvox",
+    "puppet",
+    "openvox migration",
+    "puppet core",
+    "puppet licence",
+    "openbolt",
+    "openvoxdb",
+    "vox pupuli",
+    "configuration management"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "openvoxMigration.checkFile",
+        "title": "OpenVox Migration Check for Puppet: Check this file",
+        "category": "OpenVox Migration Check for Puppet"
+      },
+      {
+        "command": "openvoxMigration.checkWorkspace",
+        "title": "OpenVox Migration Check for Puppet: Sweep workspace and write report (licence)",
+        "category": "OpenVox Migration Check for Puppet"
+      },
+      {
+        "command": "openvoxMigration.enterKey",
+        "title": "OpenVox Migration Check for Puppet: Enter licence key",
+        "category": "OpenVox Migration Check for Puppet"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "openvox-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/openvox-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
