@@ -1,0 +1,16 @@
+[
+ {"id":"pyqt5-import","sev":"error","re":"^\\s*(from|import)\\s+PyQt5\\b","msg":"PyQt5 import: PyQt5 is GPL v3 unless you hold a Riverbank commercial licence (670 USD per developer), and it runs on Qt 5.15, whose standard support ended 2025-05-26.","fix":"from PySide6 import ... (LGPL v3, Qt 6)","date":true},
+ {"id":"pyqt6-import","sev":"error","re":"^\\s*(from|import)\\s+PyQt6\\b","msg":"PyQt6 import: PyQt6 is GPL v3 unless you hold a Riverbank commercial licence (670 USD per developer). A closed-source app that ships it under GPL must publish its source.","fix":"from PySide6 import ... (LGPL v3)"},
+ {"id":"pyqt-signal","sev":"error","re":"\\bpyqtSignal\\b","msg":"pyqtSignal does not exist in PySide6.","fix":"Signal (from PySide6.QtCore import Signal)"},
+ {"id":"pyqt-slot","sev":"error","re":"\\bpyqtSlot\\b","msg":"pyqtSlot does not exist in PySide6.","fix":"Slot (from PySide6.QtCore import Slot)"},
+ {"id":"pyqt-property","sev":"error","re":"\\bpyqtProperty\\b","msg":"pyqtProperty does not exist in PySide6.","fix":"Property (from PySide6.QtCore import Property)"},
+ {"id":"uic-loadui","sev":"error","re":"\\buic\\.loadUi(Type)?\\b","msg":"uic.loadUi / uic.loadUiType is PyQt-only; PySide6 has no uic module.","fix":"QUiLoader().load(path) from PySide6.QtUiTools, or compile with pyside6-uic"},
+ {"id":"sip-module","sev":"error","re":"^\\s*import\\s+sip\\b|\\bsip\\.(isdeleted|delete|wrapinstance|unwrapinstance|cast|setapi)\\b","msg":"sip is PyQt's binding layer; PySide6 uses shiboken6.","fix":"import shiboken6; shiboken6.isValid(obj) / shiboken6.wrapInstance(ptr, cls)"},
+ {"id":"pyqt-version-const","sev":"warn","re":"\\bPYQT_VERSION(_STR)?\\b","msg":"PYQT_VERSION / PYQT_VERSION_STR are PyQt-only constants.","fix":"PySide6.__version__ (binding) and qVersion() (Qt)"},
+ {"id":"qvariant","sev":"error","re":"\\bQVariant\\b","msg":"QVariant is not exposed in PySide6; values are plain Python objects.","fix":"pass the Python value directly (None, int, str, dict)"},
+ {"id":"qregexp","sev":"error","re":"\\bQRegExp\\b","msg":"QRegExp was removed in Qt 6, so PySide6 has no QRegExp.","fix":"QRegularExpression (from PySide6.QtCore import QRegularExpression)"},
+ {"id":"qdesktopwidget","sev":"error","re":"\\bQDesktopWidget\\b|\\.desktop\\(\\)","msg":"QDesktopWidget and QApplication.desktop() were removed in Qt 6.","fix":"QGuiApplication.primaryScreen().availableGeometry()"},
+ {"id":"fontmetrics-width","sev":"error","re":"fontMetrics\\(\\)\\.width\\(|QFontMetricsF?\\(.*\\)\\.width\\(","msg":"QFontMetrics.width(text) was removed in Qt 6.","fix":"horizontalAdvance(text)"},
+ {"id":"qaction-qtwidgets","sev":"error","re":"QtWidgets\\s+import\\s+[^#]*\\bQAction\\b|QtWidgets\\.QAction\\b","msg":"QAction moved from QtWidgets to QtGui in Qt 6.","fix":"from PySide6.QtGui import QAction"},
+ {"id":"exec-underscore","sev":"warn","re":"\\.exec_\\(","msg":"exec_() is the Python 2 era alias; PySide6 deprecates it.","fix":".exec()"}
+]
