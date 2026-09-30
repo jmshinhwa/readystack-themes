@@ -1,0 +1,14 @@
+{
+  // .vscode/extensions.json shared by a Python + C++ team moving to VSCodium
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-toolsai.jupyter",
+    "ms-vscode.cpptools",
+    "ms-vscode-remote.remote-ssh",
+    "ms-vscode-remote.remote-containers",
+    "ms-vsliveshare.vsliveshare",
+    "ms-dotnettools.csdevkit",
+    "ms-vscode.cmake-tools"
+  ]
+}
