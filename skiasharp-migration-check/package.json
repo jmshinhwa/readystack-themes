@@ -1,0 +1,57 @@
+{
+  "name": "skiasharp-migration-check",
+  "displayName": "SkiaSharp Migration Check for ImageSharp",
+  "description": "Flags SixLabors ImageSharp 3+, Drawing 2+, Fonts 2+ and ImageSharp.Web 3+ references that fall under the Six Labors Split License, with the SkiaSharp (MIT) replacement for each line.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "skiasharp",
+    "imagesharp",
+    "skiasharp migration",
+    "six labors split license",
+    "imagesharp licence",
+    "system.drawing.common",
+    "nuget licence",
+    "dotnet"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "skiasharpMigration.checkFile",
+        "title": "SkiaSharp Migration Check for ImageSharp: Check this file",
+        "category": "SkiaSharp Migration Check for ImageSharp"
+      },
+      {
+        "command": "skiasharpMigration.checkWorkspace",
+        "title": "SkiaSharp Migration Check for ImageSharp: Sweep workspace and write report (licence)",
+        "category": "SkiaSharp Migration Check for ImageSharp"
+      },
+      {
+        "command": "skiasharpMigration.enterKey",
+        "title": "SkiaSharp Migration Check for ImageSharp: Enter licence key",
+        "category": "SkiaSharp Migration Check for ImageSharp"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "skiasharp-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/skiasharp-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
