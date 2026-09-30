@@ -1,0 +1,57 @@
+{
+  "name": "pyside6-migration-lint",
+  "displayName": "PySide6 Migration Lint: PyQt5/PyQt6 Licence Gate",
+  "description": "Flags PyQt5/PyQt6 imports (GPL v3 or a paid Riverbank licence) and the PyQt-only APIs that break under LGPL PySide6: pyqtSignal, pyqtSlot, uic.loadUi, QRegExp, exec_, sip. One fix per line.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "pyside6",
+    "pyqt5",
+    "pyqt6",
+    "pyside6 migration",
+    "qt for python",
+    "lgpl",
+    "pyqt licence",
+    "qt6"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pyside6MigrationLint.checkFile",
+        "title": "PySide6 Migration Lint: PyQt5/PyQt6 Licence Gate: Check this file",
+        "category": "PySide6 Migration Lint: PyQt5/PyQt6 Licence Gate"
+      },
+      {
+        "command": "pyside6MigrationLint.checkWorkspace",
+        "title": "PySide6 Migration Lint: PyQt5/PyQt6 Licence Gate: Sweep workspace and write report (licence)",
+        "category": "PySide6 Migration Lint: PyQt5/PyQt6 Licence Gate"
+      },
+      {
+        "command": "pyside6MigrationLint.enterKey",
+        "title": "PySide6 Migration Lint: PyQt5/PyQt6 Licence Gate: Enter licence key",
+        "category": "PySide6 Migration Lint: PyQt5/PyQt6 Licence Gate"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "pyside6-migration-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/pyside6-migration-lint",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
