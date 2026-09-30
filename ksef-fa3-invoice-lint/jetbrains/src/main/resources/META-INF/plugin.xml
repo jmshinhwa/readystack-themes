@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.ksef-fa3-invoice-lint</id>
+  <name>KSeF FA</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds the lines KSeF will reject in a Polish structured invoice XML, before you send it</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>KSeF FA: Check This File</b>. Each finding appears on its line with the fix. 18 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/ksef-fa3-invoice-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/ksef-fa3-invoice-lint">getreadystack.com/tools/ksef-fa3-invoice-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_ksef_fa3_invoice_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.ksef-fa3-invoice-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.ksef-fa3-invoice-lint.check" class="com.getreadystack.p_ksef_fa3_invoice_lint.RsCheckAction"
+            text="KSeF FA: Check This File" description="Run KSeF FA on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
