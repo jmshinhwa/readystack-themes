@@ -1,0 +1,56 @@
+{
+  "name": "brave-search-api-migration-check",
+  "displayName": "Brave Search API Migration Check — Google CSE & Bing",
+  "description": "Brave Search API migration lint: flags Google Custom Search JSON API calls (existing customers must move by 2027-01-01) and retired Bing v7 calls, with the Brave rewrite per line.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "brave search api",
+    "google custom search api",
+    "custom search json api",
+    "bing search api",
+    "search api migration",
+    "programmable search engine",
+    "rag web search"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "braveSearchMigration.checkFile",
+        "title": "Brave Search API Migration Check — Google CSE & Bing: Check this file",
+        "category": "Brave Search API Migration Check — Google CSE & Bing"
+      },
+      {
+        "command": "braveSearchMigration.checkWorkspace",
+        "title": "Brave Search API Migration Check — Google CSE & Bing: Sweep workspace and write report (licence)",
+        "category": "Brave Search API Migration Check — Google CSE & Bing"
+      },
+      {
+        "command": "braveSearchMigration.enterKey",
+        "title": "Brave Search API Migration Check — Google CSE & Bing: Enter licence key",
+        "category": "Brave Search API Migration Check — Google CSE & Bing"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "brave-search-api-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/brave-search-api-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
