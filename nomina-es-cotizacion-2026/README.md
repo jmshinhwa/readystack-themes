@@ -68,7 +68,7 @@ https://getreadystack.com/es/tools/nomina-es-cotizacion-2026
 
 Carpeta o monorepo entero de una vez e informe exportable (CSV/JSON) con la cita del BOE de cada
 hallazgo, para adjuntarlo al expediente: licencia de $29, pago único, una clave por persona o
-puesto de equipo, reembolso íntegro de 7 días — https://getreadystack.com/api/buy/cl/polar_cl_zfE7ynZdDkLqsoqqkHHH1XDwdZTbJ2OHKVDgE47ILa8
+puesto de equipo — https://getreadystack.com/api/buy/cl/polar_cl_zfE7ynZdDkLqsoqqkHHH1XDwdZTbJ2OHKVDgE47ILa8
 
 ## Fuentes
 
