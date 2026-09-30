@@ -1,0 +1,35 @@
+name: release
+on:
+  pull_request_target:
+    branches: [main]
+  schedule:
+    - cron: "0 3 * * 1"
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18, 20, 22]
+        os: [linux, alpine]
+        exclude:
+          - node: 18
+            os: alpine
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci && npm test
+  ios:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - run: xcodebuild -scheme App -sdk iphonesimulator build
+  deploy:
+    needs: [test, ios]
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::123456789012:role/deploy
+          aws-region: eu-west-1
+      - run: ./scripts/deploy.sh
