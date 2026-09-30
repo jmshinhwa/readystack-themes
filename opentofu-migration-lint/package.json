@@ -1,0 +1,58 @@
+{
+  "name": "opentofu-migration-lint",
+  "displayName": "OpenTofu Migration Lint — Terraform",
+  "description": "OpenTofu migration check for Terraform files: flags HCP Terraform cloud/remote backends, app.terraform.io modules, tfe resources, BSL Terraform 1.6+ pins and CI steps, with the OpenTofu fix.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "opentofu",
+    "terraform",
+    "hcp terraform",
+    "bsl",
+    "licence",
+    "migration",
+    "tofu",
+    "hcl",
+    "infrastructure as code"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "opentofuMigrationLint.checkFile",
+        "title": "OpenTofu Migration Lint — Terraform: Check this file",
+        "category": "OpenTofu Migration Lint — Terraform"
+      },
+      {
+        "command": "opentofuMigrationLint.checkWorkspace",
+        "title": "OpenTofu Migration Lint — Terraform: Sweep workspace and write report (licence)",
+        "category": "OpenTofu Migration Lint — Terraform"
+      },
+      {
+        "command": "opentofuMigrationLint.enterKey",
+        "title": "OpenTofu Migration Lint — Terraform: Enter licence key",
+        "category": "OpenTofu Migration Lint — Terraform"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "opentofu-migration-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/opentofu-migration-lint",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
