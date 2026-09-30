@@ -49,7 +49,7 @@ que te llevas—: revisa de una vez todos los documentos de política del espaci
 escribe un informe fechado que guardas y entregas al auditor.
 
 Versión completa: <https://getreadystack.com/api/buy/cl/polar_cl_fZrQG7uhuskOPgS9ehe9WtzEYhgvYwc7wmHCT0UgLaX> — $29 una vez, una clave de licencia por
-persona o puesto de equipo, devolución íntegra en 7 días.
+persona o puesto de equipo.
 
 Jalón de medida: implantar el canal con una consultoría de compliance cuesta entre 1.500 € y
 5.000 €. Esta extensión no sustituye a un asesor jurídico: lee el documento que ya tienes y
