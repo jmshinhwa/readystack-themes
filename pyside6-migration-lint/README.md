@@ -1,5 +1,7 @@
 # PySide6 Migration Lint: PyQt5/PyQt6 Licence Gate
 
+![PySide6 Migration Lint: PyQt5/PyQt6 Licence Gate — finds the line](https://getreadystack.com/img/promo/pyside6-migration-lint_demo.gif)
+
 ![PySide6 Migration Lint: PyQt5/PyQt6 Licence Gate](https://getreadystack.com/img/promo/sku388654_result_card.jpg)
 
 Open one PyQt5 invoice window and this extension reports **6 findings**: the PyQt5 import, `pyqtSignal`, `uic.loadUi`, `QRegExp`, `pyqtSlot` and `exec_()`, each with the PySide6 line that replaces it. It ships **14 rules** and reads **2 inputs**: the `.py` source text and today's date.
