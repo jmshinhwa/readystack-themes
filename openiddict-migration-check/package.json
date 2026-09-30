@@ -1,0 +1,57 @@
+{
+  "name": "openiddict-migration-check",
+  "displayName": "OpenIddict Migration Check: Duende IdentityServer",
+  "description": "Maps every Duende IdentityServer / IdentityServer4 call in Program.cs or .csproj to its OpenIddict equivalent and prices the Duende edition your setup needs today.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "openiddict",
+    "duende",
+    "identityserver",
+    "identityserver4",
+    "oauth",
+    "oidc",
+    "migration",
+    "licence"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "openiddictMigrationCheck.checkFile",
+        "title": "OpenIddict Migration Check: Duende IdentityServer: Check this file",
+        "category": "OpenIddict Migration Check: Duende IdentityServer"
+      },
+      {
+        "command": "openiddictMigrationCheck.checkWorkspace",
+        "title": "OpenIddict Migration Check: Duende IdentityServer: Sweep workspace and write report (licence)",
+        "category": "OpenIddict Migration Check: Duende IdentityServer"
+      },
+      {
+        "command": "openiddictMigrationCheck.enterKey",
+        "title": "OpenIddict Migration Check: Duende IdentityServer: Enter licence key",
+        "category": "OpenIddict Migration Check: Duende IdentityServer"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "openiddict-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/openiddict-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
