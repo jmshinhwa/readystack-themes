@@ -59,8 +59,8 @@ ohne Begrenzung der Anzahl. Damit ist die Prüfung dieser Vorlage abgeschlossen.
 
 Vollversion: der gesamte Ordner wird in einem Lauf geprüft — alle Mandanten, Sprachen und
 Bon-Breiten — und das Ergebnis als datierter Prüfbericht in eine Datei geschrieben, die in die
-Verfahrensdokumentation abgelegt werden kann. 7 Tage volle Rückerstattung.
-Bezug: https://buy.polar.sh/polar_cl_Zgg6KjspBqWL6jk6fxKrOY8xIlybVUGE45Q2R0VVmOU
+Verfahrensdokumentation abgelegt werden kann.
+Bezug: https://getreadystack.com/api/buy/cl/polar_cl_Zgg6KjspBqWL6jk6fxKrOY8xIlybVUGE45Q2R0VVmOU
 
 ## Im Browser
 
