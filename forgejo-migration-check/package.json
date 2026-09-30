@@ -1,0 +1,57 @@
+{
+  "name": "forgejo-migration-check",
+  "displayName": "Forgejo Migration Check — Gitea 1.22 cutoff",
+  "description": "Forgejo migration lint for docker-compose files: flags Gitea tags past 1.22 (no transparent upgrade), a first hop that skips Forgejo v10.0, end-of-life Forgejo tags and Gitea act_runner.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "forgejo",
+    "gitea",
+    "forgejo migration",
+    "gitea to forgejo",
+    "docker-compose",
+    "self-hosted git",
+    "codeberg",
+    "act_runner"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "forgejoMigration.checkFile",
+        "title": "Forgejo Migration Check — Gitea 1.22 cutoff: Check this file",
+        "category": "Forgejo Migration Check — Gitea 1.22 cutoff"
+      },
+      {
+        "command": "forgejoMigration.checkWorkspace",
+        "title": "Forgejo Migration Check — Gitea 1.22 cutoff: Sweep workspace and write report (licence)",
+        "category": "Forgejo Migration Check — Gitea 1.22 cutoff"
+      },
+      {
+        "command": "forgejoMigration.enterKey",
+        "title": "Forgejo Migration Check — Gitea 1.22 cutoff: Enter licence key",
+        "category": "Forgejo Migration Check — Gitea 1.22 cutoff"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "forgejo-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/forgejo-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
