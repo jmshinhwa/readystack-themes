@@ -1,0 +1,59 @@
+{
+  "name": "opensearch-migration-check",
+  "displayName": "OpenSearch Migration Check: Elasticsearch & Kibana cutover lint",
+  "description": "OpenSearch migration check for Elasticsearch and Kibana stacks: flags Elastic-licensed images, xpack settings, 7.14+ clients, ILM, dense_vector and Beats that break the cutover, with the OpenSearch re",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "opensearch",
+    "opensearch migration",
+    "elasticsearch",
+    "kibana",
+    "opensearch dashboards",
+    "elastic license",
+    "sspl",
+    "logstash",
+    "beats",
+    "migration"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "opensearchMigrationCheck.checkFile",
+        "title": "OpenSearch Migration Check: Elasticsearch & Kibana cutover lint: Check this file",
+        "category": "OpenSearch Migration Check: Elasticsearch & Kibana cutover lint"
+      },
+      {
+        "command": "opensearchMigrationCheck.checkWorkspace",
+        "title": "OpenSearch Migration Check: Elasticsearch & Kibana cutover lint: Sweep workspace and write report (licence)",
+        "category": "OpenSearch Migration Check: Elasticsearch & Kibana cutover lint"
+      },
+      {
+        "command": "opensearchMigrationCheck.enterKey",
+        "title": "OpenSearch Migration Check: Elasticsearch & Kibana cutover lint: Enter licence key",
+        "category": "OpenSearch Migration Check: Elasticsearch & Kibana cutover lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "opensearch-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/opensearch-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
