@@ -1,0 +1,59 @@
+{
+  "name": "maplibre-migration-lint",
+  "displayName": "MapLibre Migration Lint — Mapbox GL JS v2+",
+  "description": "MapLibre migration check for Mapbox GL JS v2+ code: flags the proprietary mapbox-gl dependency, tokens, mapbox:// styles, CDN tags and plugins, with the maplibre-gl fix for each line.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "maplibre",
+    "mapbox",
+    "mapbox-gl",
+    "maplibre-gl",
+    "mapbox gl js",
+    "react-map-gl",
+    "migration",
+    "licence",
+    "map loads",
+    "vector tiles"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "maplibreMigrationLint.checkFile",
+        "title": "MapLibre Migration Lint — Mapbox GL JS v2+: Check this file",
+        "category": "MapLibre Migration Lint — Mapbox GL JS v2+"
+      },
+      {
+        "command": "maplibreMigrationLint.checkWorkspace",
+        "title": "MapLibre Migration Lint — Mapbox GL JS v2+: Sweep workspace and write report (licence)",
+        "category": "MapLibre Migration Lint — Mapbox GL JS v2+"
+      },
+      {
+        "command": "maplibreMigrationLint.enterKey",
+        "title": "MapLibre Migration Lint — Mapbox GL JS v2+: Enter licence key",
+        "category": "MapLibre Migration Lint — Mapbox GL JS v2+"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "maplibre-migration-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/maplibre-migration-lint",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
