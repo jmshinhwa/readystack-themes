@@ -43,7 +43,7 @@ AI に書かせた記事が、この規制を守っているか。2023-10-01 に
 
 ## 全体版（ライセンスキー）
 
-ワークスペースの記事の一括検査、行番号つき是正レポートの Markdown / CSV 書き出し、自社の広告表記ルールの追加。$29 一括・1人または1シートにつき1キー・7日間全額返金。ライセンスキーの入力欄は拡張の中にあります: https://buy.polar.sh/polar_cl_g19QBB6jE9FaFkjYOGuRaEVIETr3iGDJCc5DV2AndrD
+ワークスペースの記事の一括検査、行番号つき是正レポートの Markdown / CSV 書き出し、自社の広告表記ルールの追加。ライセンスキーの入力欄は拡張の中にあります: https://getreadystack.com/api/buy/cl/polar_cl_g19QBB6jE9FaFkjYOGuRaEVIETr3iGDJCc5DV2AndrD
 
 ## 判定の根拠と限界
 
