@@ -1,0 +1,59 @@
+{
+  "name": "ferretdb-migration-lint",
+  "displayName": "FerretDB Migration Lint — MongoDB SSPL gate",
+  "description": "FerretDB migration check: flags SSPL MongoDB server images in docker-compose, Helm and Dockerfiles, plus the commands FerretDB 2.7 does not implement (transactions, roles, profiler), with the fix for ",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "ferretdb",
+    "mongodb",
+    "sspl",
+    "mongodb licence",
+    "mongodb alternative",
+    "documentdb",
+    "postgresql",
+    "docker-compose",
+    "helm",
+    "migration"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "ferretdbMigrationLint.checkFile",
+        "title": "FerretDB Migration Lint — MongoDB SSPL gate: Check this file",
+        "category": "FerretDB Migration Lint — MongoDB SSPL gate"
+      },
+      {
+        "command": "ferretdbMigrationLint.checkWorkspace",
+        "title": "FerretDB Migration Lint — MongoDB SSPL gate: Sweep workspace and write report (licence)",
+        "category": "FerretDB Migration Lint — MongoDB SSPL gate"
+      },
+      {
+        "command": "ferretdbMigrationLint.enterKey",
+        "title": "FerretDB Migration Lint — MongoDB SSPL gate: Enter licence key",
+        "category": "FerretDB Migration Lint — MongoDB SSPL gate"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "ferretdb-migration-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/ferretdb-migration-lint",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
