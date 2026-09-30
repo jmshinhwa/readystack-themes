@@ -42,7 +42,7 @@ Los ficheros `_fixtures/` de este repositorio son dos páginas legales reales de
 
 Revisar el archivo abierto es gratuito y termina el trabajo: ves los 17 controles, el artículo que los respalda y la línea exacta. No hay marca de agua, ni límite de usos, ni respuestas ocultas.
 
-La parte de pago cambia de eje, no de profundidad: **revisar de una vez todas las páginas del proyecto** y **exportar el informe** (Markdown/CSV) con artículo y línea para el expediente del cliente, con uso comercial y de equipo. **$29** una vez, una clave por persona o puesto de equipo, devolución íntegra en 7 días.
+La parte de pago cambia de eje, no de profundidad: **revisar de una vez todas las páginas del proyecto** y **exportar el informe** (Markdown/CSV) con artículo y línea para el expediente del cliente, con uso comercial y de equipo. **$29** una vez, una clave por persona o puesto de equipo.
 
 Enlace de la versión completa: https://getreadystack.com/api/buy/cl/polar_cl_K6TixpF3i1BJP3xqX0Fpf1AgISxxQr8BOj04s0HtxJ0
 
