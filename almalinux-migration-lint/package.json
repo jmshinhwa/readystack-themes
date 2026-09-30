@@ -1,0 +1,60 @@
+{
+  "name": "almalinux-migration-lint",
+  "displayName": "AlmaLinux Migration Lint — CentOS 7/8",
+  "description": "AlmaLinux migration check for CentOS Linux 7/8 files: flags EOL centos images, dead mirrorlist.centos.org repos, EPEL 7, SCL and EL7 packages removed in EL8/9, with the AlmaLinux fix.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "almalinux",
+    "centos",
+    "centos 7",
+    "centos 8",
+    "rocky linux",
+    "rhel",
+    "migration",
+    "eol",
+    "dockerfile",
+    "ansible",
+    "elevate"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "almalinuxMigrationLint.checkFile",
+        "title": "AlmaLinux Migration Lint — CentOS 7/8: Check this file",
+        "category": "AlmaLinux Migration Lint — CentOS 7/8"
+      },
+      {
+        "command": "almalinuxMigrationLint.checkWorkspace",
+        "title": "AlmaLinux Migration Lint — CentOS 7/8: Sweep workspace and write report (licence)",
+        "category": "AlmaLinux Migration Lint — CentOS 7/8"
+      },
+      {
+        "command": "almalinuxMigrationLint.enterKey",
+        "title": "AlmaLinux Migration Lint — CentOS 7/8: Enter licence key",
+        "category": "AlmaLinux Migration Lint — CentOS 7/8"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "almalinux-migration-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/almalinux-migration-lint",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
