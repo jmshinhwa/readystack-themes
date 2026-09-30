@@ -1,0 +1,59 @@
+{
+  "name": "seaweedfs-migration-lint",
+  "displayName": "SeaweedFS Migration Lint — MinIO Compose & K8s",
+  "description": "SeaweedFS migration check for MinIO docker-compose, Kubernetes, .env and mc scripts: flags the archived minio/minio image, MINIO_* settings and mc features SeaweedFS lacks, with the SeaweedFS fix.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "seaweedfs",
+    "minio",
+    "minio alternative",
+    "s3",
+    "object storage",
+    "agpl",
+    "licence",
+    "migration",
+    "docker-compose",
+    "kubernetes"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "seaweedfsMigrationLint.checkFile",
+        "title": "SeaweedFS Migration Lint — MinIO Compose & K8s: Check this file",
+        "category": "SeaweedFS Migration Lint — MinIO Compose & K8s"
+      },
+      {
+        "command": "seaweedfsMigrationLint.checkWorkspace",
+        "title": "SeaweedFS Migration Lint — MinIO Compose & K8s: Sweep workspace and write report (licence)",
+        "category": "SeaweedFS Migration Lint — MinIO Compose & K8s"
+      },
+      {
+        "command": "seaweedfsMigrationLint.enterKey",
+        "title": "SeaweedFS Migration Lint — MinIO Compose & K8s: Enter licence key",
+        "category": "SeaweedFS Migration Lint — MinIO Compose & K8s"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "seaweedfs-migration-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/seaweedfs-migration-lint",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
