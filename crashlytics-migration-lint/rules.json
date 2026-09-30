@@ -1,0 +1,146 @@
+[
+ {
+  "id": "AC_IMPORT",
+  "sev": "error",
+  "title": "App Center SDK import",
+  "pattern": "using\\s+Microsoft\\.AppCenter|import\\s+com\\.microsoft\\.appcenter|^\\s*import\\s+AppCenter|@import\\s+AppCenter|from\\s+['\\\"]appcenter(-crashes|-analytics)?['\\\"]|require\\(['\\\"]appcenter",
+  "msg": "App Center SDK import. The service behind it retired on 2025-03-31 (Analytics & Diagnostics on 2026-06-30).",
+  "fix": "Import Firebase instead: Plugin.Firebase.Crashlytics (.NET), com.google.firebase.crashlytics (Android), FirebaseCrashlytics (iOS), @react-native-firebase/crashlytics (React Native)."
+ },
+ {
+  "id": "AC_PACKAGE",
+  "sev": "error",
+  "title": "App Center package reference",
+  "pattern": "Include=\\\"Microsoft\\.AppCenter|com\\.microsoft\\.appcenter:appcenter|pod\\s+['\\\"]AppCenter|appcenter-sdk-apple|\\\"appcenter(-crashes|-analytics)?\\\"\\s*:",
+  "msg": "App Center package still referenced in the build. It ships an SDK whose backend no longer answers.",
+  "fix": "Swap for the Crashlytics package: Plugin.Firebase.Crashlytics (NuGet), com.google.firebase:firebase-crashlytics + the com.google.firebase.crashlytics Gradle plugin, pod 'FirebaseCrashlytics', or @react-native-firebase/app + /crashlytics."
+ },
+ {
+  "id": "AC_START",
+  "sev": "error",
+  "title": "AppCenter.Start / configure",
+  "pattern": "AppCenter\\.(Start|start|Configure|configure)\\s*\\(",
+  "msg": "AppCenter.Start() initialises a retired service; no crash from this build will reach a dashboard.",
+  "fix": "Remove it. Crashlytics starts with FirebaseApp from google-services.json (Android) or FirebaseApp.configure() with GoogleService-Info.plist (iOS)."
+ },
+ {
+  "id": "AC_SECRET",
+  "sev": "warn",
+  "title": "App Center app secret",
+  "pattern": "(ios|android|uwp|macos|windowsdesktop|appsecret|app_secret)\\s*[=:]\\s*['\\\"]?\\{?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-",
+  "msg": "App Center app secret (GUID) left in source.",
+  "fix": "Delete it. Firebase identifies the app through google-services.json / GoogleService-Info.plist, not a secret string."
+ },
+ {
+  "id": "AC_TRACK_ERROR",
+  "sev": "error",
+  "title": "Crashes.TrackError",
+  "pattern": "Crashes\\.(TrackError|trackError)\\s*\\(",
+  "msg": "Crashes.TrackError() handled errors now go nowhere.",
+  "fix": "Crashlytics non-fatal: FirebaseCrashlytics.getInstance().recordException(e) (Android), Crashlytics.crashlytics().record(error:) (iOS), crashlytics().recordError(e) (React Native). Move the properties dictionary to setCustomKey (max 64 key-value pairs, 1 kB each)."
+ },
+ {
+  "id": "AC_TRACK_EVENT",
+  "sev": "error",
+  "title": "Analytics.TrackEvent",
+  "pattern": "Analytics\\.(TrackEvent|trackEvent)\\s*\\(",
+  "msg": "Analytics.TrackEvent() App Center Analytics support ended on 2026-06-30.",
+  "fix": "Crashlytics has no event API. For crash context use Crashlytics log() (64kB per session); for product analytics call Google Analytics logEvent()."
+ },
+ {
+  "id": "AC_TEST_CRASH",
+  "sev": "warn",
+  "title": "Crashes.GenerateTestCrash",
+  "pattern": "Crashes\\.(GenerateTestCrash|generateTestCrash)\\s*\\(",
+  "msg": "Crashes.GenerateTestCrash() test crash that no longer reports anywhere.",
+  "fix": "Crashlytics test crash: throw RuntimeException(\"Test Crash\") (Android), fatalError() (iOS), crashlytics().crash() (React Native)."
+ },
+ {
+  "id": "AC_USER_ID",
+  "sev": "warn",
+  "title": "AppCenter.SetUserId",
+  "pattern": "AppCenter\\.(SetUserId|setUserId)\\s*\\(",
+  "msg": "AppCenter.SetUserId() user id is dropped.",
+  "fix": "Crashlytics: setUserId(id) on the Crashlytics instance."
+ },
+ {
+  "id": "AC_ENABLED",
+  "sev": "warn",
+  "title": "SetEnabled toggle",
+  "pattern": "(AppCenter|Crashes|Analytics)\\.(SetEnabledAsync|SetEnabled|setEnabled)\\s*\\(",
+  "msg": "App Center enable/disable toggle; your opt-out setting no longer controls any collection.",
+  "fix": "Crashlytics: setCrashlyticsCollectionEnabled(bool), plus firebase_crashlytics_collection_enabled=false in the manifest / FirebaseCrashlyticsCollectionEnabled in Info.plist for opt-in."
+ },
+ {
+  "id": "AC_CONSENT",
+  "sev": "error",
+  "title": "User-confirmation flow",
+  "pattern": "(ShouldAwaitUserConfirmation|shouldAwaitUserConfirmation|NotifyUserConfirmation|notifyUserConfirmation|UserConfirmation\\.)",
+  "msg": "App Center user-confirmation (consent) flow. Ported naively, Crashlytics sends reports automatically and the consent prompt stops meaning anything.",
+  "fix": "Turn automatic collection off, then call sendUnsentReports() on consent or deleteUnsentReports() on refusal; checkForUnsentReports() tells you whether to ask."
+ },
+ {
+  "id": "AC_ATTACH",
+  "sev": "warn",
+  "title": "Error attachments",
+  "pattern": "(GetErrorAttachments|getErrorAttachments|ErrorAttachmentLog)",
+  "msg": "App Center error attachments; Crashlytics has no attachment API.",
+  "fix": "Put short text in Crashlytics log() (64kB per session) and state in setCustomKey (max 64 pairs, 1 kB each); upload files elsewhere and log the URL."
+ },
+ {
+  "id": "AC_LAST_SESSION",
+  "sev": "warn",
+  "title": "Last-session crash check",
+  "pattern": "(HasCrashedInLastSession|hasCrashedInLastSession|LastSessionCrashReport|lastSessionCrashReport)",
+  "msg": "App Center last-session crash check.",
+  "fix": "Crashlytics: didCrashOnPreviousExecution()."
+ },
+ {
+  "id": "AC_CALLBACKS",
+  "sev": "warn",
+  "title": "Crash send callbacks",
+  "pattern": "(SendingErrorReport|SentErrorReport|FailedToSendErrorReport|CrashesListener|onBeforeSending|onSendingSucceeded|onSendingFailed)",
+  "msg": "App Center send callbacks; nothing fires them any more.",
+  "fix": "Crashlytics has no per-report send callback; remove the handler and move any UI to the consent flow."
+ },
+ {
+  "id": "AC_DISTRIBUTE",
+  "sev": "error",
+  "title": "App Center Distribute",
+  "pattern": "(Microsoft\\.AppCenter\\.Distribute|appcenter-distribute|AppCenterDistribute|\\bDistribute\\.(SetEnabled|setEnabled|CheckForUpdate|checkForUpdate|UpdateTrack|ReleaseAvailable|DisableAutomaticCheckForUpdate))",
+  "msg": "App Center Distribute in-app updates; there is no Crashlytics equivalent.",
+  "fix": "Remove it. Microsoft's retirement page points to TestFlight / App Store and Google Play Console for test and production releases."
+ },
+ {
+  "id": "AC_CODEPUSH",
+  "sev": "error",
+  "title": "CodePush",
+  "pattern": "(react-native-code-push|CodePush\\.|codePush\\(|CodePushDeploymentKey|CodePushServerUrl)",
+  "msg": "CodePush on the App Center service; that service retired on 2025-03-31.",
+  "fix": "Crashlytics does not do over-the-air updates. Microsoft published a standalone CodePush server you host yourself; point the client's server URL at it or drop OTA."
+ },
+ {
+  "id": "AC_CLI",
+  "sev": "error",
+  "title": "appcenter-cli in scripts",
+  "pattern": "(appcenter-cli|\\bappcenter\\s+(build|distribute|test|codepush|crashes|login|apps|analytics)\\b)",
+  "msg": "appcenter-cli call in a script or pipeline; API calls fail since 2025-03-31.",
+  "fix": "Builds: Azure Pipelines (Microsoft's recommendation). dSYM / mapping upload: the Crashlytics Gradle plugin or the upload-symbols script."
+ },
+ {
+  "id": "AC_CONFIG",
+  "sev": "warn",
+  "title": "App Center config file",
+  "pattern": "(appcenter-config\\.json|AppCenter-Config\\.plist|APP_SECRET\\s*[=:]|appcenter\\.json)",
+  "msg": "App Center config file reference.",
+  "fix": "Replace with google-services.json (Android) / GoogleService-Info.plist (iOS)."
+ },
+ {
+  "id": "AC_LOGLEVEL",
+  "sev": "info",
+  "title": "AppCenter.LogLevel",
+  "pattern": "AppCenter\\.(LogLevel|setLogLevel)",
+  "msg": "AppCenter.LogLevel SDK verbosity switch.",
+  "fix": "Crashlytics debug logging: -FIRDebugEnabled launch argument (iOS) or adb shell setprop log.tag.FirebaseCrashlytics DEBUG (Android)."
+ }
+]
