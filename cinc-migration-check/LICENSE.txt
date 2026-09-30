@@ -1,0 +1,15 @@
+Cinc Migration Check: Chef Infra licence gate lint — Licence
+
+Free scope
+  Checks the open file (bootstrap script, kitchen.yml, client.rb, Dockerfile, CI workflow) and names every line that pulls licensed Chef or the retiring Chef Infra Server, with the Cinc replacement. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Scans the whole repository in one pass and exports one Cinc migration checklist (Markdown) per file, ready for the change ticket. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
