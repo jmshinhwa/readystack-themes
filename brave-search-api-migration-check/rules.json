@@ -1,0 +1,179 @@
+[
+ {
+  "id": "GCS_ENDPOINT",
+  "sev": "error",
+  "scope": "any",
+  "re": "googleapis\\.com/customsearch/v1",
+  "flags": "i",
+  "cutoff": "2027-01-01",
+  "msg": "Google Custom Search JSON API endpoint. Google: closed to new customers; existing customers have until 2027-01-01 to transition.",
+  "msg_after": "Google Custom Search JSON API endpoint. Google's transition date 2027-01-01 has passed; this call is on borrowed time.",
+  "fix": "GET https://api.search.brave.com/res/v1/web/search?q=… with header X-Subscription-Token"
+ },
+ {
+  "id": "GCS_CLIENT",
+  "sev": "error",
+  "scope": "any",
+  "re": "build\\(\\s*['\"]customsearch['\"]|google\\.customsearch\\s*\\(|\\.cse\\(\\)\\.list\\(",
+  "flags": "",
+  "msg": "Google API client call to the Custom Search JSON API (same 2027-01-01 transition date as the raw endpoint).",
+  "fix": "Replace the client with a plain HTTPS GET to /res/v1/web/search; Brave has no official Google-style discovery client"
+ },
+ {
+  "id": "BING_V7",
+  "sev": "error",
+  "scope": "any",
+  "re": "api\\.bing\\.microsoft\\.com/v7\\.0|api\\.cognitive\\.microsoft\\.com/bing",
+  "flags": "i",
+  "msg": "Bing Search API v7 endpoint. Microsoft retired the Bing Search APIs on 2025-08-11.",
+  "fix": "https://api.search.brave.com/res/v1/web/search (images: /res/v1/images/search, news: /res/v1/news/search)"
+ },
+ {
+  "id": "BING_KEY_HEADER",
+  "sev": "error",
+  "scope": "any",
+  "re": "Ocp-Apim-Subscription-Key",
+  "flags": "i",
+  "msg": "Azure/Bing key header. Brave does not read this header, so the request goes out unauthenticated.",
+  "fix": "Send the key as header X-Subscription-Token: <key>"
+ },
+ {
+  "id": "KEY_IN_QUERY",
+  "sev": "error",
+  "scope": "search",
+  "re": "[?&]key=|(^|[\\s{,])['\"]?key['\"]?\\s*:",
+  "flags": "",
+  "msg": "API key sent as the ?key= query parameter (Google style). Brave reads the key only from a header.",
+  "fix": "Remove key from the query; add header X-Subscription-Token"
+ },
+ {
+  "id": "CX_ENGINE_ID",
+  "sev": "warn",
+  "scope": "search",
+  "re": "[?&]cx=|(^|[\\s{,])['\"]?cx['\"]?\\s*[:=]",
+  "flags": "",
+  "msg": "cx (Programmable Search Engine ID). Brave has no engine ID; the site list inside that engine is lost silently.",
+  "fix": "Put the engine's sites into q as site:example.com operators, or use a Brave Goggle"
+ },
+ {
+  "id": "START_INDEX",
+  "sev": "error",
+  "scope": "search",
+  "re": "[?&]start=|(^|[\\s{,])['\"]?start['\"]?\\s*:",
+  "flags": "",
+  "msg": "start = Google's 1-based result index (1, 11, 21 …). Brave offset is a 0-based PAGE index, max 9 — passing start through breaks page 2 onwards.",
+  "fix": "offset = Math.floor((start - 1) / count)  (start 11, count 10 → offset 1)"
+ },
+ {
+  "id": "OFFSET_OVER_9",
+  "sev": "error",
+  "scope": "search",
+  "re": "(^|[\\s{,?&])['\"]?offset['\"]?\\s*[:=]\\s*['\"]?(\\d+)",
+  "flags": "",
+  "num_group": 2,
+  "max": 9,
+  "msg": "offset above 9. Brave's offset is a page index with a maximum of 9.",
+  "fix": "Use a page index 0–9 (offset × count = results skipped)"
+ },
+ {
+  "id": "COUNT_OVER_20",
+  "sev": "warn",
+  "scope": "search",
+  "re": "(^|[\\s{,?&])['\"]?(count|num)['\"]?\\s*[:=]\\s*['\"]?(\\d+)",
+  "flags": "",
+  "num_group": 3,
+  "max": 20,
+  "msg": "Page size above 20. Bing allowed count up to 50; Brave web search caps count at 20.",
+  "fix": "count: 20 and page with offset"
+ },
+ {
+  "id": "DATE_RESTRICT",
+  "sev": "warn",
+  "scope": "search",
+  "re": "dateRestrict",
+  "flags": "",
+  "msg": "dateRestrict (d/w/m/y + N) has no Brave twin with the same name.",
+  "fix": "freshness: pd | pw | pm | py, or a range YYYY-MM-DDtoYYYY-MM-DD for m6 / d3 etc."
+ },
+ {
+  "id": "BING_FRESHNESS",
+  "sev": "warn",
+  "scope": "search",
+  "re": "freshness['\"]?\\s*[:=]\\s*['\"](Day|Week|Month)['\"]",
+  "flags": "",
+  "msg": "Bing freshness value (Day/Week/Month). Brave uses short codes.",
+  "fix": "Day → pd · Week → pw · Month → pm"
+ },
+ {
+  "id": "SITE_SEARCH",
+  "sev": "warn",
+  "scope": "search",
+  "re": "siteSearch",
+  "flags": "",
+  "msg": "siteSearch parameter. Brave has no siteSearch parameter.",
+  "fix": "Append site:example.com to q (siteSearchFilter=e → -site:example.com)"
+ },
+ {
+  "id": "SAFE_PARAM",
+  "sev": "warn",
+  "scope": "search",
+  "re": "(^|[\\s{,?&])['\"]?safe['\"]?\\s*[:=]|safeSearch['\"]?\\s*[:=]",
+  "flags": "",
+  "msg": "Google safe= / Bing safeSearch= parameter. Brave's parameter is lowercase safesearch with its own values.",
+  "fix": "safesearch: off | moderate | strict (Google active → strict)"
+ },
+ {
+  "id": "LANG_REGION",
+  "sev": "warn",
+  "scope": "search",
+  "re": "(^|[\\s{,?&])['\"]?(lr|gl|cr|hl|mkt|setLang)['\"]?\\s*[:=]",
+  "flags": "",
+  "msg": "Google lr/gl/cr/hl or Bing mkt/setLang. Brave splits region and language into two parameters.",
+  "fix": "country: 'DE' (2 letters) + search_lang: 'de' (ISO 639-1)"
+ },
+ {
+  "id": "IMAGE_SEARCH",
+  "sev": "warn",
+  "scope": "search",
+  "re": "searchType['\"]?\\s*[:=]\\s*['\"]image",
+  "flags": "",
+  "msg": "searchType=image on the web endpoint. Brave serves images from a separate endpoint.",
+  "fix": "GET https://api.search.brave.com/res/v1/images/search"
+ },
+ {
+  "id": "RESP_ITEMS",
+  "sev": "error",
+  "scope": "search",
+  "re": "\\.items\\b(?!\\s*\\()|\\[['\"]items['\"]\\]",
+  "flags": "",
+  "msg": "Reads Google's items[] array. A Brave response has no items key — this returns undefined/KeyError, not an exception at the call.",
+  "fix": "data.web?.results ?? []"
+ },
+ {
+  "id": "RESP_LINK_SNIPPET",
+  "sev": "error",
+  "scope": "search",
+  "re": "\\.(link|snippet|htmlSnippet|displayLink)\\b|\\[['\"](link|snippet|htmlSnippet|displayLink)['\"]\\]",
+  "flags": "",
+  "msg": "Google result fields link/snippet. Brave results carry url and description.",
+  "fix": "link → url · snippet → description · displayLink → meta_url.hostname"
+ },
+ {
+  "id": "BING_WEBPAGES",
+  "sev": "error",
+  "scope": "search",
+  "re": "webPages",
+  "flags": "",
+  "msg": "Bing response path webPages.value[]. Brave uses web.results[] (name → title, snippet → description).",
+  "fix": "data.web.results"
+ },
+ {
+  "id": "TOTAL_RESULTS",
+  "sev": "warn",
+  "scope": "search",
+  "re": "totalResults|searchInformation|totalEstimatedMatches",
+  "flags": "",
+  "msg": "Total-hit count from Google/Bing. Brave returns no total count.",
+  "fix": "Stop paging on data.query.more_results_available === false"
+ }
+]
