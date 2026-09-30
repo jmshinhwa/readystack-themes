@@ -1,0 +1,281 @@
+[
+ {
+  "id": "centos7-image",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "(?:^|[\\s\\\"'=/])centos:(?:centos)?7(?:[.\\d]*)?(?![\\w.-])"
+   },
+   {
+    "re": "quay\\.io/centos/centos:(?:centos)?7\\b"
+   }
+  ],
+  "msg": "CentOS Linux 7 image: CentOS Linux 7 reached end of life on June 30, 2024. No security updates, and its yum repos are gone from the mirrors.",
+  "fix": "FROM almalinux:9 (or almalinux:8 for an EL8 target). AlmaLinux 9 is supported until 2032."
+ },
+ {
+  "id": "centos8-image",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "(?:^|[\\s\\\"'=/])centos:(?:centos)?8(?:[.\\d]*)?(?![\\w.-])"
+   },
+   {
+    "re": "(?:^|[\\s\\\"'=])centos:latest\\b"
+   },
+   {
+    "re": "^\\s*FROM\\s+centos\\s*$"
+   }
+  ],
+  "msg": "CentOS Linux 8 image (centos:latest and a bare FROM centos also resolve to 8): CentOS Linux 8 reached end of life on December 31, 2021.",
+  "fix": "FROM almalinux:8 keeps the EL8 package set; AlmaLinux 8 is supported until 2029."
+ },
+ {
+  "id": "centos-stream8-image",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "centos(?:/centos)?:stream8\\b"
+   }
+  ],
+  "msg": "CentOS Stream 8 image: CentOS Stream 8 reached end of life on May 31, 2024.",
+  "fix": "Use almalinux:8 (same EL8 ABI, supported until 2029) or almalinux:9."
+ },
+ {
+  "id": "dead-mirrorlist",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "mirrorlist\\.centos\\.org"
+   }
+  ],
+  "msg": "mirrorlist.centos.org no longer answers, so yum fails with 'Cannot find a valid baseurl' before any package installs.",
+  "fix": "Point the repo at AlmaLinux: mirrorlist=https://mirrors.almalinux.org/mirrorlist/$releasever/baseos (install almalinux-release instead of editing by hand)."
+ },
+ {
+  "id": "mirror-centos-baseurl",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "mirror\\.centos\\.org/(?:centos/)?(?:7|8|\\$releasever)"
+   }
+  ],
+  "msg": "mirror.centos.org path for CentOS 7/8: after end of life the content was removed from the mirrors and moved to vault.centos.org.",
+  "fix": "Replace the .repo with AlmaLinux's (repo.almalinux.org/almalinux/$releasever/BaseOS/$basearch/os/)."
+ },
+ {
+  "id": "vault-stopgap",
+  "sev": "warn",
+  "pats": [
+   {
+    "re": "vault\\.centos\\.org"
+   }
+  ],
+  "msg": "vault.centos.org is a frozen archive: the build works again, but nothing in it gets a security fix after the end-of-life date.",
+  "fix": "Treat the vault repo as a bridge only; move the image or host to AlmaLinux 8 or 9."
+ },
+ {
+  "id": "epel7",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "epel-release-latest-7"
+   },
+   {
+    "re": "/epel/7/"
+   },
+   {
+    "re": "RPM-GPG-KEY-EPEL-7\\b"
+   }
+  ],
+  "msg": "EPEL 7 ended with CentOS 7 and was moved to the Fedora archive; the epel-release-latest-7 URL no longer gives updates.",
+  "fix": "dnf install epel-release on AlmaLinux (EPEL 8/9), after enabling powertools (EL8) or crb (EL9)."
+ },
+ {
+  "id": "scl-devtoolset",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "centos-release-scl"
+   },
+   {
+    "re": "\\bdevtoolset-\\d+"
+   },
+   {
+    "re": "\\bscl\\s+enable\\b"
+   },
+   {
+    "re": "\\brh-(?:python|php|ruby|nodejs|postgresql|mysql|git)\\d+"
+   }
+  ],
+  "msg": "Software Collections (SCL, devtoolset, rh-*) exist only for EL7; there is no centos-release-scl on EL8 or EL9.",
+  "fix": "Use gcc-toolset-N for compilers and dnf module streams (dnf module enable php:8.2) for language runtimes."
+ },
+ {
+  "id": "yum-cron",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "(?<![\\w-])yum-cron(?![\\w-])"
+   }
+  ],
+  "msg": "yum-cron was removed in EL8, so the automatic update job silently stops existing.",
+  "fix": "dnf install dnf-automatic && systemctl enable --now dnf-automatic.timer"
+ },
+ {
+  "id": "ntp-removed",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "(?<![\\w.-])ntp(?:d|date)?(?![\\w.-])",
+    "near": "(?:yum|dnf|install|systemctl|service|chkconfig|package|name:)",
+    "within": 0
+   }
+  ],
+  "msg": "The ntp package (ntpd, ntpdate) was removed in EL8.",
+  "fix": "Use chrony: dnf install chrony && systemctl enable --now chronyd (chronyc makestep replaces ntpdate)."
+ },
+ {
+  "id": "network-scripts",
+  "sev": "warn",
+  "pats": [
+   {
+    "re": "(?<![\\w-])network-scripts(?![\\w-])"
+   },
+   {
+    "re": "(?:systemctl\\s+restart\\s+network|service\\s+network\\s+restart)(?![\\w-])"
+   }
+  ],
+  "msg": "The legacy network service (network-scripts) is deprecated in EL8 and removed in EL9.",
+  "fix": "Use NetworkManager: nmcli connection reload && nmcli connection up <name>."
+ },
+ {
+  "id": "authconfig",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "(?<![\\w-])authconfig(?![\\w-])"
+   }
+  ],
+  "msg": "authconfig was removed in EL8.",
+  "fix": "Use authselect (authselect select sssd with-mkhomedir)."
+ },
+ {
+  "id": "docker-el7-pkg",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "(?:yum|dnf|microdnf)\\b[^#]*\\binstall\\b[^#]*(?<![\\w-])docker(?![\\w-])"
+   }
+  ],
+  "msg": "The 'docker' package came from CentOS 7 extras; EL8/9 repos do not ship it.",
+  "fix": "Use podman (dnf install podman podman-docker) or add the docker-ce repo."
+ },
+ {
+  "id": "python-unversioned-pkg",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "(?<![\\w-])python-(?:pip|devel|setuptools|virtualenv|requests|six|yaml)(?![\\w-])"
+   },
+   {
+    "re": "(?:yum|dnf|microdnf)\\b[^#]*\\binstall\\b[^#]*(?<![\\w./-])python(?![\\w.-])"
+   }
+  ],
+  "msg": "EL7 package name: unversioned python / python-* packages do not exist on EL8/9, and EL9 ships no Python 2.",
+  "fix": "Install python3, python3-pip, python3-devel (python39/python3.11 streams on EL8)."
+ },
+ {
+  "id": "python-shebang",
+  "sev": "warn",
+  "any": true,
+  "pats": [
+   {
+    "re": "^#!\\s*/usr/bin/(?:env\\s+)?python\\s*$"
+   }
+  ],
+  "msg": "Unversioned python shebang: EL8 has no /usr/bin/python by default, so the script fails with 'bad interpreter'.",
+  "fix": "#!/usr/bin/python3"
+ },
+ {
+  "id": "ansible-distribution-centos",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "ansible_distribution\\s*(?:==|!=)\\s*['\\\"]CentOS['\\\"]"
+   },
+   {
+    "re": "ansible_(?:facts\\[['\\\"]distribution['\\\"]\\]|distribution)\\s+in\\s+\\[[^\\]]*['\\\"]CentOS['\\\"]"
+   }
+  ],
+  "msg": "On AlmaLinux ansible_distribution is 'AlmaLinux', so a task gated on 'CentOS' is skipped without an error.",
+  "fix": "when: ansible_os_family == 'RedHat' (and ansible_distribution_major_version for 8/9)."
+ },
+ {
+  "id": "centos-release-file",
+  "sev": "warn",
+  "pats": [
+   {
+    "re": "/etc/centos-release"
+   },
+   {
+    "re": "ID=\\\"?centos\\\"?"
+   },
+   {
+    "re": "grep\\s+(?:-\\w+\\s+)*['\\\"]?CentOS['\\\"]?\\s+/etc/(?:redhat|system)-release"
+   }
+  ],
+  "msg": "OS detection that looks for CentOS: AlmaLinux has no /etc/centos-release and /etc/os-release says ID=\"almalinux\", so this branch never runs.",
+  "fix": "Read /etc/os-release and test ID_LIKE for \"rhel\" plus VERSION_ID."
+ },
+ {
+  "id": "centos-gpg-key",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "RPM-GPG-KEY-CentOS-(?:7|8|Official)\\b"
+   }
+  ],
+  "msg": "CentOS signing key: AlmaLinux packages are signed with a different key, so gpgcheck fails on every AlmaLinux package.",
+  "fix": "gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9 (or -8)."
+ },
+ {
+  "id": "el7-rpm",
+  "sev": "warn",
+  "pats": [
+   {
+    "re": "\\.el7(?:_\\d+)?(?:\\.centos)?\\.(?:x86_64|noarch|aarch64|src)\\.rpm"
+   },
+   {
+    "re": "/el7/|/rhel7/|/centos/7/"
+   }
+  ],
+  "msg": "Hard-coded EL7 RPM or repo path: built against EL7 libraries (glibc 2.17, OpenSSL 1.0.2), it will not install cleanly on EL8/9.",
+  "fix": "Point at the el8/el9 build of the same package, or use $releasever in the URL."
+ },
+ {
+  "id": "vagrant-centos-box",
+  "sev": "error",
+  "pats": [
+   {
+    "re": "vm\\.box\\s*=\\s*['\\\"](?:centos/[78]|generic/centos[78]|bento/centos-[78][\\d.]*)['\\\"]"
+   }
+  ],
+  "msg": "Vagrant box for CentOS 7/8: the base OS is past end of life.",
+  "fix": "config.vm.box = \"almalinux/9\" (or \"almalinux/8\")."
+ },
+ {
+  "id": "rhel-licence-gate",
+  "sev": "info",
+  "pats": [
+   {
+    "re": "(?<![\\w-])convert2rhel(?![\\w-])"
+   },
+   {
+    "re": "subscription-manager\\s+(?:register|attach)"
+   }
+  ],
+  "msg": "This path converts to Red Hat Enterprise Linux, which needs a paid subscription per server (RHEL Server Standard is US$878.90 per year on the Red Hat Store). AlmaLinux is free to run.",
+  "fix": "If the subscription is not wanted, use almalinux-deploy (EL8 in place) or ELevate (CentOS 7 to AlmaLinux 8)."
+ }
+]
