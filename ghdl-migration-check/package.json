@@ -1,0 +1,60 @@
+{
+  "name": "ghdl-migration-check",
+  "displayName": "GHDL Migration Check — Vivado xsim to GHDL",
+  "description": "GHDL migration check: flags VHDL lines that Vivado xsim accepts but GHDL rejects or needs flags for — UNISIM, XPM, std_logic_unsigned, VHDL-2008 without --std=08, plain shared variables, encrypted IP.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "ghdl",
+    "ghdl migration",
+    "vivado",
+    "xsim",
+    "vhdl",
+    "vivado simulator alternative",
+    "modelsim",
+    "questa",
+    "vunit",
+    "cocotb",
+    "fpga ci"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "ghdlMigrationCheck.checkFile",
+        "title": "GHDL Migration Check — Vivado xsim to GHDL: Check this file",
+        "category": "GHDL Migration Check — Vivado xsim to GHDL"
+      },
+      {
+        "command": "ghdlMigrationCheck.checkWorkspace",
+        "title": "GHDL Migration Check — Vivado xsim to GHDL: Sweep workspace and write report (licence)",
+        "category": "GHDL Migration Check — Vivado xsim to GHDL"
+      },
+      {
+        "command": "ghdlMigrationCheck.enterKey",
+        "title": "GHDL Migration Check — Vivado xsim to GHDL: Enter licence key",
+        "category": "GHDL Migration Check — Vivado xsim to GHDL"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "ghdl-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/ghdl-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
