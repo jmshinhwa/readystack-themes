@@ -1,0 +1,10 @@
+#!/bin/sh
+# Node bootstrap for the config-management fleet (Rocky 9)
+set -eu
+curl -fsSLo /etc/yum.repos.d/puppet8.repo https://yum.puppetlabs.com/el/9/puppet8/x86_64/
+dnf install -y puppet8-release
+dnf install -y puppet-agent
+dnf install -y puppetdb-termini
+gem install puppet -v 8.10.0
+docker pull puppet/puppetserver:8.10.0
+/opt/puppetlabs/bin/puppet agent --test --server puppet.example.internal
