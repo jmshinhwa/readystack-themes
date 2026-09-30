@@ -1,0 +1,59 @@
+{
+  "name": "glitchtip-migration-lint",
+  "displayName": "GlitchTip Migration Lint for Sentry",
+  "description": "Finds Sentry SDK settings GlitchTip ingest drops (Session Replay, profiling, cron check-ins, sessions, attachments, metrics), DSNs still on sentry.io, and FSL self-hosted Sentry images.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "glitchtip",
+    "sentry",
+    "sentry alternative",
+    "sentry migration",
+    "self-hosted sentry",
+    "error tracking",
+    "session replay",
+    "sentry.io",
+    "fsl",
+    "bugsink"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "glitchtipMigrationLint.checkFile",
+        "title": "GlitchTip Migration Lint for Sentry: Check this file",
+        "category": "GlitchTip Migration Lint for Sentry"
+      },
+      {
+        "command": "glitchtipMigrationLint.checkWorkspace",
+        "title": "GlitchTip Migration Lint for Sentry: Sweep workspace and write report (licence)",
+        "category": "GlitchTip Migration Lint for Sentry"
+      },
+      {
+        "command": "glitchtipMigrationLint.enterKey",
+        "title": "GlitchTip Migration Lint for Sentry: Enter licence key",
+        "category": "GlitchTip Migration Lint for Sentry"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "glitchtip-migration-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/glitchtip-migration-lint",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
