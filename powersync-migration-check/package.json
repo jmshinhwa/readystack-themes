@@ -1,0 +1,57 @@
+{
+  "name": "powersync-migration-check",
+  "displayName": "PowerSync Migration Check: Realm Sync & Data API",
+  "description": "Finds MongoDB Atlas Device Sync (Realm Sync), Atlas Data API and HTTPS Endpoint calls in JS/TS, Swift, Kotlin and Dart that stopped at the 2025-09-30 end-of-life, with the PowerSync replacement.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "powersync",
+    "realm sync",
+    "atlas device sync",
+    "atlas data api",
+    "mongodb realm migration",
+    "realm-web",
+    "offline-first",
+    "mongodb"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "powersyncMigrationCheck.checkFile",
+        "title": "PowerSync Migration Check: Realm Sync & Data API: Check this file",
+        "category": "PowerSync Migration Check: Realm Sync & Data API"
+      },
+      {
+        "command": "powersyncMigrationCheck.checkWorkspace",
+        "title": "PowerSync Migration Check: Realm Sync & Data API: Sweep workspace and write report (licence)",
+        "category": "PowerSync Migration Check: Realm Sync & Data API"
+      },
+      {
+        "command": "powersyncMigrationCheck.enterKey",
+        "title": "PowerSync Migration Check: Realm Sync & Data API: Enter licence key",
+        "category": "PowerSync Migration Check: Realm Sync & Data API"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "powersync-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/powersync-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
