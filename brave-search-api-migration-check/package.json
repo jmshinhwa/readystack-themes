@@ -2,7 +2,7 @@
   "name": "brave-search-api-migration-check",
   "displayName": "Brave Search API Migration Check — Google CSE & Bing",
   "description": "Brave Search API migration lint: flags Google Custom Search JSON API calls (existing customers must move by 2027-01-01) and retired Bing v7 calls, with the Brave rewrite per line.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
