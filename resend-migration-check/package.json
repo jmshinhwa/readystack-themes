@@ -1,0 +1,56 @@
+{
+  "name": "resend-migration-check",
+  "displayName": "Resend Migration Check: SendGrid code lint",
+  "description": "Moving from Twilio SendGrid to Resend? Flags every @sendgrid/mail and sendgrid Python call, field and webhook event that has no 1:1 Resend equivalent, with the Resend line to write instead.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "resend",
+    "sendgrid",
+    "twilio sendgrid",
+    "email api migration",
+    "resend migration",
+    "sendgrid alternative",
+    "transactional email"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "resendMigrationCheck.checkFile",
+        "title": "Resend Migration Check: SendGrid code lint: Check this file",
+        "category": "Resend Migration Check: SendGrid code lint"
+      },
+      {
+        "command": "resendMigrationCheck.checkWorkspace",
+        "title": "Resend Migration Check: SendGrid code lint: Sweep workspace and write report (licence)",
+        "category": "Resend Migration Check: SendGrid code lint"
+      },
+      {
+        "command": "resendMigrationCheck.enterKey",
+        "title": "Resend Migration Check: SendGrid code lint: Enter licence key",
+        "category": "Resend Migration Check: SendGrid code lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "resend-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/resend-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
