@@ -2,7 +2,7 @@
   "name": "seaweedfs-migration-lint",
   "displayName": "SeaweedFS Migration Lint — MinIO Compose & K8s",
   "description": "SeaweedFS migration check for MinIO docker-compose, Kubernetes, .env and mc scripts: flags the archived minio/minio image, MINIO_* settings and mc features SeaweedFS lacks, with the SeaweedFS fix.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
