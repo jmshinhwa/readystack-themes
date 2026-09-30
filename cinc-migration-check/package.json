@@ -1,0 +1,59 @@
+{
+  "name": "cinc-migration-check",
+  "displayName": "Cinc Migration Check: Chef Infra licence gate lint",
+  "description": "Cinc migration check for Chef users: flags lines that install Chef Infra Client 15+, accept the Chef licence or run Chef Infra Server (open-source EOL 2026-11-30), with the Cinc replacement.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "cinc",
+    "cinc migration",
+    "chef",
+    "chef infra",
+    "chef license",
+    "chef infra server",
+    "test kitchen",
+    "knife",
+    "cinc auditor",
+    "inspec"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "cincMigrationCheck.checkFile",
+        "title": "Cinc Migration Check: Chef Infra licence gate lint: Check this file",
+        "category": "Cinc Migration Check: Chef Infra licence gate lint"
+      },
+      {
+        "command": "cincMigrationCheck.checkWorkspace",
+        "title": "Cinc Migration Check: Chef Infra licence gate lint: Sweep workspace and write report (licence)",
+        "category": "Cinc Migration Check: Chef Infra licence gate lint"
+      },
+      {
+        "command": "cincMigrationCheck.enterKey",
+        "title": "Cinc Migration Check: Chef Infra licence gate lint: Enter licence key",
+        "category": "Cinc Migration Check: Chef Infra licence gate lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "cinc-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/cinc-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
