@@ -1,0 +1,146 @@
+[
+ {
+  "id": "GT_DSN_SENTRY_IO",
+  "sev": "error",
+  "title": "DSN still points at sentry.io",
+  "item": "",
+  "pattern": "ingest\\.(?:[a-z]{2}\\.)?sentry\\.io|@sentry\\.io/\\d",
+  "msg": "This DSN sends every event to Sentry SaaS, not GlitchTip. After cutover the Sentry bill keeps running and GlitchTip shows nothing.",
+  "fix": "Replace it with the DSN from your GlitchTip project settings page (https://<key>@<your-glitchtip-host>/<project-id>)."
+ },
+ {
+  "id": "GT_CLI_URL_SENTRY",
+  "sev": "error",
+  "title": "Upload URL still points at sentry.io",
+  "item": "",
+  "pattern": "^\\s*(?:url\\s*=|SENTRY_URL\\s*[=:]|defaults\\.url\\s*=)\\s*['\\\"]?https://(?:[a-z0-9-]+\\.)?sentry\\.io",
+  "msg": "Source maps and debug files from this config still go to sentry.io, so GlitchTip stack traces stay minified.",
+  "fix": "Set url to your GlitchTip host. glitchtip-cli reads .sentryclirc and SENTRY_URL, so the same file keeps working: glitchtip-cli sourcemaps upload ./dist --org <org> --project <project>."
+ },
+ {
+  "id": "GT_REPLAY_INTEGRATION",
+  "sev": "error",
+  "title": "Session Replay integration",
+  "item": "replay_event / replay_recording",
+  "pattern": "replayIntegration\\s*\\(|replayCanvasIntegration\\s*\\(|new\\s+(?:Sentry\\.)?Replay\\s*\\(|['\\\"]@sentry/replay['\\\"]",
+  "msg": "Session Replay sends replay_event and replay_recording items. GlitchTip ingest lists both as ignored item types: the replays are dropped and the SDK still records them in the browser.",
+  "fix": "Remove the replay integration before switching the DSN. GlitchTip has no replay viewer."
+ },
+ {
+  "id": "GT_REPLAY_RATES",
+  "sev": "error",
+  "title": "Replay sample rate",
+  "item": "replay_event / replay_recording",
+  "pattern": "replaysSessionSampleRate|replaysOnErrorSampleRate|sessionReplay\\.(?:sessionSampleRate|onErrorSampleRate)|sessionReplay\\s*:\\s*\\{",
+  "msg": "Replay sample rates only feed Session Replay. GlitchTip ingest ignores replay_event and replay_recording, so this rate buys CPU and upload bytes for nothing.",
+  "fix": "Delete the replay sample rates (or set them to 0) together with the replay integration."
+ },
+ {
+  "id": "GT_PROFILING_RATE",
+  "sev": "error",
+  "title": "Profiling sample rate",
+  "item": "profile / profile_chunk",
+  "pattern": "profilesSampleRate|profiles_sample_rate|profileSessionSampleRate|profile_session_sample_rate|profilesSampler|profiles_sampler|profileLifecycle|profile_lifecycle",
+  "msg": "Profiling sends profile or profile_chunk items. GlitchTip ingest ignores both, so no profile ever appears.",
+  "fix": "Remove the profiling rate. For slow endpoints use GlitchTip Performance, which reads transactions and their spans."
+ },
+ {
+  "id": "GT_PROFILING_INTEGRATION",
+  "sev": "error",
+  "title": "Profiling integration or package",
+  "item": "profile / profile_chunk",
+  "pattern": "browserProfilingIntegration\\s*\\(|nodeProfilingIntegration\\s*\\(|@sentry/profiling-node|ProfilingIntegration\\s*\\(",
+  "msg": "The profiling integration samples the call stack and uploads profile items that GlitchTip ingest ignores.",
+  "fix": "Remove the integration and the @sentry/profiling-node dependency; keep tracesSampleRate for GlitchTip Performance."
+ },
+ {
+  "id": "GT_CRON_CHECKIN",
+  "sev": "error",
+  "title": "Cron monitor check-in",
+  "item": "check_in",
+  "pattern": "captureCheckIn\\s*\\(|withMonitor\\s*\\(|capture_checkin\\s*\\(|@monitor\\s*\\(|sentry_sdk\\.crons|monitor_config\\s*=|CaptureCheckIn\\s*\\(|instrumentCron\\s*\\(|instrumentNodeCron\\s*\\(|instrumentNodeSchedule\\s*\\(",
+  "msg": "Cron monitors send check_in items. GlitchTip ingest ignores check_in, so a scheduled job that stops running raises no alert.",
+  "fix": "Create a GlitchTip uptime monitor of type Heartbeat and ping its URL when the job succeeds, or wrap the job: glitchtip-cli monitors run <ENDPOINT_UUID> -- <command>."
+ },
+ {
+  "id": "GT_SESSIONS",
+  "sev": "warn",
+  "title": "Release-health sessions on",
+  "item": "session / sessions",
+  "pattern": "autoSessionTracking\\s*:\\s*true|auto_session_tracking\\s*=\\s*True|enableAutoSessionTracking\\s*[:=]\\s*(?:true|YES)|browserSessionIntegration\\s*\\(",
+  "msg": "Session tracking sends session items. GlitchTip's own SDK pages set this option to false with the note 'GlitchTip does not support sessions'.",
+  "fix": "Set autoSessionTracking: false (JS) or auto_session_tracking=False (Python), as in GlitchTip's SDK docs."
+ },
+ {
+  "id": "GT_SESSION_API",
+  "sev": "warn",
+  "title": "Manual session call",
+  "item": "session",
+  "pattern": "\\.startSession\\s*\\(|\\.captureSession\\s*\\(|\\.endSession\\s*\\(|start_session\\s*\\(|end_session\\s*\\(",
+  "msg": "Manual session calls produce session items that GlitchTip ingest ignores; crash-free rates will not exist after the move.",
+  "fix": "Remove the call, or count sessions in your own analytics."
+ },
+ {
+  "id": "GT_ATTACHMENT",
+  "sev": "warn",
+  "title": "Event attachment",
+  "item": "attachment",
+  "pattern": "addAttachment\\s*\\(|add_attachment\\s*\\(|AddAttachment\\s*\\(|attachScreenshot\\s*[:=]\\s*(?:true|YES)|attachViewHierarchy\\s*[:=]\\s*(?:true|YES)|attach_screenshot\\s*=\\s*True",
+  "msg": "Attachments travel as attachment items. GlitchTip ingest ignores them (it only parses a native minidump when no event came with it), so the file never reaches the issue.",
+  "fix": "Put the small facts you need into setContext / set_context or tags; keep large files in your own storage and add their URL as context."
+ },
+ {
+  "id": "GT_METRICS",
+  "sev": "warn",
+  "title": "Sentry metrics API",
+  "item": "trace_metric",
+  "pattern": "Sentry\\.metrics\\.\\w+\\s*\\(|sentry_sdk\\.metrics\\.|SentrySdk\\.Metrics\\.",
+  "msg": "The metrics API sends trace_metric items. GlitchTip ingest ignores trace_metric, so the counter stays at zero.",
+  "fix": "Send the value as a log line (enableLogs: true and Sentry.logger), which GlitchTip ingests, or move the metric to your metrics stack."
+ },
+ {
+  "id": "GT_STANDALONE_SPANS",
+  "sev": "warn",
+  "title": "Standalone span streaming",
+  "item": "span",
+  "pattern": "enableStandalone\\w*Spans|traceLifecycle\\s*:\\s*['\\\"]stream|trace_lifecycle['\\\"]?\\s*[:=]\\s*['\\\"]stream",
+  "msg": "Standalone or streamed spans are sent as span items. GlitchTip ingest ignores span items; it reads spans only inside a transaction.",
+  "fix": "Turn the experiment off so spans ship inside their transaction."
+ },
+ {
+  "id": "GT_TRACES_FULL",
+  "sev": "warn",
+  "title": "Every transaction sampled",
+  "item": "transaction",
+  "pattern": "tracesSampleRate\\s*:\\s*1(?:\\.0+)?\\b|traces_sample_rate\\s*=\\s*1(?:\\.0+)?\\b|enableTracing\\s*:\\s*true|enable_tracing\\s*=\\s*True",
+  "msg": "A 1.0 rate sends every transaction, and hosted GlitchTip counts each one as an event: Free is 1,000 events/mo, Small $15/mo is 100k. Past the quota GlitchTip throttles, and at 2x the quota it blocks fully, errors included.",
+  "fix": "Use a low rate as GlitchTip's FAQ advises: tracesSampleRate: 0.01 (1 percent)."
+ },
+ {
+  "id": "GT_SENTRY_CLI_DEFAULT",
+  "sev": "info",
+  "title": "sentry-cli upload step",
+  "item": "",
+  "pattern": "getsentry/action-release|sentry-cli\\s+(?:sourcemaps|releases|debug-files)|npx\\s+@sentry/cli",
+  "msg": "sentry-cli uploads to https://sentry.io/ unless a url is set, so this CI step may still feed the old project.",
+  "fix": "Set SENTRY_URL to your GlitchTip host for this step, or call glitchtip-cli sourcemaps inject / upload instead."
+ },
+ {
+  "id": "GT_SELFHOSTED_SENTRY",
+  "sev": "info",
+  "title": "Self-hosted Sentry image (FSL)",
+  "item": "",
+  "pattern": "image:\\s*['\\\"]?(?:ghcr\\.io/)?getsentry/(?:sentry|snuba|relay|symbolicator|vroom)\\b",
+  "msg": "Self-hosted Sentry's web app is licensed FSL-1.1-Apache-2.0 (open.sentry.io/licensing): free to run for your business, but not as a commercial Sentry-like offering until each release turns Apache-2.0 after two years. GlitchTip is MIT.",
+  "fix": "If you resell error tracking or host it for clients, run glitchtip/glitchtip (PostgreSQL 14+, one service, Valkey optional) instead."
+ },
+ {
+  "id": "GT_CLIENT_REPORTS",
+  "sev": "info",
+  "title": "Client reports on",
+  "item": "client_report",
+  "pattern": "sendClientReports\\s*:\\s*true|send_client_reports\\s*=\\s*True",
+  "msg": "Client reports (counts of events the SDK discarded) are sent as client_report items, which GlitchTip ingest ignores.",
+  "fix": "Set sendClientReports: false to save the request."
+ }
+]
