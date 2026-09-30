@@ -1,5 +1,7 @@
 # Brave Search API Migration Check — Google Custom Search & Bing v7
 
+![Brave Search API Migration Check — Google CSE & Bing — finds the line](https://getreadystack.com/img/promo/brave-search-api-migration-check_demo.gif)
+
 ![Brave Search API Migration Check — Google Custom Search & Bing](https://getreadystack.com/img/promo/sku392657_result_card.jpg)
 
 Google's Programmable Search documentation says: *"The Custom Search JSON API is closed to new customers. Existing Custom Search JSON API customers have until January 1, 2027 to transition to an alternative solution."* Microsoft retired the Bing Search APIs on 2025-08-11. This extension reads your JavaScript, TypeScript and Python files and marks every line that still speaks Google Custom Search or Bing v7, with the Brave Search API rewrite for that exact line.
