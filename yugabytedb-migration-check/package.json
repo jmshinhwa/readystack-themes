@@ -1,0 +1,57 @@
+{
+  "name": "yugabytedb-migration-check",
+  "displayName": "YugabyteDB Migration Check: CockroachDB SQL",
+  "description": "YugabyteDB migration check for CockroachDB .sql files: flags 25 statements YSQL rejects or changes (UPSERT, unique_rowid, STRING, 64-bit INT, inline INDEX) plus licence-key and telemetry settings.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "yugabytedb",
+    "cockroachdb",
+    "migration",
+    "ysql",
+    "postgresql",
+    "distributed sql",
+    "sql lint",
+    "licence"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "yugabyteMigration.checkFile",
+        "title": "YugabyteDB Migration Check: CockroachDB SQL: Check this file",
+        "category": "YugabyteDB Migration Check: CockroachDB SQL"
+      },
+      {
+        "command": "yugabyteMigration.checkWorkspace",
+        "title": "YugabyteDB Migration Check: CockroachDB SQL: Sweep workspace and write report (licence)",
+        "category": "YugabyteDB Migration Check: CockroachDB SQL"
+      },
+      {
+        "command": "yugabyteMigration.enterKey",
+        "title": "YugabyteDB Migration Check: CockroachDB SQL: Enter licence key",
+        "category": "YugabyteDB Migration Check: CockroachDB SQL"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "yugabytedb-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/yugabytedb-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
