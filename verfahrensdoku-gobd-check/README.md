@@ -54,7 +54,7 @@ Begrenzung auf N Durchläufe.
 Dazu kommt der Lauf über **alle** Verfahrensdokumentationen im Workspace zusammen
 mit der übergabefertigen Berichtsdatei für den Prüfer oder den Steuerberater;
 dieser Teil fragt nach einem Lizenzschlüssel: <https://getreadystack.com/api/buy/cl/polar_cl_4ecG2oZhrU4pZhXKIDTco78th6R0swStXdKD63nSxy6>
-— $29 einmalig, ein Schlüssel je Person oder Team-Platz, 7 Tage volle Rückgabe.
+— $29 einmalig, ein Schlüssel je Person oder Team-Platz.
 
 ## Maßstab
 
