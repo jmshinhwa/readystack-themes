@@ -1,0 +1,130 @@
+[
+ {
+  "id": "pylance",
+  "kind": "ext",
+  "match": "ms-python.vscode-pylance",
+  "sev": "error",
+  "why": "Licence: 'You may install and use any number of copies of the software only with Microsoft Visual Studio, Visual Studio for Mac, Visual Studio Code, Azure DevOps, Team Foundation Server, and successor Microsoft products and services'",
+  "fix": "detachhead.basedpyright (on Open VSX)"
+ },
+ {
+  "id": "cpptools",
+  "kind": "ext",
+  "match": "ms-vscode.cpptools",
+  "sev": "error",
+  "why": "Licence: 'You may install and use any number of copies of the software only with Microsoft Visual Studio, Visual Studio for Mac, Visual Studio Code, Azure DevOps, Team Foundation Server, and successor Microsoft products and services'",
+  "fix": "llvm-vs-code-extensions.vscode-clangd (on Open VSX)"
+ },
+ {
+  "id": "cpptools-pack",
+  "kind": "ext",
+  "match": "ms-vscode.cpptools-extension-pack",
+  "sev": "error",
+  "why": "Extension pack that installs ms-vscode.cpptools. Licence: 'You may install and use any number of copies of the software only with Microsoft Visual Studio, Visual Studio for Mac, Visual Studio Code, Azure DevOps, Team Foundation Server, and successor Microsoft products and services'",
+  "fix": "llvm-vs-code-extensions.vscode-clangd + ms-vscode.cmake-tools (both on Open VSX)"
+ },
+ {
+  "id": "remote-ssh",
+  "kind": "ext",
+  "match": "ms-vscode-remote.remote-ssh",
+  "sev": "error",
+  "why": "Remote Development licence: 'You may not use the software if you do not have a license for Microsoft Visual Studio Code.'",
+  "fix": "jeanp413.open-remote-ssh (on Open VSX)"
+ },
+ {
+  "id": "remote-ssh-edit",
+  "kind": "ext",
+  "match": "ms-vscode-remote.remote-ssh-edit",
+  "sev": "error",
+  "why": "Remote Development licence: 'You may not use the software if you do not have a license for Microsoft Visual Studio Code.'",
+  "fix": "jeanp413.open-remote-ssh (on Open VSX)"
+ },
+ {
+  "id": "remote-containers",
+  "kind": "ext",
+  "match": "ms-vscode-remote.remote-containers",
+  "sev": "error",
+  "why": "Remote Development licence: 'You may not use the software if you do not have a license for Microsoft Visual Studio Code.'",
+  "fix": "the MIT devcontainer CLI (@devcontainers/cli) from a terminal"
+ },
+ {
+  "id": "remote-wsl",
+  "kind": "ext",
+  "match": "ms-vscode-remote.remote-wsl",
+  "sev": "error",
+  "why": "Remote Development licence: 'You may not use the software if you do not have a license for Microsoft Visual Studio Code.'",
+  "fix": "jeanp413.open-remote-wsl (on Open VSX)"
+ },
+ {
+  "id": "remote-pack",
+  "kind": "ext",
+  "match": "ms-vscode-remote.vscode-remote-extensionpack",
+  "sev": "error",
+  "why": "Extension pack that installs the Remote Development extensions. Remote Development licence: 'You may not use the software if you do not have a license for Microsoft Visual Studio Code.'",
+  "fix": "jeanp413.open-remote-ssh + jeanp413.open-remote-wsl (on Open VSX)"
+ },
+ {
+  "id": "remote-server",
+  "kind": "ext",
+  "match": "ms-vscode.remote-server",
+  "sev": "warn",
+  "why": "Not on Open VSX, the registry VSCodium installs from, so the recommendation silently does nothing",
+  "fix": "jeanp413.open-remote-ssh for SSH hosts"
+ },
+ {
+  "id": "remote-explorer",
+  "kind": "ext",
+  "match": "ms-vscode.remote-explorer",
+  "sev": "warn",
+  "why": "Not on Open VSX, the registry VSCodium installs from, so the recommendation silently does nothing",
+  "fix": "jeanp413.open-remote-ssh (ships its own host list)"
+ },
+ {
+  "id": "liveshare",
+  "kind": "ext",
+  "match": "ms-vsliveshare.vsliveshare",
+  "sev": "error",
+  "why": "Licence: 'You may install and use any number of copies of the software to use solely with Microsoft Visual Studio family of products'",
+  "fix": "no Open VSX drop-in; pair outside the editor"
+ },
+ {
+  "id": "csdevkit",
+  "kind": "ext",
+  "match": "ms-dotnettools.csdevkit",
+  "sev": "error",
+  "why": "Licence: 'You may install and use the Software only with Microsoft Visual Studio Code, vscode.dev, GitHub Codespaces'",
+  "fix": "muhammad-sammy.csharp (on Open VSX)"
+ },
+ {
+  "id": "csharp",
+  "kind": "ext",
+  "match": "ms-dotnettools.csharp",
+  "sev": "error",
+  "why": "Bundled debugger licence: 'You may only use the C# Extension for Visual Studio Code with Visual Studio Code, Visual Studio or Xamarin Studio software'",
+  "fix": "muhammad-sammy.csharp (on Open VSX, uses netcoredbg)"
+ },
+ {
+  "id": "copilot",
+  "kind": "ext",
+  "match": "github.copilot",
+  "sev": "warn",
+  "why": "Not on Open VSX, the registry VSCodium installs from, so the recommendation silently does nothing",
+  "fix": "install from a .vsix you are licensed for, or drop it from the shared list"
+ },
+ {
+  "id": "copilot-chat",
+  "kind": "ext",
+  "match": "github.copilot-chat",
+  "sev": "warn",
+  "why": "Not on Open VSX, the registry VSCodium installs from, so the recommendation silently does nothing",
+  "fix": "install from a .vsix you are licensed for, or drop it from the shared list"
+ },
+ {
+  "id": "pylance-setting",
+  "kind": "setting",
+  "match": "\"python\\.languageServer\"\\s*:\\s*\"Pylance\"",
+  "sev": "error",
+  "why": "Setting forces the Pylance language server. Licence: 'You may install and use any number of copies of the software only with Microsoft Visual Studio, Visual Studio for Mac, Visual Studio Code, Azure DevOps, Team Foundation Server, and successor Microsoft products and services'",
+  "fix": "\"python.languageServer\": \"None\" plus detachhead.basedpyright"
+ }
+]
