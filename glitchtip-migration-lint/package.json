@@ -2,7 +2,7 @@
   "name": "glitchtip-migration-lint",
   "displayName": "GlitchTip Migration Lint for Sentry",
   "description": "Finds Sentry SDK settings GlitchTip ingest drops (Session Replay, profiling, cron check-ins, sessions, attachments, metrics), DSNs still on sentry.io, and FSL self-hosted Sentry images.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
