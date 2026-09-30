@@ -29,7 +29,7 @@
     '25': {terms: 'NFTC', free_until: '2028-09-15', projected: true}
   };
 
-  var VERSION_RE = /(?:^|[^\d.])(8|11|17|21|25)(?![\d])/;
+  var VERSION_RE = /(?:^|[^\d.]|JDK\.|jdk-)(8|11|17|21|25)(?![\d])/;   // s173: winget `Oracle.JDK.21` pins its version after a dot
 
   function days(a, b) {
     return Math.round((Date.parse(b) - Date.parse(a)) / 86400000);
@@ -77,6 +77,7 @@
       for (r = 0; r < RULES.length; r++) {
         re = new RegExp(RULES[r].re, 'i');
         if (!re.test(lines[i])) continue;
+        if (RULES[r].unless_near && nearHas(lines, i, RULES[r].unless_near)) continue;
         ver = versionNear(lines, i);
         st = windowStatus(ver, today);
         findings.push({
@@ -91,7 +92,91 @@
     return {findings: findings};
   }
 
-  var API = {engine: {check: check}, RULES: RULES, RULE_COUNT: RULES.length, WINDOW: WINDOW};
+  function nearHas(lines, i, src) {
+    var re = new RegExp(src, 'i'), j;
+    for (j = Math.max(0, i - 2); j <= Math.min(lines.length - 1, i + 6); j++) { if (re.test(lines[j])) return true; }
+    return false;
+  }
+
+  /*
+   * s173 2026-09-30 - the Java map. [measured] people find this extension by typing "temurin" / "corretto" /
+   * "adoptium" in the Marketplace search: they are moving to (or already on) a free build, so most of their
+   * files are clean and the license check alone gave them nothing to read. The map answers what they came for:
+   * which Java does each part of this project pull, and what is the free line for each place.
+   * NOTES are facts about non-Oracle lines (deprecated names). They are NOT license findings and are never
+   * counted by check(): an `openjdk:` image is not an Oracle bill.
+   */
+  var NOTES = [
+    {id: 'setup_java_adopt_removed', re: "distribution\\s*:\\s*['\"]?adopt(-hotspot)?['\"]?\\s*$",
+     say: "setup-java removed the legacy AdoptOpenJDK distributions; its README says: use temurin instead of adopt or adopt-hotspot",
+     fix: 'distribution: temurin'},
+    {id: 'setup_java_adopt_openj9', re: "distribution\\s*:\\s*['\"]?adopt-openj9",
+     say: "setup-java removed the legacy AdoptOpenJDK distributions; its README says: use semeru instead of adopt-openj9",
+     fix: 'distribution: semeru'},
+    {id: 'docker_openjdk_deprecated', re: "^\\s*FROM\\s+(--platform=\\S+\\s+)?openjdk:",
+     say: "the Docker Official Image `openjdk` is officially deprecated (Docker Hub notice); only Early Access tags have been updated since July 2022",
+     fix: 'FROM eclipse-temurin:21-jdk'}
+  ];
+
+  var PIN_RE = [
+    {kind: 'GitHub Actions setup-java', re: /distribution\s*:\s*['"]?([A-Za-z0-9_${}. -]+?)['"]?\s*$/},
+    {kind: 'Gradle toolchain', re: /JvmVendorSpec\.([A-Z_]+)/},
+    {kind: 'SDKMAN (.sdkmanrc)', re: /^\s*java\s*=\s*\S*-([a-z]+)\s*$/},
+    {kind: 'asdf / mise (.tool-versions)', re: /^\s*java\s+([a-z-]+?)-\d/},
+    {kind: 'Dev container', re: /"jdkDistro"\s*:\s*"([a-z]+)"/},
+    {kind: 'Maven toolchain', re: /<vendor>\s*([^<]+?)\s*<\/vendor>/}
+  ];
+  var IMAGES = [
+    ['eclipse-temurin', 'temurin'], ['amazoncorretto', 'corretto'], ['azul/zulu-openjdk', 'zulu'], ['bellsoft/liberica', 'liberica'],
+    ['ibm-semeru-runtimes', 'semeru'], ['sapmachine', 'sapmachine'], ['mcr.microsoft.com/openjdk', 'microsoft'],
+    ['container-registry.oracle.com/java', 'oracle'], ['container-registry.oracle.com/graalvm', 'oracle graalvm'],
+    ['ghcr.io/graalvm', 'graalvm community'], ['adoptopenjdk', 'adoptopenjdk'], ['openjdk', 'openjdk (deprecated image)']
+  ];
+
+  function pins(text) {
+    var lines = String(text == null ? '' : text).split(/\r?\n/), out = [], i, k, m, img;
+    for (i = 0; i < lines.length; i++) {
+      if (/^\s*#/.test(lines[i])) continue;
+      for (k = 0; k < PIN_RE.length; k++) {
+        m = PIN_RE[k].re.exec(lines[i]);
+        if (m) out.push({line: i + 1, kind: PIN_RE[k].kind, vendor: String(m[1]).trim().toLowerCase(), raw: lines[i].trim().slice(0, 120)});
+      }
+      m = /^\s*FROM\s+(?:--platform=\S+\s+)?(\S+)/i.exec(lines[i]);
+      if (m) {
+        img = m[1].toLowerCase();
+        for (k = 0; k < IMAGES.length; k++) {
+          if (img.indexOf(IMAGES[k][0]) >= 0) { out.push({line: i + 1, kind: 'Docker base image', vendor: IMAGES[k][1], raw: lines[i].trim().slice(0, 120)}); break; }
+        }
+      }
+    }
+    return out;
+  }
+
+  function notes(text) {
+    var lines = String(text == null ? '' : text).split(/\r?\n/), out = [], i, k;
+    for (i = 0; i < lines.length; i++) {
+      if (/^\s*#/.test(lines[i])) continue;
+      for (k = 0; k < NOTES.length; k++) {
+        if (new RegExp(NOTES[k].re, 'i').test(lines[i])) out.push({note: NOTES[k].id, line: i + 1, msg: NOTES[k].say, fix: NOTES[k].fix});
+      }
+    }
+    return out;
+  }
+
+  /* The free lines, one per place a project can choose its Java. Each string is the vendor's own coordinate. */
+  var LINES = [
+    {kind: 'GitHub Actions setup-java', temurin: 'distribution: temurin', corretto: 'distribution: corretto'},
+    {kind: 'Docker base image', temurin: 'FROM eclipse-temurin:21-jdk', corretto: 'FROM amazoncorretto:21'},
+    {kind: 'Gradle toolchain', temurin: 'vendor = JvmVendorSpec.ADOPTIUM', corretto: 'vendor = JvmVendorSpec.AMAZON'},
+    {kind: 'SDKMAN (.sdkmanrc)', temurin: 'java=<version>-tem', corretto: 'java=<version>-amzn'},
+    {kind: 'asdf / mise (.tool-versions)', temurin: 'java temurin-<version>', corretto: 'java corretto-<version>'},
+    {kind: 'Dev container', temurin: '"jdkDistro": "tem"', corretto: '"jdkDistro": "amzn"'},
+    {kind: 'This machine (Windows)', temurin: 'winget install EclipseAdoptium.Temurin.21.JDK', corretto: null},
+    {kind: 'This machine (macOS)', temurin: 'brew install --cask temurin@21', corretto: null},
+    {kind: 'This machine (SDKMAN)', temurin: 'sdk install java <version>-tem', corretto: 'sdk install java <version>-amzn'}
+  ];
+
+  var API = {engine: {check: check, pins: pins, notes: notes}, RULES: RULES, RULE_COUNT: RULES.length, WINDOW: WINDOW, NOTES: NOTES, LINES: LINES};
 
   if (typeof module !== 'undefined') { module.exports = API; }
   if (typeof window !== 'undefined') { window.OJLGENGINE = API; }
