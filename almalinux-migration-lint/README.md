@@ -1,5 +1,7 @@
 # AlmaLinux Migration Lint — CentOS 7/8
 
+![AlmaLinux Migration Lint — CentOS 7/8 — finds the line](https://getreadystack.com/img/promo/almalinux-migration-lint_demo.gif)
+
 ![AlmaLinux Migration Lint — CentOS 7/8](https://getreadystack.com/img/promo/sku389576_result_card.jpg)
 
 **AlmaLinux migration check for the files that still build CentOS Linux 7 and 8.** It reads Dockerfiles, Containerfiles, Vagrantfiles, yum `.repo` files, kickstarts, shell provisioning scripts and Ansible YAML, and marks every line that stops working when the host or image moves to AlmaLinux 8 or 9. Each finding carries the AlmaLinux fix on the same line.
