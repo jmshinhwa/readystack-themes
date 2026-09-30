@@ -1,0 +1,58 @@
+{
+  "name": "podman-migration-check",
+  "displayName": "Podman Migration Check — Docker Desktop ties",
+  "description": "Podman migration check: flags Docker Desktop-only lines (docker.sock, host.docker.internal, credsStore desktop, desktop-linux context, docker scout, ports below 1024, short image names) in compose, Do",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "podman",
+    "podman migration",
+    "docker desktop alternative",
+    "docker desktop license",
+    "rootless podman",
+    "podman compose",
+    "podman desktop",
+    "rancher desktop",
+    "colima"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "podmanMigrationCheck.checkFile",
+        "title": "Podman Migration Check — Docker Desktop ties: Check this file",
+        "category": "Podman Migration Check — Docker Desktop ties"
+      },
+      {
+        "command": "podmanMigrationCheck.checkWorkspace",
+        "title": "Podman Migration Check — Docker Desktop ties: Sweep workspace and write report (licence)",
+        "category": "Podman Migration Check — Docker Desktop ties"
+      },
+      {
+        "command": "podmanMigrationCheck.enterKey",
+        "title": "Podman Migration Check — Docker Desktop ties: Enter licence key",
+        "category": "Podman Migration Check — Docker Desktop ties"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "podman-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/podman-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
