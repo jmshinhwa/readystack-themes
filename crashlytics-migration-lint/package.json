@@ -1,0 +1,59 @@
+{
+  "name": "crashlytics-migration-lint",
+  "displayName": "Crashlytics Migration Lint for App Center",
+  "description": "Finds leftover Visual Studio App Center SDK calls (retired 2025-03-31, Analytics & Diagnostics ended 2026-06-30) in C#, Kotlin, Java, Swift and React Native code and names the Firebase Crashlytics rep",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "crashlytics",
+    "app center",
+    "appcenter",
+    "firebase crashlytics",
+    "app center retirement",
+    "xamarin",
+    "maui",
+    "react native",
+    "codepush",
+    "sentry"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "crashlyticsMigrationLint.checkFile",
+        "title": "Crashlytics Migration Lint for App Center: Check this file",
+        "category": "Crashlytics Migration Lint for App Center"
+      },
+      {
+        "command": "crashlyticsMigrationLint.checkWorkspace",
+        "title": "Crashlytics Migration Lint for App Center: Sweep workspace and write report (licence)",
+        "category": "Crashlytics Migration Lint for App Center"
+      },
+      {
+        "command": "crashlyticsMigrationLint.enterKey",
+        "title": "Crashlytics Migration Lint for App Center: Enter licence key",
+        "category": "Crashlytics Migration Lint for App Center"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "crashlytics-migration-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/crashlytics-migration-lint",
+  "readystack": {
+    "rulesDate": "2026-09-29"
+  },
+  "icon": "icon.png"
+}
