@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.license-flip-audit</id>
+  <name>License Flip Audit</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds the dependencies whose licence changed under you - Terraform 1.6+ BUSL, Redis 7.4+ SSPL, Bitnami's August 2025 move, Elastic 7.11 - and names the exact version where each flip happened.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>License Flip Audit: Check This File</b>. Each finding appears on its line with the fix. 30 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/license-flip-audit</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/license-flip-audit">getreadystack.com/tools/license-flip-audit</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_license_flip_audit.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.license-flip-audit" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.license-flip-audit.check" class="com.getreadystack.p_license_flip_audit.RsCheckAction"
+            text="License Flip Audit: Check This File" description="Run License Flip Audit on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
