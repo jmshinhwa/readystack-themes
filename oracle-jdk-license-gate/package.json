@@ -1,8 +1,8 @@
 {
   "name": "oracle-jdk-license-gate",
   "displayName": "Oracle JDK License Gate",
-  "description": "Finds Java runtimes in your Dockerfiles, CI workflows and shell scripts that sit under Oracle's paid license terms, and shows the free OpenJDK line that replaces each one.",
-  "version": "1.0.13",
+  "description": "Moving to Temurin or Corretto? Shows which Java every part of your project pulls (CI, Docker, Gradle, SDKMAN, dev container), flags the Oracle-licensed ones on today's date and gives the free line for each.",
+  "version": "1.0.14",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -24,7 +24,9 @@
     "adoptium",
     "zulu",
     "liberica",
-    "openjdk"
+    "openjdk",
+    "migrate",
+    "java version"
   ],
   "main": "./extension.js",
   "activationEvents": [
@@ -32,6 +34,11 @@
   ],
   "contributes": {
     "commands": [
+      {
+        "command": "oracleJdkLicenseGate.javaMap",
+        "title": "Oracle JDK License Gate: Show the Java map (which Java this project pulls + Temurin lines)",
+        "category": "Oracle JDK License Gate"
+      },
       {
         "command": "oracleJdkLicenseGate.checkFile",
         "title": "Oracle JDK License Gate: Check this file",
@@ -58,6 +65,6 @@
   "homepage": "https://getreadystack.com/tools/oracle-jdk-license-gate",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-21"
+    "rulesDate": "2026-09-30"
   }
 }
