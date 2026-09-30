@@ -1,5 +1,7 @@
 # OpenSearch Migration Check — Elasticsearch & Kibana cutover lint
 
+![OpenSearch Migration Check: Elasticsearch & Kibana cutover lint — finds the line](https://getreadystack.com/img/promo/opensearch-migration-check_demo.gif)
+
 ![OpenSearch Migration Check: Elasticsearch & Kibana cutover lint](https://getreadystack.com/img/promo/sku391117_result_card.jpg)
 
 Open a `docker-compose.yml`, `elasticsearch.yml`, `kibana.yml`, Logstash pipeline, `requirements.txt`, `package.json`, `pom.xml`, `go.mod`, `Gemfile`, Helm values or an index mapping. Every line that will break a move from Elasticsearch / Kibana to OpenSearch / OpenSearch Dashboards is underlined in the Problems panel, with the OpenSearch replacement next to it.
