@@ -1,0 +1,106 @@
+[
+ {
+  "id": "chef-install-url",
+  "sev": "error",
+  "label": "omnitruck.chef.io install script",
+  "re": "(?:omnitruck\\.chef\\.io|packages\\.chef\\.io|(?:www\\.)?chef\\.io/chef/install\\.(?:sh|ps1))",
+  "flags": "i",
+  "msg": "Installs Chef's own build; Chef Infra Client 15 and later stop until the Chef licence is accepted",
+  "fix": "https://omnitruck.cinc.sh/install.sh (install.ps1 on Windows), the Apache-2.0 Cinc build of the same source"
+ },
+ {
+  "id": "chef-license-flag",
+  "sev": "error",
+  "label": "--chef-license accept",
+  "re": "--chef-license(?:\\s+|=)[\"']?accept",
+  "flags": "i",
+  "msg": "Accepts the Chef licence on this node (Chef Infra Client 15+ licence gate)",
+  "fix": "drop the flag after switching to Cinc Client; Cinc is not a licensed product and asks for no acceptance"
+ },
+ {
+  "id": "chef-license-env",
+  "sev": "error",
+  "label": "CHEF_LICENSE=accept",
+  "re": "CHEF_LICENSE[\"']?\\s*[=:]\\s*[\"']?accept",
+  "flags": "i",
+  "msg": "CHEF_LICENSE environment variable accepts the Chef licence for every Chef binary in this shell or job",
+  "fix": "remove CHEF_LICENSE once the job installs Cinc Client, Cinc Workstation or Cinc Auditor"
+ },
+ {
+  "id": "chef-license-config",
+  "sev": "error",
+  "label": "chef_license 'accept'",
+  "re": "(?:^|\\s)chef_license\\s*(?::|=)?\\s*[\"']?accept",
+  "flags": "",
+  "msg": "chef_license in client.rb, config.rb or kitchen.yml accepts the Chef licence",
+  "fix": "delete the chef_license line and install Cinc Client; in kitchen.yml set product_name: cinc"
+ },
+ {
+  "id": "kitchen-product-chef",
+  "sev": "error",
+  "label": "product_name: chef",
+  "re": "product_name\\s*:\\s*[\"']?chef(?:[\"'\\s]|$)",
+  "flags": "i",
+  "msg": "Test Kitchen installs Chef Infra Client and runs the licence check on every converge",
+  "fix": "product_name: cinc (Test Kitchen skips licence acceptance for Cinc)"
+ },
+ {
+  "id": "chef-docker-image",
+  "sev": "error",
+  "label": "chef/chef image",
+  "re": "(?:^\\s*FROM\\s+|image:\\s*[\"']?)(?:docker\\.io/)?chef/(?:chef|inspec|chef-workstation)(?::[\\w.\\-]+)?",
+  "flags": "i",
+  "msg": "Chef-published container image ships the licensed Chef binaries",
+  "fix": "build from your base image and install Cinc from https://omnitruck.cinc.sh/install.sh"
+ },
+ {
+  "id": "chef-package-install",
+  "sev": "error",
+  "label": "package install of chef",
+  "re": "\\b(?:apt-get|apt|yum|dnf|zypper|choco|brew|gem)\\s+(?:install|upgrade)\\b[^#\\n]*\\b(?:chef|chef-client|chef-workstation|chefdk|inspec|inspec-bin)(?![\\w.\\-])",
+  "flags": "i",
+  "msg": "Package or gem install of Chef's licensed Chef, Workstation or InSpec build",
+  "fix": "install cinc, cinc-workstation or cinc-auditor instead; the chef-client, chef and inspec wrappers keep old scripts working"
+ },
+ {
+  "id": "chef-install-action",
+  "sev": "error",
+  "label": "actionshub/chef-install",
+  "re": "uses:\\s*[\"']?actionshub/chef-install",
+  "flags": "i",
+  "msg": "CI step installs Chef Workstation from Chef, so the job must accept the Chef licence",
+  "fix": "run curl -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-workstation"
+ },
+ {
+  "id": "knife-bootstrap-default",
+  "sev": "warn",
+  "label": "knife bootstrap (default installer)",
+  "re": "\\bknife\\s+bootstrap\\b(?![^#\\n]*--bootstrap-(?:url|install-command))",
+  "flags": "i",
+  "msg": "knife bootstrap without --bootstrap-url installs Chef Infra Client from Chef on the new node",
+  "fix": "add --bootstrap-url https://omnitruck.cinc.sh/install.sh"
+ },
+ {
+  "id": "opt-chef-path",
+  "sev": "warn",
+  "label": "/opt/chef path",
+  "re": "/opt/chef(?:/|\\b)(?!-)",
+  "flags": "",
+  "msg": "Hard-coded /opt/chef path; Cinc packages install under /opt/cinc",
+  "fix": "/opt/cinc (or call chef-client from PATH and let the Cinc wrapper resolve it)"
+ },
+ {
+  "id": "chef-infra-server",
+  "sev": "error",
+  "label": "chef-server-ctl",
+  "re": "\\bchef-server-(?:ctl|core)\\b|chef-server\\.rb|/opt/opscode\\b",
+  "flags": "i",
+  "msg": "Open-source Chef Infra Server",
+  "fix": "move to Cinc Server with a knife-ec-backup backup and restore; nodes re-attach when the FQDN is unchanged",
+  "eol": {
+   "date": "2026-11-30",
+   "before": "Progress ends the open-source Chef Infra Server on 2026-11-30 ({days} days left)",
+   "after": "the open-source Chef Infra Server reached end of life on 2026-11-30 ({days} days ago)"
+  }
+ }
+]
