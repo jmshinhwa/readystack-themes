@@ -2,7 +2,7 @@
   "name": "dienstanweisung-bewachung-lint",
   "displayName": "Dienstanweisung Bewachung: BewachV-Check",
   "description": "Zeigt, welche Pflichtinhalte in der Dienstanweisung eines Bewachungsunternehmens fehlen: § 17, 18, 20 BewachV und § 34a Abs. 1a GewO. 12 rules, Zeile und Fix je Befund.",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
