@@ -2,7 +2,7 @@
   "name": "openvox-migration-check",
   "displayName": "OpenVox Migration Check for Puppet",
   "description": "Flags Puppet package names, yum/apt.puppetlabs.com repos, puppet8-release, Docker images and gems that must change when you move a fleet from Puppet to OpenVox, with the exact OpenVox replacement.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
