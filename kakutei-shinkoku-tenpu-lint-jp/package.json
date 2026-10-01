@@ -2,7 +2,7 @@
   "name": "kakutei-shinkoku-tenpu-lint-jp",
   "displayName": "確定申告 添付書類チェッカー（準備メモ・控除証明書）",
   "description": "確定申告の準備メモ（.md/.txt）を所得税法120条・施行令262条と国税庁の添付ルールで検査。控除証明書の不足、医療費控除の明細書、不要な源泉徴収票、郵送時の本人確認書類、青色65万円の要件を行番号つきで指摘。",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
