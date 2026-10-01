@@ -1,0 +1,57 @@
+{
+  "name": "xcode-26-sdk-gate",
+  "displayName": "Xcode 26 SDK Gate for GitHub Actions",
+  "description": "Maps every macOS job in .github/workflows to the Xcode it really builds with and flags uploads App Store Connect rejects since 28 Apr 2026 (Xcode 26 / iOS 26 SDK), plus the xcode-select fix line.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "xcode 26",
+    "app store connect",
+    "ios 26 sdk",
+    "github actions",
+    "macos runner",
+    "xcode-select",
+    "testflight",
+    "ci"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "xcode26SdkGate.checkFile",
+        "title": "Xcode 26 SDK Gate for GitHub Actions: Check this file",
+        "category": "Xcode 26 SDK Gate for GitHub Actions"
+      },
+      {
+        "command": "xcode26SdkGate.checkWorkspace",
+        "title": "Xcode 26 SDK Gate for GitHub Actions: Sweep workspace and write report (licence)",
+        "category": "Xcode 26 SDK Gate for GitHub Actions"
+      },
+      {
+        "command": "xcode26SdkGate.enterKey",
+        "title": "Xcode 26 SDK Gate for GitHub Actions: Enter licence key",
+        "category": "Xcode 26 SDK Gate for GitHub Actions"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "xcode-26-sdk-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/xcode-26-sdk-gate",
+  "readystack": {
+    "rulesDate": "2026-09-30"
+  },
+  "icon": "icon.png"
+}
