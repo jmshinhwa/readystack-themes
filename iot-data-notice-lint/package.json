@@ -2,7 +2,7 @@
   "name": "iot-data-notice-lint",
   "displayName": "IoT Data Notice Lint: EU Data Act Art. 3",
   "description": "Checks the pre-contract data notice of a smart or connected device sold in the EU against Data Act Article 3(2)-(3): every item the buyer must be told, plus data-access fees and vague retention.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
