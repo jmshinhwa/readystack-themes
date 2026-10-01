@@ -1,7 +1,7 @@
 // ⛔손으로 고치지 마라 — vsix_build.py 가 찍는다.
 const https = require('https');
 const ORG_ID = 'a5cdf664-d8e7-4f87-8895-056717aaba17';
-const BUY_URL = '';
+const BUY_URL = 'https://getreadystack.com/api/buy/cl/polar_cl_JtUa5vkrTxcrCulJIS1pRq5QUOpIbLDpBhraA1ffbYi';
 const SLUG = 'meldestelle-hinschg-lint';   // s151 — 키 판 핑의 익명 이름 (vsix_build._license_js 가 찍는다)
 const BENEFIT_ID = '';   // s140 — 이 상품의 benefit. till.py 가 찍는다 · validate 가 이걸로 묻는다 (⛔조직만 물으면 키 하나로 전부 열린다)
 const GRACE_MS = 30 * 24 * 3600 * 1000;   // 검증 성공 뒤 30일은 오프라인에서도 연다
