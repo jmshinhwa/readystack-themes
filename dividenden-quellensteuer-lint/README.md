@@ -1,5 +1,7 @@
 # Dividenden CSV Lint: Quellensteuer über DBA-Satz
 
+![Dividenden CSV Lint: Quellensteuer über DBA-Satz — finds the line](https://getreadystack.com/img/promo/dividenden-quellensteuer-lint_demo.gif)
+
 ![Dividenden CSV Lint: Quellensteuer über DBA-Satz](https://getreadystack.com/img/promo/sku337281_result_card.jpg)
 
 Ausländische Dividenden versteuern: Der Lint liest die Dividenden-CSV deines Brokers und zeigt pro Zeile, wie viel ausländische Quellensteuer über dem DBA-Satz liegt. Dieser Überhang wird auf die deutsche Abgeltungsteuer **nicht angerechnet** (§32d Abs. 5 EStG) — er ist nur im Quellenstaat erstattbar, und in der Schweiz nur bis zum 31.12. des dritten Jahres nach Fälligkeit (Art. 32 Abs. 1 VStG).
@@ -45,11 +47,11 @@ Datum;Wertpapier;Land;Brutto EUR;Quellensteuer EUR
 
 Öffne eine `.csv`-Datei — die Befunde erscheinen im Problems-Fenster mit Zeilennummer. Die Datei verlässt deinen Rechner nicht.
 
-Dasselbe Prüfwerk läuft kostenlos im Browser: https://getreadystack.com/tools/dividenden-quellensteuer-lint
+Dasselbe Prüfwerk läuft kostenlos im Browser: https://getreadystack.com/de/tools/dividenden-quellensteuer-lint
 
 ## Vollversion
 
-Vollversion: alle Dividenden-CSVs im Workspace über mehrere Steuerjahre in einem Lauf, plus Report-Export für Steuerberater oder Erstattungsantrag — einmalig $29, ein Lizenzschlüssel pro Person: https://buy.polar.sh/polar_cl_7GkKs3zJ9Oz0rQXJbBeEXpfhu3g0WASHNagMQ1kGrvz
+Vollversion: alle Dividenden-CSVs im Workspace über mehrere Steuerjahre in einem Lauf, plus Report-Export für Steuerberater oder Erstattungsantrag — einmalig $29, ein Lizenzschlüssel pro Person: https://getreadystack.com/api/buy/cl/polar_cl_7GkKs3zJ9Oz0rQXJbBeEXpfhu3g0WASHNagMQ1kGrvz
 
 ## Maßstab
 
