@@ -2,7 +2,7 @@
   "name": "loeschkonzept-fristen-lint",
   "displayName": "Aufbewahrungsfristen-Lint für Löschkonzepte",
   "description": "Findet falsche Aufbewahrungsfristen im Löschkonzept: Buchungsbelege 8 statt 10 Jahre seit BEG IV, Fristbeginn, unbegrenzte Speicherung, Bewerberdaten. 10 rules, offline.",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
