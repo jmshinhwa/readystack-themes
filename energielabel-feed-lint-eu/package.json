@@ -2,7 +2,7 @@
   "name": "energielabel-feed-lint-eu",
   "displayName": "Energielabel Feed Check",
   "description": "Prüft Produkt-Feeds (CSV) gegen das EU-Energielabel: fehlende Klasse, alte A+++-Skala auf reskalierten Geräten, fehlendes Label oder Produktdatenblatt, Smartphone-Label seit 20.06.2025.",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
