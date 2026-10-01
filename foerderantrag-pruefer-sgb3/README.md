@@ -45,7 +45,7 @@ Steuerberater-Zeitgebühr nach § 13 StBVV (seit 1.7.2025): €16,50 bis €41 j
 
 ## Vollversion
 
-Ganzer Workspace in einem Lauf plus Prüfbericht-Export (HTML) je Antrag: [Vollversion – $29 einmalig](https://buy.polar.sh/polar_cl_lxdT1xsxne1zlc7CxeC5nRClkdtwQH8mzgujr0IBWYk). Die Prüfung einer Datei bleibt ohne Schlüssel vollständig.
+Ganzer Workspace in einem Lauf plus Prüfbericht-Export (HTML) je Antrag: [Vollversion – $29 einmalig](https://getreadystack.com/api/buy/cl/polar_cl_lxdT1xsxne1zlc7CxeC5nRClkdtwQH8mzgujr0IBWYk). Die Prüfung einer Datei bleibt ohne Schlüssel vollständig.
 
 ## Grenzen
 
