@@ -1,0 +1,57 @@
+{
+  "name": "lambda-package-budget",
+  "displayName": "Lambda Package Size Budget - 250 MB check",
+  "description": "Lambda package size check for requirements.txt and package.json: measured unzipped MB per dependency against the 250 MB unzipped and 50 MB zipped AWS quotas, with the exact line to drop or swap.",
+  "version": "1.0.2",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "aws lambda",
+    "lambda package size",
+    "250 MB",
+    "deployment package",
+    "requirements.txt",
+    "package.json",
+    "serverless",
+    "lambda layer"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "lambdaBudget.checkFile",
+        "title": "Lambda Package Size Budget - 250 MB check: Check this file",
+        "category": "Lambda Package Size Budget - 250 MB check"
+      },
+      {
+        "command": "lambdaBudget.checkWorkspace",
+        "title": "Lambda Package Size Budget - 250 MB check: Sweep workspace and write report (licence)",
+        "category": "Lambda Package Size Budget - 250 MB check"
+      },
+      {
+        "command": "lambdaBudget.enterKey",
+        "title": "Lambda Package Size Budget - 250 MB check: Enter licence key",
+        "category": "Lambda Package Size Budget - 250 MB check"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "lambda-package-budget"
+  },
+  "homepage": "https://getreadystack.com/tools/lambda-package-budget",
+  "readystack": {
+    "rulesDate": "2026-09-30"
+  },
+  "icon": "icon.png"
+}
