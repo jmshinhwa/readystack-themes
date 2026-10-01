@@ -2,7 +2,7 @@
   "name": "weiterbildung-foerderquote-lint",
   "displayName": "Förderquoten-Lint Weiterbildung (SGB III)",
   "description": "Prüft Kursseiten und Förder-Merkblätter (Markdown) auf veraltete Förderquoten, Größenklassen und Stundengrenzen der Beschäftigtenqualifizierung nach § 82 SGB III, Stand seit 2024-04-01.",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
