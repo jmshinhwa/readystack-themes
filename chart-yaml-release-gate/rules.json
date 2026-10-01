@@ -1,0 +1,114 @@
+[
+ {
+  "id": "api-missing",
+  "sev": "error",
+  "title": "apiVersion is missing",
+  "fix": "apiVersion: v2",
+  "source": "helm.sh/docs/topics/charts: apiVersion is required"
+ },
+ {
+  "id": "api-v1",
+  "sev": "warning",
+  "title": "apiVersion v1 is the pre-Helm-3 chart format",
+  "fix": "apiVersion: v2",
+  "source": "helm.sh/docs/topics/charts: apiVersion should be v2 for charts that require at least Helm 3"
+ },
+ {
+  "id": "api-unknown",
+  "sev": "error",
+  "title": "apiVersion is neither v1 nor v2",
+  "fix": "apiVersion: v2",
+  "source": "helm.sh/docs/topics/charts: The apiVersion Field"
+ },
+ {
+  "id": "name-missing",
+  "sev": "error",
+  "title": "name is missing",
+  "fix": "name: <chart-name>",
+  "source": "helm.sh/docs/topics/charts: name is required"
+ },
+ {
+  "id": "version-missing",
+  "sev": "error",
+  "title": "version is missing",
+  "fix": "version: 0.1.0",
+  "source": "helm.sh/docs/topics/charts: Every chart must have a version number"
+ },
+ {
+  "id": "version-not-semver",
+  "sev": "error",
+  "title": "version is not SemVer 2",
+  "fix": "version: MAJOR.MINOR.PATCH",
+  "source": "helm.sh/docs/topics/charts: non-SemVer names are explicitly disallowed"
+ },
+ {
+  "id": "version-coerced",
+  "sev": "warning",
+  "title": "version gets coerced (leading v or fewer than 3 parts)",
+  "fix": "version: MAJOR.MINOR.PATCH",
+  "source": "helm.sh/docs/topics/charts: v1.2 is coerced to v1.2.0; the package name must match the Chart.yaml version"
+ },
+ {
+  "id": "v2-field-on-v1",
+  "sev": "error",
+  "title": "dependencies/type only exist in apiVersion v2",
+  "fix": "apiVersion: v2",
+  "source": "helm.sh/docs/topics/charts: v2 added dependencies (was requirements.yaml) and type"
+ },
+ {
+  "id": "type-invalid",
+  "sev": "error",
+  "title": "type must be application or library",
+  "fix": "type: application",
+  "source": "helm.sh/docs/topics/charts: Chart Types"
+ },
+ {
+  "id": "dep-incomplete",
+  "sev": "error",
+  "title": "dependency lacks name or version",
+  "fix": "- name: <chart>\n    version: \"1.2.3\"",
+  "source": "helm.sh/docs/topics/charts: dependencies[].name and version"
+ },
+ {
+  "id": "appversion-unquoted",
+  "sev": "warning",
+  "title": "appVersion is unquoted and YAML reads it as a number",
+  "fix": "appVersion: \"<value>\"",
+  "source": "helm.sh/docs/topics/charts: YAML interprets 1.0 as a float and 1234e10 as scientific notation"
+ },
+ {
+  "id": "kube-no-supported",
+  "sev": "error",
+  "title": "kubeVersion allows no Kubernetes minor still supported",
+  "fix": "kubeVersion: \">=1.33.0-0\" (no upper cap below the newest minor)",
+  "source": "helm.sh/docs/topics/charts: Helm fails the install if the cluster version is outside kubeVersion; EOL dates from kubernetes.io releases"
+ },
+ {
+  "id": "kube-eol-soon",
+  "sev": "warning",
+  "title": "kubeVersion only allows Kubernetes minors reaching end of life within 90 days",
+  "fix": "kubeVersion: \">=1.33.0-0\" (no upper cap below the newest minor)",
+  "source": "helm.sh/docs/topics/charts: The kubeVersion Field; EOL dates from kubernetes.io releases"
+ },
+ {
+  "id": "unknown-field",
+  "sev": "error",
+  "title": "field is not part of Chart.yaml",
+  "fix": "annotations:\n  <key>: \"<value>\"",
+  "source": "helm.sh/docs/topics/charts: As of v3.3.2, additional fields are not allowed; use annotations"
+ },
+ {
+  "id": "deprecated-not-bool",
+  "sev": "warning",
+  "title": "deprecated must be true or false",
+  "fix": "deprecated: true",
+  "source": "helm.sh/docs/topics/charts: deprecated (optional, boolean)"
+ },
+ {
+  "id": "helm3-pin",
+  "sev": "warning",
+  "title": "CI or image pins Helm 3",
+  "fix": "version: v4.3.0",
+  "source": "helm.sh/blog/helm-4-released: Helm v3 bug fixes until 2026-07-08, security fixes until 2026-11-11"
+ }
+]
