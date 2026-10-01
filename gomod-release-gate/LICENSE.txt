@@ -1,0 +1,15 @@
+go.mod Release Gate: /vN suffix and go line check — Licence
+
+Free scope
+  Maps every go.mod line that breaks go get for your users (module path, go line, toolchain, replace, require) and prints the exact replacement line. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  A dated release-gate report per tag with the go.dev rule cited for every line, plus a CI exit code that blocks the tag. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
