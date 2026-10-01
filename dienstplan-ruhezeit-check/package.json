@@ -2,7 +2,7 @@
   "name": "dienstplan-ruhezeit-check",
   "displayName": "Dienstplan-Check: Ruhezeit und Pausen (ArbZG)",
   "description": "Prüft Dienstplan-CSV vor der Veröffentlichung: 11 h Ruhezeit (§5), Pausen (§4), 10-h-Grenze (§3), 60-h-Woche, Nachtarbeit (§6), Sonntag (§9/§11). Mit Zeile und Paragraf.",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
