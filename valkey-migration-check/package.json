@@ -1,0 +1,59 @@
+{
+  "name": "valkey-migration-check",
+  "displayName": "Valkey Migration Check — ElastiCache Redis ties",
+  "description": "Valkey migration check: flags ElastiCache Redis OSS 4/5/6 engine versions (Extended Support billing), redis parameter-group families and redis:7.4+ images in Terraform, CloudFormation, compose and Doc",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "valkey",
+    "valkey migration",
+    "redis alternative",
+    "redis license",
+    "elasticache extended support",
+    "elasticache valkey",
+    "redis oss 5",
+    "terraform elasticache",
+    "podman desktop",
+    "rancher desktop"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "valkeyMigrationCheck.checkFile",
+        "title": "Valkey Migration Check — ElastiCache Redis ties: Check this file",
+        "category": "Valkey Migration Check — ElastiCache Redis ties"
+      },
+      {
+        "command": "valkeyMigrationCheck.checkWorkspace",
+        "title": "Valkey Migration Check — ElastiCache Redis ties: Sweep workspace and write report (licence)",
+        "category": "Valkey Migration Check — ElastiCache Redis ties"
+      },
+      {
+        "command": "valkeyMigrationCheck.enterKey",
+        "title": "Valkey Migration Check — ElastiCache Redis ties: Enter licence key",
+        "category": "Valkey Migration Check — ElastiCache Redis ties"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "valkey-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/valkey-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-30"
+  },
+  "icon": "icon.png"
+}
