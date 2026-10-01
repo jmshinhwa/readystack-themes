@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example.billing</groupId>
+  <artifactId>invoice-service</artifactId>
+  <version>2.4.1</version>
+
+  <properties>
+    <java.version>21</java.version>
+    <itext.version>9.2.0</itext.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>kernel</artifactId>
+      <version>${itext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>layout</artifactId>
+      <version>${itext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>forms</artifactId>
+      <version>${itext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>html2pdf</artifactId>
+      <version>6.2.0</version>
+    </dependency>
+    <!-- legacy statement module, still on iText 5 -->
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>itextpdf</artifactId>
+      <version>5.5.13</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>3.5.6</version>
+    </dependency>
+  </dependencies>
+</project>
