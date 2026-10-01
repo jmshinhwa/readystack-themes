@@ -2,7 +2,7 @@
   "name": "podman-migration-check",
   "displayName": "Podman Migration Check — Docker Desktop ties",
   "description": "Podman migration check: flags Docker Desktop-only lines (docker.sock, host.docker.internal, credsStore desktop, desktop-linux context, docker scout, ports below 1024, short image names) in compose, Do",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
