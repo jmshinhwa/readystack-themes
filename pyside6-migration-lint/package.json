@@ -2,7 +2,7 @@
   "name": "pyside6-migration-lint",
   "displayName": "PySide6 Migration Lint: PyQt5/PyQt6 Licence Gate",
   "description": "Flags PyQt5/PyQt6 imports (GPL v3 or a paid Riverbank licence) and the PyQt-only APIs that break under LGPL PySide6: pyqtSignal, pyqtSlot, uic.loadUi, QRegExp, exec_, sip. One fix per line.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
