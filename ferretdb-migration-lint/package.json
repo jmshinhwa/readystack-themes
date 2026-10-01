@@ -2,7 +2,7 @@
   "name": "ferretdb-migration-lint",
   "displayName": "FerretDB Migration Lint — MongoDB SSPL gate",
   "description": "FerretDB migration check: flags SSPL MongoDB server images in docker-compose, Helm and Dockerfiles, plus the commands FerretDB 2.7 does not implement (transactions, roles, profiler), with the fix for ",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
