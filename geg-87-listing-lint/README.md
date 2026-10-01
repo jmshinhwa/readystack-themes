@@ -59,7 +59,7 @@ contradicted by the kWh value.
 
 Full version: scan every listing template in the workspace or CI feed at once and write a dated
 audit record you keep as proof of what the ad said on the day it ran —
-https://buy.polar.sh/polar_cl_sOwHAKyyi7buuu6frpXCErjfL8UmizPvqNmPz0ptuox
+https://getreadystack.com/api/buy/cl/polar_cl_sOwHAKyyi7buuu6frpXCErjfL8UmizPvqNmPz0ptuox
 
 ## Fixtures
 
