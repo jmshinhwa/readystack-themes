@@ -2,7 +2,7 @@
   "name": "gke-extended-channel-fee-lint",
   "displayName": "GKE Extended Channel Fee Lint — Terraform",
   "description": "GKE Extended channel fee check for Terraform: flags google_container_cluster versions billed $0.50 per cluster-hour past end of standard support, forced-upgrade dates and Extended channel blockers.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
