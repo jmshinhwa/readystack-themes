@@ -2,7 +2,7 @@
   "name": "kani-kazei-shokuhin-1pct-lint-jp",
   "displayName": "消費税 簡易課税チェック（飲食料品1%特例対応）",
   "description": "売上帳CSVの税率と事業区分を、令和9年4月からの飲食料品1%引下げ案と簡易課税の計算特例（1%売上税額と同額控除・75%ルールは1%取引を除く）で検査し、納付税額の概算とずれを出します。",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
