@@ -2,7 +2,7 @@
   "name": "lockfile-due-diligence-lint",
   "displayName": "Lockfile Due Diligence",
   "description": "Flags install scripts, missing or sha1 integrity, http, git and off-registry tarballs in package-lock.json: the third-party component check behind EU CRA Art. 13(5). 8 rules, line numbers.",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
