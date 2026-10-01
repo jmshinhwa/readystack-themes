@@ -1,0 +1,252 @@
+[
+ {
+  "id": "gms-location",
+  "sev": "error",
+  "re": "com\\.google\\.android\\.gms[.:]play-services-location|libs\\.play\\.services\\.location",
+  "title": "Play Services Location",
+  "af": "NonFreeDep",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "android.location.LocationManager (platform API, no dependency) in the foss flavour; keep playImplementation(\"com.google.android.gms:play-services-location\") only in play",
+  "msg": "Play Services Location (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "gms-maps",
+  "sev": "error",
+  "re": "com\\.google\\.android\\.gms[.:]play-services-maps|libs\\.play\\.services\\.maps|com\\.google\\.maps\\.android",
+  "title": "Google Maps SDK",
+  "af": "NonFreeDep",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "implementation(\"org.osmdroid:osmdroid-android\") (Apache-2.0) or implementation(\"org.maplibre.gl:android-sdk\") (BSD-2) in the foss flavour",
+  "msg": "Google Maps SDK (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "gms-ads",
+  "sev": "error",
+  "re": "com\\.google\\.android\\.gms[.:]play-services-ads|com\\.google\\.android\\.ump|libs\\.play\\.services\\.ads",
+  "title": "AdMob / UMP consent SDK",
+  "af": "Ads",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "Remove from the foss flavour: apps built on AdMob are not found in the F-Droid repo at all",
+  "msg": "AdMob / UMP consent SDK (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "gms-auth",
+  "sev": "error",
+  "re": "com\\.google\\.android\\.gms[.:]play-services-auth|androidx\\.credentials:credentials-play-services-auth",
+  "title": "Google Sign-In (Play Services Auth)",
+  "af": "NonFreeDep",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "implementation(\"net.openid:appauth\") (Apache-2.0) for OAuth in the foss flavour; keep credentials-play-services-auth as playImplementation",
+  "msg": "Google Sign-In (Play Services Auth) (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "gms-shortcuts",
+  "sev": "error",
+  "re": "androidx\\.core:core-google-shortcuts",
+  "title": "core-google-shortcuts",
+  "af": "NonFreeDep",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "Drop it: androidx.core:core ShortcutManagerCompat works without the Google shortcuts bridge",
+  "msg": "core-google-shortcuts (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "gms",
+  "sev": "error",
+  "re": "com\\.google\\.android\\.gms[.:](?!oss-licenses-plugin|strict-version-matcher-plugin)|libs\\.play\\.services\\.|libs\\.gms\\.",
+  "title": "Google Play Services",
+  "af": "NonFreeDep",
+  "src": "F-Droid Inclusion Policy",
+  "fix": "Move to playImplementation(...) inside a play product flavour and add a foss flavour that builds without it",
+  "msg": "Google Play Services (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "firebase-messaging",
+  "sev": "error",
+  "re": "com(\\.google)?\\.firebase[.:]firebase-messaging|libs\\.firebase\\.messaging|com\\.onesignal:OneSignal|me\\.pushy|com\\.microsoft\\.appcenter:appcenter-push",
+  "title": "FCM / proprietary push",
+  "af": "NonFreeNet",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "implementation(\"org.unifiedpush.android:connector\") (UnifiedPush) in the foss flavour; keep FCM as playImplementation",
+  "msg": "FCM / proprietary push (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "crashlytics",
+  "sev": "error",
+  "re": "crashlytics|com\\.bugsense|com\\.crittercism|com\\.tencent\\.bugly",
+  "title": "Crashlytics / closed crash reporter",
+  "af": "Tracking",
+  "src": "F-Droid Inclusion Policy",
+  "fix": "implementation(\"ch.acra:acra-mail\") (ACRA, Apache-2.0), opt-in and off by default, or F-Droid adds the Tracking anti-feature",
+  "msg": "Crashlytics / closed crash reporter (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "firebase-analytics",
+  "sev": "error",
+  "re": "com(\\.google)?\\.firebase[.:]firebase-analytics|libs\\.firebase\\.analytics|com\\.flurry\\.android|com\\.umeng|com\\.baidu\\.mobstat|com\\.yandex\\.android(?!:authsdk)|com\\.hypertrack(?!:hyperlog)|com\\.facebook\\.android",
+  "title": "Analytics / tracker SDK",
+  "af": "Tracking",
+  "src": "F-Droid Inclusion Policy",
+  "fix": "Remove from the foss flavour: proprietary tracking and analytics libraries are forbidden in every F-Droid app",
+  "msg": "Analytics / tracker SDK (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "firebase",
+  "sev": "error",
+  "re": "com(\\.google)?\\.firebase[.:](?!firebase-jobdispatcher|geofire-java)|libs\\.firebase\\.",
+  "title": "Firebase",
+  "af": "NonFreeNet",
+  "src": "F-Droid Inclusion Policy",
+  "fix": "Move to playImplementation(...) in a play flavour; the foss flavour must build with no Firebase artifact",
+  "msg": "Firebase (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "google-services-plugin",
+  "sev": "warn",
+  "re": "com\\.google\\.gms[.:]google-services|libs\\.plugins\\.google\\.services|gms\\.google\\.services",
+  "title": "google-services Gradle plugin",
+  "af": "NonFreeNet",
+  "src": "F-Droid Inclusion Policy",
+  "fix": "Apply it only when the play flavour is built (it reads google-services.json for Firebase/GMS); the foss build needs neither",
+  "msg": "google-services Gradle plugin"
+ },
+ {
+  "id": "play-core",
+  "sev": "error",
+  "re": "com\\.google\\.android\\.play:(app-update|asset-delivery|core|feature-delivery|review)|androidx\\.navigation:navigation-dynamic-features|com\\.github\\.SanojPunchihewa:InAppUpdater|com\\.suddenh4x\\.ratingdialog:awesome-app-rating|libs\\.play\\.(app\\.update|review|core)",
+  "title": "Play Core (in-app update / review / delivery)",
+  "af": "NonFreeDep",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "Move to playImplementation(...); on F-Droid the client itself delivers updates, so the foss flavour needs no in-app updater",
+  "msg": "Play Core (in-app update / review / delivery) (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "billing",
+  "sev": "error",
+  "re": "com\\.android\\.billingclient|com\\.google\\.androidbrowserhelper:billing|com\\.anjlab\\.android\\.iab\\.v3:library|com\\.github\\.penn5:donations|com\\.revenuecat\\.purchases|com\\.paypal|libs\\.billing",
+  "title": "Play Billing / closed payment SDK",
+  "af": "NonFreeNet",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "Move to playImplementation(...); in the foss flavour link a donation page (funding.json / FUNDING.yml)",
+  "msg": "Play Billing / closed payment SDK (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "install-referrer",
+  "sev": "error",
+  "re": "com\\.android\\.installreferrer",
+  "title": "Play Install Referrer",
+  "af": "NonFreeDep",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "Move to playImplementation(...) or remove: installs from F-Droid carry no Play referrer",
+  "msg": "Play Install Referrer (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "ima",
+  "sev": "error",
+  "re": "com\\.google\\.ads|com\\.google\\.android\\.exoplayer:extension-ima|androidx\\.media3:media3-exoplayer-ima",
+  "title": "Google IMA ads SDK",
+  "af": "Ads",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "Remove from the foss flavour; keep implementation(\"androidx.media3:media3-exoplayer\") without the IMA extension",
+  "msg": "Google IMA ads SDK (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "mlkit",
+  "sev": "error",
+  "re": "com\\.google\\.mlkit|io\\.github\\.g00fy2\\.quickie",
+  "title": "ML Kit",
+  "af": "NonFreeDep",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "implementation(\"com.journeyapps:zxing-android-embedded\") (Apache-2.0) for barcode scanning in the foss flavour",
+  "msg": "ML Kit (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "google-libraries",
+  "sev": "error",
+  "re": "com\\.google\\.android\\.libraries(?!\\.mapsplatform\\.secrets-gradle-plugin)",
+  "title": "Google Android Libraries (Places etc.)",
+  "af": "NonFreeNet",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "Move to playImplementation(...); for place search use a free geocoder such as Nominatim over HTTPS",
+  "msg": "Google Android Libraries (Places etc.) (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "mapbox",
+  "sev": "error",
+  "re": "com\\.mapbox(?!\\.mapboxsdk:mapbox-sdk-(services|geojson|turf):[3-5])",
+  "title": "Mapbox SDK (v2+ licence)",
+  "af": "NonFreeNet",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "implementation(\"org.maplibre.gl:android-sdk\") (MapLibre, BSD-2), the open fork of Mapbox GL Native",
+  "msg": "Mapbox SDK (v2+ licence) (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "aws",
+  "sev": "error",
+  "re": "com\\.amazonaws",
+  "title": "AWS Android SDK",
+  "af": "NonFreeNet",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "Move to playImplementation(...) or call the service REST API over plain OkHttp in the foss flavour",
+  "msg": "AWS Android SDK (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "objectbox",
+  "sev": "error",
+  "re": "io\\.objectbox:objectbox-gradle-plugin",
+  "title": "ObjectBox Gradle plugin",
+  "af": "NonFreeDep",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "implementation(\"androidx.room:room-runtime\") (Apache-2.0) as the on-device database",
+  "msg": "ObjectBox Gradle plugin (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "other-nonfree",
+  "sev": "error",
+  "re": "com\\.github\\.junrar:junrar|7-Zip-JBinding-4Android|MathParser\\.org-mXparser:[5-9]|com\\.geetest|com\\.cloudrail|com\\.garmin\\.connectiq:ciq-companion-app-sdk|com\\.google\\.android\\.(support|wearable):wearable|io\\.github\\.sinaweibosdk|fingerprintidentify|FingerprintIdentify",
+  "title": "Library listed NonFree by fdroidserver",
+  "af": "NonFreeDep",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "Replace with a FLOSS library or move to a non-F-Droid flavour; fdroidserver's scanner rejects this artifact",
+  "msg": "Library listed NonFree by fdroidserver (non-free, forbidden by the F-Droid Inclusion Policy)"
+ },
+ {
+  "id": "jcenter",
+  "sev": "warn",
+  "re": "\\bjcenter\\s*\\(\\s*\\)",
+  "title": "jcenter() repository",
+  "af": "",
+  "src": "fdroidserver scanner.py SUSS_DEFAULT",
+  "fix": "mavenCentral(): jcenter is not in fdroidserver's allowed repository list",
+  "msg": "jcenter() repository"
+ },
+ {
+  "id": "repo-unknown",
+  "sev": "warn",
+  "doc": "repo",
+  "title": "Maven repo outside the trusted list",
+  "af": "",
+  "src": "F-Droid Inclusion Policy",
+  "fix": "Use Maven Central, Google Maven, OSS Sonatype, OSS JFrog, JitPack.io or Clojars, or build the library from source",
+  "msg": "Maven repo outside the trusted list"
+ },
+ {
+  "id": "no-foss-flavour",
+  "sev": "warn",
+  "doc": "flavour",
+  "title": "No foss product flavour",
+  "af": "",
+  "src": "F-Droid Inclusion Policy",
+  "fix": "productFlavors { create(\"foss\") { dimension = \"store\" }; create(\"play\") { dimension = \"store\" } } and move every item above to playImplementation",
+  "msg": "No foss product flavour"
+ },
+ {
+  "id": "isolated",
+  "sev": "info",
+  "doc": "isolated",
+  "title": "Non-free artifact isolated in a flavour",
+  "af": "",
+  "src": "F-Droid Inclusion Policy",
+  "fix": "None needed if the foss flavour builds: point F-Droid's build recipe at gradle: [foss]",
+  "msg": "Non-free artifact isolated in a flavour"
+ }
+]
