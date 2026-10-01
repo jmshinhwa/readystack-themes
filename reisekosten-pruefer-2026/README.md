@@ -36,7 +36,7 @@ Abrechnung öffnen, Befehlspalette, `Reisekosten: Datei prüfen`. Jede Feststell
 
 Kostenlos: die geöffnete Abrechnung vollständig prüfen, alle 15 Checks, jede Feststellung mit Zeilennummer, Betrag und Paragraf.
 
-Vollversion: ganzer Ordner auf einmal plus Prüfprotokoll als Datei für die Betriebsprüfungsakte (Export, Team-Lizenz). Lizenzschlüssel und Bezug: https://buy.polar.sh/polar_cl_UqSgVzrLBeIaOMlZpRX9ZiCx6qWkGsBCsteM60CbCPh
+Vollversion: ganzer Ordner auf einmal plus Prüfprotokoll als Datei für die Betriebsprüfungsakte (Export, Team-Lizenz). Lizenzschlüssel und Bezug: https://getreadystack.com/api/buy/cl/polar_cl_UqSgVzrLBeIaOMlZpRX9ZiCx6qWkGsBCsteM60CbCPh
 
 Maßstab: eine Steuerkanzlei rechnet dieselbe Durchsicht nach StBVV-Zeitgebühr ab, 30 bis 70 Euro je angefangene halbe Stunde.
 
