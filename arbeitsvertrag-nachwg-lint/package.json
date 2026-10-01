@@ -2,7 +2,7 @@
   "name": "arbeitsvertrag-nachwg-lint",
   "displayName": "Arbeitsvertrag prüfen – NachwG Lint",
   "description": "Arbeitsvertrag-Vorlagen prüfen: Pflichtangaben nach §2 NachwG, Auslandseinsatz und EU-Entsendung, Kündigung nur schriftlich (§623 BGB), Klagefrist drei Wochen, Urlaub und Mindestlohn 2026/2027.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
