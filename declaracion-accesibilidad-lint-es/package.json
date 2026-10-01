@@ -2,7 +2,7 @@
   "name": "declaracion-accesibilidad-lint-es",
   "displayName": "Declaración de Accesibilidad Lint (RD 1112/2018)",
   "description": "Revisa la declaración de accesibilidad de una web pública española contra el art. 15 del RD 1112/2018 y el modelo UE 2018/1523: fecha anual, plazo de 20 días hábiles, reclamación y contenido no accesi",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
