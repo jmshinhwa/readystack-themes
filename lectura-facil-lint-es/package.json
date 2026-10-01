@@ -2,7 +2,7 @@
   "name": "lectura-facil-lint-es",
   "displayName": "Accesibilidad cognitiva: lint de lectura fácil",
   "description": "Revisa guías y formularios en Markdown con 12 reglas de lectura fácil y lenguaje claro (RD 707/2026, UNE 153101). Cada fallo con su línea y cómo arreglarlo. Vigor: 2027-01-02.",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
