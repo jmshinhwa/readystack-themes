@@ -1,0 +1,33 @@
+# setup.py for "tidyframe" -- the file this project still builds from
+import os
+from setuptools import setup, find_packages
+
+here = os.getcwd()
+with open(os.path.join(here, "README.md")) as f:
+    readme = f.read()
+
+setup(
+    name="tidyframe",
+    version="2.4.1",
+    description="Tidy helpers for pandas frames",
+    long_description=readme,
+    long_description_content_type="text/markdown",
+    author="Dana Example",
+    author_email="dana@example.org",
+    url="https://github.com/example/tidyframe",
+    license="MIT",
+    packages=find_packages(exclude=["tests"]),
+    package_dir={"": "src"},
+    include_package_data=True,
+    package_data={"tidyframe": ["schemas/*.json"]},
+    data_files=[("share/man/man1", ["docs/tidyframe.1"])],
+    python_requires=">=3.8",
+    setup_requires=["wheel"],
+    install_requires=["pandas>=2.0", "click>=8"],
+    extras_require={"test": ["pytest>=7"], "docs": ["sphinx"]},
+    entry_points={
+        "console_scripts": ["tidyframe=tidyframe.cli:main"],
+        "pandas_plugins": ["tidy=tidyframe.plugin:register"],
+    },
+    classifiers=["License :: OSI Approved :: MIT License"],
+)
