@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.play-release-blocker-lint</id>
+  <name>Google Play Release Blocker Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds the lines that make Google Play reject your release - target API below 36, Billing Library below 8, 4 KB-only native libs - and prints the date each gate closed.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Google Play Release Blocker Lint: Check This File</b>. Each finding appears on its line with the fix. 31 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/play-release-blocker-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/play-release-blocker-lint">getreadystack.com/tools/play-release-blocker-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_play_release_blocker_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.play-release-blocker-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.play-release-blocker-lint.check" class="com.getreadystack.p_play_release_blocker_lint.RsCheckAction"
+            text="Google Play Release Blocker Lint: Check This File" description="Run Google Play Release Blocker Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
