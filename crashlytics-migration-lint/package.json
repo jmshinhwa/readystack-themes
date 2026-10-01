@@ -2,7 +2,7 @@
   "name": "crashlytics-migration-lint",
   "displayName": "Crashlytics Migration Lint for App Center",
   "description": "Finds leftover Visual Studio App Center SDK calls (retired 2025-03-31, Analytics & Diagnostics ended 2026-06-30) in C#, Kotlin, Java, Swift and React Native code and names the Firebase Crashlytics rep",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
