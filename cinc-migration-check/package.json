@@ -2,7 +2,7 @@
   "name": "cinc-migration-check",
   "displayName": "Cinc Migration Check: Chef Infra licence gate lint",
   "description": "Cinc migration check for Chef users: flags lines that install Chef Infra Client 15+, accept the Chef licence or run Chef Infra Server (open-source EOL 2026-11-30), with the Cinc replacement.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
