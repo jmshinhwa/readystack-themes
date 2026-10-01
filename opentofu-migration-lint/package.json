@@ -2,7 +2,7 @@
   "name": "opentofu-migration-lint",
   "displayName": "OpenTofu Migration Lint — Terraform",
   "description": "OpenTofu migration check for Terraform files: flags HCP Terraform cloud/remote backends, app.terraform.io modules, tfe resources, BSL Terraform 1.6+ pins and CI steps, with the OpenTofu fix.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
