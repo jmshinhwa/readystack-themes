@@ -2,7 +2,7 @@
   "name": "pekko-migration-gate",
   "displayName": "Pekko Migration Gate — Akka BSL licence check",
   "description": "Pekko migration check for build.sbt, pom.xml, build.gradle and application.conf: flags Akka jars still under BSL 1.1 on a given date, akka.* config, akka:// seeds and ports Pekko ignores.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
