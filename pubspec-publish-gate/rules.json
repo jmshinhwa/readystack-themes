@@ -1,0 +1,12 @@
+[
+ {"id": "path-dependency", "sev": "error", "title": "path dependency blocks upload", "fix": "Replace `path:` with a hosted constraint, e.g. `my_pkg: ^1.2.0`, after publishing my_pkg first.", "source": "https://dart.dev/tools/pub/dependencies#path-packages"},
+ {"id": "git-dependency", "sev": "error", "title": "git dependency blocks upload", "fix": "Replace `git:` with a hosted constraint from pub.dev, e.g. `my_pkg: ^1.2.0`.", "source": "https://dart.dev/tools/pub/dependencies#git-packages"},
+ {"id": "dependency-overrides", "sev": "warn", "title": "dependency_overrides are ignored by every user of the package", "fix": "Delete the dependency_overrides block before publishing and widen the real constraint under dependencies instead.", "source": "https://dart.dev/tools/pub/dependencies#dependency-overrides"},
+ {"id": "publish-to-none", "sev": "warn", "title": "publish_to: none prevents publication", "fix": "Remove `publish_to: none` if this package is meant for pub.dev.", "source": "https://dart.dev/tools/pub/pubspec#publish_to"},
+ {"id": "name-invalid", "sev": "error", "title": "package name must be [a-z0-9_] and not start with a digit", "fix": "Rename to lowercase with underscores, e.g. `geo_helpers`.", "source": "https://dart.dev/tools/pub/pubspec#name"},
+ {"id": "version-format", "sev": "error", "title": "version must be three numbers separated by dots", "fix": "Write a full semantic version, e.g. `version: 1.4.0`.", "source": "https://dart.dev/tools/pub/pubspec#version"},
+ {"id": "description-length", "sev": "warn", "title": "description should be 60 to 180 characters", "fix": "Write one plain-text sentence of 60-180 characters saying what the package does.", "source": "https://dart.dev/tools/pub/pubspec#description"},
+ {"id": "sdk-constraint-missing", "sev": "error", "title": "environment: sdk constraint is required", "fix": "Add `environment:` with `  sdk: ^3.0.0` (or your real minimum).", "source": "https://dart.dev/tools/pub/pubspec#sdk-constraints"},
+ {"id": "repository-missing", "sev": "info", "title": "no homepage or repository", "fix": "Add `repository: https://github.com/<you>/<pkg>` so pub.dev links the source and issue tracker.", "source": "https://dart.dev/tools/pub/pubspec#repository"},
+ {"id": "topics-invalid", "sev": "warn", "title": "topics: at most 5, each 2-32 chars, lowercase letters, digits and single hyphens, starting with a letter", "fix": "Keep 5 topics or fewer, e.g. `topics: [maps, geolocation]`.", "source": "https://dart.dev/tools/pub/pubspec#topics"}
+]
