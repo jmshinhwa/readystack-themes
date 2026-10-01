@@ -1,0 +1,58 @@
+{
+  "name": "fdroid-inclusion-gate",
+  "displayName": "F-Droid Inclusion Gate - non-free Gradle dependency map",
+  "description": "F-Droid migration check for build.gradle: flags Play Services, Firebase, Crashlytics, Play Billing and tracker SDKs the Inclusion Policy forbids, with the FOSS replacement line for each.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "f-droid",
+    "fdroid",
+    "foss",
+    "google play services",
+    "firebase",
+    "gradle",
+    "android",
+    "unifiedpush",
+    "microg"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "fdroidGate.checkFile",
+        "title": "F-Droid Inclusion Gate - non-free Gradle dependency map: Check this file",
+        "category": "F-Droid Inclusion Gate - non-free Gradle dependency map"
+      },
+      {
+        "command": "fdroidGate.checkWorkspace",
+        "title": "F-Droid Inclusion Gate - non-free Gradle dependency map: Sweep workspace and write report (licence)",
+        "category": "F-Droid Inclusion Gate - non-free Gradle dependency map"
+      },
+      {
+        "command": "fdroidGate.enterKey",
+        "title": "F-Droid Inclusion Gate - non-free Gradle dependency map: Enter licence key",
+        "category": "F-Droid Inclusion Gate - non-free Gradle dependency map"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "fdroid-inclusion-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/fdroid-inclusion-gate",
+  "readystack": {
+    "rulesDate": "2026-09-30"
+  },
+  "icon": "icon.png"
+}
