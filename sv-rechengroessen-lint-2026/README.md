@@ -53,7 +53,7 @@ Frei: die geöffnete Datei, alle 12 Regeln, jeder Fund mit Zeile, altem Wert und
 
 Vollversion: derselbe Lauf über das ganze Projekt — alle Konfigurationsdateien auf einmal —
 und ein datierter Prüfbericht als Datei, den man der Revision, der Betriebsprüfung oder dem
-Steuerberater vorlegen kann. https://buy.polar.sh/polar_cl_k1patBdgF4uEFoIlelfb7vl3l5byXNJS0QMyy4fdTtd
+Steuerberater vorlegen kann. https://getreadystack.com/api/buy/cl/polar_cl_k1patBdgF4uEFoIlelfb7vl3l5byXNJS0QMyy4fdTtd
 
 Maßstab: dieselbe Durchsicht als Zeitgebühr beim Steuerberater kostet nach § 13 StBVV
 30 bis 75 EUR je angefangene halbe Stunde.
