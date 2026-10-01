@@ -2,7 +2,7 @@
   "name": "docker-hub-pull-limit-lint",
   "displayName": "Docker Hub Pull Limit Lint",
   "description": "Finds Docker Hub pulls in GitHub Actions, docker-compose, GitLab CI, Kubernetes and Dockerfiles that run without login — incl. service containers pulled before your docker/login-action step.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
