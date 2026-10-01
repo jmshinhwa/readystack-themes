@@ -2,7 +2,7 @@
   "name": "dependency-checker-eol-dates",
   "displayName": "Dependency Checker — EOL Dates",
   "description": "Dependency checker for package.json, composer.json and requirements.txt: flags Angular, Express 4, ESLint 8, Vue 2, Laravel and Django versions past or near their published end-of-support date.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
