@@ -2,7 +2,7 @@
   "name": "yosys-migration-check",
   "displayName": "Yosys Migration Check - Vivado-only blockers",
   "description": "Yosys migration check for Verilog/SystemVerilog: flags Vivado-only XPM macros, IP-core instances, encrypted IP, ILA/VIO debug cores and glbl references before you leave a Vivado licence.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
