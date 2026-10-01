@@ -1,0 +1,482 @@
+[
+ {
+  "id": "SP01",
+  "check": "setuptools_setup_py",
+  "files": [
+   "setup.py"
+  ],
+  "re": "^\\s*(from\\s+(setuptools|distutils)[\\w.]*\\s+import|import\\s+(setuptools|distutils))",
+  "sev": "warn",
+  "msg": "setup.py drives this build; flit_core reads no setup.py",
+  "fix": "delete setup.py; in pyproject.toml write [build-system] requires = [\"flit_core >=3.11,<5\"] and build-backend = \"flit_core.buildapi\"",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP02",
+  "check": "compiled_extension",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\bext_modules\\s*=|\\bExtension\\s*\\(|\\bcythonize\\s*\\(|\\bPybind11Extension\\b",
+  "sev": "error",
+  "msg": "BLOCKER: compiled extension; Flit builds pure Python packages only (\"If your package needs a build step, you won't be able to use Flit\")",
+  "fix": "keep setuptools for this package, or split the pure-Python part into its own Flit package",
+  "source": "https://flit.pypa.io/en/stable/rationale.html"
+ },
+ {
+  "id": "SP03",
+  "check": "custom_cmdclass",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\bcmdclass\\s*=",
+  "sev": "error",
+  "msg": "BLOCKER: custom build command (cmdclass); flit_core runs no build hooks",
+  "fix": "move the generated file into the source tree before the build, or keep setuptools",
+  "source": "https://flit.pypa.io/en/stable/rationale.html"
+ },
+ {
+  "id": "SP04",
+  "check": "setup_requires",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\bsetup_requires\\s*=",
+  "sev": "warn",
+  "msg": "setup_requires has no Flit equivalent",
+  "fix": "list build tools in [build-system] requires; runtime needs go in [project] dependencies",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP05",
+  "check": "install_requires",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\binstall_requires\\s*=",
+  "sev": "warn",
+  "msg": "install_requires",
+  "fix": "[project] dependencies = [\"requests >=2.6\", ...] (same specifiers and ; markers)",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP06",
+  "check": "extras_require",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\bextras_require\\s*=|^\\s*\\[options\\.extras_require\\]",
+  "sev": "warn",
+  "msg": "extras_require",
+  "fix": "[project.optional-dependencies] test = [\"pytest >=2.7.3\"]",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP07",
+  "check": "console_scripts",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "console_scripts",
+  "sev": "warn",
+  "msg": "console_scripts entry point",
+  "fix": "[project.scripts] mycmd = \"mypkg:main\"",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP08",
+  "check": "gui_scripts",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "gui_scripts",
+  "sev": "warn",
+  "msg": "gui_scripts entry point",
+  "fix": "[project.gui-scripts] mygui = \"mypkg.gui:main\"",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP09",
+  "check": "entry_points",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\bentry_points\\s*=|^\\s*\\[options\\.entry_points\\]",
+  "sev": "info",
+  "msg": "entry_points block",
+  "fix": "other groups become [project.entry-points.\"group.name\"] (quote a dotted group); console_scripts/gui_scripts go to [project.scripts]/[project.gui-scripts]",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP10",
+  "check": "data_files",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\bdata_files\\s*=",
+  "sev": "warn",
+  "msg": "data_files installs files outside the package",
+  "fix": "put them under data/ and add [tool.flit.external-data] directory = \"data\" (flit_core >=3.7)",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP11",
+  "check": "package_data",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\b(package_data|include_package_data|exclude_package_data)\\s*=|^\\s*\\[options\\.package_data\\]",
+  "sev": "info",
+  "msg": "package_data / include_package_data",
+  "fix": "delete it: Flit includes data files inside the package folder automatically",
+  "source": "https://flit.pypa.io/en/stable/rationale.html"
+ },
+ {
+  "id": "SP12",
+  "check": "package_dir",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\bpackage_dir\\s*=",
+  "sev": "info",
+  "msg": "package_dir",
+  "fix": "delete it: Flit finds the package next to pyproject.toml or in src/; if the import name differs from the PyPI name add [tool.flit.module] name = \"importname\"",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP13",
+  "check": "find_packages",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\bfind_(namespace_)?packages\\s*\\(|^\\s*packages\\s*=",
+  "sev": "info",
+  "msg": "packages / find_packages()",
+  "fix": "delete it: name only the top-level import package; Flit includes its subpackages automatically",
+  "source": "https://flit.pypa.io/en/stable/rationale.html"
+ },
+ {
+  "id": "SP14",
+  "check": "static_version",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "^\\s*version\\s*=\\s*(['\\\"]|[\\d])",
+  "sev": "info",
+  "msg": "version set in setup metadata",
+  "fix": "[project] version = \"1.2.3\", or drop it and add dynamic = [\"version\"] so Flit reads {DV} from the package",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP15",
+  "check": "attr_version",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "version\\s*=\\s*attr\\s*:|version\\s*=\\s*(get_version|read_version)\\s*\\(",
+  "sev": "info",
+  "msg": "version read from code at build time",
+  "fix": "dynamic = [\"version\"]; Flit reads {DV} from the top-level module itself",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP16",
+  "check": "scm_version",
+  "files": [
+   "setup.py",
+   "setup.cfg",
+   "pyproject.toml"
+  ],
+  "re": "use_scm_version|setuptools_scm|setuptools-scm|versioneer",
+  "sev": "error",
+  "msg": "BLOCKER: version from git tags (setuptools_scm/versioneer); Flit dynamic accepts only version, description, import-names, import-namespaces",
+  "fix": "write the version into {DV} in the package and add dynamic = [\"version\"]",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP17",
+  "check": "python_requires",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\bpython_requires\\s*=",
+  "sev": "warn",
+  "msg": "python_requires",
+  "fix": "[project] requires-python = \">=3.8\" (flit_core 4 itself needs Python 3.8+ to build)",
+  "source": "https://flit.pypa.io/en/stable/history.html"
+ },
+ {
+  "id": "SP18",
+  "check": "long_description",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\blong_description\\s*=|\\blong_description_content_type\\s*=",
+  "sev": "warn",
+  "msg": "long_description",
+  "fix": "[project] readme = \"README.md\" (.md, .rst or .txt picks the content type)",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP19",
+  "check": "legacy_license",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "^\\s*license(_files?)?\\s*=",
+  "sev": "warn",
+  "msg": "license set in setup metadata",
+  "fix": "[project] license = \"MIT\" (a valid SPDX expression, flit_core >=3.11) and license-files = [\"LICENSE*\"]",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP20",
+  "check": "script_files",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "^\\s*scripts\\s*=",
+  "sev": "warn",
+  "msg": "scripts= copies raw script files; Flit has no script-files field",
+  "fix": "turn each script into a function and add [project.scripts] name = \"mypkg.cli:main\"",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP21",
+  "check": "author_fields",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\b(author|author_email|maintainer|maintainer_email)\\s*=",
+  "sev": "info",
+  "msg": "author / author_email",
+  "fix": "[project] authors = [{ name = \"Jane Doe\", email = \"jane@example.org\" }]",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP22",
+  "check": "url_fields",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\b(url|project_urls|download_url)\\s*=",
+  "sev": "info",
+  "msg": "url / project_urls",
+  "fix": "[project.urls] Source = \"https://github.com/you/pkg\"",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP23",
+  "check": "classifiers",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "\\bclassifiers\\s*=",
+  "sev": "info",
+  "msg": "classifiers",
+  "fix": "[project] classifiers = [...] (add \"Private :: Do Not Upload\" to block an accidental PyPI upload)",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SP24",
+  "check": "name_description",
+  "files": [
+   "setup.py",
+   "setup.cfg"
+  ],
+  "re": "^\\s*(name|description)\\s*=",
+  "sev": "info",
+  "msg": "name / description",
+  "fix": "[project] name = \"tidyframe\"; description = \"...\" or dynamic = [\"description\"] to take the module docstring",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "SC01",
+  "check": "setup_cfg_metadata",
+  "files": [
+   "setup.cfg"
+  ],
+  "re": "^\\s*\\[(metadata|options)\\]",
+  "sev": "warn",
+  "msg": "setup.cfg [metadata]/[options] section",
+  "fix": "move each key into the standard [project] table of pyproject.toml, then delete setup.cfg",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "PP01",
+  "check": "non_flit_backend",
+  "files": [
+   "pyproject.toml"
+  ],
+  "re": "^\\s*build-backend\\s*=\\s*\\\"(?!flit_core\\.buildapi)",
+  "sev": "warn",
+  "msg": "build-backend is not flit_core",
+  "fix": "build-backend = \"flit_core.buildapi\"",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "PP02",
+  "check": "setuptools_requires",
+  "files": [
+   "pyproject.toml"
+  ],
+  "re": "^\\s*requires\\s*=.*\\b(setuptools|wheel|hatchling|poetry-core|poetry_core|pdm-backend)\\b",
+  "sev": "warn",
+  "msg": "[build-system] requires pulls another backend",
+  "fix": "requires = [\"flit_core >=3.11,<5\"]",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "PP03",
+  "check": "tool_flit_metadata",
+  "files": [
+   "pyproject.toml"
+  ],
+  "re": "^\\s*\\[tool\\.flit\\.metadata(\\.[\\w-]+)?\\]",
+  "sev": "error",
+  "msg": "[tool.flit.metadata] is no longer read by flit_core 4.0 (on PyPI 2026-08-04)",
+  "fix": "move the fields into [project], or pin requires = [\"flit_core >=2,<4\"]",
+  "source": "https://flit.pypa.io/en/stable/history.html"
+ },
+ {
+  "id": "PP04",
+  "check": "tool_flit_scripts",
+  "files": [
+   "pyproject.toml"
+  ],
+  "re": "^\\s*\\[tool\\.flit\\.(scripts|entrypoints[\\w.\\\"-]*)\\]",
+  "sev": "error",
+  "msg": "old Flit 3 scripts/entrypoints table (belongs to the [tool.flit.metadata] layout)",
+  "fix": "[project.scripts] and [project.entry-points.\"group\"]",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "PP05",
+  "check": "flit_core_no_upper",
+  "files": [
+   "pyproject.toml"
+  ],
+  "re": null,
+  "sev": "warn",
+  "msg": "flit_core requirement has no <5 upper bound",
+  "fix": "requires = [\"flit_core >=3.11,<5\"] (\"all packages should specify <5\")",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "PP06",
+  "check": "flit_core_lt4",
+  "files": [
+   "pyproject.toml"
+  ],
+  "re": null,
+  "sev": "warn",
+  "msg": "flit_core <4 pin on a [project]-table package",
+  "fix": "change <4 to <5: flit_core 4.0 only drops [tool.flit.metadata]; [project] packages build unchanged",
+  "source": "https://flit.pypa.io/en/stable/history.html"
+ },
+ {
+  "id": "PP07",
+  "check": "spdx_needs_311",
+  "files": [
+   "pyproject.toml"
+  ],
+  "re": null,
+  "sev": "error",
+  "msg": "license = \"SPDX\" string needs flit_core >=3.11 but the requirement allows older",
+  "fix": "requires = [\"flit_core >=3.11,<5\"]",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "PP08",
+  "check": "spdx_with_needs_41",
+  "files": [
+   "pyproject.toml"
+  ],
+  "re": null,
+  "sev": "error",
+  "msg": "license expression with WITH needs flit_core >=4.1 (released 2026-09-16)",
+  "fix": "requires = [\"flit_core >=4.1,<5\"]",
+  "source": "https://flit.pypa.io/en/stable/history.html"
+ },
+ {
+  "id": "PP09",
+  "check": "import_names_needs_4",
+  "files": [
+   "pyproject.toml"
+  ],
+  "re": null,
+  "sev": "error",
+  "msg": "import-names / import-namespaces need flit_core >=4",
+  "fix": "requires = [\"flit_core >=4,<5\"]",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "PP10",
+  "check": "bad_dynamic",
+  "files": [
+   "pyproject.toml"
+  ],
+  "re": null,
+  "sev": "error",
+  "msg": "dynamic lists a field Flit cannot fill (only version, description, import-names, import-namespaces)",
+  "fix": "write that field out in [project]",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "PP11",
+  "check": "console_scripts_group",
+  "files": [
+   "pyproject.toml"
+  ],
+  "re": "^\\s*\\[project\\.entry-points\\.\\\"?(console_scripts|gui_scripts)\\\"?\\]",
+  "sev": "error",
+  "msg": "[project.entry-points.console_scripts] is not allowed",
+  "fix": "[project.scripts] (or [project.gui-scripts])",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "PP12",
+  "check": "tool_setuptools",
+  "files": [
+   "pyproject.toml"
+  ],
+  "re": "^\\s*\\[tool\\.setuptools[\\w.\\\"-]*\\]",
+  "sev": "info",
+  "msg": "[tool.setuptools] table has no effect under flit_core",
+  "fix": "package-data: delete (automatic); packages.find/package-dir: [tool.flit.module] name = \"importname\"; data-files: [tool.flit.external-data]",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ },
+ {
+  "id": "PP13",
+  "check": "tool_hatch_poetry",
+  "files": [
+   "pyproject.toml"
+  ],
+  "re": "^\\s*\\[tool\\.(hatch|poetry)[\\w.\\\"-]*\\]",
+  "sev": "info",
+  "msg": "[tool.hatch]/[tool.poetry] table is ignored by flit_core",
+  "fix": "dependencies/scripts go into [project]; build.targets.sdist include/exclude becomes [tool.flit.sdist] include/exclude",
+  "source": "https://flit.pypa.io/en/stable/pyproject_toml.html"
+ }
+]
