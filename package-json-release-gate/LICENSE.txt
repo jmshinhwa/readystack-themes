@@ -1,0 +1,15 @@
+npm publish package.json gate: engines & SPDX — Licence
+
+Free scope
+  Lists every line in package.json that still pins an end-of-life Node line or blocks npm publish --provenance, with the exact replacement line for each. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  A dated release report (Markdown) of every finding and its fix line, saved for the release ticket or audit file. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
