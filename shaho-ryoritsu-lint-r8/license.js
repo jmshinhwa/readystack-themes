@@ -8,7 +8,7 @@ const GRACE_MS = 30 * 24 * 3600 * 1000;   // 검증 성공 뒤 30일은 오프�
 const RECHECK_MS = 7 * 24 * 3600 * 1000;  // 7일마다 다시 묻는다 (환불·해지가 반영되도록)
 
 const ALL_BENEFIT_ID = '22692551-5203-4467-b1a3-e33cdba6589d';   // s149 2026-09-17 — 팀 키(전 린터 한 키 · Polar benefit) · 상품 benefit 다음에 한 번 더 묻는다
-const TEAM_URL = 'https://getreadystack.com/api/buy/team';   // s160 2026-09-24 — 팀 키 결제($149 once · 전 린터 · CI 포함) · 키 판 셋째 버튼 (비면 버튼 없음)
+const TEAM_URL = 'https://getreadystack.com/api/buy/cl/polar_cl_l6iN1uWt0FwWu7tBsczD0jWpP2vxFM54Wdwqb3KPi1G';   // s160 2026-09-24 — 팀 키 결제($149 once · 전 린터 · CI 포함) · 키 판 셋째 버튼 (비면 버튼 없음)
 // s160 — 팀 버튼 글은 손님의 VS Code 화면 언어로 (우리 5개국어 · 없으면 영어)
 const TEAM_T = { en: 'Team key — $149 once, every linter', de: 'Team-Schlüssel — $149 einmalig, alle Linter', ja: 'チームキー — $149 買い切り・全リンター',
   es: 'Clave de equipo — $149 pago único, todos los linters', pt: 'Chave de equipe — US$ 149 uma vez, todos os linters' };
