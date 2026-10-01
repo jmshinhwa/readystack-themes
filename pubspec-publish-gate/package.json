@@ -1,0 +1,57 @@
+{
+  "name": "pubspec-publish-gate",
+  "displayName": "pubspec Publish Gate - pub.dev pre-publish check",
+  "description": "Checks pubspec.yaml before dart pub publish: path and git dependencies pub.dev refuses, dependency_overrides your users never get, invalid name/version, description outside 60-180 chars.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "pubspec",
+    "pub.dev",
+    "dart pub publish",
+    "flutter package",
+    "dependency_overrides",
+    "dart",
+    "flutter",
+    "release"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pubspecGate.checkFile",
+        "title": "pubspec Publish Gate - pub.dev pre-publish check: Check this file",
+        "category": "pubspec Publish Gate - pub.dev pre-publish check"
+      },
+      {
+        "command": "pubspecGate.checkWorkspace",
+        "title": "pubspec Publish Gate - pub.dev pre-publish check: Sweep workspace and write report (licence)",
+        "category": "pubspec Publish Gate - pub.dev pre-publish check"
+      },
+      {
+        "command": "pubspecGate.enterKey",
+        "title": "pubspec Publish Gate - pub.dev pre-publish check: Enter licence key",
+        "category": "pubspec Publish Gate - pub.dev pre-publish check"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "pubspec-publish-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/pubspec-publish-gate",
+  "readystack": {
+    "rulesDate": "2026-09-30"
+  },
+  "icon": "icon.png"
+}
