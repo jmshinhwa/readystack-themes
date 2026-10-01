@@ -1,0 +1,13 @@
+"""Invoice export worker - runs behind the customer portal."""
+import fitz
+from pathlib import Path
+
+
+def export(path: str, out_dir: str) -> dict:
+    doc = fitz.open(path)
+    text = "".join(page.get_text() for page in doc)
+    thumb = doc[0].get_pixmap(dpi=110)
+    thumb.save(str(Path(out_dir) / "page1.png"))
+    hits = doc[-1].search_for("Total due")
+    tables = doc[-1].find_tables()
+    return {"text": text, "hits": len(hits), "tables": len(tables.tables)}
