@@ -2,7 +2,7 @@
   "name": "js-licence-key-gate",
   "displayName": "JS Licence Key Gate: GPL & Eval Keys",
   "description": "Flags GPL and evaluation licence keys and missing commercial keys for Handsontable, TinyMCE, CKEditor 5, FullCalendar, AG Grid, MUI X and Syncfusion in closed-source JS/TS code.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
