@@ -24,7 +24,7 @@ Web version (same engine, runs in the browser, nothing uploaded): https://getrea
 | rp-harvest-price-date | revenue protection unit without a harvest price release date (claim date unknown) | section 14(e)(3)(ii) |
 | ambiguous-date | a date such as 07/08/2026 instead of 2026-07-08 | ISO 8601 |
 
-Source: 7 CFR 457.8, Common Crop Insurance Policy Basic Provisions, section 14 "Duties in the Event of Damage, Loss, Abandonment, Destruction, or Alternative Use of Crop or Acreage" (eCFR). Your Crop Provisions and Special Provisions can add their own dates; the end of the insurance period is an input because it differs by crop, county and unit.
+Rules re-checked on 2026-09-29 against the 2027 crop year text, FCIC Basic Provisions 27.1-BR (RMA, released June 2026): the section 14 notice and claim deadlines are unchanged from 26-BR. Source: 7 CFR 457.8, Common Crop Insurance Policy Basic Provisions, section 14 "Duties in the Event of Damage, Loss, Abandonment, Destruction, or Alternative Use of Crop or Acreage" (eCFR). Your Crop Provisions and Special Provisions can add their own dates; the end of the insurance period is an input because it differs by crop, county and unit.
 
 ## Log format
 
@@ -67,6 +67,6 @@ Checked again on 2026-10-20, the same log has seven: the sorghum unit's claim wa
 
 ## Full version
 
-Scan every unit log in the workspace at once and export a CSV deadline report per unit for the agency file — [get the full version](https://getreadystack.com/api/buy/cl/polar_cl_TfuT927G0YBnPvOdmJt1uoZ9GIRYV1Gj8M1KJ46x3Ax), $29 once, one licence key per person or team seat.
+Sweep every unit log in the workspace at once and write one dated deadline report (every finding, the date each notice or claim was due) for the agency file — [get the full version](https://getreadystack.com/api/buy/cl/polar_cl_TfuT927G0YBnPvOdmJt1uoZ9GIRYV1Gj8M1KJ46x3Ax), $29 once, one licence key per person or team seat.
 
 This tool reads dates; it does not give legal advice or replace your agent or your policy's Crop Provisions.
