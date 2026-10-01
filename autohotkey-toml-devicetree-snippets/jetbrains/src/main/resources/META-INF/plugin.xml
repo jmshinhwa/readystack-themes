@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.autohotkey-toml-devicetree-snippets</id>
+  <name>AutoHotkey v2, TOML and DeviceTree checks</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>A DeviceTree overlay with status = "enabled" boots the node disabled and a TOML integer with a leading zero stops the parser. Neither is an editor error. 22 checks and 46 snippets across 9 language packs, running offline in the editor you already have.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>AutoHotkey v2, TOML and DeviceTree checks: Check This File</b>. Each finding appears on its line with the fix. 22 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/autohotkey-toml-devicetree-snippets</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/autohotkey-toml-devicetree-snippets">getreadystack.com/tools/autohotkey-toml-devicetree-snippets</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_autohotkey_toml_devicetree_snippets.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.autohotkey-toml-devicetree-snippets" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.autohotkey-toml-devicetree-snippets.check" class="com.getreadystack.p_autohotkey_toml_devicetree_snippets.RsCheckAction"
+            text="AutoHotkey v2, TOML and DeviceTree checks: Check This File" description="Run AutoHotkey v2, TOML and DeviceTree checks on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
