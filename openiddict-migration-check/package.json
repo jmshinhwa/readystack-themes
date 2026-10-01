@@ -2,7 +2,7 @@
   "name": "openiddict-migration-check",
   "displayName": "OpenIddict Migration Check: Duende IdentityServer",
   "description": "Maps every Duende IdentityServer / IdentityServer4 call in Program.cs or .csproj to its OpenIddict equivalent and prices the Duende edition your setup needs today.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
