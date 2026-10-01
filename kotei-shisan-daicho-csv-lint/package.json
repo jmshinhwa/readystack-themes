@@ -2,7 +2,7 @@
   "name": "kotei-shisan-daicho-csv-lint",
   "displayName": "固定資産台帳 CSV Lint — 少額減価償却資産 40万円・300万円枠",
   "description": "固定資産台帳CSVを少額減価償却資産の特例(措法28条の2・67条の5)で検査。取得日2026-04-01で上限30万→40万円、年300万円枠、一括償却20万円、10万円未満、従業員数400人要件を行番号つきで指摘。",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
