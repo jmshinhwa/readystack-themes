@@ -1,0 +1,23 @@
+name: Whoami Entra app (s174 one-off)
+on: workflow_dispatch
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  whoami:
+    runs-on: ubuntu-latest
+    environment: marketplace-publish
+    steps:
+      - uses: azure/login@v2
+        with:
+          client-id: 9932556d-a2f2-4fda-b65e-bd484a018a30
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+      - name: Ask Azure DevOps who the new app identity is
+        run: |
+          az rest -u "https://app.vssps.visualstudio.com/_apis/profile/profiles/me?api-version=7.1" \
+                  --resource 499b84ac-1321-427f-aa17-267ca6975798 > profile.json
+          echo "----- THE ID WE NEED -----"
+          python3 -c "import json;print(PROFILE_ID= + json.load(open(profile.json))[id])"
