@@ -50,7 +50,7 @@ That is a whole job — it ends.
 Paid ($29 once): **Audit Every HTML File in This Workspace** — one command sweeps the whole folder
 and writes a dated `LEAK-AUDIT.md` you keep, so a site with forty pages is one pass instead of
 forty. The cut is scope, not capability: no watermark, no time limit, no locked answers.
-Key check: [https://buy.polar.sh/polar_cl_CwvLDIxujtAKjVYNswBmnY71CVpJXNzshSaBQ2RDuKe](https://buy.polar.sh/polar_cl_CwvLDIxujtAKjVYNswBmnY71CVpJXNzshSaBQ2RDuKe)
+Key check: [https://getreadystack.com/api/buy/cl/polar_cl_CwvLDIxujtAKjVYNswBmnY71CVpJXNzshSaBQ2RDuKe](https://getreadystack.com/api/buy/cl/polar_cl_CwvLDIxujtAKjVYNswBmnY71CVpJXNzshSaBQ2RDuKe)
 
 ## The yardstick
 
