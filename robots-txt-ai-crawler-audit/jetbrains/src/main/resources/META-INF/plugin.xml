@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.robots-txt-ai-crawler-audit</id>
+  <name>AI Crawler Rules</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Checks robots.txt line by line and says what each AI crawler token actually controls - training, AI-search citation, or user fetch - and which lines silently do nothing.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>AI Crawler Rules: Check This File</b>. Each finding appears on its line with the fix. 19 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/robots-txt-ai-crawler-audit</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/robots-txt-ai-crawler-audit">getreadystack.com/tools/robots-txt-ai-crawler-audit</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_robots_txt_ai_crawler_audit.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.robots-txt-ai-crawler-audit" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.robots-txt-ai-crawler-audit.check" class="com.getreadystack.p_robots_txt_ai_crawler_audit.RsCheckAction"
+            text="AI Crawler Rules: Check This File" description="Run AI Crawler Rules on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
