@@ -2,7 +2,7 @@
   "name": "toriteki-hacchusho-lint-jp",
   "displayName": "発注書チェッカー 取適法2026（旧下請法）",
   "description": "発注書・取引基本契約書のテンプレを2026年1月1日施行の中小受託取引適正化法（旧下請法）で検査。手形払い・60日超の支払サイト・振込手数料の差引・第4条の明示漏れを行ごとに指摘します。",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
