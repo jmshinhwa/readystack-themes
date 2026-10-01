@@ -2,7 +2,7 @@
   "name": "datenpanne-meldung-check",
   "displayName": "Datenpanne Meldung Check – 72 h, Art. 33/34 DSGVO",
   "description": "Prüft Datenpannen-Protokolle (Markdown) auf die 72-Stunden-Meldefrist ab Kenntnis, die Pflichtangaben nach Art. 33 Abs. 3 DSGVO und die Benachrichtigung Betroffener nach Art. 34 – mit Zeile und Fix.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
