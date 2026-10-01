@@ -1,0 +1,24 @@
+name: Geo-Helpers
+description: Geo helpers.
+version: 1.4
+repository: https://github.com/example/geo_helpers
+
+environment:
+  sdk: ^3.4.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  geo_core:
+    path: ../geo_core
+  tile_math:
+    git:
+      url: https://github.com/example/tile_math.git
+      ref: main
+  collection: ^1.18.0
+
+dev_dependencies:
+  lints: ^4.0.0
+
+dependency_overrides:
+  collection: 1.17.2
