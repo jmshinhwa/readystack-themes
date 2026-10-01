@@ -312,6 +312,7 @@ async function clearReport(ctx, h, fromSweep, sweptMsg) {
   } catch (e) { return null; }
 }
 var _pinged = false;
+var _sent = [];
 function ping(vscode, slug, why) {
   try {
     if (_pinged) return; _pinged = true;
@@ -320,6 +321,7 @@ function ping(vscode, slug, why) {
 }
 function send(vscode, slug, o) {
   try {
+    try { _sent.push((o && o.t ? o.t : '') + ':' + (o && o.why ? o.why : '')); if (_sent.length > 50) _sent.shift(); } catch (e) { }   // s174 — in-memory only (the control reads it) · nothing leaves the machine here
     if (process.env.READYSTACK_NO_TELEMETRY || process.env.CI) return;
     if (vscode && vscode.env && vscode.env.isTelemetryEnabled === false) return;
     var body = JSON.stringify(o);
@@ -397,6 +399,27 @@ var STAKE_TEAM_T = {
   es: ['Control en CI para cada repo - clave de equipo $149', 'Una clave de equipo ($149 pago único, 5 puestos) ejecuta esta revisión en GitHub Actions en cada repositorio y pull request, y desbloquea todos los linters de ReadyStack.'],
   pt: ['Verificação em CI para cada repo - chave de equipe US$ 149', 'Uma chave de equipe (US$ 149, pagamento único, 5 lugares) roda esta verificação no GitHub Actions em todo repositório e pull request, e libera todos os linters da ReadyStack.']
 };
+// s174 2026-10-01 — THE CLEAN COMPANY LINE for every product (not only stake.json ones). [measured s174 F4] VS Code installs +506
+//   since 9/20 but the paid moment almost never fired: the clean toast offered only the $29 dated report for THIS folder, and the one
+//   who pays $149 is a team. Now a clean result (no stake clean_line, no key yet) adds ONE honest team line + ONE team button.
+//   Facts = the Whop team tier ([measured whop_tiers TEAM_TITLE] $149 one-time · 5 seats · every tool) · the URL = the TEAM_URL this
+//   product's license.js already sells through (our /api/buy route -> Whop) · no CI claim (not every product ships a CI runner).
+//   Same once-per-workspace toast · "Don't show again" silences it for good · seen = t:paywall why:clean_offer (morning page).
+var CLEAN_TEAM_T = {
+  en: ['Using this across a team? One team key ($149 once, 5 seats) unlocks the dated report in every repository you open, for every ReadyStack linter.', 'Team key — $149 once, 5 seats'],
+  de: ['Im Team im Einsatz? Ein Team-Schlüssel ($149 einmalig, 5 Plätze) schaltet den datierten Bericht in jedem geöffneten Repository frei, für alle ReadyStack-Linter.', 'Team-Schlüssel — $149 einmalig, 5 Plätze'],
+  ja: ['チームで使いますか？チームキー 1 つ（$149 買い切り・5 席）で、開いたすべてのリポジトリで日付入りレポートが使え、ReadyStack の全リンターが対象です。', 'チームキー — $149 買い切り・5 席'],
+  es: ['¿Lo usa un equipo? Una clave de equipo ($149 pago único, 5 puestos) desbloquea el informe fechado en cada repositorio que abra, para todos los linters de ReadyStack.', 'Clave de equipo — $149 pago único, 5 puestos'],
+  pt: ['Usa em equipe? Uma chave de equipe (US$ 149, pagamento único, 5 lugares) libera o relatório datado em todo repositório que você abrir, para todos os linters da ReadyStack.', 'Chave de equipe — US$ 149 uma vez, 5 lugares']
+};
+function teamUrlOf(h) {   // the team checkout this product already sells through (license.js TEAM_URL) · our domain only · none -> no line
+  try { var src = fs.readFileSync(path.join(h.extDir || __dirname, 'license.js'), 'utf8'); var m = src.match(/const TEAM_URL = '(https:\/\/getreadystack\.com\/[^']+)'/); return m ? m[1] : ''; } catch (e) { return ''; }
+}
+function cleanTeam(h) {
+  var url = teamUrlOf(h); if (!url) return null;
+  var T = CLEAN_TEAM_T[lang(h.vscode)] || CLEAN_TEAM_T.en;
+  return { line: T[0], btn: T[1], url: url };
+}
 // s168 2026-09-28 — THE CHAMPION NOTE. The one who installs is a developer; the one who pays $149 is a manager.
 //   [measured 9 days] pay-screen reach VS Code 4 · MCP 4 — people used the free check and stopped. A developer does not spend
 //   company money alone; they forward a reason. ⇒ one button writes a dated, factual note to paste into Slack / email / the ticket:
@@ -476,15 +499,19 @@ async function hint(ctx, h) {
       var B = tr(BADGE_T, vscode), md = null;   // s163 — ONE badge action, only on a clean result
       _toastAt = Date.now(); reviewTick(ctx, h, 'clean', h.today || day);
       var SKc = stakeOf(h), estc = null;   // s166 — a clean folder is not the company's safety: say the company line on the clean result too
+      var TMc = (!(SKc && SKc.clean) && !hasKey) ? cleanTeam(h) : null;   // s174 — the company line for every product
+      if (TMc) send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: 'clean_offer' });
       var pk = (SKc && SKc.clean) ? await vscode.window.showInformationMessage(W.msg + ' ' + SKc.clean, SKc.btn, SKc.note, lbl, B[0], "Don't show again")
+        : TMc ? await vscode.window.showInformationMessage(W.msg + ' ' + TMc.line, lbl, TMc.btn, B[0], "Don't show again")
         : await vscode.window.showInformationMessage(W.msg, lbl, B[0], "Don't show again");
+      if (TMc && pk === TMc.btn) { send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix_buy', why: 'clean_team' }); try { await vscode.env.openExternal(vscode.Uri.parse(TMc.url)); } catch (e) { } pk = undefined; }
       if (SKc && SKc.clean && pk === SKc.btn) { estc = await stakeEstimate(h, SKc, lbl, { total: 0, files: clean, day: day }); pk = estc ? estc.pick : undefined; }
       if (SKc && SKc.clean && pk === SKc.note) { await noteFlow(h, SKc, { total: 0, files: clean, day: day }); pk = undefined; }   // s168
       var rep = null;
       if (pk === lbl) rep = await clearReport(ctx, h, false);   // s163b — sells (key panel) or delivers (dated record)
       else if (pk === B[0]) md = await copyBadge(vscode, h, h.today || day);
       else if (pk === "Don't show again") await st.update(h.PREFIX + '.noHint', true);
-      return { files: 0, total: 0, clean: clean, label: lbl, msg: W.msg, badge: B[0], md: md, report: rep };
+      return { files: 0, total: 0, clean: clean, label: lbl, msg: W.msg, badge: B[0], md: md, report: rep, team: TMc ? TMc.line : null };
     }
     // s158 — ⚑7일 무료 없음: 버튼이 곧 값이다(손님 숫자 바로 옆) · 이미 시작된 체험만 지킨다
     var label = hasKey ? 'Sweep the workspace' : ((until && Date.now() < until) ? 'Sweep the workspace (trial)' : 'Get the full report ($' + (h.price || 29) + ')');
@@ -503,4 +530,4 @@ async function hint(ctx, h) {
 module.exports = { start: start, relevant: relevant, tokens: tokens, isBroad: isBroad, clearWords: clearWords,
   sweptClean: sweptClean, badgeTopic: badgeTopic, badgeMarkdown: badgeMarkdown, reviewUrl: reviewUrl, reviewTick: reviewTick, clearReport: clearReport, scan: scan,   // s163
   welcome: welcome, kindOf: kindOf, globExts: globExts, sampleOf: sampleOf,   // s164
-  stakeOf: stakeOf, rateOf: rateOf, noteText: noteText };   // s165 · s168 noteText
+  stakeOf: stakeOf, rateOf: rateOf, noteText: noteText, cleanTeam: cleanTeam, sent: function () { return _sent.slice(); } };   // s174   // s165 · s168 noteText
