@@ -2,7 +2,7 @@
   "name": "testimonial-lint-ftc-465",
   "displayName": "Testimonial Lint: FTC Fake Review Rule",
   "description": "Flags fake, placeholder and AI-drafted testimonials, hard-coded star ratings, rating-filtered review lists, 5-star-for-a-discount offers and hover-only disclosures in landing-page code (16 CFR Part 46",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
