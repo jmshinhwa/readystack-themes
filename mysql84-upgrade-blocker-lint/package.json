@@ -2,7 +2,7 @@
   "name": "mysql84-upgrade-blocker-lint",
   "displayName": "MySQL 8.4 Upgrade Lint (RDS MySQL 8.0)",
   "description": "Flags SQL, my.cnf and parameter-group lines that MySQL 8.4 removed (SHOW SLAVE STATUS, CHANGE MASTER TO, default_authentication_plugin) so an RDS MySQL 8.0 upgrade does not break.",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
