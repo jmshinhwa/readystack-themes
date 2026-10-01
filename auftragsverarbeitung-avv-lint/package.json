@@ -2,7 +2,7 @@
   "name": "auftragsverarbeitung-avv-lint",
   "displayName": "Auftragsverarbeitung Lint – AVV nach Art. 28 DSGVO",
   "description": "Prüft AVV-/DPA-Texte (Markdown) auf 13 Pflichtpunkte aus Art. 28 Abs. 3 DSGVO und 4 veraltete Transfer-Grundlagen (Privacy Shield, SCC 2010, Safe Harbor, § 11 BDSG a.F.) – mit Zeile je Lücke.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
