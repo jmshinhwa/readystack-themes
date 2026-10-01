@@ -2,7 +2,7 @@
   "name": "gerichtskosten-tabelle-lint",
   "displayName": "Kostentabellen-Lint: GKG & RVG 2025 für Mahn-Software",
   "description": "Findet veraltete GKG- und RVG-Gebührenwerte (Stand 2021) und die alte Mahnbescheid-Mindestgebühr 36 € in Code und Config von Inkasso-, Mahn- und Kanzleisoftware. KostRÄG 2025, gültig seit 1.6.2025.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
