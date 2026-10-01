@@ -58,7 +58,7 @@ Reverse Charge erkennt die Erweiterung am Kontonamen (`ReverseCharge`, `Reverse-
 ## Kostenlos / Vollversion
 
 - Kostenlos: das geöffnete Journal mit allen 10 Regeln prüfen, mit Zeilennummer, Paragraf und überfälligen Tagen. Kein Schlüssel nötig.
-- Vollversion: alle Journale im Workspace in einem Lauf prüfen und einen Befundbericht (Datei, Zeile, Paragraf, überfällige Tage) für den Steuerberater schreiben (https://buy.polar.sh/polar_cl_YswKr0r7u9zGAqmyq2VW52TN2Jl3sfsI5t9ZY0HdCGp).
+- Vollversion: alle Journale im Workspace in einem Lauf prüfen und einen Befundbericht (Datei, Zeile, Paragraf, überfällige Tage) für den Steuerberater schreiben (https://getreadystack.com/api/buy/cl/polar_cl_YswKr0r7u9zGAqmyq2VW52TN2Jl3sfsI5t9ZY0HdCGp).
 
 ## Maßstab
 
