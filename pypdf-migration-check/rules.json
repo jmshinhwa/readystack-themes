@@ -1,0 +1,227 @@
+[
+ {
+  "id": "req-pymupdf",
+  "sev": "error",
+  "re": "^\\s*(?:-\\s*)?[\"\\']?pymupdf[\"\\']?\\s*(?:[=<>!~;,@\\[\\]\"\\']|$)",
+  "flags": "i",
+  "what": "PyMuPDF dependency (AGPL-3.0 or paid Artifex commercial licence)",
+  "fix": "pypdf>=6.19  (BSD-3-Clause; add pypdfium2>=5.13 to render pages, pdfplumber>=0.11.10 for tables and word positions)",
+  "needs_import": false
+ },
+ {
+  "id": "req-pymupdfb",
+  "sev": "error",
+  "re": "^\\s*(?:-\\s*)?[\"\\']?pymupdfb[\"\\']?\\s*(?:[=<>!~;,@\\[\\]\"\\']|$)",
+  "flags": "i",
+  "what": "PyMuPDFb dependency (the PyMuPDF binary wheel, AGPL-3.0)",
+  "fix": "pypdf>=6.19  (BSD-3-Clause)",
+  "needs_import": false
+ },
+ {
+  "id": "req-pymupdf4llm",
+  "sev": "error",
+  "re": "^\\s*(?:-\\s*)?[\"\\']?pymupdf4llm[\"\\']?\\s*(?:[=<>!~;,@\\[\\]\"\\']|$)",
+  "flags": "i",
+  "what": "PyMuPDF4LLM dependency (AGPL-3.0 or Artifex commercial, same as PyMuPDF)",
+  "fix": "pdfplumber>=0.11.10  (MIT; extract_text / extract_tables per page)",
+  "needs_import": false
+ },
+ {
+  "id": "req-pymupdfpro",
+  "sev": "warning",
+  "re": "^\\s*(?:-\\s*)?[\"\\']?pymupdfpro[\"\\']?\\s*(?:[=<>!~;,@\\[\\]\"\\']|$)",
+  "flags": "i",
+  "what": "PyMuPDF Pro dependency (commercial licence only; keep it only if your company holds one)",
+  "fix": "pypdf>=6.19 for PDF work; Office conversion has no drop-in free replacement",
+  "needs_import": false
+ },
+ {
+  "id": "req-fitz",
+  "sev": "error",
+  "re": "^\\s*(?:-\\s*)?[\"\\']?fitz[\"\\']?\\s*(?:[=<>!~;,@\\[\\]\"\\']|$)",
+  "flags": "i",
+  "what": "PyPI package 'fitz' is not PyMuPDF (it is an unrelated 0.0.0 project); code doing 'import fitz' is PyMuPDF",
+  "fix": "pypdf>=6.19  (and remove the fitz line)",
+  "needs_import": false
+ },
+ {
+  "id": "import-fitz",
+  "sev": "error",
+  "re": "^\\s*import\\s+fitz\\b",
+  "flags": "",
+  "what": "import fitz loads PyMuPDF (AGPL-3.0 or paid Artifex licence)",
+  "fix": "from pypdf import PdfReader, PdfWriter",
+  "needs_import": false
+ },
+ {
+  "id": "import-pymupdf",
+  "sev": "error",
+  "re": "^\\s*import\\s+pymupdf\\b",
+  "flags": "",
+  "what": "import pymupdf loads PyMuPDF (AGPL-3.0 or paid Artifex licence)",
+  "fix": "from pypdf import PdfReader, PdfWriter",
+  "needs_import": false
+ },
+ {
+  "id": "from-fitz",
+  "sev": "error",
+  "re": "^\\s*from\\s+(?:fitz|pymupdf)(?:\\.\\w+)*\\s+import\\b",
+  "flags": "",
+  "what": "from fitz/pymupdf import ... loads PyMuPDF (AGPL-3.0 or paid Artifex licence)",
+  "fix": "from pypdf import PdfReader, PdfWriter",
+  "needs_import": false
+ },
+ {
+  "id": "import-pymupdf4llm",
+  "sev": "error",
+  "re": "^\\s*(?:import|from)\\s+pymupdf4llm\\b",
+  "flags": "",
+  "what": "pymupdf4llm is AGPL-3.0 or Artifex commercial, like PyMuPDF",
+  "fix": "import pdfplumber  # page.extract_text() / page.extract_tables()",
+  "needs_import": false
+ },
+ {
+  "id": "langchain-loader",
+  "sev": "error",
+  "re": "\\bPyMuPDF(?:4LLM)?Loader\\b",
+  "flags": "",
+  "what": "LangChain PyMuPDFLoader pulls in PyMuPDF (AGPL-3.0)",
+  "fix": "from langchain_community.document_loaders import PyPDFLoader",
+  "needs_import": false
+ },
+ {
+  "id": "llamaindex-reader",
+  "sev": "error",
+  "re": "\\bPyMuPDFReader\\b",
+  "flags": "",
+  "what": "LlamaIndex PyMuPDFReader pulls in PyMuPDF (AGPL-3.0)",
+  "fix": "from llama_index.readers.file import PDFReader",
+  "needs_import": false
+ },
+ {
+  "id": "fitz-open",
+  "sev": "error",
+  "re": "\\b(?:fitz|pymupdf)\\.(?:open|Document)\\(",
+  "flags": "",
+  "what": "fitz.open() opens the file with PyMuPDF",
+  "fix": "reader = PdfReader(path)  # new files: writer = PdfWriter()",
+  "needs_import": false
+ },
+ {
+  "id": "fitz-matrix",
+  "sev": "warning",
+  "re": "\\b(?:fitz|pymupdf)\\.(?:Matrix|Rect|Point)\\(",
+  "flags": "",
+  "what": "fitz.Matrix/Rect/Point geometry is PyMuPDF-only",
+  "fix": "pypdfium2 page.render(scale=dpi/72); crop with pdfplumber page.crop((x0, top, x1, bottom))",
+  "needs_import": false
+ },
+ {
+  "id": "get-text",
+  "sev": "error",
+  "re": "\\.get_text\\(",
+  "flags": "",
+  "what": "page.get_text() is a PyMuPDF call",
+  "fix": "page.extract_text()  # pypdf; words with positions: pdfplumber page.extract_words()",
+  "needs_import": true
+ },
+ {
+  "id": "get-pixmap",
+  "sev": "error",
+  "re": "\\.get_pixmap\\(",
+  "flags": "",
+  "what": "page.get_pixmap() renders with PyMuPDF",
+  "fix": "pypdfium2.PdfDocument(path)[i].render(scale=dpi/72).to_pil()",
+  "needs_import": true
+ },
+ {
+  "id": "search-for",
+  "sev": "error",
+  "re": "\\.search_for\\(",
+  "flags": "",
+  "what": "page.search_for() is a PyMuPDF call",
+  "fix": "pdfplumber.open(path).pages[i].search(\"text\")",
+  "needs_import": true
+ },
+ {
+  "id": "find-tables",
+  "sev": "error",
+  "re": "\\.find_tables\\(",
+  "flags": "",
+  "what": "page.find_tables() is a PyMuPDF call",
+  "fix": "pdfplumber.open(path).pages[i].extract_tables()",
+  "needs_import": true
+ },
+ {
+  "id": "insert-pdf",
+  "sev": "error",
+  "re": "\\.insert_pdf\\(",
+  "flags": "",
+  "what": "doc.insert_pdf() merges with PyMuPDF",
+  "fix": "writer = PdfWriter(); writer.append(reader)",
+  "needs_import": true
+ },
+ {
+  "id": "page-count",
+  "sev": "warning",
+  "re": "\\.page_count\\b",
+  "flags": "",
+  "what": "doc.page_count is a PyMuPDF attribute",
+  "fix": "len(reader.pages)",
+  "needs_import": true
+ },
+ {
+  "id": "get-toc",
+  "sev": "warning",
+  "re": "\\.get_toc\\(",
+  "flags": "",
+  "what": "doc.get_toc() is a PyMuPDF call",
+  "fix": "reader.outline",
+  "needs_import": true
+ },
+ {
+  "id": "set-metadata",
+  "sev": "warning",
+  "re": "\\.set_metadata\\(",
+  "flags": "",
+  "what": "doc.set_metadata() is a PyMuPDF call",
+  "fix": "writer.add_metadata({\"/Title\": title})",
+  "needs_import": true
+ },
+ {
+  "id": "set-rotation",
+  "sev": "warning",
+  "re": "\\.set_rotation\\(",
+  "flags": "",
+  "what": "page.set_rotation() is a PyMuPDF call",
+  "fix": "page.rotate(90)  # pypdf",
+  "needs_import": true
+ },
+ {
+  "id": "get-images",
+  "sev": "warning",
+  "re": "\\.get_images\\(",
+  "flags": "",
+  "what": "page.get_images() is a PyMuPDF call",
+  "fix": "page.images  # pypdf, each has .name and .data",
+  "needs_import": true
+ },
+ {
+  "id": "insert-text",
+  "sev": "warning",
+  "re": "\\.insert_(?:text|textbox)\\(",
+  "flags": "",
+  "what": "page.insert_text() draws with PyMuPDF",
+  "fix": "draw on a reportlab canvas, then page.merge_page(overlay_page)  # pypdf",
+  "needs_import": true
+ },
+ {
+  "id": "authenticate",
+  "sev": "warning",
+  "re": "\\.authenticate\\(",
+  "flags": "",
+  "what": "doc.authenticate() decrypts with PyMuPDF",
+  "fix": "reader.decrypt(password)  # pypdf",
+  "needs_import": true
+ }
+]
