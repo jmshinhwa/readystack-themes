@@ -1,0 +1,58 @@
+{
+  "name": "pypdf-migration-check",
+  "displayName": "pypdf Migration Check - PyMuPDF AGPL Licence Gate",
+  "description": "Finds every PyMuPDF / fitz import, call and requirement line (AGPL-3.0 or paid Artifex licence) and prints the exact pypdf, pypdfium2 or pdfplumber line that replaces it.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "pypdf",
+    "pymupdf",
+    "fitz",
+    "pdfplumber",
+    "pypdfium2",
+    "agpl",
+    "licence",
+    "migration",
+    "python pdf"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pypdfMigration.checkFile",
+        "title": "pypdf Migration Check - PyMuPDF AGPL Licence Gate: Check this file",
+        "category": "pypdf Migration Check - PyMuPDF AGPL Licence Gate"
+      },
+      {
+        "command": "pypdfMigration.checkWorkspace",
+        "title": "pypdf Migration Check - PyMuPDF AGPL Licence Gate: Sweep workspace and write report (licence)",
+        "category": "pypdf Migration Check - PyMuPDF AGPL Licence Gate"
+      },
+      {
+        "command": "pypdfMigration.enterKey",
+        "title": "pypdf Migration Check - PyMuPDF AGPL Licence Gate: Enter licence key",
+        "category": "pypdf Migration Check - PyMuPDF AGPL Licence Gate"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "pypdf-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/pypdf-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-30"
+  },
+  "icon": "icon.png"
+}
