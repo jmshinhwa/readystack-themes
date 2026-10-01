@@ -1,0 +1,15 @@
+Flit Migration Check: setup.py to flit_core 4 — Licence
+
+Free scope
+  Check the open setup.py, setup.cfg or pyproject.toml: every setuptools or old-flit line with its line number and the exact flit_core 4 replacement line, plus the blockers Flit cannot build. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Whole workspace: one dated migration plan mapping every item in every package to its flit_core 4 replacement, and a team CI gate that fails a build adding new setuptools-only use. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
