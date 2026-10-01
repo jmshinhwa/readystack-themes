@@ -2,7 +2,7 @@
   "name": "forgejo-migration-check",
   "displayName": "Forgejo Migration Check — Gitea 1.22 cutoff",
   "description": "Forgejo migration lint for docker-compose files: flags Gitea tags past 1.22 (no transparent upgrade), a first hop that skips Forgejo v10.0, end-of-life Forgejo tags and Gitea act_runner.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
