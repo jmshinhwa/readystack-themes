@@ -1,0 +1,14 @@
+[
+ {"id": "GM001", "sev": "error", "title": "No module directive", "src": "https://go.dev/ref/mod#go-mod-file-module"},
+ {"id": "GM002", "sev": "error", "title": "v2+ version but module path has no /vN suffix", "src": "https://go.dev/ref/mod#major-version-suffixes"},
+ {"id": "GM003", "sev": "error", "title": "/v0 or /v1 suffix on the module path", "src": "https://go.dev/ref/mod#major-version-suffixes"},
+ {"id": "GM004", "sev": "error", "title": "Module path /vN does not match the release tag", "src": "https://go.dev/ref/mod#major-version-suffixes"},
+ {"id": "GM005", "sev": "warning", "title": "No go directive (go 1.16 is assumed)", "src": "https://go.dev/ref/mod#go-mod-file-go"},
+ {"id": "GM006", "sev": "warning", "title": "go line older than the two supported Go releases", "src": "https://go.dev/doc/devel/release#policy"},
+ {"id": "GM007", "sev": "error", "title": "go line newer than any released Go", "src": "https://go.dev/doc/devel/release"},
+ {"id": "GM008", "sev": "error", "title": "toolchain lower than the go line", "src": "https://go.dev/ref/mod#go-mod-file-toolchain"},
+ {"id": "GM009", "sev": "warning", "title": "Local-path replace is ignored by your users", "src": "https://go.dev/ref/mod#go-mod-file-replace"},
+ {"id": "GM010", "sev": "error", "title": "require v2+ on a path without /vN", "src": "https://go.dev/ref/mod#incompatible-versions"},
+ {"id": "GM011", "sev": "error", "title": "require path /vN does not match its version", "src": "https://go.dev/ref/mod#major-version-suffixes"},
+ {"id": "GM012", "sev": "info", "title": "+incompatible dependency (pre-modules v2+ tag)", "src": "https://go.dev/ref/mod#incompatible-versions"}
+]
