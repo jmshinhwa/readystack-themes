@@ -1,0 +1,12 @@
+# Dockerfile — shelf-camera inference service (closed-source, runs on store edge boxes)
+FROM ultralytics/ultralytics:8.3.40-cpu
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir ultralytics==8.3.40
+RUN git clone --depth 1 https://github.com/ultralytics/yolov5 /opt/yolov5
+ADD https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11n.pt /app/models/
+RUN yolo export model=/app/models/best.pt format=onnx
+RUN pip install --no-cache-dir yolov5==7.0.13
+COPY . .
+EXPOSE 8080
+CMD ["python", "serve.py"]
