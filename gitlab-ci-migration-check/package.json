@@ -2,7 +2,7 @@
   "name": "gitlab-ci-migration-check",
   "displayName": "GitLab CI/CD Migration Check for GitHub Actions",
   "description": "GitLab CI/CD migration check: flags every line of a GitHub Actions workflow that GitLab cannot run as-is (Marketplace actions, pull_request_target, matrix exclude) or that needs GitLab Premium.",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
