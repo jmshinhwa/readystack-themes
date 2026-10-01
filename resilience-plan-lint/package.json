@@ -2,7 +2,7 @@
   "name": "resilience-plan-lint",
   "displayName": "Resilience Plan Lint (CER Directive)",
   "description": "Checks critical infrastructure risk assessment and resilience plan Markdown against EU CER Directive 2022/2557 Art. 12-15: 24-hour notice, one-month report, 9-month and 4-year cycle, all hazards.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -51,7 +51,7 @@
   },
   "homepage": "https://getreadystack.com/tools/resilience-plan-lint",
   "readystack": {
-    "rulesDate": "2026-09-27"
+    "rulesDate": "2026-09-28"
   },
   "icon": "icon.png"
 }
