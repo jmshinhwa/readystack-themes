@@ -1,5 +1,7 @@
 # MySQL 8.4 Upgrade Lint (RDS MySQL 8.0)
 
+![MySQL 8.4 Upgrade Lint (RDS MySQL 8.0) — finds the line](https://getreadystack.com/img/promo/mysql84-upgrade-blocker-lint_demo.gif)
+
 ![MySQL 8.4 Upgrade Lint (RDS MySQL 8.0)](https://getreadystack.com/img/promo/sku357095_result_card.jpg)
 
 Six lines in the bundled sample runbook break a MySQL 8.0 → 8.4 upgrade: `STOP SLAVE`, `CHANGE MASTER TO`, `START SLAVE`, `SHOW SLAVE STATUS`, `FLUSH HOSTS` and `SET PERSIST_ONLY default_authentication_plugin`. This extension finds lines like them in your `.sql`, `my.cnf`, `.ini` and Terraform parameter-group files with 34 rules taken from the MySQL 8.4 reference manual, and prints the replacement on every line.
@@ -41,7 +43,7 @@ The RDS pre-upgrade check and `util.checkForServerUpgrade()` read the objects in
 
 ## Free and full version
 
-Free, no key: lint the open file, every rule, every fix. The full version (one licence key, $29 once) scans every migration, `my.cnf` and parameter group in the workspace at once and exports one upgrade-blocker report as Markdown and CSV for the upgrade ticket: https://buy.polar.sh/polar_cl_pDhhhYZlkALQMCGNQVCneKjQVhPTdXCo63mRO2H3r2E
+Free, no key: lint the open file, every rule, every fix. The full version (one licence key, $29 once) scans every migration, `my.cnf` and parameter group in the workspace at once and exports one upgrade-blocker report as Markdown and CSV for the upgrade ticket: https://getreadystack.com/api/buy/cl/polar_cl_pDhhhYZlkALQMCGNQVCneKjQVhPTdXCo63mRO2H3r2E
 
 ## Sources
 
