@@ -45,7 +45,7 @@ Sätze, die eine Regel ausdrücklich verneinen („eine E-Mail ist ausgeschlosse
 ## Kostenlos und Vollversion
 
 Kostenlos und ohne Grenze: die Web-Version und die Prüfung jeder geöffneten Datei mit allen 8 Checks.
-Vollversion: ganzer Workspace in einem Lauf plus Prüfbericht (Markdown/CSV) je Vorlage — [Vollversion holen](https://buy.polar.sh/polar_cl_FXmv3VM8XW9kwV6RvlcMa2gCrM01uP50XDWdJ0s6MvQ), $29 einmalig je Person oder Team-Platz.
+Vollversion: ganzer Workspace in einem Lauf plus Prüfbericht (Markdown/CSV) je Vorlage — [Vollversion holen](https://getreadystack.com/api/buy/cl/polar_cl_FXmv3VM8XW9kwV6RvlcMa2gCrM01uP50XDWdJ0s6MvQ), $29 einmalig je Person oder Team-Platz.
 
 ## Maßstab
 
