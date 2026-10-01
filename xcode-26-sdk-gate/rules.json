@@ -1,0 +1,82 @@
+[
+ {
+  "id": "runner-macos-14",
+  "sev": "error",
+  "title": "macos-14 runner cannot build with Xcode 26",
+  "detail": "The macos-14 image ships Xcode 15.0.1 to 16.2 (default 15.4). Since 28 Apr 2026 App Store Connect requires Xcode 26 or later with an iOS 26 SDK. GitHub retires macos-14 on 2 Nov 2026 with brownouts from 5 Oct 2026.",
+  "fix": "runs-on: macos-26",
+  "source": "developer.apple.com/news/upcoming-requirements · actions/runner-images macos-14-Readme + issue 13518"
+ },
+ {
+  "id": "runner-removed",
+  "sev": "error",
+  "title": "macOS runner label no longer offered by GitHub",
+  "detail": "macos-13 and older labels are not in the actions/runner-images list any more; the job never starts, and those images never had Xcode 26.",
+  "fix": "runs-on: macos-26",
+  "source": "actions/runner-images README"
+ },
+ {
+  "id": "macos-15-default-xcode",
+  "sev": "error",
+  "title": "macos-15 builds with Xcode 16.4 unless you select Xcode 26",
+  "detail": "The macos-15 image (arm64 and Intel) defaults to Xcode 16.4. A job that archives or uploads without selecting Xcode 26 produces a build App Store Connect rejects since 28 Apr 2026.",
+  "fix": "- run: sudo xcode-select -s /Applications/Xcode_26.3.app",
+  "source": "actions/runner-images macos-15-Readme + macos-15-arm64-Readme"
+ },
+ {
+  "id": "xcode-pin-below-26",
+  "sev": "error",
+  "title": "Pinned Xcode is below 26",
+  "detail": "The job selects an Xcode older than 26 (setup-xcode xcode-version, xcode-select -s or DEVELOPER_DIR). App Store Connect rejects uploads built with it since 28 Apr 2026.",
+  "fix": "xcode-version: '26.3'  (or: sudo xcode-select -s /Applications/Xcode_26.3.app)",
+  "source": "developer.apple.com/news/upcoming-requirements"
+ },
+ {
+  "id": "xcode-not-on-image",
+  "sev": "error",
+  "title": "Pinned Xcode is not installed on this runner image",
+  "detail": "The runner image does not ship the Xcode version the job selects, so the select step fails before the build starts. macos-15 has 26.0.1, 26.1.1, 26.2 and 26.3; macos-26 has 26.0.1 to 26.6.",
+  "fix": "pick a version the image lists, or runs-on: macos-26",
+  "source": "actions/runner-images macos-15-Readme + macos-26-Readme"
+ },
+ {
+  "id": "deployment-target-below-13",
+  "sev": "error",
+  "title": "iOS deployment target below 13",
+  "detail": "Since 9 Sep 2026 iOS and iPadOS apps uploaded to App Store Connect must target iOS 13 or later.",
+  "fix": "IPHONEOS_DEPLOYMENT_TARGET=13.0 (or higher)",
+  "source": "developer.apple.com/news/upcoming-requirements"
+ },
+ {
+  "id": "sdk-flag-below-26",
+  "sev": "error",
+  "title": "xcodebuild -sdk names an SDK below 26",
+  "detail": "An explicit versioned -sdk (for example iphoneos18.5) builds against an SDK older than iOS 26; uploads need an iOS, iPadOS, tvOS, visionOS or watchOS 26 SDK since 28 Apr 2026.",
+  "fix": "-sdk iphoneos",
+  "source": "developer.apple.com/news/upcoming-requirements"
+ },
+ {
+  "id": "self-hosted-unpinned",
+  "sev": "warning",
+  "title": "Self-hosted Mac job does not select an Xcode",
+  "detail": "A self-hosted macOS runner builds with whatever /Applications/Xcode.app is on that machine; nothing in the workflow proves it is Xcode 26.",
+  "fix": "- run: sudo xcode-select -s /Applications/Xcode_26.app && xcodebuild -version",
+  "source": "developer.apple.com/news/upcoming-requirements"
+ },
+ {
+  "id": "macos-latest-floating",
+  "sev": "info",
+  "title": "macos-latest moves without notice",
+  "detail": "macos-latest points to the macOS 26 arm64 image today (default Xcode 26.6). GitHub migrates -latest labels over 1-2 months, so a release job gets a different Xcode on a later run.",
+  "fix": "runs-on: macos-26",
+  "source": "actions/runner-images README"
+ },
+ {
+  "id": "job-xcode-map",
+  "sev": "info",
+  "title": "Which Xcode this job builds with",
+  "detail": "For every job that archives or uploads an Apple build: the runner image, the Xcode it resolves to (explicit pin or image default) and whether that meets the Xcode 26 upload minimum.",
+  "fix": "",
+  "source": "actions/runner-images macOS Readmes (images 20260824 / 20260907)"
+ }
+]
