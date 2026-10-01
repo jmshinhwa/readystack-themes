@@ -55,7 +55,7 @@ Zeilennummer und dem gefundenen Wert in das Problems-Panel. Diese Arbeit ist dam
 
 Mit Schlüssel: derselbe Lauf über das ganze Repository, als Prüfbericht in Markdown und CSV
 exportiert — Regel-ID, Datei, Zeile, Fundstelle — zum Ablegen in der Betriebsprüfungsakte.
-$29 einmal. Schlüssel: https://buy.polar.sh/polar_cl_i9r8oIzjOLN6FVG0UJVXokAfRM2sX7sY0d0Th2OMHSz
+$29 einmal. Schlüssel: https://getreadystack.com/api/buy/cl/polar_cl_i9r8oIzjOLN6FVG0UJVXokAfRM2sX7sY0d0Th2OMHSz
 
 Vergleichsmaßstab: eine Belegprüfung durch die Steuerberatung wird nach Zeitgebühr
 abgerechnet, 30 bis 75 EUR je angefangene halbe Stunde (StBVV).
