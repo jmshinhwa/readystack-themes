@@ -2,7 +2,7 @@
   "name": "resend-migration-check",
   "displayName": "Resend Migration Check: SendGrid code lint",
   "description": "Moving from Twilio SendGrid to Resend? Flags every @sendgrid/mail and sendgrid Python call, field and webhook event that has no 1:1 Resend equivalent, with the Resend line to write instead.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
