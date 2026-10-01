@@ -2,7 +2,7 @@
   "name": "chart-yaml-release-gate",
   "displayName": "helm chart lint Chart.yaml - Helm 4 Release Gate",
   "description": "Lint Chart.yaml before helm package: SemVer 2 version, apiVersion v2 fields, unquoted appVersion, kubeVersion stuck on EOL Kubernetes, CI still pinned to Helm 3 (security fixes end 2026-11-11).",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
