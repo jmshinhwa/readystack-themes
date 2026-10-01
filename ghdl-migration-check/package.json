@@ -2,7 +2,7 @@
   "name": "ghdl-migration-check",
   "displayName": "GHDL Migration Check — Vivado xsim to GHDL",
   "description": "GHDL migration check: flags VHDL lines that Vivado xsim accepts but GHDL rejects or needs flags for — UNISIM, XPM, std_logic_unsigned, VHDL-2008 without --std=08, plain shared variables, encrypted IP.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
