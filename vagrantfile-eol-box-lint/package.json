@@ -2,7 +2,7 @@
   "name": "vagrantfile-eol-box-lint",
   "displayName": "Vagrantfile EOL Box Lint",
   "description": "Flags Vagrantfile boxes whose OS is past end of support: Debian 11 LTS ended 2026-08-31, CentOS 7 2024-06-30, Ubuntu 20.04 2025-05-31. Each finding shows the line, the date and the days since it passe",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
