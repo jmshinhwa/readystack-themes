@@ -1,0 +1,59 @@
+{
+  "name": "openpdf-migration-check",
+  "displayName": "OpenPDF Migration Check: iText AGPL Gate",
+  "description": "Finds every iText (AGPLv3) dependency in pom.xml and build.gradle with file and line, and gives the exact OpenPDF 3.0.5 or Apache PDFBox 3.0.8 line that replaces it.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "openpdf",
+    "apache pdfbox",
+    "pdfbox",
+    "itext",
+    "itext agpl",
+    "agpl",
+    "maven",
+    "gradle",
+    "java pdf",
+    "licence"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "openpdfMigration.checkFile",
+        "title": "OpenPDF Migration Check: iText AGPL Gate: Check this file",
+        "category": "OpenPDF Migration Check: iText AGPL Gate"
+      },
+      {
+        "command": "openpdfMigration.checkWorkspace",
+        "title": "OpenPDF Migration Check: iText AGPL Gate: Sweep workspace and write report (licence)",
+        "category": "OpenPDF Migration Check: iText AGPL Gate"
+      },
+      {
+        "command": "openpdfMigration.enterKey",
+        "title": "OpenPDF Migration Check: iText AGPL Gate: Enter licence key",
+        "category": "OpenPDF Migration Check: iText AGPL Gate"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "openpdf-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/openpdf-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-30"
+  },
+  "icon": "icon.png"
+}
