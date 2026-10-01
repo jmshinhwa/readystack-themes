@@ -1,0 +1,452 @@
+[
+ {
+  "id": "py-boto3",
+  "eco": "py",
+  "pkg": "boto3",
+  "ver": "1.43.106",
+  "mb": 1.0,
+  "zmb": 0.1,
+  "kind": "runtime",
+  "fix": "Delete this line: the Lambda Python runtime already includes the SDK for Python (Boto3). Keep it only if you need a newer version than the runtime ships."
+ },
+ {
+  "id": "py-botocore",
+  "eco": "py",
+  "pkg": "botocore",
+  "ver": "1.43.106",
+  "mb": 20.5,
+  "zmb": 16.0,
+  "kind": "runtime",
+  "fix": "Delete this line: the Lambda Python runtime already includes the SDK for Python (Boto3). Keep it only if you need a newer version than the runtime ships."
+ },
+ {
+  "id": "py-s3transfer",
+  "eco": "py",
+  "pkg": "s3transfer",
+  "ver": "0.19.2",
+  "mb": 0.3,
+  "zmb": 0.1,
+  "kind": "runtime",
+  "fix": "Delete this line: the Lambda Python runtime already includes the SDK for Python (Boto3). Keep it only if you need a newer version than the runtime ships."
+ },
+ {
+  "id": "py-torch",
+  "eco": "py",
+  "pkg": "torch",
+  "ver": "2.14.1",
+  "mb": 1144.2,
+  "zmb": 554.6,
+  "kind": "container",
+  "fix": "This wheel alone is over 250 MB unzipped. A .zip function cannot hold it: set PackageType: Image and deploy a container image (10 GB limit)."
+ },
+ {
+  "id": "py-tensorflow",
+  "eco": "py",
+  "pkg": "tensorflow",
+  "ver": "2.21.0",
+  "mb": 1873.3,
+  "zmb": 572.6,
+  "kind": "container",
+  "fix": "This wheel alone is over 250 MB unzipped. A .zip function cannot hold it: set PackageType: Image and deploy a container image (10 GB limit)."
+ },
+ {
+  "id": "py-opencv-python",
+  "eco": "py",
+  "pkg": "opencv-python",
+  "ver": "5.0.0.93",
+  "mb": 189.5,
+  "zmb": 71.1,
+  "kind": "swap",
+  "fix": "Replace with opencv-python-headless==5.0.0.93 (150.3 MB): the opencv-python README describes it as the package for server (headless) environments, with no GUI functionality.",
+  "alt_mb": 150.3
+ },
+ {
+  "id": "py-opencv-python-headless",
+  "eco": "py",
+  "pkg": "opencv-python-headless",
+  "ver": "5.0.0.93",
+  "mb": 150.3,
+  "zmb": 56.6,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-numpy",
+  "eco": "py",
+  "pkg": "numpy",
+  "ver": "2.5.3",
+  "mb": 56.4,
+  "zmb": 16.7,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-pandas",
+  "eco": "py",
+  "pkg": "pandas",
+  "ver": "3.0.6",
+  "mb": 38.9,
+  "zmb": 10.8,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-scipy",
+  "eco": "py",
+  "pkg": "scipy",
+  "ver": "1.18.1",
+  "mb": 111.9,
+  "zmb": 35.3,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-scikit-learn",
+  "eco": "py",
+  "pkg": "scikit-learn",
+  "ver": "1.9.1",
+  "mb": 31.0,
+  "zmb": 9.2,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-pyarrow",
+  "eco": "py",
+  "pkg": "pyarrow",
+  "ver": "25.0.1",
+  "mb": 157.1,
+  "zmb": 50.1,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-matplotlib",
+  "eco": "py",
+  "pkg": "matplotlib",
+  "ver": "3.11.2",
+  "mb": 25.0,
+  "zmb": 9.9,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-pillow",
+  "eco": "py",
+  "pkg": "pillow",
+  "ver": "12.3.0",
+  "mb": 19.7,
+  "zmb": 6.9,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-lxml",
+  "eco": "py",
+  "pkg": "lxml",
+  "ver": "6.1.3",
+  "mb": 11.5,
+  "zmb": 5.1,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-cryptography",
+  "eco": "py",
+  "pkg": "cryptography",
+  "ver": "50.0.2",
+  "mb": 14.9,
+  "zmb": 4.7,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-psycopg2-binary",
+  "eco": "py",
+  "pkg": "psycopg2-binary",
+  "ver": "2.9.13",
+  "mb": 11.8,
+  "zmb": 4.3,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-grpcio",
+  "eco": "py",
+  "pkg": "grpcio",
+  "ver": "1.84.0",
+  "mb": 17.9,
+  "zmb": 7.2,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-duckdb",
+  "eco": "py",
+  "pkg": "duckdb",
+  "ver": "1.5.6",
+  "mb": 61.0,
+  "zmb": 21.6,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-transformers",
+  "eco": "py",
+  "pkg": "transformers",
+  "ver": "5.18.0",
+  "mb": 50.3,
+  "zmb": 12.6,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-spacy",
+  "eco": "py",
+  "pkg": "spacy",
+  "ver": "3.8.16",
+  "mb": 123.6,
+  "zmb": 35.5,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-tokenizers",
+  "eco": "py",
+  "pkg": "tokenizers",
+  "ver": "0.23.2",
+  "mb": 11.7,
+  "zmb": 3.4,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "py-requests",
+  "eco": "py",
+  "pkg": "requests",
+  "ver": "2.34.2",
+  "mb": 0.2,
+  "zmb": 0.1,
+  "kind": "size",
+  "fix": ""
+ },
+ {
+  "id": "py-pydantic-core",
+  "eco": "py",
+  "pkg": "pydantic-core",
+  "ver": "2.49.0",
+  "mb": 5.2,
+  "zmb": 2.1,
+  "kind": "size",
+  "fix": ""
+ },
+ {
+  "id": "py-polars",
+  "eco": "py",
+  "pkg": "polars",
+  "ver": "1.44.2",
+  "mb": 4.3,
+  "zmb": 0.9,
+  "kind": "size",
+  "fix": ""
+ },
+ {
+  "id": "npm-aws-sdk",
+  "eco": "npm",
+  "pkg": "aws-sdk",
+  "ver": "2.1693.0",
+  "mb": 98.2,
+  "kind": "swap",
+  "fix": "Replace with the @aws-sdk/client-<service> v3 packages you call; every supported Lambda Node.js runtime already includes the AWS SDK for JavaScript v3.",
+  "alt_mb": 0
+ },
+ {
+  "id": "npm-@aws-sdk/*",
+  "eco": "npm",
+  "pkg": "@aws-sdk/*",
+  "ver": "3.1144.0",
+  "mb": 3.3,
+  "kind": "runtime",
+  "fix": "The Lambda Node.js runtime already includes the AWS SDK for JavaScript v3 (a pinned minor version). Bundle it only if you need a newer version."
+ },
+ {
+  "id": "npm-googleapis",
+  "eco": "npm",
+  "pkg": "googleapis",
+  "ver": "182.0.0",
+  "mb": 215.0,
+  "kind": "swap",
+  "fix": "Replace with the single-API package you call (for example @googleapis/drive) instead of the full googleapis bundle."
+ },
+ {
+  "id": "npm-puppeteer",
+  "eco": "npm",
+  "pkg": "puppeteer",
+  "ver": "25.12.0",
+  "mb": null,
+  "kind": "swap",
+  "fix": "puppeteer downloads a browser at install time. On Lambda use puppeteer-core with @sparticuz/chromium (70.1 MB)."
+ },
+ {
+  "id": "npm-@sparticuz/chromium",
+  "eco": "npm",
+  "pkg": "@sparticuz/chromium",
+  "ver": "153.0.0",
+  "mb": 70.1,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "npm-@prisma/client",
+  "eco": "npm",
+  "pkg": "@prisma/client",
+  "ver": "7.10.0",
+  "mb": 74.5,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "npm-sharp",
+  "eco": "npm",
+  "pkg": "sharp",
+  "ver": "0.35.5",
+  "mb": 19.7,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit). sharp installs @img/sharp-libvips-linux-x64 (18.7 MB) next to its own 1.0 MB."
+ },
+ {
+  "id": "npm-date-fns",
+  "eco": "npm",
+  "pkg": "date-fns",
+  "ver": "4.4.0",
+  "mb": 10.9,
+  "kind": "heavy",
+  "fix": "Counts toward the same 250 MB even inside a layer. If the function needs more than fits, deploy it as a container image (10 GB limit)."
+ },
+ {
+  "id": "npm-aws-cdk-lib",
+  "eco": "npm",
+  "pkg": "aws-cdk-lib",
+  "ver": "2.272.0",
+  "mb": 137.1,
+  "kind": "devdep",
+  "fix": "Move this line from \"dependencies\" to \"devDependencies\": npm install --omit=dev leaves it out of the bundle."
+ },
+ {
+  "id": "npm-aws-cdk",
+  "eco": "npm",
+  "pkg": "aws-cdk",
+  "ver": "2.1143.0",
+  "mb": 23.6,
+  "kind": "devdep",
+  "fix": "Move this line from \"dependencies\" to \"devDependencies\": npm install --omit=dev leaves it out of the bundle."
+ },
+ {
+  "id": "npm-typescript",
+  "eco": "npm",
+  "pkg": "typescript",
+  "ver": "7.0.2",
+  "mb": 2.5,
+  "kind": "devdep",
+  "fix": "Move this line from \"dependencies\" to \"devDependencies\": npm install --omit=dev leaves it out of the bundle."
+ },
+ {
+  "id": "npm-jest",
+  "eco": "npm",
+  "pkg": "jest",
+  "ver": "30.5.2",
+  "mb": null,
+  "kind": "devdep",
+  "fix": "Move this line from \"dependencies\" to \"devDependencies\": npm install --omit=dev leaves it out of the bundle."
+ },
+ {
+  "id": "npm-eslint",
+  "eco": "npm",
+  "pkg": "eslint",
+  "ver": "10.11.0",
+  "mb": 2.9,
+  "kind": "devdep",
+  "fix": "Move this line from \"dependencies\" to \"devDependencies\": npm install --omit=dev leaves it out of the bundle."
+ },
+ {
+  "id": "npm-webpack",
+  "eco": "npm",
+  "pkg": "webpack",
+  "ver": "5.111.1",
+  "mb": 10.8,
+  "kind": "devdep",
+  "fix": "Move this line from \"dependencies\" to \"devDependencies\": npm install --omit=dev leaves it out of the bundle."
+ },
+ {
+  "id": "npm-esbuild",
+  "eco": "npm",
+  "pkg": "esbuild",
+  "ver": "0.28.2",
+  "mb": 0.1,
+  "kind": "devdep",
+  "fix": "Move this line from \"dependencies\" to \"devDependencies\": npm install --omit=dev leaves it out of the bundle."
+ },
+ {
+  "id": "npm-prisma",
+  "eco": "npm",
+  "pkg": "prisma",
+  "ver": "8.0.0-rc.19",
+  "mb": 0.6,
+  "kind": "devdep",
+  "fix": "Move this line from \"dependencies\" to \"devDependencies\": npm install --omit=dev leaves it out of the bundle."
+ },
+ {
+  "id": "npm-ts-node",
+  "eco": "npm",
+  "pkg": "ts-node",
+  "ver": "10.9.2",
+  "mb": 0.8,
+  "kind": "devdep",
+  "fix": "Move this line from \"dependencies\" to \"devDependencies\": npm install --omit=dev leaves it out of the bundle."
+ },
+ {
+  "id": "npm-serverless",
+  "eco": "npm",
+  "pkg": "serverless",
+  "ver": "4.43.0",
+  "mb": null,
+  "kind": "devdep",
+  "fix": "Move this line from \"dependencies\" to \"devDependencies\": npm install --omit=dev leaves it out of the bundle."
+ },
+ {
+  "id": "npm-@types/*",
+  "eco": "npm",
+  "pkg": "@types/*",
+  "ver": "26.6.3",
+  "mb": 2.5,
+  "kind": "devdep",
+  "fix": "Move this line from \"dependencies\" to \"devDependencies\": npm install --omit=dev leaves it out of the bundle."
+ },
+ {
+  "id": "npm-lodash",
+  "eco": "npm",
+  "pkg": "lodash",
+  "ver": "4.18.1",
+  "mb": 1.4,
+  "kind": "size",
+  "fix": ""
+ },
+ {
+  "id": "npm-moment",
+  "eco": "npm",
+  "pkg": "moment",
+  "ver": "2.31.0",
+  "mb": 4.5,
+  "kind": "size",
+  "fix": ""
+ },
+ {
+  "id": "npm-axios",
+  "eco": "npm",
+  "pkg": "axios",
+  "ver": "1.20.0",
+  "mb": 2.0,
+  "kind": "size",
+  "fix": ""
+ }
+]
