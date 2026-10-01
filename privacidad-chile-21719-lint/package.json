@@ -2,7 +2,7 @@
   "name": "privacidad-chile-21719-lint",
   "displayName": "Privacidad Chile: Ley 21.719 Policy Lint",
   "description": "Revisa la política de privacidad de un sitio chileno (WordPress, Elementor, portfolio) contra el art. 14 ter de la Ley 21.719, vigente el 2026-12-01: RUT, derechos, Agencia, transferencias.",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
