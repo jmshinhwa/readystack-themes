@@ -2,7 +2,7 @@
   "name": "nis2-risk-register-lint",
   "displayName": "Risk Register Lint — NIS2 Art. 21(2)",
   "description": "Lints Markdown risk registers: all ten NIS2 Article 21(2) measures (a)-(j) covered, and every risk row has an owner, a 1-5 score, a treatment and a review inside 12 months.",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
