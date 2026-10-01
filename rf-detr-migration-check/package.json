@@ -1,0 +1,59 @@
+{
+  "name": "rf-detr-migration-check",
+  "displayName": "rf-detr Migration Check — Ultralytics YOLO ties",
+  "description": "rf-detr migration check: flags Ultralytics YOLO (AGPL-3.0) ties in requirements.txt, pyproject.toml, environment.yml, Dockerfiles and Python code, with the Apache-2.0 RF-DETR line for each.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "rf-detr",
+    "rfdetr",
+    "yolox",
+    "ultralytics license",
+    "yolo agpl",
+    "ultralytics alternative",
+    "yolov8 license",
+    "yolo11 commercial",
+    "object detection license",
+    "agpl-3.0"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "rfdetrMigrationCheck.checkFile",
+        "title": "rf-detr Migration Check — Ultralytics YOLO ties: Check this file",
+        "category": "rf-detr Migration Check — Ultralytics YOLO ties"
+      },
+      {
+        "command": "rfdetrMigrationCheck.checkWorkspace",
+        "title": "rf-detr Migration Check — Ultralytics YOLO ties: Sweep workspace and write report (licence)",
+        "category": "rf-detr Migration Check — Ultralytics YOLO ties"
+      },
+      {
+        "command": "rfdetrMigrationCheck.enterKey",
+        "title": "rf-detr Migration Check — Ultralytics YOLO ties: Enter licence key",
+        "category": "rf-detr Migration Check — Ultralytics YOLO ties"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "rf-detr-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/rf-detr-migration-check",
+  "readystack": {
+    "rulesDate": "2026-09-30"
+  },
+  "icon": "icon.png"
+}
