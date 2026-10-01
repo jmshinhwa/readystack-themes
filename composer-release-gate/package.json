@@ -1,0 +1,56 @@
+{
+  "name": "composer-release-gate",
+  "displayName": "composer.json Validate - PHP EOL Release Gate",
+  "description": "composer.json validate before a Packagist release: flags a require.php floor on end-of-life PHP (8.1 ended 2025-12-31, 8.2 ends 2026-12-31) and the fields composer validate --strict rejects.",
+  "version": "1.0.2",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "composer",
+    "composer.json",
+    "packagist",
+    "php",
+    "php-eol",
+    "composer-validate",
+    "spdx"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "composerReleaseGate.checkFile",
+        "title": "composer.json Validate - PHP EOL Release Gate: Check this file",
+        "category": "composer.json Validate - PHP EOL Release Gate"
+      },
+      {
+        "command": "composerReleaseGate.checkWorkspace",
+        "title": "composer.json Validate - PHP EOL Release Gate: Sweep workspace and write report (licence)",
+        "category": "composer.json Validate - PHP EOL Release Gate"
+      },
+      {
+        "command": "composerReleaseGate.enterKey",
+        "title": "composer.json Validate - PHP EOL Release Gate: Enter licence key",
+        "category": "composer.json Validate - PHP EOL Release Gate"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "composer-release-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/composer-release-gate",
+  "readystack": {
+    "rulesDate": "2026-09-30"
+  },
+  "icon": "icon.png"
+}
