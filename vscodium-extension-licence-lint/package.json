@@ -2,7 +2,7 @@
   "name": "vscodium-extension-licence-lint",
   "displayName": "VSCodium Migration Lint: Microsoft-only Extensions",
   "description": "VSCodium migration check: flags extensions in .vscode/extensions.json and devcontainer.json that Microsoft licenses for VS Code only or that Open VSX lacks, with the open replacement ID",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
