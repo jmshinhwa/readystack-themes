@@ -36,7 +36,7 @@ The same engine runs in the editor and on the one-page web version: a workflow f
 
 Free: audit the workflow file you have open and list every attestation gap with its SSDF practice ID and the CISA form section it sits under. That job finishes on its own.
 
-Full version: audit every workflow in the repository at once and export one dated evidence table mapped to all four attestation sections — https://buy.polar.sh/polar_cl_p4a0TbqABh9QIIJlOPNxkwxm8shyqSsnSn23v05tEw7
+Full version: audit every workflow in the repository at once and export one dated evidence table mapped to all four attestation sections — https://getreadystack.com/api/buy/cl/polar_cl_p4a0TbqABh9QIIJlOPNxkwxm8shyqSsnSn23v05tEw7
 
 Yardstick: a US application-security contractor bills roughly 150-250 an hour to review and re-pin a release pipeline by hand.
 
