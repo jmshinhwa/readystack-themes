@@ -1,0 +1,57 @@
+{
+  "name": "open-vsx-publish-gate",
+  "displayName": "Open VSX Publish Gate - vsce & ovsx preflight",
+  "description": "Open VSX and vsce preflight for extension authors: flags SVG icons, http or untrusted SVG badges, missing publisher/engines, Microsoft-only dependencies and VSCE_PAT publishing before 2026-12-01.",
+  "version": "1.0.1",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "open vsx",
+    "ovsx",
+    "vsce",
+    "vscodium",
+    "publish vscode extension",
+    "vsce_pat",
+    "marketplace",
+    "cursor"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "openVsxGate.checkFile",
+        "title": "Open VSX Publish Gate - vsce & ovsx preflight: Check this file",
+        "category": "Open VSX Publish Gate - vsce & ovsx preflight"
+      },
+      {
+        "command": "openVsxGate.checkWorkspace",
+        "title": "Open VSX Publish Gate - vsce & ovsx preflight: Sweep workspace and write report (licence)",
+        "category": "Open VSX Publish Gate - vsce & ovsx preflight"
+      },
+      {
+        "command": "openVsxGate.enterKey",
+        "title": "Open VSX Publish Gate - vsce & ovsx preflight: Enter licence key",
+        "category": "Open VSX Publish Gate - vsce & ovsx preflight"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "open-vsx-publish-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/open-vsx-publish-gate",
+  "readystack": {
+    "rulesDate": "2026-09-30"
+  },
+  "icon": "icon.png"
+}
