@@ -2,7 +2,7 @@
   "name": "privacy-manifest-lint",
   "displayName": "Privacy Manifest Lint - xcprivacy & ITMS-91053",
   "description": "Checks PrivacyInfo.xcprivacy and your C#, Dart, JS, Swift and Kotlin source for Apple required-reason APIs, and decodes all 17 reason codes back to the category they belong to.",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -94,5 +94,14 @@
   "icon": "icon.png",
   "readystack": {
     "rulesDate": "2026-09-27"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "privacy-manifest-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/privacy-manifest-lint",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
