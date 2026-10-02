@@ -2,7 +2,7 @@
   "name": "autohotkey-toml-devicetree-snippets",
   "displayName": "AutoHotkey v2, TOML and DeviceTree Checks",
   "description": "22 checks and 46 snippets for the files VS Code never validates: DeviceTree overlays, TOML manifests and AutoHotkey v2 scripts. Runs offline, no account.",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -199,5 +199,14 @@
   "icon": "icon.png",
   "readystack": {
     "rulesDate": "2026-09-27"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "autohotkey-toml-devicetree-snippets"
+  },
+  "homepage": "https://getreadystack.com/tools/autohotkey-toml-devicetree-snippets",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
