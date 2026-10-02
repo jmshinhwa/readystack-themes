@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.geg-87-listing-lint</id>
+  <name>Immobilienanzeige GEG 87 Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>13 rules over German property-ad HTML: the five mandatory Section 87 GModG fields, the ten-year certificate limit, and the Anlage 10 class band that has to match the kWh value. The bundled broken Leipzig template returns seven findings, among them 182 kWh/(m2*a) printed as class C when Anlage 10 makes it class F.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Immobilienanzeige GEG 87 Lint: Check This File</b>. Each finding appears on its line with the fix. 13 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/geg-87-listing-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/geg-87-listing-lint">getreadystack.com/tools/geg-87-listing-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_geg_87_listing_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.geg-87-listing-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.geg-87-listing-lint.check" class="com.getreadystack.p_geg_87_listing_lint.RsCheckAction"
+            text="Immobilienanzeige GEG 87 Lint: Check This File" description="Run Immobilienanzeige GEG 87 Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
