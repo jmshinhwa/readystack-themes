@@ -2,7 +2,7 @@
   "name": "firmware-release-gate",
   "displayName": "Firmware Release Gate for sdkconfig and prj.conf",
   "description": "Finds the build-config lines that ship an ESP-IDF or Zephyr device with secure boot off, a debug port open, unsigned images or plaintext OTA.",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -90,5 +90,14 @@
   "icon": "icon.png",
   "readystack": {
     "rulesDate": "2026-09-27"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "firmware-release-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/firmware-release-gate",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
