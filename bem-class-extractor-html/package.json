@@ -2,7 +2,7 @@
   "name": "bem-class-extractor-html",
   "displayName": "BEM Class Auditor - HTML and SCSS naming",
   "description": "16 BEM naming rules read the HTML file you have open, and 22 markup and SCSS skeletons write the stylesheet shell — the class names get fixed before the pull request comes back for them.",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -107,5 +107,14 @@
   "icon": "icon.png",
   "readystack": {
     "rulesDate": "2026-09-27"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "bem-class-extractor-html"
+  },
+  "homepage": "https://getreadystack.com/tools/bem-class-extractor-html",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
