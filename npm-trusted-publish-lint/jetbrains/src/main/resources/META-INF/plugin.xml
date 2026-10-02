@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.npm-trusted-publish-lint</id>
+  <name>npm Trusted Publish Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds the credential in your release workflow that expires before your next release</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>npm Trusted Publish Lint: Check This File</b>. Each finding appears on its line with the fix. 15 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/npm-trusted-publish-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/npm-trusted-publish-lint">getreadystack.com/tools/npm-trusted-publish-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_npm_trusted_publish_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.npm-trusted-publish-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.npm-trusted-publish-lint.check" class="com.getreadystack.p_npm_trusted_publish_lint.RsCheckAction"
+            text="npm Trusted Publish Lint: Check This File" description="Run npm Trusted Publish Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
