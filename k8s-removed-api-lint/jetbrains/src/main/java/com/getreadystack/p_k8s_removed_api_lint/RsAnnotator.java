@@ -97,10 +97,11 @@ public class RsAnnotator extends ExternalAnnotator<RsAnnotator.Input, List<RsAnn
     String body = failed
         ? "Node.js 18+ (npx) is needed to run the checks. The free web version needs nothing installed."
         : (n == 0 ? "No findings in this file." : n + (n == 1 ? " finding" : " findings") + " in this file (free).")
-          + " Sweep the whole project and get the report with a licence ($" + PRICE + " once).";
+          + " Pro sweeps the whole project and writes a dated report.";
     NotificationGroupManager.getInstance().getNotificationGroup("ReadyStack.k8s-removed-api-lint")
         .createNotification(NAME, body, NotificationType.INFORMATION)
-        .addAction(NotificationAction.createSimpleExpiring(failed ? "Open the web version" : "Get the licence", () -> BrowserUtil.browse(URL)))
+        .addAction(failed ? NotificationAction.createSimpleExpiring("Open the web version", () -> BrowserUtil.browse(URL))
+                          : NotificationAction.createSimpleExpiring("Check the whole project (Pro)", () -> RsProjectAction.runFor(file.getProject())))
         .notify(file.getProject());
   }
 }
