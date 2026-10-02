@@ -1,11 +1,12 @@
 <idea-plugin>
   <id>com.getreadystack.firmware-release-gate</id>
-  <name>Firmware Release Gate for sdkconfig and prj.conf</name>
+  <name>Firmware Release Gate</name>
   <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <product-descriptor code="PRSFIRRELGAT" release-date="20261002" release-version="11" optional="true"/>
   <description><![CDATA[
   <p>Finds the build-config lines that ship an ESP-IDF or Zephyr device with secure boot off, a debug port open, unsigned images or plaintext OTA.</p>
-<p>Right-click in the editor (or <b>Tools</b>) → <b>Firmware Release Gate for sdkconfig and prj.conf: Check This File</b>. Each finding appears on its line with the fix. 18 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/firmware-release-gate</code> (Node.js 18+ required).</p>
-<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/firmware-release-gate">getreadystack.com/tools/firmware-release-gate</a></p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Firmware Release Gate: Check This File</b>. Each finding appears on its line with the fix. 18 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/firmware-release-gate</code> (Node.js 18+ required).</p>
+<p><b>Free</b>: check the file you open — every finding on its line, with the fix.<br><b>Pro</b> (JetBrains Marketplace licence): <b>Tools → Firmware Release Gate: Check Whole Project</b> sweeps every matching file in the project and writes a dated HTML and CSV report you can attach to a review or an audit.</p><p>Web version and rule list: <a href="https://getreadystack.com/tools/firmware-release-gate">getreadystack.com/tools/firmware-release-gate</a></p>
   ]]></description>
   <depends>com.intellij.modules.platform</depends>
   <extensions defaultExtensionNs="com.intellij">
@@ -14,9 +15,14 @@
   </extensions>
   <actions>
     <action id="com.getreadystack.firmware-release-gate.check" class="com.getreadystack.p_firmware_release_gate.RsCheckAction"
-            text="Firmware Release Gate for sdkconfig and prj.conf: Check This File" description="Run Firmware Release Gate for sdkconfig and prj.conf on the file in the editor">
+            text="Firmware Release Gate: Check This File" description="Run Firmware Release Gate on the file in the editor">
       <add-to-group group-id="ToolsMenu" anchor="last"/>
       <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+    <action id="com.getreadystack.firmware-release-gate.project" class="com.getreadystack.p_firmware_release_gate.RsProjectAction"
+            text="Firmware Release Gate: Check Whole Project" description="Pro: sweep every matching file in the project and write a dated report">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
       <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
     </action>
   </actions>
