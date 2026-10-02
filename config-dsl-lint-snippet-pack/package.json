@@ -2,7 +2,7 @@
   "name": "config-dsl-lint-snippet-pack",
   "displayName": "Config & DSL Lint + Snippets — 9 Sets",
   "description": "Your config files are never compiled — nothing fails until deploy. 36 snippets and 28 lint rules for 9 of them, inside the editor, offline.",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -155,5 +155,14 @@
       }
     ]
   },
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "config-dsl-lint-snippet-pack"
+  },
+  "homepage": "https://getreadystack.com/tools/config-dsl-lint-snippet-pack",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  }
 }
