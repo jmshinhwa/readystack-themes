@@ -2,7 +2,7 @@
   "name": "cloud-cost-landmine-lint",
   "displayName": "Terraform Cost Lint - cloud cost landmines (Terraform, CloudFormation, K8s)",
   "description": "Names every line in the file you have open that starts a recurring cloud charge, with the published us-east-1 price and the date it changes by itself.",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -86,5 +86,14 @@
   "icon": "icon.png",
   "readystack": {
     "rulesDate": "2026-09-27"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "cloud-cost-landmine-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/cloud-cost-landmine-lint",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
