@@ -2,7 +2,7 @@
   "name": "auditor-ibs-cbs-nfe",
   "displayName": "NF-e XML Lint (BR) - IBS/CBS NT 2025.002 Reforma Tributária",
   "description": "A rejeição por falta de IBS/CBS foi suspensa em 31/07/2026: sua NF-e é autorizada mesmo errada. Este auditor lê o XML no editor e aponta o que a SEFAZ deixou passar.",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -94,5 +94,14 @@
   "icon": "icon.png",
   "readystack": {
     "rulesDate": "2026-09-27"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "auditor-ibs-cbs-nfe"
+  },
+  "homepage": "https://getreadystack.com/pt/tools/auditor-ibs-cbs-nfe",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
