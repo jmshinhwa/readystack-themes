@@ -2,7 +2,7 @@
   "name": "cron-schedule-lint",
   "displayName": "Crontab Lint - cron expression checker (crontab, K8s CronJob, GitHub Actions)",
   "description": "Names every schedule line in the file you have open that fires at the wrong hour, twice, or never at all - and prints the next three times each one really fires, in the zone that actually applies.",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -91,5 +91,14 @@
   "icon": "icon.png",
   "readystack": {
     "rulesDate": "2026-09-27"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "cron-schedule-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/cron-schedule-lint",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
