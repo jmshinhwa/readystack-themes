@@ -2,7 +2,7 @@
   "name": "readystack-ember-high",
   "displayName": "ReadyStack Ember High Contrast",
   "description": "Near-black background, bright accents. Built for bright rooms and tired eyes. Body text measured at 14.6:1 - WCAG AAA.",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
@@ -67,5 +67,13 @@
   "main": "./extension.js",
   "activationEvents": [
     "onStartupFinished"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "readystack-ember-high"
+  },
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  }
 }
