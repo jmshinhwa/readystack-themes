@@ -2,7 +2,7 @@
   "name": "readystack-paper-light",
   "displayName": "ReadyStack Paper Light",
   "description": "Cream paper with ink. A light theme that does not blast you at 9am. Body text measured at 13.6:1 - WCAG AAA.",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
@@ -67,5 +67,13 @@
   "main": "./extension.js",
   "activationEvents": [
     "onStartupFinished"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "readystack-paper-light"
+  },
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  }
 }
