@@ -4,7 +4,7 @@ const vscode = require('vscode');
 const https = require('https');
 const SLUG = 'readystack-forest-deep';
 const LABEL = 'ReadyStack Forest Deep';
-const PACK_URL = 'https://buy.polar.sh/polar_cl_XLCKUkI8aRMShyOFKFccELfmuQBHQ8Dwuy6rH2WiR0e';
+const PACK_URL = 'https://getreadystack.com/api/buy/cl/polar_cl_XLCKUkI8aRMShyOFKFccELfmuQBHQ8Dwuy6rH2WiR0e';
 const KEY = 'readystack.packOffer.' + SLUG;
 function ping(why) {
   try {
