@@ -1,6 +1,6 @@
-# Firmware Release Gate for sdkconfig and prj.conf — JetBrains plugin source
+# Firmware Release Gate — JetBrains plugin source
 
-The IntelliJ Platform plugin for **Firmware Release Gate for sdkconfig and prj.conf** (right-click in the editor or Tools → "Check This File").
+The IntelliJ Platform plugin for **Firmware Release Gate** (right-click in the editor or Tools → "Check This File").
 
 - The plugin is a thin wrapper: it writes the current buffer to a temp file and runs the checking engine, the npm package [`@readystack/firmware-release-gate`](https://www.npmjs.com/package/@readystack/firmware-release-gate) (Node 18+, `npx`). The engine and its rule set live in the folder above this one (`engine.js`, `rules.json`).
 - Build: `gradle buildPlugin` (IntelliJ Platform Gradle Plugin 2.x).
