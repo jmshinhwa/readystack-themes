@@ -1,11 +1,12 @@
 <idea-plugin>
   <id>com.getreadystack.france-einvoice-reception-lint</id>
-  <name>France E-Invoice Reception Lint</name>
+  <name>France E-Invoice Reception</name>
   <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <product-descriptor code="PRSFRAEINRECLIN" release-date="20261002" release-version="11" optional="true"/>
   <description><![CDATA[
   <p>12 checks for the French mandatory mentions a PDP rejects, on Factur-X, UBL and CII invoices</p>
-<p>Right-click in the editor (or <b>Tools</b>) → <b>France E-Invoice Reception Lint: Check This File</b>. Each finding appears on its line with the fix. 12 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/france-einvoice-reception-lint</code> (Node.js 18+ required).</p>
-<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/france-einvoice-reception-lint">getreadystack.com/tools/france-einvoice-reception-lint</a></p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>France E-Invoice Reception: Check This File</b>. Each finding appears on its line with the fix. 12 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/france-einvoice-reception-lint</code> (Node.js 18+ required).</p>
+<p><b>Free</b>: check the file you open — every finding on its line, with the fix.<br><b>Pro</b> (JetBrains Marketplace licence): <b>Tools → France E-Invoice Reception: Check Whole Project</b> sweeps every matching file in the project and writes a dated HTML and CSV report you can attach to a review or an audit.</p><p>Web version and rule list: <a href="https://getreadystack.com/tools/france-einvoice-reception-lint">getreadystack.com/tools/france-einvoice-reception-lint</a></p>
   ]]></description>
   <depends>com.intellij.modules.platform</depends>
   <extensions defaultExtensionNs="com.intellij">
@@ -14,9 +15,14 @@
   </extensions>
   <actions>
     <action id="com.getreadystack.france-einvoice-reception-lint.check" class="com.getreadystack.p_france_einvoice_reception_lint.RsCheckAction"
-            text="France E-Invoice Reception Lint: Check This File" description="Run France E-Invoice Reception Lint on the file in the editor">
+            text="France E-Invoice Reception: Check This File" description="Run France E-Invoice Reception on the file in the editor">
       <add-to-group group-id="ToolsMenu" anchor="last"/>
       <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+    <action id="com.getreadystack.france-einvoice-reception-lint.project" class="com.getreadystack.p_france_einvoice_reception_lint.RsProjectAction"
+            text="France E-Invoice Reception: Check Whole Project" description="Pro: sweep every matching file in the project and write a dated report">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
       <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
     </action>
   </actions>
