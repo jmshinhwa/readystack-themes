@@ -2,7 +2,7 @@
   "name": "personal-data-map-dsar-audit",
   "displayName": "Personal Data Map - find PII columns for GDPR DSAR (SQL, ORM)",
   "description": "Reads a migration, Prisma schema, Django model or TypeORM entity and marks every column a subject access request has to reach - with the GDPR article each finding hangs on. 13 rules, line numbers, no ",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -90,5 +90,14 @@
   "icon": "icon.png",
   "readystack": {
     "rulesDate": "2026-09-27"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "personal-data-map-dsar-audit"
+  },
+  "homepage": "https://getreadystack.com/tools/personal-data-map-dsar-audit",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
