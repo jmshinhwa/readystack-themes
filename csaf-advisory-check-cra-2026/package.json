@@ -2,7 +2,7 @@
   "name": "csaf-advisory-check-cra-2026",
   "displayName": "CSAF Advisory Lint - security advisory JSON (CRA, VEX)",
   "description": "Runs the 43 mandatory and profile conformance tests of CSAF 2.0 section 6.1 on the advisory you are writing: product ID graph, revision history, CVSS recomputation, CWE names. Offline.",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -100,5 +100,14 @@
   "icon": "icon.png",
   "readystack": {
     "rulesDate": "2026-09-27"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "csaf-advisory-check-cra-2026"
+  },
+  "homepage": "https://getreadystack.com/tools/csaf-advisory-check-cra-2026",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
