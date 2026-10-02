@@ -1,6 +1,6 @@
-# France E-Invoice Reception Lint — JetBrains plugin source
+# France E-Invoice Reception — JetBrains plugin source
 
-The IntelliJ Platform plugin for **France E-Invoice Reception Lint** (right-click in the editor or Tools → "Check This File").
+The IntelliJ Platform plugin for **France E-Invoice Reception** (right-click in the editor or Tools → "Check This File").
 
 - The plugin is a thin wrapper: it writes the current buffer to a temp file and runs the checking engine, the npm package [`@readystack/france-einvoice-reception-lint`](https://www.npmjs.com/package/@readystack/france-einvoice-reception-lint) (Node 18+, `npx`). The engine and its rule set live in the folder above this one (`engine.js`, `rules.json`).
 - Build: `gradle buildPlugin` (IntelliJ Platform Gradle Plugin 2.x).
