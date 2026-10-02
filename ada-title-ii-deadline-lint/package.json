@@ -2,7 +2,7 @@
   "name": "ada-title-ii-deadline-lint",
   "displayName": "Web Accessibility Lint - WCAG 2.1 AA (ADA Title II)",
   "description": "Flags the ADA Title II and HHS Section 504 deadlines that both agencies reset in 2026, and the WCAG 2.1 Level AA failures your source code can actually show.",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -94,5 +94,14 @@
   "icon": "icon.png",
   "readystack": {
     "rulesDate": "2026-09-27"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "ada-title-ii-deadline-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/ada-title-ii-deadline-lint",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
