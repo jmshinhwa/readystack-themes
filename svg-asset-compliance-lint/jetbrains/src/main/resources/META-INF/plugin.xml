@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.svg-asset-compliance-lint</id>
+  <name>SVG Asset Compliance Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>14 rules over the SVG files your design tool exported, before they become a legal object</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>SVG Asset Compliance Lint: Check This File</b>. Each finding appears on its line with the fix. 14 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/svg-asset-compliance-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/svg-asset-compliance-lint">getreadystack.com/tools/svg-asset-compliance-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_svg_asset_compliance_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.svg-asset-compliance-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.svg-asset-compliance-lint.check" class="com.getreadystack.p_svg_asset_compliance_lint.RsCheckAction"
+            text="SVG Asset Compliance Lint: Check This File" description="Run SVG Asset Compliance Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
