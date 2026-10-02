@@ -2,7 +2,7 @@
   "name": "robots-txt-ai-crawler-audit",
   "displayName": "robots.txt AI Crawler Audit - GPTBot, ClaudeBot, Google-Extended",
   "description": "Checks robots.txt line by line and says what each AI crawler token actually controls - training, AI-search citation, or user fetch - and which lines silently do nothing.",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -106,5 +106,14 @@
   "icon": "icon.png",
   "readystack": {
     "rulesDate": "2026-09-27"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "robots-txt-ai-crawler-audit"
+  },
+  "homepage": "https://getreadystack.com/tools/robots-txt-ai-crawler-audit",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
