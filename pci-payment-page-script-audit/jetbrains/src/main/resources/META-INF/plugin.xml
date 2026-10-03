@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.pci-payment-page-script-audit</id>
+  <name>PCI Payment Page Script Audit</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>PCI DSS 4.0.1 requirements 6.4.3 and 11.6.1 have been mandatory since 2025-03-31, and the PCI SSC revised FAQ 1331 on 2026-08-04 so a QSA agreement alone no longer marks them not applicable. This reads a checkout page and names every script that has no authorization method, no integrity method and no inventory row.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>PCI Payment Page Script Audit: Check This File</b>. Each finding appears on its line with the fix. 26 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/pci-payment-page-script-audit</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/pci-payment-page-script-audit">getreadystack.com/tools/pci-payment-page-script-audit</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_pci_payment_page_script_audit.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.pci-payment-page-script-audit" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.pci-payment-page-script-audit.check" class="com.getreadystack.p_pci_payment_page_script_audit.RsCheckAction"
+            text="PCI Payment Page Script Audit: Check This File" description="Run PCI Payment Page Script Audit on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
