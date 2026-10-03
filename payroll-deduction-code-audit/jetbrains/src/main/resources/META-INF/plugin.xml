@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.payroll-deduction-code-audit</id>
+  <name>Payroll Deduction Code Audit</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Twelve rules over the deduction-code map, before the January 31 W-2 filing date</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Payroll Deduction Code Audit: Check This File</b>. Each finding appears on its line with the fix. 12 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/payroll-deduction-code-audit</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/payroll-deduction-code-audit">getreadystack.com/tools/payroll-deduction-code-audit</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_payroll_deduction_code_audit.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.payroll-deduction-code-audit" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.payroll-deduction-code-audit.check" class="com.getreadystack.p_payroll_deduction_code_audit.RsCheckAction"
+            text="Payroll Deduction Code Audit: Check This File" description="Run Payroll Deduction Code Audit on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
