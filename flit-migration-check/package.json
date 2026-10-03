@@ -2,7 +2,7 @@
   "name": "flit-migration-check",
   "displayName": "Flit Migration Check: setup.py to flit_core 4",
   "description": "Flit migration map for Python packages: finds every setup.py, setup.cfg and setuptools/old-flit pyproject.toml line and prints the exact flit_core 4 [project] line that replaces it, plus the blockers ",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
