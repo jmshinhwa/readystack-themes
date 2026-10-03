@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.ai-model-retirement-lint</id>
+  <name>AI Model Retirement Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds the LLM model IDs pinned in your code that vendors have already switched off, or have dated to switch off, with the replacement and the date.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>AI Model Retirement Lint: Check This File</b>. Each finding appears on its line with the fix. 33 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/ai-model-retirement-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/ai-model-retirement-lint">getreadystack.com/tools/ai-model-retirement-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_ai_model_retirement_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.ai-model-retirement-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.ai-model-retirement-lint.check" class="com.getreadystack.p_ai_model_retirement_lint.RsCheckAction"
+            text="AI Model Retirement Lint: Check This File" description="Run AI Model Retirement Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
