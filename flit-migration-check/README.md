@@ -1,7 +1,5 @@
 # Flit Migration Check: setup.py to flit_core 4
 
-![Flit Migration Check: setup.py to flit_core 4 — finds the line](https://getreadystack.com/img/promo/flit-migration-check_demo.gif)
-
 ![Flit Migration Check: setup.py to flit_core 4](https://getreadystack.com/img/promo/sku428290_result_card.jpg)
 
 Open a `setup.py`, `setup.cfg` or `pyproject.toml` and this extension lists every line that still belongs to setuptools, Hatch, Poetry or the old Flit 3 layout, with its line number and the exact flit_core 4 line that replaces it. It runs offline, inside the editor, on your own file.
