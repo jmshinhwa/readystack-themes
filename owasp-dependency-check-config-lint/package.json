@@ -1,0 +1,58 @@
+{
+  "name": "owasp-dependency-check-config-lint",
+  "displayName": "OWASP Dependency Check Config Lint",
+  "description": "OWASP dependency check setup lint for pom.xml, Gradle, suppression XML and CI files: plugin versions below the 12.1.0 mandatory upgrade, expired suppressions, hardcoded NVD API keys, failBuildOnCVSS 1",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "owasp dependency check",
+    "dependency-check",
+    "dependency-check-maven",
+    "nvd api key",
+    "suppression",
+    "sca",
+    "cve",
+    "osv-scanner",
+    "dependency-track"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "odcLint.checkFile",
+        "title": "OWASP Dependency Check Config Lint: Check this file",
+        "category": "OWASP Dependency Check Config Lint"
+      },
+      {
+        "command": "odcLint.checkWorkspace",
+        "title": "OWASP Dependency Check Config Lint: Sweep workspace and write report (licence)",
+        "category": "OWASP Dependency Check Config Lint"
+      },
+      {
+        "command": "odcLint.enterKey",
+        "title": "OWASP Dependency Check Config Lint: Enter licence key",
+        "category": "OWASP Dependency Check Config Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "owasp-dependency-check-config-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/owasp-dependency-check-config-lint",
+  "readystack": {
+    "rulesDate": "2026-10-01"
+  },
+  "icon": "icon.png"
+}
