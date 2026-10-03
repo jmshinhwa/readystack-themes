@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.openbao-migration-lint</id>
+  <name>OpenBao Migration Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>OpenBao migration check for HashiCorp Vault scripts, Terraform, Helm values and server HCL: 14 rules, each with the OpenBao fix</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>OpenBao Migration Lint: Check This File</b>. Each finding appears on its line with the fix. 14 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/openbao-migration-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/openbao-migration-lint">getreadystack.com/tools/openbao-migration-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_openbao_migration_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.openbao-migration-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.openbao-migration-lint.check" class="com.getreadystack.p_openbao_migration_lint.RsCheckAction"
+            text="OpenBao Migration Lint: Check This File" description="Run OpenBao Migration Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
