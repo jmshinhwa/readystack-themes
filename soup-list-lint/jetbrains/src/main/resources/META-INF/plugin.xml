@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.soup-list-lint</id>
+  <name>SOUP List Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Reads your SOUP register the way an auditor does: 16 rules over clauses 8.1.2, 5.3.3, 5.3.4, 4.3 and 7.1.3.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>SOUP List Lint: Check This File</b>. Each finding appears on its line with the fix. Offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/soup-list-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/soup-list-lint">getreadystack.com/tools/soup-list-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_soup_list_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.soup-list-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.soup-list-lint.check" class="com.getreadystack.p_soup_list_lint.RsCheckAction"
+            text="SOUP List Lint: Check This File" description="Run SOUP List Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
