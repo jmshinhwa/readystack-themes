@@ -2,7 +2,7 @@
   "name": "nuget-pack-csproj-gate",
   "displayName": "NuGet Pack Gate — csproj licence, icon, TFM",
   "description": "nuget pack csproj check: flags PackageLicenseUrl (NU5125), PackageIconUrl (NU5048), non-SPDX licence expressions, unpacked icon/readme/licence files and net8.0/net9.0 (end of support 2026-11-10), with",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
