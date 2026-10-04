@@ -1,7 +1,5 @@
 # Valkey Migration Check — ElastiCache Redis ties
 
-![Valkey Migration Check — ElastiCache Redis ties — finds the line](https://getreadystack.com/img/promo/valkey-migration-check_demo.gif)
-
 ![Valkey Migration Check — ElastiCache Redis ties](https://getreadystack.com/img/promo/sku424870_result_card.jpg)
 
 Finds every line in your Terraform, CloudFormation, compose files and Dockerfiles that still ties you to Redis, and prints the Valkey line that replaces it.
