@@ -2,7 +2,7 @@
   "name": "gomod-release-gate",
   "displayName": "go.mod Release Gate: /vN suffix and go line check",
   "description": "Checks go.mod before you tag: missing /vN major version suffix, go line older than the two supported Go releases, toolchain below go, local replace, require path/version mismatch. Each finding has the",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
