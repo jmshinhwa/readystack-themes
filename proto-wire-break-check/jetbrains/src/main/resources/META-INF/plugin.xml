@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.proto-wire-break-check</id>
+  <name>Proto Wire Break Check</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Names the .proto edits that keep compiling and quietly change what old gRPC readers see</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Proto Wire Break Check: Check This File</b>. Each finding appears on its line with the fix. 17 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/proto-wire-break-check</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/proto-wire-break-check">getreadystack.com/tools/proto-wire-break-check</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_proto_wire_break_check.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.proto-wire-break-check" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.proto-wire-break-check.check" class="com.getreadystack.p_proto_wire_break_check.RsCheckAction"
+            text="Proto Wire Break Check: Check This File" description="Run Proto Wire Break Check on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
