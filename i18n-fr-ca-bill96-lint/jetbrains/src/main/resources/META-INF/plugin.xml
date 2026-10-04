@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.i18n-fr-ca-bill96-lint</id>
+  <name>i18n fr-CA Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds the France-French and left-over English lines in your fr-CA locale file before an OQLF complaint does.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>i18n fr-CA Lint: Check This File</b>. Each finding appears on its line with the fix. 9 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/i18n-fr-ca-bill96-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/i18n-fr-ca-bill96-lint">getreadystack.com/tools/i18n-fr-ca-bill96-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_i18n_fr_ca_bill96_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.i18n-fr-ca-bill96-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.i18n-fr-ca-bill96-lint.check" class="com.getreadystack.p_i18n_fr_ca_bill96_lint.RsCheckAction"
+            text="i18n fr-CA Lint: Check This File" description="Run i18n fr-CA Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
