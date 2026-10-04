@@ -1,7 +1,5 @@
 # gitlab-runner Compute Minutes Audit for GitLab CI
 
-![gitlab-runner Compute Minutes Audit for GitLab CI — finds the line](https://getreadystack.com/img/promo/gitlab-runner-compute-minutes-audit_demo.gif)
-
 ![gitlab-runner Compute Minutes Audit for GitLab CI](https://getreadystack.com/img/promo/sku430659_result_card.jpg)
 
 **For DevOps engineers on GitLab.com Free: see which `.gitlab-ci.yml` job burns the 400 compute minutes your namespace gets each month, and the `tags:` line that moves it to your own gitlab-runner.**
