@@ -2,7 +2,7 @@
   "name": "gitlab-runner-compute-minutes-audit",
   "displayName": "gitlab-runner Compute Minutes Audit for GitLab CI",
   "description": "gitlab-runner compute minutes audit: ranks each .gitlab-ci.yml job by GitLab.com cost factor and worst-case minutes against the 400-minute Free quota, with the tags: line to move it to your runner.",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
