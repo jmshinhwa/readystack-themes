@@ -2,7 +2,7 @@
   "name": "valkey-migration-check",
   "displayName": "Valkey Migration Check — ElastiCache Redis ties",
   "description": "Valkey migration check: flags ElastiCache Redis OSS 4/5/6 engine versions (Extended Support billing), redis parameter-group families and redis:7.4+ images in Terraform, CloudFormation, compose and Doc",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
