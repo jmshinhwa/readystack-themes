@@ -3,7 +3,7 @@ const https = require('https');
 const ORG_ID = 'a5cdf664-d8e7-4f87-8895-056717aaba17';
 const BUY_URL = 'https://getreadystack.com/api/buy/cl/polar_cl_bnseQjpLj5EkVFEneKOVxV674pcmY9qEGImDm4HZEJJ';
 const SLUG = 'composer-release-gate';   // s151 — 키 판 핑의 익명 이름 (vsix_build._license_js 가 찍는다)
-const BENEFIT_ID = 'f2f7912e-4156-48c3-9074-7f3fe7c90735';   // s140 — 이 상품의 benefit. till.py 가 찍는다 · validate 가 이걸로 묻는다 (⛔조직만 물으면 키 하나로 전부 열린다)
+const BENEFIT_ID = '';   // s140 — 이 상품의 benefit. till.py 가 찍는다 · validate 가 이걸로 묻는다 (⛔조직만 물으면 키 하나로 전부 열린다)
 const GRACE_MS = 30 * 24 * 3600 * 1000;   // 검증 성공 뒤 30일은 오프라인에서도 연다
 const RECHECK_MS = 7 * 24 * 3600 * 1000;  // 7일마다 다시 묻는다 (환불·해지가 반영되도록)
 
