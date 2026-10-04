@@ -2,7 +2,7 @@
   "name": "fdroid-inclusion-gate",
   "displayName": "F-Droid Inclusion Gate - non-free Gradle dependency map",
   "description": "F-Droid migration check for build.gradle: flags Play Services, Firebase, Crashlytics, Play Billing and tracker SDKs the Inclusion Policy forbids, with the FOSS replacement line for each.",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
