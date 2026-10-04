@@ -1,7 +1,5 @@
 # Xcode 26 SDK Gate for GitHub Actions
 
-![Xcode 26 SDK Gate for GitHub Actions — finds the line](https://getreadystack.com/img/promo/xcode-26-sdk-gate_demo.gif)
-
 ![Xcode 26 SDK Gate for GitHub Actions](https://getreadystack.com/img/promo/sku436475_result_card.jpg)
 
 **Since 28 April 2026 App Store Connect rejects uploads that were not built with Xcode 26 or later using an iOS 26 SDK — and the GitHub-hosted `macos-15` runner still defaults to Xcode 16.4.**
