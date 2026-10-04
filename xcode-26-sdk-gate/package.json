@@ -2,7 +2,7 @@
   "name": "xcode-26-sdk-gate",
   "displayName": "Xcode 26 SDK Gate for GitHub Actions",
   "description": "Maps every macOS job in .github/workflows to the Xcode it really builds with and flags uploads App Store Connect rejects since 28 Apr 2026 (Xcode 26 / iOS 26 SDK), plus the xcode-select fix line.",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
