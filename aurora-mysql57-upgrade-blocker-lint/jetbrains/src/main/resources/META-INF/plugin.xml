@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.aurora-mysql57-upgrade-blocker-lint</id>
+  <name>Aurora MySQL 5.7 to 8.0 Upgrade Blocker Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>28 MySQL 8.0 removal rules for .sql, .cnf and Terraform, before Aurora MySQL v2 Extended Support year 3 on 1 Dec 2026</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Aurora MySQL 5.7 to 8.0 Upgrade Blocker Lint: Check This File</b>. Each finding appears on its line with the fix. 28 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/aurora-mysql57-upgrade-blocker-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/aurora-mysql57-upgrade-blocker-lint">getreadystack.com/tools/aurora-mysql57-upgrade-blocker-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_aurora_mysql57_upgrade_blocker_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.aurora-mysql57-upgrade-blocker-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.aurora-mysql57-upgrade-blocker-lint.check" class="com.getreadystack.p_aurora_mysql57_upgrade_blocker_lint.RsCheckAction"
+            text="Aurora MySQL 5.7 to 8.0 Upgrade Blocker Lint: Check This File" description="Run Aurora MySQL 5.7 to 8.0 Upgrade Blocker Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
