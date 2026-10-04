@@ -1,7 +1,5 @@
 # F-Droid Inclusion Gate — non-free Gradle dependency map
 
-![F-Droid Inclusion Gate - non-free Gradle dependency map — finds the line](https://getreadystack.com/img/promo/fdroid-inclusion-gate_demo.gif)
-
 ![F-Droid Inclusion Gate - non-free Gradle dependency map](https://getreadystack.com/img/promo/sku425922_result_card.jpg)
 
 Moving an Android app to F-Droid? Open `build.gradle`, `build.gradle.kts` or `libs.versions.toml` and this extension lists every dependency, plugin and Maven repository that F-Droid's Inclusion Policy treats as non-free, each on its own line, with the FOSS line that replaces it.
