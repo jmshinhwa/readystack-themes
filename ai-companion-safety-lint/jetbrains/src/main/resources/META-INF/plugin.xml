@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.ai-companion-safety-lint</id>
+  <name>AI Companion Safety Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Reads your companion chatbot's system prompt against California SB 243, New York GBL Article 47, Illinois HB 1806 (WOPR Act) and Nevada AB 406, line by line.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>AI Companion Safety Lint: Check This File</b>. Each finding appears on its line with the fix. 14 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/ai-companion-safety-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/ai-companion-safety-lint">getreadystack.com/tools/ai-companion-safety-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_ai_companion_safety_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.ai-companion-safety-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.ai-companion-safety-lint.check" class="com.getreadystack.p_ai_companion_safety_lint.RsCheckAction"
+            text="AI Companion Safety Lint: Check This File" description="Run AI Companion Safety Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
