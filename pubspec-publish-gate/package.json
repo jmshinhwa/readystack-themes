@@ -2,7 +2,7 @@
   "name": "pubspec-publish-gate",
   "displayName": "pubspec Publish Gate - pub.dev pre-publish check",
   "description": "Checks pubspec.yaml before dart pub publish: path and git dependencies pub.dev refuses, dependency_overrides your users never get, invalid name/version, description outside 60-180 chars.",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
