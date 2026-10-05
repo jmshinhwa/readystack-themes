@@ -1,7 +1,5 @@
 # Lambda Package Size Budget - 250 MB check
 
-![Lambda Package Size Budget - 250 MB check — finds the line](https://getreadystack.com/img/promo/lambda-package-budget_demo.gif)
-
 ![Lambda Package Size Budget - 250 MB check](https://getreadystack.com/img/promo/sku439194_result_card.jpg)
 
 **Which line in requirements.txt or package.json is eating your 250 MB?** This extension reads the dependency file you have open, looks up the measured unzipped size of every listed package, and compares the total with the AWS Lambda limit for .zip functions: 250 MB unzipped, **layers and custom runtimes included**, and 50 MB zipped for a direct upload through the Lambda API, SDKs or console. Container images get 10 GB.
