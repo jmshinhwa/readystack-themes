@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.spf-dmarc-record-lint</id>
+  <name>SPF &amp; DMARC Record Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>19 offline checks on the SPF, DMARC and DKIM records in your branch — including the DMARC rewrite of May 2026</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>SPF &amp; DMARC Record Lint: Check This File</b>. Each finding appears on its line with the fix. 19 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/spf-dmarc-record-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/spf-dmarc-record-lint">getreadystack.com/tools/spf-dmarc-record-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_spf_dmarc_record_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.spf-dmarc-record-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.spf-dmarc-record-lint.check" class="com.getreadystack.p_spf_dmarc_record_lint.RsCheckAction"
+            text="SPF &amp; DMARC Record Lint: Check This File" description="Run SPF &amp; DMARC Record Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
