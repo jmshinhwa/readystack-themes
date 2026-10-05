@@ -2,7 +2,7 @@
   "name": "package-json-release-gate",
   "displayName": "npm publish package.json gate: engines & SPDX",
   "description": "Checks package.json before npm publish: engines.node floors that still admit end-of-life Node 18/20, volta and @types/node pins, non-SPDX licence values, and repository/provenance blockers.",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
