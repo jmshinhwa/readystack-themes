@@ -1,7 +1,5 @@
 # pubspec Publish Gate - pub.dev pre-publish check
 
-![pubspec Publish Gate - pub.dev pre-publish check — finds the line](https://getreadystack.com/img/promo/pubspec-publish-gate_demo.gif)
-
 ![pubspec Publish Gate - pub.dev pre-publish check](https://getreadystack.com/img/promo/sku439548_result_card.jpg)
 
 **pubspec publish: 6 findings** on a 24-line example `pubspec.yaml`, checked against **10 rules** taken from the dart.dev pubspec, dependencies and publishing pages.
