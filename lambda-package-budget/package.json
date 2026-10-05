@@ -2,7 +2,7 @@
   "name": "lambda-package-budget",
   "displayName": "Lambda Package Size Budget - 250 MB check",
   "description": "Lambda package size check for requirements.txt and package.json: measured unzipped MB per dependency against the 250 MB unzipped and 50 MB zipped AWS quotas, with the exact line to drop or swap.",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
