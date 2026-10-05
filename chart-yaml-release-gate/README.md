@@ -1,7 +1,5 @@
 # helm chart lint Chart.yaml — Helm 4 Release Gate
 
-![helm chart lint Chart.yaml - Helm 4 Release Gate — finds the line](https://getreadystack.com/img/promo/chart-yaml-release-gate_demo.gif)
-
 **Every broken Chart.yaml line, with the line that replaces it.** Open a chart folder in VS Code and the Problems panel lists what `helm package` and `helm install` will trip on: a version that is not SemVer 2, an apiVersion v1 chart carrying v2-only fields, an unquoted appVersion YAML turns into a number, a kubeVersion range that only matches Kubernetes minors at or near end of life, and CI files still pinned to Helm 3.
 
 Helm 3 gets bug fixes until 2026-07-08 and security fixes until 2026-11-11 (helm.sh, "Helm 4 Released"). After that date a pipeline that installs Helm 3 runs an unpatched client.
