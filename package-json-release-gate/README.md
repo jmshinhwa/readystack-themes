@@ -1,7 +1,5 @@
 # npm publish package.json gate: engines & SPDX
 
-![npm publish package.json gate: engines & SPDX — finds the line](https://getreadystack.com/img/promo/package-json-release-gate_demo.gif)
-
 ![npm publish package.json gate: engines & SPDX](https://getreadystack.com/img/promo/sku434058_result_card.jpg)
 
 **Node 20 reached end of life on 2026-04-30.** If your package.json still says `"engines": { "node": ">=18" }`, every `npm install` of your package tells users that two end-of-life Node lines are fine. This extension reads the package.json you are about to publish and lists every line that still pins an end-of-life Node line or blocks `npm publish --provenance`, with the exact replacement line next to it.
