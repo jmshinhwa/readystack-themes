@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.accessibility-statement-lint</id>
+  <name>Accessibility Statement Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Checks the accessibility statement you already published against the EU model statement and its two dates</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Accessibility Statement Lint: Check This File</b>. Each finding appears on its line with the fix. 19 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/accessibility-statement-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/accessibility-statement-lint">getreadystack.com/tools/accessibility-statement-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_accessibility_statement_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.accessibility-statement-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.accessibility-statement-lint.check" class="com.getreadystack.p_accessibility_statement_lint.RsCheckAction"
+            text="Accessibility Statement Lint: Check This File" description="Run Accessibility Statement Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
