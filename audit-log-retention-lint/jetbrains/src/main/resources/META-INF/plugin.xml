@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.audit-log-retention-lint</id>
+  <name>Audit Log Retention Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Log retention lint for Loki, CloudWatch, ILM, S3 and Kubernetes audit YAML</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Audit Log Retention Lint: Check This File</b>. Each finding appears on its line with the fix. 9 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/audit-log-retention-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/audit-log-retention-lint">getreadystack.com/tools/audit-log-retention-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_audit_log_retention_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.audit-log-retention-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.audit-log-retention-lint.check" class="com.getreadystack.p_audit_log_retention_lint.RsCheckAction"
+            text="Audit Log Retention Lint: Check This File" description="Run Audit Log Retention Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
