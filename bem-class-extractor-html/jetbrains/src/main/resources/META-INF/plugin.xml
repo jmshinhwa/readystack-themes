@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.bem-class-extractor-html</id>
+  <name>BEM Class Auditor for HTML and SCSS</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>16 BEM naming rules read the HTML file you have open and 22 markup and SCSS skeletons write the stylesheet shell, so the class names get fixed before the pull request comes back for them.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>BEM Class Auditor for HTML and SCSS: Check This File</b>. Each finding appears on its line with the fix. 16 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/bem-class-extractor-html</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($39 once): <a href="https://getreadystack.com/tools/bem-class-extractor-html">getreadystack.com/tools/bem-class-extractor-html</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_bem_class_extractor_html.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.bem-class-extractor-html" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.bem-class-extractor-html.check" class="com.getreadystack.p_bem_class_extractor_html.RsCheckAction"
+            text="BEM Class Auditor for HTML and SCSS: Check This File" description="Run BEM Class Auditor for HTML and SCSS on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
