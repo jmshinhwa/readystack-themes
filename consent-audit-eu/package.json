@@ -2,7 +2,7 @@
   "name": "consent-audit-eu",
   "displayName": "Pre-Consent Tracker Audit for EU Client Websites",
   "description": "Finds the analytics, pixels, fonts and embeds that fire before your cookie banner is answered - in the source, before you deploy. 24 rules.",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -100,5 +100,14 @@
         }
       }
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "consent-audit-eu"
+  },
+  "homepage": "https://getreadystack.com/tools/consent-audit-eu",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
