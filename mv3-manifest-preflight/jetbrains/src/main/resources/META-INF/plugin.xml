@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.mv3-manifest-preflight</id>
+  <name>MV3 Manifest Preflight</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>25 rules over manifest.json: every line Manifest V3 or the Chrome Web Store upload refuses, with the fix beside it. The shipped MV2 fixture returns 19 findings, 16 of them errors that block the upload; the migrated file returns 0.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>MV3 Manifest Preflight: Check This File</b>. Each finding appears on its line with the fix. 25 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/mv3-manifest-preflight</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/mv3-manifest-preflight">getreadystack.com/tools/mv3-manifest-preflight</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_mv3_manifest_preflight.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.mv3-manifest-preflight" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.mv3-manifest-preflight.check" class="com.getreadystack.p_mv3_manifest_preflight.RsCheckAction"
+            text="MV3 Manifest Preflight: Check This File" description="Run MV3 Manifest Preflight on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
