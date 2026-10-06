@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.ai-disclosure-lint-sb942</id>
+  <name>AI Output Disclosure Lint SB 942</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds the generative-AI code that drops the disclosures California SB 942 has required since August 2, 2026.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>AI Output Disclosure Lint SB 942: Check This File</b>. Each finding appears on its line with the fix. 12 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/ai-disclosure-lint-sb942</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/ai-disclosure-lint-sb942">getreadystack.com/tools/ai-disclosure-lint-sb942</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_ai_disclosure_lint_sb942.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.ai-disclosure-lint-sb942" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.ai-disclosure-lint-sb942.check" class="com.getreadystack.p_ai_disclosure_lint_sb942.RsCheckAction"
+            text="AI Output Disclosure Lint SB 942: Check This File" description="Run AI Output Disclosure Lint SB 942 on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
