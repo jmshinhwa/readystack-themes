@@ -2,7 +2,7 @@
   "name": "consent-gate-html-lint",
   "displayName": "Consent Gate HTML Lint (EU/UK ePrivacy)",
   "description": "Finds third-party script and iframe tags in your HTML that load trackers before the visitor consents — the prior-consent rule of EU/UK ePrivacy.",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -57,7 +57,8 @@
   "homepage": "https://getreadystack.com/tools/consent-gate-html-lint",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-11"
+    "rulesDate": "2026-09-11",
+    "alertUrl": "https://getreadystack.com/tools/consent-gate-html-lint?ref=vsix_alert#yjae"
   },
   "bugs": {
     "url": "https://github.com/jmshinhwa/readystack-themes/issues"
