@@ -2,7 +2,7 @@
   "name": "model-card-lint-gpai",
   "displayName": "Model Card Lint - Hugging Face model card and EU GPAI (Art. 53)",
   "description": "Lints a Hugging Face model card against the Hub metadata spec and the EU AI Act GPAI documentation duties. Line numbers, the article, the fix.",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -50,6 +50,7 @@
   "homepage": "https://getreadystack.com/tools/model-card-lint-gpai",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-13"
+    "rulesDate": "2026-09-13",
+    "alertUrl": "https://getreadystack.com/tools/model-card-lint-gpai?ref=vsix_alert#yjae"
   }
 }
