@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example.billing</groupId>
+  <artifactId>billing-api</artifactId>
+  <version>2.7.0</version>
+  <properties>
+    <java.version>17</java.version>
+    <dependency-check.version>8.4.3</dependency-check.version>
+  </properties>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <version>${dependency-check.version}</version>
+        <configuration>
+          <nvdApiKey>3f9c2a71-5b0e-4d8a-9c4e-7a1b2c3d4e5f</nvdApiKey>
+          <cveUrlModified>https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-modified.json.gz</cveUrlModified>
+          <failBuildOnCVSS>11</failBuildOnCVSS>
+          <ossindexAnalyzerEnabled>true</ossindexAnalyzerEnabled>
+          <nexusAnalyzerEnabled>true</nexusAnalyzerEnabled>
+          <suppressionFiles>
+            <suppressionFile>dependency-check-suppression.xml</suppressionFile>
+          </suppressionFiles>
+        </configuration>
+        <executions>
+          <execution>
+            <goals><goal>check</goal></goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
