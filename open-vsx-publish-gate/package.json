@@ -2,7 +2,7 @@
   "name": "open-vsx-publish-gate",
   "displayName": "Open VSX Publish Gate - vsce & ovsx preflight",
   "description": "Open VSX and vsce preflight for extension authors: flags SVG icons, http or untrusted SVG badges, missing publisher/engines, Microsoft-only dependencies and VSCE_PAT publishing before 2026-12-01.",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -51,7 +51,8 @@
   },
   "homepage": "https://getreadystack.com/tools/open-vsx-publish-gate",
   "readystack": {
-    "rulesDate": "2026-09-30"
+    "rulesDate": "2026-09-30",
+    "alertUrl": "https://getreadystack.com/tools/open-vsx-publish-gate?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
