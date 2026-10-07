@@ -2,7 +2,7 @@
   "name": "linker-map-auditor",
   "displayName": "Linker Map Auditor - FLASH & RAM budget for GNU ld map files",
   "description": "Read a GNU ld .map file and see exactly which object file is eating your FLASH and RAM, and by how many bytes.",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE",
   "engines": {
@@ -75,7 +75,8 @@
   },
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-27"
+    "rulesDate": "2026-09-27",
+    "alertUrl": "https://getreadystack.com/tools/linker-map-auditor?ref=vsix_alert#yjae"
   },
   "repository": {
     "type": "git",
