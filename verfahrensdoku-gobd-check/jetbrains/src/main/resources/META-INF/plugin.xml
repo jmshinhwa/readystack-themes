@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.verfahrensdoku-gobd-check</id>
+  <name>Verfahrensdokumentation Check</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>17 Regeln aus den GoBD und §147 AO gegen Ihre Markdown-Verfahrensdokumentation — im Editor, ohne Upload.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Verfahrensdokumentation Check: Check This File</b>. Each finding appears on its line with the fix. 17 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/verfahrensdoku-gobd-check</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com">getreadystack.com</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_verfahrensdoku_gobd_check.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.verfahrensdoku-gobd-check" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.verfahrensdoku-gobd-check.check" class="com.getreadystack.p_verfahrensdoku_gobd_check.RsCheckAction"
+            text="Verfahrensdokumentation Check: Check This File" description="Run Verfahrensdokumentation Check on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
