@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.bnpl-disclosure-lint-ccd2</id>
+  <name>BNPL Disclosure Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>22 rules that read your checkout template the way a CCD2 supervisor will from 20 November 2026.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>BNPL Disclosure Lint: Check This File</b>. Each finding appears on its line with the fix. Offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/bnpl-disclosure-lint-ccd2</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/bnpl-disclosure-lint-ccd2">getreadystack.com/tools/bnpl-disclosure-lint-ccd2</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_bnpl_disclosure_lint_ccd2.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.bnpl-disclosure-lint-ccd2" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.bnpl-disclosure-lint-ccd2.check" class="com.getreadystack.p_bnpl_disclosure_lint_ccd2.RsCheckAction"
+            text="BNPL Disclosure Lint: Check This File" description="Run BNPL Disclosure Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
