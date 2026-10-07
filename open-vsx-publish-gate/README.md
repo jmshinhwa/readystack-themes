@@ -1,5 +1,7 @@
 # Open VSX Publish Gate - vsce & ovsx preflight for package.json
 
+![Open VSX Publish Gate - vsce & ovsx preflight — finds the line](https://getreadystack.com/img/promo/open-vsx-publish-gate_demo.gif)
+
 ![Open VSX Publish Gate - vsce & ovsx preflight](https://getreadystack.com/img/promo/sku430348_result_card.jpg)
 
 **Publishing a VS Code extension to the Marketplace and to Open VSX?** Open your extension's `package.json` (or the GitHub workflow that publishes it) and this gate lists every line that stops `vsce` or `ovsx`, every dependency VSCodium, Cursor, Windsurf and Gitpod users cannot install, and the exact replacement line for each.
