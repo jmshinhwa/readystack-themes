@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.firebase-deploy-leak-audit</id>
+  <name>Firebase Deploy Leak Audit</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Reads firebase.json and names the files your next firebase deploy would publish to the open web</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Firebase Deploy Leak Audit: Check This File</b>. Each finding appears on its line with the fix. 17 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/firebase-deploy-leak-audit</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/firebase-deploy-leak-audit">getreadystack.com/tools/firebase-deploy-leak-audit</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_firebase_deploy_leak_audit.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.firebase-deploy-leak-audit" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.firebase-deploy-leak-audit.check" class="com.getreadystack.p_firebase_deploy_leak_audit.RsCheckAction"
+            text="Firebase Deploy Leak Audit: Check This File" description="Run Firebase Deploy Leak Audit on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
