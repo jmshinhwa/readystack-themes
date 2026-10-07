@@ -1,5 +1,7 @@
 # OWASP Dependency Check Config Lint
 
+![OWASP Dependency Check Config Lint — finds the line](https://getreadystack.com/img/promo/owasp-dependency-check-config-lint_demo.gif)
+
 ![OWASP Dependency Check Config Lint](https://getreadystack.com/img/promo/sku460852_result_card.jpg)
 
 Lints the files that run **OWASP dependency check** — `pom.xml`, `build.gradle` / `build.gradle.kts`, `dependency-check-suppression.xml` and CI workflow YAML — and puts every setup break on its file and line, with the exact replacement line next to it.
