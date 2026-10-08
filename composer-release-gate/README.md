@@ -1,5 +1,7 @@
 # composer.json Validate - PHP EOL Release Gate
 
+![composer.json Validate - PHP EOL Release Gate — finds the line](https://getreadystack.com/img/promo/composer-release-gate_demo.gif)
+
 ![composer.json Validate - PHP EOL Release Gate](https://getreadystack.com/img/promo/sku432998_result_card.jpg)
 
 Open a `composer.json` and every line that still allows end-of-life PHP, or that `composer validate --strict` rejects before Packagist accepts the package, is underlined with the exact replacement line.
