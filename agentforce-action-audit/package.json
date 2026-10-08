@@ -2,7 +2,7 @@
   "name": "agentforce-action-audit",
   "displayName": "Agentforce Action Audit",
   "description": "One audit pass over Salesforce Agentforce topic metadata: flags deploy blockers and the missing AI-disclosure line before you push an agent live.",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -54,6 +54,7 @@
   "homepage": "https://getreadystack.com/tools/agentforce-action-audit",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-20"
+    "rulesDate": "2026-09-20",
+    "alertUrl": "https://getreadystack.com/tools/agentforce-action-audit?ref=vsix_alert#yjae"
   }
 }
