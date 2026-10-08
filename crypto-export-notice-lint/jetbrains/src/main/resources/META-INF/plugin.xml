@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.crypto-export-notice-lint</id>
+  <name>Crypto Export Notice Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Ten checks on the export paragraph of a repository that ships encryption</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Crypto Export Notice Lint: Check This File</b>. Each finding appears on its line with the fix. 10 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/crypto-export-notice-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/crypto-export-notice-lint">getreadystack.com/tools/crypto-export-notice-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_crypto_export_notice_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.crypto-export-notice-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.crypto-export-notice-lint.check" class="com.getreadystack.p_crypto_export_notice_lint.RsCheckAction"
+            text="Crypto Export Notice Lint: Check This File" description="Run Crypto Export Notice Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
