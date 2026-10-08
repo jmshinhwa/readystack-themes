@@ -2,7 +2,7 @@
   "name": "rf-detr-migration-check",
   "displayName": "rf-detr Migration Check — Ultralytics YOLO ties",
   "description": "rf-detr migration check: flags Ultralytics YOLO (AGPL-3.0) ties in requirements.txt, pyproject.toml, environment.yml, Dockerfiles and Python code, with the Apache-2.0 RF-DETR line for each.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -53,7 +53,8 @@
   },
   "homepage": "https://getreadystack.com/tools/rf-detr-migration-check",
   "readystack": {
-    "rulesDate": "2026-09-30"
+    "rulesDate": "2026-09-30",
+    "alertUrl": "https://getreadystack.com/tools/rf-detr-migration-check?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
