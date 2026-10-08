@@ -2,7 +2,7 @@
   "name": "mssql-container-licence-lint",
   "displayName": "SQL Server Docker Licence Lint (MSSQL_PID)",
   "description": "Lints docker-compose, Kubernetes YAML and Dockerfiles that run the mssql/server image for SQL Server licence gaps: MSSQL_PID unset or Developer in production, Evaluation, core minimums and caps.",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -52,7 +52,8 @@
   },
   "homepage": "https://getreadystack.com/tools/mssql-container-licence-lint",
   "readystack": {
-    "rulesDate": "2026-09-27"
+    "rulesDate": "2026-09-27",
+    "alertUrl": "https://getreadystack.com/tools/mssql-container-licence-lint?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
