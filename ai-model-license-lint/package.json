@@ -2,7 +2,7 @@
   "name": "ai-model-license-lint",
   "displayName": "AI Model License Lint - weights and dataset licenses in your repo",
   "description": "Flags open-weight AI model IDs in your code against their real licence clauses: EU-domicile exclusion, 700M MAU cap, non-commercial weights, missing Built with Llama attribution.",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -51,6 +51,7 @@
   "homepage": "https://getreadystack.com/tools/ai-model-license-lint",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-14"
+    "rulesDate": "2026-09-14",
+    "alertUrl": "https://getreadystack.com/tools/ai-model-license-lint?ref=vsix_alert#yjae"
   }
 }
