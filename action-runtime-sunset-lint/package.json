@@ -2,7 +2,7 @@
   "name": "action-runtime-sunset-lint",
   "displayName": "Action Runtime Sunset Lint",
   "description": "Finds GitHub Actions steps whose JS runtime is retired or archived, with the exact version to move to and the days left before the workflow stops running.",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -54,6 +54,7 @@
   },
   "homepage": "https://getreadystack.com/tools/action-runtime-sunset-lint",
   "readystack": {
-    "rulesDate": "2026-09-21"
+    "rulesDate": "2026-09-21",
+    "alertUrl": "https://getreadystack.com/tools/action-runtime-sunset-lint?ref=vsix_alert#yjae"
   }
 }
