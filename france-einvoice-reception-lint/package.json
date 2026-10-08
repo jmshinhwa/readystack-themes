@@ -2,7 +2,7 @@
   "name": "france-einvoice-reception-lint",
   "displayName": "France E-Invoice Reception Lint",
   "description": "Lint Factur-X, UBL and CII invoices for the French mandatory mentions a PDP rejects: SIREN Luhn, FR VAT key, delivery address, operation category, totals. 12 rules, offline.",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -53,6 +53,7 @@
   "homepage": "https://getreadystack.com/tools/france-einvoice-reception-lint",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-13"
+    "rulesDate": "2026-09-13",
+    "alertUrl": "https://getreadystack.com/tools/france-einvoice-reception-lint?ref=vsix_alert#yjae"
   }
 }
