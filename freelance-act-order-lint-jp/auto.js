@@ -338,7 +338,7 @@ function start(ctx, o) {
   var cfg = function () { return vscode.workspace.getConfiguration('readystack'); };
   var toks = tokens(slug), R = ruleCount(E);
   var h = { vscode: vscode, E: E, GLOB: GLOB, PREFIX: PREFIX, title: title, toks: toks, R: R, price: o.price || 29, slug: slug,
-    homepage: o.homepage || pkgHome(), reviewDelayMs: o.reviewDelayMs, quietMs: o.quietMs, today: o.today || null, extDir: o.extDir || (ctx && (ctx.extensionPath || (ctx.extension && ctx.extension.extensionPath))) || __dirname };   // s163
+    homepage: o.homepage || pkgHome(), reviewDelayMs: o.reviewDelayMs, quietMs: o.quietMs, alertDelayMs: o.alertDelayMs, today: o.today || null, extDir: o.extDir || (ctx && (ctx.extensionPath || (ctx.extension && ctx.extension.extensionPath))) || __dirname };   // s163
   _h = h;   // s163b
   if (cfg().get('autoCheck', true) === false) return null;
   var last = new Map();   // s163 — findings per file: a drop = the user fixed one (review moment)
@@ -360,6 +360,7 @@ function start(ctx, o) {
       var d = new vscode.Diagnostic(doc.lineAt(ln).range, String(x.msg || x.message || x.check || ''), sevOf(x)); d.source = short; return d;
     }));
     ping(vscode, slug);
+    alertSoon(ctx, h);   // s182 — the rule-alert door, once per install
     var k = String((doc.uri && (doc.uri.fsPath || doc.uri.toString())) || doc.fileName), prev = last.get(k); last.set(k, f.length);
     if (prev > f.length) reviewTick(ctx, h, 'resolved', h.today); else if (!f.length) reviewTick(ctx, h, 'clean', h.today);   // s163
     return { n: f.length };
@@ -527,7 +528,55 @@ async function hint(ctx, h) {
     return { files: files, total: total, label: label, msg: msg, stake: SK ? SK.line : null, estimate: est };
   } catch (e) { return null; }
 }
+// s182 2026-10-07 — THE EMAIL DOOR WHERE PEOPLE ACTUALLY USE US. [measured s182 T1] "used 103" in 7 days was mostly
+//   extension runs (oracle-jdk-license-gate 271 · pypdf 106) while the web tools saw ~12 real uses, and no extension ever
+//   asked for an address. A dated rule checker's user is exactly who needs ONE mail when that rule changes.
+//   ONE toast per install, ~15 s after the first file this extension really checks (existing users included — hint() is
+//   once per workspace and most of them were already hinted). It only OPENS a link: the hub page's rule-alert box
+//   (package.json readystack.alertUrl, stamped by talk_restamp only when the live page carries the box). Nothing is sent
+//   from here (no ping) · no result is gated · "Not now" is final for this install.
+var ALERT_T = {
+  en: ['Get one email when the {t} rules change{d}. Nothing else.', 'Email me when it changes', 'Not now', ' — next date: {x}'],
+  de: ['Eine E-Mail, wenn sich die {t}-Regeln ändern{d}. Sonst nichts.', 'Bei Änderung mailen', 'Nicht jetzt', ' — nächstes Datum: {x}'],
+  ja: ['{t} のルールが変わったときだけメールを 1 通{d}。それ以外は送りません。', '変わったらメールで知らせる', '今はしない', '（次の日付: {x}）'],
+  es: ['Reciba un solo correo cuando cambien las reglas de {t}{d}. Nada más.', 'Avisarme por correo', 'Ahora no', ' — próxima fecha: {x}'],
+  pt: ['Receba um único e-mail quando as regras de {t} mudarem{d}. Nada mais.', 'Avise-me por e-mail', 'Agora não', ' — próxima data: {x}']
+};
+function nextRuleDate(h, today) {   // the earliest date in this product's own rules.json that is today or later · none -> ''
+  try {
+    var src = fs.readFileSync(path.join(h.extDir || __dirname, 'rules.json'), 'utf8'), d = today || new Date().toISOString().slice(0, 10);
+    var all = (src.match(/\b20\d\d-[01]\d-[0-3]\d\b/g) || []).filter(function (x) { return x >= d; }).sort();
+    return all[0] || '';
+  } catch (e) { return ''; }
+}
+function alertOf(h) {
+  var p = loadMod(h, 'package.json'), rs = (p && p.readystack) || {};
+  var url = String(rs.alertUrl || '');
+  if (!/^https:\/\/getreadystack\.com\/[^\s'"<>]+$/.test(url)) return null;   // our domain only · not stamped -> no line
+  var T = ALERT_T[lang(h.vscode)] || ALERT_T.en, nd = nextRuleDate(h, h.today);
+  var topic = String(rs.alertTopic || badgeTopic(h.title));
+  var line = T[0].replace('{t}', topic).replace('{d}', nd ? T[3].replace('{x}', nd) : '');
+  return { line: line, btn: T[1], no: T[2], url: url, date: nd };
+}
+async function alertAsk(ctx, h) {
+  try {
+    var vscode = h.vscode, st = ctx.globalState, key = h.PREFIX + '.alertAsked';
+    if (st.get(key) || st.get(h.PREFIX + '.noHint')) return null;
+    var A = alertOf(h); if (!A) return null;
+    await st.update(key, true);
+    _toastAt = Date.now();
+    var pk = await vscode.window.showInformationMessage(A.line, A.btn, A.no);
+    if (pk === A.btn) await vscode.env.openExternal(vscode.Uri.parse(A.url));
+    return { line: A.line, pick: pk || null, url: A.url };
+  } catch (e) { return null; }
+}
+var _alertTimer = null;
+function alertSoon(ctx, h) {
+  if (_alertTimer || !ctx || !ctx.globalState || ctx.globalState.get(h.PREFIX + '.alertAsked')) return;
+  _alertTimer = setTimeout(function () { alertAsk(ctx, h); }, h.alertDelayMs == null ? 15000 : h.alertDelayMs);
+  if (_alertTimer && _alertTimer.unref) _alertTimer.unref();
+}
 module.exports = { start: start, relevant: relevant, tokens: tokens, isBroad: isBroad, clearWords: clearWords,
   sweptClean: sweptClean, badgeTopic: badgeTopic, badgeMarkdown: badgeMarkdown, reviewUrl: reviewUrl, reviewTick: reviewTick, clearReport: clearReport, scan: scan,   // s163
   welcome: welcome, kindOf: kindOf, globExts: globExts, sampleOf: sampleOf,   // s164
-  stakeOf: stakeOf, rateOf: rateOf, noteText: noteText, cleanTeam: cleanTeam, sent: function () { return _sent.slice(); } };   // s174   // s165 · s168 noteText
+  stakeOf: stakeOf, rateOf: rateOf, noteText: noteText, cleanTeam: cleanTeam, alertOf: alertOf, alertAsk: alertAsk, nextRuleDate: nextRuleDate, sent: function () { return _sent.slice(); } };   // s174   // s165 · s168 noteText
