@@ -2,7 +2,7 @@
   "name": "cert-lifetime-lint",
   "displayName": "Cert Lifetime Lint - TLS validity caps 200/100/47",
   "description": "Finds the renewal settings in your repo that outlive the public TLS cap: 200 days since 15 March 2026, 100 days from 15 March 2027, 47 days from 15 March 2029.",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -84,7 +84,8 @@
   },
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-27"
+    "rulesDate": "2026-09-27",
+    "alertUrl": "https://getreadystack.com/tools/cert-lifetime-lint?ref=vsix_alert#yjae"
   },
   "repository": {
     "type": "git",
