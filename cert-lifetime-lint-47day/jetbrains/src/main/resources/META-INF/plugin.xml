@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.cert-lifetime-lint-47day</id>
+  <name>Cert Lifetime Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds the 365-day and 90-day certificate assumptions left in your cert-manager, Terraform, ACME and monitoring config. The public TLS maximum is 200 days now, 100 on 2027-03-15, 47 on 2029-03-15.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Cert Lifetime Lint: Check This File</b>. Each finding appears on its line with the fix. 24 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/cert-lifetime-lint-47day</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/cert-lifetime-lint-47day">getreadystack.com/tools/cert-lifetime-lint-47day</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_cert_lifetime_lint_47day.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.cert-lifetime-lint-47day" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.cert-lifetime-lint-47day.check" class="com.getreadystack.p_cert_lifetime_lint_47day.RsCheckAction"
+            text="Cert Lifetime Lint: Check This File" description="Run Cert Lifetime Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
