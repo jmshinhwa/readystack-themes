@@ -2,7 +2,7 @@
   "name": "bulk-sender-lint",
   "displayName": "Bulk Sender Lint - Gmail, Yahoo, Outlook",
   "description": "Checks mail-sending code and DNS records against the Gmail/Yahoo bulk sender rules and Microsoft Outlook.com's: SPF, DKIM, DMARC, RFC 8058 one-click unsubscribe, TLS - each with the date it took effec",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -53,7 +53,8 @@
   },
   "homepage": "https://getreadystack.com/tools/bulk-sender-lint",
   "readystack": {
-    "rulesDate": "2026-09-11"
+    "rulesDate": "2026-09-11",
+    "alertUrl": "https://getreadystack.com/tools/bulk-sender-lint?ref=vsix_alert#yjae"
   },
   "bugs": {
     "url": "https://github.com/jmshinhwa/readystack-themes/issues"
