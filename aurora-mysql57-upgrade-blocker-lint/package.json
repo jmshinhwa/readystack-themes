@@ -2,7 +2,7 @@
   "name": "aurora-mysql57-upgrade-blocker-lint",
   "displayName": "Aurora MySQL 5.7 to 8.0 Upgrade Blocker Lint",
   "description": "Flags MySQL 5.7 features removed in 8.0 (query cache, PASSWORD(), NO_AUTO_CREATE_USER, new reserved words) in .sql, .cnf and Terraform before Aurora MySQL v2 Extended Support year 3 on 1 Dec 2026.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -50,7 +50,8 @@
   },
   "homepage": "https://getreadystack.com/tools/aurora-mysql57-upgrade-blocker-lint",
   "readystack": {
-    "rulesDate": "2026-09-28"
+    "rulesDate": "2026-09-28",
+    "alertUrl": "https://getreadystack.com/tools/aurora-mysql57-upgrade-blocker-lint?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
