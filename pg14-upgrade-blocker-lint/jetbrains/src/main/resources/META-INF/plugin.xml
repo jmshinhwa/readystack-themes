@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.pg14-upgrade-blocker-lint</id>
+  <name>PostgreSQL 14 Upgrade Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>PostgreSQL upgrade 14 → 17: finds the SQL and config lines that PostgreSQL 15, 16 and 17 removed, with the fix on each line</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>PostgreSQL 14 Upgrade Lint: Check This File</b>. Each finding appears on its line with the fix. 21 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/pg14-upgrade-blocker-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/pg14-upgrade-blocker-lint">getreadystack.com/tools/pg14-upgrade-blocker-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_pg14_upgrade_blocker_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.pg14-upgrade-blocker-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.pg14-upgrade-blocker-lint.check" class="com.getreadystack.p_pg14_upgrade_blocker_lint.RsCheckAction"
+            text="PostgreSQL 14 Upgrade Lint: Check This File" description="Run PostgreSQL 14 Upgrade Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
