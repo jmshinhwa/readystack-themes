@@ -2,7 +2,7 @@
   "name": "composer-release-gate",
   "displayName": "composer.json Validate - PHP EOL Release Gate",
   "description": "composer.json validate before a Packagist release: flags a require.php floor on end-of-life PHP (8.1 ended 2025-12-31, 8.2 ends 2026-12-31) and the fields composer validate --strict rejects.",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -50,7 +50,8 @@
   },
   "homepage": "https://getreadystack.com/tools/composer-release-gate",
   "readystack": {
-    "rulesDate": "2026-09-30"
+    "rulesDate": "2026-09-30",
+    "alertUrl": "https://getreadystack.com/tools/composer-release-gate?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
