@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.coppa-notice-lint-2026</id>
+  <name>COPPA Notice Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>18 clauses of the amended COPPA Rule, checked against the notice in your repo</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>COPPA Notice Lint: Check This File</b>. Each finding appears on its line with the fix. 18 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/coppa-notice-lint-2026</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/coppa-notice-lint-2026">getreadystack.com/tools/coppa-notice-lint-2026</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_coppa_notice_lint_2026.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.coppa-notice-lint-2026" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.coppa-notice-lint-2026.check" class="com.getreadystack.p_coppa_notice_lint_2026.RsCheckAction"
+            text="COPPA Notice Lint: Check This File" description="Run COPPA Notice Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
