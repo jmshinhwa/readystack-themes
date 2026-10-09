@@ -1,5 +1,7 @@
 # ReadyStack Paper Light
 
+![ReadyStack Paper Light in VS Code](https://raw.githubusercontent.com/jmshinhwa/readystack-themes/main/readystack-paper-light/screenshot.jpg)
+
 Cream paper with ink. A light theme that does not blast you at 9am.
 
 ## Install
