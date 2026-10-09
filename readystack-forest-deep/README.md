@@ -1,5 +1,7 @@
 # ReadyStack Forest Deep
 
+![ReadyStack Forest Deep in VS Code](https://raw.githubusercontent.com/jmshinhwa/readystack-themes/main/readystack-forest-deep/screenshot.jpg)
+
 Dark forest green with lime accents. Low blue light, easy on long reviews.
 
 ## Install
