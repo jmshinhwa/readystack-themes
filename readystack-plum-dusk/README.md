@@ -1,5 +1,7 @@
 # ReadyStack Plum Dusk
 
+![ReadyStack Plum Dusk in VS Code](https://raw.githubusercontent.com/jmshinhwa/readystack-themes/main/readystack-plum-dusk/screenshot.jpg)
+
 Plum and lavender on deep violet. Distinct without being loud.
 
 ## Install
