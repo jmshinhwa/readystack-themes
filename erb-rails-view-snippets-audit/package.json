@@ -2,7 +2,7 @@
   "name": "erb-rails-view-snippets-audit",
   "displayName": "ERB Snippets + View Audit for Rails",
   "description": "36 ERB snippets and 26 rules that catch the raw, html_safe and params output a Rails security review sends back — offline, in the editor, no account.",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -101,5 +101,14 @@
       }
     ]
   },
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "erb-rails-view-snippets-audit"
+  },
+  "homepage": "https://getreadystack.com/tools/erb-rails-view-snippets-audit",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  }
 }
