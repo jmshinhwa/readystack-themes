@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.en16931-einvoice-lint</id>
+  <name>EN 16931 e-Invoice Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Checks an invoice payload or field mapping against EN 16931 and the national CIUS of the country it detects — 29 rules, in your editor.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>EN 16931 e-Invoice Lint: Check This File</b>. Each finding appears on its line with the fix. Offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/en16931-einvoice-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/en16931-einvoice-lint">getreadystack.com/tools/en16931-einvoice-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_en16931_einvoice_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.en16931-einvoice-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.en16931-einvoice-lint.check" class="com.getreadystack.p_en16931_einvoice_lint.RsCheckAction"
+            text="EN 16931 e-Invoice Lint: Check This File" description="Run EN 16931 e-Invoice Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
