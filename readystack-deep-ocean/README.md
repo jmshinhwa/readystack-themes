@@ -1,5 +1,7 @@
 # ReadyStack Deep Ocean
 
+![ReadyStack Deep Ocean in VS Code](https://raw.githubusercontent.com/jmshinhwa/readystack-themes/main/readystack-deep-ocean/screenshot.jpg)
+
 Submarine blues with aqua accents. Reads cool and quiet at any hour.
 
 ## Install
