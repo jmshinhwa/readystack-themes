@@ -2,7 +2,7 @@
   "name": "pg14-upgrade-blocker-lint",
   "displayName": "PostgreSQL 14 Upgrade Lint (Aurora/RDS 2027)",
   "description": "Flags SQL and config lines that PostgreSQL 15, 16 or 17 removed or renamed, so an Aurora/RDS PostgreSQL 14 upgrade does not break before standard support ends on 28 February 2027.",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -50,7 +50,8 @@
   },
   "homepage": "https://getreadystack.com/tools/pg14-upgrade-blocker-lint",
   "readystack": {
-    "rulesDate": "2026-09-27"
+    "rulesDate": "2026-09-27",
+    "alertUrl": "https://getreadystack.com/tools/pg14-upgrade-blocker-lint?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
