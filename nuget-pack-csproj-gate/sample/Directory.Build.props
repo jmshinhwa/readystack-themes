@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
+    <PackageId>Acme.Invoicing</PackageId>
+    <Version>3.4.0</Version>
+    <Authors>Acme Software</Authors>
+    <Description>UBL and Factur-X invoice builder for .NET.</Description>
+    <PackageLicenseUrl>https://github.com/acme/Acme.Invoicing/blob/main/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>Apache 2.0</PackageLicenseExpression>
+    <PackageIconUrl>https://raw.githubusercontent.com/acme/Acme.Invoicing/main/icon.png</PackageIconUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/acme/Acme.Invoicing.git</RepositoryUrl>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
