@@ -1,5 +1,7 @@
 # ReadyStack Mono Slate
 
+![ReadyStack Mono Slate in VS Code](https://raw.githubusercontent.com/jmshinhwa/readystack-themes/main/readystack-mono-slate/screenshot.jpg)
+
 Near-monochrome slate with one teal accent. Minimal, for people who hate rainbows.
 
 ## Install
