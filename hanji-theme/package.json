@@ -1,0 +1,55 @@
+{
+  "name": "hanji-theme",
+  "displayName": "Hanji Theme — Warm Paper & Ink",
+  "description": "Code on paper. Three warm, low-glare themes: Day, Ink and Lamplight. Every code colour measured: body text 11.1-13.1:1 (WCAG AAA), comments 4.6:1 or more.",
+  "version": "1.0.0",
+  "publisher": "ReadyStack",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "light theme",
+    "dark theme",
+    "warm",
+    "paper",
+    "sepia",
+    "eye strain",
+    "low blue light",
+    "cozy",
+    "hanji"
+  ],
+  "galleryBanner": {
+    "color": "#F4EFE4",
+    "theme": "light"
+  },
+  "icon": "icon.png",
+  "homepage": "https://getreadystack.com",
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Hanji Day",
+        "uiTheme": "vs",
+        "path": "./hanji-day-color-theme.json"
+      },
+      {
+        "label": "Hanji Ink",
+        "uiTheme": "vs-dark",
+        "path": "./hanji-ink-color-theme.json"
+      },
+      {
+        "label": "Hanji Lamplight",
+        "uiTheme": "vs-dark",
+        "path": "./hanji-lamplight-color-theme.json"
+      }
+    ]
+  }
+}
