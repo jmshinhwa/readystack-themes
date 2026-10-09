@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.cms-0057-api-gate</id>
+  <name>CMS-0057 API Gate</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>14 rules read a FHIR CapabilityStatement against CMS-0057-F. A 2021 payer statement returned 6 blocking gaps - three of the four APIs missing - and 107 days left to 1 January 2027.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>CMS-0057 API Gate: Check This File</b>. Each finding appears on its line with the fix. 14 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/cms-0057-api-gate</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/cms-0057-api-gate">getreadystack.com/tools/cms-0057-api-gate</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_cms_0057_api_gate.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.cms-0057-api-gate" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.cms-0057-api-gate.check" class="com.getreadystack.p_cms_0057_api_gate.RsCheckAction"
+            text="CMS-0057 API Gate: Check This File" description="Run CMS-0057 API Gate on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
