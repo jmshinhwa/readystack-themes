@@ -1,5 +1,7 @@
 # ReadyStack Midnight Ink
 
+![ReadyStack Midnight Ink in VS Code](https://raw.githubusercontent.com/jmshinhwa/readystack-themes/main/readystack-midnight-ink/screenshot.jpg)
+
 Deep navy with cool blue accents. For night sessions that need to stay calm.
 
 ## Install
