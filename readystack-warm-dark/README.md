@@ -1,5 +1,7 @@
 # ReadyStack Warm Dark
 
+![ReadyStack Warm Dark in VS Code](https://raw.githubusercontent.com/jmshinhwa/readystack-themes/main/readystack-warm-dark/screenshot.jpg)
+
 Warm, low-glare dark. Amber on paper-dark; comments recede, keywords lead.
 
 ## Install
