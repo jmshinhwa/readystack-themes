@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.einvoice-lint-en16931</id>
+  <name>E-Invoice Lint for XRechnung, Factur-X and UBL</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Catches retired profile identifiers, code-list values outside EN 16931 and malformed dates in your e-invoice XML, in the editor, before an access point rejects the file.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>E-Invoice Lint for XRechnung, Factur-X and UBL: Check This File</b>. Each finding appears on its line with the fix. 26 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/einvoice-lint-en16931</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/einvoice-lint-en16931">getreadystack.com/tools/einvoice-lint-en16931</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_einvoice_lint_en16931.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.einvoice-lint-en16931" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.einvoice-lint-en16931.check" class="com.getreadystack.p_einvoice_lint_en16931.RsCheckAction"
+            text="E-Invoice Lint for XRechnung, Factur-X and UBL: Check This File" description="Run E-Invoice Lint for XRechnung, Factur-X and UBL on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
