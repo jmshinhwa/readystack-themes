@@ -2,7 +2,7 @@
   "name": "optout-signal-lint",
   "displayName": "Opt-Out Signal Lint for US State Privacy Laws",
   "description": "Finds the ad and analytics code that keeps firing after a visitor’s browser has already sent Global Privacy Control.",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -89,7 +89,8 @@
   },
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-27"
+    "rulesDate": "2026-09-27",
+    "alertUrl": "https://getreadystack.com/tools/optout-signal-lint?ref=vsix_alert#yjae"
   },
   "repository": {
     "type": "git",
