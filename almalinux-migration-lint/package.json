@@ -2,7 +2,7 @@
   "name": "almalinux-migration-lint",
   "displayName": "AlmaLinux Migration Lint — CentOS 7/8",
   "description": "AlmaLinux migration check for CentOS Linux 7/8 files: flags EOL centos images, dead mirrorlist.centos.org repos, EPEL 7, SCL and EL7 packages removed in EL8/9, with the AlmaLinux fix.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -54,7 +54,8 @@
   },
   "homepage": "https://getreadystack.com/tools/almalinux-migration-lint",
   "readystack": {
-    "rulesDate": "2026-09-29"
+    "rulesDate": "2026-09-29",
+    "alertUrl": "https://getreadystack.com/tools/almalinux-migration-lint?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
