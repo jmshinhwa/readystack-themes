@@ -2,7 +2,7 @@
   "name": "pypdf-migration-check",
   "displayName": "pypdf Migration Check - PyMuPDF AGPL Licence Gate",
   "description": "Finds every PyMuPDF / fitz import, call and requirement line (AGPL-3.0 or paid Artifex licence) and prints the exact pypdf, pypdfium2 or pdfplumber line that replaces it.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -30,6 +30,11 @@
       {
         "command": "pypdfMigration.checkFile",
         "title": "pypdf Migration Check - PyMuPDF AGPL Licence Gate: Check this file",
+        "category": "pypdf Migration Check - PyMuPDF AGPL Licence Gate"
+      },
+      {
+        "command": "pypdfMigration.fixAll",
+        "title": "pypdf Migration Check - PyMuPDF AGPL Licence Gate: Fix all PyMuPDF lines in this workspace (licence)",
         "category": "pypdf Migration Check - PyMuPDF AGPL Licence Gate"
       },
       {
