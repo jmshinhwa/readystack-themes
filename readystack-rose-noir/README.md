@@ -1,5 +1,7 @@
 # ReadyStack Rose Noir
 
+![ReadyStack Rose Noir in VS Code](https://raw.githubusercontent.com/jmshinhwa/readystack-themes/main/readystack-rose-noir/screenshot.jpg)
+
 Black with rose and gold. High-contrast without the glare of pure white.
 
 ## Install
