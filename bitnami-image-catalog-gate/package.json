@@ -2,7 +2,7 @@
   "name": "bitnami-image-catalog-gate",
   "displayName": "Bitnami Image Gate: Compose, Helm, Dockerfile",
   "description": "Flags Bitnami image lines that broke with the 2025-09-29 catalog change: removed docker.io/bitnami tags, frozen bitnamilegacy images, Helm values pins, allowInsecureImages.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -50,7 +50,8 @@
   },
   "homepage": "https://getreadystack.com/tools/bitnami-image-catalog-gate",
   "readystack": {
-    "rulesDate": "2026-09-27"
+    "rulesDate": "2026-09-27",
+    "alertUrl": "https://getreadystack.com/tools/bitnami-image-catalog-gate?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
