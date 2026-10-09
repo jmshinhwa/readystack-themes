@@ -2,7 +2,7 @@
   "name": "en301549-lint",
   "displayName": "EN 301 549 Lint — EU Accessibility Act",
   "description": "Flags the EN 301 549 clause each line breaks, and separates what is in force today from what arrives with V4.1.1.",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -86,5 +86,14 @@
       }
     }
   },
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "en301549-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/en301549-lint",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  }
 }
