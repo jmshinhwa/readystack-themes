@@ -41,7 +41,14 @@ Open a `.py`, `requirements*.txt`, `pyproject.toml` or `environment.yml` file. F
 
 ## Free and team tiers
 
-Free, no key: the full map for the open file, every finding with its replacement.
+Free, no key: the full map for the open file, every finding with its replacement - and a Quick Fix (the light bulb)
+that migrates the open file to pypdf when every PyMuPDF call in it has an exact pypdf equivalent
+(`fitz.open` / `with fitz.open(...) as doc` -> `PdfReader`, pages, `len`, `load_page`, `get_text()` -> `extract_text()`).
+
+Licence key, $29 once: **Fix all** - every migratable file in the workspace in one click, with a preview first,
+the PyMuPDF dependency swapped to `pypdf>=6.19` only when every file that imports PyMuPDF was migrated, and a
+dated record of each change. A file that uses PyMuPDF features without a one-to-one pypdf call (rendering,
+search, tables, drawing) is left untouched and listed with what to use instead.
 Licence key: whole-workspace migration plan (each use mapped to its replacement), a dated AGPL exposure report for the company and a CI gate that fails builds adding new PyMuPDF use.
 
 This extension reads files locally and sends nothing anywhere. It is not legal advice; read your own licence terms with counsel.
