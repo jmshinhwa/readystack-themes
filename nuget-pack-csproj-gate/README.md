@@ -1,5 +1,7 @@
 # NuGet Pack Gate — csproj licence, icon, TFM
 
+![NuGet Pack Gate — csproj licence, icon, TFM — finds the line](https://getreadystack.com/img/promo/nuget-pack-csproj-gate_demo.gif)
+
 ![NuGet Pack Gate — csproj licence, icon, TFM](https://getreadystack.com/img/promo/sku433599_result_card.jpg)
 
 Checks the pack metadata in `.csproj`, `.fsproj`, `.vbproj` and `Directory.Build.props` before `dotnet pack` and before a version goes to nuget.org. Every finding names the line, the reason from Microsoft's own documentation, and the exact line that replaces it.
