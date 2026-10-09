@@ -1,5 +1,7 @@
 # ReadyStack Nordic Light
 
+![ReadyStack Nordic Light in VS Code](https://raw.githubusercontent.com/jmshinhwa/readystack-themes/main/readystack-nordic-light/screenshot.jpg)
+
 Cool grey-blue light theme. Clean, quiet, no cream.
 
 ## Install
