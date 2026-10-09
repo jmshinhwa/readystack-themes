@@ -1,5 +1,7 @@
 # ReadyStack Contrast Light
 
+![ReadyStack Contrast Light in VS Code](https://raw.githubusercontent.com/jmshinhwa/readystack-themes/main/readystack-contrast-light/screenshot.jpg)
+
 Maximum-contrast light theme. Meets AAA text contrast for accessibility needs.
 
 ## Install
