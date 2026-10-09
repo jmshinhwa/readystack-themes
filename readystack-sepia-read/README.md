@@ -1,5 +1,7 @@
 # ReadyStack Sepia Read
 
+![ReadyStack Sepia Read in VS Code](https://raw.githubusercontent.com/jmshinhwa/readystack-themes/main/readystack-sepia-read/screenshot.jpg)
+
 Sepia, tuned like a book page. Lowest glare of the light set.
 
 ## Install
