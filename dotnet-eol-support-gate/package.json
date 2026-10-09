@@ -2,7 +2,7 @@
   "name": "dotnet-eol-support-gate",
   "displayName": ".NET EOL & CRA Support Window Gate",
   "description": "Reads a .csproj or global.json and dates every target framework against Microsoft's published end-of-support day, then against the support period you promise buyers.",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -45,10 +45,14 @@
   "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jmshinhwa-ai/readystack"
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "dotnet-eol-support-gate"
   },
   "homepage": "https://getreadystack.com/tools/dotnet-eol-support-gate",
   "readystack": {
     "rulesDate": "2026-09-13"
+  },
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
