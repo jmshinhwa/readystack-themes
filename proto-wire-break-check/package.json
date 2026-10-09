@@ -2,7 +2,7 @@
   "name": "proto-wire-break-check",
   "displayName": "Protobuf Breaking Change Lint - wire compatibility (.proto)",
   "description": "Flags wire-incompatible edits in .proto files - reused or unreserved field numbers, enum zero drift, JSON name collisions - before a gRPC rollout silently corrupts a field.",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -50,6 +50,7 @@
   "homepage": "https://getreadystack.com/tools/proto-wire-break-check",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-16"
+    "rulesDate": "2026-09-16",
+    "alertUrl": "https://getreadystack.com/tools/proto-wire-break-check?ref=vsix_alert#yjae"
   }
 }
