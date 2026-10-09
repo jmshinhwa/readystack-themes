@@ -86,7 +86,10 @@ function activate(ctx) {
     vscode.commands.registerCommand(PREFIX + '.enterKey', function () { return enterKey(ctx); })
   );
   // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
-  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'pypdf-migration-check', price: 29 }); } catch (e) {}
+  // s184 W1 — the work is the product: Quick Fix on the open file (free) · PREFIX.fixAll = every line in the workspace (licence) · fixmap.js = the safe rewrites
+  let FIXR = null;
+  try { FIXR = require('./fixall.js').register(ctx, { vscode: vscode, FIX: require('./fixmap.js'), ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'pypdf-migration-check', price: 29, lic: lic, S: S, R: (ENGINE.RULE_COUNT || 0), version: (require('./package.json').version || '') }); } catch (e) {}
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'pypdf-migration-check', price: 29, fix: FIXR }); } catch (e) {}
 }
 function deactivate() { if (channel) channel.dispose(); if (diags) diags.dispose(); }
 module.exports = { activate: activate, deactivate: deactivate, checkFile: checkFile, S: S };
