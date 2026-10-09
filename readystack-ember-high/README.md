@@ -1,5 +1,7 @@
 # ReadyStack Ember High Contrast
 
+![ReadyStack Ember High Contrast in VS Code](https://raw.githubusercontent.com/jmshinhwa/readystack-themes/main/readystack-ember-high/screenshot.jpg)
+
 Near-black background, bright accents. Built for bright rooms and tired eyes.
 
 ## Install
