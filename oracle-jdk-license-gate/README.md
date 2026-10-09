@@ -90,11 +90,16 @@ is that this gate re-runs it on every file, on every day, for free.
 
 ## Free and full
 
-Free: the file you have open, all 9 rules, every finding with its swap. That job finishes.
+Free: the file you have open, all 18 rules, every finding with its swap - and a Quick Fix (the light bulb)
+that rewrites the line under the cursor where the swap is mechanical: `distribution: temurin`,
+`JvmVendorSpec.ADOPTIUM`, `"jdkDistro": "tem"`, `eclipse-temurin:<major>-jdk`, `temurin@<major>`,
+`EclipseAdoptium.Temurin.<major>.JDK`. That job finishes.
 
-Full version: the same 9 rules swept over every file in the workspace, plus a dated evidence pack -
-file, line, distribution, license basis, free-window date and swap - that you can hand to
-procurement or to an Oracle audit, plus team and commercial use. $29 once.
+Full version: **Fix all** - every mechanical swap in every file of the workspace in one click, with a preview
+first and a dated record of each change (file, line, before, after, SHA-256 of the file after). Lines that need
+a human choice (SDKMAN / asdf version ids, Maven toolchains, download scripts, an Oracle Linux image that the
+same Dockerfile then builds on with yum / dnf) are left untouched and listed with the how-to. Plus the
+workspace sweep and the dated evidence pack you can hand to procurement or to an Oracle audit. $29 once.
 https://getreadystack.com/api/buy/cl/polar_cl_0qxUalAkf4ad9kwGZmCwgbKANSqawgoJq6rVf2ZeWRh
 
 ## For a team: every repository, every pull request
