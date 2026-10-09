@@ -2,7 +2,7 @@
   "name": "base-image-eol-lint",
   "displayName": "Dockerfile EOL Lint - base image end-of-life (FROM tags)",
   "description": "Marks every base image in your Dockerfiles, compose files and CI workflows whose security patches have already stopped - or stop before 13 November 2026 - and prints the tag that replaces it.",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -83,7 +83,8 @@
   },
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-27"
+    "rulesDate": "2026-09-27",
+    "alertUrl": "https://getreadystack.com/tools/base-image-eol-lint?ref=vsix_alert#yjae"
   },
   "repository": {
     "type": "git",
