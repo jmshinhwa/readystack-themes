@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.cloud-manifest-audit-kit</id>
+  <name>Manifest Snippets + Removed-API Audit</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>For platform engineers on AKS: 28 rules naming every removed apiVersion, literal credential and :latest tag in the file you have open, and 40 snippets written against the versions that still exist.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Manifest Snippets + Removed-API Audit: Check This File</b>. Each finding appears on its line with the fix. 28 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/cloud-manifest-audit-kit</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/cloud-manifest-audit-kit">getreadystack.com/tools/cloud-manifest-audit-kit</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_cloud_manifest_audit_kit.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.cloud-manifest-audit-kit" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.cloud-manifest-audit-kit.check" class="com.getreadystack.p_cloud_manifest_audit_kit.RsCheckAction"
+            text="Manifest Snippets + Removed-API Audit: Check This File" description="Run Manifest Snippets + Removed-API Audit on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
