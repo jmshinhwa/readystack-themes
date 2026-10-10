@@ -2,7 +2,7 @@
   "name": "owasp-dependency-check-config-lint",
   "displayName": "OWASP Dependency Check Config Lint",
   "description": "OWASP dependency check setup lint for pom.xml, Gradle, suppression XML and CI files: plugin versions below the 12.1.0 mandatory upgrade, expired suppressions, hardcoded NVD API keys, failBuildOnCVSS 1",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
