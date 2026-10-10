@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.cra-24-72-14-reporting-lint</id>
+  <name>CRA 24/72/14 Reporting Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Reads your SECURITY.md against the EU Cyber Resilience Act reporting clock that started on 11 September 2026 — 24 hours, 72 hours, 14 days, to ENISA and your coordinating CSIRT.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>CRA 24/72/14 Reporting Lint: Check This File</b>. Each finding appears on its line with the fix. 18 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/cra-24-72-14-reporting-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/cra-24-72-14-reporting-lint">getreadystack.com/tools/cra-24-72-14-reporting-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_cra_24_72_14_reporting_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.cra-24-72-14-reporting-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.cra-24-72-14-reporting-lint.check" class="com.getreadystack.p_cra_24_72_14_reporting_lint.RsCheckAction"
+            text="CRA 24/72/14 Reporting Lint: Check This File" description="Run CRA 24/72/14 Reporting Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
