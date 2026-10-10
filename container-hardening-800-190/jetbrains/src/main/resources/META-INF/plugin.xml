@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.container-hardening-800-190</id>
+  <name>Cybersecurity Container Audit</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Reads a Dockerfile or compose file and names the hardening controls it fails, with the NIST SP 800-171 requirement each one puts at risk.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Cybersecurity Container Audit: Check This File</b>. Each finding appears on its line with the fix. 19 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/container-hardening-800-190</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/container-hardening-800-190">getreadystack.com/tools/container-hardening-800-190</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_container_hardening_800_190.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.container-hardening-800-190" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.container-hardening-800-190.check" class="com.getreadystack.p_container_hardening_800_190.RsCheckAction"
+            text="Cybersecurity Container Audit: Check This File" description="Run Cybersecurity Container Audit on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
