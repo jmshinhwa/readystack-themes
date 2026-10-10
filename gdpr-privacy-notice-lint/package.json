@@ -2,7 +2,7 @@
   "name": "gdpr-privacy-notice-lint",
   "displayName": "GDPR Privacy Notice Lint",
   "description": "Reads the privacy notice in your repo against 16 rules from GDPR Articles 13 and 14, flags template placeholders, and tells you when the notice itself has gone stale. Not legal advice.",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -45,10 +45,14 @@
   "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jmshinhwa-ai/readystack"
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "gdpr-privacy-notice-lint"
   },
   "homepage": "https://getreadystack.com/tools/gdpr-privacy-notice-lint",
   "readystack": {
     "rulesDate": "2026-09-13"
+  },
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
