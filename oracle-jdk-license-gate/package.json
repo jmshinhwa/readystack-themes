@@ -2,7 +2,7 @@
   "name": "oracle-jdk-license-gate",
   "displayName": "Oracle JDK License Gate",
   "description": "Moving to Temurin or Corretto? Shows which Java every part of your project pulls (CI, Docker, Gradle, SDKMAN, dev container), flags the Oracle-licensed ones on today's date and gives the free line for each.",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
