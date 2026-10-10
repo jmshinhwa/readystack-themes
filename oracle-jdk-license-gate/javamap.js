@@ -148,7 +148,7 @@ function render(d) {
   L.push('| Place | Eclipse Temurin | Amazon Corretto |'); L.push('| --- | --- | --- |');
   (d.LINES || []).forEach(function (x) { L.push('| ' + x.kind + ' | `' + x.temurin + '` | ' + (x.corretto ? '`' + x.corretto + '`' : '') + ' |'); });
   L.push('');
-  L.push('Oracle\'s No-Fee Terms cover a Java LTS release until one year after the next LTS ships: the free window for JDK 21 closed on 2026-09-16, for JDK 17 on 2024-09-19. OpenJDK builds such as Temurin and Corretto are not under those terms.');
+  L.push('Oracle JDK 21 builds released through September 2026 are under the No-Fee Terms; from the Critical Patch Update of 2026-10-20, new Oracle JDK 21 updates are under the Java SE OTN license, which is not free for production (Oracle JDK licence FAQ · Oracle Java blog 2026-08-14 · CPU calendar). Oracle JDK 17 made the same switch in October 2024. OpenJDK builds such as Temurin and Corretto are not under those terms.');
   L.push('');
   L.push('---');
   L.push('This map is free and stays on this machine. The written workspace report (every line, as a file for your team, an auditor or CI) is the paid part: run `' + d.title + ': Sweep workspace and write report`.');
