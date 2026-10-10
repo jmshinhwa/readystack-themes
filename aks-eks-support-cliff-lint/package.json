@@ -2,7 +2,7 @@
   "name": "aks-eks-support-cliff-lint",
   "displayName": "AKS LTS & EKS Extended Support Lint for Terraform",
   "description": "Lints Terraform aws_eks_cluster and azurerm_kubernetes_cluster blocks against the 2026 EKS and AKS version calendars: extended-support fees, AKS LTS without Premium tier, forced upgrades.",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
