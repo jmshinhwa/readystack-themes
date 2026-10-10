@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.connection-string-secret-audit</id>
+  <name>Connection String &amp; Secret Audit</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>26 rules and 32 safe-replacement snippets for hardcoded connection strings, keys and kubeconfigs across 8 VS Code stacks. Runs on your machine and sends nothing anywhere.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Connection String &amp; Secret Audit: Check This File</b>. Each finding appears on its line with the fix. 26 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/connection-string-secret-audit</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/connection-string-secret-audit">getreadystack.com/tools/connection-string-secret-audit</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_connection_string_secret_audit.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.connection-string-secret-audit" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.connection-string-secret-audit.check" class="com.getreadystack.p_connection_string_secret_audit.RsCheckAction"
+            text="Connection String &amp; Secret Audit: Check This File" description="Run Connection String &amp; Secret Audit on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
