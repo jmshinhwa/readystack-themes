@@ -36,14 +36,27 @@ const T = {
        'Mostrar o mapa de Java', 'Agora não']
 };
 
+// s185 D4 — [실측 7d] the Java map toast reached 184 people and 40 opened the map; none of them was ever shown the paid part, because
+//   the map toast had no money button and most "temurin" searchers already run a free JDK (clean files → no findings toast).
+//   What a company that just left Oracle needs is ★proof it left: a dated record (rules date, UTC time, SHA-256 of every file) for an
+//   Oracle licence review or its own auditor. ⇒ one paid button on the toast, only without a key. It runs the existing paid sweep
+//   (key panel → report). Facts only — no promise about any audit outcome.
+const AUD = {
+  en: [' For an Oracle licence review, keep a dated record of this check (rules date, UTC time, SHA-256 of every file).', 'Dated record — $29 once'],
+  de: [' Für eine Oracle-Lizenzprüfung: diese Prüfung als datierten Nachweis speichern (Regelstand, UTC-Zeit, SHA-256 jeder Datei).', 'Datierter Nachweis — 29 $ einmalig'],
+  ja: [' Oracle のライセンス監査に備えて、この確認を日付入りの記録として残せます (ルールの日付・UTC 時刻・全ファイルの SHA-256)。', '日付入りの記録 — 買い切り $29'],
+  es: [' Para una revisión de licencias de Oracle, guarde un registro fechado de esta comprobación (fecha de reglas, hora UTC, SHA-256 de cada archivo).', 'Registro fechado — $29 una vez'],
+  pt: [' Para uma revisão de licenças da Oracle, guarde um registro datado desta verificação (data das regras, hora UTC, SHA-256 de cada arquivo).', 'Registro datado — US$ 29 uma vez']
+};
 function lang(vscode) { return String((vscode && vscode.env && vscode.env.language) || 'en').slice(0, 2).toLowerCase(); }
 function today() { return new Date().toISOString().slice(0, 10); }
 
-function send(vscode, why) {   // same rules as auto.js: anonymous, off when telemetry is off, never in CI, never breaks the product
+function send(vscode, why, t, src) {   // same rules as auto.js: anonymous, off when telemetry is off, never in CI, never breaks the product
   try {
     if (process.env.READYSTACK_NO_TELEMETRY || process.env.CI) return;
     if (vscode && vscode.env && vscode.env.isTelemetryEnabled === false) return;
-    const body = JSON.stringify({ t: 'use', slug: SLUG, src: 'vsix', why: why, path: '/use/vsix/' + SLUG });
+    const tt = t || 'use', ss = src || 'vsix';
+    const body = JSON.stringify({ t: tt, slug: SLUG, src: ss, why: why, path: '/' + tt + '/' + ss + '/' + SLUG });
     const req = https.request({ hostname: 'getreadystack.com', path: '/api/ev', method: 'POST', timeout: 4000,
       headers: { 'content-type': 'application/json', 'content-length': Buffer.byteLength(body), 'user-agent': 'readystack-vsix/' + SLUG } },
       function (res) { res.resume(); });
@@ -181,9 +194,12 @@ async function offer(ctx, o) {
     const M = T[lang(vscode)] || T.en;
     const msg = (pins ? M[0] : M[1]).replace('{t}', o.title).replace('{n}', pins).replace('{s}', pins === 1 ? '' : 's').replace('{sum}', summary(all)).replace('{m}', finds);
     send(vscode, 'java_map_offer');
-    const pk = await vscode.window.showInformationMessage(msg, M[2], M[3]);
+    const A = (!st.get('licenseKey')) ? (AUD[lang(vscode)] || AUD.en) : null;
+    if (A) send(vscode, 'map_audit_offer', 'paywall', 'vsix');   // the money screen, counted
+    const pk = A ? await vscode.window.showInformationMessage(msg + A[0], M[2], A[1], M[3]) : await vscode.window.showInformationMessage(msg, M[2], M[3]);
     if (pk === M[2]) await show(vscode, o.ENGINE, o.title, d);
-    return { shown: true, pick: pk || null, pins: pins, findings: finds };
+    else if (A && pk === A[1]) { send(vscode, 'map_audit_click', 'paywall', 'vsix'); await vscode.commands.executeCommand(o.PREFIX + '.checkWorkspace'); }
+    return { shown: true, pick: pk || null, pins: pins, findings: finds, audit: A ? A[1] : null };
   } catch (e) { return null; }
 }
 
