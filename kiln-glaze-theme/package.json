@@ -1,0 +1,55 @@
+{
+  "name": "kiln-glaze-theme",
+  "displayName": "Kiln Theme — Pottery glaze colours: raku smoke, tenmoku iron, celadon jade.",
+  "description": "Pottery glaze colours: raku smoke, tenmoku iron, celadon jade. Kiln takes its colours from glazed pottery rather than from neon: copper lustre for keywords, cobalt blue for strings, celadon green for numbers, ash-glaze straw for types and Jun-ware pu",
+  "version": "1.0.0",
+  "publisher": "ReadyStack",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "color theme",
+    "kiln theme",
+    "warm dark theme",
+    "calm coding theme",
+    "eye friendly theme",
+    "pottery color theme",
+    "celadon light theme",
+    "aesthetic vscode theme",
+    "matching terminal and editor colors"
+  ],
+  "galleryBanner": {
+    "color": "#1A2026",
+    "theme": "dark"
+  },
+  "icon": "icon.png",
+  "homepage": "https://getreadystack.com",
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Kiln Raku",
+        "uiTheme": "vs-dark",
+        "path": "./kiln-raku-color-theme.json"
+      },
+      {
+        "label": "Kiln Tenmoku",
+        "uiTheme": "vs-dark",
+        "path": "./kiln-tenmoku-color-theme.json"
+      },
+      {
+        "label": "Kiln Celadon",
+        "uiTheme": "vs",
+        "path": "./kiln-celadon-color-theme.json"
+      }
+    ]
+  }
+}
