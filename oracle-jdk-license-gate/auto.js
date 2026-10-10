@@ -488,7 +488,19 @@ async function hint(ctx, h) {
   try {
     var vscode = h.vscode, key = h.PREFIX + '.hinted', fixKey = h.PREFIX + '.fixHinted', reoffer = false;
     if (ctx.globalState.get(h.PREFIX + '.noHint')) return null;
-    if (ctx.workspaceState.get(key)) {
+    // s186 E6 — A DATED VENDOR EVENT re-opens the conversation ONCE per install. [실측 10/10] Oracle JDK 21 updates turn OTN
+    //   (not free for production) at the 2026-10-20 CPU, but every existing user had already been hinted once, so the one
+    //   moment that makes the company pay could never reach them. stake.json `event` {id, from, until} (a product's own data,
+    //   dates copied from the vendor) ⇒ inside [from, until] the result toast speaks one more time, with the dated clean/dirty line.
+    var EV = null;
+    try {
+      var SKv = stakeOf(h), ev = SKv && SKv.s && SKv.s.event, dv = h.today || new Date().toISOString().slice(0, 10);
+      if (ev && ev.id && ev.from && ev.until && dv >= ev.from && dv <= ev.until && !ctx.globalState.get(h.PREFIX + '.event.' + ev.id)) EV = ev;
+    } catch (e) { EV = null; }
+    if (ctx.workspaceState.get(key) && EV) {
+      await ctx.globalState.update(h.PREFIX + '.event.' + EV.id, true);
+      send(vscode, h.slug || h.PREFIX, { t: 'use', slug: h.slug || h.PREFIX, src: 'vsix', why: 'event_' + EV.id, path: '/use/vsix/' + (h.slug || h.PREFIX) });
+    } else if (ctx.workspaceState.get(key)) {
       // s185 D4 — [실측 10/10] "Fix all" shipped 10/9 to workspaces that had ALREADY been hinted once (key above) ⇒ the offer could never
       //   reach an existing user. ONE re-offer per workspace, only when this version can really fix lines there; otherwise stay quiet.
       if (!h.fix || !h.fix.count || ctx.workspaceState.get(fixKey)) return null;
@@ -500,6 +512,7 @@ async function hint(ctx, h) {
     if (!vscode.workspace.workspaceFolders || !vscode.workspace.workspaceFolders.length) return await welcome(ctx, h);   // s164 — no folder open: the first minute still speaks (once)
     var sc = await scan(h, 300), files = sc.files, total = sc.total, clean = sc.clean, day = new Date().toISOString().slice(0, 10);   // s163b — one scan
     await ctx.workspaceState.update(key, true);
+    if (EV) await ctx.globalState.update(h.PREFIX + '.event.' + EV.id, true);   // s186 E6 — a first hint inside the window already carries the dated line
     if (h.fix) await ctx.workspaceState.update(fixKey, true);
     if (reoffer && !total) return null;   // the re-offer speaks only about lines it can fix
     var st = ctx.globalState, hasKey = !!st.get('licenseKey'), until = Number(st.get('sweepTrialUntil') || 0);
