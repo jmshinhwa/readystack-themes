@@ -1,0 +1,55 @@
+{
+  "name": "terrazzo-theme",
+  "displayName": "Terrazzo Theme — Stone chips in polished cement: rosa, giallo, lapis, verde.",
+  "description": "Stone chips in polished cement: rosa, giallo, lapis, verde. Terrazzo is the speckled floor of old Venetian palazzi and mid-century lobbies: chips of marble poured into cement and polished flat. Every code colour measured: body text WCAG AAA, comments",
+  "version": "1.0.0",
+  "publisher": "ReadyStack",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "color theme",
+    "terrazzo theme",
+    "aesthetic vscode theme",
+    "warm dark theme",
+    "calm coding theme",
+    "eye friendly theme",
+    "minimal light theme",
+    "pastel vscode theme",
+    "matching terminal and editor colors"
+  ],
+  "galleryBanner": {
+    "color": "#1A1C20",
+    "theme": "dark"
+  },
+  "icon": "icon.png",
+  "homepage": "https://getreadystack.com",
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Terrazzo Nero",
+        "uiTheme": "vs-dark",
+        "path": "./terrazzo-nero-color-theme.json"
+      },
+      {
+        "label": "Terrazzo Rosso",
+        "uiTheme": "vs-dark",
+        "path": "./terrazzo-rosso-color-theme.json"
+      },
+      {
+        "label": "Terrazzo Bianco",
+        "uiTheme": "vs",
+        "path": "./terrazzo-bianco-color-theme.json"
+      }
+    ]
+  }
+}
