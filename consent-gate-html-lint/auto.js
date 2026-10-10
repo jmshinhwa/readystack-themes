@@ -338,7 +338,7 @@ function start(ctx, o) {
   var cfg = function () { return vscode.workspace.getConfiguration('readystack'); };
   var toks = tokens(slug), R = ruleCount(E);
   var h = { vscode: vscode, E: E, GLOB: GLOB, PREFIX: PREFIX, title: title, toks: toks, R: R, price: o.price || 29, slug: slug,
-    homepage: o.homepage || pkgHome(), reviewDelayMs: o.reviewDelayMs, quietMs: o.quietMs, alertDelayMs: o.alertDelayMs, today: o.today || null, extDir: o.extDir || (ctx && (ctx.extensionPath || (ctx.extension && ctx.extension.extensionPath))) || __dirname };   // s163
+    fix: o.fix || null, homepage: o.homepage || pkgHome(), reviewDelayMs: o.reviewDelayMs, quietMs: o.quietMs, alertDelayMs: o.alertDelayMs, today: o.today || null, extDir: o.extDir || (ctx && (ctx.extensionPath || (ctx.extension && ctx.extension.extensionPath))) || __dirname };   // s163
   _h = h;   // s163b
   if (cfg().get('autoCheck', true) === false) return null;
   var last = new Map();   // s163 — findings per file: a drop = the user fixed one (review moment)
@@ -517,13 +517,22 @@ async function hint(ctx, h) {
     // s158 — ⚑7일 무료 없음: 버튼이 곧 값이다(손님 숫자 바로 옆) · 이미 시작된 체험만 지킨다
     var label = hasKey ? 'Sweep the workspace' : ((until && Date.now() < until) ? 'Sweep the workspace (trial)' : 'Get the full report ($' + (h.price || 29) + ')');
     var msg = h.title + ': ' + total + ' issue' + (total === 1 ? '' : 's') + ' in ' + files + ' file' + (files === 1 ? '' : 's') + ' of this workspace.';
+    // s184 W1 — a product that ships fixmap.js sells THE WORK: the button names it ("Fix all N lines in M files — $29 once") and runs fixAll
+    //   (preview → apply → dated record). The open file stays free (Quick Fix). fix_offer = the money moment, counted.
+    var FX = null; try { FX = (h.fix && h.fix.count) ? await h.fix.count() : null; } catch (e) { FX = null; }
+    if (FX && FX.lines) {
+      var FW = require('./fixall.js'), FT = FW.words(vscode);
+      label = hasKey ? FW.fill(FT.apply, { n: FX.lines }) : FW.fill(FT.all, { n: FX.lines, f: FX.files, p: h.price || 29 });
+      msg = FW.fill(FT.hint, { t: h.title, n: total, f: files, a: FX.lines });
+      send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: 'fix_offer', path: '/paywall/vsix/' + (h.slug || h.PREFIX) });
+    }
     _toastAt = Date.now();
     var SK = stakeOf(h), est = null;   // s165 — the stake line + one estimate button, only when the product ships stake.json
     if (SK) msg = msg + ' ' + SK.line;
     var pick = SK ? await vscode.window.showInformationMessage(msg, SK.btn, SK.note, label, "Don't show again") : await vscode.window.showInformationMessage(msg, label, "Don't show again");
     if (SK && pick === SK.btn) { est = await stakeEstimate(h, SK, label, { total: total, files: files, day: day }); pick = est ? est.pick : undefined; }
     if (SK && pick === SK.note) { await noteFlow(h, SK, { total: total, files: files, day: day }); pick = undefined; }   // s168
-    if (pick === label) await vscode.commands.executeCommand(h.PREFIX + '.checkWorkspace');
+    if (pick === label) await vscode.commands.executeCommand(h.PREFIX + ((FX && FX.lines) ? '.fixAll' : '.checkWorkspace'));
     else if (pick === "Don't show again") await st.update(h.PREFIX + '.noHint', true);
     return { files: files, total: total, label: label, msg: msg, stake: SK ? SK.line : null, estimate: est };
   } catch (e) { return null; }
@@ -579,4 +588,4 @@ function alertSoon(ctx, h) {
 module.exports = { start: start, relevant: relevant, tokens: tokens, isBroad: isBroad, clearWords: clearWords,
   sweptClean: sweptClean, badgeTopic: badgeTopic, badgeMarkdown: badgeMarkdown, reviewUrl: reviewUrl, reviewTick: reviewTick, clearReport: clearReport, scan: scan,   // s163
   welcome: welcome, kindOf: kindOf, globExts: globExts, sampleOf: sampleOf,   // s164
-  stakeOf: stakeOf, rateOf: rateOf, noteText: noteText, cleanTeam: cleanTeam, alertOf: alertOf, alertAsk: alertAsk, nextRuleDate: nextRuleDate, sent: function () { return _sent.slice(); } };   // s174   // s165 · s168 noteText
+  send: send, _hintForTest: function (ctx, h) { return hint(ctx, h); }, stakeOf: stakeOf, rateOf: rateOf, noteText: noteText, cleanTeam: cleanTeam, alertOf: alertOf, alertAsk: alertAsk, nextRuleDate: nextRuleDate, sent: function () { return _sent.slice(); } };   // s174   // s165 · s168 noteText
