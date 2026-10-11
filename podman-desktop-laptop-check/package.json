@@ -1,0 +1,62 @@
+{
+  "name": "podman-desktop-laptop-check",
+  "displayName": "Podman Desktop Laptop Check: Docker Desktop seats",
+  "description": "Finds every Docker Desktop install in Brewfiles, winget and choco manifests and laptop setup scripts (brew --cask docker, Docker.DockerDesktop, desktop.docker.com) with the Podman Desktop line for eac",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "podman desktop",
+    "rancher desktop",
+    "colima",
+    "docker desktop license",
+    "docker desktop alternative",
+    "brewfile",
+    "winget",
+    "chocolatey",
+    "developer laptop setup",
+    "dotfiles"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "podmanDesktopLaptopCheck.checkFile",
+        "title": "Podman Desktop Laptop Check: Docker Desktop seats: Check this file",
+        "category": "Podman Desktop Laptop Check: Docker Desktop seats"
+      },
+      {
+        "command": "podmanDesktopLaptopCheck.checkWorkspace",
+        "title": "Podman Desktop Laptop Check: Docker Desktop seats: Sweep workspace and write report (licence)",
+        "category": "Podman Desktop Laptop Check: Docker Desktop seats"
+      },
+      {
+        "command": "podmanDesktopLaptopCheck.enterKey",
+        "title": "Podman Desktop Laptop Check: Docker Desktop seats: Enter licence key",
+        "category": "Podman Desktop Laptop Check: Docker Desktop seats"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "podman-desktop-laptop-check"
+  },
+  "homepage": "https://getreadystack.com/tools/podman-desktop-laptop-check",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-10"
+  },
+  "icon": "icon.png"
+}
