@@ -1,0 +1,61 @@
+{
+  "name": "nicegui-migration-check",
+  "displayName": "NiceGUI Migration Check: PySimpleGUI Licence Gate",
+  "description": "Maps every PySimpleGUI tie in requirements.txt, pyproject.toml, setup.py, Pipfile and .py imports: the dead PySimpleGUI.net index, the 5.0.8.3 stub, PySimpleGUIQt 5.0.0, with the FreeSimpleGUI or Nice",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "nicegui",
+    "pysimplegui",
+    "freesimplegui",
+    "flet",
+    "pysimplegui 5",
+    "licence",
+    "migration",
+    "requirements.txt",
+    "tkinter"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "niceguiMigration.checkFile",
+        "title": "NiceGUI Migration Check: PySimpleGUI Licence Gate: Check this file",
+        "category": "NiceGUI Migration Check: PySimpleGUI Licence Gate"
+      },
+      {
+        "command": "niceguiMigration.checkWorkspace",
+        "title": "NiceGUI Migration Check: PySimpleGUI Licence Gate: Sweep workspace and write report (licence)",
+        "category": "NiceGUI Migration Check: PySimpleGUI Licence Gate"
+      },
+      {
+        "command": "niceguiMigration.enterKey",
+        "title": "NiceGUI Migration Check: PySimpleGUI Licence Gate: Enter licence key",
+        "category": "NiceGUI Migration Check: PySimpleGUI Licence Gate"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "nicegui-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/nicegui-migration-check",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-10"
+  },
+  "icon": "icon.png"
+}
