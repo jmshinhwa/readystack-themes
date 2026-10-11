@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.cra-readiness-audit</id>
+  <name>CRA Readiness Audit for EU Cyber Resilience Act</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Flags the lines in your repo that break the EU Cyber Resilience Act - default passwords, disabled TLS checks, floating base images, an expired security.txt - naming the Annex each one fails.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>CRA Readiness Audit for EU Cyber Resilience Act: Check This File</b>. Each finding appears on its line with the fix. 28 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/cra-readiness-audit</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/cra-readiness-audit">getreadystack.com/tools/cra-readiness-audit</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_cra_readiness_audit.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.cra-readiness-audit" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.cra-readiness-audit.check" class="com.getreadystack.p_cra_readiness_audit.RsCheckAction"
+            text="CRA Readiness Audit for EU Cyber Resilience Act: Check This File" description="Run CRA Readiness Audit for EU Cyber Resilience Act on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
