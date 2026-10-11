@@ -1,0 +1,61 @@
+{
+  "name": "flyway-migration-check",
+  "displayName": "Flyway Migration Check — Liquibase 5 FSL ties",
+  "description": "Flyway migration check: flags Liquibase Community 5.x (FSL-1.1-ALv2) lines in pom.xml, Gradle, liquibase.properties, Spring config and changelogs, with the Flyway line for each.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "flyway",
+    "liquibase",
+    "liquibase 5",
+    "liquibase fsl",
+    "flyway migration",
+    "dbmate",
+    "database migration",
+    "spring boot flyway",
+    "liquibase alternative"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "flywayMigrationCheck.checkFile",
+        "title": "Flyway Migration Check — Liquibase 5 FSL ties: Check this file",
+        "category": "Flyway Migration Check — Liquibase 5 FSL ties"
+      },
+      {
+        "command": "flywayMigrationCheck.checkWorkspace",
+        "title": "Flyway Migration Check — Liquibase 5 FSL ties: Sweep workspace and write report (licence)",
+        "category": "Flyway Migration Check — Liquibase 5 FSL ties"
+      },
+      {
+        "command": "flywayMigrationCheck.enterKey",
+        "title": "Flyway Migration Check — Liquibase 5 FSL ties: Enter licence key",
+        "category": "Flyway Migration Check — Liquibase 5 FSL ties"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "flyway-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/flyway-migration-check",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-10"
+  },
+  "icon": "icon.png"
+}
