@@ -486,11 +486,35 @@ async function stakeEstimate(h, SK, label, info) {
 }
 async function hint(ctx, h) {
   try {
-    var vscode = h.vscode, key = h.PREFIX + '.hinted';
-    if (ctx.workspaceState.get(key) || ctx.globalState.get(h.PREFIX + '.noHint')) return null;
+    var vscode = h.vscode, key = h.PREFIX + '.hinted', fixKey = h.PREFIX + '.fixHinted', reoffer = false;
+    if (ctx.globalState.get(h.PREFIX + '.noHint')) return null;
+    // s186 E6 — A DATED VENDOR EVENT re-opens the conversation ONCE per install. [실측 10/10] Oracle JDK 21 updates turn OTN
+    //   (not free for production) at the 2026-10-20 CPU, but every existing user had already been hinted once, so the one
+    //   moment that makes the company pay could never reach them. stake.json `event` {id, from, until} (a product's own data,
+    //   dates copied from the vendor) ⇒ inside [from, until] the result toast speaks one more time, with the dated clean/dirty line.
+    var EV = null;
+    try {
+      var SKv = stakeOf(h), ev = SKv && SKv.s && SKv.s.event, dv = h.today || new Date().toISOString().slice(0, 10);
+      if (ev && ev.id && ev.from && ev.until && dv >= ev.from && dv <= ev.until && !ctx.globalState.get(h.PREFIX + '.event.' + ev.id)) EV = ev;
+    } catch (e) { EV = null; }
+    if (ctx.workspaceState.get(key) && EV) {
+      await ctx.globalState.update(h.PREFIX + '.event.' + EV.id, true);
+      send(vscode, h.slug || h.PREFIX, { t: 'use', slug: h.slug || h.PREFIX, src: 'vsix', why: 'event_' + EV.id, path: '/use/vsix/' + (h.slug || h.PREFIX) });
+    } else if (ctx.workspaceState.get(key)) {
+      // s185 D4 — [실측 10/10] "Fix all" shipped 10/9 to workspaces that had ALREADY been hinted once (key above) ⇒ the offer could never
+      //   reach an existing user. ONE re-offer per workspace, only when this version can really fix lines there; otherwise stay quiet.
+      if (!h.fix || !h.fix.count || ctx.workspaceState.get(fixKey)) return null;
+      await ctx.workspaceState.update(fixKey, true);
+      var fc = null; try { fc = await h.fix.count(); } catch (e) { fc = null; }
+      if (!fc || !fc.lines) return null;
+      reoffer = true;
+    }
     if (!vscode.workspace.workspaceFolders || !vscode.workspace.workspaceFolders.length) return await welcome(ctx, h);   // s164 — no folder open: the first minute still speaks (once)
     var sc = await scan(h, 300), files = sc.files, total = sc.total, clean = sc.clean, day = new Date().toISOString().slice(0, 10);   // s163b — one scan
     await ctx.workspaceState.update(key, true);
+    if (EV) await ctx.globalState.update(h.PREFIX + '.event.' + EV.id, true);   // s186 E6 — a first hint inside the window already carries the dated line
+    if (h.fix) await ctx.workspaceState.update(fixKey, true);
+    if (reoffer && !total) return null;   // the re-offer speaks only about lines it can fix
     var st = ctx.globalState, hasKey = !!st.get('licenseKey'), until = Number(st.get('sweepTrialUntil') || 0);
     if (!total) {
       if (!clean) return { files: 0, total: 0, clean: 0, welcome: await welcome(ctx, h) };   // s164 — nothing here it reads → ONE first-minute offer, then quiet
@@ -502,6 +526,7 @@ async function hint(ctx, h) {
       var SKc = stakeOf(h), estc = null;   // s166 — a clean folder is not the company's safety: say the company line on the clean result too
       var TMc = (!(SKc && SKc.clean) && !hasKey) ? cleanTeam(h) : null;   // s174 — the company line for every product
       if (TMc) send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: 'clean_offer' });
+      else if (SKc && SKc.clean && !hasKey) send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: 'clean_stake', path: '/paywall/vsix/' + (h.slug || h.PREFIX) });   // s185 D4 — the company line on a clean result IS a money screen; it was never counted (oracle 61 clean results → money screen 0)
       var pk = (SKc && SKc.clean) ? await vscode.window.showInformationMessage(W.msg + ' ' + SKc.clean, SKc.btn, SKc.note, lbl, B[0], "Don't show again")
         : TMc ? await vscode.window.showInformationMessage(W.msg + ' ' + TMc.line, lbl, TMc.btn, B[0], "Don't show again")
         : await vscode.window.showInformationMessage(W.msg, lbl, B[0], "Don't show again");
@@ -524,8 +549,8 @@ async function hint(ctx, h) {
       var FW = require('./fixall.js'), FT = FW.words(vscode);
       label = hasKey ? FW.fill(FT.apply, { n: FX.lines }) : FW.fill(FT.all, { n: FX.lines, f: FX.files, p: h.price || 29 });
       msg = FW.fill(FT.hint, { t: h.title, n: total, f: files, a: FX.lines });
-      send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: 'fix_offer', path: '/paywall/vsix/' + (h.slug || h.PREFIX) });
-    }
+      send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: reoffer ? 'fix_reoffer' : 'fix_offer', path: '/paywall/vsix/' + (h.slug || h.PREFIX) });
+    } else if (!hasKey) send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: 'issue_offer', path: '/paywall/vsix/' + (h.slug || h.PREFIX) });   // s185 D4 — findings + "Get the full report ($29)" = a money screen, uncounted until now
     _toastAt = Date.now();
     var SK = stakeOf(h), est = null;   // s165 — the stake line + one estimate button, only when the product ships stake.json
     if (SK) msg = msg + ' ' + SK.line;
