@@ -2,7 +2,7 @@
   "name": "kiln-glaze-theme",
   "displayName": "Kiln Theme — Pottery glaze colours: raku smoke, tenmoku iron, celadon jade.",
   "description": "Pottery glaze colours: raku smoke, tenmoku iron, celadon jade. Kiln takes its colours from glazed pottery rather than from neon: copper lustre for keywords, cobalt blue for strings, celadon green for numbers, ash-glaze straw for types and Jun-ware pu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
@@ -51,5 +51,13 @@
         "path": "./kiln-celadon-color-theme.json"
       }
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "kiln-glaze-theme"
+  },
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
