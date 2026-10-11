@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.dependency-checker-eol-dates</id>
+  <name>Dependency Checker</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Dependency checker for package.json, composer.json and requirements.txt. On the sample package.json (Angular 19 + Express API, _fixtures/dirty.json) checked on 2026-09-28 it finds six dependencies past or near end of support: express ^4.21.2 (EOL target 2026-10-01), @angular/core ^19.2.0 (ended 2026-05-19), eslint ^8.57.0 (ended 2024-10-05), bootstrap ^4.6.2 (ended 2023-01-01), angular 1.8.3 (ended 2021-12-31), request ^2.88.2 (deprecated 2020-02-11).</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Dependency Checker: Check This File</b>. Each finding appears on its line with the fix. 19 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/dependency-checker-eol-dates</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/dependency-checker-eol-dates">getreadystack.com/tools/dependency-checker-eol-dates</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_dependency_checker_eol_dates.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.dependency-checker-eol-dates" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.dependency-checker-eol-dates.check" class="com.getreadystack.p_dependency_checker_eol_dates.RsCheckAction"
+            text="Dependency Checker: Check This File" description="Run Dependency Checker on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
