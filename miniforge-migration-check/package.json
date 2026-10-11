@@ -1,0 +1,62 @@
+{
+  "name": "miniforge-migration-check",
+  "displayName": "Miniforge Migration Check: Anaconda in Docker, CI",
+  "description": "Finds continuumio/miniconda3 images, repo.anaconda.com installers, setup-miniconda without miniforge-version and conda tos accept in Dockerfiles and CI YAML, with the Miniforge line for each.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "miniforge",
+    "miniconda",
+    "anaconda license",
+    "micromamba",
+    "pixi",
+    "conda-forge",
+    "setup-miniconda",
+    "conda tos accept",
+    "dockerfile",
+    "github actions"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "miniforgeMigrationCheck.checkFile",
+        "title": "Miniforge Migration Check — Anaconda in Docker and CI: Check this file",
+        "category": "Miniforge Migration Check — Anaconda in Docker and CI"
+      },
+      {
+        "command": "miniforgeMigrationCheck.checkWorkspace",
+        "title": "Miniforge Migration Check — Anaconda in Docker and CI: Sweep workspace and write report (licence)",
+        "category": "Miniforge Migration Check — Anaconda in Docker and CI"
+      },
+      {
+        "command": "miniforgeMigrationCheck.enterKey",
+        "title": "Miniforge Migration Check — Anaconda in Docker and CI: Enter licence key",
+        "category": "Miniforge Migration Check — Anaconda in Docker and CI"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "miniforge-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/miniforge-migration-check",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-10"
+  },
+  "icon": "icon.png"
+}
