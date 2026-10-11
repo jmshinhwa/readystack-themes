@@ -1,0 +1,65 @@
+{
+  "name": "python-310-eol-pin-check",
+  "displayName": "Python 3.10 End of Life — Pin Check & Fix",
+  "description": "Python 3.10 end of life was 2026-10-01. Finds every 3.10 pin — Dockerfile, GitHub Actions, tox, .python-version, Lambda, Cloud Run functions, Azure — with file:line, the dated fact and the 3.13 fix.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "python 3.10 end of life",
+    "python310",
+    "python-3-10",
+    "eol",
+    "end-of-life",
+    "upgrade",
+    "lambda",
+    "docker",
+    "github-actions"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "py310Eol.checkFile",
+        "title": "Python 3.10 End of Life — Pin Check & Fix: Check this file",
+        "category": "Python 3.10 End of Life — Pin Check & Fix"
+      },
+      {
+        "command": "py310Eol.checkWorkspace",
+        "title": "Python 3.10 End of Life — Pin Check & Fix: Sweep workspace and write report (licence)",
+        "category": "Python 3.10 End of Life — Pin Check & Fix"
+      },
+      {
+        "command": "py310Eol.enterKey",
+        "title": "Python 3.10 End of Life — Pin Check & Fix: Enter licence key",
+        "category": "Python 3.10 End of Life — Pin Check & Fix"
+      },
+      {
+        "command": "py310Eol.fixAll",
+        "title": "Python 3.10 End of Life — Pin Check & Fix: Fix all 3.10 pins in the workspace"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "python-310-eol-pin-check"
+  },
+  "homepage": "https://getreadystack.com/tools/python-310-eol-pin-check",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-11"
+  },
+  "icon": "icon.png"
+}
