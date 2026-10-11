@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.cra-annex-ii-docs-lint</id>
+  <name>CRA Annex II User Docs Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>19 rules over the user documentation that ships with your product: support-period end date, vulnerability reporting contact, EU declaration of conformity address, secure decommissioning.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>CRA Annex II User Docs Lint: Check This File</b>. Each finding appears on its line with the fix. 19 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/cra-annex-ii-docs-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/cra-annex-ii-docs-lint">getreadystack.com/tools/cra-annex-ii-docs-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_cra_annex_ii_docs_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.cra-annex-ii-docs-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.cra-annex-ii-docs-lint.check" class="com.getreadystack.p_cra_annex_ii_docs_lint.RsCheckAction"
+            text="CRA Annex II User Docs Lint: Check This File" description="Run CRA Annex II User Docs Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
