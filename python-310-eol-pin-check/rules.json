@@ -1,0 +1,264 @@
+[
+ {
+  "id": "docker_image",
+  "sev": "error",
+  "title": "Docker image python:3.10",
+  "where": "Dockerfile FROM · compose image: · CI container: · Lambda base image",
+  "fact": "psf",
+  "fix": "python:3.13 with the same tail (-slim, -alpine, -bookworm)",
+  "auto": true,
+  "facts": {
+   "psf": {
+    "text": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches.",
+    "date": "2026-10-01",
+    "source": "https://endoflife.date/api/python.json"
+   },
+   "aws_lambda": {
+    "text": "AWS Lambda python3.10 (Amazon Linux 2): deprecation 2026-10-31 · block function create 2027-07-29 · block function update 2027-08-31.",
+    "date": "2026-10-31",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"
+   },
+   "gcp_functions": {
+    "text": "Google Cloud Run functions python310: deprecation 2026-10-04 · decommission 2027-04-04.",
+    "date": "2026-10-04",
+    "source": "https://cloud.google.com/functions/docs/runtime-support"
+   },
+   "azure_functions": {
+    "text": "Azure Functions Python 3.10: expected end of support October 2026. Python 3.12 is the last version supported on the Linux Consumption plan.",
+    "date": "2026-10",
+    "source": "https://learn.microsoft.com/en-us/azure/azure-functions/supported-languages"
+   },
+   "replacement": {
+    "text": "Python 3.13 gets security support until 2029-10-31; Python 3.12 until 2028-10-31.",
+    "date": "2029-10-31",
+    "source": "https://endoflife.date/api/python.json"
+   }
+  },
+  "source": [
+   "https://endoflife.date/api/python.json",
+   "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296"
+  ],
+  "claim": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches."
+ },
+ {
+  "id": "docker_old_debian",
+  "sev": "error",
+  "title": "python:3.10 on Debian buster/bullseye",
+  "where": "Dockerfile FROM · compose image:",
+  "fact": "psf",
+  "fix": "by hand: there is no python:3.13 buster/bullseye image — move to python:3.13-bookworm and re-test apt packages",
+  "auto": false,
+  "source": [
+   "https://endoflife.date/api/python.json",
+   "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296"
+  ],
+  "claim": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches."
+ },
+ {
+  "id": "gha_python_version",
+  "sev": "warning",
+  "title": "setup-python python-version 3.10",
+  "where": ".github/workflows/*.yml",
+  "fact": "psf",
+  "fix": "python-version: '3.13'",
+  "auto": true,
+  "source": [
+   "https://endoflife.date/api/python.json",
+   "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296"
+  ],
+  "claim": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches."
+ },
+ {
+  "id": "gha_matrix",
+  "sev": "warning",
+  "title": "3.10 in a CI matrix",
+  "where": ".github/workflows/*.yml matrix",
+  "fact": "psf",
+  "fix": "replace '3.10' with '3.13' in the matrix",
+  "auto": true,
+  "source": [
+   "https://endoflife.date/api/python.json",
+   "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296"
+  ],
+  "claim": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches."
+ },
+ {
+  "id": "gha_matrix_has_313",
+  "sev": "warning",
+  "title": "3.10 in a matrix that already has 3.13",
+  "where": ".github/workflows/*.yml matrix",
+  "fact": "psf",
+  "fix": "by hand: drop '3.10' from the matrix (3.13 is already there) or keep it on purpose for library users",
+  "auto": false,
+  "source": [
+   "https://endoflife.date/api/python.json",
+   "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296"
+  ],
+  "claim": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches."
+ },
+ {
+  "id": "tox_env",
+  "sev": "warning",
+  "title": "tox env py310",
+  "where": "tox.ini envlist · [testenv:py310] · basepython",
+  "fact": "psf",
+  "fix": "by hand: add py313 to envlist; drop py310 only if you no longer support 3.10",
+  "auto": false,
+  "source": [
+   "https://endoflife.date/api/python.json",
+   "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296"
+  ],
+  "claim": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches."
+ },
+ {
+  "id": "nox_python",
+  "sev": "warning",
+  "title": "nox session python 3.10",
+  "where": "noxfile.py",
+  "fact": "psf",
+  "fix": "by hand: add \"3.13\" to the session list; drop \"3.10\" only if you no longer support it",
+  "auto": false,
+  "source": [
+   "https://endoflife.date/api/python.json",
+   "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296"
+  ],
+  "claim": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches."
+ },
+ {
+  "id": "python_version_file",
+  "sev": "warning",
+  "title": ".python-version / .tool-versions on 3.10",
+  "where": ".python-version · .tool-versions",
+  "fact": "psf",
+  "fix": "3.13 (python 3.13 in .tool-versions)",
+  "auto": true,
+  "source": [
+   "https://endoflife.date/api/python.json",
+   "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296"
+  ],
+  "claim": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches."
+ },
+ {
+  "id": "runtime_txt",
+  "sev": "error",
+  "title": "runtime.txt python-3.10",
+  "where": "runtime.txt",
+  "fact": "psf",
+  "fix": "python-3.13",
+  "auto": true,
+  "source": [
+   "https://endoflife.date/api/python.json",
+   "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296"
+  ],
+  "claim": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches."
+ },
+ {
+  "id": "pipfile_python",
+  "sev": "warning",
+  "title": "Pipfile python_version 3.10",
+  "where": "Pipfile [requires]",
+  "fact": "psf",
+  "fix": "python_version = \"3.13\" (python_full_version by hand)",
+  "auto": true,
+  "source": [
+   "https://endoflife.date/api/python.json",
+   "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296"
+  ],
+  "claim": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches."
+ },
+ {
+  "id": "requires_python_cap",
+  "sev": "warning",
+  "title": "requires-python capped at 3.10",
+  "where": "pyproject.toml requires-python · setup.cfg python_requires",
+  "fact": "psf",
+  "fix": "by hand: widen the cap (for example >=3.10,<3.14) — a library may keep 3.10 support on purpose",
+  "auto": false,
+  "source": [
+   "https://endoflife.date/api/python.json",
+   "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296"
+  ],
+  "claim": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches."
+ },
+ {
+  "id": "classifier_310",
+  "sev": "info",
+  "title": "classifier Python :: 3.10",
+  "where": "pyproject.toml · setup.cfg classifiers",
+  "fact": "psf",
+  "fix": "by hand: keep it if you still test 3.10; add Python :: 3.13",
+  "auto": false,
+  "source": [
+   "https://endoflife.date/api/python.json",
+   "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296"
+  ],
+  "claim": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches."
+ },
+ {
+  "id": "conda_python",
+  "sev": "warning",
+  "title": "conda python=3.10",
+  "where": "environment.yml · conda create",
+  "fact": "psf",
+  "fix": "python=3.13",
+  "auto": true,
+  "source": [
+   "https://endoflife.date/api/python.json",
+   "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296"
+  ],
+  "claim": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches."
+ },
+ {
+  "id": "aws_lambda_runtime",
+  "sev": "error",
+  "title": "AWS Lambda runtime python3.10",
+  "where": "SAM/CloudFormation Runtime: · serverless.yml runtime: · Terraform runtime = · aws lambda --runtime · CDK Runtime.PYTHON_3_10",
+  "fact": "aws_lambda",
+  "fix": "python3.13 (CDK: Runtime.PYTHON_3_13)",
+  "auto": true,
+  "source": [
+   "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"
+  ],
+  "claim": "AWS Lambda python3.10 (Amazon Linux 2): deprecation 2026-10-31 · block function create 2027-07-29 · block function update 2027-08-31."
+ },
+ {
+  "id": "gcp_runtime",
+  "sev": "error",
+  "title": "Google Cloud runtime python310",
+  "where": "gcloud functions deploy --runtime · Terraform google_cloudfunctions runtime · app.yaml runtime:",
+  "fact": "gcp_functions",
+  "fix": "python313",
+  "auto": true,
+  "source": [
+   "https://cloud.google.com/functions/docs/runtime-support"
+  ],
+  "claim": "Google Cloud Run functions python310: deprecation 2026-10-04 · decommission 2027-04-04."
+ },
+ {
+  "id": "azure_linuxfx",
+  "sev": "error",
+  "title": "Azure linuxFxVersion Python|3.10",
+  "where": "Bicep/ARM linuxFxVersion · az functionapp --linux-fx-version",
+  "fact": "azure_functions",
+  "fix": "Python|3.12 (the last version on the Linux Consumption plan)",
+  "auto": true,
+  "source": [
+   "https://learn.microsoft.com/en-us/azure/azure-functions/supported-languages"
+  ],
+  "claim": "Azure Functions Python 3.10: expected end of support October 2026. Python 3.12 is the last version supported on the Linux Consumption plan."
+ },
+ {
+  "id": "precommit_python",
+  "sev": "warning",
+  "title": "pre-commit language_version python3.10",
+  "where": ".pre-commit-config.yaml",
+  "fact": "psf",
+  "fix": "python3.13",
+  "auto": true,
+  "source": [
+   "https://endoflife.date/api/python.json",
+   "https://discuss.python.org/t/python-3-10-22-3-11-17-3-12-15-3-13-16-and-3-14-8-are-now-available/109296"
+  ],
+  "claim": "Python 3.10 reached end of life on 2026-10-01; 3.10.22 was the final release and the PSF ships no further security patches."
+ }
+]
