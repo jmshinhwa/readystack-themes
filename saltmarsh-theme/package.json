@@ -1,0 +1,55 @@
+{
+  "name": "saltmarsh-theme",
+  "displayName": "Saltmarsh Theme — Estuary colours: sea lavender, cordgrass, samphire, tide",
+  "description": "Estuary colours: sea lavender, cordgrass, samphire, tide. Saltmarsh is the edge of an estuary at low tide: sea lavender in flower, cordgrass gone to straw, samphire reddening on the mud, and the channel water holding the sky. Every code colour measur",
+  "version": "1.0.0",
+  "publisher": "ReadyStack",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "color theme",
+    "calm coding theme",
+    "warm dark theme",
+    "eye friendly theme",
+    "pastel vscode theme",
+    "light theme",
+    "coastal theme",
+    "matching terminal and editor colors",
+    "saltmarsh"
+  ],
+  "galleryBanner": {
+    "color": "#152126",
+    "theme": "dark"
+  },
+  "icon": "icon.png",
+  "homepage": "https://getreadystack.com",
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Saltmarsh Tide",
+        "uiTheme": "vs-dark",
+        "path": "./saltmarsh-tide-color-theme.json"
+      },
+      {
+        "label": "Saltmarsh Dusk",
+        "uiTheme": "vs-dark",
+        "path": "./saltmarsh-dusk-color-theme.json"
+      },
+      {
+        "label": "Saltmarsh Haar",
+        "uiTheme": "vs",
+        "path": "./saltmarsh-haar-color-theme.json"
+      }
+    ]
+  }
+}
