@@ -30,8 +30,8 @@
   {
     "pattern": "\\bpython:3\\.10\\b",
     "flags": "i",
-    "sev": "warn",
-    "message": "python:3.10 - Python 3.10 reaches end-of-life on 31 October 2026. After that date the PSF ships no further security patches. Replace with python:3.13-trixie.",
+    "sev": "error",
+    "message": "python:3.10 - Python 3.10 reached end-of-life on 1 October 2026 (3.10.22 was the final release). The PSF ships no further security patches. Replace with python:3.13-trixie.",
     "fix": "FROM python:3.13-trixie"
   },
   {
