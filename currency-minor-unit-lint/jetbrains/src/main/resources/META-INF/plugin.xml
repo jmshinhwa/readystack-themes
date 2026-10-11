@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.currency-minor-unit-lint</id>
+  <name>Currency Minor Unit Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds the money lines that send the wrong amount to a payment API: the x100 that charges 100x in JPY, the toFixed(2) that truncates KWD, and the currency codes that stopped being legal tender.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Currency Minor Unit Lint: Check This File</b>. Each finding appears on its line with the fix. 24 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/currency-minor-unit-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/currency-minor-unit-lint">getreadystack.com/tools/currency-minor-unit-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_currency_minor_unit_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.currency-minor-unit-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.currency-minor-unit-lint.check" class="com.getreadystack.p_currency_minor_unit_lint.RsCheckAction"
+            text="Currency Minor Unit Lint: Check This File" description="Run Currency Minor Unit Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
