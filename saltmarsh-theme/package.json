@@ -2,7 +2,7 @@
   "name": "saltmarsh-theme",
   "displayName": "Saltmarsh Theme — Estuary colours: sea lavender, cordgrass, samphire, tide",
   "description": "Estuary colours: sea lavender, cordgrass, samphire, tide. Saltmarsh is the edge of an estuary at low tide: sea lavender in flower, cordgrass gone to straw, samphire reddening on the mud, and the channel water holding the sky. Every code colour measur",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
@@ -51,5 +51,13 @@
         "path": "./saltmarsh-haar-color-theme.json"
       }
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "saltmarsh-theme"
+  },
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
