@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.docker-hub-pull-limit-lint</id>
+  <name>Docker Hub Pull Limit Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds every anonymous Docker Hub pull in GitHub Actions, compose, GitLab CI, Kubernetes and Dockerfiles, including the service containers your login step never covers. Docker Hub limit: 100 pulls per 6 hours per IPv4 address or IPv6 /64 subnet (docs.docker.com, checked 2026-09-27).</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Docker Hub Pull Limit Lint: Check This File</b>. Each finding appears on its line with the fix. 10 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/docker-hub-pull-limit-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/docker-hub-pull-limit-lint">getreadystack.com/tools/docker-hub-pull-limit-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_docker_hub_pull_limit_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.docker-hub-pull-limit-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.docker-hub-pull-limit-lint.check" class="com.getreadystack.p_docker_hub_pull_limit_lint.RsCheckAction"
+            text="Docker Hub Pull Limit Lint: Check This File" description="Run Docker Hub Pull Limit Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
