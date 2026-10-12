@@ -1,0 +1,60 @@
+{
+  "name": "apache-echarts-migration-check",
+  "displayName": "Apache ECharts Migration: Highcharts Licence Map",
+  "description": "Finds every Highcharts package, NuGet reference, import and CDN tag in package.json, .csproj, HTML or JS/TS, quotes the EULA clause and gives the exact Apache ECharts line that replaces it.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "apache echarts",
+    "echarts",
+    "highcharts",
+    "highcharts licence",
+    "chart.js",
+    "migration",
+    "license compliance",
+    "highcharts alternative"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "echartsMigration.checkFile",
+        "title": "Apache ECharts Migration: Highcharts Licence Map: Check this file",
+        "category": "Apache ECharts Migration: Highcharts Licence Map"
+      },
+      {
+        "command": "echartsMigration.checkWorkspace",
+        "title": "Apache ECharts Migration: Highcharts Licence Map: Sweep workspace and write report (licence)",
+        "category": "Apache ECharts Migration: Highcharts Licence Map"
+      },
+      {
+        "command": "echartsMigration.enterKey",
+        "title": "Apache ECharts Migration: Highcharts Licence Map: Enter licence key",
+        "category": "Apache ECharts Migration: Highcharts Licence Map"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "apache-echarts-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/apache-echarts-migration-check",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-11"
+  },
+  "icon": "icon.png"
+}
