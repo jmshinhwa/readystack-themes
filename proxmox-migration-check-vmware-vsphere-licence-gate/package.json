@@ -1,0 +1,61 @@
+{
+  "name": "proxmox-migration-check-vmware-vsphere-licence-gate",
+  "displayName": "Proxmox Migration Check: VMware vSphere Lint",
+  "description": "Maps every VMware vSphere dependency in Terraform, Packer and Ansible files (vsphere provider, vsphere-iso builder, community.vmware tasks) to the exact Proxmox VE replacement line.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "proxmox",
+    "vmware",
+    "vsphere",
+    "xcp-ng",
+    "harvester",
+    "terraform",
+    "packer",
+    "ansible",
+    "migration",
+    "broadcom"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "proxmoxMigration.checkFile",
+        "title": "Proxmox Migration Check: VMware vSphere Lint: Check this file",
+        "category": "Proxmox Migration Check: VMware vSphere Lint"
+      },
+      {
+        "command": "proxmoxMigration.checkWorkspace",
+        "title": "Proxmox Migration Check: VMware vSphere Lint: Sweep workspace and write report (licence)",
+        "category": "Proxmox Migration Check: VMware vSphere Lint"
+      },
+      {
+        "command": "proxmoxMigration.enterKey",
+        "title": "Proxmox Migration Check: VMware vSphere Lint: Enter licence key",
+        "category": "Proxmox Migration Check: VMware vSphere Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "proxmox-migration-check-vmware-vsphere-licence-gate"
+  },
+  "homepage": "https://getreadystack.com/tools/proxmox-migration-check-vmware-vsphere-licence-gate",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-11"
+  }
+}
