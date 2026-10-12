@@ -1,0 +1,55 @@
+{
+  "name": "cyanotype-theme",
+  "displayName": "Cyanotype Theme — Sun-printed blue, tea-toned brown and cotton paper",
+  "description": "Sun-printed blue, tea-toned brown and cotton paper. Cyanotype is the old sun-print: paper brushed with iron salts, laid under the sky, washed to Prussian blue, sometimes toned brown in tea. Every code colour measured: body text WCAG AAA, comments inc",
+  "version": "1.0.0",
+  "publisher": "ReadyStack",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "color theme",
+    "aesthetic vscode theme",
+    "calm coding theme",
+    "eye friendly theme",
+    "blue dark theme",
+    "warm dark theme",
+    "paper light theme",
+    "matching terminal and editor colors",
+    "cyanotype"
+  ],
+  "galleryBanner": {
+    "color": "#121C2C",
+    "theme": "dark"
+  },
+  "icon": "icon.png",
+  "homepage": "https://getreadystack.com",
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Cyanotype Prussian",
+        "uiTheme": "vs-dark",
+        "path": "./cyanotype-prussian-color-theme.json"
+      },
+      {
+        "label": "Cyanotype Tea",
+        "uiTheme": "vs-dark",
+        "path": "./cyanotype-tea-color-theme.json"
+      },
+      {
+        "label": "Cyanotype Paper",
+        "uiTheme": "vs",
+        "path": "./cyanotype-paper-color-theme.json"
+      }
+    ]
+  }
+}
