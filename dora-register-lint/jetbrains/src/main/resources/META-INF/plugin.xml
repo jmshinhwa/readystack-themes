@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.dora-register-lint</id>
+  <name>DORA Register of Information Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>24 checks on the register CSV before it reaches the supervisor — LEI check digits, ISO dates and codes, references that resolve</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>DORA Register of Information Lint: Check This File</b>. Each finding appears on its line with the fix. Offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/dora-register-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/dora-register-lint">getreadystack.com/tools/dora-register-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_dora_register_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.dora-register-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.dora-register-lint.check" class="com.getreadystack.p_dora_register_lint.RsCheckAction"
+            text="DORA Register of Information Lint: Check This File" description="Run DORA Register of Information Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
