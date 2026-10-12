@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.dotnet-eol-support-gate</id>
+  <name>.NET EOL &amp; CRA Support Window Gate</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Dates every target framework in a .csproj against Microsoft's end-of-support day and against the support period you promise</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>.NET EOL &amp; CRA Support Window Gate: Check This File</b>. Each finding appears on its line with the fix. 10 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/dotnet-eol-support-gate</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/dotnet-eol-support-gate">getreadystack.com/tools/dotnet-eol-support-gate</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_dotnet_eol_support_gate.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.dotnet-eol-support-gate" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.dotnet-eol-support-gate.check" class="com.getreadystack.p_dotnet_eol_support_gate.RsCheckAction"
+            text=".NET EOL &amp; CRA Support Window Gate: Check This File" description="Run .NET EOL &amp; CRA Support Window Gate on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
