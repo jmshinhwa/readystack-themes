@@ -1,0 +1,60 @@
+{
+  "name": "codeberg-gitlab-anonymous-fetch-lint",
+  "displayName": "Codeberg / GitLab.com Anonymous Fetch Lint",
+  "description": "Maps every token-less gitlab.com fetch in workflows, Dockerfiles, go.mod, requirements.txt and package.json before the 60/hour anonymous cap of 2026-10-19, with the token or Codeberg line.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "codeberg",
+    "forgejo",
+    "gitlab",
+    "gitlab self-managed",
+    "rate limit",
+    "429",
+    "ci",
+    "migration"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "glAnonLint.checkFile",
+        "title": "Codeberg / GitLab.com Anonymous Fetch Lint: Check this file",
+        "category": "Codeberg / GitLab.com Anonymous Fetch Lint"
+      },
+      {
+        "command": "glAnonLint.checkWorkspace",
+        "title": "Codeberg / GitLab.com Anonymous Fetch Lint: Sweep workspace and write report (licence)",
+        "category": "Codeberg / GitLab.com Anonymous Fetch Lint"
+      },
+      {
+        "command": "glAnonLint.enterKey",
+        "title": "Codeberg / GitLab.com Anonymous Fetch Lint: Enter licence key",
+        "category": "Codeberg / GitLab.com Anonymous Fetch Lint"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "codeberg-gitlab-anonymous-fetch-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/codeberg-gitlab-anonymous-fetch-lint",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-11"
+  },
+  "icon": "icon.png"
+}
