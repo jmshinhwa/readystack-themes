@@ -1,0 +1,61 @@
+{
+  "name": "arangodb-migration-check",
+  "displayName": "ArangoDB Migration Check: Neo4j End-of-Life Map",
+  "description": "Moving off Neo4j? Finds every Neo4j image, enterprise licence line, driver and Bolt URI in compose, Dockerfile, Helm, package and .env files, dates each against Neo4j end of life, and gives the Arango",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "arangodb",
+    "neo4j",
+    "memgraph",
+    "falkordb",
+    "migration",
+    "end of life",
+    "graph database",
+    "cypher",
+    "docker-compose"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "arangodbMigrationCheck.checkFile",
+        "title": "ArangoDB Migration Check: Neo4j End-of-Life Map: Check this file",
+        "category": "ArangoDB Migration Check: Neo4j End-of-Life Map"
+      },
+      {
+        "command": "arangodbMigrationCheck.checkWorkspace",
+        "title": "ArangoDB Migration Check: Neo4j End-of-Life Map: Sweep workspace and write report (licence)",
+        "category": "ArangoDB Migration Check: Neo4j End-of-Life Map"
+      },
+      {
+        "command": "arangodbMigrationCheck.enterKey",
+        "title": "ArangoDB Migration Check: Neo4j End-of-Life Map: Enter licence key",
+        "category": "ArangoDB Migration Check: Neo4j End-of-Life Map"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "arangodb-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/arangodb-migration-check",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-11"
+  },
+  "icon": "icon.png"
+}
