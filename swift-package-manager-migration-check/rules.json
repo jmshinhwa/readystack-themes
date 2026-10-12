@@ -1,0 +1,234 @@
+[
+ {
+  "id": "trunk-source-cdn",
+  "kind": "source",
+  "sev": "error",
+  "match": "cdn\\.cocoapods\\.org",
+  "msg": "source points at the CocoaPods trunk CDN; every pod below resolves from trunk, which accepts no new pod or version from 2026-12-02."
+ },
+ {
+  "id": "trunk-source-git",
+  "kind": "source",
+  "sev": "error",
+  "match": "github\\.com/CocoaPods/Specs",
+  "msg": "source points at the CocoaPods/Specs git repo (trunk); it is archived read-only from 2026-12-02."
+ },
+ {
+  "id": "trunk-source-implicit",
+  "kind": "implicit",
+  "sev": "error",
+  "msg": "no source line, so CocoaPods resolves every pod from trunk (cdn.cocoapods.org) by default; trunk accepts no new pod or version from 2026-12-02."
+ },
+ {
+  "id": "podspec-trunk-push",
+  "kind": "podspec",
+  "sev": "error",
+  "msg": "this podspec is released with pod trunk push, which trunk refuses from 2026-12-02. Ship a Package.swift at the repo root and tag the same version so users can add it with Swift Package Manager."
+ },
+ {
+  "id": "podspec-prepare-command",
+  "kind": "prepare",
+  "sev": "error",
+  "msg": "prepare_command: trunk has refused new pods that use it since May 2025, and Swift Package Manager has no equivalent. Move the script into a build tool plugin or ship a prebuilt XCFramework as a .binaryTarget."
+ },
+ {
+  "id": "pod-unmapped",
+  "kind": "unmapped",
+  "sev": "warn",
+  "msg": "has no Swift package in this map. After 2026-12-02 trunk keeps the versions it has but no newer one can arrive. Check the vendor repo for a Package.swift, or vendor it as an XCFramework (.binaryTarget)."
+ },
+ {
+  "id": "map-alamofire",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/Alamofire/Alamofire.git",
+  "package": "Alamofire",
+  "pods": {
+   "Alamofire": "Alamofire"
+  }
+ },
+ {
+  "id": "map-kingfisher",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/onevcat/Kingfisher.git",
+  "package": "Kingfisher",
+  "pods": {
+   "Kingfisher": "Kingfisher"
+  }
+ },
+ {
+  "id": "map-snapkit",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/SnapKit/SnapKit.git",
+  "package": "SnapKit",
+  "pods": {
+   "SnapKit": "SnapKit"
+  }
+ },
+ {
+  "id": "map-sdwebimage",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/SDWebImage/SDWebImage.git",
+  "package": "SDWebImage",
+  "pods": {
+   "SDWebImage": "SDWebImage",
+   "SDWebImageMapKit": "SDWebImageMapKit"
+  }
+ },
+ {
+  "id": "map-rxswift",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/ReactiveX/RxSwift.git",
+  "package": "RxSwift",
+  "pods": {
+   "RxSwift": "RxSwift",
+   "RxCocoa": "RxCocoa",
+   "RxRelay": "RxRelay",
+   "RxBlocking": "RxBlocking",
+   "RxTest": "RxTest"
+  }
+ },
+ {
+  "id": "map-moya",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/Moya/Moya.git",
+  "package": "Moya",
+  "pods": {
+   "Moya": "Moya",
+   "Moya/RxSwift": "RxMoya",
+   "Moya/Combine": "CombineMoya",
+   "RxMoya": "RxMoya",
+   "CombineMoya": "CombineMoya"
+  }
+ },
+ {
+  "id": "map-swiftyjson",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/SwiftyJSON/SwiftyJSON.git",
+  "package": "SwiftyJSON",
+  "pods": {
+   "SwiftyJSON": "SwiftyJSON"
+  }
+ },
+ {
+  "id": "map-lottie",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/airbnb/lottie-ios.git",
+  "package": "lottie-ios",
+  "pods": {
+   "lottie-ios": "Lottie"
+  }
+ },
+ {
+  "id": "map-realm",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/realm/realm-swift.git",
+  "package": "realm-swift",
+  "pods": {
+   "RealmSwift": "RealmSwift",
+   "Realm": "Realm"
+  }
+ },
+ {
+  "id": "map-googlesignin",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/google/GoogleSignIn-iOS.git",
+  "package": "GoogleSignIn-iOS",
+  "pods": {
+   "GoogleSignIn": "GoogleSignIn"
+  }
+ },
+ {
+  "id": "map-iqkeyboardmanager",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/hackiftekhar/IQKeyboardManager.git",
+  "package": "IQKeyboardManager",
+  "pods": {
+   "IQKeyboardManagerSwift": "IQKeyboardManagerSwift"
+  }
+ },
+ {
+  "id": "map-keychainaccess",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/kishikawakatsumi/KeychainAccess.git",
+  "package": "KeychainAccess",
+  "pods": {
+   "KeychainAccess": "KeychainAccess"
+  }
+ },
+ {
+  "id": "map-nuke",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/kean/Nuke.git",
+  "package": "Nuke",
+  "pods": {
+   "Nuke": "Nuke",
+   "NukeUI": "NukeUI"
+  }
+ },
+ {
+  "id": "map-sentry",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/getsentry/sentry-cocoa.git",
+  "package": "sentry-cocoa",
+  "pods": {
+   "Sentry": "Sentry",
+   "SentrySwiftUI": "SentrySwiftUI"
+  }
+ },
+ {
+  "id": "map-grdb",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/groue/GRDB.swift.git",
+  "package": "GRDB.swift",
+  "pods": {
+   "GRDB.swift": "GRDB"
+  }
+ },
+ {
+  "id": "map-cryptoswift",
+  "kind": "map",
+  "sev": "warn",
+  "url": "https://github.com/krzyzanowskim/CryptoSwift.git",
+  "package": "CryptoSwift",
+  "pods": {
+   "CryptoSwift": "CryptoSwift"
+  }
+ },
+ {
+  "id": "map-firebase",
+  "kind": "map_firebase",
+  "sev": "warn",
+  "url": "https://github.com/firebase/firebase-ios-sdk.git",
+  "package": "firebase-ios-sdk",
+  "products": [
+   "FirebaseAnalytics",
+   "FirebaseAuth",
+   "FirebaseAppCheck",
+   "FirebaseCore",
+   "FirebaseCrashlytics",
+   "FirebaseDatabase",
+   "FirebaseFirestore",
+   "FirebaseFunctions",
+   "FirebaseInstallations",
+   "FirebaseMessaging",
+   "FirebasePerformance",
+   "FirebaseRemoteConfig",
+   "FirebaseStorage"
+  ]
+ }
+]
