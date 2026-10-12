@@ -1,0 +1,60 @@
+{
+  "name": "swift-package-manager-migration-check",
+  "displayName": "Swift Package Manager Migration: CocoaPods Trunk",
+  "description": "CocoaPods trunk turns read-only on 2026-12-02. Maps every Podfile and .podspec dependency that still resolves from trunk and writes the exact Swift Package Manager .package line to replace it.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "swift package manager",
+    "spm",
+    "cocoapods",
+    "podfile",
+    "podspec",
+    "cocoapods trunk",
+    "xcode",
+    "ios migration"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "spmMigration.checkFile",
+        "title": "Swift Package Manager Migration: CocoaPods Trunk: Check this file",
+        "category": "Swift Package Manager Migration: CocoaPods Trunk"
+      },
+      {
+        "command": "spmMigration.checkWorkspace",
+        "title": "Swift Package Manager Migration: CocoaPods Trunk: Sweep workspace and write report (licence)",
+        "category": "Swift Package Manager Migration: CocoaPods Trunk"
+      },
+      {
+        "command": "spmMigration.enterKey",
+        "title": "Swift Package Manager Migration: CocoaPods Trunk: Enter licence key",
+        "category": "Swift Package Manager Migration: CocoaPods Trunk"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "swift-package-manager-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/swift-package-manager-migration-check",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-11"
+  },
+  "icon": "icon.png"
+}
