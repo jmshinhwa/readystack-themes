@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.gitlab-ci-break-lint</id>
+  <name>GitLab CI Break Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Names the .gitlab-ci.yml lines your runner will reject after the next GitLab major upgrade</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>GitLab CI Break Lint: Check This File</b>. Each finding appears on its line with the fix. 16 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/gitlab-ci-break-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/gitlab-ci-break-lint">getreadystack.com/tools/gitlab-ci-break-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_gitlab_ci_break_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.gitlab-ci-break-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.gitlab-ci-break-lint.check" class="com.getreadystack.p_gitlab_ci_break_lint.RsCheckAction"
+            text="GitLab CI Break Lint: Check This File" description="Run GitLab CI Break Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
