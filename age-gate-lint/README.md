@@ -48,6 +48,8 @@ that page, named. The full version reads **every HTML file in the workspace in o
 writes a dated evidence report you keep — the file list, the findings per file, the rule set
 and the date it was run.
 
+[Full version — whole-workspace sweep + dated evidence report, $29 once](https://getreadystack.com/api/buy/cl/polar_cl_GknOiuCJgINiCOFYgKw1rgbS8bdYvuQ2meGB82nNkkS) · one licence key per person or CI seat.
+
 ## Yardstick
 
 A freelance web developer bills about $60/hour, and a manual pass over one storefront's gate
