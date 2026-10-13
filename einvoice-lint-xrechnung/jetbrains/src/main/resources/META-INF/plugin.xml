@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.einvoice-lint-xrechnung</id>
+  <name>E-Invoice Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds the wrong values in XRechnung and ZUGFeRD invoice XML while you edit it - offline, nothing uploaded. 31 rules over UBL and CII, each naming the business term and what the receiver will say.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>E-Invoice Lint: Check This File</b>. Each finding appears on its line with the fix. 31 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/einvoice-lint-xrechnung</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/einvoice-lint-xrechnung">getreadystack.com/tools/einvoice-lint-xrechnung</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_einvoice_lint_xrechnung.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.einvoice-lint-xrechnung" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.einvoice-lint-xrechnung.check" class="com.getreadystack.p_einvoice_lint_xrechnung.RsCheckAction"
+            text="E-Invoice Lint: Check This File" description="Run E-Invoice Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
