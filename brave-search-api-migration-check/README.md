@@ -29,7 +29,7 @@ Free tool on the web, same engine: https://getreadystack.com/tools/brave-search-
 | `safe=active` / Bing `safeSearch` | `safesearch: off / moderate / strict` |
 | `lr`, `gl`, `cr`, `hl`, `mkt`, `setLang` | `country` + `search_lang` |
 | `searchType: 'image'` | `/res/v1/images/search` |
-| `fetch()` / `requests.get()` with no status check in the file | `if (!res.ok) throw …` / `r.raise_for_status()` — a bad `X-Subscription-Token` (401/403) or a 429 otherwise reads as "no results" |
+| `fetch()` / `requests.get()` with no status check right after the call | `if (!res.ok) throw …` / `r.raise_for_status()` — Brave answers a bad `X-Subscription-Token` with HTTP 422 (`ErrorResponse`, `SUBSCRIPTION_TOKEN_INVALID`) and a rate limit with 429 — without the check both read as "no results" |
 | `data.items` | `data.web.results` |
 | `.link`, `.snippet`, `.displayLink` | `.url`, `.description`, `.meta_url.hostname` |
 | Bing `webPages.value` | `web.results` |
