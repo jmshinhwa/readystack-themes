@@ -1,0 +1,61 @@
+{
+  "name": "verdaccio-migration-check-nexus-repository-pricing",
+  "displayName": "Nexus Repository Pricing: Verdaccio Migration Map",
+  "description": "Maps every Sonatype Nexus Repository URL in .npmrc, settings.xml, pom.xml, build.gradle, pip.conf and compose files before Community Edition's 40,000-component cap, with the Verdaccio/Reposilite line.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "verdaccio",
+    "reposilite",
+    "pulp",
+    "nexus repository",
+    "sonatype nexus",
+    "nexus community edition",
+    "npm registry",
+    "maven repository",
+    "migration"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "nexusMap.checkFile",
+        "title": "Nexus Repository Pricing: Verdaccio Migration Map: Check this file",
+        "category": "Nexus Repository Pricing: Verdaccio Migration Map"
+      },
+      {
+        "command": "nexusMap.checkWorkspace",
+        "title": "Nexus Repository Pricing: Verdaccio Migration Map: Sweep workspace and write report (licence)",
+        "category": "Nexus Repository Pricing: Verdaccio Migration Map"
+      },
+      {
+        "command": "nexusMap.enterKey",
+        "title": "Nexus Repository Pricing: Verdaccio Migration Map: Enter licence key",
+        "category": "Nexus Repository Pricing: Verdaccio Migration Map"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "verdaccio-migration-check-nexus-repository-pricing"
+  },
+  "homepage": "https://getreadystack.com/tools/verdaccio-migration-check-nexus-repository-pricing",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-12"
+  },
+  "icon": "icon.png"
+}
