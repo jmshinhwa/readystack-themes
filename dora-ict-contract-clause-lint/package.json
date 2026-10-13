@@ -2,7 +2,7 @@
   "name": "dora-ict-contract-clause-lint",
   "displayName": "ICT Contract Clause Lint - DORA Article 30",
   "description": "Lints ICT vendor contracts kept in your repo against the mandatory clauses of DORA Article 30 (EU 2022/2554), and flags audit caps, billable incident support and open-ended data locations.",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -51,6 +51,7 @@
   "homepage": "https://getreadystack.com/tools/dora-ict-contract-clause-lint",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-12"
+    "rulesDate": "2026-09-12",
+    "alertUrl": "https://getreadystack.com/tools/dora-ict-contract-clause-lint?ref=vsix_alert#yjae"
   }
 }
