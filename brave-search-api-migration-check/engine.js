@@ -15,6 +15,7 @@
       if (!line.trim()) return;
       for (const r of RULES) {
         if (r.scope === 'search' && !isSearch) continue;
+        if (r.unless_file && new RegExp(r.unless_file, r.unless_flags || '').test(text)) continue;   // s193 — file-level guard (e.g. no status check anywhere in the file)
         const m = new RegExp(r.re, r.flags || '').exec(line);
         if (!m) continue;
         if (r.max != null && !(Number(m[r.num_group]) > r.max)) continue;
