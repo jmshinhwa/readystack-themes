@@ -1,0 +1,60 @@
+{
+  "name": "rancher-desktop-migration-check",
+  "displayName": "Rancher Desktop Migration: Docker Desktop lines",
+  "description": "Finds Docker Desktop-only lines (host-gateway, desktop-linux context, ~/.docker/run socket, Docker.app setup) in compose, Makefile, script and devcontainer files and prints the Rancher Desktop ",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "rancher desktop",
+    "docker desktop",
+    "docker desktop licence",
+    "podman",
+    "colima",
+    "nerdctl",
+    "devcontainer",
+    "docker compose"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "rancherDesktopMigration.checkFile",
+        "title": "Rancher Desktop Migration: Docker Desktop lines: Check this file",
+        "category": "Rancher Desktop Migration: Docker Desktop lines"
+      },
+      {
+        "command": "rancherDesktopMigration.checkWorkspace",
+        "title": "Rancher Desktop Migration: Docker Desktop lines: Sweep workspace and write report (licence)",
+        "category": "Rancher Desktop Migration: Docker Desktop lines"
+      },
+      {
+        "command": "rancherDesktopMigration.enterKey",
+        "title": "Rancher Desktop Migration: Docker Desktop lines: Enter licence key",
+        "category": "Rancher Desktop Migration: Docker Desktop lines"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "rancher-desktop-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/rancher-desktop-migration-check",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-12"
+  },
+  "icon": "icon.png"
+}
