@@ -144,12 +144,14 @@
   "id": "NO_STATUS_CHECK",
   "sev": "warn",
   "scope": "search",
-  "re": "\\bfetch\\s*\\(|\\brequests\\.(?:get|post)\\s*\\(|\\bhttpx\\.(?:get|post)\\s*\\(",
+  "re": "(?:\\b(?:const|let|var)\\s+(\\w+)\\s*=\\s*await\\s+fetch\\s*\\(|\\b(\\w+)\\s*=\\s*(?:await\\s+)?(?:requests|httpx|session|client)\\.(?:get|post)\\s*\\(|\\bwith\\s+\\w+\\.(?:get|post)\\s*\\([^)]*\\)\\s+as\\s+(\\w+)|\\bfetch\\s*\\()",
   "flags": "",
-  "unless_file": "\\.ok\\b|\\.status(?:Code)?\\b|status_code|raise_for_status|validateStatus|\\b40[13]\\b|\\b429\\b",
   "unless_flags": "",
-  "msg": "Search API call, and nothing in this file checks the HTTP status. A wrong or expired X-Subscription-Token comes back as 401/403 (429 when rate-limited) with a JSON error and no web key, so data.web?.results ?? [] quietly turns an auth failure into \"no results\".",
-  "fix": "if (!res.ok) throw new Error(`Brave ${res.status}`) before reading the body · Python: r.raise_for_status()"
+  "msg": "Search API call with no status check right after it. Brave answers a bad or missing X-Subscription-Token with HTTP 422 (type ErrorResponse, code SUBSCRIPTION_TOKEN_INVALID) and a rate limit with 429; neither body has a web key, so data.web?.results ?? [] reads as 'no results'.",
+  "fix": "if (!res.ok) throw new Error(`Brave ${res.status}`) before res.json() · Python: r.raise_for_status()",
+  "unless_near": "{v}\\s*\\.\\s*(?:ok|status|statusCode|status_code|raise_for_status)\\b|ErrorResponse",
+  "unless_near_any": "\\.(?:ok|status|statusCode|status_code)\\b|raise_for_status|ErrorResponse",
+  "window": 15
  },
  {
   "id": "RESP_ITEMS",
@@ -158,7 +160,7 @@
   "re": "\\.items\\b(?!\\s*\\()|\\[['\"]items['\"]\\]",
   "flags": "",
   "msg": "Reads Google's items[] array. A Brave response has no items key — this returns undefined/KeyError, not an exception at the call.",
-  "fix": "data.web?.results ?? []"
+  "fix": "check res.ok first, then data.web?.results ?? [] (a 422/429 error body has no web key)"
  },
  {
   "id": "RESP_LINK_SNIPPET",
