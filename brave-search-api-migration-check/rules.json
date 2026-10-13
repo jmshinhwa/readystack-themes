@@ -141,6 +141,17 @@
   "fix": "GET https://api.search.brave.com/res/v1/images/search"
  },
  {
+  "id": "NO_STATUS_CHECK",
+  "sev": "warn",
+  "scope": "search",
+  "re": "\\bfetch\\s*\\(|\\brequests\\.(?:get|post)\\s*\\(|\\bhttpx\\.(?:get|post)\\s*\\(",
+  "flags": "",
+  "unless_file": "\\.ok\\b|\\.status(?:Code)?\\b|status_code|raise_for_status|validateStatus|\\b40[13]\\b|\\b429\\b",
+  "unless_flags": "",
+  "msg": "Search API call, and nothing in this file checks the HTTP status. A wrong or expired X-Subscription-Token comes back as 401/403 (429 when rate-limited) with a JSON error and no web key, so data.web?.results ?? [] quietly turns an auth failure into \"no results\".",
+  "fix": "if (!res.ok) throw new Error(`Brave ${res.status}`) before reading the body · Python: r.raise_for_status()"
+ },
+ {
   "id": "RESP_ITEMS",
   "sev": "error",
   "scope": "search",
