@@ -2,7 +2,7 @@
   "name": "openpdf-migration-check",
   "displayName": "OpenPDF Migration Check: iText AGPL Gate",
   "description": "Finds every iText (AGPLv3) dependency in pom.xml and build.gradle with file and line, and gives the exact OpenPDF 3.0.5 or Apache PDFBox 3.0.8 line that replaces it.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -53,7 +53,8 @@
   },
   "homepage": "https://getreadystack.com/tools/openpdf-migration-check",
   "readystack": {
-    "rulesDate": "2026-09-30"
+    "rulesDate": "2026-09-30",
+    "alertUrl": "https://getreadystack.com/tools/openpdf-migration-check?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
