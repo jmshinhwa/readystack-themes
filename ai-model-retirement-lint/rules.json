@@ -93,16 +93,16 @@
   {
     "pattern": "whisper-1\\b",
     "flags": "i",
-    "message": "RETIRED 2026-08-26 on the OpenAI API - this request fails now.",
+    "message": "Shuts down 2027-02-26 on the OpenAI API (deprecation notice 2026-08-26).",
     "fix": "gpt-transcribe",
-    "sev": "error"
+    "sev": "warn"
   },
   {
-    "pattern": "gpt-4o(-mini)?-transcribe(-diarize)?",
+    "pattern": "gpt-4o(-mini)?-transcribe(-diarize)?(?!-2025-03-20)",
     "flags": "i",
-    "message": "RETIRED 2026-08-26 on the OpenAI API - this request fails now.",
+    "message": "Shuts down 2027-02-26 on the OpenAI API (deprecation notice 2026-08-26).",
     "fix": "gpt-transcribe",
-    "sev": "error"
+    "sev": "warn"
   },
   {
     "pattern": "beta\\.assistants|/v1/assistants",
@@ -126,9 +126,9 @@
     "sev": "warn"
   },
   {
-    "pattern": "gemini-2\\.5-(pro|flash)(-lite)?",
+    "pattern": "gemini-2\\.5-(pro|flash)(-lite)?(?!-image)",
     "flags": "i",
-    "message": "Shuts down 2026-10-16 on the Gemini API.",
+    "message": "Retires 2026-10-20 on Vertex AI (Dialogflow CX generative features drop flash/flash-lite 2026-12-23); no shutdown date announced on the Gemini API.",
     "fix": "",
     "sev": "warn"
   },
@@ -229,5 +229,19 @@
     "message": "Retires no sooner than 2026-11-24; Anthropic gives 60 days notice.",
     "fix": "claude-opus-5",
     "sev": "info"
+  },
+  {
+    "pattern": "gpt-4o-mini-transcribe-2025-03-20",
+    "flags": "i",
+    "message": "Shuts down 2027-01-20 on the OpenAI API.",
+    "fix": "gpt-transcribe",
+    "sev": "warn"
+  },
+  {
+    "pattern": "gemini-2\\.5-flash-image",
+    "flags": "i",
+    "message": "Shuts down 2027-03-15 on the Gemini API and Vertex AI.",
+    "fix": "gemini-3.1-flash-lite-image",
+    "sev": "warn"
   }
 ]
