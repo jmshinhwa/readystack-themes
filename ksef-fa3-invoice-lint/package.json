@@ -2,7 +2,7 @@
   "name": "ksef-fa3-invoice-lint",
   "displayName": "KSeF FA(3) Invoice Lint",
   "description": "Lint Polish KSeF structured invoice XML against the FA(3) schema before you send it: namespace, kodSystemowy, NIP, decimal separators and correction references.",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -54,6 +54,7 @@
   "homepage": "https://getreadystack.com/tools/ksef-fa3-invoice-lint",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-14"
+    "rulesDate": "2026-09-14",
+    "alertUrl": "https://getreadystack.com/tools/ksef-fa3-invoice-lint?ref=vsix_alert#yjae"
   }
 }
