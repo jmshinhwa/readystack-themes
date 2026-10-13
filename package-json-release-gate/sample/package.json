@@ -1,0 +1,32 @@
+{
+  "name": "@acme/tiny-queue",
+  "version": "3.1.0",
+  "description": "A small in-memory job queue.",
+  "license": "Apache 2.0",
+  "homepage": "https://github.com/Acme/tiny-queue#readme",
+  "bugs": { "url": "https://github.com/Acme/tiny-queue/issues" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acme/tiny-queue.git"
+  },
+  "type": "module",
+  "exports": "./dist/index.js",
+  "files": ["dist"],
+  "engines": {
+    "node": ">=18"
+  },
+  "volta": {
+    "node": "20.11.1"
+  },
+  "publishConfig": {
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.9.2"
+  }
+}
