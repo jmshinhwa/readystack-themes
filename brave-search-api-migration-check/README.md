@@ -10,7 +10,7 @@ Free tool on the web, same engine: https://getreadystack.com/tools/brave-search-
 
 **Yardstick:** the US median pay for software developers is $64.44 an hour (BLS Occupational Outlook Handbook); tracing every parameter and response field of a search integration by hand is that hour, several times over.
 
-## What it catches — 19 rules
+## What it catches — 20 rules
 
 | Google / Bing line | Brave Search API |
 |---|---|
@@ -29,6 +29,7 @@ Free tool on the web, same engine: https://getreadystack.com/tools/brave-search-
 | `safe=active` / Bing `safeSearch` | `safesearch: off / moderate / strict` |
 | `lr`, `gl`, `cr`, `hl`, `mkt`, `setLang` | `country` + `search_lang` |
 | `searchType: 'image'` | `/res/v1/images/search` |
+| `fetch()` / `requests.get()` with no status check in the file | `if (!res.ok) throw …` / `r.raise_for_status()` — a bad `X-Subscription-Token` (401/403) or a 429 otherwise reads as "no results" |
 | `data.items` | `data.web.results` |
 | `.link`, `.snippet`, `.displayLink` | `.url`, `.description`, `.meta_url.hostname` |
 | Bing `webPages.value` | `web.results` |
