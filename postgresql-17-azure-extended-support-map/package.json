@@ -1,0 +1,59 @@
+{
+  "name": "postgresql-17-azure-extended-support-map",
+  "displayName": "PostgreSQL 17 Upgrade Map: Azure Extended Support",
+  "description": "Finds every Azure PostgreSQL Flexible Server in your Terraform still pinned to 11, 12, 13 or 14, shows its Extended Support bill per month and the exact version = \"17\" line.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "postgresql 17",
+    "postgresql 16",
+    "azure postgresql extended support",
+    "azurerm_postgresql_flexible_server",
+    "terraform",
+    "postgres upgrade",
+    "azure-postgres-extended-support-lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pg17AzureMap.checkFile",
+        "title": "PostgreSQL 17 Upgrade Map: Azure Extended Support: Check this file",
+        "category": "PostgreSQL 17 Upgrade Map: Azure Extended Support"
+      },
+      {
+        "command": "pg17AzureMap.checkWorkspace",
+        "title": "PostgreSQL 17 Upgrade Map: Azure Extended Support: Sweep workspace and write report (licence)",
+        "category": "PostgreSQL 17 Upgrade Map: Azure Extended Support"
+      },
+      {
+        "command": "pg17AzureMap.enterKey",
+        "title": "PostgreSQL 17 Upgrade Map: Azure Extended Support: Enter licence key",
+        "category": "PostgreSQL 17 Upgrade Map: Azure Extended Support"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "postgresql-17-azure-extended-support-map"
+  },
+  "homepage": "https://getreadystack.com/tools/postgresql-17-azure-extended-support-map",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-12"
+  },
+  "icon": "icon.png"
+}
