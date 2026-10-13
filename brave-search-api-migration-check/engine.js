@@ -19,6 +19,7 @@
         const m = new RegExp(r.re, r.flags || '').exec(line);
         if (!m) continue;
         if (r.max != null && !(Number(m[r.num_group]) > r.max)) continue;
+        if (r.unless_near) { const v = m.slice(1).filter(Boolean)[0] || ''; const pat = v ? r.unless_near.split('{v}').join(v) : (r.unless_near_any || ''); if (pat && new RegExp(pat, r.unless_flags || '').test(lines.slice(i, i + (r.window || 15)).join('\n'))) continue; }   // s193 — per call: a status check within the next lines of THIS call
         const past = r.cutoff && !isNaN(Date.parse(today)) && today >= r.cutoff;
         findings.push({ check: r.id, sev: r.sev, msg: (past && r.msg_after ? r.msg_after : r.msg) + ' → Brave: ' + r.fix,
                         fix: r.fix, line: i + 1, text: raw.trim() });
