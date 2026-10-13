@@ -1,8 +1,8 @@
 {
   "name": "age-gate-lint",
-  "displayName": "Age Verification Lint - UK Online Safety Act age gate",
+  "displayName": "Age Gate Lint — UK Online Safety Act",
   "description": "Finds age gates that Ofcom does not count as highly effective — self-declared 18+ checkboxes, date-of-birth forms, localStorage-only memory — in your HTML.",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -51,7 +51,7 @@
   "homepage": "https://getreadystack.com/tools/age-gate-lint",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-18",
+    "rulesDate": "2026-10-09",
     "alertUrl": "https://getreadystack.com/tools/age-gate-lint?ref=vsix_alert#yjae"
   }
 }
