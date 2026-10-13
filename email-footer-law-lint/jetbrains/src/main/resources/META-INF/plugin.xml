@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.email-footer-law-lint</id>
+  <name>Email Footer Law Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Fourteen checks on an HTML email footer: CAN-SPAM postal address and 10-business-day opt-out, CASL's 60-day window, and German 5 DDG, the statute that replaced 5 TMG on 2024-05-14.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Email Footer Law Lint: Check This File</b>. Each finding appears on its line with the fix. 14 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/email-footer-law-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/email-footer-law-lint">getreadystack.com/tools/email-footer-law-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_email_footer_law_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.email-footer-law-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.email-footer-law-lint.check" class="com.getreadystack.p_email_footer_law_lint.RsCheckAction"
+            text="Email Footer Law Lint: Check This File" description="Run Email Footer Law Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
