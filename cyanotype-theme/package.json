@@ -2,7 +2,7 @@
   "name": "cyanotype-theme",
   "displayName": "Cyanotype Theme — Sun-printed blue, tea-toned brown and cotton paper",
   "description": "Sun-printed blue, tea-toned brown and cotton paper. Cyanotype is the old sun-print: paper brushed with iron salts, laid under the sky, washed to Prussian blue, sometimes toned brown in tea. Every code colour measured: body text WCAG AAA, comments inc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "ReadyStack",
   "license": "MIT",
   "engines": {
@@ -51,5 +51,13 @@
         "path": "./cyanotype-paper-color-theme.json"
       }
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "cyanotype-theme"
+  },
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
