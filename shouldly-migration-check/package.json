@@ -1,0 +1,61 @@
+{
+  "name": "shouldly-migration-check",
+  "displayName": "Shouldly Migration Check for FluentAssertions",
+  "description": "Maps every FluentAssertions line in a .csproj or C# test file to its Shouldly replacement and flags FluentAssertions 8+ (commercial use needs a paid Xceed licence).",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Testing"
+  ],
+  "keywords": [
+    "shouldly",
+    "fluentassertions",
+    "awesomeassertions",
+    "fluent assertions license",
+    "shouldly migration",
+    "xceed",
+    "unit testing",
+    "dotnet"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "shouldlyMigration.checkFile",
+        "title": "Shouldly Migration Check for FluentAssertions: Check this file",
+        "category": "Shouldly Migration Check for FluentAssertions"
+      },
+      {
+        "command": "shouldlyMigration.checkWorkspace",
+        "title": "Shouldly Migration Check for FluentAssertions: Sweep workspace and write report (licence)",
+        "category": "Shouldly Migration Check for FluentAssertions"
+      },
+      {
+        "command": "shouldlyMigration.enterKey",
+        "title": "Shouldly Migration Check for FluentAssertions: Enter licence key",
+        "category": "Shouldly Migration Check for FluentAssertions"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "shouldly-migration-check"
+  },
+  "homepage": "https://getreadystack.com/tools/shouldly-migration-check",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-12"
+  },
+  "icon": "icon.png"
+}
