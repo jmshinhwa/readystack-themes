@@ -1,0 +1,62 @@
+{
+  "name": "conda-forge-pytorch-channel-check",
+  "displayName": "conda-forge PyTorch Channel Migration Check",
+  "description": "Finds -c pytorch, pytorch:: and pytorch-cuda lines in environment.yml, Dockerfiles and CI YAML. The pytorch channel stops at torch 2.5.1; each finding comes with its conda-forge line.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "conda-forge",
+    "pytorch",
+    "pixi",
+    "pytorch-cuda",
+    "environment.yml",
+    "conda",
+    "mamba",
+    "micromamba",
+    "CVE-2025-32434",
+    "github actions"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "condaForgePytorchCheck.checkFile",
+        "title": "conda-forge PyTorch Channel Migration Check: Check this file",
+        "category": "conda-forge PyTorch Channel Migration Check"
+      },
+      {
+        "command": "condaForgePytorchCheck.checkWorkspace",
+        "title": "conda-forge PyTorch Channel Migration Check: Sweep workspace and write report (licence)",
+        "category": "conda-forge PyTorch Channel Migration Check"
+      },
+      {
+        "command": "condaForgePytorchCheck.enterKey",
+        "title": "conda-forge PyTorch Channel Migration Check: Enter licence key",
+        "category": "conda-forge PyTorch Channel Migration Check"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "conda-forge-pytorch-channel-check"
+  },
+  "homepage": "https://getreadystack.com/tools/conda-forge-pytorch-channel-check",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-12"
+  },
+  "icon": "icon.png"
+}
