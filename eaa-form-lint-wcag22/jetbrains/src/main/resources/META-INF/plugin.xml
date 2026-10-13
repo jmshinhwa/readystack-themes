@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.eaa-form-lint-wcag22</id>
+  <name>EAA Form Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Names every WCAG 2.2 AA form failure on its line, with the criterion and the fix</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>EAA Form Lint: Check This File</b>. Each finding appears on its line with the fix. 18 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/eaa-form-lint-wcag22</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/eaa-form-lint-wcag22">getreadystack.com/tools/eaa-form-lint-wcag22</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_eaa_form_lint_wcag22.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.eaa-form-lint-wcag22" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.eaa-form-lint-wcag22.check" class="com.getreadystack.p_eaa_form_lint_wcag22.RsCheckAction"
+            text="EAA Form Lint: Check This File" description="Run EAA Form Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
