@@ -2,7 +2,7 @@
   "name": "cargo-publish-gate",
   "displayName": "Cargo.toml Publish Gate - crates.io",
   "description": "Reads Cargo.toml and lists every crates.io publish blocker before you run cargo publish - the version number you burn cannot be re-uploaded.",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -51,6 +51,7 @@
   "homepage": "https://getreadystack.com/tools/cargo-publish-gate",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-17"
+    "rulesDate": "2026-09-17",
+    "alertUrl": "https://getreadystack.com/tools/cargo-publish-gate?ref=vsix_alert#yjae"
   }
 }
