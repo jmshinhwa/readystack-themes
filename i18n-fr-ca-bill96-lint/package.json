@@ -2,7 +2,7 @@
   "name": "i18n-fr-ca-bill96-lint",
   "displayName": "i18n fr-CA Lint — Quebec Bill 96",
   "description": "Lints a French-Canadian locale file (fr-CA.json, .arb) for Quebec Bill 96 / OQLF problems: France-French terms, untranslated English, euro currency, slashed dates, fr-FR locale tags.",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -54,6 +54,7 @@
   "homepage": "https://getreadystack.com/tools/i18n-fr-ca-bill96-lint",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-21"
+    "rulesDate": "2026-09-21",
+    "alertUrl": "https://getreadystack.com/tools/i18n-fr-ca-bill96-lint?ref=vsix_alert#yjae"
   }
 }
