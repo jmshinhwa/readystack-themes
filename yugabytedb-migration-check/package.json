@@ -2,7 +2,7 @@
   "name": "yugabytedb-migration-check",
   "displayName": "YugabyteDB Migration Check: CockroachDB SQL",
   "description": "YugabyteDB migration check for CockroachDB .sql files: flags 25 statements YSQL rejects or changes (UPSERT, unique_rowid, STRING, 64-bit INT, inline INDEX) plus licence-key and telemetry settings.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -51,7 +51,8 @@
   },
   "homepage": "https://getreadystack.com/tools/yugabytedb-migration-check",
   "readystack": {
-    "rulesDate": "2026-09-29"
+    "rulesDate": "2026-09-29",
+    "alertUrl": "https://getreadystack.com/tools/yugabytedb-migration-check?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
