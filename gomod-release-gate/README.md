@@ -1,7 +1,5 @@
 # go.mod Release Gate: /vN suffix and go line check
 
-![go.mod Release Gate: /vN suffix and go line check — finds the line](https://getreadystack.com/img/promo/gomod-release-gate_demo.gif)
-
 ![go.mod Release Gate: /vN suffix and go line check](https://getreadystack.com/img/promo/sku431664_result_card.jpg)
 
 Run it on your go.mod before you push a release tag. Every line that will break `go get` for the people who depend on you is listed with its line number and the exact line to write instead.
