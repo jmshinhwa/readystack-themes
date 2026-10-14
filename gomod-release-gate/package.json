@@ -2,7 +2,7 @@
   "name": "gomod-release-gate",
   "displayName": "go.mod Release Gate: /vN suffix and go line check",
   "description": "Checks go.mod before you tag: missing /vN major version suffix, go line older than the two supported Go releases, toolchain below go, local replace, require path/version mismatch. Each finding has the",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -50,8 +50,7 @@
   },
   "homepage": "https://getreadystack.com/tools/gomod-release-gate",
   "readystack": {
-    "rulesDate": "2026-09-30",
-    "alertUrl": "https://getreadystack.com/tools/gomod-release-gate?ref=vsix_alert#yjae"
+    "rulesDate": "2026-09-30"
   },
   "icon": "icon.png"
 }
