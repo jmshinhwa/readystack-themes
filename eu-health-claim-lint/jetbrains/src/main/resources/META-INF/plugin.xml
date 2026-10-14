@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.eu-health-claim-lint</id>
+  <name>EU Health Claim Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds unauthorised nutrition and health claims in your product-page HTML and Markdown and names the article that bans each one. 19 rules; the demo page shipped with it returns 24 findings, 13 of them outright prohibitions, and the clean page returns 0.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>EU Health Claim Lint: Check This File</b>. Each finding appears on its line with the fix. 19 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/eu-health-claim-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/eu-health-claim-lint">getreadystack.com/tools/eu-health-claim-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_eu_health_claim_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.eu-health-claim-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.eu-health-claim-lint.check" class="com.getreadystack.p_eu_health_claim_lint.RsCheckAction"
+            text="EU Health Claim Lint: Check This File" description="Run EU Health Claim Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
