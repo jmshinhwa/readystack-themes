@@ -1,0 +1,61 @@
+{
+  "name": "mysql-84-azure-extended-support-map",
+  "displayName": "mysql 8.4 Azure Extended Support Map",
+  "description": "Finds every Azure Database for MySQL server pinned to 5.7 or 8.0 in Terraform, Bicep, ARM and az CLI files, with the billing date and the exact mysql 8.4 replacement line.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "mysql 8.4",
+    "azure mysql",
+    "extended support",
+    "terraform",
+    "bicep",
+    "mysql 5.7",
+    "mysql 8.0",
+    "flexible server",
+    "azure-mysql-extended-support-lint"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "mysqlAzureMap.checkFile",
+        "title": "mysql 8.4 Azure Extended Support Map: Check this file",
+        "category": "mysql 8.4 Azure Extended Support Map"
+      },
+      {
+        "command": "mysqlAzureMap.checkWorkspace",
+        "title": "mysql 8.4 Azure Extended Support Map: Sweep workspace and write report (licence)",
+        "category": "mysql 8.4 Azure Extended Support Map"
+      },
+      {
+        "command": "mysqlAzureMap.enterKey",
+        "title": "mysql 8.4 Azure Extended Support Map: Enter licence key",
+        "category": "mysql 8.4 Azure Extended Support Map"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "mysql-84-azure-extended-support-map"
+  },
+  "homepage": "https://getreadystack.com/tools/mysql-84-azure-extended-support-map",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-14"
+  },
+  "icon": "icon.png"
+}
