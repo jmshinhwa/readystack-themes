@@ -2,7 +2,7 @@
   "name": "spf-dmarc-record-lint",
   "displayName": "SPF & DMARC Record Lint",
   "description": "Counts the DNS lookups in an SPF record before you publish it, and checks DMARC/DKIM tags in zone files, Terraform and YAML. 19 offline checks, current with the May 2026 DMARC rewrite.",
-  "version": "1.1.13",
+  "version": "1.1.14",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -54,6 +54,7 @@
   "homepage": "https://getreadystack.com/tools/spf-dmarc-record-lint",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-16"
+    "rulesDate": "2026-09-16",
+    "alertUrl": "https://getreadystack.com/tools/spf-dmarc-record-lint?ref=vsix_alert#yjae"
   }
 }
