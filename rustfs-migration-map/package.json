@@ -1,0 +1,63 @@
+{
+  "name": "rustfs-migration-map",
+  "displayName": "RustFS Migration Map: MinIO to RustFS",
+  "description": "MinIO's repo is archived and AGPL, source-only. Maps every minio image, MINIO_* variable, Helm chart and health path in compose, Dockerfile, values.yaml, Chart.yaml and .tf to the exact RustFS line.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "rustfs",
+    "minio",
+    "seaweedfs",
+    "garage",
+    "ceph",
+    "s3",
+    "object storage",
+    "migration",
+    "agpl",
+    "docker-compose",
+    "helm"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "rustfsMap.checkFile",
+        "title": "RustFS Migration Map: MinIO to RustFS: Check this file",
+        "category": "RustFS Migration Map: MinIO to RustFS"
+      },
+      {
+        "command": "rustfsMap.checkWorkspace",
+        "title": "RustFS Migration Map: MinIO to RustFS: Sweep workspace and write report (licence)",
+        "category": "RustFS Migration Map: MinIO to RustFS"
+      },
+      {
+        "command": "rustfsMap.enterKey",
+        "title": "RustFS Migration Map: MinIO to RustFS: Enter licence key",
+        "category": "RustFS Migration Map: MinIO to RustFS"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "rustfs-migration-map"
+  },
+  "homepage": "https://getreadystack.com/tools/rustfs-migration-map",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-14"
+  },
+  "icon": "icon.png"
+}
