@@ -1,0 +1,62 @@
+{
+  "name": "sql-server-express-downgrade-check",
+  "displayName": "SQL Server Express Downgrade Check",
+  "description": "Moving off SQL Server Standard or Developer to free Express? Lists every T-SQL, ini and compose line Express cannot run (Agent jobs, Database Mail, backup compression, 10 GB cap) with the Express fix.",
+  "version": "1.0.0",
+  "publisher": "readystack",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "keywords": [
+    "sql server express",
+    "sql server",
+    "mssql",
+    "sql server standard",
+    "postgresql",
+    "t-sql",
+    "licence",
+    "migration",
+    "sql agent",
+    "docker-compose"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "sqlExpressGate.checkFile",
+        "title": "SQL Server Express Downgrade Check: Check this file",
+        "category": "SQL Server Express Downgrade Check"
+      },
+      {
+        "command": "sqlExpressGate.checkWorkspace",
+        "title": "SQL Server Express Downgrade Check: Sweep workspace and write report (licence)",
+        "category": "SQL Server Express Downgrade Check"
+      },
+      {
+        "command": "sqlExpressGate.enterKey",
+        "title": "SQL Server Express Downgrade Check: Enter licence key",
+        "category": "SQL Server Express Downgrade Check"
+      }
+    ]
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "sql-server-express-downgrade-check"
+  },
+  "homepage": "https://getreadystack.com/tools/sql-server-express-downgrade-check",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  },
+  "readystack": {
+    "rulesDate": "2026-10-14"
+  },
+  "icon": "icon.png"
+}
