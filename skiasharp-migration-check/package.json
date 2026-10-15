@@ -2,7 +2,7 @@
   "name": "skiasharp-migration-check",
   "displayName": "SkiaSharp Migration Check for ImageSharp",
   "description": "Flags SixLabors ImageSharp 3+, Drawing 2+, Fonts 2+ and ImageSharp.Web 3+ references that fall under the Six Labors Split License, with the SkiaSharp (MIT) replacement for each line.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -51,7 +51,8 @@
   },
   "homepage": "https://getreadystack.com/tools/skiasharp-migration-check",
   "readystack": {
-    "rulesDate": "2026-09-29"
+    "rulesDate": "2026-09-29",
+    "alertUrl": "https://getreadystack.com/tools/skiasharp-migration-check?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
