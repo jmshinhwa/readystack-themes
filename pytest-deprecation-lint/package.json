@@ -2,7 +2,7 @@
   "name": "pytest-deprecation-lint",
   "displayName": "Pytest Lint - pytest 8 deprecations and removals",
   "description": "Flags pytest APIs removed in pytest 8 and pytest config keys that are silently ignored, with the replacement line and the version that removed each one.",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -51,6 +51,7 @@
   "homepage": "https://getreadystack.com/tools/pytest-deprecation-lint",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-14"
+    "rulesDate": "2026-09-14",
+    "alertUrl": "https://getreadystack.com/tools/pytest-deprecation-lint?ref=vsix_alert#yjae"
   }
 }
