@@ -2,7 +2,7 @@
   "name": "openbao-migration-lint",
   "displayName": "OpenBao Migration Lint — HashiCorp Vault",
   "description": "OpenBao migration check for HashiCorp Vault files: flags BSL Vault 1.15+ images, Helm charts, storage backends, seals and plugins OpenBao 2.7 does not build in, with the OpenBao fix.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -52,7 +52,8 @@
   },
   "homepage": "https://getreadystack.com/tools/openbao-migration-lint",
   "readystack": {
-    "rulesDate": "2026-09-28"
+    "rulesDate": "2026-09-28",
+    "alertUrl": "https://getreadystack.com/tools/openbao-migration-lint?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
