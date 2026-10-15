@@ -1,0 +1,11 @@
+[
+ {"id": "flex-57", "sev": "error", "title": "Flexible server pinned to MySQL 5.7", "fix": "version = \"8.0.21\" (apply), then version = \"8.4\"", "source": "https://learn.microsoft.com/en-us/azure/mysql/concepts-version-policy"},
+ {"id": "flex-80", "sev": "warning", "title": "Flexible server pinned to MySQL 8.0", "fix": "version = \"8.4\"", "source": "https://learn.microsoft.com/en-us/azure/mysql/concepts-version-policy"},
+ {"id": "single-server", "sev": "error", "title": "Azure Database for MySQL Single Server resource", "fix": "azurerm_mysql_flexible_server with version = \"8.4\"", "source": "https://learn.microsoft.com/en-us/azure/mysql/concepts-version-policy"},
+ {"id": "cli-pin", "sev": "warning", "title": "az mysql flexible-server command targets 5.7 or 8.0", "fix": "--version 8.4", "source": "https://learn.microsoft.com/en-us/azure/mysql/flexible-server/how-to-upgrade"},
+ {"id": "param-gone-80", "sev": "error", "title": "Server parameter removed in MySQL 8.0", "fix": "delete the parameter before the 5.7 to 8.0 upgrade", "source": "https://dev.mysql.com/doc/refman/8.0/en/added-deprecated-removed.html"},
+ {"id": "param-gone-84", "sev": "warning", "title": "Server parameter removed in MySQL 8.4", "fix": "delete the parameter (authentication_policy / binlog_expire_logs_seconds)", "source": "https://dev.mysql.com/doc/refman/8.4/en/added-deprecated-removed.html"},
+ {"id": "replica-first", "sev": "info", "title": "Read replica must be upgraded before its primary", "fix": "upgrade this replica first", "source": "https://learn.microsoft.com/en-us/azure/mysql/flexible-server/how-to-upgrade"},
+ {"id": "native-password", "sev": "info", "title": "mysql_native_password in use", "fix": "move accounts to caching_sha2_password", "source": "https://learn.microsoft.com/en-us/azure/mysql/concepts-version-policy"},
+ {"id": "no-version-pin", "sev": "info", "title": "Flexible server without a version pin", "fix": "version = \"8.4\"", "source": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mysql_flexible_server"}
+]
