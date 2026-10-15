@@ -1,0 +1,122 @@
+[
+ {
+  "id": "minio-server-image",
+  "sev": "error",
+  "re": "^\\s*(?:-\\s*)?(?:image:|FROM\\s+(?:--\\S+\\s+)*|repository:)\\s*[\"']?(?:[\\w.\\-]+/)?minio/minio(?![\\w\\-/])",
+  "msg": "MinIO server image (minio/minio, AGPLv3; GitHub repo archived, community edition now source-only)",
+  "fix": "image: rustfs/rustfs:1.0.1  (Apache-2.0; S3 port 9000, console 9001; copy objects over the S3 API, do not remount the MinIO data dir)",
+  "source": "https://github.com/minio/minio"
+ },
+ {
+  "id": "minio-mc-image",
+  "sev": "warn",
+  "re": "^\\s*(?:-\\s*)?(?:image:|FROM\\s+(?:--\\S+\\s+)*|repository:)\\s*[\"']?(?:[\\w.\\-]+/)?minio/mc(?![\\w\\-/])",
+  "msg": "MinIO client image minio/mc",
+  "fix": "use the RustFS rc client (package rustfs-client) or any S3 CLI pointed at http://rustfs:9000",
+  "source": "https://github.com/rustfs/rustfs"
+ },
+ {
+  "id": "minio-operator-image",
+  "sev": "warn",
+  "re": "^\\s*(?:-\\s*)?(?:image:|FROM\\s+(?:--\\S+\\s+)*|repository:)\\s*[\"']?(?:[\\w.\\-]+/)?minio/operator(?![\\w\\-/])",
+  "msg": "MinIO Operator image minio/operator",
+  "fix": "helm repo add rustfs https://charts.rustfs.com && helm install rustfs rustfs/rustfs --version 1.0.1",
+  "source": "https://charts.rustfs.com/index.yaml"
+ },
+ {
+  "id": "bitnami-minio-image",
+  "sev": "error",
+  "re": "(?:^|[\\s\"'/:])bitnami/minio(?:[\\s\"':@]|$)",
+  "msg": "Bitnami MinIO image or chart (bitnami/minio)",
+  "fix": "image: rustfs/rustfs:1.0.1, or chart rustfs 1.0.1 from https://charts.rustfs.com",
+  "source": "https://github.com/rustfs/rustfs"
+ },
+ {
+  "id": "minio-helm-repo",
+  "sev": "error",
+  "re": "https?://(?:charts|operator)\\.min\\.io",
+  "msg": "MinIO Helm repository (charts.min.io / operator.min.io)",
+  "fix": "repository: https://charts.rustfs.com  with  name: rustfs  version: 1.0.1",
+  "source": "https://charts.rustfs.com/index.yaml"
+ },
+ {
+  "id": "env-root-user",
+  "sev": "warn",
+  "re": "\\bMINIO_ROOT_USER\\b",
+  "msg": "MinIO admin user variable MINIO_ROOT_USER",
+  "fix": "RUSTFS_ACCESS_KEY=<same value>  (the RustFS default rustfsadmin is public; always set it)",
+  "source": "https://github.com/rustfs/rustfs/blob/main/docker-compose.yml"
+ },
+ {
+  "id": "env-root-password",
+  "sev": "warn",
+  "re": "\\bMINIO_ROOT_PASSWORD\\b",
+  "msg": "MinIO admin password variable MINIO_ROOT_PASSWORD",
+  "fix": "RUSTFS_SECRET_KEY=<same value>",
+  "source": "https://github.com/rustfs/rustfs/blob/main/docker-compose.yml"
+ },
+ {
+  "id": "env-legacy-keys",
+  "sev": "warn",
+  "re": "\\bMINIO_(?:ACCESS|SECRET)_KEY\\b",
+  "msg": "Legacy MinIO key variable MINIO_ACCESS_KEY / MINIO_SECRET_KEY",
+  "fix": "RUSTFS_ACCESS_KEY / RUSTFS_SECRET_KEY",
+  "source": "https://github.com/rustfs/rustfs/blob/main/docker-compose.yml"
+ },
+ {
+  "id": "env-volumes",
+  "sev": "warn",
+  "re": "\\bMINIO_VOLUMES\\b",
+  "msg": "MinIO drive list variable MINIO_VOLUMES",
+  "fix": "RUSTFS_VOLUMES=/data/rustfs{0..3}  (same expansion syntax as the RustFS sample compose)",
+  "source": "https://github.com/rustfs/rustfs/blob/main/docker-compose.yml"
+ },
+ {
+  "id": "env-browser",
+  "sev": "warn",
+  "re": "\\bMINIO_BROWSER\\b",
+  "msg": "MinIO console switch MINIO_BROWSER",
+  "fix": "RUSTFS_CONSOLE_ENABLE=true (or false for MINIO_BROWSER=off)",
+  "source": "https://github.com/rustfs/rustfs/blob/main/docker-compose.yml"
+ },
+ {
+  "id": "server-command",
+  "sev": "warn",
+  "re": "--console-address|\\bminio[\"',\\s\\[]+server\\b|^\\s*command:\\s*\\[?\\s*[\"']?server\\b",
+  "msg": "MinIO start command (server /data --console-address)",
+  "fix": "drop the command; set RUSTFS_VOLUMES=/data, RUSTFS_ADDRESS=0.0.0.0:9000, RUSTFS_CONSOLE_ADDRESS=0.0.0.0:9001, RUSTFS_CONSOLE_ENABLE=true",
+  "source": "https://github.com/rustfs/rustfs/blob/main/docker-compose.yml"
+ },
+ {
+  "id": "health-path",
+  "sev": "warn",
+  "re": "/minio/health/(?:live|ready|cluster)",
+  "msg": "MinIO health endpoint /minio/health/*",
+  "fix": "http://<host>:9000/health  (console: http://<host>:9001/rustfs/console/health)",
+  "source": "https://github.com/rustfs/rustfs/blob/main/docker-compose.yml"
+ },
+ {
+  "id": "kms-encryption",
+  "sev": "error",
+  "re": "\\bMINIO_(?:KMS|KES)_\\w+",
+  "msg": "MinIO server-side encryption key variable (MINIO_KMS_* / MINIO_KES_*): objects MinIO encrypted are not readable by RustFS",
+  "fix": "copy objects out decrypted over the S3 API before cutover; then set a RustFS KMS backend (Vault KV2/Transit or AWS KMS)",
+  "source": "https://github.com/rustfs/rustfs#features"
+ },
+ {
+  "id": "legacy-binary",
+  "sev": "error",
+  "re": "dl\\.min\\.io/server/minio/release",
+  "msg": "Legacy MinIO binary download (dl.min.io): these binaries will not receive updates",
+  "fix": "image: rustfs/rustfs:1.0.1, or a RustFS release binary from https://github.com/rustfs/rustfs/releases",
+  "source": "https://github.com/minio/minio"
+ },
+ {
+  "id": "tf-minio-provider",
+  "sev": "warn",
+  "re": "source\\s*=\\s*\"aminueza/minio\"",
+  "msg": "Terraform provider aminueza/minio speaks the MinIO admin API",
+  "fix": "for buckets use hashicorp/aws with endpoints { s3 = \"http://rustfs:9000\" } and s3_use_path_style = true",
+  "source": "https://github.com/rustfs/rustfs"
+ }
+]
