@@ -2,7 +2,7 @@
   "name": "log-pii-telemetry-lint",
   "displayName": "PII-in-Logs Lint (console.log(req.body))",
   "description": "Names every line where your Node/TypeScript service writes personal data into logs, crash reports and analytics: console.log(req.body), pino without redact, sendDefaultPii: true. 22 rules.",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -54,6 +54,7 @@
   "homepage": "https://getreadystack.com/tools/log-pii-telemetry-lint",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-13"
+    "rulesDate": "2026-09-13",
+    "alertUrl": "https://getreadystack.com/tools/log-pii-telemetry-lint?ref=vsix_alert#yjae"
   }
 }
