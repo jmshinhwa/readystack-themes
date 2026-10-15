@@ -1,0 +1,15 @@
+SQL Server Express Downgrade Check — Licence
+
+Free scope
+  Check the open .sql, ConfigurationFile.ini or compose file and list every line SQL Server Express cannot run, with the exact Express replacement line. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  The whole workspace in one Express migration plan, a dated edition report for the company (paid-edition pulls and Standard licence cost at $3,945 per 2-core pack) and a CI gate that fails a build adding an Agent job or a paid MSSQL_PID. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
