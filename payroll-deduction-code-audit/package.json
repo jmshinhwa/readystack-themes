@@ -2,7 +2,7 @@
   "name": "payroll-deduction-code-audit",
   "displayName": "Payroll Deduction Code Audit 2026",
   "description": "Audits a payroll deduction code map before January W-2 filing: pre-tax flags, Box 12 letters, duplicate codes, stale plan years. Every broken line is named with its line number.",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -54,6 +54,7 @@
   },
   "homepage": "https://getreadystack.com/tools/payroll-deduction-code-audit",
   "readystack": {
-    "rulesDate": "2026-09-19"
+    "rulesDate": "2026-09-19",
+    "alertUrl": "https://getreadystack.com/tools/payroll-deduction-code-audit?ref=vsix_alert#yjae"
   }
 }
