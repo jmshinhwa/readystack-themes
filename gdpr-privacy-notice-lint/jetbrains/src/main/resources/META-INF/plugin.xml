@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.gdpr-privacy-notice-lint</id>
+  <name>GDPR Privacy Notice Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>16 rules read your privacy.md the way Articles 13 and 14 read it</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>GDPR Privacy Notice Lint: Check This File</b>. Each finding appears on its line with the fix. 16 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/gdpr-privacy-notice-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/gdpr-privacy-notice-lint">getreadystack.com/tools/gdpr-privacy-notice-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_gdpr_privacy_notice_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.gdpr-privacy-notice-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.gdpr-privacy-notice-lint.check" class="com.getreadystack.p_gdpr_privacy_notice_lint.RsCheckAction"
+            text="GDPR Privacy Notice Lint: Check This File" description="Run GDPR Privacy Notice Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
