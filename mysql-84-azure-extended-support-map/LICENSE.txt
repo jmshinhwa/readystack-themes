@@ -1,0 +1,15 @@
+mysql 8.4 Azure Extended Support Map — Licence
+
+Free scope
+  Paste one .tf, .bicep, ARM .json or az CLI script: every Azure MySQL server pinned to 5.7 or 8.0 with file, line, Extended Support billing date and the exact mysql 8.4 line to write instead. is free for any use, personal or commercial, for as long as you keep the
+  extension installed, and the online check at the product page is free without registration.
+
+Paid scope
+  Whole workspace in one run: a dated migration plan (Markdown) mapping every server and blocking parameter to its 8.4 line, plus the CI gate that fails a build adding a new 5.7 or 8.0 pin. is the paid part. It asks for a licence key issued at purchase (one seat, one key). The key is checked against the payment provider and
+  cached locally for 30 days so it keeps working offline.
+
+Redistribution
+  You may not resell, re-host or bundle this extension or its rule set. The rule set and the
+  engine are provided as-is; check results are advisory and do not constitute legal advice.
+
+(c) ReadyStack — https://getreadystack.com
