@@ -2,7 +2,7 @@
   "name": "reisekosten-pruefer-2026",
   "displayName": "Reisekostenabrechnung Prüfer 2026 (DE)",
   "description": "Prüft exportierte Reisekostenabrechnungen (CSV) gegen deutsches Reisekostenrecht: Verpflegungspauschale, Mahlzeitenkürzung, Dreimonatsfrist, Kilometersatz, Großbuchstabe M. 15 Checks, offline im Edito",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -52,6 +52,7 @@
   "homepage": "https://getreadystack.com/de/tools/reisekosten-pruefer-2026",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-21"
+    "rulesDate": "2026-09-21",
+    "alertUrl": "https://getreadystack.com/de/tools/reisekosten-pruefer-2026?ref=vsix_alert#yjae"
   }
 }
