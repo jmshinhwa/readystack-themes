@@ -2,7 +2,7 @@
   "name": "security-headers-csp-lint",
   "displayName": "Security Headers Lint - CSP, HSTS and dead headers",
   "description": "Reads security headers and CSP line by line in your config file and names the lines that silently do nothing: retired headers, keywords missing their quotes, directives the browser throws away.",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -113,7 +113,8 @@
   },
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-27"
+    "rulesDate": "2026-09-27",
+    "alertUrl": "https://getreadystack.com/tools/security-headers-csp-lint?ref=vsix_alert#yjae"
   },
   "repository": {
     "type": "git",
