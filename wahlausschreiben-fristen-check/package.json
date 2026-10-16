@@ -2,7 +2,7 @@
   "name": "wahlausschreiben-fristen-check",
   "displayName": "Wahlausschreiben Fristen-Check (BetrVG · WO)",
   "description": "Prüft das Wahlausschreiben der Betriebsratswahl: Einspruchs- und Vorschlagsfrist nach § 193 BGB, 6-Wochen-Frist, Sitzzahl § 9 BetrVG, Mindestsitze (d'Hondt), Stützunterschriften.",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -52,6 +52,7 @@
   "homepage": "https://getreadystack.com/de/tools/wahlausschreiben-fristen-check",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-24"
+    "rulesDate": "2026-09-24",
+    "alertUrl": "https://getreadystack.com/de/tools/wahlausschreiben-fristen-check?ref=vsix_alert#yjae"
   }
 }
