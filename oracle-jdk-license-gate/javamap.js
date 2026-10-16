@@ -196,7 +196,7 @@ async function offer(ctx, o) {
     send(vscode, 'java_map_offer');
     const A = (!st.get('licenseKey')) ? (AUD[lang(vscode)] || AUD.en) : null;
     if (A) send(vscode, 'map_audit_offer', 'paywall', 'vsix');   // the money screen, counted
-    const pk = A ? await vscode.window.showInformationMessage(msg + A[0], M[2], A[1], M[3]) : await vscode.window.showInformationMessage(msg, M[2], M[3]);
+    const pk = A ? await vscode.window.showInformationMessage(msg + A[0] + (function () { try { var x = require('./auto.js').trustLine(vscode); return x ? ' ' + x : ''; } catch (e) { return ''; } })(), M[2], A[1], M[3]) : await vscode.window.showInformationMessage(msg, M[2], M[3]);
     if (pk === M[2]) await show(vscode, o.ENGINE, o.title, d);
     else if (A && pk === A[1]) { send(vscode, 'map_audit_click', 'paywall', 'vsix'); await vscode.commands.executeCommand(o.PREFIX + '.checkWorkspace'); }
     return { shown: true, pick: pk || null, pins: pins, findings: finds, audit: A ? A[1] : null };
