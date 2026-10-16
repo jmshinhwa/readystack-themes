@@ -2,7 +2,7 @@
   "name": "verfahrensdoku-gobd-check",
   "displayName": "Verfahrensdokumentation Check",
   "description": "Prueft eine Verfahrensdokumentation in Markdown auf die Pflichtteile der GoBD und die Aufbewahrungsfristen des §147 AO - direkt im Editor, offline.",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -52,6 +52,7 @@
   "homepage": "https://getreadystack.com/de/tools/verfahrensdoku-gobd-check",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-22"
+    "rulesDate": "2026-09-22",
+    "alertUrl": "https://getreadystack.com/de/tools/verfahrensdoku-gobd-check?ref=vsix_alert#yjae"
   }
 }
