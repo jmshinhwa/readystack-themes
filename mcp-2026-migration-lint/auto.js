@@ -332,14 +332,65 @@ function send(vscode, slug, o) {
     req.write(body); req.end();
   } catch (e) { /* counting never breaks the product */ }
 }
+// ★s195 T2 2026-10-16 — TRUST AT THE MONEY MOMENT (⚑정민님: "어떨때 사람들이 신뢰를 느끼는지 … 다 공식이야").
+//   Three true things next to the price, nothing else: ①how many checks this tool ran in the last 7 days and in how many
+//   countries (our people ruler · ⛔hidden under 10 · "checks", never "people": the ruler has no per-person id) ②the dated
+//   official source the rules were read from ③a link to a real example of the paid report (made by this tool's own engine).
+//   Source = https://getreadystack.com/data/uses.json (trust_now.py, rebuilt daily) · fetched once a day, cached in globalState,
+//   ⛔no fetch when telemetry is off / READYSTACK_NO_TELEMETRY / CI · any failure = no line (the toast stays exactly as before).
+var TRUST_MIN = 10, _trust = null;
+var TRUST_T = {
+  en: ['{n} checks ran in the last 7 days in {c} countries.', 'Source: {s}.', 'See an example of the paid report', 'Rules last updated {d}.'],
+  de: ['{n} Prüfungen in den letzten 7 Tagen in {c} Ländern.', 'Quelle: {s}.', 'Beispiel des bezahlten Berichts ansehen', 'Regeln zuletzt aktualisiert: {d}.'],
+  es: ['{n} comprobaciones en los últimos 7 días en {c} países.', 'Fuente: {s}.', 'Ver un ejemplo del informe de pago', 'Reglas actualizadas el {d}.'],
+  pt: ['{n} verificações nos últimos 7 dias em {c} países.', 'Fonte: {s}.', 'Ver um exemplo do relatório pago', 'Regras atualizadas em {d}.'],
+  ja: ['過去7日間に{c}か国で{n}回チェックが実行されました。', '出典: {s}。', '有料レポートの例を見る', 'ルール最終更新: {d}。']
+};
+function _trustText(vscode, r) {
+  try {
+    if (!r) return '';
+    var T = TRUST_T[lang(vscode)] || TRUST_T.en, out = [];
+    if (typeof r.runs === 'number' && r.runs >= TRUST_MIN && typeof r.countries === 'number' && r.countries >= 1)
+      out.push(T[0].replace('{n}', String(r.runs)).replace('{c}', String(r.countries)));
+    if (typeof r.stamp === 'string' && r.stamp && r.stamp.length < 200) out.push(T[1].replace('{s}', r.stamp));
+    else if (typeof r.rules_date === 'string' && /^20\d\d-\d\d-\d\d$/.test(r.rules_date)) out.push(T[3].replace('{d}', r.rules_date));
+    if (typeof r.preview === 'string' && /^https:\/\/getreadystack\.com\/preview\/[a-z0-9-]+\/$/.test(r.preview)) out.push('[' + T[2] + '](' + r.preview + ')');
+    return out.join(' ');
+  } catch (e) { return ''; }
+}
+function trustLine(vscode) { return _trustText(vscode, _trust); }
+function trustLoad(ctx, vscode, slug) {
+  try {
+    var st = ctx && ctx.globalState, K = 'readystack.trust';
+    var c = st && st.get(K);
+    if (c && c.slug === slug && Date.now() - (c.at || 0) < 864e5) { _trust = c.row || null; return; }
+    if (c && c.slug === slug) _trust = c.row || null;   // stale is still true yesterday — shown until the new one lands
+    if (process.env.READYSTACK_NO_TELEMETRY || process.env.CI) return;
+    if (vscode && vscode.env && vscode.env.isTelemetryEnabled === false) return;
+    var req = https.get({ hostname: 'getreadystack.com', path: '/data/uses.json', timeout: 4000, headers: { 'user-agent': 'readystack-vsix/' + slug } }, function (res) {
+      var b = ''; res.setEncoding('utf8');
+      res.on('data', function (d) { if (b.length < 400000) b += d; });
+      res.on('end', function () {
+        try {
+          if (res.statusCode !== 200) return;
+          var j = JSON.parse(b), row = (j && j.ext && j.ext[slug]) || null;
+          _trust = row; if (st) st.update(K, { slug: slug, at: Date.now(), row: row });
+        } catch (e) { }
+      });
+    });
+    req.on('timeout', function () { req.destroy(); }); req.on('error', function () { });
+  } catch (e) { }
+}
+function _t(vscode) { var x = trustLine(vscode); return x ? ' ' + x : ''; }
 function start(ctx, o) {
   var vscode = o.vscode, E = o.ENGINE, GLOB = o.GLOB, PREFIX = o.PREFIX, title = o.title || PREFIX, slug = o.slug || PREFIX;
   if (!vscode || !E || !E.engine || !GLOB || !PREFIX) return null;
   var cfg = function () { return vscode.workspace.getConfiguration('readystack'); };
   var toks = tokens(slug), R = ruleCount(E);
   var h = { vscode: vscode, E: E, GLOB: GLOB, PREFIX: PREFIX, title: title, toks: toks, R: R, price: o.price || 29, slug: slug,
-    homepage: o.homepage || pkgHome(), reviewDelayMs: o.reviewDelayMs, quietMs: o.quietMs, today: o.today || null, extDir: o.extDir || (ctx && (ctx.extensionPath || (ctx.extension && ctx.extension.extensionPath))) || __dirname };   // s163
+    fix: o.fix || null, homepage: o.homepage || pkgHome(), reviewDelayMs: o.reviewDelayMs, quietMs: o.quietMs, alertDelayMs: o.alertDelayMs, today: o.today || null, extDir: o.extDir || (ctx && (ctx.extensionPath || (ctx.extension && ctx.extension.extensionPath))) || __dirname };   // s163
   _h = h;   // s163b
+  trustLoad(ctx, vscode, slug);   // s195 T2
   if (cfg().get('autoCheck', true) === false) return null;
   var last = new Map();   // s163 — findings per file: a drop = the user fixed one (review moment)
   var short = (String(title).split(/\s[—:(-]\s?|:\s/)[0] || title).trim().slice(0, 32);
@@ -360,6 +411,7 @@ function start(ctx, o) {
       var d = new vscode.Diagnostic(doc.lineAt(ln).range, String(x.msg || x.message || x.check || ''), sevOf(x)); d.source = short; return d;
     }));
     ping(vscode, slug);
+    alertSoon(ctx, h);   // s182 — the rule-alert door, once per install
     var k = String((doc.uri && (doc.uri.fsPath || doc.uri.toString())) || doc.fileName), prev = last.get(k); last.set(k, f.length);
     if (prev > f.length) reviewTick(ctx, h, 'resolved', h.today); else if (!f.length) reviewTick(ctx, h, 'clean', h.today);   // s163
     return { n: f.length };
@@ -485,11 +537,35 @@ async function stakeEstimate(h, SK, label, info) {
 }
 async function hint(ctx, h) {
   try {
-    var vscode = h.vscode, key = h.PREFIX + '.hinted';
-    if (ctx.workspaceState.get(key) || ctx.globalState.get(h.PREFIX + '.noHint')) return null;
+    var vscode = h.vscode, key = h.PREFIX + '.hinted', fixKey = h.PREFIX + '.fixHinted', reoffer = false;
+    if (ctx.globalState.get(h.PREFIX + '.noHint')) return null;
+    // s186 E6 — A DATED VENDOR EVENT re-opens the conversation ONCE per install. [실측 10/10] Oracle JDK 21 updates turn OTN
+    //   (not free for production) at the 2026-10-20 CPU, but every existing user had already been hinted once, so the one
+    //   moment that makes the company pay could never reach them. stake.json `event` {id, from, until} (a product's own data,
+    //   dates copied from the vendor) ⇒ inside [from, until] the result toast speaks one more time, with the dated clean/dirty line.
+    var EV = null;
+    try {
+      var SKv = stakeOf(h), ev = SKv && SKv.s && SKv.s.event, dv = h.today || new Date().toISOString().slice(0, 10);
+      if (ev && ev.id && ev.from && ev.until && dv >= ev.from && dv <= ev.until && !ctx.globalState.get(h.PREFIX + '.event.' + ev.id)) EV = ev;
+    } catch (e) { EV = null; }
+    if (ctx.workspaceState.get(key) && EV) {
+      await ctx.globalState.update(h.PREFIX + '.event.' + EV.id, true);
+      send(vscode, h.slug || h.PREFIX, { t: 'use', slug: h.slug || h.PREFIX, src: 'vsix', why: 'event_' + EV.id, path: '/use/vsix/' + (h.slug || h.PREFIX) });
+    } else if (ctx.workspaceState.get(key)) {
+      // s185 D4 — [실측 10/10] "Fix all" shipped 10/9 to workspaces that had ALREADY been hinted once (key above) ⇒ the offer could never
+      //   reach an existing user. ONE re-offer per workspace, only when this version can really fix lines there; otherwise stay quiet.
+      if (!h.fix || !h.fix.count || ctx.workspaceState.get(fixKey)) return null;
+      await ctx.workspaceState.update(fixKey, true);
+      var fc = null; try { fc = await h.fix.count(); } catch (e) { fc = null; }
+      if (!fc || !fc.lines) return null;
+      reoffer = true;
+    }
     if (!vscode.workspace.workspaceFolders || !vscode.workspace.workspaceFolders.length) return await welcome(ctx, h);   // s164 — no folder open: the first minute still speaks (once)
     var sc = await scan(h, 300), files = sc.files, total = sc.total, clean = sc.clean, day = new Date().toISOString().slice(0, 10);   // s163b — one scan
     await ctx.workspaceState.update(key, true);
+    if (EV) await ctx.globalState.update(h.PREFIX + '.event.' + EV.id, true);   // s186 E6 — a first hint inside the window already carries the dated line
+    if (h.fix) await ctx.workspaceState.update(fixKey, true);
+    if (reoffer && !total) return null;   // the re-offer speaks only about lines it can fix
     var st = ctx.globalState, hasKey = !!st.get('licenseKey'), until = Number(st.get('sweepTrialUntil') || 0);
     if (!total) {
       if (!clean) return { files: 0, total: 0, clean: 0, welcome: await welcome(ctx, h) };   // s164 — nothing here it reads → ONE first-minute offer, then quiet
@@ -501,9 +577,11 @@ async function hint(ctx, h) {
       var SKc = stakeOf(h), estc = null;   // s166 — a clean folder is not the company's safety: say the company line on the clean result too
       var TMc = (!(SKc && SKc.clean) && !hasKey) ? cleanTeam(h) : null;   // s174 — the company line for every product
       if (TMc) send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: 'clean_offer' });
-      var pk = (SKc && SKc.clean) ? await vscode.window.showInformationMessage(W.msg + ' ' + SKc.clean, SKc.btn, SKc.note, lbl, B[0], "Don't show again")
-        : TMc ? await vscode.window.showInformationMessage(W.msg + ' ' + TMc.line, lbl, TMc.btn, B[0], "Don't show again")
-        : await vscode.window.showInformationMessage(W.msg, lbl, B[0], "Don't show again");
+      else if (SKc && SKc.clean && !hasKey) send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: 'clean_stake', path: '/paywall/vsix/' + (h.slug || h.PREFIX) });   // s185 D4 — the company line on a clean result IS a money screen; it was never counted (oracle 61 clean results → money screen 0)
+      var TRc = hasKey ? '' : _t(vscode);   // s195 T2 — the trust line sits next to the price (not on a paid user's toast)
+      var pk = (SKc && SKc.clean) ? await vscode.window.showInformationMessage(W.msg + ' ' + SKc.clean + TRc, SKc.btn, SKc.note, lbl, B[0], "Don't show again")
+        : TMc ? await vscode.window.showInformationMessage(W.msg + ' ' + TMc.line + TRc, lbl, TMc.btn, B[0], "Don't show again")
+        : await vscode.window.showInformationMessage(W.msg + TRc, lbl, B[0], "Don't show again");
       if (TMc && pk === TMc.btn) { send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix_buy', why: 'clean_team' }); try { await vscode.env.openExternal(vscode.Uri.parse(TMc.url)); } catch (e) { } pk = undefined; }
       if (SKc && SKc.clean && pk === SKc.btn) { estc = await stakeEstimate(h, SKc, lbl, { total: 0, files: clean, day: day }); pk = estc ? estc.pick : undefined; }
       if (SKc && SKc.clean && pk === SKc.note) { await noteFlow(h, SKc, { total: 0, files: clean, day: day }); pk = undefined; }   // s168
@@ -516,18 +594,77 @@ async function hint(ctx, h) {
     // s158 — ⚑7일 무료 없음: 버튼이 곧 값이다(손님 숫자 바로 옆) · 이미 시작된 체험만 지킨다
     var label = hasKey ? 'Sweep the workspace' : ((until && Date.now() < until) ? 'Sweep the workspace (trial)' : 'Get the full report ($' + (h.price || 29) + ')');
     var msg = h.title + ': ' + total + ' issue' + (total === 1 ? '' : 's') + ' in ' + files + ' file' + (files === 1 ? '' : 's') + ' of this workspace.';
+    // s184 W1 — a product that ships fixmap.js sells THE WORK: the button names it ("Fix all N lines in M files — $29 once") and runs fixAll
+    //   (preview → apply → dated record). The open file stays free (Quick Fix). fix_offer = the money moment, counted.
+    var FX = null; try { FX = (h.fix && h.fix.count) ? await h.fix.count() : null; } catch (e) { FX = null; }
+    if (FX && FX.lines) {
+      var FW = require('./fixall.js'), FT = FW.words(vscode);
+      label = hasKey ? FW.fill(FT.apply, { n: FX.lines }) : FW.fill(FT.all, { n: FX.lines, f: FX.files, p: h.price || 29 });
+      msg = FW.fill(FT.hint, { t: h.title, n: total, f: files, a: FX.lines });
+      send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: reoffer ? 'fix_reoffer' : 'fix_offer', path: '/paywall/vsix/' + (h.slug || h.PREFIX) });
+    } else if (!hasKey) send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: 'issue_offer', path: '/paywall/vsix/' + (h.slug || h.PREFIX) });   // s185 D4 — findings + "Get the full report ($29)" = a money screen, uncounted until now
     _toastAt = Date.now();
     var SK = stakeOf(h), est = null;   // s165 — the stake line + one estimate button, only when the product ships stake.json
     if (SK) msg = msg + ' ' + SK.line;
+    if (!hasKey) msg = msg + _t(vscode);   // s195 T2
     var pick = SK ? await vscode.window.showInformationMessage(msg, SK.btn, SK.note, label, "Don't show again") : await vscode.window.showInformationMessage(msg, label, "Don't show again");
     if (SK && pick === SK.btn) { est = await stakeEstimate(h, SK, label, { total: total, files: files, day: day }); pick = est ? est.pick : undefined; }
     if (SK && pick === SK.note) { await noteFlow(h, SK, { total: total, files: files, day: day }); pick = undefined; }   // s168
-    if (pick === label) await vscode.commands.executeCommand(h.PREFIX + '.checkWorkspace');
+    if (pick === label) await vscode.commands.executeCommand(h.PREFIX + ((FX && FX.lines) ? '.fixAll' : '.checkWorkspace'));
     else if (pick === "Don't show again") await st.update(h.PREFIX + '.noHint', true);
     return { files: files, total: total, label: label, msg: msg, stake: SK ? SK.line : null, estimate: est };
   } catch (e) { return null; }
 }
+// s182 2026-10-07 — THE EMAIL DOOR WHERE PEOPLE ACTUALLY USE US. [measured s182 T1] "used 103" in 7 days was mostly
+//   extension runs (oracle-jdk-license-gate 271 · pypdf 106) while the web tools saw ~12 real uses, and no extension ever
+//   asked for an address. A dated rule checker's user is exactly who needs ONE mail when that rule changes.
+//   ONE toast per install, ~15 s after the first file this extension really checks (existing users included — hint() is
+//   once per workspace and most of them were already hinted). It only OPENS a link: the hub page's rule-alert box
+//   (package.json readystack.alertUrl, stamped by talk_restamp only when the live page carries the box). Nothing is sent
+//   from here (no ping) · no result is gated · "Not now" is final for this install.
+var ALERT_T = {
+  en: ['Get one email when the {t} rules change{d}. Nothing else.', 'Email me when it changes', 'Not now', ' — next date: {x}'],
+  de: ['Eine E-Mail, wenn sich die {t}-Regeln ändern{d}. Sonst nichts.', 'Bei Änderung mailen', 'Nicht jetzt', ' — nächstes Datum: {x}'],
+  ja: ['{t} のルールが変わったときだけメールを 1 通{d}。それ以外は送りません。', '変わったらメールで知らせる', '今はしない', '（次の日付: {x}）'],
+  es: ['Reciba un solo correo cuando cambien las reglas de {t}{d}. Nada más.', 'Avisarme por correo', 'Ahora no', ' — próxima fecha: {x}'],
+  pt: ['Receba um único e-mail quando as regras de {t} mudarem{d}. Nada mais.', 'Avise-me por e-mail', 'Agora não', ' — próxima data: {x}']
+};
+function nextRuleDate(h, today) {   // the earliest date in this product's own rules.json that is today or later · none -> ''
+  try {
+    var src = fs.readFileSync(path.join(h.extDir || __dirname, 'rules.json'), 'utf8'), d = today || new Date().toISOString().slice(0, 10);
+    var all = (src.match(/\b20\d\d-[01]\d-[0-3]\d\b/g) || []).filter(function (x) { return x >= d; }).sort();
+    return all[0] || '';
+  } catch (e) { return ''; }
+}
+function alertOf(h) {
+  var p = loadMod(h, 'package.json'), rs = (p && p.readystack) || {};
+  var url = String(rs.alertUrl || '');
+  if (!/^https:\/\/getreadystack\.com\/[^\s'"<>]+$/.test(url)) return null;   // our domain only · not stamped -> no line
+  var T = ALERT_T[lang(h.vscode)] || ALERT_T.en, nd = nextRuleDate(h, h.today);
+  var topic = String(rs.alertTopic || badgeTopic(h.title));
+  var line = T[0].replace('{t}', topic).replace('{d}', nd ? T[3].replace('{x}', nd) : '');
+  return { line: line, btn: T[1], no: T[2], url: url, date: nd };
+}
+async function alertAsk(ctx, h) {
+  try {
+    var vscode = h.vscode, st = ctx.globalState, key = h.PREFIX + '.alertAsked';
+    if (st.get(key) || st.get(h.PREFIX + '.noHint')) return null;
+    var A = alertOf(h); if (!A) return null;
+    await st.update(key, true);
+    _toastAt = Date.now();
+    var pk = await vscode.window.showInformationMessage(A.line, A.btn, A.no);
+    if (pk === A.btn) await vscode.env.openExternal(vscode.Uri.parse(A.url));
+    return { line: A.line, pick: pk || null, url: A.url };
+  } catch (e) { return null; }
+}
+var _alertTimer = null;
+function alertSoon(ctx, h) {
+  if (_alertTimer || !ctx || !ctx.globalState || ctx.globalState.get(h.PREFIX + '.alertAsked')) return;
+  _alertTimer = setTimeout(function () { alertAsk(ctx, h); }, h.alertDelayMs == null ? 15000 : h.alertDelayMs);
+  if (_alertTimer && _alertTimer.unref) _alertTimer.unref();
+}
 module.exports = { start: start, relevant: relevant, tokens: tokens, isBroad: isBroad, clearWords: clearWords,
   sweptClean: sweptClean, badgeTopic: badgeTopic, badgeMarkdown: badgeMarkdown, reviewUrl: reviewUrl, reviewTick: reviewTick, clearReport: clearReport, scan: scan,   // s163
   welcome: welcome, kindOf: kindOf, globExts: globExts, sampleOf: sampleOf,   // s164
-  stakeOf: stakeOf, rateOf: rateOf, noteText: noteText, cleanTeam: cleanTeam, sent: function () { return _sent.slice(); } };   // s174   // s165 · s168 noteText
+  trustLine: trustLine, trustLoad: trustLoad, _trustText: _trustText, _trustSet: function (r) { _trust = r; },   // s195 T2
+  send: send, _hintForTest: function (ctx, h) { return hint(ctx, h); }, stakeOf: stakeOf, rateOf: rateOf, noteText: noteText, cleanTeam: cleanTeam, alertOf: alertOf, alertAsk: alertAsk, nextRuleDate: nextRuleDate, sent: function () { return _sent.slice(); } };   // s174   // s165 · s168 noteText
