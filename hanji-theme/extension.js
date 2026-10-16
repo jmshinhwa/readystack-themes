@@ -29,7 +29,7 @@ async function offer(ctx) {
     const yes = 'Get the pack', no = 'No thanks';
     const pick = await vscode.window.showInformationMessage(
       'You are using ' + vscode.workspace.getConfiguration('workbench').get('colorTheme') + '. The same colours for your terminal (iTerm2, Windows Terminal, Alacritty, kitty), Obsidian and JetBrains IDEs, plus 12 more palettes: $14.99 once.', yes, no);
-    if (pick === yes) { ping('pack_click'); vscode.env.openExternal(vscode.Uri.parse(PACK_URL)); }
+    if (pick === yes) { ping('pack_click'); try { require('./buyopen.js').open(vscode, PACK_URL, SLUG); } catch (e) { vscode.env.openExternal(vscode.Uri.parse(PACK_URL)); } }   // s195 K2 buyopen
     else if (pick === no) { ping('pack_no'); }
   } catch (e) { }
 }
