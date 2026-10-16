@@ -118,7 +118,7 @@ async function ensure(vscode, ctx, S) {
   // s160 2026-09-24 — ★팀 키를 키 판에 보인다: 옆의 $149 가 $29 를 작게 만들고(기준점) · 회사 카드를 가진 팀장에게 살 이유를 준다 · 셋을 넘기지 않는다(선택 과부하)
   const TEAM = /^https:\/\//.test(TEAM_URL) ? teamLabel(vscode) : '';
   const pick = await vscode.window.showInformationMessage.apply(vscode.window,
-    [S.need_key, S.enter_key || 'Enter licence key', S.buy || 'Get a licence'].concat(TEAM ? [TEAM] : []));
+    [S.need_key + (function () { try { var x = require('./auto.js').trustLine(vscode); return x ? ' ' + x : ''; } catch (e) { return ''; } })(), S.enter_key || 'Enter licence key', S.buy || 'Get a licence'].concat(TEAM ? [TEAM] : []));
   if (TEAM && pick === TEAM) { _pingWhy(vscode, 'vsix_buy', 'team'); vscode.env.openExternal(vscode.Uri.parse(TEAM_URL)); return false; }
   if (pick === (S.buy || 'Get a licence')) { _pingWhy(vscode, 'vsix_buy', 'one'); vscode.env.openExternal(vscode.Uri.parse(BUY_URL)); return false; }
   if (pick !== (S.enter_key || 'Enter licence key')) return false;
