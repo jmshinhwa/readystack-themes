@@ -2,7 +2,7 @@
   "name": "aviso-legal-lssi-lint-es",
   "displayName": "Aviso Legal ES: leyes derogadas y datos LSSI",
   "description": "Revisa el aviso legal y la politica de privacidad de tu web: cita a leyes derogadas (LOPD 15/1999, Directiva 95/46/CE) y datos obligatorios del art. 10 LSSI que faltan.",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -51,6 +51,7 @@
   },
   "homepage": "https://getreadystack.com/es/tools/aviso-legal-lssi-lint-es",
   "readystack": {
-    "rulesDate": "2026-09-21"
+    "rulesDate": "2026-09-21",
+    "alertUrl": "https://getreadystack.com/es/tools/aviso-legal-lssi-lint-es?ref=vsix_alert#yjae"
   }
 }
