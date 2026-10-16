@@ -2,7 +2,7 @@
   "name": "ai-disclosure-lint-sb942",
   "displayName": "AI Output Disclosure Lint - SB 942 and AI Act Art. 50",
   "description": "Flags generative-AI code that strips C2PA content credentials, hides the AI label, or paywalls the detection tool before California SB 942 (as amended by AB 853) applies on August 2, 2026.",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -49,6 +49,7 @@
   "homepage": "https://getreadystack.com/tools/ai-disclosure-lint-sb942",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-16"
+    "rulesDate": "2026-09-16",
+    "alertUrl": "https://getreadystack.com/tools/ai-disclosure-lint-sb942?ref=vsix_alert#yjae"
   }
 }
