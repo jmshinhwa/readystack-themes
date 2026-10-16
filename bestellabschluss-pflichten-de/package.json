@@ -2,7 +2,7 @@
   "name": "bestellabschluss-pflichten-de",
   "displayName": "Bestellabschluss-Check DE: Button & Pflichten",
   "description": "Prüft Vorlagen der Bestellstrecke deutscher Onlineshops: Beschriftung des Bestellbuttons, Pflichtangaben über dem Button, Kündigungsbutton und vorangekreuzte Häkchen — 15 Regeln aus BGB, EGBGB, PAngV.",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -54,6 +54,7 @@
   "homepage": "https://getreadystack.com/de/tools/bestellabschluss-pflichten-de",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-22"
+    "rulesDate": "2026-09-22",
+    "alertUrl": "https://getreadystack.com/de/tools/bestellabschluss-pflichten-de?ref=vsix_alert#yjae"
   }
 }
