@@ -47,9 +47,11 @@ chatbot whose training stopped before August 2026 will still tell you Oracle JDK
 
 ## What it costs to be wrong
 
-Oracle Java SE Universal Subscription is list-priced at $15 per employee per month, counting every
-employee in the company, not every Java install. 250 employees x $15 per employee per month x
-12 months = $45,000 a year. The unit is the payroll, not the container.
+Oracle prices Java SE Universal Subscription by total headcount (every employee, plus the staff of
+contractors who support internal operations), not by Java installs. On Oracle's own price list dated
+8 October 2026: up to 500 people = $10,000 a year, 800 people = $54,160 a year, 3,000 people =
+$378,000 a year (Oracle Java SE Universal Subscription Global Price List). The unit is the payroll,
+not the container.
 
 ## The 18 rules
 
