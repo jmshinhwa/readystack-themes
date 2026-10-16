@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.gnu-global-cpp-vscode-config-pack</id>
+  <name>GNU Global C/C++ . Config Pack</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>21 rules that read the values in a shared .vscode folder, plus 45 snippets. VS Code loads a wrong value without a word - this names the line and the fix.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>GNU Global C/C++ . Config Pack: Check This File</b>. Each finding appears on its line with the fix. 21 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/gnu-global-cpp-vscode-config-pack</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/gnu-global-cpp-vscode-config-pack">getreadystack.com/tools/gnu-global-cpp-vscode-config-pack</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_gnu_global_cpp_vscode_config_pack.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.gnu-global-cpp-vscode-config-pack" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.gnu-global-cpp-vscode-config-pack.check" class="com.getreadystack.p_gnu_global_cpp_vscode_config_pack.RsCheckAction"
+            text="GNU Global C/C++ . Config Pack: Check This File" description="Run GNU Global C/C++ . Config Pack on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
