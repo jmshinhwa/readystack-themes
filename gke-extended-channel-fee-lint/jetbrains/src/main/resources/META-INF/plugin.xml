@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.gke-extended-channel-fee-lint</id>
+  <name>GKE Extended Channel Fee Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>GKE Extended channel fee check for Terraform: 14 rules on google_container_cluster versions, fee start dates, forced upgrades and Extended channel blockers</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>GKE Extended Channel Fee Lint: Check This File</b>. Each finding appears on its line with the fix. 14 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/gke-extended-channel-fee-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/gke-extended-channel-fee-lint">getreadystack.com/tools/gke-extended-channel-fee-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_gke_extended_channel_fee_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.gke-extended-channel-fee-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.gke-extended-channel-fee-lint.check" class="com.getreadystack.p_gke_extended_channel_fee_lint.RsCheckAction"
+            text="GKE Extended Channel Fee Lint: Check This File" description="Run GKE Extended Channel Fee Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
