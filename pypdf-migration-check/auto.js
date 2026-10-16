@@ -507,31 +507,47 @@ function money(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d)
 function stakeOf(h) {
   try {
     if (_stake === undefined) { _stake = null; var fp = require('path').join(h.extDir || __dirname, 'stake.json'); if (require('fs').existsSync(fp)) _stake = JSON.parse(require('fs').readFileSync(fp, 'utf8')); }
-    var s = _stake; if (!s || !Array.isArray(s.bands) || !s.bands.length || !s.line) return null;
-    var L = lang(h.vscode), ex = Number(s.example_heads || 500), r = rateOf(s, ex); if (!r) return null;
+    var s = _stake; if (!s || !((Array.isArray(s.bands) && s.bands.length) || (Array.isArray(s.yearly) && s.yearly.length)) || !s.line) return null;
+    var L = lang(h.vscode), ex = Number(s.example_heads || 500), Y = yearlyOf(s, ex); if (!Y) return null;   // s195 O3 — vendor band shapes
     var pick = function (o) { return o ? (o[L] || o.en || '') : ''; };
-    var line = pick(s.line).replace('{ex}', money(ex)).replace('{exy}', money(ex * r * Number(s.months || 12)));
-    var clean = pick(s.clean_line).replace('{ex}', money(ex)).replace('{exy}', money(ex * r * Number(s.months || 12)));   // s166
+    var line = pick(s.line).replace('{ex}', money(ex)).replace('{exy}', money(Y.year));
+    var clean = pick(s.clean_line).replace('{ex}', money(ex)).replace('{exy}', money(Y.year));   // s166 · s195 O3
     var TT = STAKE_TEAM_T[L] || STAKE_TEAM_T.en, team = /^https:\/\//.test(String(s.team_url || '')) ? { url: s.team_url, label: TT[0], pitch: TT[1] } : null;   // s166
     return { s: s, line: line, btn: STAKE_T[L] || STAKE_T.en, ask: pick(s.ask), result: pick(s.result), above: pick(s.above), clean: clean, team: team, note: (NOTE_T[L] || NOTE_T.en)[0] };   // s168 note
   } catch (e) { return null; }
 }
 function rateOf(s, n) { for (var i = 0; i < s.bands.length; i++) { var b = s.bands[i]; if (n >= b[0] && n <= b[1]) return Number(b[2]); } return null; }
+// s195 O3 2026-10-16 — a vendor's yearly list price for n people. stake.json `yearly` (copied from the vendor's own list,
+//   e.g. Oracle 2026-10-08: flat 'Up to 500' = $10,000/yr · 501-2,999 = $10,000 + $147.20 per extra employee/yr · 3,000+ per month)
+//   wins over the old monthly `bands`. None of the bands = null (the caller shows the vendor's 'contact us' line).
+function yearlyOf(s, n) {
+  n = Number(n); if (!s || !(n >= 1)) return null;
+  if (Array.isArray(s.yearly) && s.yearly.length) {
+    for (var i = 0; i < s.yearly.length; i++) { var b = s.yearly[i]; if (!(n >= b.lo && n <= b.hi)) continue;
+      if (b.flat != null) return { year: Number(b.flat), rate: null, band: b.band || '' };
+      if (b.per_extra_year != null) return { year: Math.round((Number(b.base || 0) + (n - Number(b.base_upto || 0)) * Number(b.per_extra_year)) * 100) / 100, rate: null, band: b.band || '' };
+      if (b.per_month != null) return { year: Math.round(n * Number(b.per_month) * Number(s.months || 12) * 100) / 100, rate: Number(b.per_month), band: b.band || '' };
+    }
+    return null;
+  }
+  var r = Array.isArray(s.bands) ? rateOf(s, n) : null; if (!r) return null;
+  return { year: n * r * Number(s.months || 12), rate: r, band: '' };
+}
 async function stakeEstimate(h, SK, label, info) {
   var vscode = h.vscode;
   var v = await vscode.window.showInputBox({ prompt: SK.ask, placeHolder: '500', validateInput: function (x) { return /^\s*[\d,.\s]+\s*$/.test(String(x || '')) ? null : '123'; } });
   var n = parseInt(String(v || '').replace(/[^\d]/g, ''), 10); if (!n || n < 1) return null;
   send(vscode, h.slug || h.PREFIX, { t: 'use', slug: h.slug || h.PREFIX, src: 'vsix', why: 'stake_estimate', path: '/use/vsix/' + (h.slug || h.PREFIX) });
-  var r = rateOf(SK.s, n), msg;
-  if (!r) msg = SK.above || SK.line;
-  else msg = SK.result.replace('{heads}', money(n)).replace('{rate}', r.toFixed(2)).replace('{year}', money(n * r * Number(SK.s.months || 12))).replace('{src}', SK.s.source || '');
+  var Y = yearlyOf(SK.s, n), r = Y ? Y.rate : null, msg;   // s195 O3
+  if (!Y) msg = SK.above || SK.line;
+  else msg = SK.result.replace('{heads}', money(n)).replace('{rate}', r != null ? r.toFixed(2) : '').replace('{year}', money(Y.year)).replace('{band}', Y.band || '').replace('{src}', SK.s.source || '');
   var estLine = msg;   // s168 — the payer's own number goes into the manager note
   if (SK.team) msg = msg + ' ' + SK.team.pitch;   // s166 — the team key next to the payer's own number
   var pk = SK.team ? await vscode.window.showInformationMessage(msg, SK.team.label, SK.note, label) : await vscode.window.showInformationMessage(msg, SK.note, label);
   if (pk === SK.note) { await noteFlow(h, SK, Object.assign({}, info || {}, { estimate: estLine })); pk = undefined; }   // s168 — handled here, so the caller does not write a second note without the estimate
   if (SK.team && pk === SK.team.label) {
     send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix_buy', why: 'stake_team', path: '/paywall/vsix_buy/' + (h.slug || h.PREFIX) });
-    await vscode.env.openExternal(vscode.Uri.parse(SK.team.url));
+    try { await require('./buyopen.js').open(vscode, SK.team.url, h.slug || h.PREFIX); } catch (e) { await vscode.env.openExternal(vscode.Uri.parse(SK.team.url)); }   // s195 K2 buyopen (honest note · VS Code dialog miss → copy link)
   }
   return { n: n, rate: r, msg: msg, pick: pk };
 }
@@ -582,7 +598,7 @@ async function hint(ctx, h) {
       var pk = (SKc && SKc.clean) ? await vscode.window.showInformationMessage(W.msg + ' ' + SKc.clean + TRc, SKc.btn, SKc.note, lbl, B[0], "Don't show again")
         : TMc ? await vscode.window.showInformationMessage(W.msg + ' ' + TMc.line + TRc, lbl, TMc.btn, B[0], "Don't show again")
         : await vscode.window.showInformationMessage(W.msg + TRc, lbl, B[0], "Don't show again");
-      if (TMc && pk === TMc.btn) { send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix_buy', why: 'clean_team' }); try { await vscode.env.openExternal(vscode.Uri.parse(TMc.url)); } catch (e) { } pk = undefined; }
+      if (TMc && pk === TMc.btn) { send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix_buy', why: 'clean_team' }); try { await require('./buyopen.js').open(vscode, TMc.url, h.slug || h.PREFIX); } catch (e) { try { await vscode.env.openExternal(vscode.Uri.parse(TMc.url)); } catch (e2) { } }   /* s195 K2 buyopen */ pk = undefined; }
       if (SKc && SKc.clean && pk === SKc.btn) { estc = await stakeEstimate(h, SKc, lbl, { total: 0, files: clean, day: day }); pk = estc ? estc.pick : undefined; }
       if (SKc && SKc.clean && pk === SKc.note) { await noteFlow(h, SKc, { total: 0, files: clean, day: day }); pk = undefined; }   // s168
       var rep = null;
@@ -667,4 +683,4 @@ module.exports = { start: start, relevant: relevant, tokens: tokens, isBroad: is
   sweptClean: sweptClean, badgeTopic: badgeTopic, badgeMarkdown: badgeMarkdown, reviewUrl: reviewUrl, reviewTick: reviewTick, clearReport: clearReport, scan: scan,   // s163
   welcome: welcome, kindOf: kindOf, globExts: globExts, sampleOf: sampleOf,   // s164
   trustLine: trustLine, trustLoad: trustLoad, _trustText: _trustText, _trustSet: function (r) { _trust = r; },   // s195 T2
-  send: send, _hintForTest: function (ctx, h) { return hint(ctx, h); }, stakeOf: stakeOf, rateOf: rateOf, noteText: noteText, cleanTeam: cleanTeam, alertOf: alertOf, alertAsk: alertAsk, nextRuleDate: nextRuleDate, sent: function () { return _sent.slice(); } };   // s174   // s165 · s168 noteText
+  send: send, _hintForTest: function (ctx, h) { return hint(ctx, h); }, stakeOf: stakeOf, rateOf: rateOf, yearlyOf: yearlyOf, noteText: noteText, cleanTeam: cleanTeam, alertOf: alertOf, alertAsk: alertAsk, nextRuleDate: nextRuleDate, sent: function () { return _sent.slice(); } };   // s174   // s165 · s168 noteText
