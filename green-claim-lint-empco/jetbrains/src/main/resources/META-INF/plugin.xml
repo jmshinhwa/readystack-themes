@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.green-claim-lint-empco</id>
+  <name>Green Claim Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Reads your HTML and Markdown product copy and flags the environmental claims Directive (EU) 2024/825 turns into banned practices on 27 September 2026, with the clause and a compliant rewrite for each hit.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Green Claim Lint: Check This File</b>. Each finding appears on its line with the fix. Offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/green-claim-lint-empco</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/green-claim-lint-empco">getreadystack.com/tools/green-claim-lint-empco</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_green_claim_lint_empco.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.green-claim-lint-empco" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.green-claim-lint-empco.check" class="com.getreadystack.p_green_claim_lint_empco.RsCheckAction"
+            text="Green Claim Lint: Check This File" description="Run Green Claim Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
