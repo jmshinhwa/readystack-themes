@@ -2,7 +2,7 @@
   "name": "datenschutzerklaerung-tdddg-lint",
   "displayName": "Datenschutzerklärung Check – TDDDG, DDG, DPF",
   "description": "Prüft Datenschutzerklärungen (.md/.html) auf veraltete Rechtsgrundlagen (TMG, TTDSG, Privacy Shield, alte SCC) und fehlende Pflichtangaben nach Art. 13 DSGVO – 16 Regeln, mit Zeile und Ersatz.",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -50,7 +50,8 @@
   },
   "homepage": "https://getreadystack.com/de/tools/datenschutzerklaerung-tdddg-lint",
   "readystack": {
-    "rulesDate": "2026-09-26"
+    "rulesDate": "2026-09-26",
+    "alertUrl": "https://getreadystack.com/de/tools/datenschutzerklaerung-tdddg-lint?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
