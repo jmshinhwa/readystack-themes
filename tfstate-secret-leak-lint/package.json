@@ -2,7 +2,7 @@
   "name": "tfstate-secret-leak-lint",
   "displayName": "Terraform State Secret Leak Lint",
   "description": "Flags the Terraform resource attributes, outputs and backends whose values land in terraform.tfstate as cleartext, before an auditor or a repo reader finds them.",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -51,6 +51,7 @@
   "homepage": "https://getreadystack.com/tools/tfstate-secret-leak-lint",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-16"
+    "rulesDate": "2026-09-16",
+    "alertUrl": "https://getreadystack.com/tools/tfstate-secret-leak-lint?ref=vsix_alert#yjae"
   }
 }
