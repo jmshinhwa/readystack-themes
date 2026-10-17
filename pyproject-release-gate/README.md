@@ -20,7 +20,7 @@ assistant trained before the change.
   **77.0.0**. If a file carries an SPDX expression *and* a `License ::` classifier, that
   combination is refused — the build stops rather than warns.
 * **Interpreter floors go stale on a calendar.** Python 3.7 reached end of life 2023-06-27, 3.8 on
-  2024-10-07, 3.9 on 2025-10-31, and 3.10 on 2026-10-01. A `requires-python = ">=3.8"` written in
+  2024-10-07, 3.9 on 2025-10-31, and 3.10 on 2026-10-31. A `requires-python = ">=3.8"` written in
   2023 is a promise you no longer keep, and a `Programming Language :: Python :: 3.8` classifier
   advertises it on your project page.
 
