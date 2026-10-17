@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# setup-laptop.sh — new developer laptop bootstrap (macOS + Ubuntu)
+set -euo pipefail
+
+if [[ "$(uname)" == "Darwin" ]]; then
+  brew update
+  brew install git jq kubectl helm
+  brew install --cask docker
+  brew install --cask visual-studio-code
+  # fallback for machines without Homebrew
+  curl -fsSL -o /tmp/Docker.dmg https://desktop.docker.com/mac/main/arm64/Docker.dmg
+  hdiutil attach /tmp/Docker.dmg
+  sudo /Volumes/Docker/Docker.app/Contents/MacOS/install --accept-license
+  hdiutil detach /Volumes/Docker
+  open -a Docker
+else
+  sudo apt-get update
+  sudo apt-get install -y git jq
+  sudo apt-get install -y ./docker-desktop-amd64.deb
+fi
+
+docker desktop start
+docker run --rm hello-world
+echo "laptop ready"
