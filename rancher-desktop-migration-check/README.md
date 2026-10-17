@@ -1,5 +1,7 @@
 # Rancher Desktop Migration Check — Docker Desktop lines
 
+![Rancher Desktop Migration: Docker Desktop lines — finds the line](https://getreadystack.com/img/promo/rancher-desktop-migration-check_demo.gif)
+
 ![Rancher Desktop Migration Check — Docker Desktop licence lines](https://getreadystack.com/img/promo/sku634413_result_card.jpg)
 
 Finds every line in your repo that only works on Docker Desktop and prints the exact Rancher Desktop line that replaces it. On the bundled sample `dev-setup.sh` it flags 9 lines from 10 rules.
