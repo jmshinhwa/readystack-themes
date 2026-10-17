@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.hardcoded-credential-audit</id>
+  <name>Hardcoded Credential Audit</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Open any config file and see every hardcoded credential — and every setting that quietly undoes your encryption — with the line number and the reason. 30 checks, 30 safe-config snippets, offline in the editor, no account.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Hardcoded Credential Audit: Check This File</b>. Each finding appears on its line with the fix. 30 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/hardcoded-credential-audit</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com">getreadystack.com</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_hardcoded_credential_audit.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.hardcoded-credential-audit" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.hardcoded-credential-audit.check" class="com.getreadystack.p_hardcoded_credential_audit.RsCheckAction"
+            text="Hardcoded Credential Audit: Check This File" description="Run Hardcoded Credential Audit on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
