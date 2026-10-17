@@ -1,5 +1,7 @@
 # Podman Desktop Laptop Check: Docker Desktop seats
 
+![Podman Desktop Laptop Check: Docker Desktop seats — finds the line](https://getreadystack.com/img/promo/podman-desktop-laptop-check_demo.gif)
+
 ![Podman Desktop Laptop Check: Docker Desktop seats](https://getreadystack.com/img/promo/sku593648_result_card.jpg)
 
 **Finds every line in a laptop setup file that installs, downloads or starts Docker Desktop, and prints the Podman Desktop line that replaces it.** On the sample 24-line `setup-laptop.sh` it finds 6 Docker Desktop ties: 3 errors and 3 warnings. 10 rules.
