@@ -1,5 +1,7 @@
 # Miniforge Migration Check: Anaconda in Docker, CI
 
+![Miniforge Migration Check: Anaconda in Docker, CI — finds the line](https://getreadystack.com/img/promo/miniforge-migration-check_demo.gif)
+
 ![Miniforge Migration Check: Anaconda in Docker, CI](https://getreadystack.com/img/promo/sku590357_result_card.jpg)
 
 **Finds every line in a Dockerfile or CI YAML that still pulls Miniconda, Anaconda images or Anaconda's terms, and prints the Miniforge line that replaces it.** On the sample 41-line GitHub Actions `ci.yml` it finds six: five errors and one warning.
