@@ -3,15 +3,52 @@
  "vendor": "Oracle",
  "months": 12,
  "example_heads": 500,
+ "bands": [
+  [
+   1,
+   999,
+   15.0
+  ],
+  [
+   1000,
+   2999,
+   12.0
+  ],
+  [
+   3000,
+   9999,
+   10.5
+  ],
+  [
+   10000,
+   19999,
+   8.25
+  ],
+  [
+   20000,
+   29999,
+   6.75
+  ],
+  [
+   30000,
+   39999,
+   5.7
+  ],
+  [
+   40000,
+   49999,
+   5.25
+  ]
+ ],
  "source": "Oracle Java SE Universal Subscription Global Price List",
  "source_url": "https://www.oracle.com/a/ocom/docs/corporate/pricing/java-se-subscription-pricelist-5028356.pdf",
- "measured_at": "2026-10-16",
+ "measured_at": "2026-09-27",
  "line": {
-  "en": "Oracle's own dates: from the 2026-10-20 Critical Patch Update, new Oracle JDK 21 updates are under the Java SE OTN license, not free for production. Java SE is then billed on your whole headcount, contractors included - at list price a {ex}-person company pays ${exy} a year.",
-  "de": "Oracles eigene Termine: Ab dem Critical Patch Update vom 20.10.2026 stehen neue Oracle-JDK-21-Updates unter der Java-SE-OTN-Lizenz und sind in der Produktion nicht mehr kostenlos. Java SE wird dann nach der gesamten Belegschaft abgerechnet, Auftragnehmer inklusive - zum Listenpreis zahlt ein Unternehmen mit {ex} Personen ${exy} pro Jahr.",
-  "ja": "Oracle 自身の日程: 2026-10-20 の Critical Patch Update 以降、Oracle JDK 21 の新しいアップデートは Java SE OTN ライセンスとなり、本番利用は無償ではなくなります。その場合 Java SE は全従業員数 (委託先を含む) で課金され、定価では {ex} 人の会社で年 ${exy} です。",
-  "es": "Fechas de la propia Oracle: desde el Critical Patch Update del 20-10-2026, las nuevas actualizaciones de Oracle JDK 21 pasan a la licencia Java SE OTN y dejan de ser gratuitas en producción. Java SE se factura entonces por toda la plantilla, contratistas incluidos: a precio de lista, una empresa de {ex} personas paga ${exy} al año.",
-  "pt": "Datas da própria Oracle: a partir do Critical Patch Update de 20/10/2026, as novas atualizações do Oracle JDK 21 passam para a licença Java SE OTN e deixam de ser gratuitas em produção. O Java SE passa a ser cobrado pelo quadro inteiro, terceirizados incluídos: a preço de tabela, uma empresa de {ex} pessoas paga US${exy} por ano."
+  "en": "Once Oracle's no-fee terms end, Java SE is billed on your whole headcount, contractors included - at list price a {ex}-person company pays ${exy} a year.",
+  "de": "Sobald Oracles gebührenfreie Bedingungen enden, wird Java SE nach der gesamten Belegschaft abgerechnet, Auftragnehmer inklusive - zum Listenpreis zahlt ein Unternehmen mit {ex} Personen ${exy} pro Jahr.",
+  "ja": "Oracle の無償条件 (NFTC) が終わると、Java SE は利用者数ではなく全従業員数 (委託先を含む) で課金されます。定価では {ex} 人の会社で年 ${exy} です。",
+  "es": "Cuando terminan los términos gratuitos de Oracle, Java SE se factura por toda la plantilla, contratistas incluidos: a precio de lista, una empresa de {ex} personas paga ${exy} al año.",
+  "pt": "Quando os termos gratuitos da Oracle terminam, o Java SE é cobrado pelo quadro inteiro, terceirizados incluídos: a preço de tabela, uma empresa de {ex} pessoas paga US${exy} por ano."
  },
  "ask": {
   "en": "How many employees and contractors does your company have?",
@@ -21,96 +58,22 @@
   "pt": "Quantos funcionários e terceirizados sua empresa tem?"
  },
  "result": {
-  "en": "{heads} people = ${year} a year at Oracle's list price ({band} band, {src}, dated 2026-10-08). The full report lists every line in this workspace that pulls an Oracle build, with the free OpenJDK line that replaces it.",
-  "de": "{heads} Personen = ${year} pro Jahr zum Oracle-Listenpreis (Band {band}, {src}, Stand 08.10.2026). Der vollständige Bericht listet jede Zeile in diesem Workspace, die einen Oracle-Build zieht, mit der freien OpenJDK-Zeile als Ersatz.",
-  "ja": "{heads} 人 = 年 ${year}（Oracle 定価 · {band} 帯 · {src} · 2026-10-08 版）。完全レポートは、このワークスペースで Oracle ビルドを取得しているすべての行と、置き換えられる無償の OpenJDK の行を一覧にします。",
-  "es": "{heads} personas = ${year} al año a precio de lista de Oracle (tramo {band}, {src}, fecha 2026-10-08). El informe completo enumera cada línea de este espacio de trabajo que usa una build de Oracle, con la línea OpenJDK gratuita que la sustituye.",
-  "pt": "{heads} pessoas = US${year} por ano a preço de tabela da Oracle (faixa {band}, {src}, data 2026-10-08). O relatório completo lista cada linha deste workspace que usa uma build da Oracle, com a linha OpenJDK gratuita que a substitui."
+  "en": "{heads} people x ${rate}/month x 12 = ${year} a year at Oracle's list price ({src}). The full report lists every line in this workspace that pulls an Oracle build, with the free OpenJDK line that replaces it.",
+  "de": "{heads} Personen x ${rate}/Monat x 12 = ${year} pro Jahr zum Oracle-Listenpreis ({src}). Der vollständige Bericht listet jede Zeile in diesem Workspace, die einen Oracle-Build zieht, mit der freien OpenJDK-Zeile als Ersatz.",
+  "ja": "{heads} 人 x ${rate}/月 x 12 = 年 ${year} (Oracle 定価 · {src})。完全レポートは、このワークスペースで Oracle ビルドを取得しているすべての行と、置き換えられる無償の OpenJDK の行を一覧にします。",
+  "es": "{heads} personas x ${rate}/mes x 12 = ${year} al año a precio de lista de Oracle ({src}). El informe completo enumera cada línea de este espacio de trabajo que usa una build de Oracle, con la línea OpenJDK gratuita que la sustituye.",
+  "pt": "{heads} pessoas x US${rate}/mês x 12 = US${year} por ano a preço de tabela da Oracle ({src}). O relatório completo lista cada linha deste workspace que usa uma build da Oracle, com a linha OpenJDK gratuita que a substitui."
  },
  "above": {
   "en": "Above 49,999 people Oracle does not publish a list price; it quotes directly. The full report is the evidence to bring to that conversation."
  },
  "clean_line": {
-  "en": "This folder is clean. Oracle's own dates: from the 2026-10-20 Critical Patch Update, new Oracle JDK 21 updates are OTN-licensed, not free for production - and Oracle prices Java SE by total headcount, so one Oracle build in any other repository puts the whole payroll in scope: at list price a {ex}-person company pays ${exy} a year.",
-  "de": "Dieser Ordner ist sauber. Oracles eigene Termine: Ab dem Critical Patch Update vom 20.10.2026 stehen neue Oracle-JDK-21-Updates unter der OTN-Lizenz und sind in der Produktion nicht kostenlos - und Oracle berechnet Java SE nach der gesamten Belegschaft: ein einziger Oracle-Build in einem anderen Repository bringt alle in die Rechnung, zum Listenpreis zahlt ein Unternehmen mit {ex} Personen ${exy} pro Jahr.",
-  "ja": "このフォルダはクリーンです。Oracle 自身の日程: 2026-10-20 の Critical Patch Update 以降、Oracle JDK 21 の新しいアップデートは OTN ライセンスで本番は無償ではありません。しかも Oracle は Java SE を全従業員数で課金するため、ほかのリポジトリに Oracle ビルドが 1 つあれば全従業員が対象です。定価では {ex} 人の会社で年 ${exy} です。",
-  "es": "Esta carpeta está limpia. Fechas de la propia Oracle: desde el Critical Patch Update del 20-10-2026, las nuevas actualizaciones de Oracle JDK 21 tienen licencia OTN y no son gratuitas en producción; además Oracle cobra Java SE por toda la plantilla, así que una sola build de Oracle en cualquier otro repositorio mete a toda la empresa en la cuenta: a precio de lista, una empresa de {ex} personas paga ${exy} al año.",
-  "pt": "Esta pasta está limpa. Datas da própria Oracle: a partir do Critical Patch Update de 20/10/2026, as novas atualizações do Oracle JDK 21 têm licença OTN e não são gratuitas em produção; além disso a Oracle cobra o Java SE pelo quadro inteiro, então uma única build da Oracle em qualquer outro repositório coloca a empresa toda na conta: a preço de tabela, uma empresa de {ex} pessoas paga US${exy} por ano."
+  "en": "Oracle prices Java SE by total headcount, not by install: one Oracle build in any other repository puts the whole payroll in scope - at list price a {ex}-person company pays ${exy} a year.",
+  "de": "Oracle berechnet Java SE nach der gesamten Belegschaft, nicht pro Installation: ein einziger Oracle-Build in einem anderen Repository bringt die ganze Belegschaft in die Rechnung - zum Listenpreis zahlt ein Unternehmen mit {ex} Personen ${exy} pro Jahr.",
+  "ja": "Oracle は Java SE をインストール数ではなく全従業員数で課金します。ほかのどこかのリポジトリに Oracle ビルドが 1 つあれば全従業員が対象です。定価では {ex} 人の会社で年 ${exy} です。",
+  "es": "Oracle cobra Java SE por toda la plantilla, no por instalación: una sola build de Oracle en cualquier otro repositorio pone a toda la plantilla en la cuenta; a precio de lista, una empresa de {ex} personas paga ${exy} al año.",
+  "pt": "A Oracle cobra o Java SE pelo quadro inteiro, não por instalação: uma única build da Oracle em qualquer outro repositório coloca todo o quadro na conta; a preço de tabela, uma empresa de {ex} pessoas paga US${exy} por ano."
  },
  "team_url": "https://getreadystack.com/api/buy/cl/polar_cl_l6iN1uWt0FwWu7tBsczD0jWpP2vxFM54Wdwqb3KPi1G",
- "_s166": "clean_line = the company line on a CLEAN result (a clean folder is not the company's safety) · team_url = Polar team key checkout ([measured 2026-09-28] $149 once · every linter · 5 seats). Oracle roadmap re-read 2026-09-28: JDK 17 Premier Support ends Sep 2026, Extended to Sep 2029 with the Extended Support fee waived Oct 2026-Sep 2029 (subscribers) - so the bill risk is unsubscribed Oracle builds, not the 9/30 date itself.",
- "event": {
-  "id": "jdk21_otn_20261020",
-  "from": "2026-10-10",
-  "until": "2026-11-30",
-  "date": "2026-10-20",
-  "sources": [
-   "https://www.oracle.com/java/technologies/javase/jdk-faqs.html",
-   "https://blogs.oracle.com/java/jdk-21-approaches-end-of-permissive-license",
-   "https://www.oracle.com/security-alerts/"
-  ],
-  "measured_at": "2026-10-10",
-  "_why": "s186 E6 — Oracle JDK licence FAQ: 'Java 21 Oracle JDK, releases through September 2026 = NFTC'; Oracle Java blog 2026-08-14: updates from the October 2026 CPU are Java SE OTN; Oracle CPU calendar: 20 October 2026. The auto.js kit re-shows the result toast once per install inside [from, until]."
- },
- "_s186": "E6 2026-10-10: line/clean_line now carry the dated October CPU fact (Oracle's own pages, see event.sources); event = one re-show per install 10/10-11/30. Older wording 'Once Oracle's no-fee terms end' kept the date implicit.",
- "yearly": [
-  {
-   "lo": 1,
-   "hi": 10,
-   "flat": 100.0,
-   "band": "Up to 10"
-  },
-  {
-   "lo": 11,
-   "hi": 100,
-   "flat": 1000.0,
-   "band": "Up to 100"
-  },
-  {
-   "lo": 101,
-   "hi": 500,
-   "flat": 10000.0,
-   "band": "Up to 500"
-  },
-  {
-   "lo": 501,
-   "hi": 2999,
-   "base": 10000.0,
-   "base_upto": 500,
-   "per_extra_year": 147.2,
-   "band": "501-2,999"
-  },
-  {
-   "lo": 3000,
-   "hi": 9999,
-   "per_month": 10.5,
-   "band": "3,000-9,999"
-  },
-  {
-   "lo": 10000,
-   "hi": 19999,
-   "per_month": 8.25,
-   "band": "10,000-19,999"
-  },
-  {
-   "lo": 20000,
-   "hi": 29999,
-   "per_month": 6.75,
-   "band": "20,000-29,999"
-  },
-  {
-   "lo": 30000,
-   "hi": 39999,
-   "per_month": 5.7,
-   "band": "30,000-39,999"
-  },
-  {
-   "lo": 40000,
-   "hi": 49999,
-   "per_month": 5.25,
-   "band": "40,000-49,999"
-  }
- ],
- "list_date": "2026-10-08",
- "_s195_O3": "2026-10-16 — price part generated from /root/yoojin-project/config/oracle_java_pricelist.json (Oracle list dated 2026-10-08). The 9/27 bands (1-999 = $15/employee/month → 500 people $90,000) were wrong after Oracle's 10/8 list (500 people $10,000)."
+ "_s166": "clean_line = the company line on a CLEAN result (a clean folder is not the company's safety) · team_url = Polar team key checkout ([measured 2026-09-28] $149 once · every linter · 5 seats). Oracle roadmap re-read 2026-09-28: JDK 17 Premier Support ends Sep 2026, Extended to Sep 2029 with the Extended Support fee waived Oct 2026-Sep 2029 (subscribers) - so the bill risk is unsubscribed Oracle builds, not the 9/30 date itself."
 }
