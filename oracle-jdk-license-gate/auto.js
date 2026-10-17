@@ -547,7 +547,7 @@ async function stakeEstimate(h, SK, label, info) {
   if (pk === SK.note) { await noteFlow(h, SK, Object.assign({}, info || {}, { estimate: estLine })); pk = undefined; }   // s168 — handled here, so the caller does not write a second note without the estimate
   if (SK.team && pk === SK.team.label) {
     send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix_buy', why: 'stake_team', path: '/paywall/vsix_buy/' + (h.slug || h.PREFIX) });
-    await vscode.env.openExternal(vscode.Uri.parse(SK.team.url));
+    try { await require('./buyopen.js').open(vscode, SK.team.url, h.slug || h.PREFIX); } catch (e) { await vscode.env.openExternal(vscode.Uri.parse(SK.team.url)); }   // s195 K2 buyopen (honest note · VS Code dialog miss → copy link)
   }
   return { n: n, rate: r, msg: msg, pick: pk };
 }
@@ -598,7 +598,7 @@ async function hint(ctx, h) {
       var pk = (SKc && SKc.clean) ? await vscode.window.showInformationMessage(W.msg + ' ' + SKc.clean + TRc, SKc.btn, SKc.note, lbl, B[0], "Don't show again")
         : TMc ? await vscode.window.showInformationMessage(W.msg + ' ' + TMc.line + TRc, lbl, TMc.btn, B[0], "Don't show again")
         : await vscode.window.showInformationMessage(W.msg + TRc, lbl, B[0], "Don't show again");
-      if (TMc && pk === TMc.btn) { send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix_buy', why: 'clean_team' }); try { await vscode.env.openExternal(vscode.Uri.parse(TMc.url)); } catch (e) { } pk = undefined; }
+      if (TMc && pk === TMc.btn) { send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix_buy', why: 'clean_team' }); try { await require('./buyopen.js').open(vscode, TMc.url, h.slug || h.PREFIX); } catch (e) { try { await vscode.env.openExternal(vscode.Uri.parse(TMc.url)); } catch (e2) { } }   /* s195 K2 buyopen */ pk = undefined; }
       if (SKc && SKc.clean && pk === SKc.btn) { estc = await stakeEstimate(h, SKc, lbl, { total: 0, files: clean, day: day }); pk = estc ? estc.pick : undefined; }
       if (SKc && SKc.clean && pk === SKc.note) { await noteFlow(h, SKc, { total: 0, files: clean, day: day }); pk = undefined; }   // s168
       var rep = null;
