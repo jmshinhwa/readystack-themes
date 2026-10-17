@@ -82,6 +82,20 @@ jobs:
           item['id'] = int(rid)
           if not item.get('productVersion') and ver:
               item['productVersion'] = ver
+          # measured 10/17: 400 "reviewReply.UserId must not be Guid.Empty" ⇒ our own identity id (the federated publisher identity)
+          me = ''
+          for u in ('https://marketplace.visualstudio.com/_apis/connectionData', 'https://app.vssps.visualstudio.com/_apis/profile/profiles/me?api-version=6.0'):
+              st, b, err = call('GET', u)
+              try:
+                  j = json.loads(b) if st == 200 else {}
+              except Exception:
+                  j = {}
+              me = ((j.get('authenticatedUser') or {}).get('id')) or j.get('id') or ''
+              out.setdefault('me', []).append({'u': u.split('/')[2], 'http': st, 'id': bool(me)})
+              if me and me != '00000000-0000-0000-0000-000000000000':
+                  break
+          if me:
+              rep['userId'] = me
           item['reply'] = rep
           out['base_keys'] = sorted(base.keys())
           variants = [
