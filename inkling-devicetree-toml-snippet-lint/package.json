@@ -2,7 +2,7 @@
   "name": "inkling-devicetree-toml-snippet-lint",
   "displayName": "Inkling · DeviceTree · TOML — Snippets & Lint",
   "description": "The nine languages VS Code only colours — 37 snippets and 21 rules that catch what the syntax highlighter never says: a v1 `MsgBox,` in a v2 script, `status = \"ok\"` in an overlay, an unquoted version ",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "publisher": "readystack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -136,5 +136,13 @@
         "path": "./snippets/yaml.code-snippets"
       }
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "inkling-devicetree-toml-snippet-lint"
+  },
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
