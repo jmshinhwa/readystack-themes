@@ -1,5 +1,7 @@
 # Python 3.10 End of Life — Pin Check & Fix
 
+![Python 3.10 End of Life — Pin Check & Fix — finds the line](https://getreadystack.com/img/promo/python-310-eol-pin-check_demo.gif)
+
 ![Python 3.10 End of Life — Pin Check & Fix](https://getreadystack.com/img/promo/sku598551_result_card.jpg)
 
 **Finds every place your project still pins Python 3.10 — 17 rules across Dockerfiles, GitHub Actions, tox, nox, `.python-version`, `runtime.txt`, Pipfile, conda, AWS Lambda, Google Cloud Run functions and Azure — each with its line, the dated fact for that place, and the one-line fix.** On the sample `deploy.yml` it finds six pins: 4 errors and 2 warnings.
