@@ -16,6 +16,10 @@ on:
       text_b64:
         description: reply text, base64 (utf-8)
         required: true
+      ver:
+        description: extension version the reply is about (from package.json)
+        required: false
+        default: ''
       tag:
         description: run label
         required: false
@@ -40,6 +44,7 @@ jobs:
           EXT: ${{ inputs.ext }}
           RID: ${{ inputs.review_id }}
           TXT: ${{ inputs.text_b64 }}
+          VER: ${{ inputs.ver }}
         run: |
           TOKEN=$(az account get-access-token --resource 499b84ac-1321-427f-aa17-267ca6975798 --query accessToken -o tsv)
           export TOKEN
@@ -50,19 +55,35 @@ jobs:
           txt = base64.b64decode(os.environ['TXT']).decode('utf-8')
           tok = os.environ['TOKEN']
           url = 'https://marketplace.visualstudio.com/_apis/gallery/publishers/readystack/extensions/%s/reviews/%s' % (ext, rid)
+          ver = os.environ.get('VER') or ''
           out = {'ext': ext, 'review': rid, 'tries': []}
-          for ver, op in (('7.2-preview.1', 3), ('7.1-preview.1', 3), ('7.2-preview.1', 'replyToReview')):
-              body = json.dumps({'operation': op, 'reviewItem': {'reply': {'replyText': txt, 'reviewId': int(rid)}}}).encode()
-              req = urllib.request.Request(url + '?api-version=' + ver, data=body, method='PATCH',
-                                           headers={'Authorization': 'Bearer ' + tok, 'Content-Type': 'application/json',
-                                                    'Accept': 'application/json'})
+          H = {'Authorization': 'Bearer ' + tok, 'Content-Type': 'application/json'}
+          def call(method, u, body=None, accept='application/json'):
+              req = urllib.request.Request(u, data=(json.dumps(body).encode() if body is not None else None), method=method,
+                                           headers=dict(H, Accept=accept))
               try:
                   r = urllib.request.urlopen(req, timeout=30)
-                  out['tries'].append({'ver': ver, 'op': op, 'http': r.status, 'body': r.read()[:400].decode('utf-8', 'replace')})
+                  return r.status, r.read()[:600].decode('utf-8', 'replace'), ''
+              except urllib.error.HTTPError as e:
+                  return e.code, e.read()[:400].decode('utf-8', 'replace'), urllib.parse.unquote(e.headers.get('X-TFS-ServiceError') or '')[:300]
+          import urllib.parse
+          st, b, err = call('GET', url + '?api-version=7.2-preview.1')
+          out['get'] = {'http': st, 'body': b[:300], 'err': err}
+          rep = {'replyText': txt, 'reviewId': int(rid)}
+          if ver:
+              rep['productVersion'] = ver
+          variants = [
+              ('7.2-preview.1', {'operation': 3, 'reviewItem': {'id': int(rid), 'reply': rep}}),
+              ('7.2-preview.1', {'operation': 'replyToReview', 'reviewItem': {'id': int(rid), 'reply': rep}}),
+              ('7.1-preview.1', {'operation': 3, 'reviewItem': {'reply': rep}}),
+              ('3.0-preview.1', {'operation': 3, 'reviewItem': {'reply': rep}}),
+          ]
+          for v, body in variants:
+              st, b, err = call('PATCH', url + '?api-version=' + v, body, 'application/json;api-version=' + v)
+              out['tries'].append({'ver': v, 'op': body['operation'], 'http': st, 'body': b[:300], 'err': err})
+              if st in (200, 201):
                   out['ok'] = True
                   break
-              except urllib.error.HTTPError as e:
-                  out['tries'].append({'ver': ver, 'op': op, 'http': e.code, 'body': e.read()[:300].decode('utf-8', 'replace')})
           json.dump(out, open('mp_reply.json', 'w'))
           print('ok' if out.get('ok') else 'failed', [(t['http']) for t in out['tries']])
           PY
