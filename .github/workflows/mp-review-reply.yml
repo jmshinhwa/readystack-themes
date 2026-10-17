@@ -72,9 +72,18 @@ jobs:
           rep = {'replyText': txt, 'reviewId': int(rid)}
           if ver:
               rep['productVersion'] = ver
-          item = {'id': int(rid), 'reply': rep}
-          if ver:
-              item['productVersion'] = ver          # measured 10/17: 400 "Value cannot be null. Parameter name: review.ProductVersion"
+          # measured 10/17: the reply PATCH validates the whole review (400 ProductVersion null · then Rating 0) ⇒ send the review as it
+          # stands publicly (id · rating · text · title · productVersion · user) with our reply attached
+          pub = json.loads(urllib.request.urlopen(urllib.request.Request(
+              'https://marketplace.visualstudio.com/_apis/public/gallery/publishers/readystack/extensions/%s/reviews?count=100' % ext,
+              headers={'Accept': 'application/json;api-version=3.0-preview.1'}), timeout=30).read())
+          base = next((r for r in pub.get('reviews') or [] if str(r.get('id')) == rid), {})
+          item = {k: base[k] for k in ('id', 'rating', 'text', 'title', 'productVersion', 'userId', 'userDisplayName', 'updatedDate') if base.get(k) is not None}
+          item['id'] = int(rid)
+          if not item.get('productVersion') and ver:
+              item['productVersion'] = ver
+          item['reply'] = rep
+          out['base_keys'] = sorted(base.keys())
           variants = [
               ('7.2-preview.1', {'operation': 3, 'reviewItem': item}),
               ('7.2-preview.1', {'operation': 'replyToReview', 'reviewItem': item}),
