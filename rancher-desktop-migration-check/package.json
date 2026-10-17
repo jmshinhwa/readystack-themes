@@ -2,7 +2,7 @@
   "name": "rancher-desktop-migration-check",
   "displayName": "Rancher Desktop Migration: Docker Desktop lines",
   "description": "Finds Docker Desktop-only lines (host-gateway, desktop-linux context, ~/.docker/run socket, Docker.app setup) in compose, Makefile, script and devcontainer files and prints the Rancher Desktop ",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -54,7 +54,8 @@
     "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   },
   "readystack": {
-    "rulesDate": "2026-10-12"
+    "rulesDate": "2026-10-12",
+    "alertUrl": "https://getreadystack.com/tools/rancher-desktop-migration-check?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
