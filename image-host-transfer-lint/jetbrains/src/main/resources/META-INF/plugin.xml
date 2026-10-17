@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.image-host-transfer-lint</id>
+  <name>Image Host Transfer Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Names every image, font, badge and embed in your docs that sends an EU reader's IP outside the EEA - and the fix for each one.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Image Host Transfer Lint: Check This File</b>. Each finding appears on its line with the fix. 17 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/image-host-transfer-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/image-host-transfer-lint">getreadystack.com/tools/image-host-transfer-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_image_host_transfer_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.image-host-transfer-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.image-host-transfer-lint.check" class="com.getreadystack.p_image_host_transfer_lint.RsCheckAction"
+            text="Image Host Transfer Lint: Check This File" description="Run Image Host Transfer Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
