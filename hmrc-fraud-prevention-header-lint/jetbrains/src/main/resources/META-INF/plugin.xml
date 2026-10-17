@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.hmrc-fraud-prevention-header-lint</id>
+  <name>HMRC Fraud Prevention Header Lint for Making Tax Digital</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Finds the Gov-Client and Gov-Vendor header mistakes HMRC rejects, in your editor, offline, before you send the request.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>HMRC Fraud Prevention Header Lint for Making Tax Digital: Check This File</b>. Each finding appears on its line with the fix. 34 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/hmrc-fraud-prevention-header-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/hmrc-fraud-prevention-header-lint">getreadystack.com/tools/hmrc-fraud-prevention-header-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_hmrc_fraud_prevention_header_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.hmrc-fraud-prevention-header-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.hmrc-fraud-prevention-header-lint.check" class="com.getreadystack.p_hmrc_fraud_prevention_header_lint.RsCheckAction"
+            text="HMRC Fraud Prevention Header Lint for Making Tax Digital: Check This File" description="Run HMRC Fraud Prevention Header Lint for Making Tax Digital on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
