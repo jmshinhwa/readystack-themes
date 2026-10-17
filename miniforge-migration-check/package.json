@@ -2,7 +2,7 @@
   "name": "miniforge-migration-check",
   "displayName": "Miniforge Migration Check: Anaconda in Docker, CI",
   "description": "Finds continuumio/miniconda3 images, repo.anaconda.com installers, setup-miniconda without miniforge-version and conda tos accept in Dockerfiles and CI YAML, with the Miniforge line for each.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -56,7 +56,8 @@
     "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   },
   "readystack": {
-    "rulesDate": "2026-10-10"
+    "rulesDate": "2026-10-10",
+    "alertUrl": "https://getreadystack.com/tools/miniforge-migration-check?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
