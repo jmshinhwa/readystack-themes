@@ -72,11 +72,12 @@ jobs:
           rep = {'replyText': txt, 'reviewId': int(rid)}
           if ver:
               rep['productVersion'] = ver
+          item = {'id': int(rid), 'reply': rep}
+          if ver:
+              item['productVersion'] = ver          # measured 10/17: 400 "Value cannot be null. Parameter name: review.ProductVersion"
           variants = [
-              ('7.2-preview.1', {'operation': 3, 'reviewItem': {'id': int(rid), 'reply': rep}}),
-              ('7.2-preview.1', {'operation': 'replyToReview', 'reviewItem': {'id': int(rid), 'reply': rep}}),
-              ('7.1-preview.1', {'operation': 3, 'reviewItem': {'reply': rep}}),
-              ('3.0-preview.1', {'operation': 3, 'reviewItem': {'reply': rep}}),
+              ('7.2-preview.1', {'operation': 3, 'reviewItem': item}),
+              ('7.2-preview.1', {'operation': 'replyToReview', 'reviewItem': item}),
           ]
           for v, body in variants:
               st, b, err = call('PATCH', url + '?api-version=' + v, body, 'application/json;api-version=' + v)
