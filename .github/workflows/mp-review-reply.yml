@@ -1,0 +1,73 @@
+name: Marketplace review reply
+run-name: reply ${{ inputs.ext }} ${{ inputs.review_id }} ${{ inputs.tag }}
+# s197 R2 2026-10-17 — answers one review on OUR extension (publisher readystack) as the publisher, with the same
+# Azure login the publish workflow uses. The VPS reply desk (social_reply.py) dispatches it and reads the artifact.
+# Gallery REST (azure-devops-node-api GalleryApi.updateReview): PATCH .../reviews/{reviewId} with
+# ReviewPatch {operation: 3 = ReplyToReview, reviewItem: {reply: {replyText}}}. Text comes base64 so quoting can't break it.
+on:
+  workflow_dispatch:
+    inputs:
+      ext:
+        description: extension name (publisher readystack)
+        required: true
+      review_id:
+        description: review id
+        required: true
+      text_b64:
+        description: reply text, base64 (utf-8)
+        required: true
+      tag:
+        description: run label
+        required: false
+        default: 'vps'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  reply:
+    runs-on: ubuntu-latest
+    environment: marketplace-publish
+    steps:
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+      - name: Reply
+        env:
+          EXT: ${{ inputs.ext }}
+          RID: ${{ inputs.review_id }}
+          TXT: ${{ inputs.text_b64 }}
+        run: |
+          TOKEN=$(az account get-access-token --resource 499b84ac-1321-427f-aa17-267ca6975798 --query accessToken -o tsv)
+          export TOKEN
+          python3 - <<'PY'
+          import base64, json, os, re, urllib.request, urllib.error
+          ext, rid = os.environ['EXT'], os.environ['RID']
+          assert re.match(r'^[a-z0-9-]+$', ext) and re.match(r'^\d+$', rid), 'bad input'
+          txt = base64.b64decode(os.environ['TXT']).decode('utf-8')
+          tok = os.environ['TOKEN']
+          url = 'https://marketplace.visualstudio.com/_apis/gallery/publishers/readystack/extensions/%s/reviews/%s' % (ext, rid)
+          out = {'ext': ext, 'review': rid, 'tries': []}
+          for ver, op in (('7.2-preview.1', 3), ('7.1-preview.1', 3), ('7.2-preview.1', 'replyToReview')):
+              body = json.dumps({'operation': op, 'reviewItem': {'reply': {'replyText': txt, 'reviewId': int(rid)}}}).encode()
+              req = urllib.request.Request(url + '?api-version=' + ver, data=body, method='PATCH',
+                                           headers={'Authorization': 'Bearer ' + tok, 'Content-Type': 'application/json',
+                                                    'Accept': 'application/json'})
+              try:
+                  r = urllib.request.urlopen(req, timeout=30)
+                  out['tries'].append({'ver': ver, 'op': op, 'http': r.status, 'body': r.read()[:400].decode('utf-8', 'replace')})
+                  out['ok'] = True
+                  break
+              except urllib.error.HTTPError as e:
+                  out['tries'].append({'ver': ver, 'op': op, 'http': e.code, 'body': e.read()[:300].decode('utf-8', 'replace')})
+          json.dump(out, open('mp_reply.json', 'w'))
+          print('ok' if out.get('ok') else 'failed', [(t['http']) for t in out['tries']])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mp-reply
+          path: mp_reply.json
+          retention-days: 1
