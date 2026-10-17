@@ -1,12 +1,5 @@
 # Oracle JDK License Gate
 
-**On 20 October 2026, new Oracle JDK 21 updates stop being free for production.** From that day's Critical Patch Update,
-new Oracle JDK 21 updates are under the Java SE OTN license, and Oracle bills Java SE on the company's whole
-headcount. Any CI job, Dockerfile or script that pulls "the latest" Oracle JDK 21 switches licence that day
-without anyone editing it. This extension finds those lines, gives the free OpenJDK line for each, and writes
-the dated record your company can keep. (Sources: Oracle JDK licence FAQ; Oracle Java blog "JDK 21 approaches
-end-of-permissive license", 2026-08-14; Oracle Critical Patch Update calendar.)
-
 **Moving to Temurin, Corretto or another free OpenJDK build?** Run `Oracle JDK License Gate: Show the Java map`.
 It reads your workspace and shows on one page: every place that chooses a Java build (GitHub Actions, Docker base
 images, Gradle and Maven toolchains, SDKMAN, asdf, dev containers), which of those pull an Oracle-licensed build
@@ -17,12 +10,9 @@ each place. The map is free and nothing leaves your machine.
 
 ![Oracle JDK License Gate](https://getreadystack.com/img/promo/sku156180_result_card.jpg)
 
-Oracle JDK 21 builds released through September 2026 are under Oracle's No-Fee Terms. From the
-Critical Patch Update of **2026-10-20**, new Oracle JDK 21 updates are under the Java SE OTN license,
-which is not free for production. If a Dockerfile, a CI workflow or a provisioning script in your
-repository pulls the latest Oracle build of Java 21, it pulls a paid-licence build from that day, and
-nothing in your build will say so. The job still goes green. A pinned older build stays under the
-No-Fee Terms, but it gets no free security fixes after that date.
+Oracle's free window for Java 21 closed on **2026-09-16**. If a Dockerfile, a CI workflow or a
+provisioning script in your repository still pulls the Oracle build of Java, that line is now a
+paid line, and nothing in your build will say so. The job still goes green.
 
 This extension reads the file you have open and names every Oracle-licensed Java runtime in it,
 with the line number, the license basis, the free-window status **on today's date**, and the
@@ -30,11 +20,10 @@ OpenJDK line that replaces it.
 
 ## Why the date matters more than the version
 
-Oracle keeps a Java LTS release under the No-Fee Terms for one year after the next LTS ships.
-JDK 25 shipped in September 2025, so Oracle JDK 21 releases through September 2026 are No-Fee, and
-updates from the October 2026 Critical Patch Update (2026-10-20) are under the OTN license. JDK 17 made
-the same switch in October 2024 (17.0.13 and later are OTN). Java 8 and Java 11 never had a No-Fee
-window at all: those are Oracle Technology Network builds, free for development and test only.
+Oracle's No-Fee Terms and Conditions cover a Java LTS release until one year after the next LTS
+ships. JDK 25 shipped on 2025-09-16, so the JDK 21 free window closed on 2026-09-16. JDK 17 left
+that window on 2024-09-19. Java 8 and Java 11 never had a No-Fee window at all: those are Oracle
+Technology Network builds, free for development and test only.
 
 Oracle JDK 17 leaves Premier Support at the end of September 2026. For subscribers Oracle waives the
 Extended Support fee from October 2026 to September 2029 (Oracle Java SE Support Roadmap), so the
@@ -42,16 +31,14 @@ date that costs money is not the end of September: it is the day an Oracle build
 without a subscription behind it.
 
 That is why a text search does not answer the question. `grep oracle` finds the word. It cannot
-tell you that the same line is free this week and pulls a paid-licence build after 20 October, and a
-chatbot whose training stopped before August 2026 will still tell you Oracle JDK 21 is free to use in production.
+tell you that the same line was free last week and is not free today, and a chatbot whose training
+stopped before September 2026 will still tell you Oracle JDK 21 is free to use in production.
 
 ## What it costs to be wrong
 
-Oracle prices Java SE Universal Subscription by total headcount (every employee, plus the staff of
-contractors who support internal operations), not by Java installs. On Oracle's own price list dated
-8 October 2026: up to 500 people = $10,000 a year, 800 people = $54,160 a year, 3,000 people =
-$378,000 a year (Oracle Java SE Universal Subscription Global Price List). The unit is the payroll,
-not the container.
+Oracle Java SE Universal Subscription is list-priced at $15 per employee per month, counting every
+employee in the company, not every Java install. 250 employees x $15 per employee per month x
+12 months = $45,000 a year. The unit is the payroll, not the container.
 
 ## The 18 rules
 
@@ -92,8 +79,8 @@ nothing.
 
 `_fixtures/dirty.yml` is a five-job release workflow. The gate reports 6 Oracle-licensed Java
 pulls in it, at lines 14, 25, 34, 38, 44 and 54. `_fixtures/clean.yml` is the same workflow with
-OpenJDK lines and reports 0. Before 2026-10-20 the JDK 21 findings are a countdown in days; from
-that date they are errors: the answer follows the calendar, not the file name.
+OpenJDK lines and reports 0. Move the date backwards and the JDK 21 findings turn from a closed
+window into a countdown: the answer follows the calendar, not the file name.
 
 ## Yardstick
 
