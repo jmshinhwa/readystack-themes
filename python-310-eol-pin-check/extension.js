@@ -8,8 +8,8 @@ const REPORT = require('./report.js');
 
 const S = {
   title: 'Python 3.10 End of Life — Pin Check & Fix',
-  need_key: 'Full version: fix all Python 3.10 pins in every file at once, with a preview and a dated change record. $29 once · one licence key per person or team seat. Upwork lists software developers at $10–$100 an hour for this sweep by hand.',
-  enter_key: 'Enter licence key', buy: 'Get the full version — $29',
+  need_key: 'Full version: fix all Python 3.10 pins in every file at once, with a preview and a dated change record. $9.99 once · personal licence (one person, your own use). Upwork lists software developers at $10–$100 an hour for this sweep by hand.',
+  enter_key: 'Enter licence key', buy: 'Personal licence — $9.99 once',
   key_ok: 'Licence accepted. Thank you.', key_bad: 'That key did not validate. Check for typos, or get a licence.',
   clean: 'Clean against all ' + (ENGINE.RULE_COUNT || (ENGINE.RULES || []).length) + ' checks.'
 };
@@ -62,14 +62,14 @@ async function checkWorkspace(ctx) {
   }
   if (!total) { const _m = 'Swept ' + uris.length + ' files — ' + S.clean; try { if (require('./auto.js').sweptClean(vscode, ctx, { msg: _m, title: S.title, slug: 'python-310-eol-pin-check', prefix: PREFIX })) return; } catch (e) {} vscode.window.showInformationMessage(_m); return; }   // s163 — the clean sweep offers the README badge (auto.js)
   if (!hasKey && !inTrial) {
-    S.need_key = 'This workspace: ' + total + ' finding' + (total === 1 ? '' : 's') + ' in ' + hit + ' of ' + uris.length + ' files. The full list and the written report are the paid part of ' + S.title + ' — $29 once, one licence key per person or CI seat. Enter your licence key, or get one.';
+    S.need_key = 'This workspace: ' + total + ' finding' + (total === 1 ? '' : 's') + ' in ' + hit + ' of ' + uris.length + ' files. The full list and the written report are the paid part of ' + S.title + ' — $9.99 once, personal licence (one person, your own use). Enter your licence key, or get one.';
     if (!(await lic.ensure(vscode, ctx, S))) return;              // ★유료 문턱: 범위(파일 하나 → 작업공간 전체) + 소유(보고서 파일)
   }
   const lines = ['# ' + S.title + ' — workspace report', '', 'Generated ' + day + ' · ' + uris.length + ' files · ' + (ENGINE.RULE_COUNT || (ENGINE.RULES || []).length) + ' checks each · ' + total + ' findings', ''].concat(blocks);
   const target = vscode.Uri.joinPath(folders[0].uri, PREFIX + '-report.md');
   await vscode.workspace.fs.writeFile(target, Buffer.from(lines.join('\n'), 'utf8'));
   await st.update('lastSweep', { files: uris.length, findings: total, at: day });
-  vscode.window.showInformationMessage('Swept ' + uris.length + ' files (' + total + ' findings). Report written to ' + vscode.workspace.asRelativePath(target) + '.' + (inTrial ? ' Your trial runs until ' + new Date(until).toISOString().slice(0, 10) + ' — after that $29 once.' : ''));
+  vscode.window.showInformationMessage('Swept ' + uris.length + ' files (' + total + ' findings). Report written to ' + vscode.workspace.asRelativePath(target) + '.' + (inTrial ? ' Your trial runs until ' + new Date(until).toISOString().slice(0, 10) + ' — after that $9.99 once.' : ''));
   lic.maybeAskReview(vscode, ctx);   // s152 — 3번째 유료 실행 뒤 후기 부탁 한 번
 }
 async function enterKey(ctx) {
@@ -88,8 +88,8 @@ function activate(ctx) {
   // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
   // s188 G5 — the work is the product: Quick Fix on the open file (free) · PREFIX.fixAll = every 3.10 pin in the workspace (licence) · fixmap.js = the safe rewrites
   let FIXR = null;
-  try { FIXR = require('./fixall.js').register(ctx, { vscode: vscode, FIX: require('./fixmap.js'), ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'python-310-eol-pin-check', price: 29, lic: lic, S: S, R: (ENGINE.RULE_COUNT || 0), version: (require('./package.json').version || '') }); } catch (e) {}
-  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'python-310-eol-pin-check', price: 29, fix: FIXR }); } catch (e) {}
+  try { FIXR = require('./fixall.js').register(ctx, { vscode: vscode, FIX: require('./fixmap.js'), ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'python-310-eol-pin-check', price: 9.99, lic: lic, S: S, R: (ENGINE.RULE_COUNT || 0), version: (require('./package.json').version || '') }); } catch (e) {}
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'python-310-eol-pin-check', price: 9.99, fix: FIXR }); } catch (e) {}
 }
 function deactivate() { if (channel) channel.dispose(); if (diags) diags.dispose(); }
 module.exports = { activate: activate, deactivate: deactivate, checkFile: checkFile, S: S };
