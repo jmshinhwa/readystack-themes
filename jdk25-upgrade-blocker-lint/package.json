@@ -2,7 +2,7 @@
   "name": "jdk25-upgrade-blocker-lint",
   "displayName": "JDK 25 Upgrade Blocker Lint",
   "description": "Finds Java code that JDK 21/25 removed or refuses to run — Security Manager, sun.misc.Unsafe, javax.* imports, Applet, Thread.stop — before you leave Java 17.",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -51,6 +51,7 @@
   "homepage": "https://getreadystack.com/tools/jdk25-upgrade-blocker-lint",
   "icon": "icon.png",
   "readystack": {
-    "rulesDate": "2026-09-16"
+    "rulesDate": "2026-09-16",
+    "alertUrl": "https://getreadystack.com/tools/jdk25-upgrade-blocker-lint?ref=vsix_alert#yjae"
   }
 }
