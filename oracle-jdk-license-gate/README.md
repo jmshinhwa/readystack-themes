@@ -112,8 +112,8 @@ Full version: **Fix all** - every mechanical swap in every file of the workspace
 first and a dated record of each change (file, line, before, after, SHA-256 of the file after). Lines that need
 a human choice (SDKMAN / asdf version ids, Maven toolchains, download scripts, an Oracle Linux image that the
 same Dockerfile then builds on with yum / dnf) are left untouched and listed with the how-to. Plus the
-workspace sweep and the dated evidence pack you can hand to procurement or to an Oracle audit. $29 once.
-https://getreadystack.com/api/buy/cl/polar_cl_0qxUalAkf4ad9kwGZmCwgbKANSqawgoJq6rVf2ZeWRh
+workspace sweep and the dated evidence pack you can hand to procurement or to an Oracle audit. $9.99 once.
+https://getreadystack.com/api/buy/p/oracle-jdk-license-gate
 
 ## For a team: every repository, every pull request
 
@@ -131,7 +131,7 @@ Oracle-licensed Java line appears:
 ```
 
 Team key: $149 once, 5 seats, every ReadyStack linter.
-https://getreadystack.com/api/buy/cl/polar_cl_l6iN1uWt0FwWu7tBsczD0jWpP2vxFM54Wdwqb3KPi1G
+https://getreadystack.com/api/buy/p/oracle-jdk-license-gate
 
 Hub: https://getreadystack.com/tools/oracle-jdk-license-gate
 
