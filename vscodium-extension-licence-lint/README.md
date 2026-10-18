@@ -42,7 +42,9 @@ Each finding quotes the clause from the licence file Microsoft publishes with th
 
 Free, no key: Check the open extensions.json, devcontainer.json or settings.json: every Microsoft-only or Open VSX-missing extension, the licence clause that restricts it, and the open replacement ID.
 
-Full version ($29 once, one licence key per person or team seat): Scan every extension list in the whole workspace at once and export one Markdown migration report (ID, licence clause, replacement) for the team ticket. [Get the full version](https://getreadystack.com/api/buy/cl/polar_cl_SkArHoeDHz8DkqSmBhGevSSl4Mpi3IkN8b6vN1xMPVR).
+Full version ($9.99 once, personal licence (one person, your own use)): Scan every extension list in the whole workspace at once and export one Markdown migration report (ID, licence clause, replacement) for the team ticket. [Get the full version](https://getreadystack.com/api/buy/p/vscodium-extension-licence-lint).
+
+Team key: $149 once, 5 seats, CI, every ReadyStack linter.
 
 Yardstick: DOJ's Fitzpatrick Matrix rates a 15-year litigator at $851/hour for billing year 2026; one hour of licence review costs more than this tool.
 
