@@ -9,7 +9,7 @@ const REPORT = require('./report.js');
 const S = {
   title: 'OpenPDF Migration Check: iText AGPL Gate',
   need_key: 'The workspace sweep and the written report are the paid part of OpenPDF Migration Check: iText AGPL Gate. Enter your licence key, or get one.',
-  enter_key: 'Enter licence key', buy: 'Get a licence',
+  enter_key: 'Enter licence key', buy: 'Personal licence — $9.99 once',
   key_ok: 'Licence accepted. Thank you.', key_bad: 'That key did not validate. Check for typos, or get a licence.',
   clean: 'Clean against all ' + (ENGINE.RULE_COUNT || (ENGINE.RULES || []).length) + ' checks.'
 };
@@ -62,14 +62,14 @@ async function checkWorkspace(ctx) {
   }
   if (!total) { const _m = 'Swept ' + uris.length + ' files — ' + S.clean; try { if (require('./auto.js').sweptClean(vscode, ctx, { msg: _m, title: S.title, slug: 'openpdf-migration-check', prefix: PREFIX })) return; } catch (e) {} vscode.window.showInformationMessage(_m); return; }   // s163 — the clean sweep offers the README badge (auto.js)
   if (!hasKey && !inTrial) {
-    S.need_key = 'This workspace: ' + total + ' finding' + (total === 1 ? '' : 's') + ' in ' + hit + ' of ' + uris.length + ' files. The full list and the written report are the paid part of ' + S.title + ' — $29 once, one licence key per person or CI seat. Enter your licence key, or get one.';
+    S.need_key = 'This workspace: ' + total + ' finding' + (total === 1 ? '' : 's') + ' in ' + hit + ' of ' + uris.length + ' files. The full list and the written report are the paid part of ' + S.title + ' — $9.99 once, personal licence (one person, your own use). Enter your licence key, or get one.';
     if (!(await lic.ensure(vscode, ctx, S))) return;              // ★유료 문턱: 범위(파일 하나 → 작업공간 전체) + 소유(보고서 파일)
   }
   const lines = ['# ' + S.title + ' — workspace report', '', 'Generated ' + day + ' · ' + uris.length + ' files · ' + (ENGINE.RULE_COUNT || (ENGINE.RULES || []).length) + ' checks each · ' + total + ' findings', ''].concat(blocks);
   const target = vscode.Uri.joinPath(folders[0].uri, PREFIX + '-report.md');
   await vscode.workspace.fs.writeFile(target, Buffer.from(lines.join('\n'), 'utf8'));
   await st.update('lastSweep', { files: uris.length, findings: total, at: day });
-  vscode.window.showInformationMessage('Swept ' + uris.length + ' files (' + total + ' findings). Report written to ' + vscode.workspace.asRelativePath(target) + '.' + (inTrial ? ' Your trial runs until ' + new Date(until).toISOString().slice(0, 10) + ' — after that $29 once.' : ''));
+  vscode.window.showInformationMessage('Swept ' + uris.length + ' files (' + total + ' findings). Report written to ' + vscode.workspace.asRelativePath(target) + '.' + (inTrial ? ' Your trial runs until ' + new Date(until).toISOString().slice(0, 10) + ' — after that $9.99 once.' : ''));
   lic.maybeAskReview(vscode, ctx);   // s152 — 3번째 유료 실행 뒤 후기 부탁 한 번
 }
 async function enterKey(ctx) {
@@ -86,7 +86,7 @@ function activate(ctx) {
     vscode.commands.registerCommand(PREFIX + '.enterKey', function () { return enterKey(ctx); })
   );
   // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
-  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'openpdf-migration-check', price: 29 }); } catch (e) {}
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'openpdf-migration-check', price: 9.99 }); } catch (e) {}
 }
 function deactivate() { if (channel) channel.dispose(); if (diags) diags.dispose(); }
 module.exports = { activate: activate, deactivate: deactivate, checkFile: checkFile, S: S };
