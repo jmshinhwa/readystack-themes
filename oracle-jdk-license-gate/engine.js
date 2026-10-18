@@ -15,18 +15,22 @@
   var RULES = (typeof module !== 'undefined') ? require('./rules.json') : window.OJLG_RULES;
 
   /*
-   * Oracle's No-Fee Terms and Conditions cover a Java LTS release until one year
-   * after the next LTS release ships. JDK 21 shipped 2023-09-19, JDK 25 shipped
-   * 2025-09-16, so the JDK 21 free window closed 2026-09-16.
-   * JDK 8 and JDK 11 never had an NFTC window: they are Oracle Technology Network
-   * builds, free for development and test only.
+   * s186 E6 2026-10-10 — the dates are Oracle's own, read that day:
+   *   oracle.com JDK FAQ licence table: "Java 21 Oracle JDK, releases through September 2026 = NFTC";
+   *   blogs.oracle.com "JDK 21 approaches end-of-permissive license" (2026-08-14): updates from the October 2026
+   *   Critical Patch Update are Java SE OTN licensed; oracle.com/security-alerts: that CPU is on 20 October 2026.
+   *   So JDK 21 builds released through September 2026 stay NFTC; the ones from 2026-10-20 are OTN (not free in
+   *   production). A line that pulls "the latest" Oracle JDK 21 crosses that line on 2026-10-20 without anyone editing it.
+   *   (The old table said "closed 2026-09-16" - one month early; corrected here.)
+   * JDK 17: releases after September 2024 (17.0.13+, October 2024 CPU = 2024-10-15) are OTN.
+   * JDK 25: NFTC until October 2028 (projected: one year after the next LTS). JDK 8 / 11: OTN only.
    */
   var WINDOW = {
     '8':  {terms: 'OTN',  free_until: null},
     '11': {terms: 'OTN',  free_until: null},
-    '17': {terms: 'NFTC', free_until: '2024-09-19'},
-    '21': {terms: 'NFTC', free_until: '2026-09-16'},
-    '25': {terms: 'NFTC', free_until: '2028-09-15', projected: true}
+    '17': {terms: 'NFTC', free_until: '2024-10-15'},
+    '21': {terms: 'NFTC', free_until: '2026-10-20'},
+    '25': {terms: 'NFTC', free_until: '2028-10-17', projected: true}
   };
 
   var VERSION_RE = /(?:^|[^\d.]|JDK\.|jdk-)(8|11|17|21|25)(?![\d])/;   // s173: winget `Oracle.JDK.21` pins its version after a dot
@@ -58,11 +62,11 @@
       return {sev: 'err', text: 'Java ' + ver + ' is an Oracle Technology Network build: free for development and test only, never for production'};
     }
     var left = days(today, w.free_until);
-    if (left < 0) {
-      return {sev: 'err', text: 'the free NFTC window for Java ' + ver + ' closed on ' + w.free_until + ', ' + (-left) + ' days ago'};
+    if (left <= 0) {
+      return {sev: 'err', text: 'since the ' + w.free_until + ' Critical Patch Update, new Oracle JDK ' + ver + ' updates are under the Java SE OTN license (not free for production): a line that pulls the latest Oracle JDK ' + ver + ' now gets a paid-licence build' + (-left ? ' (' + (-left) + ' days ago)' : ' (today)') + '; builds released before that date stay under the No-Fee Terms but get no free security fixes'};
     }
     var tail = w.projected ? ' (projected from the next LTS date)' : '';
-    return {sev: 'warn', text: 'the free NFTC window for Java ' + ver + ' closes on ' + w.free_until + ', ' + left + ' days from now' + tail};
+    return {sev: 'warn', text: 'Oracle JDK ' + ver + ' builds are still under the No-Fee Terms, but from the ' + w.free_until + ' Critical Patch Update, ' + left + ' days from now, new Oracle JDK ' + ver + ' updates are under the Java SE OTN license (not free for production) - a line that pulls the latest Oracle JDK ' + ver + ' switches licence that day without anyone editing it' + tail};
   }
 
   function check(text, opts) {
