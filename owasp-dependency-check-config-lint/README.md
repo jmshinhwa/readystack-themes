@@ -16,7 +16,7 @@ Dependency-Check is the scanner. Its own configuration has dated breaking points
 
 - **2023-11-22 — 9.0.0** moved from the NVD data feed to the NVD API. Old `cveUrlModified` / `cveUrlBase` settings point at the retired feed.
 - **2024-10-21 — 11.0.0** requires Java 11 and changed the H2 database (one-time purge after upgrading).
-- **2025-02-24 — issue #7463, "Mandatory Upgrade to 12.1.0 or later"**: due to NVD API compatibility changes, all users must upgrade to 12.1.0 or later.
+- **2025-02-24 — issue [#7463](https://github.com/jmshinhwa/readystack-themes/issues/7463), "Mandatory Upgrade to 12.1.0 or later"**: due to NVD API compatibility changes, all users must upgrade to 12.1.0 or later.
 - **September 2025** — Sonatype OSS Index enforces API tokens; without credentials Dependency-Check disables the OSS Index analyzer automatically.
 - **April 2026** — the migration to Sonatype Guide began; legacy OSS Index tokens are planned to be replaced before the end of 2026.
 - **2026-08-03 — 13.0.0** (current release) marks Nexus v2 support for removal.
