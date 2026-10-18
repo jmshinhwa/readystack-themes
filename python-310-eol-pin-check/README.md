@@ -39,7 +39,7 @@ Python 3.10 reached end of life on **2026-10-01**: 3.10.22 was the final release
 ## How to use it
 
 - Open a file and run **Python 3.10 End of Life: Check this file**. Each pin shows in Problems with its date and source. The light bulb (Quick Fix) rewrites that one line. This is free and needs no key.
-- **Fix all 3.10 pins in the workspace** rewrites every safe line in every file at once, shows a preview first and writes a dated record of each change. It asks for a [licence key](https://getreadystack.com/api/buy/cl/polar_cl_T5u1TmZEv7E3AJdUtY7kLZzZUsO5PxXsXz7vh1auiYI) ($29 once). A team key ($149) adds the company exposure report (which repos and services still run 3.10, and which hit a cloud block date first) and a CI gate that fails a build adding a new 3.10 pin.
+- **Fix all 3.10 pins in the workspace** rewrites every safe line in every file at once, shows a preview first and writes a dated record of each change. It asks for a [licence key](https://getreadystack.com/api/buy/p/python-310-eol-pin-check) ($9.99 once). A team key ($149) adds the company exposure report (which repos and services still run 3.10, and which hit a cloud block date first) and a CI gate that fails a build adding a new 3.10 pin.
 
 Why not just grep for `3.10`? grep misses `python310`, `PYTHON_3_10` and `py310`, matches unrelated version strings, and gives no date for the place it found. Upwork's own hiring page lists software developers at $10–$100 an hour; this sweep by hand is billed at that rate.
 
