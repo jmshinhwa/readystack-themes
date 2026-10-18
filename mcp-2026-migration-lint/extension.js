@@ -5,7 +5,7 @@ const lic = require('./license.js');
 const GLOB = '**/{mcp.json,.mcp.json,claude_desktop_config.json,*.js,*.ts,*.mjs,*.cjs,*.py}';
 const PREFIX = 'mcp-2026-migration-lint';
 const ENGINE = require('./engine.js');
-const S = {"run": "Checking against MCP 2026-07-28", "check": "Check this against MCP 2026-07-28", "paste": "Paste your mcp.json, claude_desktop_config.json, or MCP server source here", "done": "Done - see the MCP 2026 Migration Lint panel", "nothing_found": "Nothing here breaks under MCP 2026-07-28.", "need_key": "Full version: every mcp.json and server file in the whole repository in one pass, exported as a report, and a CI check that fails the build.", "buy": "Get the full version - $29 once", "key_ok": "Licence accepted - workspace scan, report export and CI output are on.", "key_bad": "That key did not validate. Check it was pasted whole.", "enter_key": "Enter licence key"};
+const S = {"run": "Checking against MCP 2026-07-28", "check": "Check this against MCP 2026-07-28", "paste": "Paste your mcp.json, claude_desktop_config.json, or MCP server source here", "done": "Done - see the MCP 2026 Migration Lint panel", "nothing_found": "Nothing here breaks under MCP 2026-07-28.", "need_key": "Full version: every mcp.json and server file in the whole repository in one pass, exported as a report, and a CI check that fails the build.", "buy": "Personal licence - $9.99 once", "key_ok": "Licence accepted - workspace scan, report export and CI output are on.", "key_bad": "That key did not validate. Check it was pasted whole.", "enter_key": "Enter licence key"};
 S.title = 'MCP Server Lint - 2026 spec migration';   // = package.json displayName (auto.js · clean-sweep badge)
 const PAID = ["workspace_scan", "export_report", "ci_json"];
 
@@ -185,7 +185,7 @@ function activate(ctx) {
     if (typeof runCurrent === 'function') { try { runCurrent(ctx); } catch (e) { /* 열린 파일이 없으면 조용히 */ } }
   }
   // s158 — ★확장이 말을 한다: 열기/저장 자동 검사 · 상태표시줄 N · 폴더 알림 1회 → checkWorkspace (auto.js · 설정 readystack.autoCheck/workspaceHint 로 끈다)
-  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'mcp-2026-migration-lint', price: 29 }); } catch (e) {}
+  try { require('./auto.js').start(ctx, { vscode: vscode, ENGINE: ENGINE, GLOB: GLOB, PREFIX: PREFIX, title: S.title, slug: 'mcp-2026-migration-lint', price: 9.99 }); } catch (e) {}
 }
 function deactivate() {
   if (typeof watchOnSave === 'function' && watchOnSave._d) watchOnSave._d.dispose();
