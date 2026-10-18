@@ -231,16 +231,16 @@ async function askReview(ctx, h) {
 //   valid key → the paid sweep's report file (<PREFIX>-report.md, same header + report.js blocks) plus the record: tool + version,
 //     rules count + rules date, UTC time, every checked file with its SHA-256, "0 issues", and the not-a-certification line → opened.
 var KEY_T = {
-  en: ['{t}: 0 issues in {f} file{s}, checked against {r} rules on {d}. The dated all-clear report (tool version, rules date, UTC time and the SHA-256 of every file checked) is the paid part: ${p} once, one licence key per person or CI seat. Enter your licence key, or get one.',
-    'Enter licence key', 'Get a licence — ${p}', 'Licence accepted. Thank you.', 'That key did not validate. Check for typos, or get a licence.', 'Dated all-clear report written to {path}.'],
-  de: ['{t}: 0 Befunde in {f} Datei(en), geprüft gegen {r} Regeln am {d}. Der datierte Prüfbericht (Tool-Version, Regelstand, UTC-Zeit und SHA-256 jeder geprüften Datei) ist der kostenpflichtige Teil: {p} $ einmalig, ein Lizenzschlüssel pro Person oder CI-Platz. Schlüssel eingeben oder einen holen.',
-    'Lizenzschlüssel eingeben', 'Lizenz holen — {p} $', 'Lizenz akzeptiert. Danke.', 'Dieser Schlüssel war nicht gültig. Bitte auf Tippfehler prüfen oder eine Lizenz holen.', 'Datierter Prüfbericht gespeichert: {path}.'],
-  ja: ['{t}: {f} ファイルで問題 0 件（{d}・{r} 項目で確認）。日付入りの確認レポート（ツールの版・ルールの日付・UTC 時刻・確認した全ファイルの SHA-256）は有料部分です：${p} 買い切り、1 人または CI 1 席につきライセンスキー 1 つ。キーを入力するか、購入してください。',
-    'ライセンスキーを入力', 'ライセンスを購入 — ${p}', 'ライセンスを確認しました。ありがとうございます。', 'このキーは確認できませんでした。入力ミスを確かめるか、ライセンスを購入してください。', '日付入りの確認レポートを保存しました：{path}'],
-  es: ['{t}: 0 problemas en {f} archivo(s), revisados con {r} reglas el {d}. El informe fechado (versión de la herramienta, fecha de las reglas, hora UTC y el SHA-256 de cada archivo revisado) es la parte de pago: {p} US$ una vez, una clave de licencia por persona o puesto de CI. Introduce tu clave o consigue una.',
-    'Introducir clave de licencia', 'Obtener licencia — {p} US$', 'Licencia aceptada. Gracias.', 'Esa clave no se validó. Revisa si hay errores o consigue una licencia.', 'Informe fechado guardado en {path}.'],
-  pt: ['{t}: 0 problemas em {f} arquivo(s), verificados com {r} regras em {d}. O relatório datado (versão da ferramenta, data das regras, hora UTC e o SHA-256 de cada arquivo verificado) é a parte paga: US$ {p} uma vez, uma chave de licença por pessoa ou posto de CI. Insira sua chave ou obtenha uma.',
-    'Inserir chave de licença', 'Obter licença — US$ {p}', 'Licença aceita. Obrigado.', 'Essa chave não foi validada. Verifique erros de digitação ou obtenha uma licença.', 'Relatório datado salvo em {path}.']
+  en: ['{t}: 0 issues in {f} file{s}, checked against {r} rules on {d}. The dated all-clear report (tool version, rules date, UTC time and the SHA-256 of every file checked) is the paid part: ${p} once, personal licence (one person, your own use). Enter your licence key, or get one.',
+    'Enter licence key', 'Personal licence — ${p}', 'Licence accepted. Thank you.', 'That key did not validate. Check for typos, or get a licence.', 'Dated all-clear report written to {path}.'],
+  de: ['{t}: 0 Befunde in {f} Datei(en), geprüft gegen {r} Regeln am {d}. Der datierte Prüfbericht (Tool-Version, Regelstand, UTC-Zeit und SHA-256 jeder geprüften Datei) ist der kostenpflichtige Teil: {p} $ einmalig, persönliche Lizenz (eine Person, eigene Nutzung). Schlüssel eingeben oder einen holen.',
+    'Lizenzschlüssel eingeben', 'Persönliche Lizenz — {p} $', 'Lizenz akzeptiert. Danke.', 'Dieser Schlüssel war nicht gültig. Bitte auf Tippfehler prüfen oder eine Lizenz holen.', 'Datierter Prüfbericht gespeichert: {path}.'],
+  ja: ['{t}: {f} ファイルで問題 0 件（{d}・{r} 項目で確認）。日付入りの確認レポート（ツールの版・ルールの日付・UTC 時刻・確認した全ファイルの SHA-256）は有料部分です：${p} 買い切り、個人ライセンス（1人・個人利用）。キーを入力するか、購入してください。',
+    'ライセンスキーを入力', '個人ライセンス — ${p}', 'ライセンスを確認しました。ありがとうございます。', 'このキーは確認できませんでした。入力ミスを確かめるか、ライセンスを購入してください。', '日付入りの確認レポートを保存しました：{path}'],
+  es: ['{t}: 0 problemas en {f} archivo(s), revisados con {r} reglas el {d}. El informe fechado (versión de la herramienta, fecha de las reglas, hora UTC y el SHA-256 de cada archivo revisado) es la parte de pago: {p} US$ una vez, licencia personal (una persona, uso propio). Introduce tu clave o consigue una.',
+    'Introducir clave de licencia', 'Licencia personal — {p} US$', 'Licencia aceptada. Gracias.', 'Esa clave no se validó. Revisa si hay errores o consigue una licencia.', 'Informe fechado guardado en {path}.'],
+  pt: ['{t}: 0 problemas em {f} arquivo(s), verificados com {r} regras em {d}. O relatório datado (versão da ferramenta, data das regras, hora UTC e o SHA-256 de cada arquivo verificado) é a parte paga: US$ {p} uma vez, licença pessoal (uma pessoa, uso próprio). Insira sua chave ou obtenha uma.',
+    'Inserir chave de licença', 'Licença pessoal — US$ {p}', 'Licença aceita. Obrigado.', 'Essa chave não foi validada. Verifique erros de digitação ou obtenha uma licença.', 'Relatório datado salvo em {path}.']
 };
 var _h = null;   // the running extension's handle (start() sets it) — the clean branch of checkWorkspace reuses it
 function loadMod(h, name) { try { return require(path.join(h.extDir || __dirname, name)); } catch (e) { return null; } }
@@ -287,7 +287,7 @@ async function clearReport(ctx, h, fromSweep, sweptMsg) {
     var had = !!st.get('licenseKey');
     if (!had) send(vscode, h.slug, { t: 'use', slug: h.slug, src: 'vsix', why: 'clear_report', path: '/use/vsix/' + h.slug });
     _toastAt = Date.now();
-    var ok = await lic.ensure(vscode, ctx, S);             // ★the same key panel as the paid sweep (Polar $29 · team · Whop via /api/lic)
+    var ok = await lic.ensure(vscode, ctx, S);             // ★the same key panel as the paid sweep (Polar $9.99 · team · Whop via /api/lic)
     if (!ok) { if (had) send(vscode, h.slug, { t: 'use', slug: h.slug, src: 'vsix', why: 'clear_report', path: '/use/vsix/' + h.slug }); return { paywall: true, msg: S.need_key }; }
     var REPORT = loadMod(h, 'report.js'), pkg = loadMod(h, 'package.json') || {};
     var at = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
@@ -602,7 +602,7 @@ async function hint(ctx, h) {
       label = hasKey ? FW.fill(FT.apply, { n: FX.lines }) : FW.fill(FT.all, { n: FX.lines, f: FX.files, p: h.price || 29 });
       msg = FW.fill(FT.hint, { t: h.title, n: total, f: files, a: FX.lines });
       send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: reoffer ? 'fix_reoffer' : 'fix_offer', path: '/paywall/vsix/' + (h.slug || h.PREFIX) });
-    } else if (!hasKey) send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: 'issue_offer', path: '/paywall/vsix/' + (h.slug || h.PREFIX) });   // s185 D4 — findings + "Get the full report ($29)" = a money screen, uncounted until now
+    } else if (!hasKey) send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: 'issue_offer', path: '/paywall/vsix/' + (h.slug || h.PREFIX) });   // s185 D4 — findings + "Get the full report ($9.99)" = a money screen, uncounted until now
     _toastAt = Date.now();
     var SK = stakeOf(h), est = null;   // s165 — the stake line + one estimate button, only when the product ships stake.json
     if (SK) msg = msg + ' ' + SK.line;
