@@ -42,11 +42,11 @@ const T = {
 //   Oracle licence review or its own auditor. ⇒ one paid button on the toast, only without a key. It runs the existing paid sweep
 //   (key panel → report). Facts only — no promise about any audit outcome.
 const AUD = {
-  en: [' For an Oracle licence review, keep a dated record of this check (rules date, UTC time, SHA-256 of every file).', 'Dated record — $29 once'],
-  de: [' Für eine Oracle-Lizenzprüfung: diese Prüfung als datierten Nachweis speichern (Regelstand, UTC-Zeit, SHA-256 jeder Datei).', 'Datierter Nachweis — 29 $ einmalig'],
-  ja: [' Oracle のライセンス監査に備えて、この確認を日付入りの記録として残せます (ルールの日付・UTC 時刻・全ファイルの SHA-256)。', '日付入りの記録 — 買い切り $29'],
-  es: [' Para una revisión de licencias de Oracle, guarde un registro fechado de esta comprobación (fecha de reglas, hora UTC, SHA-256 de cada archivo).', 'Registro fechado — $29 una vez'],
-  pt: [' Para uma revisão de licenças da Oracle, guarde um registro datado desta verificação (data das regras, hora UTC, SHA-256 de cada arquivo).', 'Registro datado — US$ 29 uma vez']
+  en: [' For an Oracle licence review, keep a dated record of this check (rules date, UTC time, SHA-256 of every file).', 'Dated record — $9.99 once'],
+  de: [' Für eine Oracle-Lizenzprüfung: diese Prüfung als datierten Nachweis speichern (Regelstand, UTC-Zeit, SHA-256 jeder Datei).', 'Datierter Nachweis — 9,99 $ einmalig'],
+  ja: [' Oracle のライセンス監査に備えて、この確認を日付入りの記録として残せます (ルールの日付・UTC 時刻・全ファイルの SHA-256)。', '日付入りの記録 — 買い切り $9.99'],
+  es: [' Para una revisión de licencias de Oracle, guarde un registro fechado de esta comprobación (fecha de reglas, hora UTC, SHA-256 de cada archivo).', 'Registro fechado — $9.99 una vez'],
+  pt: [' Para uma revisão de licenças da Oracle, guarde um registro datado desta verificação (data das regras, hora UTC, SHA-256 de cada arquivo).', 'Registro datado — US$ 9,99 uma vez']
 };
 function lang(vscode) { return String((vscode && vscode.env && vscode.env.language) || 'en').slice(0, 2).toLowerCase(); }
 function today() { return new Date().toISOString().slice(0, 10); }
