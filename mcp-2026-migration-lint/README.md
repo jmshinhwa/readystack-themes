@@ -24,7 +24,9 @@ Full workspace sweep and report: licence key.
 
 Freelance senior software engineers publish an average of $101/hour (contractrates.fyi, 2026, 584 submissions).
 
-[**Get the full version - $29 once**](https://getreadystack.com)
+[**Personal licence - $9.99 once**](https://getreadystack.com/api/buy/p/mcp-2026-migration-lint?ref=readme)
+
+Team key: $149 once, 5 seats, CI, every ReadyStack linter.
 
 
 ## Install
