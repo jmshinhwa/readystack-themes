@@ -2,6 +2,7 @@
 const https = require('https');
 const ORG_ID = 'a5cdf664-d8e7-4f87-8895-056717aaba17';
 const BUY_URL = 'https://getreadystack.com/api/buy/cl/polar_cl_0pvrLaMj6o8Qtp0GTkTL9p03sJZGqn2iLrElX087SbX';
+const PERSONAL_URL = 'https://getreadystack.com/api/buy/p/pypdf-migration-check';   // s198 G12 — the personal licence door (one person · this tool · one-time · config/personal_price.json)
 const SLUG = 'pypdf-migration-check';   // s151 — 키 판 핑의 익명 이름 (vsix_build._license_js 가 찍는다)
 const BENEFIT_ID = '922e48e2-35ce-4853-a79c-e11a8bdc4742';   // s140 — 이 상품의 benefit. till.py 가 찍는다 · validate 가 이걸로 묻는다 (⛔조직만 물으면 키 하나로 전부 열린다)
 const GRACE_MS = 30 * 24 * 3600 * 1000;   // 검증 성공 뒤 30일은 오프라인에서도 연다
@@ -120,7 +121,7 @@ async function ensure(vscode, ctx, S) {
   const pick = await vscode.window.showInformationMessage.apply(vscode.window,
     [S.need_key + (function () { try { var x = require('./auto.js').trustLine(vscode); return x ? ' ' + x : ''; } catch (e) { return ''; } })(), S.enter_key || 'Enter licence key', S.buy || 'Get a licence'].concat(TEAM ? [TEAM] : []));
   if (TEAM && pick === TEAM) { _pingWhy(vscode, 'vsix_buy', 'team'); try { await require('./buyopen.js').open(vscode, TEAM_URL, SLUG); } catch (e) { vscode.env.openExternal(vscode.Uri.parse(TEAM_URL)); } return false; }   // s195 K2 buyopen
-  if (pick === (S.buy || 'Get a licence')) { _pingWhy(vscode, 'vsix_buy', 'one'); try { await require('./buyopen.js').open(vscode, BUY_URL, SLUG); } catch (e) { vscode.env.openExternal(vscode.Uri.parse(BUY_URL)); } return false; }   // s195 K2 buyopen
+  if (pick === (S.buy || 'Get a licence')) { _pingWhy(vscode, 'vsix_buy', 'personal'); try { await require('./buyopen.js').open(vscode, (PERSONAL_URL || BUY_URL), SLUG); } catch (e) { vscode.env.openExternal(vscode.Uri.parse((PERSONAL_URL || BUY_URL))); } return false; }   // s195 K2 buyopen   // s198 G12 personal door
   if (pick !== (S.enter_key || 'Enter licence key')) return false;
   const typed = await vscode.window.showInputBox({ prompt: S.need_key, password: false, ignoreFocusOut: true });
   if (!typed) return false;
