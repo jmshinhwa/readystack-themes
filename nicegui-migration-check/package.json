@@ -2,7 +2,7 @@
   "name": "nicegui-migration-check",
   "displayName": "NiceGUI Migration Check: PySimpleGUI Licence Gate",
   "description": "Maps every PySimpleGUI tie in requirements.txt, pyproject.toml, setup.py, Pipfile and .py imports: the dead PySimpleGUI.net index, the 5.0.8.3 stub, PySimpleGUIQt 5.0.0, with the FreeSimpleGUI or Nice",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -55,7 +55,8 @@
     "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   },
   "readystack": {
-    "rulesDate": "2026-10-10"
+    "rulesDate": "2026-10-10",
+    "alertUrl": "https://getreadystack.com/tools/nicegui-migration-check?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
