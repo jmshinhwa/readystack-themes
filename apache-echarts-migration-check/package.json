@@ -2,7 +2,7 @@
   "name": "apache-echarts-migration-check",
   "displayName": "Apache ECharts Migration: Highcharts Licence Map",
   "description": "Finds every Highcharts package, NuGet reference, import and CDN tag in package.json, .csproj, HTML or JS/TS, quotes the EULA clause and gives the exact Apache ECharts line that replaces it.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -54,7 +54,8 @@
     "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   },
   "readystack": {
-    "rulesDate": "2026-10-11"
+    "rulesDate": "2026-10-11",
+    "alertUrl": "https://getreadystack.com/tools/apache-echarts-migration-check?ref=vsix_alert#yjae"
   },
   "icon": "icon.png"
 }
