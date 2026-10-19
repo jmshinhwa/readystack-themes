@@ -1,0 +1,9 @@
+# requirements.txt - invoice-desk (Windows desktop tool, internal)
+--extra-index-url https://PySimpleGUI.net/install
+PySimpleGUI==5.0.8.3; sys_platform == "win32"
+PySimpleGUI==4.60.5; sys_platform != "win32"
+PySimpleGUIQt
+PySimpleGUIWeb==0.39.0
+PySimpleGUIWx==0.17.2
+openpyxl>=3.1
+reportlab==4.2.5
