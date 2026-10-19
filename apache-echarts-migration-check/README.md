@@ -1,5 +1,7 @@
 # Apache ECharts Migration: Highcharts Licence Map
 
+![Apache ECharts Migration: Highcharts Licence Map — finds the line](https://getreadystack.com/img/promo/apache-echarts-migration-check_demo.gif)
+
 ![Apache ECharts Migration: Highcharts Licence Map](https://getreadystack.com/img/promo/sku604232_result_card.jpg)
 
 **Open a package.json and see every Highcharts dependency on its own line, with the exact Apache ECharts line that replaces it. The sample project in this repo shows 6 findings in one file.**
