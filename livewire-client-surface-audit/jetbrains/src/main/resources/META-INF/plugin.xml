@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.livewire-client-surface-audit</id>
+  <name>Livewire Client Surface Audit</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Marks every line of a Livewire or Blade file that the visitor's browser can call, rewrite or read</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Livewire Client Surface Audit: Check This File</b>. Each finding appears on its line with the fix. 10 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/livewire-client-surface-audit</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/livewire-client-surface-audit">getreadystack.com/tools/livewire-client-surface-audit</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_livewire_client_surface_audit.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.livewire-client-surface-audit" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.livewire-client-surface-audit.check" class="com.getreadystack.p_livewire_client_surface_audit.RsCheckAction"
+            text="Livewire Client Surface Audit: Check This File" description="Run Livewire Client Surface Audit on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
