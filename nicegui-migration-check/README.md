@@ -1,5 +1,7 @@
 # NiceGUI Migration Check: PySimpleGUI Licence Gate
 
+![NiceGUI Migration Check: PySimpleGUI Licence Gate — finds the line](https://getreadystack.com/img/promo/nicegui-migration-check_demo.gif)
+
 ![NiceGUI Migration Check: PySimpleGUI Licence Gate](https://getreadystack.com/img/promo/sku596874_result_card.jpg)
 
 Open one 9-line requirements.txt and this extension reports **6 PySimpleGUI ties**: the dead `PySimpleGUI.net/install` index, the `PySimpleGUI==5.0.8.3` stub, a 4.x pin, a bare `PySimpleGUIQt`, `PySimpleGUIWeb` and `PySimpleGUIWx`. Each finding has its line number and the FreeSimpleGUI, PySimpleGUI 6 or NiceGUI line that replaces it. It ships **9 rules** and reads **2 inputs**: the file text and an as-of date.
