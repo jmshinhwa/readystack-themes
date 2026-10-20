@@ -2,7 +2,7 @@
   "name": "model-sunset-lint",
   "displayName": "Model Sunset Lint - retired AI model IDs, dated",
   "description": "Finds every model ID and API parameter in your code that a vendor has already switched off or has published a date for - 109 rules across OpenAI, Anthropic, Google and Azure, each carrying the real sh",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -91,5 +91,14 @@
       }
     }
   },
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "model-sunset-lint"
+  },
+  "homepage": "https://getreadystack.com/tools/model-sunset-lint",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  }
 }
