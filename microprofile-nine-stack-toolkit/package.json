@@ -2,7 +2,7 @@
   "name": "microprofile-nine-stack-toolkit",
   "displayName": "MicroProfile Tools & 9-Stack Snippets",
   "description": "A wrong key in microprofile-config.properties does not break the build. It breaks the deploy. 46 snippets write the boilerplate and 24 rules check the file you have open, across 9 stacks, before you c",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -159,5 +159,13 @@
         "path": "./snippets/toml.code-snippets"
       }
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "microprofile-nine-stack-toolkit"
+  },
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
   }
 }
