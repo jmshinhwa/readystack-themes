@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.mcp-config-guard</id>
+  <name>MCP Config Guard</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Reads .mcp.json / .vscode/mcp.json / claude_desktop_config.json while you edit it and marks the lines that hand an AI agent more than you meant - unpinned servers, literal credentials, plaintext transport, whole-home filesystem roots. 23 rules, offline, no server is ever started.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>MCP Config Guard: Check This File</b>. Each finding appears on its line with the fix. 23 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/mcp-config-guard</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/mcp-config-guard">getreadystack.com/tools/mcp-config-guard</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_mcp_config_guard.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.mcp-config-guard" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.mcp-config-guard.check" class="com.getreadystack.p_mcp_config_guard.RsCheckAction"
+            text="MCP Config Guard: Check This File" description="Run MCP Config Guard on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
