@@ -2,7 +2,7 @@
   "name": "python-310-eol-pin-check",
   "displayName": "Python 3.10 End of Life — Pin Check & Fix",
   "description": "Python 3.10 end of life was 2026-10-01. Finds every 3.10 pin — Dockerfile, GitHub Actions, tox, .python-version, Lambda, Cloud Run functions, Azure — with file:line, the dated fact and the 3.13 fix.",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
