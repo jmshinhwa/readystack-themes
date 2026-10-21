@@ -1,10 +1,12 @@
 # Vulnerability Report Lint - CRA 24h/72h/14d timeline (Article 14)
 
+Finds every line in your SECURITY.md or incident runbook that breaks the EU Cyber Resilience Act 24/72/14 reporting clock — 19 checks, each with its article and the line to write instead.
+
 ![Vulnerability Report Lint - CRA 24h/72h/14d timeline (Article 14) — finds the line](https://getreadystack.com/img/promo/cra-24-72-14-reporting-lint_demo.gif)
 
 ![CRA 24/72/14 Reporting Lint (Article 14)](https://getreadystack.com/img/promo/sku36068_result_card.jpg)
 
-**On 11 September 2026 the EU Cyber Resilience Act's reporting obligation started applying — including to products already on the market.** From that date, a manufacturer who becomes aware of an *actively exploited vulnerability* or a *severe incident* owes three filings on a clock measured in hours: an early warning within **24 hours**, a notification within **72 hours**, and a final report within **14 days** of a corrective measure being available. They go to **ENISA** and to the **CSIRT designated as coordinator** for your main establishment, through the single reporting platform.
+**On 11 September 2026 the EU Cyber Resilience Act's reporting obligation started applying — including to products already on the market.** From that date, a manufacturer who becomes aware of an *actively exploited vulnerability* or a *severe incident* owes three filings on a clock measured in hours: an early warning within **24 hours**, a notification within **72 hours**, and a final report within **14 days** of a corrective measure being available. They go to **ENISA** and to the **CSIRT designated as coordinator** for your main establishment, through the single reporting platform, which ENISA launched the same day at `portal.cra-srp.enisa.europa.eu`.
 
 For anyone shipping software with digital elements into the EU: Article 14 reporting is mandatory from 11 September 2026, with fines up to EUR 15m or 2.5% of turnover.
 
@@ -12,14 +14,14 @@ Most `SECURITY.md` files in public repositories were written before any of that 
 
 ![Findings in the output panel](https://getreadystack.com/img/cra-24-72-14-reporting-lint/demo.gif)
 
-## What it checks — 18 rules, offline
+## What it checks — 19 rules, offline
 
 | Group | Examples |
 | --- | --- |
 | The clock | 24-hour early warning, 72-hour notification, 14-day final report |
 | The recipients | ENISA named, coordinating CSIRT named, single reporting platform named |
 | The triggers | "actively exploited" defined, "severe incident" defined |
-| The mistakes | December 2027 quoted as the reporting start date, reports routed to a supervisory authority, the GDPR 72-hour clock treated as the same obligation, a response window measured in days sitting beside one measured in hours |
+| The mistakes | December 2027 quoted as the reporting start date, reports routed to a supervisory authority, the GDPR 72-hour clock treated as the same obligation, a response window measured in days sitting beside one measured in hours, a runbook that still waits for the reporting platform "once it launches" |
 | The supporting facts | single point of contact, coordinated disclosure policy, SBOM reference, support period end date in ISO form — and whether that date has already lapsed or falls short of five years |
 
 Every finding carries the article it comes from and one concrete line to write instead. Nothing is sent anywhere: the rule table ships inside the extension and the whole run happens in your editor.
@@ -30,11 +32,11 @@ Every finding carries the article it comes from and one concrete line to write i
 2. Run **CRA 24/72/14: Check this file** from the command palette.
 3. Read the findings in the output panel and fix them.
 
-That is the free scope, and it is the whole rule set — no watermark, no usage counter, no withheld finding.
+That is the free scope, and it is the whole rule set of 19 checks — no watermark, no usage counter, no withheld finding.
 
 The full version widens the **scope**: it sweeps every Markdown file in the workspace in one pass, works out which checks are answered *nowhere* in the repository rather than merely missing from one file, and writes a single dated `CRA-24-72-14-READINESS.md` you can hand to an auditor. Run **CRA 24/72/14: Sweep the whole workspace** to unlock it with a licence key.
 
-Full workspace sweep and report: licence key.
+Full workspace sweep and dated report, $49 once: [get the full version](https://getreadystack.com/api/buy/cl/polar_cl_zmN08yKAf6Qz5WMiSQO9V9MxIRQN87VQEfurn03M3KT).
 
 ## Settings
 
