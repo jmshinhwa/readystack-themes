@@ -595,7 +595,7 @@ async function hint(ctx, h) {
       if (TMc) send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: 'clean_offer' });
       else if (SKc && SKc.clean && !hasKey) send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: 'clean_stake', path: '/paywall/vsix/' + (h.slug || h.PREFIX) });   // s185 D4 — the company line on a clean result IS a money screen; it was never counted (oracle 61 clean results → money screen 0)
       var TRc = hasKey ? '' : _t(vscode);   // s195 T2 — the trust line sits next to the price (not on a paid user's toast)
-      var pk = (SKc && SKc.clean) ? await vscode.window.showInformationMessage(W.msg + ' ' + SKc.clean + TRc, SKc.btn, SKc.note, lbl, B[0], "Don't show again")
+      var pk = (SKc && SKc.clean) ? await vscode.window.showInformationMessage(W.msg + ' ' + SKc.clean + TRc, lbl, SKc.btn, SKc.note, B[0], "Don't show again")
         : TMc ? await vscode.window.showInformationMessage(W.msg + ' ' + TMc.line + TRc, lbl, TMc.btn, B[0], "Don't show again")
         : await vscode.window.showInformationMessage(W.msg + TRc, lbl, B[0], "Don't show again");
       if (TMc && pk === TMc.btn) { send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix_buy', why: 'clean_team' }); try { await require('./buyopen.js').open(vscode, TMc.url, h.slug || h.PREFIX); } catch (e) { try { await vscode.env.openExternal(vscode.Uri.parse(TMc.url)); } catch (e2) { } }   /* s195 K2 buyopen */ pk = undefined; }
@@ -608,8 +608,10 @@ async function hint(ctx, h) {
       return { files: 0, total: 0, clean: clean, label: lbl, msg: W.msg, badge: B[0], md: md, report: rep, team: TMc ? TMc.line : null };
     }
     // s158 — ⚑7일 무료 없음: 버튼이 곧 값이다(손님 숫자 바로 옆) · 이미 시작된 체험만 지킨다
-    var label = hasKey ? 'Sweep the workspace' : ((until && Date.now() < until) ? 'Sweep the workspace (trial)' : 'Get the full report ($' + (h.price || 29) + ')');
+    var label = hasKey ? 'Sweep the workspace' : ((until && Date.now() < until) ? 'Sweep the workspace (trial)' : ('See all ' + total + ' issue' + (total === 1 ? '' : 's') + ' + how to fix each (full report) — $' + (h.price || 29) + ' once'));
     var msg = h.title + ': ' + total + ' issue' + (total === 1 ? '' : 's') + ' in ' + files + ' file' + (files === 1 ? '' : 's') + ' of this workspace.';
+    // s202 2026-10-21 — the person who installed it is the one reading: their own offer (fix all / every issue + its fix) is the FIRST button;
+    //   the company estimate and note follow. [walk 10/21] 816 paywall views/week, 8 presses, 0 cards; the old first button sold the team view.
     // s184 W1 — a product that ships fixmap.js sells THE WORK: the button names it ("Fix all N lines in M files — $29 once") and runs fixAll
     //   (preview → apply → dated record). The open file stays free (Quick Fix). fix_offer = the money moment, counted.
     var FX = null; try { FX = (h.fix && h.fix.count) ? await h.fix.count() : null; } catch (e) { FX = null; }
@@ -623,7 +625,7 @@ async function hint(ctx, h) {
     var SK = stakeOf(h), est = null;   // s165 — the stake line + one estimate button, only when the product ships stake.json
     if (SK) msg = msg + ' ' + SK.line;
     if (!hasKey) msg = msg + _t(vscode);   // s195 T2
-    var pick = SK ? await vscode.window.showInformationMessage(msg, SK.btn, SK.note, label, "Don't show again") : await vscode.window.showInformationMessage(msg, label, "Don't show again");
+    var pick = SK ? await vscode.window.showInformationMessage(msg, label, SK.btn, SK.note, "Don't show again") : await vscode.window.showInformationMessage(msg, label, "Don't show again");
     if (SK && pick === SK.btn) { est = await stakeEstimate(h, SK, label, { total: total, files: files, day: day }); pick = est ? est.pick : undefined; }
     if (SK && pick === SK.note) { await noteFlow(h, SK, { total: total, files: files, day: day }); pick = undefined; }   // s168
     if (pick === label) await vscode.commands.executeCommand(h.PREFIX + ((FX && FX.lines) ? '.fixAll' : '.checkWorkspace'));
