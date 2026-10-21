@@ -2,7 +2,7 @@
   "name": "oracle-jdk-license-gate",
   "displayName": "Oracle JDK License Gate",
   "description": "Oracle JDK 21 updates turn OTN (not free for production) at the 2026-10-20 CPU. Shows which Java every part of your project pulls (CI, Docker, Gradle, SDKMAN, dev container), counts down to that date and gives the free Temurin or Corretto line for each.",
-  "version": "1.0.25",
+  "version": "1.0.27",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
