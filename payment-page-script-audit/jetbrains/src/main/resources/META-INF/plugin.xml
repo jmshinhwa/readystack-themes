@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.payment-page-script-audit</id>
+  <name>PCI DSS 6.4.3 Payment Page Script Inventory Auditor</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Lists every script on your checkout page that has no integrity hash, no authorisation and no written justification - the three things PCI DSS 6.4.3 has required since 31 March 2025.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>PCI DSS 6.4.3 Payment Page Script Inventory Auditor: Check This File</b>. Each finding appears on its line with the fix. 22 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/payment-page-script-audit</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/payment-page-script-audit">getreadystack.com/tools/payment-page-script-audit</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_payment_page_script_audit.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.payment-page-script-audit" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.payment-page-script-audit.check" class="com.getreadystack.p_payment_page_script_audit.RsCheckAction"
+            text="PCI DSS 6.4.3 Payment Page Script Inventory Auditor: Check This File" description="Run PCI DSS 6.4.3 Payment Page Script Inventory Auditor on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
