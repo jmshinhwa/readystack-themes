@@ -1,0 +1,23 @@
+<idea-plugin>
+  <id>com.getreadystack.outlook-email-html-lint</id>
+  <name>Outlook Email HTML Lint</name>
+  <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <description><![CDATA[
+  <p>Classic Outlook renders with the Word engine, the new Outlook with WebView2. Lint one email file against both at once, line by line, before you send.</p>
+<p>Right-click in the editor (or <b>Tools</b>) → <b>Outlook Email HTML Lint: Check This File</b>. Each finding appears on its line with the fix. 33 rules, offline. Runs the same engine as the VS Code extension and the CLI: <code>npx @readystack/outlook-email-html-lint</code> (Node.js 18+ required).</p>
+<p>Free for the file you open. The whole-project sweep and the report need a licence ($29 once): <a href="https://getreadystack.com/tools/outlook-email-html-lint">getreadystack.com/tools/outlook-email-html-lint</a></p>
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <externalAnnotator language="" implementationClass="com.getreadystack.p_outlook_email_html_lint.RsAnnotator"/>
+    <notificationGroup id="ReadyStack.outlook-email-html-lint" displayType="BALLOON"/>
+  </extensions>
+  <actions>
+    <action id="com.getreadystack.outlook-email-html-lint.check" class="com.getreadystack.p_outlook_email_html_lint.RsCheckAction"
+            text="Outlook Email HTML Lint: Check This File" description="Run Outlook Email HTML Lint on the file in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
