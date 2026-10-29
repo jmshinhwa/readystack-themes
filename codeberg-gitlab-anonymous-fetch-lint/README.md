@@ -1,5 +1,7 @@
 # Codeberg / GitLab.com Anonymous Fetch Lint
 
+![Codeberg / GitLab.com Anonymous Fetch Lint — finds the line](https://getreadystack.com/img/promo/codeberg-gitlab-anonymous-fetch-lint_demo.gif)
+
 ![Codeberg / GitLab.com Anonymous Fetch Lint](https://getreadystack.com/img/promo/sku605371_result_card.jpg)
 
 **Finds every gitlab.com fetch that carries no token — 8 findings on the bundled sample workflow, each with the exact token line or Codeberg line that replaces it.**
