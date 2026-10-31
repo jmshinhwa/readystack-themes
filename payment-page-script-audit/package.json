@@ -2,7 +2,7 @@
   "name": "payment-page-script-audit",
   "displayName": "PCI DSS 6.4.3 Payment Page Script Inventory Auditor",
   "description": "Lists every script on your checkout page that has no integrity hash, no authorisation and no written justification - the three things PCI DSS 6.4.3 has required since 31 March 2025.",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "publisher": "ReadyStack",
   "license": "SEE LICENSE IN LICENSE.txt",
   "engines": {
@@ -86,5 +86,14 @@
       }
     }
   },
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmshinhwa/readystack-themes.git",
+    "directory": "payment-page-script-audit"
+  },
+  "homepage": "https://getreadystack.com/tools/payment-page-script-audit",
+  "bugs": {
+    "url": "https://github.com/jmshinhwa/readystack-themes/issues"
+  }
 }
