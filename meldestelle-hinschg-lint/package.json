@@ -2,7 +2,7 @@
   "name": "meldestelle-hinschg-lint",
   "displayName": "Meldestelle-Prüfer (HinSchG)",
   "description": "Findet Mängel auf der Meldestelle-Seite und in der Hinweisgeber-Richtlinie nach HinSchG: 7-Tage-Eingangsbestätigung, 3-Monats-Rückmeldung, BfJ, Löschfrist, 50er-Schwelle. 12 Regeln.",
-  "version": "1.0.10",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
@@ -16,9 +16,7 @@
     "Hinweisgeberschutzgesetz",
     "Whistleblowing",
     "Compliance",
-    "Hinweisgeber",
-    "interne meldestelle",
-    "hinweisgebersystem"
+    "Hinweisgeber"
   ],
   "main": "./extension.js",
   "activationEvents": [
@@ -49,10 +47,5 @@
     "url": "https://github.com/jmshinhwa/readystack-themes.git",
     "directory": "meldestelle-hinschg-lint"
   },
-  "homepage": "https://getreadystack.com/de/tools/meldestelle-hinschg-lint",
-  "icon": "icon.png",
-  "readystack": {
-    "rulesDate": "2026-09-23",
-    "alertUrl": "https://getreadystack.com/de/tools/meldestelle-hinschg-lint?ref=vsix_alert#yjae"
-  }
+  "homepage": "https://getreadystack.com/de/tools/meldestelle-hinschg-lint"
 }
