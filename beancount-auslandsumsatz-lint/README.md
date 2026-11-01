@@ -2,8 +2,6 @@
 
 ![Beancount/hledger Auslandsumsatz-Check (UStG) — finds the line](https://getreadystack.com/img/promo/beancount-auslandsumsatz-lint_demo.gif)
 
-![Beancount/hledger Auslandsumsatz-Check (UStG)](https://getreadystack.com/img/promo/sku320201_result_card.jpg)
-
 **Stand 2026-09-23, Beispieljournal: 10 Befunde, ZM für Q2 2026 seit 58 Tagen überfällig (Frist 2026-07-27).** Nach der Korrektur: 0 Befunde.
 
 Diese VS-Code-Erweiterung prüft Beancount- und hledger-Journale von Freiberuflern und kleinen Firmen in Deutschland, die Kunden im EU-Ausland und in Drittländern haben. Sie liest jede Transaktion, die ein Einnahmen-Konto berührt (Income, Einnahmen, Erlöse, Erträge, Revenue), und prüft sie gegen 10 Regeln aus dem Umsatzsteuergesetz. Jeder Befund steht mit Zeilennummer, Paragraf und Korrektur im Problems-Fenster.
@@ -58,7 +56,7 @@ Reverse Charge erkennt die Erweiterung am Kontonamen (`ReverseCharge`, `Reverse-
 ## Kostenlos / Vollversion
 
 - Kostenlos: das geöffnete Journal mit allen 10 Regeln prüfen, mit Zeilennummer, Paragraf und überfälligen Tagen. Kein Schlüssel nötig.
-- Vollversion: alle Journale im Workspace in einem Lauf prüfen und einen Befundbericht (Datei, Zeile, Paragraf, überfällige Tage) für den Steuerberater schreiben (https://getreadystack.com/api/buy/cl/polar_cl_YswKr0r7u9zGAqmyq2VW52TN2Jl3sfsI5t9ZY0HdCGp).
+- Vollversion: alle Journale im Workspace in einem Lauf prüfen und einen Befundbericht (Datei, Zeile, Paragraf, überfällige Tage) für den Steuerberater schreiben (https://buy.polar.sh/polar_cl_YswKr0r7u9zGAqmyq2VW52TN2Jl3sfsI5t9ZY0HdCGp).
 
 ## Maßstab
 
