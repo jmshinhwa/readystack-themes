@@ -2,8 +2,6 @@
 
 ![Förderquoten-Lint Weiterbildung (SGB III) — finds the line](https://getreadystack.com/img/promo/weiterbildung-foerderquote-lint_demo.gif)
 
-![Förderquoten-Lint Weiterbildung (SGB III)](https://getreadystack.com/img/promo/sku300155_result_card.jpg)
-
 **Kursseite: Arbeitsagentur zahlt 3.200 € Weiterbildungskosten nicht** – das ist der Befund für eine Beispielseite mit 6.400 € Kursgebühr, die Betrieben mit 50 bis 499 Beschäftigten noch 100 % der Lehrgangskosten verspricht. Seit 2024-04-01 übernimmt die Agentur für Arbeit in dieser Größenklasse 50 %; der Betrieb trägt 3.200 € selbst.
 
 Diese Erweiterung prüft Markdown-Kursseiten und Förder-Merkblätter von Bildungsträgern, Personalabteilungen und Weiterbildungsberatungen gegen § 82 SGB III in der Fassung des Aus- und Weiterbildungsgesetzes (in Kraft seit 2024-04-01). Sie arbeitet mit 16 rules und 2 inputs: dem Text der Datei und dem Prüfdatum.
