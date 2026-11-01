@@ -4,7 +4,7 @@
 
 Marca los fallos de la política de privacidad de un sitio chileno frente al deber de información del **art. 14 ter** de la **Ley 21.719**, que rige desde el **2026-12-01**. Pensado para agencias web, freelancers y estudios con portfolio en WordPress o Elementor que publican la política de sus clientes.
 
-Web gratis (el mismo motor, en el navegador): https://getreadystack.com/es/tools/privacidad-chile-21719-lint
+Web gratis (el mismo motor, en el navegador): https://getreadystack.com/tools/privacidad-chile-21719-lint
 
 Referencia: una agencia chilena cobra 150.000 a 500.000 pesos por adecuar a la Ley 21.719 un sitio pyme simple (política, banner, registro y formularios).
 
