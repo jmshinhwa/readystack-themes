@@ -2,8 +2,6 @@
 
 ![Datenschutzerklärung Check – TDDDG, DDG, DPF — finds the line](https://getreadystack.com/img/promo/datenschutzerklaerung-tdddg-lint_demo.gif)
 
-![Datenschutzerklärung Check – TDDDG, DDG, DPF](https://getreadystack.com/img/promo/sku303592_result_card.jpg)
-
 **Findet veraltete Gesetzeszitate und fehlende Pflichtangaben in Datenschutzerklärungen – Zeile für Zeile, mit Ersatzformulierung.** 16 rules · 1 file pro Lauf · läuft lokal, ohne Upload.
 
 Seit dem 14.05.2024 gelten das Digitale-Dienste-Gesetz (DDG) und das TDDDG. Das TMG ist aufgehoben, das TTDSG heißt jetzt TDDDG. Eine Datenschutzerklärung von vor diesem Stichtag zitiert tote Gesetze, und Textgeneratoren und KI-Chatbots liefern solche Zitate teils bis heute. Dazu kommen Übergangsfristen, die längst abgelaufen sind: Die alten Standardvertragsklauseln (2010/87/EU) durften nur bis 27.12.2022 weiterlaufen, der EU-US Privacy Shield ist seit dem 16.07.2020 ungültig.
