@@ -2,8 +2,6 @@
 
 ![Dienstplan-Check: Ruhezeit und Pausen (ArbZG) — finds the line](https://getreadystack.com/img/promo/dienstplan-ruhezeit-check_demo.gif)
 
-![Dienstplan-Check: Ruhezeit und Pausen (ArbZG)](https://getreadystack.com/img/promo/sku297576_result_card.jpg)
-
 **Schichtplaner in Pflege, Gastronomie, Handel und Logistik:** Prüfe den Dienstplan, bevor er aushängt. Die Erweiterung liest den Dienstplan als CSV (Excel-Export) und markiert jede Zeile, die gegen das Arbeitszeitgesetz (ArbZG) oder das Jugendarbeitsschutzgesetz (JArbSchG) verstößt: mit Zeile, Paragraf und dem Wert, der erlaubt wäre.
 
 **12 rules · 1 CSV file · Ruhezeit, Pausen, Nachtarbeit, Jugendliche.**
