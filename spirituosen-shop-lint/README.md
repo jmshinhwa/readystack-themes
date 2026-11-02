@@ -2,8 +2,6 @@
 
 ![Spirituosen-Lint: Mindestalkohol & Alkoholsteuer — finds the line](https://getreadystack.com/img/promo/spirituosen-shop-lint_demo.gif)
 
-![Spirituosen-Lint: Mindestalkohol & Alkoholsteuer](https://getreadystack.com/img/promo/sku363502_result_card.jpg)
-
 **Für Shop-Entwickler von Brennereien und Spirituosenhändlern in Deutschland:** Die Erweiterung liest die Produkt-CSV (Shopware-, Shopify- oder WooCommerce-Export) und markiert jede Zeile, deren Verkehrsbezeichnung, Flaschengröße, Alkoholangabe oder Alkoholsteuer nicht zum Recht passt — direkt im Editor, mit Zeilennummer und Rechtsgrundlage.
 
 Gemessen an der Beispieldatei `dirty.csv` (7 Produkte): **12 Befunde** — darunter eine 0,75-l-Gin-Flasche (keine zulässige Nennfüllmenge), ein Eierlikör mit 12 % vol (Mindestalkohol 14 % vol), ein Whisky mit 4 g/l Zucker (darf nicht gesüßt werden) und ein Spiced Rum mit „Alkoholsteuer 3,00 € angegeben, fällig sind 3,42 €“.
