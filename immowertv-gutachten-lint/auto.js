@@ -63,91 +63,6 @@ var REVIEW_T = {
   es: ['Si te ahorró tiempo, una reseña breve ayuda a que otros lo encuentren.', 'Escribir una reseña', 'No, gracias'],
   pt: ['Se isso economizou seu tempo, uma avaliação curta ajuda outras pessoas a encontrá-lo.', 'Escrever uma avaliação', 'Não, obrigado']
 };
-// ★s164 2026-09-26 — the first minute. [실측 9/26] VS Code installs 349 · used 16: almost every installer's folder has none
-//   of the files a checker reads, so hint() stayed silent and the product was never felt (no value seen = no paywall ever met).
-//   ⇒ ONCE per install, say so and offer two one-click ways to watch it work: check a file of the user's own (their own data =
-//   endowment) or the bundled sample (sample/ in the package, only when present). Free, nothing gated; the first finding is
-//   quoted (a concrete loss beats a feature list). Marked before showing, so "Not now" or closing it ends it for good.
-var WELCOME_T = {
-  en: ['{t} is installed, but this folder has no {k} file for it to check yet. See what it catches in one click:', 'Check a file of mine', 'Show me on a sample', 'Not now',
-       '{t} on the sample: {n} issue{s} against {r} checks. First: {m} Your own files get the same check the moment you open them.'],
-  de: ['{t} ist installiert, aber dieser Ordner enthält noch keine {k}-Datei zum Prüfen. Mit einem Klick sehen, was es findet:', 'Eine eigene Datei prüfen', 'An einem Beispiel zeigen', 'Später',
-       '{t} am Beispiel: {n} Befund(e) bei {r} Prüfungen. Zuerst: {m} Ihre eigenen Dateien werden genauso geprüft, sobald Sie sie öffnen.'],
-  ja: ['{t} をインストールしました。このフォルダには確認対象の {k} ファイルがまだありません。ワンクリックで何を見つけるか確認できます:', '自分のファイルを確認', 'サンプルで見る', '後で',
-       'サンプルの結果: {r} 項目中 {n} 件の問題。最初の指摘: {m} 自分のファイルも開いた瞬間に同じ確認が行われます。'],
-  es: ['{t} está instalado, pero esta carpeta aún no tiene ningún archivo {k} que revisar. Mira lo que detecta con un clic:', 'Revisar un archivo mío', 'Mostrármelo con un ejemplo', 'Ahora no',
-       '{t} con el ejemplo: {n} problema(s) en {r} reglas. El primero: {m} Tus archivos reciben la misma revisión en cuanto los abres.'],
-  pt: ['{t} está instalado, mas esta pasta ainda não tem nenhum arquivo {k} para verificar. Veja o que ele encontra com um clique:', 'Verificar um arquivo meu', 'Mostrar num exemplo', 'Agora não',
-       '{t} no exemplo: {n} problema(s) em {r} regras. O primeiro: {m} Seus arquivos recebem a mesma verificação assim que você os abre.']
-};
-function kindOf(glob) {   // '**/security.txt' → 'security.txt' · '**/*.{yml,yaml}' → '.yml/.yaml' · '**/*.html' → '.html'
-  var g = String(glob || '').replace(/^\*\*\//, '');
-  var m = g.match(/^\*\.\{([a-z0-9,]+)\}$/i); if (m) return m[1].split(',').map(function (x) { return '.' + x; }).join('/');
-  m = g.match(/^\*\.([a-z0-9]+)$/i); if (m) return '.' + m[1];
-  return g;
-}
-function globExts(glob) {   // the file dialog filter
-  var g = String(glob || '').replace(/^\*\*\//, '');
-  var m = g.match(/\.\{([a-z0-9,]+)\}$/i); if (m) return m[1].split(',');
-  m = g.match(/\.([a-z0-9]+)$/i); if (m) return [m[1]];
-  return [];
-}
-function sampleOf(h) {   // s168 — dot samples (.condarc · .github/workflows/*.yml) were skipped, so the "Show me on a sample" button never appeared
-  var JUNK = { '.DS_Store': 1, '.gitkeep': 1, '.keep': 1 };
-  function pick(dir, depth) {
-    var all = fs.readdirSync(dir).filter(function (x) { return !JUNK[x]; }).sort();
-    var files = all.filter(function (x) { try { return fs.statSync(path.join(dir, x)).isFile(); } catch (e) { return false; } });
-    var plain = files.filter(function (x) { return x.charAt(0) !== '.'; });
-    if (plain.length) return path.join(dir, plain[0]);
-    if (files.length) return path.join(dir, files[0]);
-    if (depth > 3) return null;
-    for (var i = 0; i < all.length; i++) { var q = path.join(dir, all[i]); try { if (fs.statSync(q).isDirectory()) { var r = pick(q, depth + 1); if (r) return r; } } catch (e) { } }
-    return null;
-  }
-  try { return pick(path.join(h.extDir || __dirname, 'sample'), 0); } catch (e) { return null; }
-}
-function fillW(x, h, o) {
-  o = o || {};
-  return String(x).replace('{t}', h.title).replace('{k}', kindOf(h.GLOB)).replace('{r}', h.R).replace('{n}', o.n == null ? '' : o.n)
-    .replace('{s}', o.n === 1 ? '' : 's').replace('{m}', o.m || '');
-}
-async function pickMine(ctx, h, T) {
-  var vscode = h.vscode, ex = globExts(h.GLOB), opt = { canSelectMany: false, openLabel: T[1] };
-  if (ex.length) { opt.filters = {}; opt.filters[kindOf(h.GLOB)] = ex; }
-  var picked = vscode.window.showOpenDialog ? await vscode.window.showOpenDialog(opt) : null;
-  if (!picked || !picked.length) return { pick: 'cancel' };
-  var doc = await vscode.workspace.openTextDocument(picked[0]);
-  await vscode.window.showTextDocument(doc);
-  send(vscode, h.slug || h.PREFIX, { t: 'use', slug: h.slug || h.PREFIX, src: 'vsix', why: 'welcome_pick', path: '/use/vsix/' + (h.slug || h.PREFIX) });
-  return { pick: 'mine', r: h.api && h.api.run ? h.api.run(doc) : null };
-}
-async function welcome(ctx, h) {
-  try {
-    var vscode = h.vscode, st = ctx && ctx.globalState, key = h.PREFIX + '.welcomed';
-    if (!st || st.get(key) || st.get(h.PREFIX + '.noHint')) return null;
-    await st.update(key, today());
-    var T = tr(WELCOME_T, vscode), smp = sampleOf(h);
-    var btns = [T[1]].concat(smp ? [T[2]] : []).concat([T[3]]);
-    _toastAt = Date.now();
-    var pk = await vscode.window.showInformationMessage.apply(vscode.window, [fillW(T[0], h)].concat(btns));
-    if (pk === T[1]) return Object.assign({ shown: true }, await pickMine(ctx, h, T));
-    if (smp && pk === T[2]) {
-      var su = vscode.Uri && vscode.Uri.file ? vscode.Uri.file(smp) : { scheme: 'file', fsPath: smp };
-      var sd = await vscode.workspace.openTextDocument(su);
-      await vscode.window.showTextDocument(sd);
-      var res = null; try { res = h.E.engine.check(fs.readFileSync(smp, 'utf8'), { today: today(), path: smp }); } catch (e) { }
-      var f = (res && res.findings) || [];
-      if (h.api && h.api.run) h.api.run(sd);
-      send(vscode, h.slug || h.PREFIX, { t: 'use', slug: h.slug || h.PREFIX, src: 'vsix', why: 'welcome_sample', path: '/use/vsix/' + (h.slug || h.PREFIX) });
-      var first = f.length ? String(f[0].msg || f[0].message || f[0].check || '').trim().slice(0, 160) : '';
-      if (first && !/[.!?。]$/.test(first)) first += '.';
-      var pk2 = await vscode.window.showInformationMessage(fillW(T[4], h, { n: f.length, m: first }), T[1]);
-      var more = pk2 === T[1] ? await pickMine(ctx, h, T) : null;
-      return { shown: true, pick: 'sample', findings: f.length, then: more };
-    }
-    return { shown: true, pick: pk ? 'later' : 'dismissed' };
-  } catch (e) { return null; }
-}
 function lang(vscode) { return String((vscode && vscode.env && vscode.env.language) || 'en').slice(0, 2).toLowerCase(); }
 function tr(T, vscode) { return T[lang(vscode)] || T.en; }
 function today() { return new Date().toISOString().slice(0, 10); }
@@ -312,7 +227,6 @@ async function clearReport(ctx, h, fromSweep, sweptMsg) {
   } catch (e) { return null; }
 }
 var _pinged = false;
-var _sent = [];
 function ping(vscode, slug, why) {
   try {
     if (_pinged) return; _pinged = true;
@@ -321,7 +235,6 @@ function ping(vscode, slug, why) {
 }
 function send(vscode, slug, o) {
   try {
-    try { _sent.push((o && o.t ? o.t : '') + ':' + (o && o.why ? o.why : '')); if (_sent.length > 50) _sent.shift(); } catch (e) { }   // s174 — in-memory only (the control reads it) · nothing leaves the machine here
     if (process.env.READYSTACK_NO_TELEMETRY || process.env.CI) return;
     if (vscode && vscode.env && vscode.env.isTelemetryEnabled === false) return;
     var body = JSON.stringify(o);
@@ -371,7 +284,6 @@ function start(ctx, o) {
     bar.tooltip = r.n ? (r.n + ' finding' + (r.n === 1 ? '' : 's') + ' in this file against ' + R + ' checks - click for the list') : ('Clean against ' + R + ' checks on ' + new Date().toISOString().slice(0, 10));
     bar.show(); return r;
   }
-  h.api = { run: run, show: show };   // s164 — welcome() checks the picked/sample file with the same free run()
   var t = null;
   function later(ed) { clearTimeout(t); t = setTimeout(function () { show(ed); }, 400); if (t && t.unref) t.unref(); }
   ctx.subscriptions.push(
@@ -383,151 +295,37 @@ function start(ctx, o) {
   if (cfg().get('workspaceHint', true) !== false) { var ht = setTimeout(function () { hint(ctx, h); }, o.hintDelayMs == null ? 8000 : o.hintDelayMs); if (ht && ht.unref) ht.unref(); }
   return { run: run, show: show, hint: function () { return hint(ctx, h); } };
 }
-// s165 2026-09-27 — THE STAKE: at the money moment, say what the vendor bills (a product's own stake.json, copied from the
-//   vendor's price list · never estimated). No stake.json = the old message, unchanged. [measured] Oracle JDK License Gate held
-//   1/3 of all our VS Code installs with zero promotion while its paywall said only "N issues · $29" — the fear is the payroll bill.
-var STAKE_T = { en: 'Estimate for my company', de: 'Für mein Unternehmen berechnen', ja: '自社の金額を試算', es: 'Calcular para mi empresa', pt: 'Calcular para minha empresa' };
-// s166 2026-09-28 — THE COMPANY SHAPE: the one who pays is the company, and the vendor bills the whole payroll when ONE build
-//   anywhere needs a licence, so a clean folder is not the company's safety. [measured 9/28] Oracle 149 installs · the stake line
-//   only showed on DIRTY folders · estimate clicks 0. Now: a product whose stake.json carries clean_line + team_url says the
-//   company line on the CLEAN result too, and the estimate result offers the team key (CI on every repo) next to the payer's
-//   own number. Team key facts are Polar's product ([measured] $149 once · every linter · 5 seats) — never more than that.
-var STAKE_TEAM_T = {
-  en: ['CI gate for every repo - team key $149', 'One team key ($149 once, 5 seats) runs this check in GitHub Actions on every repository and pull request, and unlocks every ReadyStack linter.'],
-  de: ['CI-Prüfung für jedes Repo - Team-Schlüssel $149', 'Ein Team-Schlüssel ($149 einmalig, 5 Plätze) führt diese Prüfung in GitHub Actions für jedes Repository und jeden Pull Request aus und schaltet alle ReadyStack-Linter frei.'],
-  ja: ['全リポジトリの CI チェック - チームキー $149', 'チームキー 1 つ（$149 買い切り・5 席）で、このチェックを GitHub Actions で全リポジトリ・全プルリクエストに実行でき、ReadyStack の全リンターが使えます。'],
-  es: ['Control en CI para cada repo - clave de equipo $149', 'Una clave de equipo ($149 pago único, 5 puestos) ejecuta esta revisión en GitHub Actions en cada repositorio y pull request, y desbloquea todos los linters de ReadyStack.'],
-  pt: ['Verificação em CI para cada repo - chave de equipe US$ 149', 'Uma chave de equipe (US$ 149, pagamento único, 5 lugares) roda esta verificação no GitHub Actions em todo repositório e pull request, e libera todos os linters da ReadyStack.']
-};
-// s174 2026-10-01 — THE CLEAN COMPANY LINE for every product (not only stake.json ones). [measured s174 F4] VS Code installs +506
-//   since 9/20 but the paid moment almost never fired: the clean toast offered only the $29 dated report for THIS folder, and the one
-//   who pays $149 is a team. Now a clean result (no stake clean_line, no key yet) adds ONE honest team line + ONE team button.
-//   Facts = the Whop team tier ([measured whop_tiers TEAM_TITLE] $149 one-time · 5 seats · every tool) · the URL = the TEAM_URL this
-//   product's license.js already sells through (our /api/buy route -> Whop) · no CI claim (not every product ships a CI runner).
-//   Same once-per-workspace toast · "Don't show again" silences it for good · seen = t:paywall why:clean_offer (morning page).
-var CLEAN_TEAM_T = {
-  en: ['Using this across a team? One team key ($149 once, 5 seats) unlocks the dated report in every repository you open, for every ReadyStack linter.', 'Team key — $149 once, 5 seats'],
-  de: ['Im Team im Einsatz? Ein Team-Schlüssel ($149 einmalig, 5 Plätze) schaltet den datierten Bericht in jedem geöffneten Repository frei, für alle ReadyStack-Linter.', 'Team-Schlüssel — $149 einmalig, 5 Plätze'],
-  ja: ['チームで使いますか？チームキー 1 つ（$149 買い切り・5 席）で、開いたすべてのリポジトリで日付入りレポートが使え、ReadyStack の全リンターが対象です。', 'チームキー — $149 買い切り・5 席'],
-  es: ['¿Lo usa un equipo? Una clave de equipo ($149 pago único, 5 puestos) desbloquea el informe fechado en cada repositorio que abra, para todos los linters de ReadyStack.', 'Clave de equipo — $149 pago único, 5 puestos'],
-  pt: ['Usa em equipe? Uma chave de equipe (US$ 149, pagamento único, 5 lugares) libera o relatório datado em todo repositório que você abrir, para todos os linters da ReadyStack.', 'Chave de equipe — US$ 149 uma vez, 5 lugares']
-};
-function teamUrlOf(h) {   // the team checkout this product already sells through (license.js TEAM_URL) · our domain only · none -> no line
-  try { var src = fs.readFileSync(path.join(h.extDir || __dirname, 'license.js'), 'utf8'); var m = src.match(/const TEAM_URL = '(https:\/\/getreadystack\.com\/[^']+)'/); return m ? m[1] : ''; } catch (e) { return ''; }
-}
-function cleanTeam(h) {
-  var url = teamUrlOf(h); if (!url) return null;
-  var T = CLEAN_TEAM_T[lang(h.vscode)] || CLEAN_TEAM_T.en;
-  return { line: T[0], btn: T[1], url: url };
-}
-// s168 2026-09-28 — THE CHAMPION NOTE. The one who installs is a developer; the one who pays $149 is a manager.
-//   [measured 9 days] pay-screen reach VS Code 4 · MCP 4 — people used the free check and stopped. A developer does not spend
-//   company money alone; they forward a reason. ⇒ one button writes a dated, factual note to paste into Slack / email / the ticket:
-//   their own count · the vendor line from stake.json (vendor's own price list) · their estimate if they gave headcount · the free
-//   fix · the team key. ⛔No invented number: every figure comes from their files, stake.json or their own input.
-var NOTE_T = {
-  en: ['Copy a note for my manager', '{title} - check result for the team ({day})', '{n} flagged line(s) in {files} file(s) of this workspace, checked against {rules} rules.', 'This workspace: 0 flagged lines in {files} file(s), checked against {rules} rules.', 'Each flagged line comes with its free replacement, shown in the editor.', 'Team key: $149 once, 5 seats - runs this check in CI on every repository and pull request: {url}', 'Copied. The note is also open in a new tab - paste it into Slack, email or the ticket.', 'Source'],
-  de: ['Notiz für meine Führungskraft kopieren', '{title} - Prüfergebnis für das Team ({day})', '{n} markierte Zeile(n) in {files} Datei(en) dieses Workspace, geprüft gegen {rules} Regeln.', 'Dieser Workspace: 0 markierte Zeilen in {files} Datei(en), geprüft gegen {rules} Regeln.', 'Zu jeder markierten Zeile zeigt der Editor den kostenlosen Ersatz.', 'Team-Schlüssel: $149 einmalig, 5 Plätze - führt diese Prüfung in der CI für jedes Repository und jeden Pull Request aus: {url}', 'Kopiert. Die Notiz ist auch in einem neuen Tab geöffnet - in Slack, E-Mail oder Ticket einfügen.', 'Quelle'],
-  ja: ['上長向けメモをコピー', '{title} - チーム向けチェック結果 ({day})', 'このワークスペースの {files} ファイルで {n} 行を検出（{rules} ルールで確認）。', 'このワークスペース: {files} ファイルで検出 0 行（{rules} ルールで確認）。', '検出した各行には無料の置き換えがエディタに表示されます。', 'チームキー: $149 買い切り・5 席 - このチェックを全リポジトリ・全プルリクエストの CI で実行: {url}', 'コピーしました。メモは新しいタブにも開いています - Slack・メール・チケットに貼り付けてください。', '出典'],
-  es: ['Copiar una nota para mi responsable', '{title} - resultado de la revisión para el equipo ({day})', '{n} línea(s) marcada(s) en {files} archivo(s) de este espacio de trabajo, revisado con {rules} reglas.', 'Este espacio de trabajo: 0 líneas marcadas en {files} archivo(s), revisado con {rules} reglas.', 'Cada línea marcada trae su reemplazo gratuito, visible en el editor.', 'Clave de equipo: $149 una vez, 5 puestos - ejecuta esta revisión en CI en cada repositorio y pull request: {url}', 'Copiado. La nota también está abierta en una pestaña nueva - pégala en Slack, correo o el ticket.', 'Fuente'],
-  pt: ['Copiar uma nota para meu gestor', '{title} - resultado da verificação para a equipe ({day})', '{n} linha(s) marcada(s) em {files} arquivo(s) deste workspace, verificado com {rules} regras.', 'Este workspace: 0 linhas marcadas em {files} arquivo(s), verificado com {rules} regras.', 'Cada linha marcada vem com a substituição gratuita, mostrada no editor.', 'Chave de equipe: $149 uma vez, 5 lugares - roda esta verificação no CI em cada repositório e pull request: {url}', 'Copiado. A nota também está aberta em uma nova aba - cole no Slack, e-mail ou no ticket.', 'Fonte']
-};
-function noteText(h, SK, info) {
-  var T = NOTE_T[lang(h.vscode)] || NOTE_T.en, i = info || {}, f = function (x) { return String(x).replace('{title}', h.title || '').replace('{day}', i.day || new Date().toISOString().slice(0, 10)).replace('{n}', i.total || 0).replace('{files}', i.files || 0).replace('{rules}', h.R || '').replace('{url}', (SK.team && SK.team.url) || ''); };
-  var L = ['**' + f(T[1]) + '**', '', '- ' + f(i.total ? T[2] : T[3])];
-  var est = i.estimate ? ((String(i.estimate).match(/^[\s\S]*?[.。](?=\s|$)/) || [String(i.estimate)])[0]) : '';   // s168 — the payer's number only (no sales sentence in a note to the manager)
-  if (est) L.push('- ' + est); else L.push('- ' + (i.total ? SK.line : (SK.clean || SK.line)));   // their own number replaces the 500-person example
-  if (SK.s && SK.s.source) L.push('- ' + T[7] + ': ' + SK.s.source + (SK.s.source_url ? ' (' + SK.s.source_url + ')' : ''));
-  if (i.total) L.push('- ' + T[4]);
-  if (SK.team) L.push('- ' + f(T[5]));
-  return L.join('\n') + '\n';
-}
-async function noteFlow(h, SK, info) {
-  var vscode = h.vscode, txt = noteText(h, SK, info), T = NOTE_T[lang(vscode)] || NOTE_T.en;
-  send(vscode, h.slug || h.PREFIX, { t: 'use', slug: h.slug || h.PREFIX, src: 'vsix', why: 'stake_note', path: '/use/vsix/' + (h.slug || h.PREFIX) });
-  try { await vscode.env.clipboard.writeText(txt); } catch (e) { }
-  try { var d = await vscode.workspace.openTextDocument({ content: txt, language: 'markdown' }); await vscode.window.showTextDocument(d); } catch (e) { }
-  try { vscode.window.showInformationMessage(T[6]); } catch (e) { }
-  return txt;
-}
-var _stake;
-function money(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
-function stakeOf(h) {
-  try {
-    if (_stake === undefined) { _stake = null; var fp = require('path').join(h.extDir || __dirname, 'stake.json'); if (require('fs').existsSync(fp)) _stake = JSON.parse(require('fs').readFileSync(fp, 'utf8')); }
-    var s = _stake; if (!s || !Array.isArray(s.bands) || !s.bands.length || !s.line) return null;
-    var L = lang(h.vscode), ex = Number(s.example_heads || 500), r = rateOf(s, ex); if (!r) return null;
-    var pick = function (o) { return o ? (o[L] || o.en || '') : ''; };
-    var line = pick(s.line).replace('{ex}', money(ex)).replace('{exy}', money(ex * r * Number(s.months || 12)));
-    var clean = pick(s.clean_line).replace('{ex}', money(ex)).replace('{exy}', money(ex * r * Number(s.months || 12)));   // s166
-    var TT = STAKE_TEAM_T[L] || STAKE_TEAM_T.en, team = /^https:\/\//.test(String(s.team_url || '')) ? { url: s.team_url, label: TT[0], pitch: TT[1] } : null;   // s166
-    return { s: s, line: line, btn: STAKE_T[L] || STAKE_T.en, ask: pick(s.ask), result: pick(s.result), above: pick(s.above), clean: clean, team: team, note: (NOTE_T[L] || NOTE_T.en)[0] };   // s168 note
-  } catch (e) { return null; }
-}
-function rateOf(s, n) { for (var i = 0; i < s.bands.length; i++) { var b = s.bands[i]; if (n >= b[0] && n <= b[1]) return Number(b[2]); } return null; }
-async function stakeEstimate(h, SK, label, info) {
-  var vscode = h.vscode;
-  var v = await vscode.window.showInputBox({ prompt: SK.ask, placeHolder: '500', validateInput: function (x) { return /^\s*[\d,.\s]+\s*$/.test(String(x || '')) ? null : '123'; } });
-  var n = parseInt(String(v || '').replace(/[^\d]/g, ''), 10); if (!n || n < 1) return null;
-  send(vscode, h.slug || h.PREFIX, { t: 'use', slug: h.slug || h.PREFIX, src: 'vsix', why: 'stake_estimate', path: '/use/vsix/' + (h.slug || h.PREFIX) });
-  var r = rateOf(SK.s, n), msg;
-  if (!r) msg = SK.above || SK.line;
-  else msg = SK.result.replace('{heads}', money(n)).replace('{rate}', r.toFixed(2)).replace('{year}', money(n * r * Number(SK.s.months || 12))).replace('{src}', SK.s.source || '');
-  var estLine = msg;   // s168 — the payer's own number goes into the manager note
-  if (SK.team) msg = msg + ' ' + SK.team.pitch;   // s166 — the team key next to the payer's own number
-  var pk = SK.team ? await vscode.window.showInformationMessage(msg, SK.team.label, SK.note, label) : await vscode.window.showInformationMessage(msg, SK.note, label);
-  if (pk === SK.note) { await noteFlow(h, SK, Object.assign({}, info || {}, { estimate: estLine })); pk = undefined; }   // s168 — handled here, so the caller does not write a second note without the estimate
-  if (SK.team && pk === SK.team.label) {
-    send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix_buy', why: 'stake_team', path: '/paywall/vsix_buy/' + (h.slug || h.PREFIX) });
-    await vscode.env.openExternal(vscode.Uri.parse(SK.team.url));
-  }
-  return { n: n, rate: r, msg: msg, pick: pk };
-}
 async function hint(ctx, h) {
   try {
     var vscode = h.vscode, key = h.PREFIX + '.hinted';
     if (ctx.workspaceState.get(key) || ctx.globalState.get(h.PREFIX + '.noHint')) return null;
-    if (!vscode.workspace.workspaceFolders || !vscode.workspace.workspaceFolders.length) return await welcome(ctx, h);   // s164 — no folder open: the first minute still speaks (once)
+    if (!vscode.workspace.workspaceFolders || !vscode.workspace.workspaceFolders.length) return null;
     var sc = await scan(h, 300), files = sc.files, total = sc.total, clean = sc.clean, day = new Date().toISOString().slice(0, 10);   // s163b — one scan
     await ctx.workspaceState.update(key, true);
     var st = ctx.globalState, hasKey = !!st.get('licenseKey'), until = Number(st.get('sweepTrialUntil') || 0);
     if (!total) {
-      if (!clean) return { files: 0, total: 0, clean: 0, welcome: await welcome(ctx, h) };   // s164 — nothing here it reads → ONE first-minute offer, then quiet
+      if (!clean) return { files: 0, total: 0, clean: 0 };            // nothing here this checker reads → stay quiet
       var W = clearWords(vscode, { title: h.title, files: clean, rules: h.R, day: day, price: h.price || 29 });
       var lbl = hasKey ? W.save : W.buy;
       ping(vscode, h.slug || h.PREFIX, 'clear');
       var B = tr(BADGE_T, vscode), md = null;   // s163 — ONE badge action, only on a clean result
       _toastAt = Date.now(); reviewTick(ctx, h, 'clean', h.today || day);
-      var SKc = stakeOf(h), estc = null;   // s166 — a clean folder is not the company's safety: say the company line on the clean result too
-      var TMc = (!(SKc && SKc.clean) && !hasKey) ? cleanTeam(h) : null;   // s174 — the company line for every product
-      if (TMc) send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix', why: 'clean_offer' });
-      var pk = (SKc && SKc.clean) ? await vscode.window.showInformationMessage(W.msg + ' ' + SKc.clean, SKc.btn, SKc.note, lbl, B[0], "Don't show again")
-        : TMc ? await vscode.window.showInformationMessage(W.msg + ' ' + TMc.line, lbl, TMc.btn, B[0], "Don't show again")
-        : await vscode.window.showInformationMessage(W.msg, lbl, B[0], "Don't show again");
-      if (TMc && pk === TMc.btn) { send(vscode, h.slug || h.PREFIX, { t: 'paywall', slug: h.slug || h.PREFIX, src: 'vsix_buy', why: 'clean_team' }); try { await vscode.env.openExternal(vscode.Uri.parse(TMc.url)); } catch (e) { } pk = undefined; }
-      if (SKc && SKc.clean && pk === SKc.btn) { estc = await stakeEstimate(h, SKc, lbl, { total: 0, files: clean, day: day }); pk = estc ? estc.pick : undefined; }
-      if (SKc && SKc.clean && pk === SKc.note) { await noteFlow(h, SKc, { total: 0, files: clean, day: day }); pk = undefined; }   // s168
+      var pk = await vscode.window.showInformationMessage(W.msg, lbl, B[0], "Don't show again");
       var rep = null;
       if (pk === lbl) rep = await clearReport(ctx, h, false);   // s163b — sells (key panel) or delivers (dated record)
       else if (pk === B[0]) md = await copyBadge(vscode, h, h.today || day);
       else if (pk === "Don't show again") await st.update(h.PREFIX + '.noHint', true);
-      return { files: 0, total: 0, clean: clean, label: lbl, msg: W.msg, badge: B[0], md: md, report: rep, team: TMc ? TMc.line : null };
+      return { files: 0, total: 0, clean: clean, label: lbl, msg: W.msg, badge: B[0], md: md, report: rep };
     }
     // s158 — ⚑7일 무료 없음: 버튼이 곧 값이다(손님 숫자 바로 옆) · 이미 시작된 체험만 지킨다
     var label = hasKey ? 'Sweep the workspace' : ((until && Date.now() < until) ? 'Sweep the workspace (trial)' : 'Get the full report ($' + (h.price || 29) + ')');
     var msg = h.title + ': ' + total + ' issue' + (total === 1 ? '' : 's') + ' in ' + files + ' file' + (files === 1 ? '' : 's') + ' of this workspace.';
     _toastAt = Date.now();
-    var SK = stakeOf(h), est = null;   // s165 — the stake line + one estimate button, only when the product ships stake.json
-    if (SK) msg = msg + ' ' + SK.line;
-    var pick = SK ? await vscode.window.showInformationMessage(msg, SK.btn, SK.note, label, "Don't show again") : await vscode.window.showInformationMessage(msg, label, "Don't show again");
-    if (SK && pick === SK.btn) { est = await stakeEstimate(h, SK, label, { total: total, files: files, day: day }); pick = est ? est.pick : undefined; }
-    if (SK && pick === SK.note) { await noteFlow(h, SK, { total: total, files: files, day: day }); pick = undefined; }   // s168
+    var pick = await vscode.window.showInformationMessage(msg, label, "Don't show again");
     if (pick === label) await vscode.commands.executeCommand(h.PREFIX + '.checkWorkspace');
     else if (pick === "Don't show again") await st.update(h.PREFIX + '.noHint', true);
-    return { files: files, total: total, label: label, msg: msg, stake: SK ? SK.line : null, estimate: est };
+    return { files: files, total: total, label: label, msg: msg };
   } catch (e) { return null; }
 }
 module.exports = { start: start, relevant: relevant, tokens: tokens, isBroad: isBroad, clearWords: clearWords,
-  sweptClean: sweptClean, badgeTopic: badgeTopic, badgeMarkdown: badgeMarkdown, reviewUrl: reviewUrl, reviewTick: reviewTick, clearReport: clearReport, scan: scan,   // s163
-  welcome: welcome, kindOf: kindOf, globExts: globExts, sampleOf: sampleOf,   // s164
-  stakeOf: stakeOf, rateOf: rateOf, noteText: noteText, cleanTeam: cleanTeam, sent: function () { return _sent.slice(); } };   // s174   // s165 · s168 noteText
+  sweptClean: sweptClean, badgeTopic: badgeTopic, badgeMarkdown: badgeMarkdown, reviewUrl: reviewUrl, reviewTick: reviewTick, clearReport: clearReport, scan: scan };   // s163
