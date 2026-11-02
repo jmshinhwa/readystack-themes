@@ -1,7 +1,5 @@
 # Aufbewahrungsfristen-Lint für Löschkonzepte (BEG IV)
 
-![Aufbewahrungsfristen-Lint für Löschkonzepte](https://getreadystack.com/img/promo/sku330609_result_card.jpg)
-
 ![Aufbewahrungsfristen-Lint für Löschkonzepte — finds the line](https://getreadystack.com/img/promo/loeschkonzept-fristen-lint_demo.gif)
 
 **Findet falsche Aufbewahrungsfristen in Ihrem Löschkonzept — Zeile für Zeile, offline, in VS Code.**
