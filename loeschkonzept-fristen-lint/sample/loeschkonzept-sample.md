@@ -1,15 +1,19 @@
-# Löschkonzept Muster GmbH
+# Löschkonzept Muster GmbH (Vorlage Stand 2023)
 
-Stand: Vorlage aus dem Jahr der DSGVO-Einführung, seitdem nicht
-überarbeitet.
+Dieses Löschkonzept legt fest, wann personenbezogene Daten gelöscht werden.
 
-| Datenkategorie | Aufbewahrungsfrist | Fristbeginn | Rechtsgrundlage |
-|---|---|---|---|
-| Eingangsrechnungen (Buchungsbelege) | 10 Jahre | Ende des Kalenderjahres | § 147 Abs. 3 AO |
-| Ausgangsrechnungen | 8 Jahre | Ende des Kalenderjahres | § 14b UStG, § 147 AO |
-| Kontoauszüge | 8 Jahre | ab Belegdatum | § 147 Abs. 3 AO |
-| Jahresabschlüsse und Bilanzen | 6 Jahre | Ende des Kalenderjahres | § 257 HGB |
-| Geschäftsbriefe (E-Mail-Korrespondenz) | 10 Jahre | Ende des Kalenderjahres | § 257 HGB |
-| Lohnkonten | 6 Jahre | Ende des Kalenderjahres nach letzter Lohnzahlung | § 41 Abs. 1 EStG |
-| Bewerbungsunterlagen abgelehnter Bewerber | 24 Monate | Zugang der Absage | — |
-| Newsletter-Abonnenten | unbegrenzt | Anmeldung | Art. 6 Abs. 1 lit. a DSGVO |
+| Datenkategorie | Löschfrist | Rechtsgrundlage |
+|---|---|---|
+| Buchungsbelege (Kontoauszüge, Kassenbelege) | 10 Jahre | § 147 AO |
+| Eingangsrechnungen und Ausgangsrechnungen | 10 Jahre | § 14b UStG |
+| Jahresabschlüsse und Hauptbuch | 6 Jahre | § 257 HGB |
+| Geschäftsbriefe (E-Mails mit Kunden) | 10 Jahre | § 257 HGB |
+| Lohnkonten | 10 Jahre | § 41 EStG |
+| Lieferscheine | 6 Jahre | intern |
+| Zollanmeldungen | 6 Jahre | § 147 AO |
+| Verfahrensdokumentation | 6 Jahre | GoBD |
+| Bewerbungsunterlagen abgelehnter Bewerber | sofort nach Absage | intern |
+| Newsletter-Abonnenten | unbegrenzt | Einwilligung |
+| Cookie-Einwilligungen | 3 Jahre | TTDSG |
+
+Alle steuerrelevanten Unterlagen werden pauschal 10 Jahre aufbewahrt und danach gelöscht.
