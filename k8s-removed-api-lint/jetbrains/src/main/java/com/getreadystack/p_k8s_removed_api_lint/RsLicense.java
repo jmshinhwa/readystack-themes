@@ -13,6 +13,10 @@ import org.jetbrains.annotations.Nullable;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.Signature;
+import com.intellij.openapi.actionSystem.ActionUiKind;
+import com.intellij.openapi.actionSystem.ex.ActionUtil;
+import com.intellij.openapi.actionSystem.DataKey;
+import com.intellij.openapi.actionSystem.impl.SimpleDataContext;
 import java.security.cert.*;
 import java.util.*;
 
@@ -131,7 +135,7 @@ public class RsLicense {
 
   public static void requestLicense(final String message) {
     // ensure the dialog is appeared from UI thread and in a non-modal context
-    ApplicationManager.getApplication().invokeLater(() -> showRegisterDialog(PRODUCT_CODE, message), ModalityState.NON_MODAL);
+    ApplicationManager.getApplication().invokeLater(() -> showRegisterDialog(PRODUCT_CODE, message), ModalityState.nonModal());
   }
   
   private static void showRegisterDialog(final String productCode, final String message) {
@@ -143,7 +147,9 @@ public class RsLicense {
       registerAction = actionManager.getAction("Register");
     }
     if (registerAction != null) {
-      registerAction.actionPerformed(AnActionEvent.createFromDataContext("", new Presentation(), asDataContext(productCode, message)));
+      // s228JB 2026-11-18: JetBrains' CheckLicense sample for 2025.2+ (createFromDataContext is scheduled for removal;
+      //   calling actionPerformed directly is an override-only violation) — Plugin Verifier, IntelliJ IDEA 2026.2.5.
+      ActionUtil.performAction(registerAction, AnActionEvent.createEvent(asDataContext(productCode, message), new Presentation(), "", ActionUiKind.NONE, null));
     }
   }
 
@@ -153,17 +159,12 @@ public class RsLicense {
   // - message: optional message explaining the reason why the dialog has been shown
   @NotNull
   private static DataContext asDataContext(final String productCode, @Nullable String message) {
-    return dataId -> {
-      switch (dataId) {
-        // the same code as registered in plugin.xml, 'product-descriptor' tag
-        case "register.product-descriptor.code" : return productCode;
-
-        // optional message to be shown in the registration dialog that appears
-        case "register.message" : return message;
-        
-        default: return null;
-      }
-    };
+    // s228JB 2026-11-18: SimpleDataContext + DataKey (242+ and 2026.3 clean) — a lambda implements DataContext.getData(String),
+    //   which is deprecated for removal + internal from 2025.3.
+    SimpleDataContext.Builder b = SimpleDataContext.builder()
+      .add(DataKey.<String>create("register.product-descriptor.code"), productCode);  // the code in plugin.xml product-descriptor
+    if (message != null) b.add(DataKey.<String>create("register.message"), message);    // optional text shown in the dialog
+    return b.build();
   }
 
   private static boolean isEvaluationValid(String expirationTime) {
