@@ -26,8 +26,8 @@ public class RsCheckAction extends AnAction {
     if (p == null || vf == null || vf.isDirectory()) return;
     RsAnnotator.ON.add(vf.getPath());
     RsAnnotator.TELL.add(vf.getPath());
-    FileEditorManager.getInstance(p).openFile(vf, true);
+    new com.intellij.openapi.fileEditor.OpenFileDescriptor(p, vf).navigate(true);
     PsiFile pf = PsiManager.getInstance(p).findFile(vf);
-    if (pf != null) DaemonCodeAnalyzer.getInstance(p).restart(pf);
+    if (pf != null) DaemonCodeAnalyzer.getInstance(p).restart(pf, "ReadyStack check");
   }
 }
