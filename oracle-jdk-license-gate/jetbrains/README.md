@@ -1,6 +1,6 @@
-# Oracle JDK License Gate — JetBrains plugin source
+# Oracle JDK License Check and Temurin Fixer — JetBrains plugin source
 
-The IntelliJ Platform plugin for **Oracle JDK License Gate** (right-click in the editor or Tools → "Check This File").
+The IntelliJ Platform plugin for **Oracle JDK License Check and Temurin Fixer** (right-click in the editor or Tools → "Check This File").
 
 - The plugin is a thin wrapper: it writes the current buffer to a temp file and runs the checking engine, the npm package [`@readystack/oracle-jdk-license-gate`](https://www.npmjs.com/package/@readystack/oracle-jdk-license-gate) (Node 18+, `npx`). The engine and its rule set live in the folder above this one (`engine.js`, `rules.json`).
 - Build: `gradle buildPlugin` (IntelliJ Platform Gradle Plugin 2.x).
