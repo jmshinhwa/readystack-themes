@@ -17,14 +17,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 /**
- * s175 2026-10-01 - the money moment inside IntelliJ. Free: the inline check and the Java map. Paid: the dated project
- * report. Keys are checked by our own server (/api/lic, which asks Whop) - the same key a VS Code buyer gets.
+ * s175 2026-10-01 / s185 2026-10-10 - the money moment inside IntelliJ. Free: the inline check, the Java map and Fix This File.
+ * Pro (JetBrains Marketplace freemium licence, product code PRSORACLEJDK): Fix All in project + the dated migration record.
  * One anonymous count per action, only when the IDE's own usage-statistics consent is on (and never in CI).
  */
 final class Paid {
   static final String GROUP = "ReadyStack." + Txt.SLUG;
-  static final String KEY = "readystack.key." + Txt.SLUG;
-  static final String KEY_DAY = KEY + ".day";
   static final String CLEAN_OFF = "readystack." + Txt.SLUG + ".cleanOff";
   static final String UA = "readystack-jb/" + Txt.SLUG;
 
@@ -55,61 +53,24 @@ final class Paid {
     });
   }
 
-  static String buyUrl() { return Txt.BUY_URL + "?ref=jetbrains"; }
-  static String teamUrl() { return Txt.TEAM_URL + "?ref=jetbrains"; }
+  /** s185 - JetBrains Marketplace freemium: the store sells, the IDE carries the licence (no key of our own). */
+  static boolean licensed() { return Boolean.TRUE.equals(RsLicense.isLicensed()); }
 
-  /** true = valid · false = refused · null = could not reach the server */
-  static Boolean validate(String key) {
-    try {
-      String u = "https://getreadystack.com/api/lic?key=" + URLEncoder.encode(key, StandardCharsets.UTF_8) + "&slug=" + Txt.SLUG;
-      String s = HttpRequests.request(u).userAgent(UA).accept("application/json").connectTimeout(8000).readTimeout(8000).readString();
-      return s != null && s.replace(" ", "").contains("\"ok\":true");
-    } catch (HttpRequests.HttpStatusException e) {
-      return false;
-    } catch (Throwable t) {
-      return null;
-    }
-  }
-
-  static String storedKey() { String k = PropertiesComponent.getInstance().getValue(KEY); return k == null || k.trim().isEmpty() ? null : k.trim(); }
-  static boolean hasKey() { return storedKey() != null; }
-
-  private static Boolean validateWithProgress(Project p, String key) {
-    Boolean[] r = new Boolean[1];
-    ProgressManager.getInstance().runProcessWithProgressSynchronously(() -> r[0] = validate(key), "Checking licence key", true, p);
-    return r[0];
-  }
-
-  /** EDT. true when a valid key is in hand (stored key re-checked; offline keeps a key that was valid before). */
-  static boolean ensureKey(Project p, String why) {
-    String k = storedKey();
-    if (k != null) {
-      Boolean ok = validateWithProgress(p, k);
-      if (Boolean.TRUE.equals(ok)) { PropertiesComponent.getInstance().setValue(KEY_DAY, Engine.today()); return true; }
-      if (ok == null && PropertiesComponent.getInstance().getValue(KEY_DAY) != null) return true;
-    }
+  /** EDT. true when a JetBrains Marketplace licence for this plugin is active; otherwise explains the Pro part and opens the IDE's own licence dialog. */
+  static boolean ensureLicense(Project p, String why) {
+    Boolean lic = RsLicense.isLicensed();
+    if (Boolean.TRUE.equals(lic)) return true;
     count("paywall", why);
-    String[] T = Txt.TEAM[li()];
-    String msg = "The dated project report is the paid part: every line that pulls an Oracle-licensed Java build, the free Temurin or "
-      + "Corretto line for each, the JDKs this IDE uses and the SHA-256 of every file read - written as a file for your team lead, "
-      + "an auditor or CI.\n\nLicence key: $" + Txt.PRICE + " once.  " + T[0];
-    int pick = Messages.showDialog(p, msg, Txt.TITLE,
-      new String[]{"Enter licence key", "Get a licence ($" + Txt.PRICE + " once)", T[1], Messages.getCancelButton()}, 0, Messages.getInformationIcon());
-    if (pick == 1) { BrowserUtil.browse(buyUrl()); return false; }
-    if (pick == 2) { BrowserUtil.browse(teamUrl()); return false; }
-    if (pick != 0) return false;
-    String in = Messages.showInputDialog(p, "Paste the licence key from your receipt or the thanks page.", Txt.TITLE, null);
-    if (in == null || in.trim().isEmpty()) return false;
-    Boolean ok = validateWithProgress(p, in.trim());
-    if (Boolean.TRUE.equals(ok)) {
-      PropertiesComponent.getInstance().setValue(KEY, in.trim());
-      PropertiesComponent.getInstance().setValue(KEY_DAY, Engine.today());
-      count("use", "key_ok");
-      return true;
+    if (lic == null) {
+      Messages.showInfoMessage(p, "The IDE is still loading licences. Try again in a few seconds.", Txt.TITLE);
+      return false;
     }
-    Messages.showWarningDialog(p, ok == null
-      ? "getreadystack.com could not be reached to check the key. Check the connection and try again."
-      : "That key was not accepted for " + Txt.TITLE + ". Copy it again from the thanks page or the Whop receipt.", Txt.TITLE);
+    String msg = "Pro (JetBrains Marketplace licence): fix every Oracle JDK line across the whole project in one step "
+      + "- GitHub Actions, Dockerfiles, Gradle toolchains, dev containers, Homebrew, winget - and write a dated migration record "
+      + "(every line changed, every line that still needs a choice, the SHA-256 of every file read) for your team lead or an auditor.\n\n"
+      + "Free stays free: the Java map, the inline check and Fix This File.";
+    int pick = Messages.showDialog(p, msg, Txt.TITLE, new String[]{"Get a licence", Messages.getCancelButton()}, 0, Messages.getInformationIcon());
+    if (pick == 0) RsLicense.requestLicense("Fix every Oracle JDK line in the project and write a dated migration record.");
     return false;
   }
 
@@ -119,16 +80,14 @@ final class Paid {
     n.notify(p);
   }
 
-  /** After the map: the line that answers the company, once per project (clean) or with the count (findings). */
+  /** After the map: findings get the Pro fix; a clean project hears the company line once. */
   static void offerAfterMap(Project p, int finds) {
-    if (hasKey()) return;
-    String[] T = Txt.TEAM[li()];
+    if (licensed()) return;
     if (finds > 0) {
       count("paywall", "map_finds");
-      notify(p, finds + (finds == 1 ? " line pulls" : " lines pull") + " an Oracle-licensed Java build. The dated project report "
-          + "(every line, the free line for each, the SHA-256 of every file read) is the paid part: $" + Txt.PRICE + " once. " + T[0],
-        NotificationAction.createSimpleExpiring("Write the dated report", () -> Report.run(p)),
-        NotificationAction.createSimpleExpiring(T[1], () -> BrowserUtil.browse(teamUrl())));
+      notify(p, finds + (finds == 1 ? " line pulls" : " lines pull") + " an Oracle-licensed Java build. Fix This File is free. "
+          + "Pro fixes every line across the project in one step and writes the dated migration record.",
+        NotificationAction.createSimpleExpiring("Fix all in project (Pro)", () -> FixActions.fixProject(p)));
       return;
     }
     PropertiesComponent app = PropertiesComponent.getInstance();
@@ -136,9 +95,8 @@ final class Paid {
     if (app.getValue(CLEAN_OFF) != null || prj.getValue(CLEAN_OFF) != null) return;
     prj.setValue(CLEAN_OFF, Engine.today());
     count("paywall", "clean_offer");
-    notify(p, Txt.CLEAN[li()] + " " + T[0],
-      NotificationAction.createSimpleExpiring(T[1], () -> BrowserUtil.browse(teamUrl())),
-      NotificationAction.createSimpleExpiring("Dated all-clear report ($" + Txt.PRICE + ")", () -> Report.run(p)),
+    notify(p, Txt.CLEAN[li()],
+      NotificationAction.createSimpleExpiring("Dated all-clear record (Pro)", () -> Report.run(p)),
       NotificationAction.createSimpleExpiring("Don't show again", () -> app.setValue(CLEAN_OFF, Engine.today())));
   }
 
