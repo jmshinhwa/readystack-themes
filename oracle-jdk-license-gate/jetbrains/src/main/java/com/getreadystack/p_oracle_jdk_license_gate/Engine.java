@@ -39,10 +39,19 @@ public final class Engine {
     }
   }
 
-  /* Oracle No-Fee Terms cover a Java LTS until one year after the next LTS ships. JDK 8 and 11 are OTN builds (dev/test only). */
+  /* s188 G7 - read from Oracle's own pages on 2026-10-11 (never computed):
+   *   Java SE Support Roadmap: "Updates of JDK 21 released beginning with the October 2026 Critical Patch Update (CPU),
+   *     are planned to be offered under the Java SE OTN license." / "Further update releases of Oracle JDK 17, released as of
+   *     October 15, 2024 are available under the Java SE OTN license."
+   *   Oracle Security Alerts: the next Critical Patch Update dates are "20 October 2026 ...".
+   *   JDK FAQ: Oracle JDK 25 "releases through September 2028" = NFTC (no switch day published yet -> no countdown).
+   * Column 3 = the first day new updates are OTN (not free for production); null = no published day. JDK 8 and 11 = OTN only. */
+  public static final String SRC_ROADMAP = "https://www.oracle.com/java/technologies/java-se-support-roadmap.html";
+  public static final String SRC_CPU = "https://www.oracle.com/security-alerts/";
   static final String[][] WINDOW = {
     {"8", "OTN", null, ""}, {"11", "OTN", null, ""},
-    {"17", "NFTC", "2024-09-19", ""}, {"21", "NFTC", "2026-09-16", ""}, {"25", "NFTC", "2028-09-15", "projected"}
+    {"17", "NFTC", "2024-10-15", ""}, {"21", "NFTC", "2026-10-20", "cpu"},
+    {"25", "NFTC", null, "releases through September 2028 stay under the No-Fee Terms (Oracle JDK FAQ); Oracle has not published the switch day"}
   };
   private static final Pattern VERSION_RE = Pattern.compile("(?:^|[^\\d.]|JDK\\.|jdk-)(8|11|17|21|25)(?![\\d])");
   private static final Pattern COMMENT = Pattern.compile("^\\s*#");
@@ -68,10 +77,11 @@ public final class Engine {
     for (String[] x : WINDOW) if (x[0].equals(ver)) w = x;
     if (w == null) return new String[]{"warn", "Java " + ver + " is not a long term support release; Oracle bills non-LTS use the same way"};
     if ("OTN".equals(w[1])) return new String[]{"err", "Java " + ver + " is an Oracle Technology Network build: free for development and test only, never for production"};
+    if (w[2] == null) return new String[]{"warn", "Oracle JDK " + ver + ": " + w[3]};
     long left = ChronoUnit.DAYS.between(LocalDate.parse(today), LocalDate.parse(w[2]));
-    if (left < 0) return new String[]{"err", "the free NFTC window for Java " + ver + " closed on " + w[2] + ", " + (-left) + " days ago"};
-    String tail = "projected".equals(w[3]) ? " (projected from the next LTS date)" : "";
-    return new String[]{"warn", "the free NFTC window for Java " + ver + " closes on " + w[2] + ", " + left + " days from now" + tail};
+    String at = "cpu".equals(w[3]) ? "the Critical Patch Update of " + w[2] : w[2];
+    if (left <= 0) return new String[]{"err", "new Oracle JDK " + ver + " updates are under the Java SE OTN license since " + at + " (not free for production use)"};
+    return new String[]{"warn", "new Oracle JDK " + ver + " updates move to the Java SE OTN license (not free for production use) at " + at + ", " + left + " days from now"};
   }
 
   private static boolean nearHas(String[] lines, int i, Pattern p) {
