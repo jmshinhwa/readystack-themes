@@ -1,19 +1,26 @@
 <idea-plugin>
   <id>com.getreadystack.oracle-jdk-license-gate</id>
-  <name>Oracle JDK License Gate</name>
+  <name>Oracle JDK License Check and Temurin Fixer</name>
   <vendor email="hello@getreadystack.com" url="https://getreadystack.com">ReadyStack</vendor>
+  <product-descriptor code="PRSORACLEJDK" release-date="20261011" release-version="13" optional="true"/>
   <description><![CDATA[
-<p><b>Moving to Temurin, Corretto, Zulu or another OpenJDK build?</b> See which Java every part of your project pulls &mdash; GitHub Actions setup-java, Dockerfile base images, Gradle and Maven toolchains, SDKMAN (.sdkmanrc), asdf / mise (.tool-versions), dev containers, Homebrew, winget and Chocolatey &mdash; with the Oracle-licensed ones flagged on today's date and the free Eclipse Temurin (Adoptium) or Amazon Corretto line for each place.</p>
-<p>Why the date matters: Oracle's No-Fee Terms (NFTC) cover a Java LTS release until one year after the next LTS ships. The free window for JDK 21 closed on 2026-09-16 and for JDK 17 on 2024-09-19; Oracle JDK 8 and 11 builds are under the Oracle Technology Network license (development and test only). After that, Oracle prices Java SE on total headcount, contractors included.</p>
+<p><b>New Oracle JDK 21 updates are no longer free for production from 20 October 2026.</b> Oracle's Java SE Support Roadmap: "Updates of JDK 21 released beginning with the October 2026 Critical Patch Update (CPU), are planned to be offered under the Java SE OTN license" &mdash; and the October 2026 Critical Patch Update is on 20 October 2026 (<a href="https://www.oracle.com/java/technologies/java-se-support-roadmap.html">Java SE Support Roadmap</a> · <a href="https://www.oracle.com/security-alerts/">Oracle Critical Patch Updates</a>, both read 2026-10-11). Open your project and the Java map shows, file and line, every place that still pulls an Oracle JDK build before that day.</p>
+<p><b>Moving off the Oracle JDK to Eclipse Temurin (Adoptium) or another OpenJDK build?</b> This finds every place your project pulls an Oracle-licensed Java build and rewrites it to the free Temurin line &mdash; GitHub Actions <code>setup-java</code>, Dockerfile base images, Gradle toolchains (<code>JvmVendorSpec.ORACLE</code>), dev containers, Homebrew and winget &mdash; and tells you exactly what to do for the lines that need a human choice (SDKMAN, asdf / mise, Maven toolchains, Oracle Linux rpm installs, download URLs).</p>
+<p>The dates, from Oracle's own pages: Oracle JDK 21 releases through September 2026 are under the No-Fee Terms (NFTC); updates from the October 2026 Critical Patch Update (20 October 2026) are under the Java SE OTN license. Oracle JDK 17 updates released from 15 October 2024 are OTN; Oracle JDK 8 and 11 builds are OTN (personal, development and test use). Oracle prices the Java SE Universal Subscription on total headcount, contractors included.</p>
 <ul>
-<li><b>Java map</b> (free, local): <b>Tools &rarr; Oracle JDK License Gate: Java Map</b>. Every place this project chooses a Java build, the JDKs this IDE runs it on (read from each JDK's own <code>release</code> file), and the Temurin / Corretto line for each place.</li>
-<li><b>Inline check</b> (free): 18 rules on Dockerfiles, CI workflows, Gradle and Maven files, SDKMAN, asdf and shell scripts, as you open them. Each finding names the license and the free line that replaces it. Runs inside the IDE: no Node.js, nothing leaves your machine.</li>
-<li><b>Dated project report</b> (paid): every Oracle-licensed line, the free line for each, the JDKs the IDE knows and the SHA-256 of every file read, written as a file for your team lead, an auditor or CI. Licence key $29 once; team key $149 once (5 seats, every ReadyStack linter). Get a key at <a href="https://getreadystack.com/tools/oracle-jdk-license-gate">getreadystack.com/tools/oracle-jdk-license-gate</a>.</li>
+<li><b>Java map</b> (free): <b>Tools &rarr; Oracle JDK License Check: Java Map</b>. Every place this project chooses a Java build, the JDKs this IDE runs it on (read from each JDK's own <code>release</code> file), and the Temurin / Corretto line for each place.</li>
+<li><b>Inline check</b> (free): 18 rules on Dockerfiles, CI workflows, Gradle and Maven files, SDKMAN, asdf and shell scripts, as you open them. Each finding names the license and the free line that replaces it.</li>
+<li><b>Fix This File</b> (free): rewrites the Oracle lines in the file you have open to Temurin, in one undo step.</li>
+<li><b>Fix All in Project + migration record</b> (Pro, JetBrains Marketplace licence): rewrites every Oracle line across the whole project in one step and writes a dated record next to the project &mdash; every line changed (before / after), every line that still needs a choice, the JDKs the IDE knows and the SHA-256 of every file read &mdash; for your team lead, an auditor or CI.</li>
 </ul>
-<p>Same 18 rules as the ReadyStack VS Code extension. Privacy: licence keys are checked against getreadystack.com; if usage statistics sharing is on in the IDE, one anonymous count per action (tool name and action only, never file content). Set <code>READYSTACK_NO_TELEMETRY=1</code> to turn it off.</p>
+<p>Runs inside the IDE: no Node.js, nothing leaves your machine. If usage statistics sharing is on in the IDE, one anonymous count per action (tool name and action only, never file content); set <code>READYSTACK_NO_TELEMETRY=1</code> to turn it off. This plugin states what your files say on a date; it is not legal advice. Oracle and Java are registered trademarks of Oracle and/or its affiliates; this plugin is not affiliated with Oracle.</p>
   ]]></description>
   <change-notes><![CDATA[
-<p>1.1.0: Java map (which Java each part of the project pulls, and the free Temurin / Corretto line for each). The checks now run inside the IDE with no Node.js. 18 rules (was 9): SDKMAN and asdf vendor pins, Gradle and Maven toolchains, dev containers, Homebrew, winget, Chocolatey, oracle-actions/setup-java. Dated project report with file hashes.</p>
+  <p>1.3.1 — keeps working in IntelliJ-based IDEs 2025.3 and newer: the licence dialog now opens through the current IntelliJ Platform action API (the old call is scheduled for removal). No change to what the plugin checks.</p>
+  
+<p>1.3.0: The date is now Oracle's own: new Oracle JDK 21 updates move to the Java SE OTN license at the Critical Patch Update of 20 October 2026 (Java SE Support Roadmap · Oracle Critical Patch Updates, read 2026-10-11) &mdash; findings count down to that day, and the Java map and the dated record cite both pages. Oracle JDK 17: OTN since 15 October 2024. Renamed to Oracle JDK License Check and Temurin Fixer.</p>
+<p>1.2.0: <b>Fix This File</b> (free) rewrites the Oracle JDK lines in the open file to Eclipse Temurin. <b>Fix All in Project</b> plus a dated migration record is now the Pro part, sold through JetBrains Marketplace (the Java map and the inline check stay free). Renamed to Oracle JDK to Temurin Fixer.</p>
+<p>1.1.0: Java map. The checks run inside the IDE with no Node.js. 18 rules.</p>
   ]]></change-notes>
   <depends>com.intellij.modules.platform</depends>
   <extensions defaultExtensionNs="com.intellij">
@@ -22,15 +29,23 @@
     <postStartupActivity implementation="com.getreadystack.p_oracle_jdk_license_gate.MapStartup"/>
   </extensions>
   <actions>
-    <group id="com.getreadystack.oracle-jdk-license-gate.group" text="Oracle JDK License Gate" popup="false">
+    <group id="com.getreadystack.oracle-jdk-license-gate.group" text="Oracle JDK License Check" popup="false">
       <add-to-group group-id="ToolsMenu" anchor="last"/>
       <action id="com.getreadystack.oracle-jdk-license-gate.map" class="com.getreadystack.p_oracle_jdk_license_gate.JavaMapAction"
-              text="Oracle JDK License Gate: Java Map" description="Which Java every part of this project pulls, and the free Temurin or Corretto line for each place"/>
+              text="Oracle JDK License Check: Java Map" description="Which Java every part of this project pulls, and the free Temurin or Corretto line for each place"/>
+      <action id="com.getreadystack.oracle-jdk-license-gate.fixall" class="com.getreadystack.p_oracle_jdk_license_gate.FixActions$FixProjectAction"
+              text="Oracle JDK License Check: Fix All in Project (Pro)" description="Rewrite every Oracle JDK line in the project to Temurin and write a dated migration record"/>
       <action id="com.getreadystack.oracle-jdk-license-gate.report" class="com.getreadystack.p_oracle_jdk_license_gate.ReportAction"
-              text="Oracle JDK License Gate: Write the Dated Project Report" description="Every Oracle-licensed line, the free line for each and the SHA-256 of every file read (licence key)"/>
+              text="Oracle JDK License Check: Dated Record Only (Pro)" description="Every Oracle-licensed line, the free line for each and the SHA-256 of every file read"/>
     </group>
+    <action id="com.getreadystack.oracle-jdk-license-gate.fixfile" class="com.getreadystack.p_oracle_jdk_license_gate.FixActions$FixFileAction"
+            text="Oracle JDK License Check: Fix This File" description="Rewrite the Oracle JDK lines in this file to Eclipse Temurin">
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+    </action>
     <action id="com.getreadystack.oracle-jdk-license-gate.check" class="com.getreadystack.p_oracle_jdk_license_gate.RsCheckAction"
-            text="Oracle JDK License Gate: Check This File" description="Run Oracle JDK License Gate on the file in the editor">
+            text="Oracle JDK License Check: Check This File" description="Show the Oracle JDK findings in the file in the editor">
       <add-to-group group-id="EditorPopupMenu" anchor="last"/>
       <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
       <add-to-group group-id="ToolsMenu" anchor="last"/>
