@@ -1,7 +1,6 @@
 package com.getreadystack.p_oracle_jdk_license_gate;
 
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.application.ReadAction;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.progress.ProgressIndicator;
 import com.intellij.openapi.progress.ProgressManager;
@@ -25,6 +24,7 @@ import java.security.MessageDigest;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import com.intellij.openapi.util.Computable;
 
 /**
  * s175 2026-10-01 - "Which Java does this project pull?" - the answer people came for. [measured 2026-09-30 VS Code]
@@ -34,7 +34,7 @@ import java.util.regex.Pattern;
 final class JavaMap {
   static final Set<String> SKIP = new HashSet<>(Arrays.asList(".git", ".idea", ".gradle", "node_modules", "build", "target", "dist", "out", "vendor"));
 
-  static final class Row { String file; String sha; List<Engine.Finding> findings; List<Engine.Pin> pins; List<Engine.Note> notes; }
+  static final class Row { VirtualFile vf; String file; String sha; List<Engine.Finding> findings; List<Engine.Pin> pins; List<Engine.Note> notes; }
   static final class Data { String day; int java; List<Row> rows = new ArrayList<>(); List<String[]> jdks = new ArrayList<>();
     int finds() { int n = 0; for (Row r : rows) n += r.findings.size(); return n; }
     int pins() { int n = 0; for (Row r : rows) n += r.pins.size(); return n; } }
@@ -45,7 +45,7 @@ final class JavaMap {
   }
 
   static Data collect(Project project, int limit) {
-    Data d = ReadAction.compute(() -> {
+    Data d = ApplicationManager.getApplication().runReadAction((Computable<Data>) () -> {
       Data x = new Data(); x.day = Engine.today();
       List<VirtualFile> roots = new ArrayList<>(Arrays.asList(ProjectRootManager.getInstance(project).getContentRoots()));
       if (roots.isEmpty() && project.getBasePath() != null) { VirtualFile b = LocalFileSystem.getInstance().findFileByPath(project.getBasePath()); if (b != null) roots.add(b); }
@@ -62,6 +62,7 @@ final class JavaMap {
               byte[] b = f.contentsToByteArray();
               String t = new String(b, StandardCharsets.UTF_8);
               Row r = new Row();
+              r.vf = f;
               String rel = VfsUtilCore.getRelativePath(f, root, '/');
               r.file = rel != null ? rel : f.getPath();
               r.sha = sha256(b);
@@ -125,7 +126,8 @@ final class JavaMap {
     for (Row r : d.rows) notes += r.notes.size();
     L.append("# Java in ").append(projectName).append(" - ").append(d.day).append("\n\n");
     L.append(Txt.TITLE).append(" read ").append(d.rows.size()).append(d.rows.size() == 1 ? " file" : " files")
-      .append(" in this project against ").append(Engine.RULE_COUNT).append(" checks. Everything below was read on this machine; nothing was sent anywhere.\n\n");
+      .append(" in this project against ").append(Engine.RULE_COUNT).append(" checks. Everything below was read on this machine; nothing was sent anywhere.\n\n")
+     .append("> **The date:** new Oracle JDK 21 updates are under the Java SE OTN license (not free for production use) from the Critical Patch Update of 20 October 2026 - Oracle Java SE Support Roadmap, ").append(Engine.SRC_ROADMAP).append("\n\n");
     L.append("## 1. Oracle-licensed Java pulls on ").append(d.day).append(": ").append(finds).append("\n\n");
     if (finds == 0) L.append("None of the files read pulls an Oracle-licensed Java build.\n");
     int shown = 0;
@@ -157,7 +159,7 @@ final class JavaMap {
     }
     L.append("\n## ").append(sec).append(". The free line for each place\n\n| Place | Eclipse Temurin (Adoptium) | Amazon Corretto |\n| --- | --- | --- |\n");
     for (String[] x : Engine.LINES) L.append("| ").append(x[0]).append(" | `").append(x[1]).append("` | ").append(x[2] == null ? "" : "`" + x[2] + "`").append(" |\n");
-    L.append("\nOracle's No-Fee Terms cover a Java LTS release until one year after the next LTS ships: the free window for JDK 21 closed on 2026-09-16, for JDK 17 on 2024-09-19. OpenJDK builds such as Temurin and Corretto are not under those terms.\n\n---\n");
+    L.append("\nOracle's own Java SE Support Roadmap: updates of Oracle JDK 21 released from the October 2026 Critical Patch Update (20 October 2026) are under the Java SE OTN license, which is not free for production use; Oracle JDK 17 updates have been OTN since 15 October 2024. Sources: ").append(Engine.SRC_ROADMAP).append(" and ").append(Engine.SRC_CPU).append(". OpenJDK builds such as Temurin and Corretto are not under those terms.\n\n---\n");
     L.append("This map is free and stays on this machine. The dated project report (every line, the SHA-256 of every file read, as a file for your team, an auditor or CI) is the paid part: Tools > ")
       .append(Txt.TITLE).append(": Write the Dated Project Report.\n");
     return L.toString();
@@ -168,7 +170,7 @@ final class JavaMap {
       if (p.isDisposed()) return;
       LightVirtualFile vf = new LightVirtualFile(name, text);
       vf.setWritable(false);
-      FileEditorManager.getInstance(p).openFile(vf, true);
+      new com.intellij.openapi.fileEditor.OpenFileDescriptor(p, vf).navigate(true);
     });
   }
 
