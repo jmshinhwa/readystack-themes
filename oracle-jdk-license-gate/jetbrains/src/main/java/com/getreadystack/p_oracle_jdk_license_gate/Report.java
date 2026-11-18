@@ -21,11 +21,11 @@ import java.time.temporal.ChronoUnit;
 final class Report {
   static void run(Project p) {
     if (p == null || p.isDisposed()) return;
-    if (!Paid.ensureKey(p, "no_key")) return;
+    if (!Paid.ensureLicense(p, "record")) return;
     ProgressManager.getInstance().run(new Task.Backgroundable(p, Txt.TITLE + ": writing the dated report", true) {
       @Override public void run(@NotNull ProgressIndicator ind) {
         JavaMap.Data d = JavaMap.collect(p, 5000);
-        String text = render(d, p.getName(), Paid.storedKey());
+        String text = render(d, p.getName(), null);
         String base = p.getBasePath();
         if (base == null) { JavaMap.open(p, "oracle-java-license-report-" + d.day + ".md", text); return; }
         Path out = Path.of(base, "oracle-java-license-report-" + d.day + ".md");
@@ -35,7 +35,7 @@ final class Report {
         ApplicationManager.getApplication().invokeLater(() -> {
           if (p.isDisposed()) return;
           VirtualFile vf = LocalFileSystem.getInstance().refreshAndFindFileByNioFile(out);
-          if (vf != null) FileEditorManager.getInstance(p).openFile(vf, true);
+          if (vf != null) new com.intellij.openapi.fileEditor.OpenFileDescriptor(p, vf).navigate(true);
           else Messages.showInfoMessage(p, "Report written: " + out, Txt.TITLE);
         });
       }
@@ -49,8 +49,8 @@ final class Report {
     L.append("# Oracle Java licence report - ").append(project).append(" - ").append(d.day).append("\n\n");
     L.append("- Generated: ").append(Instant.now().truncatedTo(ChronoUnit.SECONDS)).append(" (UTC) by ").append(Txt.TITLE).append(" ").append(Txt.VERSION).append(" for JetBrains IDEs\n");
     L.append("- Checks: ").append(Engine.RULE_COUNT).append(" rules · Oracle terms clock on ").append(d.day)
-      .append(": JDK 21 free window closed 2026-09-16 · JDK 17 closed 2024-09-19 · JDK 8 and 11 Oracle builds are OTN (development and test only)\n");
-    L.append("- Files read: ").append(d.rows.size()).append(" · Java source files seen: ").append(d.java).append(" · licence key ending ").append(tail).append("\n\n");
+      .append(": new Oracle JDK 21 updates are Java SE OTN licensed from the Critical Patch Update of 2026-10-20 (").append(Engine.SRC_ROADMAP).append(" · ").append(Engine.SRC_CPU).append(") · Oracle JDK 17 updates since 2024-10-15 · JDK 8 and 11 Oracle builds are OTN (development and test only)\n");
+    L.append("- Files read: ").append(d.rows.size()).append(" · Java source files seen: ").append(d.java).append(" · JetBrains Marketplace licence").append("\n\n");
     L.append("## 1. Lines that pull an Oracle-licensed Java build: ").append(d.finds()).append("\n\n");
     if (d.finds() == 0) L.append("None. No file read on ").append(d.day).append(" pulls an Oracle-licensed Java build.\n");
     for (JavaMap.Row r : d.rows) for (Engine.Finding f : r.findings)
