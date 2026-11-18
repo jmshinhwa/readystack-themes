@@ -26,4 +26,7 @@
       <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
     </action>
   </actions>
+  <change-notes><![CDATA[
+  <p>1.1.1 — keeps working in IntelliJ-based IDEs 2025.3 and newer: the licence dialog now opens through the current IntelliJ Platform action API (the old call is scheduled for removal). No change to what the plugin checks.</p>
+  ]]></change-notes>
 </idea-plugin>
