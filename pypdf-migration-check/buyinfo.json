@@ -1,0 +1,37 @@
+{
+ "v": 1,
+ "by": "buyopen_stamp s232VSB",
+ "product": "pypdf Migration Check - PyMuPDF AGPL Licence Gate",
+ "doors": {
+  "https://getreadystack.com/api/buy/cl/polar_cl_0pvrLaMj6o8Qtp0GTkTL9p03sJZGqn2iLrElX087SbX": {
+   "plan": "plan_rkbPj6kCGvVWs",
+   "amount": 29.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "pypdf Migration Check — licence key",
+   "door": "one",
+   "what": "The workspace sweep and the written report are the paid part of pypdf Migration Check - PyMuPDF AGPL Licence Gate."
+  },
+  "https://getreadystack.com/api/buy/p/pypdf-migration-check": {
+   "plan": "plan_ylwWd7g9iEI1e",
+   "amount": 9.99,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "pypdf Migration Check — personal licence",
+   "door": "personal",
+   "what": "The workspace sweep and the written report are the paid part of pypdf Migration Check - PyMuPDF AGPL Licence Gate."
+  },
+  "https://getreadystack.com/api/buy/team": {
+   "plan": "plan_l8AcmNag95kPh",
+   "amount": 149.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "ReadyStack Team Key (5 Seats)",
+   "door": "team"
+  }
+ },
+ "read_at": "2026-11-22T13:31:55Z"
+}
