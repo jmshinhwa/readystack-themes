@@ -1,0 +1,27 @@
+{
+ "v": 1,
+ "by": "buyopen_stamp s232VSB",
+ "product": "JDK 25 Upgrade Blocker Lint",
+ "doors": {
+  "https://getreadystack.com/api/buy/cl/polar_cl_YK2CXL7Hd4TEoxQ76oOVQpVAsrLK9zUpcK7oV2MKwJs": {
+   "plan": "plan_nmcDKyxD2LfRj",
+   "amount": 29.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "JDK 25 Upgrade Blocker Lint — licence key",
+   "door": "one",
+   "what": "The workspace sweep and the written report are the paid part of JDK 25 Upgrade Blocker Lint."
+  },
+  "https://getreadystack.com/api/buy/cl/polar_cl_l6iN1uWt0FwWu7tBsczD0jWpP2vxFM54Wdwqb3KPi1G": {
+   "plan": "plan_l8AcmNag95kPh",
+   "amount": 149.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "ReadyStack Team Key (5 Seats)",
+   "door": "team"
+  }
+ },
+ "read_at": "2026-11-22T13:32:55Z"
+}
