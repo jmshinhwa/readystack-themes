@@ -1,0 +1,27 @@
+{
+ "v": 1,
+ "by": "buyopen_stamp s232VSB",
+ "product": "Flyway Migration Check — Liquibase 5 FSL ties",
+ "doors": {
+  "https://getreadystack.com/api/buy/cl/polar_cl_0Kv55ZFzhN92MA1VzdjIHNeqXLBNUW0gtNzfk1niwXt": {
+   "plan": "plan_1SiilzZldKeJY",
+   "amount": 29.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "Flyway Migration Check — licence key",
+   "door": "one",
+   "what": "The workspace sweep and the written report are the paid part of Flyway Migration Check — Liquibase 5 FSL ties."
+  },
+  "https://getreadystack.com/api/buy/team": {
+   "plan": "plan_l8AcmNag95kPh",
+   "amount": 149.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "ReadyStack Team Key (5 Seats)",
+   "door": "team"
+  }
+ },
+ "read_at": "2026-11-22T13:39:58Z"
+}
