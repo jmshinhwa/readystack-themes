@@ -1,0 +1,27 @@
+{
+ "v": 1,
+ "by": "buyopen_stamp s232VSB",
+ "product": "EN 16931 e-Invoice Lint",
+ "doors": {
+  "https://getreadystack.com/api/buy/cl/polar_cl_KQWFnU1FA20UW0fJUPyv4JcDLH8BLJkK3rf722j26cC": {
+   "plan": "plan_Fg9ry5ZkZaZQp",
+   "amount": 29.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "EN 16931 e-Invoice Lint — licence key",
+   "door": "one",
+   "what": "Full version: sweep every invoice mapping in the workspace in one pass and write a dated report file you keep, commit and hand to an auditor."
+  },
+  "https://getreadystack.com/api/buy/cl/polar_cl_l6iN1uWt0FwWu7tBsczD0jWpP2vxFM54Wdwqb3KPi1G": {
+   "plan": "plan_l8AcmNag95kPh",
+   "amount": 149.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "ReadyStack Team Key (5 Seats)",
+   "door": "team"
+  }
+ },
+ "read_at": "2026-11-22T13:38:58Z"
+}
