@@ -2,7 +2,7 @@
   "name": "flyway-migration-check",
   "displayName": "Flyway Migration Check — Liquibase 5 FSL ties",
   "description": "Flyway migration check: flags Liquibase Community 5.x (FSL-1.1-ALv2) lines in pom.xml, Gradle, liquibase.properties, Spring config and changelogs, with the Flyway line for each.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
