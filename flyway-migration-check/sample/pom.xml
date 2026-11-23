@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- pom.xml: orders-service, Spring Boot on PostgreSQL, still on Liquibase -->
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>orders-service</artifactId>
+  <version>1.4.0</version>
+  <properties>
+    <java.version>17</java.version>
+    <liquibase.version>5.0.1</liquibase.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
+      <version>${liquibase.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-maven-plugin</artifactId>
+        <version>${liquibase.version}</version>
+        <configuration>
+          <changeLogFile>db/changelog/db.changelog-master.yaml</changeLogFile>
+          <contexts>prod</contexts>
+          <rollbackCount>1</rollbackCount>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
