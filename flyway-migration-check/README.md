@@ -1,5 +1,7 @@
 # Flyway Migration Check — Liquibase 5 FSL ties
 
+![Flyway Migration Check — Liquibase 5 FSL ties — finds the line](https://getreadystack.com/img/promo/flyway-migration-check_demo.gif)
+
 ![Flyway Migration Check — Liquibase 5 FSL ties](https://getreadystack.com/img/promo/sku588693_result_card.jpg)
 
 **Six Liquibase FSL ties in a 38-line pom.xml, each with its Flyway line: 3 errors, 3 warnings, found in one pass.**
