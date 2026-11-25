@@ -1,0 +1,37 @@
+{
+ "v": 1,
+ "by": "buyopen_stamp s232VSB",
+ "product": "Python 3.10 End of Life — Pin Check & Fix",
+ "doors": {
+  "https://getreadystack.com/api/buy/cl/polar_cl_T5u1TmZEv7E3AJdUtY7kLZzZUsO5PxXsXz7vh1auiYI": {
+   "plan": "plan_v9GqlDcQjlpN0",
+   "amount": 29.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "Python 3.10 End of Life — licence key",
+   "door": "one",
+   "what": "Full version: fix all Python 3.10 pins in every file at once, with a preview and a dated change record."
+  },
+  "https://getreadystack.com/api/buy/p/python-310-eol-pin-check": {
+   "plan": "plan_J2IZBJhZU5wOs",
+   "amount": 9.99,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "Python 3.10 End of Life — personal licence",
+   "door": "personal",
+   "what": "Full version: fix all Python 3.10 pins in every file at once, with a preview and a dated change record."
+  },
+  "https://getreadystack.com/api/buy/team": {
+   "plan": "plan_l8AcmNag95kPh",
+   "amount": 149.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "ReadyStack Team Key (5 Seats)",
+   "door": "team"
+  }
+ },
+ "read_at": "2026-11-22T13:35:58Z"
+}
