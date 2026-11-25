@@ -2,7 +2,7 @@
   "name": "podman-desktop-laptop-check",
   "displayName": "Podman Desktop Laptop Check: Docker Desktop seats",
   "description": "Finds every Docker Desktop install in Brewfiles, winget and choco manifests and laptop setup scripts (brew --cask docker, Docker.DockerDesktop, desktop.docker.com) with the Podman Desktop line for eac",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "readystack",
   "engines": {
     "vscode": "^1.75.0"
