@@ -1,0 +1,18 @@
+{
+ "v": 1,
+ "by": "buyopen_stamp s232VSB",
+ "product": "ReadyStack Forest Deep",
+ "doors": {
+  "https://getreadystack.com/api/buy/cl/polar_cl_XLCKUkI8aRMShyOFKFccELfmuQBHQ8Dwuy6rH2WiR0e": {
+   "plan": "plan_zSShytKK5wGg9",
+   "amount": 14.99,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "Hanji + 12 Themes: VS Code, JetBrains",
+   "door": "pack",
+   "what": "The same palette for your terminal (iTerm2, Windows Terminal, Alacritty, kitty) and Obsidian is"
+  }
+ },
+ "read_at": "2026-11-22T13:37:58Z"
+}
