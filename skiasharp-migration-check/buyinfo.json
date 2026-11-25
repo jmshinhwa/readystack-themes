@@ -1,0 +1,27 @@
+{
+ "v": 1,
+ "by": "buyopen_stamp s232VSB",
+ "product": "SkiaSharp Migration Check for ImageSharp",
+ "doors": {
+  "https://getreadystack.com/api/buy/cl/polar_cl_YcaDEvXkb3Zm6D3jJ1CvVhhH5g7TlGbOkPleD3kLj0j": {
+   "plan": "plan_m0ZzCTqVCDG0O",
+   "amount": 29.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "SkiaSharp Migration Check for ImageSharp — licence key",
+   "door": "one",
+   "what": "The workspace sweep and the written report are the paid part of SkiaSharp Migration Check for ImageSharp."
+  },
+  "https://getreadystack.com/api/buy/team": {
+   "plan": "plan_l8AcmNag95kPh",
+   "amount": 149.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "ReadyStack Team Key (5 Seats)",
+   "door": "team"
+  }
+ },
+ "read_at": "2026-11-22T13:40:58Z"
+}
