@@ -1,0 +1,27 @@
+{
+ "v": 1,
+ "by": "buyopen_stamp s232VSB",
+ "product": "Podman Desktop Laptop Check: Docker Desktop seats",
+ "doors": {
+  "https://getreadystack.com/api/buy/cl/polar_cl_BtXrmSxtgp2B5dlS022DStC7pr1Wpmegc8vPu3umMIe": {
+   "plan": "plan_JU7NVaOtWeZGv",
+   "amount": 29.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "Podman Desktop Laptop Check — licence key",
+   "door": "one",
+   "what": "The workspace sweep and the written report are the paid part of Podman Desktop Laptop Check: Docker Desktop seats."
+  },
+  "https://getreadystack.com/api/buy/team": {
+   "plan": "plan_l8AcmNag95kPh",
+   "amount": 149.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "ReadyStack Team Key (5 Seats)",
+   "door": "team"
+  }
+ },
+ "read_at": "2026-11-22T13:34:55Z"
+}
