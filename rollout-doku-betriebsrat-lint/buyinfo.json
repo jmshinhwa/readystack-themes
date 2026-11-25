@@ -1,0 +1,27 @@
+{
+ "v": 1,
+ "by": "buyopen_stamp s232VSB",
+ "product": "Rollout-Doku Lint – Betriebsrat & IT-Einführung",
+ "doors": {
+  "https://getreadystack.com/api/buy/cl/polar_cl_l6iN1uWt0FwWu7tBsczD0jWpP2vxFM54Wdwqb3KPi1G": {
+   "plan": "plan_l8AcmNag95kPh",
+   "amount": 149.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "ReadyStack Team Key (5 Seats)",
+   "door": "team"
+  },
+  "https://getreadystack.com/api/buy/cl/polar_cl_utqay8UfgX9jPpOHCwY0fnE0JzNYfGbQiWTRw3Y7hTR": {
+   "plan": "plan_3xMKz5lPD0Hfw",
+   "amount": 29.0,
+   "currency": "usd",
+   "type": "one_time",
+   "period_days": null,
+   "checkout_title": "Rollout-Doku Lint — Lizenzschlüssel",
+   "door": "one",
+   "what": "Vollversion: Workspace-Prüfbericht über alle Systembeschreibungen als Datei, als Anlage für die Unterrichtung des Betriebsrats."
+  }
+ },
+ "read_at": "2026-11-22T13:40:53Z"
+}
